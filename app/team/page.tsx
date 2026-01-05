@@ -5,7 +5,16 @@ import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
-const team = [
+type TeamMember = {
+    name: string;
+    role: string;
+    image: string;
+    color: string;
+    position: { top?: string; left?: string; right?: string; bottom?: string };
+    pillPos: string;
+};
+
+const team: TeamMember[] = [
     {
         name: "Alex",
         role: "Director",
