@@ -16,12 +16,12 @@ import { HeroGrid } from "@/components/effects/HeroGrid";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
-  { id: 1, src: "/images/Hey! Sinamika Poster.jpg", title: "Hey Sinamika", type: "Short Film" },
-  { id: 2, src: "/images/Hi papa.jpg", title: "Hi Papa", type: "Short Film" },
+  { id: 1, src: "/images/Hey!%20Sinamika%20Poster.jpg", title: "Hey Sinamika", type: "Short Film" },
+  { id: 2, src: "/images/Hi%20papa.jpg", title: "Hi Papa", type: "Short Film" },
   { id: 3, src: "/images/Thiruchitrambalam.jpg", title: "Thiruchitrambalam", type: "FunShortz" },
-  { id: 4, src: "/images/Meiyazhagan _ illustration poster - Vishnu Narayanan.jpg", title: "Meiyazhagan", type: "TeqThots" },
-  { id: 5, src: "/images/Odum Kuthira Chaadum Kuthira poster.jpg", title: "Odum Kuthira", type: "Short Film" },
-  { id: 6, src: "/images/#Atharvaa.jpg", title: "Atharvaa", type: "FunShortz" },
+  { id: 4, src: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg", title: "Meiyazhagan", type: "TeqThots" },
+  { id: 5, src: "/images/Odum%20Kuthira%20Chaadum%20Kuthira%20poster.jpg", title: "Odum Kuthira", type: "Short Film" },
+  { id: 6, src: "/images/%23Atharvaa.jpg", title: "Atharvaa", type: "FunShortz" },
   { id: 7, src: "/images/A.jpg", title: "A", type: "TeqThots" },
   { id: 8, src: "/images/D.jpg", title: "D", type: "Short Film" },
 ];

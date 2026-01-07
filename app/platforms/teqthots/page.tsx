@@ -10,19 +10,19 @@ const episodes = [
     {
         title: "Building in Public: The Startup Journey",
         description: "A deep dive into the challenges and triumphs of building a tech startup from the ground up.",
-        thumbnail: "/images/Eye-Catching YouTube Thumbnail Designs.jpg",
+        thumbnail: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
         duration: "32 min",
     },
     {
         title: "Scaling Culture: Beyond the First 50",
         description: "How do you maintain company culture when you're growing rapidly? Leaders share their insights.",
-        thumbnail: "/images/A Man Holding His Hands To His Head With The Words Dark Reality Of Growth.jpg",
+        thumbnail: "/images/A%20Man%20Holding%20His%20Hands%20To%20His%20Head%20With%20The%20Words%20Dark%20Reality%20Of%20Growth.jpg",
         duration: "28 min",
     },
     {
         title: "The Infrastructure Behind AI Products",
         description: "A technical look at what it takes to ship AI-powered products at scale.",
-        thumbnail: "/images/Blog Graphics.jpg",
+        thumbnail: "/images/Blog%20Graphics.jpg",
         duration: "45 min",
     },
 ];
