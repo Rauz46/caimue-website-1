@@ -35,7 +35,7 @@ const platforms = [
     description: "Conversations that document how companies are built.",
     href: "/platforms/teqthots",
     color: "card-lime",
-    image: "/images/poster-1.png",
+    image: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
   },
   {
     id: "funshortz",
@@ -44,7 +44,7 @@ const platforms = [
     description: "Short-form entertainment that resonates with regional audiences.",
     href: "/platforms/funshortz",
     color: "card-peach",
-    image: "/images/poster-2.png",
+    image: "/images/%23Atharvaa.jpg",
   },
   {
     id: "short-films",
@@ -53,7 +53,7 @@ const platforms = [
     description: "Original stories from emerging filmmakers, funded and produced professionally.",
     href: "/platforms/short-films",
     color: "card-purple",
-    image: "/images/poster-3.png",
+    image: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg",
   },
 ];
 
