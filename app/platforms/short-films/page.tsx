@@ -13,7 +13,7 @@ const films = [
         year: "2024",
         duration: "18 min",
         poster: "/images/Hey!%20Sinamika%20Poster.jpg",
-        synopsis: "A vibrant exploration of love and friendship in the heart of the city.",
+        synopsis: "A vibrant, visually stunning exploration of love and friendship in the heart of modern Chennai. Following the intertwined lives of three individuals, it questions the boundaries of affection and the courage to follow one's heart. A Caimue Production committed to high-fidelity regional storytelling.",
         awards: ["Best Visuals - CineAwards", "Official Selection - Chennai Film Festival"],
     },
     {
@@ -22,7 +22,7 @@ const films = [
         year: "2024",
         duration: "22 min",
         poster: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg",
-        synopsis: "A journey into the soul, exploring roots and identity through accidental encounters.",
+        synopsis: "A poignant journey into the soul, exploring the complex tapestry of roots and identity through accidental encounters in rural Tamil Nadu. This film captures the raw beauty of human connection and the weight of ancestral memory. Produced by Caimue to demonstrate cinematic excellence in regional narratives.",
         awards: ["Special Jury Prize - Kerala International"],
     },
     {
@@ -31,7 +31,7 @@ const films = [
         year: "2023",
         duration: "15 min",
         poster: "/images/Hi%20papa.jpg",
-        synopsis: "A heartwarming tale of a father and daughter navigating life's unexpected turns.",
+        synopsis: "A heartwarming, emotionally resonant tale of a father and daughter navigating life's most unexpected and challenging turns. It's a celebration of resilience, the enduring bond of family, and the magic found in the everyday. A Caimue Production bringing tender, high-concept stories to life.",
         awards: ["Audience Choice Award - Global Shorts"],
     },
 ];
@@ -54,7 +54,7 @@ export default function ShortFilmsPage() {
                         Quarterly Releases
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-col items-center gap-y-2">
                         <AnimatedText
                             text="Original stories."
                             delay={0.4}
@@ -73,8 +73,8 @@ export default function ShortFilmsPage() {
                         transition={{ duration: 0.6, delay: 0.8 }}
                         className="text-[var(--caimue-gray)] text-xl max-w-2xl mx-auto mb-10"
                     >
-                        We fund and produce short films from emerging filmmakers.
-                        Each quarter, new stories find their way to audiences.
+                        Produced by Caimue.
+                        We fund and produce short films from emerging filmmakers, ensuring every story finds its audience.
                     </motion.p>
 
                     <motion.div
