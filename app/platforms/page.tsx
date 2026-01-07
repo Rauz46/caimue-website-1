@@ -11,7 +11,7 @@ const platforms = [
     {
         title: "TeqThots",
         description: "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
-        thumbnail: "/images/poster-1.png",
+        thumbnail: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
         href: "/platforms/teqthots",
         logo: "/logos/teqthots-logo.png",
         tagline: "Conversations that document how companies are built.",
@@ -19,7 +19,7 @@ const platforms = [
     {
         title: "FunShortz",
         description: "Short-form entertainment in Tamil & Malayalam. Snackable content that resonates with regional audiences.",
-        thumbnail: "/images/poster-2.png",
+        thumbnail: "/images/%23Atharvaa.jpg",
         href: "/platforms/funshortz",
         logo: "/logos/funshortz-logo.png",
         tagline: "Regional entertainment, reimagined.",
@@ -27,7 +27,7 @@ const platforms = [
     {
         title: "Short Films",
         description: "Quarterly film releases. Original stories from emerging filmmakers, funded and produced with professional support.",
-        thumbnail: "/images/poster-3.png",
+        thumbnail: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg",
         href: "/platforms/short-films",
         tagline: "Original stories, professional execution.",
     },
