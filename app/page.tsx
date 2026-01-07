@@ -16,14 +16,14 @@ import { HeroGrid } from "@/components/effects/HeroGrid";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
-  { id: 1, src: "/images/poster-1.png", title: "The Last Conversation", type: "Short Film" },
-  { id: 2, src: "/images/poster-2.png", title: "Signal", type: "Short Film" },
-  { id: 3, src: "/images/poster-3.png", title: "Campus Chronicles", type: "FunShortz" },
-  { id: 4, src: "/images/hero-bg.png", title: "Building in Public", type: "TeqThots" },
-  { id: 5, src: "/images/poster-1.png", title: "Veedu", type: "Short Film" },
-  { id: 6, src: "/images/poster-2.png", title: "Namma Bengaluru", type: "FunShortz" },
-  { id: 7, src: "/images/poster-3.png", title: "The Algorithm", type: "TeqThots" },
-  { id: 8, src: "/images/poster-1.png", title: "Roots", type: "Short Film" },
+  { id: 1, src: "/images/Hey! Sinamika Poster.jpg", title: "Hey Sinamika", type: "Short Film" },
+  { id: 2, src: "/images/Hi papa.jpg", title: "Hi Papa", type: "Short Film" },
+  { id: 3, src: "/images/Thiruchitrambalam.jpg", title: "Thiruchitrambalam", type: "FunShortz" },
+  { id: 4, src: "/images/Meiyazhagan _ illustration poster - Vishnu Narayanan.jpg", title: "Meiyazhagan", type: "TeqThots" },
+  { id: 5, src: "/images/Odum Kuthira Chaadum Kuthira poster.jpg", title: "Odum Kuthira", type: "Short Film" },
+  { id: 6, src: "/images/#Atharvaa.jpg", title: "Atharvaa", type: "FunShortz" },
+  { id: 7, src: "/images/A.jpg", title: "A", type: "TeqThots" },
+  { id: 8, src: "/images/D.jpg", title: "D", type: "Short Film" },
 ];
 
 // Platform cards with colors

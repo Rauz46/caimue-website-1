@@ -8,12 +8,12 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const reels = [
-    { id: 1, thumbnail: "/images/poster-1.png", title: "Campus Chronicles", language: "tamil", views: "1.2M" },
-    { id: 2, thumbnail: "/images/poster-2.png", title: "Namma Bengaluru", language: "tamil", views: "890K" },
-    { id: 3, thumbnail: "/images/poster-3.png", title: "Muthalali Moments", language: "malayalam", views: "650K" },
-    { id: 4, thumbnail: "/images/poster-1.png", title: "Office Life", language: "tamil", views: "2.1M" },
-    { id: 5, thumbnail: "/images/poster-2.png", title: "Kerala Diaries", language: "malayalam", views: "780K" },
-    { id: 6, thumbnail: "/images/poster-3.png", title: "IT Crowd", language: "tamil", views: "1.5M" },
+    { id: 1, thumbnail: "/images/download.jpg", title: "Campus Chronicles", language: "tamil", views: "1.2M" },
+    { id: 2, thumbnail: "/images/download (1).jpg", title: "Namma Bengaluru", language: "tamil", views: "890K" },
+    { id: 3, thumbnail: "/images/download (2).jpg", title: "Muthalali Moments", language: "malayalam", views: "650K" },
+    { id: 4, thumbnail: "/images/download (3).jpg", title: "Office Life", language: "tamil", views: "2.1M" },
+    { id: 5, thumbnail: "/images/download (4).jpg", title: "Kerala Diaries", language: "malayalam", views: "780K" },
+    { id: 6, thumbnail: "/images/F.jpg", title: "IT Crowd", language: "tamil", views: "1.5M" },
 ];
 
 export default function FunShortzPage() {
