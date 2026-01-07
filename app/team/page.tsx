@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 type TeamMember = {
     name: string;
@@ -69,7 +70,8 @@ export default function TeamPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="min-h-[50vh] flex items-center justify-center pt-32 pb-8">
+            <section className="min-h-[50vh] flex items-center justify-center pt-32 pb-8 relative overflow-hidden">
+                <HeroGrid />
                 <div className="container text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}

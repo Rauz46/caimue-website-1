@@ -12,6 +12,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { VideoScrollStrip } from "@/components/ui/VideoScrollStrip";
 import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -69,8 +70,7 @@ export default function Home() {
     <>
       <section className="min-h-screen flex flex-col pt-32 relative overflow-hidden bg-[var(--background)]">
         {/* Background Elements */}
-        {/* Grid Pattern with mask - Separate div to not affect content */}
-        <div className="absolute inset-0 bg-grid-pattern z-0" />
+        <HeroGrid />
 
         <div className="bg-noise" />
         <div className="gradient-blob top-right" />

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const steps = [
     {
@@ -61,7 +62,8 @@ export default function ProcessPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="min-h-[60vh] flex items-center justify-center pt-24">
+            <section className="min-h-[60vh] flex items-center justify-center pt-24 relative overflow-hidden">
+                <HeroGrid />
                 <div className="container text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}

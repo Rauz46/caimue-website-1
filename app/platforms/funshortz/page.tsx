@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const reels = [
     { id: 1, thumbnail: "/images/poster-1.png", title: "Campus Chronicles", language: "tamil", views: "1.2M" },
@@ -26,6 +27,7 @@ export default function FunShortzPage() {
         <>
             {/* Hero Section */}
             <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
+                <HeroGrid />
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-[var(--caimue-purple)]/10" />
 
                 <div className="container text-center relative">

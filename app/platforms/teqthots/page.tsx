@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const episodes = [
     {
@@ -31,6 +32,7 @@ export default function TeqThotsPage() {
         <>
             {/* Hero Section */}
             <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
+                <HeroGrid />
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--caimue-purple)]/10 via-transparent to-transparent" />
 
                 <div className="container text-center relative">

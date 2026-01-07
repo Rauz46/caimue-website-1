@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { WaveDivider, WaveDividerAlt } from "@/components/effects/WaveDivider";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const features = [
     {
@@ -34,7 +35,7 @@ export default function AboutPage() {
         <>
             {/* Hero Section */}
             <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern z-0 opacity-60" />
+                <HeroGrid />
                 <FloatingScribbles />
 
                 <div className="container text-center relative z-10">

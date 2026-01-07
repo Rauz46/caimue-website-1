@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { VideoCard } from "@/components/ui/VideoCard";
+import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const platforms = [
     {
@@ -36,7 +37,8 @@ export default function PlatformsPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="min-h-[60vh] flex items-center justify-center pt-24">
+            <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
+                <HeroGrid />
                 <div className="container text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
