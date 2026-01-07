@@ -56,6 +56,54 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Stats Section - Premium Dashboard Style */}
+            <section className="section bg-[var(--background-alt)]">
+                <div className="container">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            { number: "12+", label: "Short Films", icon: "🎬", color: "from-purple-500 to-indigo-500" },
+                            { number: "3", label: "Verticals", icon: "✨", color: "from-pink-500 to-rose-500" },
+                            { number: "50+", label: "Creators", icon: "👥", color: "from-blue-500 to-cyan-500" },
+                            { number: "2M+", label: "Views", icon: "👁️", color: "from-amber-500 to-orange-500" },
+                        ].map((stat, index) => (
+                            <motion.div
+                                key={stat.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-300 border border-white/50"
+                            >
+                                {/* Decorative Gradient Blur Background */}
+                                <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${stat.color} opacity-5 rounded-bl-[2rem] rounded-tr-[2rem] transition-opacity group-hover:opacity-10`} />
+
+                                {/* Icon Pill */}
+                                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[var(--background-alt)] text-2xl shadow-inner">
+                                    {stat.icon}
+                                </div>
+
+                                {/* Number with Gradient */}
+                                <div className={`text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent tracking-tight`}>
+                                    {stat.number}
+                                </div>
+
+                                {/* Label & Arrow */}
+                                <div className="flex items-center justify-between mt-4">
+                                    <p className="text-[var(--foreground-muted)] font-medium text-sm uppercase tracking-wide">
+                                        {stat.label}
+                                    </p>
+                                    <div className="w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center text-gray-300 group-hover:bg-[var(--foreground)] group-hover:text-white transition-colors">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M1 11L11 1M11 1H3M11 1V9" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Philosophy Section */}
             <section className="section relative bg-[var(--caimue-purple)] text-white overflow-hidden py-32">
                 <WaveDivider position="top" fillColor="var(--background)" className="z-10" />
@@ -143,54 +191,6 @@ export default function AboutPage() {
                                 <p className="text-[var(--caimue-gray)] text-sm leading-relaxed">
                                     {feature.description}
                                 </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Stats Section - Premium Dashboard Style */}
-            <section className="section bg-[var(--background-alt)]">
-                <div className="container">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { number: "12+", label: "Short Films", icon: "🎬", color: "from-purple-500 to-indigo-500" },
-                            { number: "3", label: "Verticals", icon: "✨", color: "from-pink-500 to-rose-500" },
-                            { number: "50+", label: "Creators", icon: "👥", color: "from-blue-500 to-cyan-500" },
-                            { number: "2M+", label: "Views", icon: "👁️", color: "from-amber-500 to-orange-500" },
-                        ].map((stat, index) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group relative bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-300 border border-white/50"
-                            >
-                                {/* Decorative Gradient Blur Background */}
-                                <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${stat.color} opacity-5 rounded-bl-[2rem] rounded-tr-[2rem] transition-opacity group-hover:opacity-10`} />
-
-                                {/* Icon Pill */}
-                                <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[var(--background-alt)] text-2xl shadow-inner">
-                                    {stat.icon}
-                                </div>
-
-                                {/* Number with Gradient */}
-                                <div className={`text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent tracking-tight`}>
-                                    {stat.number}
-                                </div>
-
-                                {/* Label & Arrow */}
-                                <div className="flex items-center justify-between mt-4">
-                                    <p className="text-[var(--foreground-muted)] font-medium text-sm uppercase tracking-wide">
-                                        {stat.label}
-                                    </p>
-                                    <div className="w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center text-gray-300 group-hover:bg-[var(--foreground)] group-hover:text-white transition-colors">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M1 11L11 1M11 1H3M11 1V9" />
-                                        </svg>
-                                    </div>
-                                </div>
                             </motion.div>
                         ))}
                     </div>
