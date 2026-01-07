@@ -208,7 +208,7 @@ export default function Home() {
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="section relative">
+      <section className="py-12 md:py-16 relative">
         <FloatingShapes />
 
         <div className="container relative z-10">
@@ -217,7 +217,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <span className="label mb-4 block">Our Platforms</span>
             <h2>Three Verticals. One Philosophy.</h2>
@@ -287,8 +287,8 @@ export default function Home() {
       </section>
 
       {/* ==================== STATS SECTION ==================== */}
-      <section className="py-20 bg-[var(--background-alt)] relative">
-        <div className="container">
+      <section className="py-32 bg-[var(--background-alt)] relative overflow-hidden flex items-center min-h-[40vh]">
+        <div className="container relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
