@@ -90,11 +90,18 @@ export default function Home() {
               delay={0.2}
               className="leading-[1.05] tracking-tight text-[var(--foreground)] text-center block"
             />
-            <AnimatedText
-              text="one studio, multiple brands."
-              delay={0.4}
-              className="leading-[1.05] tracking-tight text-[var(--foreground)] text-center block md:whitespace-nowrap"
-            />
+            <div className="flex flex-wrap justify-center gap-x-2">
+              <AnimatedText
+                text="one studio,"
+                delay={0.4}
+                className="leading-[1.05] tracking-tight text-[var(--foreground)] text-center block"
+              />
+              <AnimatedText
+                text="multiple brands."
+                delay={0.6}
+                className="leading-[1.05] tracking-tight text-[var(--caimue-purple)] text-center block md:whitespace-nowrap"
+              />
+            </div>
             {/* Hidden anchor for scribbles if needed */}
             <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
           </h1>

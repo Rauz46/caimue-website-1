@@ -47,10 +47,10 @@ export default function AboutPage() {
                         About Caimue
                     </motion.span>
 
-                    <h1 className="max-w-5xl mx-auto mb-8 text-5xl md:text-6xl leading-tight font-bold">
+                    <h1 className="max-w-5xl mx-auto mb-8 text-5xl md:text-6xl leading-tight font-bold flex flex-wrap justify-center gap-x-4">
                         <span className="text-gray-400">We don't chase virality.</span>{" "}
                         <span className="text-[var(--foreground)]">We build systems that let </span>
-                        <span className="text-purple-600 font-serif italic">creativity survive long-term.</span>
+                        <span className="text-[var(--caimue-purple)] font-serif italic">creativity survive long-term.</span>
                     </h1>
                 </div>
             </section>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                         className="text-center mb-16"
                     >
                         <span className="label text-[var(--caimue-purple)] mb-4 block">Our Approach</span>
-                        <h2 className="text-[var(--caimue-cream)] max-w-3xl mx-auto">
+                        <h2 className="text-[var(--foreground)] max-w-3xl mx-auto">
                             Why AI-First?
                         </h2>
                         <p className="text-[var(--caimue-gray)] max-w-2xl mx-auto mt-4">
@@ -136,7 +136,7 @@ export default function AboutPage() {
                                 className="text-center p-8 card"
                             >
                                 <div className="text-4xl mb-6">{feature.icon}</div>
-                                <h3 className="text-[var(--caimue-cream)] text-xl font-serif mb-4">
+                                <h3 className="text-[var(--foreground)] text-xl font-serif mb-4">
                                     {feature.title}
                                 </h3>
                                 <p className="text-[var(--caimue-gray)] text-sm leading-relaxed">

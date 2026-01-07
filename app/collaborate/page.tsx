@@ -52,7 +52,7 @@ export default function CollaboratePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <div className="text-6xl mb-6">✓</div>
-                        <h1 className="text-[var(--caimue-cream)] mb-4">Submission Received</h1>
+                        <h1 className="text-[var(--foreground)] mb-4">Submission Received</h1>
                         <p className="text-[var(--caimue-gray)] text-lg max-w-md mx-auto mb-8">
                             We've got your details. Our team will review your submission and get back to you within 5 business days.
                         </p>
@@ -79,11 +79,16 @@ export default function CollaboratePage() {
                         Collaborate
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-6">
+                    <h1 className="max-w-4xl mx-auto mb-6 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Tell us what you want to build."
+                            text="Tell us"
                             delay={0.4}
-                            className="text-[var(--foreground)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="what you want to build."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 
@@ -292,7 +297,7 @@ export default function CollaboratePage() {
                         transition={{ duration: 0.6 }}
                         className="mt-20 pt-12 border-t border-white/5 text-center"
                     >
-                        <h3 className="text-[var(--caimue-cream)] text-xl font-serif mb-4">
+                        <h3 className="text-[var(--foreground)] text-xl font-serif mb-4">
                             Prefer to email directly?
                         </h3>
                         <a

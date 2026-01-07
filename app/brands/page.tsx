@@ -51,11 +51,16 @@ export default function BrandsPage() {
                         For Brands
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Content that earns attention, not just buys it."
+                            text="Content that earns attention,"
                             delay={0.4}
-                            className="text-[var(--foreground)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="not just buys it."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 

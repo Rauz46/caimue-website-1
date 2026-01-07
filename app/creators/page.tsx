@@ -42,11 +42,16 @@ export default function CreatorsPage() {
                         For Filmmakers & Creators
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="This is a partnership, not a one-off deal."
+                            text="This is a partnership,"
                             delay={0.4}
-                            className="text-[var(--foreground)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="not a one-off deal."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 

@@ -52,11 +52,16 @@ export default function ShortFilmsPage() {
                         Quarterly Releases
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Original stories. Professional execution."
+                            text="Original stories."
                             delay={0.4}
-                            className="text-[var(--caimue-cream)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="Professional execution."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 
@@ -93,7 +98,7 @@ export default function ShortFilmsPage() {
                         className="mb-12"
                     >
                         <span className="label text-[var(--caimue-purple)] mb-4 block">Our Films</span>
-                        <h2 className="text-[var(--caimue-cream)]">Recent Releases</h2>
+                        <h2 className="text-[var(--foreground)]">Recent Releases</h2>
                     </motion.div>
 
                     <div className="space-y-24">
@@ -139,7 +144,7 @@ export default function ShortFilmsPage() {
                                         <span>{film.duration}</span>
                                     </div>
 
-                                    <h3 className="text-[var(--caimue-cream)] text-4xl font-serif mb-4">
+                                    <h3 className="text-[var(--foreground)] text-4xl font-serif mb-4">
                                         {film.title}
                                     </h3>
 
@@ -178,7 +183,7 @@ export default function ShortFilmsPage() {
                         transition={{ duration: 0.6 }}
                     >
                         <span className="label text-[var(--caimue-purple)] mb-4 block">For Filmmakers</span>
-                        <h2 className="text-[var(--caimue-cream)] mb-6">
+                        <h2 className="text-[var(--foreground)] mb-6">
                             Got a story to tell?
                         </h2>
                         <p className="text-[var(--caimue-gray)] max-w-xl mx-auto mb-8">

@@ -47,11 +47,16 @@ export default function PlatformsPage() {
                         Our Platforms
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Three verticals. One philosophy."
+                            text="Three verticals."
                             delay={0.4}
-                            className="text-[var(--foreground)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="One philosophy."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 

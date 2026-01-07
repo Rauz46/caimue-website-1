@@ -72,11 +72,16 @@ export default function ProcessPage() {
                         Our Process
                     </motion.span>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="From idea to audience. Systematically."
+                            text="From idea to audience."
                             delay={0.4}
-                            className="text-[var(--foreground)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="Systematically."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 

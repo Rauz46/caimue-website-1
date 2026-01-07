@@ -80,11 +80,16 @@ export default function TeamPage() {
                         Our Team
                     </motion.span>
 
-                    <h1 className="max-w-3xl mx-auto mb-6">
+                    <h1 className="max-w-3xl mx-auto mb-6 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="The People Behind the Stories"
+                            text="The People"
                             delay={0.4}
-                            className="justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="Behind the Stories"
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 

@@ -44,11 +44,16 @@ export default function FunShortzPage() {
                         />
                     </motion.div>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Regional entertainment, reimagined."
+                            text="Regional entertainment,"
                             delay={0.4}
-                            className="text-[var(--caimue-cream)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="reimagined."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 
@@ -88,8 +93,8 @@ export default function FunShortzPage() {
                                 key={lang}
                                 onClick={() => setFilter(lang as typeof filter)}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${filter === lang
-                                        ? "bg-[var(--caimue-purple)] text-white"
-                                        : "bg-white/5 text-[var(--caimue-gray)] hover:bg-white/10"
+                                    ? "bg-[var(--caimue-purple)] text-white"
+                                    : "bg-white/5 text-[var(--caimue-gray)] hover:bg-white/10"
                                     }`}
                             >
                                 {lang.charAt(0).toUpperCase() + lang.slice(1)}
