@@ -49,11 +49,16 @@ export default function TeqThotsPage() {
                         />
                     </motion.div>
 
-                    <h1 className="max-w-4xl mx-auto mb-8">
+                    <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
                         <AnimatedText
-                            text="Conversations that document how companies are built."
+                            text="Conversations that"
                             delay={0.4}
-                            className="text-[var(--caimue-cream)] justify-center"
+                            className="text-[var(--foreground)]"
+                        />
+                        <AnimatedText
+                            text="drive decisions."
+                            delay={0.8}
+                            className="text-[var(--caimue-purple)]"
                         />
                     </h1>
 
