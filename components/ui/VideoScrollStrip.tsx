@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const videos = [
-    { id: 1, src: "/images/poster-1.png", title: "Cinematic" },
-    { id: 2, src: "/images/poster-2.png", title: "Documentary" },
-    { id: 3, src: "/images/poster-3.png", title: "Commercial" },
-    { id: 4, src: "/images/hero-bg.png", title: "Behind Scenes" },
-    { id: 5, src: "/images/poster-1.png", title: "Editorial" },
-    { id: 6, src: "/images/poster-2.png", title: "Short Film" },
+    { id: 1, src: "/images/Hey! Sinamika Poster.jpg", title: "Cinematic" },
+    { id: 2, src: "/images/Meiyazhagan _ illustration poster - Vishnu Narayanan.jpg", title: "Documentary" },
+    { id: 3, src: "/images/Thiruchitrambalam.jpg", title: "Commercial" },
+    { id: 4, src: "/images/Hi papa.jpg", title: "Behind Scenes" },
+    { id: 5, src: "/images/Odum Kuthira Chaadum Kuthira poster.jpg", title: "Editorial" },
+    { id: 6, src: "/images/#Atharvaa.jpg", title: "Short Film" },
 ];
 
 export function VideoScrollStrip() {
