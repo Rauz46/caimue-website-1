@@ -93,30 +93,6 @@ export function FloatingScribbles() {
                 </div>
             </motion.div>
 
-            {/* 5. Near CTA (Safe Distance) - "Start here ->" */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: 0.85,
-                    x: [0, 3, 0]
-                }}
-                transition={{
-                    opacity: { duration: 1, delay: 1.4 },
-                    x: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                }}
-                className="absolute top-[62%] left-[56%] hidden xl:block"
-                style={{ marginLeft: "280px" }} // Push securely away from center content
-            >
-                <div className="relative rotate-[-8deg]">
-                    <span className="font-handwriting text-xl text-[var(--accent)] blur-[0.4px]">
-                        Start here
-                    </span>
-                    <svg width="30" height="20" viewBox="0 0 30 20" fill="none" className="absolute top-1 -right-8 text-[var(--accent)]">
-                        <path d="M2 10 Q 15 5, 28 10 M 24 6 L 28 10 L 23 15" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </div>
-            </motion.div>
-
             {/* 6. Subtle Geometric Accent - Bottom Right - Circle */}
             <motion.div
                 initial={{ opacity: 0 }}
