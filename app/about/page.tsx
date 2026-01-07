@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { AnimatedText } from "@/components/ui/AnimatedText";
-import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { WaveDivider, WaveDividerAlt } from "@/components/effects/WaveDivider";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 
@@ -36,7 +35,6 @@ export default function AboutPage() {
             {/* Hero Section */}
             <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
                 <HeroGrid />
-                <FloatingScribbles />
 
                 <div className="container text-center relative z-10">
                     <motion.span
@@ -48,9 +46,9 @@ export default function AboutPage() {
                         About Caimue
                     </motion.span>
 
-                    <h1 className="max-w-5xl mx-auto mb-8 text-5xl md:text-6xl leading-tight font-bold flex flex-wrap justify-center gap-x-4">
-                        <span className="text-gray-400">We don't chase virality.</span>{" "}
-                        <span className="text-[var(--foreground)]">We build systems that let </span>
+                    <h1 className="max-w-4xl mx-auto mb-8 text-5xl md:text-7xl leading-tight font-bold flex flex-col items-center">
+                        <span className="text-[var(--foreground)]">We don't chase virality.</span>
+                        <span className="text-[var(--foreground)]">We build systems that let</span>
                         <span className="text-[var(--caimue-purple)] font-serif italic">creativity survive long-term.</span>
                     </h1>
                 </div>
