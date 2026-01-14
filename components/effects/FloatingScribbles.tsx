@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export function FloatingScribbles() {
     return (
-        <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
             {/* 1. Top Left - "Action!" + Clapper hint */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
-                    opacity: 0.9,
+                    opacity: 1,
                     y: [0, -4, 0]
                 }}
                 transition={{
@@ -32,7 +32,7 @@ export function FloatingScribbles() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{
-                    opacity: 0.8,
+                    opacity: 0.9,
                     y: [0, 3, 0]
                 }}
                 transition={{
@@ -53,7 +53,7 @@ export function FloatingScribbles() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{
-                    opacity: 0.75,
+                    opacity: 0.9,
                     y: [0, -3, 0]
                 }}
                 transition={{
@@ -76,7 +76,7 @@ export function FloatingScribbles() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{
-                    opacity: 0.8,
+                    opacity: 0.9,
                     y: [0, 4, 0]
                 }}
                 transition={{
@@ -97,7 +97,7 @@ export function FloatingScribbles() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{
-                    opacity: 0.5, // Lower opacity for shapes
+                    opacity: 0.7, // Higher visibility for shapes
                     rotate: [0, 5, 0]
                 }}
                 transition={{

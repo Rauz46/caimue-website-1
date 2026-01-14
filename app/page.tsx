@@ -141,7 +141,7 @@ export default function Home() {
         </div>
 
         {/* Wave divider at bottom of hero */}
-        <WaveDividerAlt fillColor="var(--background)" />
+        <WaveDividerAlt fillColor="#d1c1c1" />
       </section>
 
       {/* ==================== MARQUEE SHOWCASE ==================== */}
@@ -149,8 +149,12 @@ export default function Home() {
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-12 md:py-16 relative">
+      <section className="py-24 md:py-32 relative bg-[#d1c1c1] overflow-hidden">
+        {/* Background Effects */}
+        <HeroGrid />
+        <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
         <FloatingShapes />
+        <FloatingScribbles />
 
         <div className="container relative z-10">
           <motion.div
@@ -158,7 +162,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-10"
+            className="text-center mb-16"
           >
             <span className="label mb-4 block">Our Platforms</span>
             <h2>Three Verticals. One Philosophy.</h2>
@@ -175,7 +179,9 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
               >
                 <Link href={platform.href}>
-                  <div className={`card ${platform.color} w-[320px] md:w-[360px] p-6 cursor-pointer group`}>
+                  <div className={`card ${platform.color} w-[320px] md:w-[360px] p-6 cursor-pointer group relative shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:-translate-y-3 transition-all duration-500 border-white/20`}>
+                    {/* Ambient Glow behind card */}
+                    <div className="absolute -inset-4 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full -z-10" />
                     {/* Tag row */}
                     <div className="flex items-center gap-2 mb-4">
                       <span className="tag">{platform.tagline}</span>
