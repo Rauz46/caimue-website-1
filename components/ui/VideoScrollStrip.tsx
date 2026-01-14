@@ -27,14 +27,14 @@ export function VideoScrollStrip() {
                     }}
                 >
                     <div
-                        className="marquee flex gap-3 py-4"
+                        className="marquee flex gap-1 py-4"
                         style={{
                             transform: "rotateX(12deg) scale(0.92)",
                             transformStyle: "preserve-3d"
                         }}
                     >
                         {/* Original Set - Portrait Orientation */}
-                        <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                        <div className="marquee-content flex gap-1 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
                             {videos.map((video, index) => (
                                 <motion.div
                                     key={video.id}
@@ -59,7 +59,7 @@ export function VideoScrollStrip() {
                         </div>
 
                         {/* Duplicate Set for Seamless Loop */}
-                        <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                        <div className="marquee-content flex gap-1 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
                             {videos.map((video, index) => (
                                 <motion.div
                                     key={`dup-${video.id}`}
