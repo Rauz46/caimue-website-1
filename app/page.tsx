@@ -68,20 +68,27 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-b from-[#0a0a1f] via-[#1a0a3e] to-[#0a0a1f]">
+      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#8b5cf6] via-[#a855f7] to-[#ec4899]">
         {/* Background Elements */}
         <HeroGrid />
+        <div className="bg-noise opacity-10" />
 
-        <div className="bg-noise" />
+        {/* Organic Blob Shapes - Samsung Style */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Large pink blob - top right */}
+          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-pink-400/30 rounded-full blur-[100px]" />
+          {/* Purple blob - bottom left */}
+          <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px]" />
+          {/* Center accent blob */}
+          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-fuchsia-400/20 rounded-full blur-[80px]" />
 
-        {/* Hourglass/Pinched Gradient Effect - inspired by reference */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Top glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-purple-600/40 via-purple-500/30 to-transparent blur-[120px]" />
-          {/* Bottom glow */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-t from-pink-600/40 via-pink-500/30 to-transparent blur-[120px]" />
-          {/* Center pinch - creates the hourglass effect */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-purple-400/20 to-transparent blur-[80px]" />
+          {/* Decorative Stars and Sparkles */}
+          <div className="absolute top-20 right-1/4 text-white/40 text-4xl">✦</div>
+          <div className="absolute top-40 left-1/3 text-white/30 text-2xl">★</div>
+          <div className="absolute bottom-1/3 right-1/3 text-pink-200/50 text-3xl">✧</div>
+          <div className="absolute top-1/2 left-1/4 text-white/20 text-xl">●</div>
+          <div className="absolute bottom-1/4 left-1/2 text-white/30 text-2xl">✦</div>
+          <div className="absolute top-1/3 right-1/4 text-pink-200/40 text-xl">●</div>
         </div>
 
         {/* Editorial Scribbles */}
@@ -93,7 +100,7 @@ export default function Home() {
           <SocialProofStrip />
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold">
+            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-lg">
               We build and operate <span className="text-[#FACC15]">content ecosystems</span> for brands and creators.
             </span>
             {/* Hidden anchor for scribbles if needed */}
@@ -105,31 +112,31 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 leading-snug font-medium"
+            className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
           >
             An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
           </motion.p>
 
-          {/* Single CTA Button - Purple Filled */}
+          {/* Single CTA Button - Pink */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="relative z-30"
+            className="relative z-30 mb-16"
           >
-            <MagneticButton href="/collaborate" variant="primary" className="bg-[var(--caimue-pink)] text-white hover:bg-[var(--caimue-pink)]/90 border-none shadow-lg shadow-pink-500/20">
+            <MagneticButton href="/collaborate" variant="primary" className="bg-[#ec4899] text-white hover:bg-[#db2777] border-none shadow-xl shadow-pink-500/30">
               Collaborate with Us
             </MagneticButton>
           </motion.div>
         </div>
 
+        {/* Video Carousel - Inside Hero with Portrait Orientation */}
+        <div className="relative z-10 mt-auto mb-8">
+          <VideoScrollStrip />
+        </div>
+
         {/* Wave divider at bottom of hero */}
         <WaveDividerAlt fillColor="var(--background)" />
-      </section>
-
-      {/* ==================== RECENT PRODUCTIONS STRIP ==================== */}
-      <section className="relative py-8 overflow-hidden bg-[var(--background)] border-b border-[var(--card-border)]">
-        <VideoScrollStrip />
       </section>
 
       {/* ==================== MARQUEE SHOWCASE ==================== */}

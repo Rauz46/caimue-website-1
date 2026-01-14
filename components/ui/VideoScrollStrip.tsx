@@ -14,64 +14,70 @@ const videos = [
 
 export function VideoScrollStrip() {
     return (
-        <div className="w-full relative z-20 overflow-hidden bg-gradient-to-b from-[var(--background)] to-[var(--background-alt)]">
+        <div className="w-full relative z-20 overflow-hidden">
 
-            <div className="w-full overflow-hidden flex flex-col items-center justify-center py-10 relative">
-                {/* Container with Perspective for Curve Effect */}
+            <div className="w-full overflow-hidden flex flex-col items-center justify-center py-6 relative">
+                {/* Container with Strong Perspective for Spherical Curve */}
                 <div
-                    className="w-[120%] -ml-[10%] relative"
+                    className="w-[110%] -ml-[5%] relative"
                     style={{
-                        perspective: "600px",
-                        maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-                        WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+                        perspective: "500px",
+                        maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)"
                     }}
                 >
                     <div
-                        className="marquee flex gap-8 py-4"
+                        className="marquee flex gap-6 py-4"
                         style={{
-                            transform: "rotateX(8deg) scale(0.95)",
+                            transform: "rotateX(12deg) scale(0.92)",
                             transformStyle: "preserve-3d"
                         }}
                     >
-                        {/* Original Set */}
-                        <div className="marquee-content flex gap-8 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
-                            {videos.map((video) => (
+                        {/* Original Set - Portrait Orientation */}
+                        <div className="marquee-content flex gap-6 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                            {videos.map((video, index) => (
                                 <motion.div
                                     key={video.id}
-                                    className="relative w-[200px] h-[140px] md:w-[240px] md:h-[160px] rounded-[var(--border-radius)] overflow-hidden shadow-lg bg-black hover:z-10"
+                                    className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
                                     initial={{ transform: "rotateY(0deg)" }}
-                                    whileHover={{ scale: 1.1, rotateY: 0, zIndex: 10 }}
-                                    style={{ transformStyle: "preserve-3d" }}
+                                    whileHover={{ scale: 1.15, rotateY: 0, zIndex: 20 }}
+                                    style={{
+                                        transformStyle: "preserve-3d",
+                                        transform: `rotateY(${(index % 3 - 1) * 3}deg) translateZ(${Math.abs(index % 3 - 1) * -20}px)`
+                                    }}
                                 >
                                     <Image
                                         src={video.src}
                                         alt={video.title}
                                         fill
-                                        className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500"
+                                        className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
                                     />
                                     {/* Reflection/Shine effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </motion.div>
                             ))}
                         </div>
 
                         {/* Duplicate Set for Seamless Loop */}
-                        <div className="marquee-content flex gap-8 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
-                            {videos.map((video) => (
+                        <div className="marquee-content flex gap-6 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                            {videos.map((video, index) => (
                                 <motion.div
                                     key={`dup-${video.id}`}
-                                    className="relative w-[200px] h-[140px] md:w-[240px] md:h-[160px] rounded-[var(--border-radius)] overflow-hidden shadow-lg bg-black hover:z-10"
-                                    whileHover={{ scale: 1.1, zIndex: 10 }}
-                                    style={{ transformStyle: "preserve-3d" }}
+                                    className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
+                                    whileHover={{ scale: 1.15, zIndex: 20 }}
+                                    style={{
+                                        transformStyle: "preserve-3d",
+                                        transform: `rotateY(${(index % 3 - 1) * 3}deg) translateZ(${Math.abs(index % 3 - 1) * -20}px)`
+                                    }}
                                 >
                                     <Image
                                         src={video.src}
                                         alt={video.title}
                                         fill
-                                        className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500"
+                                        className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
                                     />
                                     {/* Reflection/Shine effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </motion.div>
                             ))}
                         </div>
@@ -80,8 +86,8 @@ export function VideoScrollStrip() {
             </div>
 
             {/* Gradient Masks for Fade Out */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--background)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--background)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-purple-600/50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-pink-600/50 to-transparent z-10 pointer-events-none" />
         </div>
     );
 }
