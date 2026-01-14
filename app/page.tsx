@@ -31,26 +31,26 @@ const platforms = [
   {
     id: "teqthots",
     title: "TeqThots",
-    tagline: "B2B Documentary",
-    description: "Conversations that document how companies are built.",
+    tagline: "Product & Startup",
+    description: "Product, startup, and brand storytelling through interviews, formats, and documentaries.",
     href: "/platforms/teqthots",
     color: "card-lime",
     image: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
   },
   {
-    id: "funshortz",
-    title: "FunShortz",
-    tagline: "Tamil & Malayalam",
-    description: "Short-form entertainment that resonates with regional audiences.",
-    href: "/platforms/funshortz",
+    id: "short-films-tamil",
+    title: "Short Films - Tamil",
+    tagline: "Digital Narratives",
+    description: "Original short films and digital narratives built with independent creators.",
+    href: "/platforms/short-films",
     color: "card-peach",
     image: "/images/%23Atharvaa.jpg",
   },
   {
-    id: "short-films",
-    title: "Short Films",
-    tagline: "Quarterly Releases",
-    description: "Original stories from emerging filmmakers, funded and produced professionally.",
+    id: "short-films-malayalam",
+    title: "Short Films - Malayalam",
+    tagline: "Regional Stories",
+    description: "Regional storytelling with a long-term vision toward cinema and OTT",
     href: "/platforms/short-films",
     color: "card-purple",
     image: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg",
@@ -141,7 +141,7 @@ export default function Home() {
         </div>
 
         {/* Wave divider at bottom of hero */}
-        <WaveDividerAlt fillColor="#be185d" />
+        <WaveDividerAlt fillColor="#fceef5" />
       </section>
 
       {/* ==================== MARQUEE SHOWCASE ==================== */}
@@ -149,7 +149,7 @@ export default function Home() {
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-24 md:py-32 relative bg-gradient-to-br from-[#be185d] to-[#fb923c] overflow-hidden">
+      <section className="py-24 md:py-32 relative bg-[#fceef5] overflow-hidden">
         {/* Background Effects */}
         <HeroGrid />
         <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
@@ -164,8 +164,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="label mb-4 block text-white/80">Our Platforms</span>
-            <h2 className="text-white">Three Verticals. One Philosophy.</h2>
+            <span className="label mb-4 block">Our Platforms</span>
+            <h2 className="text-[var(--foreground)]">Three Verticals. One Philosophy.</h2>
           </motion.div>
 
           {/* Centered card grid */}
