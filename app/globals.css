@@ -42,7 +42,7 @@
   --nav-bg: rgba(253, 252, 248, 0.9);
 
   /* Typography */
-  --font-heading: var(--font-instrument), serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* Spacing */
@@ -162,9 +162,9 @@ h6 {
   /* Bold */
   line-height: 1.05;
   /* Tight Jasper style */
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--foreground);
-  margin-bottom: 0.4em;
+  margin-bottom: 0.5em;
   /* Compact spacing */
 }
 
@@ -466,8 +466,8 @@ h3 {
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
