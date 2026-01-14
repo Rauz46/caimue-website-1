@@ -38,7 +38,7 @@ export function SocialProofStrip() {
                     Trusted by creators & teams
                 </span>
                 <div className="flex items-center gap-1">
-                    <span className="text-[10px] text-white/90">
+                    <span className="text-[10px] text-[#FACC15]">
                         ★ ★ ★ ★ ★
                     </span>
                 </div>

@@ -68,7 +68,7 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#DB2777]">
+      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-br from-[#2e1065] via-[#7e22ce] to-[#db2777]">
         {/* Background Elements */}
         <HeroGrid />
 
@@ -88,7 +88,7 @@ export default function Home() {
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
             <span className="leading-[1.05] tracking-tight text-white text-center block font-bold">
-              We build and operate content ecosystems for brands and creators.
+              We build and operate <span className="text-[#FACC15]">content ecosystems</span> for brands and creators.
             </span>
             {/* Hidden anchor for scribbles if needed */}
             <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
