@@ -97,7 +97,7 @@ export default function Home() {
         {/* Editorial Scribbles */}
         <FloatingScribbles />
 
-        <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-8 md:mt-16">
+        <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-8 md:mt-32">
 
           {/* Social Proof Strip - Above Headline */}
           <SocialProofStrip />
@@ -141,7 +141,7 @@ export default function Home() {
         </div>
 
         {/* Wave divider at bottom of hero */}
-        <WaveDividerAlt fillColor="#d1c1c1" />
+        <WaveDividerAlt fillColor="#be185d" />
       </section>
 
       {/* ==================== MARQUEE SHOWCASE ==================== */}
@@ -149,7 +149,7 @@ export default function Home() {
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-24 md:py-32 relative bg-[#d1c1c1] overflow-hidden">
+      <section className="py-24 md:py-32 relative bg-gradient-to-br from-[#be185d] to-[#fb923c] overflow-hidden">
         {/* Background Effects */}
         <HeroGrid />
         <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
