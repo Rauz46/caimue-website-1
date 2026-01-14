@@ -68,15 +68,21 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-br from-[#2e1065] via-[#7e22ce] to-[#db2777]">
+      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-b from-[#0a0a1f] via-[#1a0a3e] to-[#0a0a1f]">
         {/* Background Elements */}
         <HeroGrid />
 
         <div className="bg-noise" />
-        <div className="bg-noise opacity-20" />
-        {/* Gradients removed for cleaner solid purple look, or adjusted to be subtle light beams */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 blur-[100px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
+
+        {/* Hourglass/Pinched Gradient Effect - inspired by reference */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Top glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-purple-600/40 via-purple-500/30 to-transparent blur-[120px]" />
+          {/* Bottom glow */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-t from-pink-600/40 via-pink-500/30 to-transparent blur-[120px]" />
+          {/* Center pinch - creates the hourglass effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-purple-400/20 to-transparent blur-[80px]" />
+        </div>
 
         {/* Editorial Scribbles */}
         <FloatingScribbles />

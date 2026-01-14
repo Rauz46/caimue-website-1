@@ -21,15 +21,15 @@ export function VideoScrollStrip() {
                 <div
                     className="w-[120%] -ml-[10%] relative"
                     style={{
-                        perspective: "800px",
-                        maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-                        WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+                        perspective: "600px",
+                        maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
                     }}
                 >
                     <div
                         className="marquee flex gap-8 py-4"
                         style={{
-                            transform: "rotateX(2deg) scale(0.9)", // Subtle tilt for depth
+                            transform: "rotateX(8deg) scale(0.95)",
                             transformStyle: "preserve-3d"
                         }}
                     >
