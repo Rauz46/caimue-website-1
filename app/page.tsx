@@ -68,27 +68,30 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#8b5cf6] via-[#a855f7] to-[#ec4899]">
+      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#1e1b4b] via-[#4c1d95] to-[#701a75]">
         {/* Background Elements */}
         <HeroGrid />
         <div className="bg-noise opacity-10" />
 
-        {/* Organic Blob Shapes - Samsung Style */}
+        {/* Glossy Glass Effect - Concentric Circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Large pink blob - top right */}
-          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-pink-400/30 rounded-full blur-[100px]" />
-          {/* Purple blob - bottom left */}
-          <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px]" />
-          {/* Center accent blob */}
-          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-fuchsia-400/20 rounded-full blur-[80px]" />
+          {/* Concentric circle gradients for glass effect */}
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-purple-500/20 via-purple-600/10 to-transparent blur-[2px]" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-purple-400/15 via-transparent to-transparent blur-[1px]" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] h-[400px] rounded-full bg-gradient-radial from-fuchsia-400/20 to-transparent" />
+
+          {/* Organic Blob Shapes - Darker tones */}
+          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[100px]" />
+          <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-indigo-700/15 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-violet-600/15 rounded-full blur-[80px]" />
 
           {/* Decorative Stars and Sparkles */}
           <div className="absolute top-20 right-1/4 text-white/40 text-4xl">✦</div>
           <div className="absolute top-40 left-1/3 text-white/30 text-2xl">★</div>
-          <div className="absolute bottom-1/3 right-1/3 text-pink-200/50 text-3xl">✧</div>
+          <div className="absolute bottom-1/3 right-1/3 text-purple-200/50 text-3xl">✧</div>
           <div className="absolute top-1/2 left-1/4 text-white/20 text-xl">●</div>
           <div className="absolute bottom-1/4 left-1/2 text-white/30 text-2xl">✦</div>
-          <div className="absolute top-1/3 right-1/4 text-pink-200/40 text-xl">●</div>
+          <div className="absolute top-1/3 right-1/4 text-purple-200/40 text-xl">●</div>
         </div>
 
         {/* Editorial Scribbles */}

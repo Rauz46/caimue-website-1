@@ -27,14 +27,14 @@ export function VideoScrollStrip() {
                     }}
                 >
                     <div
-                        className="marquee flex gap-6 py-4"
+                        className="marquee flex gap-3 py-4"
                         style={{
                             transform: "rotateX(12deg) scale(0.92)",
                             transformStyle: "preserve-3d"
                         }}
                     >
                         {/* Original Set - Portrait Orientation */}
-                        <div className="marquee-content flex gap-6 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                        <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
                             {videos.map((video, index) => (
                                 <motion.div
                                     key={video.id}
@@ -43,7 +43,7 @@ export function VideoScrollStrip() {
                                     whileHover={{ scale: 1.15, rotateY: 0, zIndex: 20 }}
                                     style={{
                                         transformStyle: "preserve-3d",
-                                        transform: `rotateY(${(index % 3 - 1) * 3}deg) translateZ(${Math.abs(index % 3 - 1) * -20}px)`
+                                        transform: `rotateY(${(index % 5 - 2) * 8}deg) translateZ(${Math.abs(index % 5 - 2) * -30}px)`
                                     }}
                                 >
                                     <Image
@@ -59,7 +59,7 @@ export function VideoScrollStrip() {
                         </div>
 
                         {/* Duplicate Set for Seamless Loop */}
-                        <div className="marquee-content flex gap-6 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
+                        <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
                             {videos.map((video, index) => (
                                 <motion.div
                                     key={`dup-${video.id}`}
@@ -67,7 +67,7 @@ export function VideoScrollStrip() {
                                     whileHover={{ scale: 1.15, zIndex: 20 }}
                                     style={{
                                         transformStyle: "preserve-3d",
-                                        transform: `rotateY(${(index % 3 - 1) * 3}deg) translateZ(${Math.abs(index % 3 - 1) * -20}px)`
+                                        transform: `rotateY(${(index % 5 - 2) * 8}deg) translateZ(${Math.abs(index % 5 - 2) * -30}px)`
                                     }}
                                 >
                                     <Image
