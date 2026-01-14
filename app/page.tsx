@@ -225,39 +225,38 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Wave divider */}
-        <WaveDivider fillColor="var(--background-alt)" />
+        {/* Wave divider - transitioning to Stats section */}
+        <WaveDivider fillColor="#fafafa" />
       </section>
 
       {/* ==================== STATS SECTION ==================== */}
-      <section className="py-32 bg-[var(--background-alt)] relative overflow-hidden flex items-center min-h-[40vh]">
-        <div className="container relative z-10">
+      <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden flex flex-col items-center">
+        {/* Subtle separator from Platforms section */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gray-200/50" />
+
+        <div className="container relative z-10 pt-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center p-8 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <div className="text-6xl md:text-7xl font-serif font-bold text-[var(--accent)] mb-4 tracking-tighter">
+                <div className="text-5xl md:text-6xl font-serif font-bold text-[var(--accent)] mb-2 tracking-tighter">
                   {stat.number}
                 </div>
-                <p className="text-[var(--foreground-muted)] text-base font-medium uppercase tracking-wide">{stat.label}</p>
+                <p className="text-gray-500 text-sm font-medium uppercase tracking-widest">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
-
-        <WaveDividerAlt fillColor="var(--background)" />
       </section>
 
       {/* ==================== WHAT MAKES US DIFFERENT ==================== */}
-      <section className="section relative">
-        <FloatingShapes />
-
+      <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -266,11 +265,11 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="label mb-4 block">What Makes Us Different</span>
-              <h2 className="mb-8">
+              <span className="label mb-4 block text-gray-400">What Makes Us Different</span>
+              <h2 className="mb-8 text-gray-900 border-l-4 border-[var(--accent)] pl-6">
                 Most production houses rely on bigger crews. We rely on better systems.
               </h2>
-              <ul className="space-y-4">
+              <ul className="space-y-6">
                 {[
                   "AI-powered planning and scheduling",
                   "Streamlined post-production pipelines",
@@ -285,10 +284,10 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex items-center gap-4"
                   >
-                    <span className="w-8 h-8 rounded-full bg-[var(--accent)] flex items-center justify-center text-white text-sm flex-shrink-0">
+                    <span className="w-6 h-6 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xs flex-shrink-0">
                       ✓
                     </span>
-                    <span className="text-[var(--foreground-muted)]">{item}</span>
+                    <span className="text-gray-600 font-medium">{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -301,24 +300,24 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              {/* Editorial Scribble Around Card */}
+              {/* Subtle Editorial Scribble Around Card */}
               <div className="absolute -inset-4 md:-inset-6 z-0 pointer-events-none">
-                <svg className="w-full h-full text-[var(--accent)] opacity-60" viewBox="0 0 400 300" preserveAspectRatio="none" fill="none">
+                <svg className="w-full h-full text-[var(--accent)] opacity-20" viewBox="0 0 400 300" preserveAspectRatio="none" fill="none">
                   <path d="M10,10 C50,-10 350,-10 390,10 C410,50 410,250 390,290 C350,310 50,310 10,290 C-10,250 -10,50 10,10 Z" vectorEffect="non-scaling-stroke" stroke="currentColor" strokeWidth="2" strokeDasharray="10 5" strokeLinecap="round" />
                 </svg>
               </div>
 
-              <div className="card p-8 relative z-10 bg-[var(--card-bg)] border-none shadow-xl">
-                <blockquote className="text-2xl font-serif mb-6 italic text-[var(--foreground)] leading-relaxed">
+              <div className="card p-10 relative z-10 bg-white border border-gray-100 shadow-2xl rounded-[40px]">
+                <blockquote className="text-2xl font-serif mb-6 italic text-gray-800 leading-relaxed">
                   "Creativity without structure burns out. Structure without creativity produces noise."
                 </blockquote>
-                <p className="text-[var(--foreground-muted)] font-medium">— The Caimue Philosophy</p>
+                <p className="text-gray-400 font-medium tracking-wide uppercase text-xs">— The Caimue Philosophy</p>
               </div>
             </motion.div>
           </div>
         </div>
 
-        <WaveDivider fillColor="#7c3aed" />
+        <WaveDividerAlt fillColor="var(--caimue-purple)" />
       </section>
 
       {/* ==================== CTA SECTION ==================== */}
