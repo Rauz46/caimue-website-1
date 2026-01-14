@@ -149,12 +149,12 @@ export default function Home() {
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-24 md:py-32 relative bg-[#fceef5] overflow-hidden">
+      <section className="py-12 md:py-20 relative bg-[#fceef5] overflow-hidden">
         {/* Background Effects */}
-        <HeroGrid />
+        <HeroGrid className="bg-grid-pink" />
         <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
         <FloatingShapes />
-        <FloatingScribbles />
+        <FloatingScribbles color="text-fuchsia-500/80" />
 
         <div className="container relative z-10">
           <motion.div

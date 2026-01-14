@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 
-export function HeroGrid() {
+export function HeroGrid({ className = "" }: { className?: string }) {
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute inset-0 bg-grid-pattern z-0 pointer-events-none"
+            className={`absolute inset-0 bg-grid-pattern z-0 pointer-events-none ${className}`}
             aria-hidden="true"
         />
     );
