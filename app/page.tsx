@@ -127,7 +127,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="relative z-30 mb-16"
           >
-            <MagneticButton href="/collaborate" variant="primary" className="bg-[#ec4899] text-white hover:bg-[#db2777] border-none shadow-xl shadow-pink-500/30">
+            <MagneticButton href="/collaborate" variant="primary" className="bg-[#DB2777] text-white hover:bg-[#be185d] border-none shadow-xl shadow-pink-500/30">
               Collaborate with Us
             </MagneticButton>
           </motion.div>
@@ -164,8 +164,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="label mb-4 block">Our Platforms</span>
-            <h2>Three Verticals. One Philosophy.</h2>
+            <span className="label mb-4 block text-white/80">Our Platforms</span>
+            <h2 className="text-white">Three Verticals. One Philosophy.</h2>
           </motion.div>
 
           {/* Centered card grid */}
