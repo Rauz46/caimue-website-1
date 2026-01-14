@@ -220,7 +220,7 @@ h3 {
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: var(--caimue-purple);
+  background: var(--caimue-pink);
   color: white !important;
   font-family: var(--font-body);
   font-size: 0.9rem;
@@ -234,9 +234,9 @@ h3 {
 }
 
 .btn-primary:hover {
-  background: var(--caimue-purple-dark);
+  background: #be185d;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 10px 30px rgba(219, 39, 119, 0.4);
 }
 
 .btn-secondary {
