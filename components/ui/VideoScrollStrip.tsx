@@ -14,64 +14,56 @@ const videos = [
 
 export function VideoScrollStrip() {
     return (
-        <div className="w-full relative z-20 mt-12 md:mt-20">
-            {/* Label requiring scribbles later */}
-            <div className="container mb-6 flex justify-between items-end">
-                <span className="text-sm font-medium text-[var(--foreground-muted)] flex items-center gap-2">
-                    Recent Productions <span className="text-[var(--accent)]">→</span>
-                </span>
-            </div>
-
-            {/* Auto-scrolling Marquee Container */}
-            <div className="marquee">
+        <div className="w-full relative z-20 py-8 overflow-hidden bg-gradient-to-b from-[var(--background)] to-[var(--background-alt)]">
+            {/* 3D Perspective Container */}
+            <div className="marquee flex gap-6" style={{ perspective: "1000px" }}>
                 {/* Original Set */}
-                <div className="marquee-content py-8">
+                <div className="marquee-content flex gap-6 items-center">
                     {videos.map((video) => (
                         <motion.div
                             key={video.id}
-                            className="relative w-[280px] h-[360px] md:w-[340px] md:h-[440px] rounded-[var(--border-radius-lg)] overflow-hidden shadow-xl bg-black group shrink-0 cursor-pointer"
-                            whileHover={{ y: -10, scale: 1.02 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative w-[200px] h-[140px] md:w-[240px] md:h-[160px] rounded-[var(--border-radius)] overflow-hidden shadow-lg bg-black hover:z-10"
+                            initial={{ transform: "rotateY(0deg)" }}
+                            whileHover={{ scale: 1.1, rotateY: 0, zIndex: 10 }}
+                            // Subtle orbital tilt effect - static for now to ensure readability, or animated if needed. 
+                            // For "motion along a curve", we rely on the marquee movement + a slight tilt.
+                            style={{ transformStyle: "preserve-3d" }}
                         >
                             <Image
                                 src={video.src}
                                 alt={video.title}
                                 fill
-                                className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-                            <div className="absolute bottom-6 left-6">
-                                <span className="text-white font-serif text-lg tracking-wide">{video.title}</span>
-                            </div>
+                            {/* Reflection/Shine effect */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100" />
                         </motion.div>
                     ))}
                 </div>
 
                 {/* Duplicate Set for Seamless Loop */}
-                <div className="marquee-content py-8">
+                <div className="marquee-content flex gap-6 items-center">
                     {videos.map((video) => (
                         <motion.div
                             key={`dup-${video.id}`}
-                            className="relative w-[280px] h-[360px] md:w-[340px] md:h-[440px] rounded-[var(--border-radius-lg)] overflow-hidden shadow-xl bg-black group shrink-0 cursor-pointer"
-                            whileHover={{ y: -10, scale: 1.02 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative w-[200px] h-[140px] md:w-[240px] md:h-[160px] rounded-[var(--border-radius)] overflow-hidden shadow-lg bg-black hover:z-10"
+                            whileHover={{ scale: 1.1, zIndex: 10 }}
+                            style={{ transformStyle: "preserve-3d" }}
                         >
                             <Image
                                 src={video.src}
                                 alt={video.title}
                                 fill
-                                className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-                            <div className="absolute bottom-6 left-6">
-                                <span className="text-white font-serif text-lg tracking-wide">{video.title}</span>
-                            </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
+
+            {/* Gradient Masks for Fade Out */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />
         </div>
     );
 }

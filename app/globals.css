@@ -10,8 +10,8 @@
   /* Rich Light Theme - Core Colors */
   --caimue-black: #0a0a0a;
   --caimue-cream: #FDFcF8;
-  --caimue-purple: #8B5CF6;
-  --caimue-purple-dark: #7c3aed;
+  --caimue-purple: #7C3AED;
+  --caimue-purple-dark: #6D28D9;
   --caimue-purple-light: #a78bfa;
   --caimue-gray: #4B5563;
   --caimue-gray-light: #9ca3af;
@@ -190,6 +190,14 @@ h3 {
   color: var(--caimue-purple);
   margin-bottom: 1rem;
   display: inline-block;
+}
+
+.text-light {
+  color: var(--caimue-white) !important;
+}
+
+.text-light-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* ---------- Layout Utilities ---------- */

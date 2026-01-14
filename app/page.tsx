@@ -68,13 +68,15 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 relative overflow-hidden bg-[var(--background)]">
+      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-[var(--caimue-purple)]">
         {/* Background Elements */}
         <HeroGrid />
 
         <div className="bg-noise" />
-        <div className="gradient-blob top-right" />
-        <div className="gradient-blob bottom-left" />
+        <div className="bg-noise opacity-20" />
+        {/* Gradients removed for cleaner solid purple look, or adjusted to be subtle light beams */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
 
         {/* Editorial Scribbles */}
         <FloatingScribbles />
@@ -88,18 +90,18 @@ export default function Home() {
             <AnimatedText
               text="Built to run content"
               delay={0.2}
-              className="leading-[1.05] tracking-tight text-[var(--foreground)] text-center block"
+              className="leading-[1.05] tracking-tight text-white text-center block"
             />
             <div className="flex flex-wrap justify-center gap-x-2">
               <AnimatedText
                 text="one studio,"
                 delay={0.4}
-                className="leading-[1.05] tracking-tight text-[var(--foreground)] text-center block"
+                className="leading-[1.05] tracking-tight text-white text-center block"
               />
               <AnimatedText
                 text="multiple brands."
                 delay={0.6}
-                className="leading-[1.05] tracking-tight text-[var(--caimue-purple)] text-center block md:whitespace-nowrap"
+                className="leading-[1.05] tracking-tight text-[#fbbf24] text-center block md:whitespace-nowrap"
               />
             </div>
             {/* Hidden anchor for scribbles if needed */}
@@ -111,7 +113,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-[var(--foreground-muted)] max-w-2xl mx-auto mb-10 leading-snug"
+            className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 leading-snug font-medium"
           >
             An AI-first production house operating end to end across digital formats and films in Tamil, Malayalam & English.
           </motion.p>
@@ -123,88 +125,23 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="relative z-30"
           >
-            <MagneticButton href="/platforms" variant="primary">
+            <MagneticButton href="/platforms" variant="secondary" className="bg-white text-[var(--caimue-purple)] hover:bg-white/90 border-none">
               View Our Work
             </MagneticButton>
           </motion.div>
         </div>
 
-        {/* Video Scroll Strip - Bottom Alignment */}
-        <div className="mb-8 mt-12 w-full">
-          <VideoScrollStrip />
-        </div>
+        {/* Wave divider at bottom of hero */}
+        <WaveDividerAlt fillColor="var(--background)" />
+      </section>
+
+      {/* ==================== RECENT PRODUCTIONS STRIP ==================== */}
+      <section className="relative py-8 overflow-hidden bg-[var(--background)] border-b border-[var(--card-border)]">
+        <VideoScrollStrip />
       </section>
 
       {/* ==================== MARQUEE SHOWCASE ==================== */}
-      <section className="relative py-10 pb-12 overflow-hidden">
-        {/* Auto-scrolling Marquee */}
-        <div className="marquee mb-20">
-          <div className="marquee-content">
-            {showcaseItems.map((item) => (
-              <div
-                key={item.id}
-                className="relative w-[220px] h-[320px] md:w-[280px] md:h-[400px] rounded-[var(--border-radius-lg)] overflow-hidden shadow-xl cursor-pointer group flex-shrink-0"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Play button on hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                    <svg className="w-7 h-7 text-[var(--caimue-black)] ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <span className="tag mb-2">{item.type}</span>
-                  <h4 className="text-white font-medium text-sm">{item.title}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Duplicate for seamless loop */}
-          <div className="marquee-content">
-            {showcaseItems.map((item) => (
-              <div
-                key={`dup-${item.id}`}
-                className="relative w-[220px] h-[320px] md:w-[280px] md:h-[400px] rounded-[var(--border-radius-lg)] overflow-hidden shadow-xl cursor-pointer group flex-shrink-0"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                    <svg className="w-7 h-7 text-[var(--caimue-black)] ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4">
-                  <span className="tag mb-2">{item.type}</span>
-                  <h4 className="text-white font-medium text-sm">{item.title}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Wave divider */}
-        <WaveDividerAlt fillColor="var(--background)" />
-      </section>
 
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
