@@ -322,15 +322,9 @@ export default function Home() {
 
       {/* ==================== CTA SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden">
-        {/* Background Effects */}
-        <HeroGrid className="opacity-20" />
-        <FloatingScribbles color="text-fuchsia-400/20" />
-
-        {/* Decorative shapes */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-fuchsia-600/10 blur-[100px]" />
-        </div>
+        {/* Background Effects - Using full grid for edge-to-edge coverage */}
+        <div className={`absolute inset-0 bg-grid-full z-0 pointer-events-none opacity-20`} />
+        <FloatingScribbles color="text-fuchsia-400/30" />
 
         <div className="container text-center relative z-10">
           <motion.div
@@ -339,7 +333,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-white text-4xl md:text-7xl mb-8 tracking-tight font-bold drop-shadow-xl">
+            <h2 className="!text-white text-4xl md:text-7xl mb-8 tracking-tight font-bold drop-shadow-2xl">
               Let's build something that lasts.
             </h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
