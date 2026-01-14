@@ -144,10 +144,6 @@ export default function Home() {
         <WaveDividerAlt fillColor="#fceef5" />
       </section>
 
-      {/* ==================== MARQUEE SHOWCASE ==================== */}
-
-
-
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <section className="py-12 md:py-20 relative bg-[#fceef5] overflow-hidden">
         {/* Background Effects */}
