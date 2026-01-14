@@ -68,7 +68,7 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#8b5cf6] via-[#a855f7] to-[#ec4899]">
+      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
         {/* Background Elements */}
         <HeroGrid />
         <div className="bg-noise opacity-10" />
