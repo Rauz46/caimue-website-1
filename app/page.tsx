@@ -321,52 +321,34 @@ export default function Home() {
       </section>
 
       {/* ==================== CTA SECTION ==================== */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex items-center justify-center">
+      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden">
         {/* Background Effects */}
-        <HeroGrid className="opacity-10" />
+        <HeroGrid className="opacity-20" />
         <FloatingScribbles color="text-fuchsia-400/20" />
 
-        {/* Crew Graphic as Background/Decorative Element */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] opacity-40 pointer-events-none select-none z-0">
-          <Image
-            src="/images/cta-crew.png"
-            alt="Production Crew"
-            width={1000}
-            height={500}
-            className="w-full h-auto object-contain"
-          />
+        {/* Decorative shapes */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
+          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-fuchsia-600/10 blur-[100px]" />
         </div>
 
-        <div className="container text-center relative z-20">
+        <div className="container text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center"
           >
-            {/* Pop-out Card Effect for Heading (Mirroring Philosophy Card Style) */}
-            <div className="relative group mb-12">
-              {/* Outer Glow */}
-              <div className="absolute -inset-10 bg-fuchsia-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full" />
-
-              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 p-10 md:p-16 rounded-[50px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] overflow-hidden">
-                {/* Decorative internal line */}
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-                <h2 className="text-white text-4xl md:text-7xl mb-6 tracking-tight font-bold drop-shadow-xl !leading-[1.1]">
-                  Let's build something that lasts.
-                </h2>
-                <p className="text-white/90 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-                  Whether you're a filmmaker with a story, a brand seeking authentic content,
-                  or a creator looking for sustainable growth — we're interested.
-                </p>
-              </div>
-            </div>
-
+            <h2 className="text-white text-4xl md:text-7xl mb-8 tracking-tight font-bold drop-shadow-xl">
+              Let's build something that lasts.
+            </h2>
+            <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+              Whether you're a filmmaker with a story, a brand seeking authentic content,
+              or a creator looking for sustainable growth — we're interested.
+            </p>
             <Link
               href="/collaborate"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-[#DB2777] text-white font-bold text-lg rounded-full hover:bg-[#be185d] transition-all hover:shadow-[0_0_60px_rgba(219,39,119,0.6)] hover:-translate-y-1 active:scale-95 shadow-2xl"
+              className="inline-flex items-center gap-3 px-12 py-5 bg-[#DB2777] text-white font-bold text-lg rounded-full hover:bg-[#be185d] transition-all hover:shadow-[0_0_50px_rgba(219,39,119,0.5)] hover:-translate-y-1 active:scale-95 shadow-2xl"
             >
               Start a Conversation →
             </Link>
