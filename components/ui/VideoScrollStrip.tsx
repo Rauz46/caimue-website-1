@@ -35,51 +35,56 @@ export function VideoScrollStrip() {
                     >
                         {/* Original Set - Portrait Orientation */}
                         <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
-                            {videos.map((video, index) => (
-                                <motion.div
-                                    key={video.id}
-                                    className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
-                                    initial={{ transform: "rotateY(0deg)" }}
-                                    whileHover={{ scale: 1.15, rotateY: 0, zIndex: 20 }}
-                                    style={{
-                                        transformStyle: "preserve-3d",
-                                        transform: `rotateY(${(index % 5 - 2) * 8}deg) translateZ(${Math.abs(index % 5 - 2) * -30}px)`
-                                    }}
-                                >
-                                    <Image
-                                        src={video.src}
-                                        alt={video.title}
-                                        fill
-                                        className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
-                                    />
-                                    {/* Reflection/Shine effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </motion.div>
-                            ))}
+                            {videos.map((video, index) => {
+                                const offset = (index % videos.length) - (videos.length - 1) / 2;
+                                return (
+                                    <motion.div
+                                        key={video.id}
+                                        className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
+                                        initial={{ rotateY: offset * 15, translateZ: Math.abs(offset) * -50 }}
+                                        whileHover={{ scale: 1.15, rotateY: 0, translateZ: 20, zIndex: 20 }}
+                                        style={{
+                                            transformStyle: "preserve-3d",
+                                        }}
+                                    >
+                                        <Image
+                                            src={video.src}
+                                            alt={video.title}
+                                            fill
+                                            className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
+                                        />
+                                        {/* Reflection/Shine effect */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </motion.div>
+                                );
+                            })}
                         </div>
 
                         {/* Duplicate Set for Seamless Loop */}
                         <div className="marquee-content flex gap-3 items-center animate-scroll" style={{ transformStyle: "preserve-3d" }}>
-                            {videos.map((video, index) => (
-                                <motion.div
-                                    key={`dup-${video.id}`}
-                                    className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
-                                    whileHover={{ scale: 1.15, zIndex: 20 }}
-                                    style={{
-                                        transformStyle: "preserve-3d",
-                                        transform: `rotateY(${(index % 5 - 2) * 8}deg) translateZ(${Math.abs(index % 5 - 2) * -30}px)`
-                                    }}
-                                >
-                                    <Image
-                                        src={video.src}
-                                        alt={video.title}
-                                        fill
-                                        className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
-                                    />
-                                    {/* Reflection/Shine effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </motion.div>
-                            ))}
+                            {videos.map((video, index) => {
+                                const offset = (index % videos.length) - (videos.length - 1) / 2;
+                                return (
+                                    <motion.div
+                                        key={`dup-${video.id}`}
+                                        className="relative w-[140px] h-[200px] md:w-[160px] md:h-[240px] rounded-[var(--border-radius)] overflow-hidden shadow-2xl bg-black hover:z-10"
+                                        initial={{ rotateY: offset * 15, translateZ: Math.abs(offset) * -50 }}
+                                        whileHover={{ scale: 1.15, rotateY: 0, translateZ: 20, zIndex: 20 }}
+                                        style={{
+                                            transformStyle: "preserve-3d",
+                                        }}
+                                    >
+                                        <Image
+                                            src={video.src}
+                                            alt={video.title}
+                                            fill
+                                            className="object-cover opacity-95 hover:opacity-100 transition-opacity duration-500"
+                                        />
+                                        {/* Reflection/Shine effect */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

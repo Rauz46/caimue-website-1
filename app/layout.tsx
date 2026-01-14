@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -7,8 +7,9 @@ import { GrainOverlay } from "@/components/effects/GrainOverlay";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${instrument.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
           <SmoothScroll>

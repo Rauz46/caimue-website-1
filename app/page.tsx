@@ -98,44 +98,50 @@ export default function Home() {
         <FloatingScribbles />
 
         <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-8 md:mt-16">
+          <div className="relative w-full max-w-5xl mx-auto p-8 md:p-12 rounded-[40px] bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden group">
+            {/* Glossy shine effect inside the panel */}
+            <div className="absolute -inset-x-20 top-0 h-[100px] bg-gradient-to-b from-white/10 to-transparent skew-y-[-5deg] transform translate-y-[-50px] group-hover:translate-y-[200px] transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-          {/* Social Proof Strip - Above Headline */}
-          <SocialProofStrip />
+            {/* Social Proof Strip - Above Headline */}
+            <SocialProofStrip />
 
-          <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-lg">
-              We build and operate <span className="text-[#FACC15]">content ecosystems</span> for brands and creators.
-            </span>
-            {/* Hidden anchor for scribbles if needed */}
-            <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
-          </h1>
+            <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
+              <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-lg">
+                We build and operate <span className="text-[#FACC15]">content ecosystems</span> for brands and creators.
+              </span>
+              {/* Hidden anchor for scribbles if needed */}
+              <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
+            </h1>
 
-          {/* Subtext - Close to headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
-          >
-            An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
-          </motion.p>
+            {/* Subtext - Close to headline */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+            >
+              An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
+            </motion.p>
 
-          {/* Single CTA Button - Pink */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="relative z-30 mb-16"
-          >
-            <MagneticButton href="/collaborate" variant="primary" className="bg-[#ec4899] text-white hover:bg-[#db2777] border-none shadow-xl shadow-pink-500/30">
-              Collaborate with Us
-            </MagneticButton>
-          </motion.div>
-        </div>
+            {/* Single CTA Button - Pink */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="relative z-30 mb-16"
+            >
+              <MagneticButton href="/collaborate" variant="primary" className="bg-[#ec4899] text-white hover:bg-[#db2777] border-none shadow-xl shadow-pink-500/30">
+                Collaborate with Us
+              </MagneticButton>
+            </motion.div>
+          </div>
 
-        {/* Video Carousel - Inside Hero with Portrait Orientation */}
-        <div className="relative z-10 mt-auto mb-8">
-          <VideoScrollStrip />
+          {/* Video Carousel - Inside Hero with Portrait Orientation */}
+          <div className="relative z-10 mt-auto mb-8">
+            <VideoScrollStrip />
+          </div>
+
+          {/* Wave divider at bottom of hero */}
         </div>
 
         {/* Wave divider at bottom of hero */}
