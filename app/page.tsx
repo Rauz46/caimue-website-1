@@ -68,7 +68,7 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-[var(--caimue-purple)]">
+      <section className="min-h-[90vh] flex flex-col pt-32 relative overflow-hidden bg-gradient-to-br from-[#7C3AED] via-[#8B5CF6] to-[#DB2777]">
         {/* Background Elements */}
         <HeroGrid />
 
@@ -87,23 +87,9 @@ export default function Home() {
           <SocialProofStrip />
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <AnimatedText
-              text="Built to run content"
-              delay={0.2}
-              className="leading-[1.05] tracking-tight text-white text-center block"
-            />
-            <div className="flex flex-wrap justify-center gap-x-2">
-              <AnimatedText
-                text="one studio,"
-                delay={0.4}
-                className="leading-[1.05] tracking-tight text-white text-center block"
-              />
-              <AnimatedText
-                text="multiple brands."
-                delay={0.6}
-                className="leading-[1.05] tracking-tight text-[#fbbf24] text-center block md:whitespace-nowrap"
-              />
-            </div>
+            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold">
+              We build and operate content ecosystems for brands and creators.
+            </span>
             {/* Hidden anchor for scribbles if needed */}
             <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
           </h1>
@@ -115,7 +101,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 leading-snug font-medium"
           >
-            An AI-first production house operating end to end across digital formats and films in Tamil, Malayalam & English.
+            An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
           </motion.p>
 
           {/* Single CTA Button - Purple Filled */}
@@ -125,8 +111,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="relative z-30"
           >
-            <MagneticButton href="/platforms" variant="secondary" className="bg-white text-[var(--caimue-purple)] hover:bg-white/90 border-none">
-              View Our Work
+            <MagneticButton href="/collaborate" variant="primary" className="bg-[var(--caimue-pink)] text-white hover:bg-[var(--caimue-pink)]/90 border-none shadow-lg shadow-pink-500/20">
+              Collaborate with Us
             </MagneticButton>
           </motion.div>
         </div>

@@ -34,11 +34,11 @@ export function SocialProofStrip() {
 
             {/* Text */}
             <div className="flex flex-col">
-                <span className="text-xs font-semibold text-[var(--foreground)] tracking-tight">
+                <span className="text-xs font-semibold text-white tracking-tight">
                     Trusted by creators & teams
                 </span>
                 <div className="flex items-center gap-1">
-                    <span className="text-[10px] text-[var(--foreground-muted)]">
+                    <span className="text-[10px] text-white/90">
                         ★ ★ ★ ★ ★
                     </span>
                 </div>

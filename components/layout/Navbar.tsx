@@ -42,7 +42,7 @@ export function Navbar() {
                     {/* Logo */}
                     <Link href="/" className="relative z-10">
                         <Image
-                            src="/logos/caimue-logo.png"
+                            src="/logos/caimue-logo-refreshed.png"
                             alt="Caimue"
                             width={120}
                             height={40}
