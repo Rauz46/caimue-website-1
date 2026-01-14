@@ -317,15 +317,19 @@ export default function Home() {
           </div>
         </div>
 
-        <WaveDividerAlt fillColor="var(--caimue-purple)" />
+        <WaveDividerAlt fillColor="#4c1d95" />
       </section>
 
       {/* ==================== CTA SECTION ==================== */}
-      <section className="py-24 bg-[var(--caimue-purple)] relative overflow-hidden">
+      <section className="py-32 bg-[#4c1d95] relative overflow-hidden">
+        {/* Background Effects */}
+        <HeroGrid className="opacity-20" />
+        <FloatingScribbles color="text-fuchsia-400/30" />
+
         {/* Decorative shapes */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/20 blur-2xl" />
-          <div className="absolute bottom-10 right-20 w-48 h-48 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
+          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-fuchsia-600/10 blur-[100px]" />
         </div>
 
         <div className="container text-center relative z-10">
@@ -338,13 +342,13 @@ export default function Home() {
             <h2 className="text-white mb-6">
               Let's build something that lasts.
             </h2>
-            <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+            <p className="text-white/80 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
               Whether you're a filmmaker with a story, a brand seeking authentic content,
               or a creator looking for sustainable growth — we're interested.
             </p>
             <Link
               href="/collaborate"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[var(--caimue-purple)] font-medium rounded-full hover:bg-white/90 transition-all hover:shadow-lg"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[#DB2777] text-white font-bold rounded-full hover:bg-[#be185d] transition-all hover:shadow-[0_0_40px_rgba(219,39,119,0.4)] hover:-translate-y-1 active:scale-95"
             >
               Start a Conversation →
             </Link>
