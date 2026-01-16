@@ -70,7 +70,7 @@ export default function Home() {
     <>
       <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
         {/* Background Elements */}
-        <HeroGrid />
+        <HeroGrid className="[mask-image:linear-gradient(to_bottom,black_80%,transparent)]" />
         <div className="bg-noise opacity-10" />
 
         {/* Glossy Glass Effect - Concentric Circles */}
@@ -147,7 +147,7 @@ export default function Home() {
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <section className="py-12 md:py-20 relative bg-[#fceef5] overflow-hidden">
         {/* Background Effects */}
-        <HeroGrid className="bg-grid-pink" />
+        <HeroGrid className="bg-grid-pink [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" />
         <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
         <FloatingShapes />
         <FloatingScribbles color="text-fuchsia-500/80" />
@@ -232,7 +232,7 @@ export default function Home() {
       {/* ==================== STATS SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
         {/* Background Effects */}
-        <HeroGrid className="opacity-20" />
+        <HeroGrid className="opacity-20 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" />
         <div className="bg-noise opacity-5" />
         <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
 
