@@ -119,6 +119,14 @@
   --font-serif: var(--font-heading);
 }
 
+/* ---------- Basic Grid Utils (Internal) ---------- */
+.bg-grid-pattern,
+.bg-grid-pink,
+.bg-grid-full {
+  mask-image: radial-gradient(ellipse at center, black 0%, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 40%, transparent 90%);
+}
+
 /* ---------- Base Styles ---------- */
 * {
   box-sizing: border-box;
@@ -382,7 +390,7 @@ h3 {
 }
 
 .wave-divider svg path {
-  /* animation: waveFloat 6s ease-in-out infinite; */
+  /* Wave animations can be added here if needed */
 }
 
 @keyframes waveFloat {
