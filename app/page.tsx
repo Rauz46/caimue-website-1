@@ -284,32 +284,18 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="label mb-4 block text-gray-400">What Makes Us Different</span>
+              <span className="label mb-4 block text-gray-400">Our Story</span>
               <h2 className="mb-8 text-gray-900 border-l-4 border-[var(--accent)] pl-6">
-                Most production houses rely on bigger crews. We rely on better systems.
+                Caimue exists to bring structure to storytelling.
               </h2>
-              <ul className="space-y-6">
-                {[
-                  "AI-powered planning and scheduling",
-                  "Streamlined post-production pipelines",
-                  "Data-informed creative decisions",
-                  "Sustainable production at scale",
-                ].map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-center gap-4"
-                  >
-                    <span className="w-6 h-6 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xs flex-shrink-0">
-                      ✓
-                    </span>
-                    <span className="text-gray-600 font-medium">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
+              <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+                <p>
+                  We operate as an AI-first production house that helps brands invest in content with confidence, while enabling creators to focus on craft.
+                </p>
+                <p>
+                  From digital formats to films, we don’t just produce content — we run the engine behind it.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
