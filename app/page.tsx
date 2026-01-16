@@ -225,17 +225,33 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Wave divider - transitioning to Stats section */}
-        <WaveDivider fillColor="#fafafa" />
+        {/* Wave divider - transition to Stats section */}
+        <WaveDividerAlt fillColor="#4c1d95" />
       </section>
 
       {/* ==================== STATS SECTION ==================== */}
-      <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden flex flex-col items-center">
-        {/* Subtle separator from Platforms section */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gray-200/50" />
+      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
+        {/* Background Effects */}
+        <HeroGrid className="opacity-20" />
+        <div className="bg-noise opacity-5" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
 
-        <div className="container relative z-10 pt-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <span className="label !text-white/60 mb-4 block">Our Impact</span>
+            <h2 className="!text-white text-4xl md:text-5xl mb-6">Impact by the Numbers</h2>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+              From independent creators to global brands, we've helped tell stories that resonate across every platform.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -243,16 +259,19 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-8 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="text-center p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] shadow-xl hover:bg-white/15 transition-all duration-300 group"
               >
-                <div className="text-5xl md:text-6xl font-serif font-bold text-[var(--accent)] mb-2 tracking-tighter">
+                <div className="text-5xl md:text-6xl font-serif font-bold text-white mb-2 tracking-tighter drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <p className="text-gray-500 text-sm font-medium uppercase tracking-widest">{stat.label}</p>
+                <p className="text-white/60 text-sm font-medium uppercase tracking-widest">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Wave divider at bottom of stats */}
+        <WaveDivider fillColor="#fafafa" />
       </section>
 
       {/* ==================== WHAT MAKES US DIFFERENT ==================== */}
