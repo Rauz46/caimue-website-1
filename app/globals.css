@@ -468,8 +468,6 @@ h3 {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 .bg-grid-pink {
@@ -477,8 +475,6 @@ h3 {
   background-image:
     linear-gradient(to right, rgba(219, 39, 119, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(219, 39, 119, 0.08) 1px, transparent 1px);
-  mask-image: radial-gradient(circle at center, black 70%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at center, black 70%, transparent 100%);
 }
 
 .bg-grid-full {

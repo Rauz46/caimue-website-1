@@ -70,7 +70,7 @@ export default function Home() {
     <>
       <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
         {/* Background Elements */}
-        <HeroGrid className="[mask-image:linear-gradient(to_bottom,black_80%,transparent)]" />
+        <HeroGrid className="opacity-40" />
         <div className="bg-noise opacity-10" />
 
         {/* Glossy Glass Effect - Concentric Circles */}
@@ -139,20 +139,20 @@ export default function Home() {
 
           {/* Wave divider at bottom of hero */}
         </div>
-
-        {/* Wave divider at bottom of hero */}
-        <WaveDividerAlt fillColor="#fceef5" />
       </section>
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <section className="py-12 md:py-20 relative bg-[#fceef5] overflow-hidden">
+        {/* Wave from Hero */}
+        <WaveDividerAlt position="top" fillColor="#be185d" className="z-10" />
+
         {/* Background Effects */}
-        <HeroGrid className="bg-grid-pink [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" />
+        <HeroGrid className="bg-grid-pink" />
         <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
         <FloatingShapes />
         <FloatingScribbles color="text-fuchsia-500/80" />
 
-        <div className="container relative z-10">
+        <div className="container relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -224,15 +224,15 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* Wave divider - transition to Stats section */}
-        <WaveDividerAlt fillColor="#4c1d95" />
       </section>
 
       {/* ==================== STATS SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
+        {/* Wave from Platforms */}
+        <WaveDividerAlt position="top" fillColor="#fceef5" className="z-10" />
+
         {/* Background Effects */}
-        <HeroGrid className="opacity-20 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" />
+        <HeroGrid className="opacity-20" />
         <div className="bg-noise opacity-5" />
         <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
 
@@ -269,14 +269,14 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* Wave divider at bottom of stats */}
-        <WaveDivider fillColor="#fafafa" />
       </section>
 
       {/* ==================== WHAT MAKES US DIFFERENT ==================== */}
       <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
-        <div className="container relative z-10">
+        {/* Wave from Stats */}
+        <WaveDivider position="top" fillColor="#be185d" className="z-10" />
+
+        <div className="container relative z-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -335,12 +335,13 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
-        <WaveDividerAlt fillColor="#4c1d95" />
       </section>
 
       {/* ==================== CTA SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden">
+        {/* Wave from Previous Section */}
+        <WaveDividerAlt position="top" fillColor="#fafafa" className="z-10" />
+
         {/* Background Effects - Using full grid for edge-to-edge coverage */}
         <div className={`absolute inset-0 bg-grid-full z-0 pointer-events-none opacity-20`} />
         <FloatingScribbles color="text-fuchsia-400/30" />
