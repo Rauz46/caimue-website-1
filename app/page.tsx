@@ -27,6 +27,7 @@ const showcaseItems = [
 ];
 
 // Platform cards with colors
+// test push .
 const platforms = [
   {
     id: "teqthots",
