@@ -13,6 +13,7 @@ import { VideoScrollStrip } from "@/components/ui/VideoScrollStrip";
 import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -70,10 +71,23 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
+      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden">
+        {/* Background Animation */}
+        <BackgroundGradientAnimation
+          gradientBackgroundStart="rgb(108, 0, 162)"
+          gradientBackgroundEnd="rgb(0, 17, 82)"
+          firstColor="124, 58, 237"
+          secondColor="219, 39, 119"
+          thirdColor="139, 92, 246"
+          fourthColor="190, 24, 93"
+          fifthColor="76, 29, 149"
+          pointerColor="236, 72, 153"
+          containerClassName="absolute inset-0 z-0"
+        />
+
         {/* Background Elements */}
-        <HeroGrid className="opacity-40" />
-        <div className="bg-noise opacity-10" />
+        <HeroGrid className="opacity-40 z-10" />
+        <div className="bg-noise opacity-10 z-10" />
 
         {/* Glossy Glass Effect - Concentric Circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">

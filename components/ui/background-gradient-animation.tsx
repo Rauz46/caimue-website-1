@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
-    gradientBackgroundStart = "rgb(109, 40, 217)",
-    gradientBackgroundEnd = "rgb(124, 58, 237)",
-    firstColor = "18, 113, 255",
-    secondColor = "221, 74, 255",
-    thirdColor = "100, 220, 255",
-    fourthColor = "200, 50, 50",
-    fifthColor = "190, 24, 93",
-    pointerColor = "140, 100, 255",
+    gradientBackgroundStart = "rgb(108, 0, 162)",
+    gradientBackgroundEnd = "rgb(0, 17, 82)",
+    firstColor = "124, 58, 237", // Purple-600
+    secondColor = "219, 39, 119", // Pink-600
+    thirdColor = "139, 92, 246", // Violet-500
+    fourthColor = "190, 24, 93", // Pink-700
+    fifthColor = "76, 29, 149", // Violet-900
+    pointerColor = "236, 72, 153", // Pink-500
     size = "80%",
     blendingValue = "hard-light",
     children,
@@ -89,7 +89,7 @@ export const BackgroundGradientAnimation = ({
     return (
         <div
             className={cn(
-                "h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
+                "h-full w-full absolute inset-0 overflow-hidden bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
                 containerClassName
             )}
         >
@@ -111,7 +111,7 @@ export const BackgroundGradientAnimation = ({
                     </filter>
                 </defs>
             </svg>
-            <div className={cn("", className)}>{children}</div>
+            <div className={cn("relative z-10", className)}>{children}</div>
             <div
                 className={cn(
                     "gradients-container h-full w-full blur-lg",
