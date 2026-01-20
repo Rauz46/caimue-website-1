@@ -39,11 +39,11 @@ export function Navbar() {
                     {/* Logo */}
                     <Link href="/" className="relative z-10">
                         <Image
-                            src="/logos/caimue-logo-refreshed.png"
+                            src="/logos/caimue-logo-v2.png"
                             alt="Caimue"
-                            width={120}
-                            height={40}
-                            className="h-9 w-auto object-contain"
+                            width={160}
+                            height={50}
+                            className="h-11 w-auto object-contain"
                             priority
                         />
                     </Link>

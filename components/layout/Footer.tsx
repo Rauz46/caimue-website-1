@@ -37,11 +37,11 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <Link href="/">
                             <Image
-                                src="/logos/caimue-logo.png"
+                                src="/logos/caimue-logo-v2.png"
                                 alt="Caimue"
-                                width={140}
-                                height={45}
-                                className="h-10 w-auto object-contain mb-4"
+                                width={180}
+                                height={60}
+                                className="h-14 w-auto object-contain mb-4"
                             />
                         </Link>
                         <p className="text-[var(--foreground-muted)] max-w-xs leading-relaxed text-sm">
