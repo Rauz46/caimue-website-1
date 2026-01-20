@@ -33,10 +33,7 @@ export function Navbar() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? "bg-[var(--nav-bg)] backdrop-blur-md py-3 shadow-sm"
-                    : "bg-transparent py-5"
-                    }`}
+                className="fixed top-0 left-0 right-0 z-50 bg-white py-4 shadow-sm border-b border-gray-100"
             >
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
@@ -52,12 +49,12 @@ export function Navbar() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-1 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-full px-2 py-1">
+                    <nav className="hidden lg:flex items-center gap-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="px-4 py-2 text-sm font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)] hover:bg-[var(--background-secondary)] rounded-full transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-[var(--caimue-purple)] hover:text-[var(--caimue-pink)] transition-all"
                             >
                                 {link.label}
                             </Link>
@@ -110,9 +107,9 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-[var(--background)] lg:hidden"
+                        className="fixed inset-0 z-40 bg-white lg:hidden"
                     >
-                        <div className="flex flex-col items-center justify-center h-full gap-6 pt-20">
+                        <div className="flex flex-col items-center justify-center h-full gap-8 pt-20">
                             {navLinks.map((link, index) => (
                                 <motion.div
                                     key={link.href}
@@ -123,7 +120,7 @@ export function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="text-2xl font-serif text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+                                        className="text-2xl font-serif font-bold text-[var(--caimue-purple)] hover:text-[var(--caimue-pink)] transition-colors"
                                     >
                                         {link.label}
                                     </Link>
