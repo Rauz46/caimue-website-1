@@ -491,3 +491,74 @@ h3 {
     linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
 }
+
+/* ---------- Gradient Animation Keyframes ---------- */
+@keyframes first {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes second {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes third {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fourth {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes fifth {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-first {
+  animation: first 30s linear infinite;
+}
+
+.animate-second {
+  animation: second 40s linear infinite;
+}
+
+.animate-third {
+  animation: third 35s linear infinite;
+}
+
+.animate-fourth {
+  animation: fourth 45s linear infinite;
+}
+
+.animate-fifth {
+  animation: fifth 50s linear infinite;
+}

@@ -68,13 +68,27 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
-        {/* Background Elements */}
-        <HeroGrid className="opacity-40" />
-        <div className="bg-noise opacity-10" />
+      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#be185d]">
+            {/* Animated gradient orbs */}
+            <div className="gradients-container h-full w-full blur-lg opacity-60">
+              <div className="absolute [background:radial-gradient(circle_at_center,_rgba(109,40,217,0.8)_0,_rgba(109,40,217,0)_50%)_no-repeat] [mix-blend-mode:hard-light] w-[80%] h-[80%] top-[10%] left-[10%] animate-first opacity-100"></div>
+              <div className="absolute [background:radial-gradient(circle_at_center,_rgba(221,74,255,0.8)_0,_rgba(221,74,255,0)_50%)_no-repeat] [mix-blend-mode:hard-light] w-[80%] h-[80%] top-[10%] left-[10%] [transform-origin:calc(50%-400px)] animate-second opacity-100"></div>
+              <div className="absolute [background:radial-gradient(circle_at_center,_rgba(100,220,255,0.8)_0,_rgba(100,220,255,0)_50%)_no-repeat] [mix-blend-mode:hard-light] w-[80%] h-[80%] top-[10%] left-[10%] [transform-origin:calc(50%+400px)] animate-third opacity-100"></div>
+              <div className="absolute [background:radial-gradient(circle_at_center,_rgba(200,50,50,0.8)_0,_rgba(200,50,50,0)_50%)_no-repeat] [mix-blend-mode:hard-light] w-[80%] h-[80%] top-[10%] left-[10%] [transform-origin:calc(50%-200px)] animate-fourth opacity-70"></div>
+              <div className="absolute [background:radial-gradient(circle_at_center,_rgba(219,39,119,0.8)_0,_rgba(219,39,119,0)_50%)_no-repeat] [mix-blend-mode:hard-light] w-[80%] h-[80%] top-[10%] left-[10%] [transform-origin:calc(50%-800px)_calc(50%+800px)] animate-fifth opacity-100"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Background Elements - Grid and Noise */}
+        <HeroGrid className="opacity-40 z-10" />
+        <div className="bg-noise opacity-10 z-10" />
 
         {/* Glossy Glass Effect - Concentric Circles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
           {/* Concentric circle gradients for glass effect */}
           <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-purple-500/20 via-purple-600/10 to-transparent blur-[2px]" />
           <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-purple-400/15 via-transparent to-transparent blur-[1px]" />
