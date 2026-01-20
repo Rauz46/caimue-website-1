@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from "react";
 export const BackgroundGradientAnimation = ({
     gradientBackgroundStart = "rgb(108, 0, 162)",
     gradientBackgroundEnd = "rgb(0, 17, 82)",
-    firstColor = "216, 180, 254", // Purple-300
-    secondColor = "249, 168, 212", // Pink-300
-    thirdColor = "196, 181, 253", // Violet-300
-    fourthColor = "244, 114, 182", // Pink-400
-    fifthColor = "167, 139, 250", // Violet-400
-    pointerColor = "244, 114, 182", // Pink-400
+    firstColor = "109, 40, 217", // Purple-600
+    secondColor = "219, 39, 119", // Pink-600
+    thirdColor = "124, 58, 237", // Violet-600
+    fourthColor = "190, 24, 93", // Pink-700
+    fifthColor = "139, 92, 246", // Violet-500
+    pointerColor = "219, 39, 119", // Pink-600
     size = "80%",
     blendingValue = "hard-light",
     children,
@@ -120,11 +120,11 @@ export const BackgroundGradientAnimation = ({
             >
                 <div
                     className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.6)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
+                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.7)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
                         `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
                         `[transform-origin:center_center]`,
                         `animate-first`,
-                        `opacity-80`
+                        `opacity-90`
                     )}
                 ></div>
                 <div

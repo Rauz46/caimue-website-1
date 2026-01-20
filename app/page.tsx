@@ -74,14 +74,14 @@ export default function Home() {
       <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden">
         {/* Background Animation */}
         <BackgroundGradientAnimation
-          gradientBackgroundStart="rgb(243, 232, 255)"
-          gradientBackgroundEnd="rgb(252, 231, 243)"
-          firstColor="216, 180, 254"
-          secondColor="249, 168, 212"
-          thirdColor="196, 181, 253"
-          fourthColor="244, 114, 182"
-          fifthColor="167, 139, 250"
-          pointerColor="244, 114, 182"
+          gradientBackgroundStart="rgb(109, 40, 217)"
+          gradientBackgroundEnd="rgb(190, 24, 93)"
+          firstColor="109, 40, 217"
+          secondColor="219, 39, 119"
+          thirdColor="124, 58, 237"
+          fourthColor="190, 24, 93"
+          fifthColor="130, 24, 67"
+          pointerColor="219, 39, 119"
           containerClassName="absolute inset-0 z-0"
         />
 
@@ -92,12 +92,12 @@ export default function Home() {
         {/* Glossy Glass Effect - Concentric Circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Concentric circle gradients for glass effect */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-purple-400/10 via-purple-500/5 to-transparent blur-[2px]" />
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-purple-300/10 via-transparent to-transparent blur-[1px]" />
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] h-[400px] rounded-full bg-gradient-radial from-fuchsia-300/10 to-transparent" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-purple-500/15 via-purple-600/10 to-transparent blur-[2px]" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-purple-400/15 via-transparent to-transparent blur-[1px]" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] h-[400px] rounded-full bg-gradient-radial from-fuchsia-400/15 to-transparent" />
 
-          {/* Organic Blob Shapes - Softer tones */}
-          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-purple-300/10 rounded-full blur-[100px]" />
+          {/* Organic Blob Shapes - Restored Vibrancy */}
+          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[100px]" />
           <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-indigo-700/15 rounded-full blur-[120px]" />
           <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-violet-600/15 rounded-full blur-[80px]" />
 
