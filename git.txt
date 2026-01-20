@@ -1,0 +1,18 @@
+# to add files
+
+git add . 
+
+
+# to commit files
+
+git commit -m "message"
+
+# to push files
+
+git push
+
+# to pull from previous commit
+
+git pull
+
+
