@@ -23,6 +23,7 @@ export function WaveDivider({
                 <path
                     d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,80 L1200,120 L0,120 Z"
                     fill={fillColor}
+                    stroke="none"
                 />
             </svg>
         </div>

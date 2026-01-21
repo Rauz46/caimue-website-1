@@ -113,7 +113,7 @@ export default function Home() {
         {/* Editorial Scribbles */}
         <FloatingScribbles />
 
-        <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-8 md:mt-32">
+        <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-6 md:mt-24">
 
           {/* Social Proof Strip - Above Headline */}
           <SocialProofStrip />
@@ -141,7 +141,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="relative z-30 mb-16"
+            className="relative z-30 mb-8"
           >
             <MagneticButton href="/collaborate" variant="primary" className="bg-[#DB2777] text-white hover:bg-[#be185d] border-none shadow-xl shadow-pink-500/30">
               Collaborate with Us
@@ -152,15 +152,16 @@ export default function Home() {
           <div className="relative z-10 mt-auto mb-8">
             <VideoScrollStrip />
           </div>
-
-          {/* Wave divider at bottom of hero */}
         </div>
+
+        {/* Wave divider at bottom of hero - moved outside container for full width */}
+        <WaveDivider position="bottom" fillColor="#ffffff" className="z-20" />
       </section>
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-12 md:py-20 relative bg-[#fceef5] overflow-hidden">
-        {/* Wave from Hero */}
-        <WaveDividerAlt position="top" fillColor="#be185d" className="z-10" />
+      <section className="py-12 md:py-20 relative bg-white overflow-hidden">
+        {/* The divider from hero already covers the top, so we can remove or keep this if it adds depth. 
+            User said "it should not be straight line", so we need the wavy transition. */}
 
         {/* Background Effects */}
         <HeroGrid className="opacity-30" />
@@ -245,7 +246,7 @@ export default function Home() {
       {/* ==================== STATS SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
         {/* Wave from Platforms */}
-        <WaveDividerAlt position="top" fillColor="#fceef5" className="z-10" />
+        <WaveDividerAlt position="top" fillColor="#ffffff" className="z-10" />
 
         {/* Background Effects */}
         <HeroGrid className="opacity-20" />
