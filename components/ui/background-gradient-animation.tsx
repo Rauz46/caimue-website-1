@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 export const BackgroundGradientAnimation = ({
     gradientBackgroundStart = "rgb(139, 92, 246)", // Violet-500 base
     gradientBackgroundEnd = "rgb(109, 40, 217)",   // Purple-700 base
-    firstColor = "217, 70, 239",   // Fuchsia-600
-    secondColor = "236, 72, 153",  // Pink-500
+    firstColor = "192, 38, 211",   // Purplish Violet (Fuchsia-700)
+    secondColor = "252, 231, 243", // Very Light Pink (Pink-100)
     thirdColor = "216, 180, 254",  // Pastel Purple (Purple-300)
     fourthColor = "139, 92, 246",  // Violet-500
     fifthColor = "167, 139, 250",  // Purple-400
