@@ -3,16 +3,16 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
-    gradientBackgroundStart = "rgb(240, 235, 250)", // Light Lilac base
-    gradientBackgroundEnd = "rgb(255, 235, 245)",   // Light Pink base
+    gradientBackgroundStart = "rgb(220, 210, 255)", // Lavender tint base
+    gradientBackgroundEnd = "rgb(215, 235, 255)",   // Light Blue tint base
     firstColor = "167, 139, 250",  // Purple-400
     secondColor = "244, 114, 182", // Pink-400
-    thirdColor = "139, 92, 246",  // Violet-500
-    fourthColor = "251, 113, 133", // Rose-400
-    fifthColor = "109, 40, 217",  // Purple-600
-    pointerColor = "139, 92, 246",
-    size = "90%", // Slightly larger to fill more
-    blendingValue = "hard-light", // Higher impact blending
+    thirdColor = "125, 211, 252",  // Light Blue (Sky-300)
+    fourthColor = "139, 92, 246",  // Violet-500
+    fifthColor = "251, 113, 133",  // Rose-400
+    pointerColor = "125, 211, 252",
+    size = "100%", // Full coverage to eliminate white spots
+    blendingValue = "hard-light",
     children,
     className,
     interactive = true,
@@ -180,9 +180,9 @@ export const BackgroundGradientAnimation = ({
                     <div
                         ref={interactiveRef}
                         className={cn(
-                            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.9)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
+                            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_1.0)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
                             `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
-                            `opacity-80`
+                            `opacity-100`
                         )}
                     ></div>
                 )}
