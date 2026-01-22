@@ -3,16 +3,16 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
-    gradientBackgroundStart = "rgb(108, 0, 162)",
-    gradientBackgroundEnd = "rgb(0, 17, 82)",
-    firstColor = "109, 40, 217", // Purple-600
-    secondColor = "219, 39, 119", // Pink-600
-    thirdColor = "124, 58, 237", // Violet-600
-    fourthColor = "190, 24, 93", // Pink-700
-    fifthColor = "139, 92, 246", // Violet-500
-    pointerColor = "219, 39, 119", // Pink-600
+    gradientBackgroundStart = "rgb(253, 252, 248)", // caimue-cream
+    gradientBackgroundEnd = "rgb(245, 245, 240)",   // caimue-warm-accent
+    firstColor = "167, 139, 250",  // caimue-purple-light
+    secondColor = "217, 249, 157", // caimue-lime
+    thirdColor = "253, 186, 116",  // caimue-peach
+    fourthColor = "165, 243, 252", // caimue-cyan
+    fifthColor = "167, 139, 250",  // caimue-purple-light
+    pointerColor = "167, 139, 250",
     size = "80%",
-    blendingValue = "hard-light",
+    blendingValue = "overlay",
     children,
     className,
     interactive = true,

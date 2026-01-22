@@ -74,14 +74,6 @@ export default function Home() {
       <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden">
         {/* Background Animation */}
         <BackgroundGradientAnimation
-          gradientBackgroundStart="rgb(124, 58, 237)"
-          gradientBackgroundEnd="rgb(219, 39, 119)"
-          firstColor="124, 58, 237"
-          secondColor="236, 72, 153"
-          thirdColor="139, 92, 246"
-          fourthColor="219, 39, 119"
-          fifthColor="161, 30, 84"
-          pointerColor="236, 72, 153"
           containerClassName="absolute inset-0 z-0"
         />
 
@@ -89,25 +81,14 @@ export default function Home() {
         <HeroGrid className="opacity-40 z-10" />
         <div className="bg-noise opacity-10 z-10" />
 
-        {/* Glossy Glass Effect - Concentric Circles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Concentric circle gradients for glass effect */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] rounded-full bg-gradient-radial from-purple-500/15 via-purple-600/10 to-transparent blur-[2px]" />
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] rounded-full bg-gradient-radial from-purple-400/15 via-transparent to-transparent blur-[1px]" />
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] h-[400px] rounded-full bg-gradient-radial from-fuchsia-400/15 to-transparent" />
-
-          {/* Organic Blob Shapes - Restored Vibrancy */}
-          <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[100px]" />
-          <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[120px]" />
-          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-violet-500/15 rounded-full blur-[80px]" />
-
-          {/* Decorative Stars and Sparkles */}
-          <div className="absolute top-20 right-1/4 text-white/40 text-4xl">✦</div>
-          <div className="absolute top-40 left-1/3 text-white/30 text-2xl">★</div>
-          <div className="absolute bottom-1/3 right-1/3 text-purple-200/50 text-3xl">✧</div>
-          <div className="absolute top-1/2 left-1/4 text-white/20 text-xl">●</div>
-          <div className="absolute bottom-1/4 left-1/2 text-white/30 text-2xl">✦</div>
-          <div className="absolute top-1/3 right-1/4 text-purple-200/40 text-xl">●</div>
+        {/* Decorative Stars and Sparkles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+          <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
+          <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
+          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
+          <div className="absolute top-1/2 left-1/4 text-purple-400/20 text-xl">●</div>
+          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
+          <div className="absolute top-1/3 right-1/4 text-purple-200/30 text-xl">●</div>
         </div>
 
         {/* Editorial Scribbles */}
