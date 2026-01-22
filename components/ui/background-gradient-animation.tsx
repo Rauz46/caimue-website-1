@@ -7,10 +7,10 @@ export const BackgroundGradientAnimation = ({
     gradientBackgroundEnd = "rgb(109, 40, 217)",   // Purple-700 base
     firstColor = "192, 38, 211",   // Purplish Violet (Fuchsia-700)
     secondColor = "252, 231, 243", // Very Light Pink (Pink-100)
-    thirdColor = "216, 180, 254",  // Pastel Purple (Purple-300)
+    thirdColor = "158, 63, 222",  // Vibrant Pinkish Violet
     fourthColor = "139, 92, 246",  // Violet-500
     fifthColor = "167, 139, 250",  // Purple-400
-    pointerColor = "216, 180, 254",
+    pointerColor = "158, 63, 222",
     size = "120%", // Increased to ensure overlapping and no white spaces
     blendingValue = "hard-light",
     children,
