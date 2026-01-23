@@ -75,6 +75,14 @@ export default function Home() {
         {/* Background Animation */}
         <BackgroundGradientAnimation
           containerClassName="absolute inset-0 z-0"
+          firstColor="168, 85, 247"  // Purple-500
+          secondColor="236, 72, 153" // Pink-500
+          thirdColor="192, 38, 211"  // Fuchsia-600
+          fourthColor="139, 92, 246" // Violet-500
+          fifthColor="219, 39, 119"  // Pink-600
+          pointerColor="219, 39, 119"
+          gradientBackgroundStart="rgb(88, 28, 135)" // Deep Purple
+          gradientBackgroundEnd="rgb(192, 38, 211)" // Fuchsia
         />
 
         {/* Background Elements */}
@@ -100,8 +108,10 @@ export default function Home() {
           <SocialProofStrip />
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-lg">
-              We build and operate content ecosystems <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">for brands and creators.</span>
+            <span className="leading-[1.1] tracking-tight text-white text-center block font-bold drop-shadow-lg max-w-6xl">
+              <span className="md:whitespace-nowrap">Why does your brand still struggle</span><br className="hidden md:block" />
+              <span className="md:whitespace-nowrap">to look cinematic while your</span><br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] md:whitespace-nowrap">competitors look viral?</span>
             </span>
             {/* Hidden anchor for scribbles if needed */}
             <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
@@ -117,16 +127,31 @@ export default function Home() {
             An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
           </motion.p>
 
-          {/* Single CTA Button - Pink */}
+          {/* Scroll Down Indicator */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="relative z-30 mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="flex flex-col items-center gap-2 text-white/40 mb-12"
           >
-            <MagneticButton href="/collaborate" variant="primary" className="bg-[#DB2777] text-white hover:bg-[#be185d] border-none shadow-xl shadow-pink-500/30">
-              Collaborate with Us
-            </MagneticButton>
+            <span className="text-xs uppercase tracking-[0.2em] font-medium">Scroll to explore</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+              </svg>
+            </motion.div>
           </motion.div>
 
           {/* Video Carousel - Inside Hero with Portrait Orientation */}
