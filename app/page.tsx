@@ -109,9 +109,9 @@ export default function Home() {
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
             <span className="leading-[1.1] tracking-tight text-white text-center block font-bold drop-shadow-lg max-w-6xl">
-              <span className="md:whitespace-nowrap">Why does your brand still struggle</span><br className="hidden md:block" />
-              <span className="md:whitespace-nowrap">to look cinematic while your</span><br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] md:whitespace-nowrap">competitors look viral?</span>
+              <span className="md:whitespace-nowrap">Why does your brand still</span><br className="hidden md:block" />
+              <span className="md:whitespace-nowrap">struggle to look cinematic while</span><br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] md:whitespace-nowrap">your competitors look viral?</span>
             </span>
             {/* Hidden anchor for scribbles if needed */}
             <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
@@ -122,9 +122,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+            className="text-xl md:text-2xl text-white/95 max-w-4xl mx-auto mb-10 leading-snug font-medium drop-shadow"
           >
-            An AI-first production house collaborating with brands and creators to produce digital formats, short-form content, and films across Tamil and Malayalam.
+            Caimue is an AI-first production house that helps brands create video content that actually gets seen, reaches the right audience, and generates real business results.
           </motion.p>
 
           {/* Scroll Down Indicator */}
