@@ -14,6 +14,7 @@ import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { PlatformsSection } from "@/components/ui/PlatformsSection";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -27,38 +28,7 @@ const showcaseItems = [
   { id: 8, src: "/images/D.jpg", title: "D", type: "Short Film" },
 ];
 
-// Platform cards with colors
-
-// just test push by Madan .
-const platforms = [
-  {
-    id: "teqthots",
-    title: "TeqThots",
-    tagline: "Product & Startup",
-    description: "Product, startup, and brand storytelling through interviews, formats, and documentaries.",
-    href: "/platforms/teqthots",
-    color: "card-lime",
-    image: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
-  },
-  {
-    id: "short-films-tamil",
-    title: "Short Films - Tamil",
-    tagline: "Digital Narratives",
-    description: "Original short films and digital narratives built with independent creators.",
-    href: "/platforms/short-films",
-    color: "card-peach",
-    image: "/images/%23Atharvaa.jpg",
-  },
-  {
-    id: "short-films-malayalam",
-    title: "Short Films - Malayalam",
-    tagline: "Regional Stories",
-    description: "Regional storytelling with a long-term vision toward cinema and OTT",
-    href: "/platforms/short-films",
-    color: "card-purple",
-    image: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg",
-  },
-];
+// stats (keeping for now if used elsewhere)
 
 // Stats
 const stats = [
@@ -102,13 +72,13 @@ export default function Home() {
         {/* Editorial Scribbles */}
         <FloatingScribbles />
 
-        <div className="container relative z-10 flex flex-col items-start md:items-center md:text-center mt-6 md:mt-24">
+        <div className="container relative z-10 flex flex-col items-center text-center mt-6 md:mt-24">
 
           {/* Social Proof Strip - Above Headline */}
           <SocialProofStrip />
 
           <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <span className="leading-[1.1] tracking-tight text-white text-center block font-bold drop-shadow-lg max-w-6xl">
+            <span className="leading-[1.1] tracking-tight text-white text-center block font-bold drop-shadow-lg max-w-5xl text-4xl md:text-5xl lg:text-6xl">
               <span className="md:whitespace-nowrap">Why does your brand still</span><br className="hidden md:block" />
               <span className="md:whitespace-nowrap">struggle to look cinematic while</span><br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] md:whitespace-nowrap">your competitors look viral?</span>
@@ -122,7 +92,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-white/95 max-w-4xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+            className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
           >
             Caimue is an AI-first production house that helps brands create video content that actually gets seen, reaches the right audience, and generates real business results.
           </motion.p>
@@ -165,89 +135,7 @@ export default function Home() {
       </section>
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
-      <section className="py-12 md:py-20 relative bg-white overflow-hidden">
-        {/* The divider from hero already covers the top, so we can remove or keep this if it adds depth. 
-            User said "it should not be straight line", so we need the wavy transition. */}
-
-        {/* Background Effects */}
-        <HeroGrid className="opacity-30" />
-        <div className="absolute inset-0 bg-white/5 pointer-events-none" /> {/* Subtle overlay */}
-        <FloatingShapes />
-        <FloatingScribbles color="text-fuchsia-500/80" />
-
-        <div className="container relative z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <span className="label mb-4 block">Our Platforms</span>
-            <h2 className="text-[var(--foreground)]">Three Verticals. One Philosophy.</h2>
-          </motion.div>
-
-          {/* Centered card grid */}
-          <div className="flex flex-wrap justify-center gap-8">
-            {platforms.map((platform, index) => (
-              <motion.div
-                key={platform.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-              >
-                <Link href={platform.href}>
-                  <div className={`card ${platform.color} w-[320px] md:w-[360px] p-6 cursor-pointer group relative shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:-translate-y-3 transition-all duration-500 border-white/20`}>
-                    {/* Ambient Glow behind card */}
-                    <div className="absolute -inset-4 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full -z-10" />
-                    {/* Tag row */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="tag">{platform.tagline}</span>
-                      <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center ml-auto group-hover:bg-black/20 transition-colors">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-2xl font-serif mb-2">
-                      {platform.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm opacity-70 mb-6">
-                      {platform.description}
-                    </p>
-
-                    {/* Image */}
-                    <div className="relative h-[200px] rounded-[var(--border-radius)] overflow-hidden">
-                      <Image
-                        src={platform.image}
-                        alt={platform.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-
-                    {/* Explore link */}
-                    <div className="flex items-center gap-2 mt-4">
-                      <span className="text-sm font-medium">Explore</span>
-                      <motion.span
-                        className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/10"
-                        whileHover={{ x: 4 }}
-                      >
-                        →
-                      </motion.span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PlatformsSection />
 
       {/* ==================== STATS SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
