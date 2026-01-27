@@ -10,11 +10,14 @@ import { CinematicBackground } from "@/components/effects/CinematicBackground";
 import { FloatingShapes } from "@/components/effects/FloatingShapes";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { VideoScrollStrip } from "@/components/ui/VideoScrollStrip";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { PlatformsSection } from "@/components/ui/PlatformsSection";
+import { MorphingWord } from "@/components/ui/MorphingWord";
+import { JourneySection } from "@/components/ui/JourneySection";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -30,212 +33,116 @@ const showcaseItems = [
 
 // stats (keeping for now if used elsewhere)
 
-// Stats
-const stats = [
-  { number: "12+", label: "Short Films" },
-  { number: "50+", label: "Reels Created" },
-  { number: "2M+", label: "Views Generated" },
-  { number: "25+", label: "Creators Supported" },
-];
+// stats (keeping for now if used elsewhere)
 
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 pb-20 relative overflow-hidden">
-        {/* Background Animation */}
-        <BackgroundGradientAnimation
-          containerClassName="absolute inset-0 z-0"
-          firstColor="168, 85, 247"  // Purple-500
-          secondColor="236, 72, 153" // Pink-500
-          thirdColor="192, 38, 211"  // Fuchsia-600
-          fourthColor="139, 92, 246" // Violet-500
-          fifthColor="219, 39, 119"  // Pink-600
-          pointerColor="219, 39, 119"
-          gradientBackgroundStart="rgb(88, 28, 135)" // Deep Purple
-          gradientBackgroundEnd="rgb(192, 38, 211)" // Fuchsia
-        />
+      <FollowerPointerCard title="🎬 Stories That Matter">
+        <section className="min-h-screen flex flex-col pt-32 pb-0 relative overflow-visible">
+          {/* Background Animation */}
+          <BackgroundGradientAnimation
+            containerClassName="absolute inset-0 z-0"
+            firstColor="139, 92, 246"  // Violet-500
+            secondColor="147, 51, 234" // Purple-600
+            thirdColor="124, 58, 237"  // Violet-600
+            fourthColor="168, 85, 247" // Purple-500
+            fifthColor="192, 132, 252" // Purple-400
+            pointerColor="139, 92, 246" // Violet-500
+            gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
+            gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+          />
 
-        {/* Background Elements */}
-        <HeroGrid className="opacity-40 z-10" />
-        <div className="bg-noise opacity-10 z-10" />
+          {/* Background Elements */}
+          <HeroGrid className="opacity-40 z-10" />
+          <div className="bg-noise opacity-10 z-10" />
 
-        {/* Decorative Stars and Sparkles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-          <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
-          <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
-          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
-          <div className="absolute top-1/2 left-1/4 text-purple-400/20 text-xl">●</div>
-          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
-          <div className="absolute top-1/3 right-1/4 text-purple-200/30 text-xl">●</div>
-        </div>
-
-        {/* Editorial Scribbles */}
-        <FloatingScribbles />
-
-        <div className="container relative z-10 flex flex-col items-center text-center mt-6 md:mt-24">
-
-          {/* Social Proof Strip - Above Headline */}
-          <SocialProofStrip />
-
-          <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center gap-2">
-            <span className="leading-[1.1] tracking-tight text-white text-center block font-bold drop-shadow-lg max-w-5xl text-4xl md:text-5xl lg:text-6xl">
-              <span className="md:whitespace-nowrap">Why does your brand still</span><br className="hidden md:block" />
-              <span className="md:whitespace-nowrap">struggle to look cinematic while</span><br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] md:whitespace-nowrap">your competitors look viral?</span>
-            </span>
-            {/* Hidden anchor for scribbles if needed */}
-            <div className="absolute -right-8 top-0 w-4 h-4" id="headline-anchor" />
-          </h1>
-
-          {/* Subtext - Close to headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-snug font-medium drop-shadow"
-          >
-            Caimue is an AI-first production house that helps brands create video content that actually gets seen, reaches the right audience, and generates real business results.
-          </motion.p>
-
-          {/* Scroll Down Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="flex flex-col items-center gap-2 text-white/40 mb-12"
-          >
-            <span className="text-xs uppercase tracking-[0.2em] font-medium">Scroll to explore</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-              </svg>
-            </motion.div>
-          </motion.div>
-
-          {/* Video Carousel - Inside Hero with Portrait Orientation */}
-          <div className="relative z-10 mt-auto mb-8">
-            <VideoScrollStrip />
+          {/* Decorative Stars and Sparkles */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+            <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
+            <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
+            <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
+            <div className="absolute top-1/2 left-1/4 text-purple-400/20 text-xl">●</div>
+            <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
+            <div className="absolute top-1/3 right-1/4 text-purple-200/30 text-xl">●</div>
           </div>
-        </div>
 
-        {/* Wave divider at bottom of hero - moved outside container for full width */}
-        <WaveDivider position="bottom" fillColor="#ffffff" className="z-20" />
-      </section>
+          {/* Editorial Scribbles */}
+          <FloatingScribbles />
+
+          <div className="container relative z-10 flex flex-col items-center text-center mt-12 md:mt-32 flex-1">
+
+            {/* Social Proof Strip - Above Headline */}
+            <SocialProofStrip />
+
+            <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center">
+              <span className="leading-[1.15] tracking-tighter text-white text-center block font-bold drop-shadow-lg max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-4">
+                <span className="block">Stories Worth Telling.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4">
+                  <MorphingWord
+                    className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-500"
+                    words={[
+                      "Movies",
+                      "Cinema",
+                      <span key="cam" className="text-4xl md:text-6xl lg:text-8xl">📽️</span>,
+                      "Stories",
+                      <span key="cut" className="text-4xl md:text-6xl lg:text-8xl">🎬</span>,
+                      "Visions"
+                    ]}
+                  />
+                  <span>Worth Making.</span>
+                </span>
+              </span>
+            </h1>
+
+            {/* Subtext - Close to headline */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+            >
+              Caimue is an AI-first production house creating cinema across Malayalam, Tamil, and English. We discover talent, back stories that matter, and produce films that reach audiences who care.
+            </motion.p>
+
+            {/* Scroll Down Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.2 }}
+              className="flex flex-col items-center gap-2 text-white/40 mb-12 mt-auto"
+            >
+              <span className="text-xs uppercase tracking-[0.2em] font-medium">Scroll to explore</span>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                </svg>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+      </FollowerPointerCard>
+
+      {/* ==================== JOURNEY SECTION (MOVED UP) ==================== */}
+      <JourneySection />
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <PlatformsSection />
 
-      {/* ==================== STATS SECTION ==================== */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden flex flex-col items-center">
-        {/* Wave from Platforms */}
-        <WaveDividerAlt position="top" fillColor="#ffffff" className="z-10" />
-
-        {/* Background Effects */}
-        <HeroGrid className="opacity-20" />
-        <div className="bg-noise opacity-5" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
-
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <span className="label !text-white/60 mb-4 block">Our Impact</span>
-            <h2 className="!text-white text-4xl md:text-5xl mb-6">Impact by the Numbers</h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              From independent creators to global brands, we've helped tell stories that resonate across every platform.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] shadow-xl hover:bg-white/15 transition-all duration-300 group"
-              >
-                <div className="text-5xl md:text-6xl font-serif font-bold text-white mb-2 tracking-tighter drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  {stat.number}
-                </div>
-                <p className="text-white/60 text-sm font-medium uppercase tracking-widest">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== WHAT MAKES US DIFFERENT ==================== */}
-      <section className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
-        {/* Wave from Stats */}
-        <WaveDivider position="top" fillColor="#be185d" className="z-10" />
-
-        <div className="container relative z-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="label mb-4 block text-gray-400">Our Story</span>
-              <h2 className="mb-8 text-gray-900 border-l-4 border-[var(--accent)] pl-6">
-                Caimue exists to bring structure to storytelling.
-              </h2>
-              <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
-                <p>
-                  We operate as an AI-first production house that helps brands invest in content with confidence, while enabling creators to focus on craft.
-                </p>
-                <p>
-                  From digital formats to films, we don’t just produce content — we run the engine behind it.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              {/* Subtle Editorial Scribble Around Card */}
-              <div className="absolute -inset-4 md:-inset-6 z-0 pointer-events-none">
-                <svg className="w-full h-full text-[var(--accent)] opacity-20" viewBox="0 0 400 300" preserveAspectRatio="none" fill="none">
-                  <path d="M10,10 C50,-10 350,-10 390,10 C410,50 410,250 390,290 C350,310 50,310 10,290 C-10,250 -10,50 10,10 Z" vectorEffect="non-scaling-stroke" stroke="currentColor" strokeWidth="2" strokeDasharray="10 5" strokeLinecap="round" />
-                </svg>
-              </div>
-
-              <div className="card p-10 relative z-10 bg-white border border-gray-100 shadow-2xl rounded-[40px]">
-                <blockquote className="text-2xl font-serif mb-6 italic text-gray-800 leading-relaxed">
-                  "Creativity without structure burns out. Structure without creativity produces noise."
-                </blockquote>
-                <p className="text-gray-400 font-medium tracking-wide uppercase text-xs">— The Caimue Philosophy</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ==================== CTA SECTION ==================== */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#be185d] relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#2e1065] relative overflow-hidden">
         {/* Wave from Previous Section */}
         <WaveDividerAlt position="top" fillColor="#fafafa" className="z-10" />
 
@@ -259,7 +166,7 @@ export default function Home() {
             </p>
             <Link
               href="/collaborate"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-[#DB2777] text-white font-bold text-lg rounded-full hover:bg-[#be185d] transition-all hover:shadow-[0_0_50px_rgba(219,39,119,0.5)] hover:-translate-y-1 active:scale-95 shadow-2xl"
+              className="inline-flex items-center gap-3 px-12 py-5 bg-[var(--caimue-purple)] text-white font-bold text-lg rounded-full hover:bg-[var(--caimue-purple-dark)] transition-all hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] hover:-translate-y-1 active:scale-95 shadow-2xl"
             >
               Start a Conversation →
             </Link>

@@ -33,7 +33,7 @@ export function Navbar() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="fixed top-0 left-0 right-0 z-50 bg-white py-4 shadow-sm border-b border-gray-100"
+                className="fixed top-0 left-0 right-0 z-40 bg-white py-4 shadow-sm border-b border-gray-100"
             >
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
@@ -54,7 +54,7 @@ export function Navbar() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="px-5 py-2 text-sm font-semibold text-[var(--caimue-purple)] hover:text-[var(--caimue-pink)] transition-all"
+                                className="px-5 py-2 text-sm font-semibold text-[var(--caimue-purple)] hover:text-[var(--caimue-purple-dark)] transition-all"
                             >
                                 {link.label}
                             </Link>
@@ -120,7 +120,7 @@ export function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="text-2xl font-serif font-bold text-[var(--caimue-purple)] hover:text-[var(--caimue-pink)] transition-colors"
+                                        className="text-2xl font-serif font-bold text-[var(--caimue-purple)] hover:text-[var(--caimue-purple-dark)] transition-colors"
                                     >
                                         {link.label}
                                     </Link>

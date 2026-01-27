@@ -32,10 +32,10 @@ export function VideoScrollStrip() {
                         }}
                     >
                         {/* First Set */}
-                        {[...videos, ...videos, ...videos].map((video, index) => (
+                        {[...videos, ...videos, ...videos, ...videos].map((video, index) => (
                             <motion.div
                                 key={`${video.id}-${index}`}
-                                className="relative flex-none w-[180px] aspect-[10/16] md:w-[220px] rounded-[56px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] bg-gray-900 group border border-white/5"
+                                className="relative flex-none w-[180px] aspect-[10/16] md:w-[220px] rounded-[56px] overflow-hidden bg-gray-900 group"
                                 style={{
                                     transformStyle: "preserve-3d",
                                     // Subtle tilt based on index to simulate curve
@@ -78,17 +78,17 @@ export function VideoScrollStrip() {
             <style jsx global>{`
                 @keyframes scroll-horizontal {
                     0% { transform: translateX(0); }
-                    100% { transform: translateX(calc(-33.33% - 16px)); }
+                    100% { transform: translateX(calc(-25% - 16px)); }
                 }
                 .animate-scroll-horizontal {
-                    animation: scroll-horizontal 80s linear infinite;
+                    animation: scroll-horizontal 100s linear infinite;
                 }
                 .animate-scroll-horizontal:hover {
                     animation-play-state: paused;
                 }
                 .mask-horizontal-fade {
-                    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+                    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
                 }
             `}</style>
         </div>

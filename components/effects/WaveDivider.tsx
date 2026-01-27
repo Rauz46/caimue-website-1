@@ -47,3 +47,43 @@ export function WaveDividerAlt({
         </div>
     );
 }
+
+// New organic wave with decorative circles
+export function OrganicWave({
+    position = "bottom",
+    fillColor = "#FFE5ED",
+    className = ""
+}: WaveDividerProps) {
+    const isBottom = position === "bottom";
+
+    return (
+        <div className={`absolute ${isBottom ? 'bottom-[-50px]' : 'top-0'} left-0 right-0 w-full ${className}`}
+            style={{
+                transform: isBottom ? 'none' : 'rotate(180deg)',
+                zIndex: 20
+            }}
+        >
+            <svg
+                viewBox="0 0 1440 200"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+                className="w-full h-auto"
+                style={{ display: 'block' }}
+            >
+                {/* Main wave path - smooth organic curve */}
+                <path
+                    d="M0 80 C 240 20, 480 100, 720 80 C 960 60, 1200 120, 1440 80 L 1440 200 L 0 200 Z"
+                    fill={fillColor}
+                />
+
+                {/* Decorative circles */}
+                <circle cx="180" cy="100" r="12" fill={fillColor} opacity="0.8" />
+                <circle cx="220" cy="85" r="8" fill={fillColor} opacity="0.6" />
+                <circle cx="1100" cy="110" r="15" fill={fillColor} opacity="0.7" />
+                <circle cx="1150" cy="95" r="10" fill={fillColor} opacity="0.5" />
+                <circle cx="600" cy="70" r="10" fill={fillColor} opacity="0.6" />
+            </svg>
+        </div>
+    );
+}

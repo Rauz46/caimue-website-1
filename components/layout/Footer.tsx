@@ -31,9 +31,9 @@ const socialLinks = [
 export function Footer() {
     return (
         <footer className="border-t border-[var(--card-border)] bg-[var(--background-secondary)]">
-            <div className="container py-16">
+            <div className="container py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
-                    {/* Logo & Tagline */}
+                    {/* Logo Only */}
                     <div className="lg:col-span-2">
                         <Link href="/">
                             <Image
@@ -41,13 +41,10 @@ export function Footer() {
                                 alt="Caimue"
                                 width={180}
                                 height={60}
-                                className="h-14 w-auto object-contain mb-4"
+                                className="h-14 w-auto object-contain mb-6"
                             />
                         </Link>
-                        <p className="text-[var(--foreground-muted)] max-w-xs leading-relaxed text-sm">
-                            An AI-first production house building original stories at scale.
-                        </p>
-                        <div className="flex gap-3 mt-6">
+                        <div className="flex gap-3">
                             {/* Instagram */}
                             <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all" aria-label="Instagram">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
@@ -116,7 +113,7 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-12 pt-8 border-t border-[var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="mt-8 pt-6 border-t border-[var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-[var(--foreground-muted)] text-sm">
                         © {new Date().getFullYear()} Caimue. All rights reserved.
                     </p>
