@@ -84,161 +84,107 @@ const WorldMap = () => (
 );
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
 export function Footer() {
     return (
-        <footer className="relative bg-[#0F0F0F] text-white pt-[100px] overflow-hidden">
-            {/* Background Effects matching Hero */}
-            <HeroGrid className="opacity-[0.05] z-0" />
-            <FloatingScribbles color="text-white/20" />
+        <footer className="relative bg-white overflow-hidden">
+            {/* FANCY A CHAT SECTION - HERO STYLE */}
+            <section className="relative h-[700px] flex items-center overflow-hidden">
+                <BackgroundGradientAnimation
+                    containerClassName="absolute inset-0 z-0"
+                    firstColor="139, 92, 246"  // Violet-500
+                    secondColor="147, 51, 234" // Purple-600
+                    thirdColor="124, 58, 237"  // Violet-600
+                    fourthColor="168, 85, 247" // Purple-500
+                    fifthColor="192, 132, 252" // Purple-400
+                    pointerColor="139, 92, 246" // Violet-500
+                    gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
+                    gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+                />
 
-            {/* Hand-drawn annotations (Overlaying scribbles more specifically for footer) */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
-                <motion.div animate={{ rotate: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-[15%] left-[10%] font-handwriting text-2xl rotate-[-12deg]">Let's talk!</motion.div>
-                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute top-[40%] left-[45%] font-handwriting text-3xl">Hello! 👋</motion.div>
-                <div className="absolute bottom-[20%] right-[25%] font-handwriting text-2xl rotate-[8deg]">Collaborate</div>
+                <HeroGrid className="opacity-30 z-10" />
+                <FloatingScribbles color="text-white/20" className="z-10" />
 
-                {/* Visual Icons */}
-                <div className="absolute top-[10%] right-[15%] opacity-40"><Star size={24} /></div>
-                <div className="absolute bottom-[30%] left-[15%] opacity-40 rotate-[15deg]"><Clapperboard size={32} /></div>
-                <div className="absolute top-[60%] right-[40%] opacity-40 -rotate-[20deg]"><Video size={28} /></div>
-                <div className="absolute top-[20%] left-[30%] opacity-40"><ArrowRight size={40} className="rotate-45" /></div>
-            </div>
-
-            <div className="container relative z-10 mb-[80px]">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-[60px] items-center">
-
-                    {/* LEFT COLUMN: Content */}
-                    <div className="max-w-[550px]">
+                <div className="container relative z-20">
+                    <div className="max-w-4xl">
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="font-serif text-[56px] leading-[1.1] font-bold text-white mb-6"
+                            viewport={{ once: true }}
+                            className="font-serif text-5xl md:text-8xl font-bold text-white mb-8 tracking-tight drop-shadow-2xl"
                         >
                             Fancy a Chat?
                         </motion.h2>
-                        <p className="text-[#CCCCCC] text-[18px] leading-[1.7] mb-10">
+                        <p className="text-white/90 text-xl md:text-2xl mb-12 leading-relaxed max-w-2xl font-medium drop-shadow-lg">
                             Whether you're looking to create content, collaborate on films, or just explore what we can build together—we'd love to hear from you.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                        <div className="flex flex-wrap items-center gap-8">
                             <MagneticButton>
                                 <Link
                                     href="/collaborate"
-                                    className="px-10 py-5 bg-[var(--caimue-purple)] text-white font-bold text-lg rounded-full hover:bg-[var(--caimue-purple-dark)] transition-all hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] flex items-center gap-3 active:scale-95 shadow-2xl"
+                                    className="px-12 py-6 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(168,85,247,0.4)] flex items-center gap-3 border border-white/20"
                                 >
-                                    Let's Collaborate <ArrowRight size={20} />
+                                    Let's Collaborate <ArrowRight size={24} />
                                 </Link>
                             </MagneticButton>
 
-                            <a href="mailto:hello@caimue.com" className="group flex items-center gap-2">
-                                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-all">
-                                    <Mail size={18} className="text-[#999999] group-hover:text-white" />
+                            <a href="mailto:hello@caimue.com" className="group flex items-center gap-4 text-white hover:text-white/80 transition-all">
+                                <div className="w-14 h-14 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:border-white shadow-lg backdrop-blur-sm bg-white/5">
+                                    <Mail size={24} />
                                 </div>
-                                <div>
-                                    <p className="text-[14px] text-[#999999] group-hover:text-white transition-colors">hello@caimue.com</p>
-                                </div>
+                                <span className="text-xl font-semibold border-b-2 border-white/20 group-hover:border-white pb-1">hello@caimue.com</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* WHITE PLAIN BOTTOM FOOTER - NAVBAR STYLE */}
+            <div className="bg-white py-16">
+                <div className="container">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+                        {/* LOGO */}
+                        <Link href="/" className="transition-transform hover:scale-105">
+                            <Image
+                                src="/logos/caimue-logo-v2.png"
+                                alt="Caimue"
+                                width={180}
+                                height={60}
+                                className="h-12 w-auto object-contain"
+                            />
+                        </Link>
+
+                        {/* NAV ITEMS */}
+                        <nav className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+                            <Link href="/" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Home</Link>
+                            <Link href="/about" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">About</Link>
+                            <Link href="/platforms" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Platforms</Link>
+                            <Link href="/team" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Team</Link>
+                            <Link href="/collaborate" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Collaborate</Link>
+                        </nav>
+
+                        {/* SOCIAL ICONS */}
+                        <div className="flex items-center gap-6">
+                            <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
+                                <Instagram size={22} />
+                            </a>
+                            <a href="https://youtube.com/@caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
+                                <Youtube size={22} />
+                            </a>
+                            <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
+                                <Linkedin size={22} />
                             </a>
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN: Map */}
-                    <div className="relative group">
-                        <div className="absolute -inset-4 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-[32px] blur-3xl opacity-50 group-hover:opacity-100 transition-opacity" />
-                        <div className="relative bg-[#1A1A1A] border border-white/[0.08] rounded-[24px] p-4 shadow-2xl backdrop-blur-xl overflow-hidden min-h-[350px]">
-                            <WorldMap />
+                    <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-400 text-[14px] font-medium">
+                        <p>© 2026 Caimue. An AI-first production house.</p>
+                        <div className="flex gap-10">
+                            <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
+                            <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
                         </div>
-                    </div>
-                </div>
-
-                {/* DIVIDER */}
-                <div className="h-[1px] w-full bg-white/[0.08] mt-[80px] mb-[60px]" />
-
-                {/* BOTTOM LINKS */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    <div className="col-span-1">
-                        <Link href="/">
-                            <Image
-                                src="/logos/caimue-logo-v2.png"
-                                alt="Caimue"
-                                width={120}
-                                height={40}
-                                className="h-8 w-auto object-contain mb-6 grayscale brightness-200"
-                            />
-                        </Link>
-                        <p className="text-[13px] text-[#666666] leading-relaxed italic">
-                            Building stories that matter
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 className="text-[14px] font-semibold text-[#CCCCCC] uppercase tracking-wider mb-6">Platforms</h4>
-                        <ul className="space-y-3">
-                            {footerLinks.platforms.map((link) => (
-                                <li key={link.href}>
-                                    <Link href={link.href} className="text-[14px] text-[#999999] hover:text-white hover:underline transition-all underline-offset-4 decoration-pink-500">
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-[14px] font-semibold text-[#CCCCCC] uppercase tracking-wider mb-6">Company</h4>
-                        <ul className="space-y-3">
-                            {footerLinks.company.map((link) => (
-                                <li key={link.href}>
-                                    <Link href={link.href} className="text-[14px] text-[#999999] hover:text-white hover:underline transition-all underline-offset-4 decoration-purple-500">
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-[14px] font-semibold text-[#CCCCCC] uppercase tracking-wider mb-6">Connect</h4>
-                        <ul className="space-y-3">
-                            {footerLinks.connect.map((link) => (
-                                <li key={link.href}>
-                                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-[14px] text-[#999999] hover:text-white hover:underline transition-all underline-offset-4 decoration-cyan-500">
-                                        {link.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            {/* NEW WHITE BOTTOM BAR - Like Navbar */}
-            <div className="bg-white py-8 border-t border-gray-100">
-                <div className="container flex flex-col md:flex-row justify-between items-center gap-8">
-                    <Link href="/">
-                        <Image
-                            src="/logos/caimue-logo-v2.png"
-                            alt="Caimue"
-                            width={140}
-                            height={50}
-                            className="h-10 w-auto object-contain"
-                        />
-                    </Link>
-
-                    <p className="text-[14px] font-medium text-gray-500 absolute left-1/2 -translate-x-1/2 hidden lg:block">
-                        © 2026 Caimue. An AI-first production house.
-                    </p>
-
-                    <div className="flex items-center gap-5">
-                        <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
-                            <Instagram size={20} />
-                        </a>
-                        <a href="https://youtube.com/@caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
-                            <Youtube size={20} />
-                        </a>
-                        <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
-                            <Linkedin size={20} />
-                        </a>
                     </div>
                 </div>
             </div>

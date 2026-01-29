@@ -33,9 +33,6 @@ const Card1Background = () => (
             }}
             style={{ filter: 'blur(100px)', opacity: 0.8 }}
         />
-        <div className="absolute inset-0 opacity-[0.05]"
-            style={{ backgroundImage: 'linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.1) 95%), linear-gradient(0deg, transparent 95%, rgba(255,255,255,0.1) 95%)', backgroundSize: '40px 40px' }}
-        />
         {/* Floating Symbols */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
             {[...Array(6)].map((_, i) => (
@@ -129,7 +126,7 @@ export default function WhoAreYouSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="font-serif text-[54px] font-bold text-[#4C1D95] uppercase tracking-tighter"
+                        className="font-serif text-[56px] font-bold text-[#4C1D95] uppercase tracking-tighter"
                         style={{ fontVariant: 'small-caps' }}
                     >
                         Who Are You
@@ -277,6 +274,6 @@ export default function WhoAreYouSection() {
                 </div>
 
             </div>
-        </section>
+        </section >
     );
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-export function FloatingScribbles({ color = "text-white" }: { color?: string }) {
+export function FloatingScribbles({ color = "text-white", className }: { color?: string, className?: string }) {
     return (
-        <div className={`absolute inset-0 pointer-events-none z-0 overflow-hidden ${color}`}>
+        <div className={cn("absolute inset-0 pointer-events-none z-0 overflow-hidden", color, className)}>
             {/* 1. Top Left - "Action!" + Clapper hint */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
