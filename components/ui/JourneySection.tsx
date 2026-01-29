@@ -105,10 +105,16 @@ export function JourneySection() {
                         >
                             <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden group">
                                 {/* Doodles: Safe corners placement */}
-                                <motion.div {...wobbleAnim} className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"><Film size={120} /></motion.div>
+                                <motion.div
+                                    animate={{ rotate: [-3, 3, -3] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"
+                                >
+                                    <Film size={120} />
+                                </motion.div>
                                 <Sparkles className="absolute top-6 right-6 text-yellow-400 w-6 h-6 animate-pulse z-20" />
-                                {/* Annotation moved closer to text */}
-                                <div className="absolute top-[55px] right-[50px] font-handwriting text-sm text-[#E91E8C] -rotate-6 font-bold z-20 w-24 text-center leading-tight">2M+ organic views!</div>
+                                {/* Annotation moved LEFT of the icon to avoid overlap */}
+                                <div className="absolute top-[28px] right-[60px] font-handwriting text-sm text-[#E91E8C] -rotate-6 font-bold z-20 w-24 text-center leading-tight">2M+ organic views!</div>
 
                                 {/* Header */}
                                 <div className="flex items-start justify-between gap-4 mb-4 relative z-10">
@@ -146,12 +152,18 @@ export function JourneySection() {
                         >
                             <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden">
                                 {/* Doodles: Safe corners placement */}
-                                <motion.div {...wobbleAnim} className="absolute top-4 left-4 opacity-10 z-0"><Briefcase size={80} /></motion.div>
-                                {/* Adjusted Trusted Partner to be BELOW the icon */}
-                                <div className="absolute top-[68px] right-6 flex gap-0.5 text-[#F59E0B] text-xs z-20">
+                                <motion.div
+                                    animate={{ rotate: [-3, 3, -3] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute top-4 left-4 opacity-10 z-0"
+                                >
+                                    <Briefcase size={80} />
+                                </motion.div>
+                                {/* Adjusted Trusted Partner to be BELOW the icon but properly spaced */}
+                                <div className="absolute top-[75px] right-6 flex gap-0.5 text-[#F59E0B] text-xs z-20">
                                     {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                                 </div>
-                                <div className="absolute top-[82px] right-6 font-handwriting text-sm text-[#F59E0B] rotate-3 font-bold z-20">Trusted Partner</div>
+                                <div className="absolute top-[90px] right-6 font-handwriting text-sm text-[#F59E0B] rotate-3 font-bold z-20">Trusted Partner</div>
 
                                 {/* Header */}
                                 <div className="flex items-start justify-between gap-4 mb-4 relative z-10">
@@ -197,7 +209,13 @@ export function JourneySection() {
                         >
                             <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden">
                                 {/* Doodles: Safe placement */}
-                                <motion.div {...wobbleAnim} className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"><Clapperboard size={100} /></motion.div>
+                                <motion.div
+                                    animate={{ rotate: [-3, 3, -3] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"
+                                >
+                                    <Clapperboard size={100} />
+                                </motion.div>
                                 <Crown className="absolute top-4 left-6 text-[#E91E8C] w-5 h-5 -rotate-12 z-20" />
                                 <div className="absolute bottom-6 left-4 font-handwriting text-sm text-[#E91E8C] -rotate-6 font-bold z-20">Building careers</div>
                                 <div className="absolute top-1/2 right-1/2 w-32 h-32 rounded-full border border-gray-100 opacity-20 pointer-events-none z-0" />
