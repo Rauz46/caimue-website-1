@@ -18,6 +18,7 @@ import { BackgroundGradientAnimation } from "@/components/ui/background-gradient
 import { PlatformsSection } from "@/components/ui/PlatformsSection";
 import { MorphingWord } from "@/components/ui/MorphingWord";
 import { JourneySection } from "@/components/ui/JourneySection";
+import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -140,6 +141,9 @@ export default function Home() {
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <PlatformsSection />
+
+      {/* ==================== WHO ARE YOU SECTION ==================== */}
+      <WhoAreYouSection />
 
       {/* ==================== CTA SECTION ==================== */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#2e1065] relative overflow-hidden">
