@@ -7,11 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 const navLinks = [
+    { href: "/platforms", label: "Platforms" },
+    { href: "/brands", label: "Brand" },
+    { href: "/creators", label: "Creators" },
     { href: "/about", label: "About" },
-    { href: "/platforms", label: "Our Platforms" },
-    { href: "/creators", label: "For Creators" },
-    { href: "/brands", label: "For Brands" },
-    { href: "/team", label: "Team" },
 ];
 
 export function Navbar() {
@@ -68,7 +67,7 @@ export function Navbar() {
                             href="/collaborate"
                             className="btn-primary text-sm"
                         >
-                            Collaborate
+                            Contact
                         </Link>
                     </div>
 
@@ -136,7 +135,7 @@ export function Navbar() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="btn-primary mt-4"
                                 >
-                                    Collaborate
+                                    Contact
                                 </Link>
                             </motion.div>
                         </div>
