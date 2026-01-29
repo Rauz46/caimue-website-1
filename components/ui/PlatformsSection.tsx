@@ -64,6 +64,15 @@ const Scribble = ({ className, d, color = "currentColor" }: { className?: string
     </motion.svg>
 );
 
+const CardGridEffect = () => (
+    <div className="absolute inset-0 z-0 opacity-[0.1]"
+        style={{
+            backgroundImage: 'radial-gradient(currentColor 0.5px, transparent 0.5px)',
+            backgroundSize: '10px 10px'
+        }}
+    />
+);
+
 export function PlatformsSection() {
     return (
         <section className="relative py-12 bg-[#FAFBFF] overflow-hidden">
@@ -87,14 +96,6 @@ export function PlatformsSection() {
             <Scribble
                 className="top-1/3 right-[15%] w-32 h-32 rotate-45 text-blue-400"
                 d="M50,10 L50,90 M10,50 L90,50"
-            />
-            <Scribble
-                className="bottom-1/4 left-[10%] w-36 h-36 -rotate-6 text-purple-300"
-                d="M20,20 L80,80 M80,20 L20,80"
-            />
-            <Scribble
-                className="top-[45%] left-1/2 w-40 h-40 opacity-[0.03] text-purple-500"
-                d="M50,50 m-40,0 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0"
             />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -125,7 +126,7 @@ export function PlatformsSection() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-3 lg:h-[380px]">
 
                         {/* Main Card (2x2) - Soft Lighter Purple */}
-                        <BentoCard className="col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-[#BBA7FF] to-[#9D7DFF] p-6 flex flex-col justify-between text-white border border-purple-200/20">
+                        <BentoCard className="col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-[#BBA7FF] to-[#9D7DFF] p-6 flex flex-col justify-between text-white border border-purple-200/20 shadow-lg">
                             <div>
                                 <div className="flex items-center gap-2 mb-2">
                                     <Film size={22} className="text-white" />
@@ -143,51 +144,43 @@ export function PlatformsSection() {
                                 </div>
                             </div>
                             <div className="flex gap-2.5 mt-auto">
-                                <button className="flex-1 bg-white text-[#8B5CF6] py-2.5 rounded-lg font-bold text-[13px] hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                <button className="flex-1 bg-white text-[#8B5CF6] py-3 rounded-lg font-bold text-[13px] hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                     <Play size={14} fill="currentColor" /> Watch
                                 </button>
-                                <button className="flex-1 border border-white/30 text-white py-2.5 rounded-lg font-bold text-[13px] hover:bg-white/10 transition-all flex items-center justify-center gap-2 active:scale-95">
+                                <button className="flex-1 border border-white/30 text-white py-3 rounded-lg font-bold text-[13px] hover:bg-white/10 transition-all flex items-center justify-center gap-2 active:scale-95">
                                     Explore
                                 </button>
                             </div>
                         </BentoCard>
 
-                        {/* Middle Column - Unique Metrics & Extra Thumbs */}
-                        <div className="col-span-1 flex flex-col gap-3 h-full">
-                            {/* Unique Serif Metrics Card */}
-                            <BentoCard className="bg-white p-4 flex-none h-[140px] border border-purple-100 flex flex-col justify-center gap-1 shadow-sm" delay={0.1}>
-                                <div className="text-center">
-                                    <span className="font-serif text-[32px] font-bold text-[#8B5CF6] block leading-none">10K+</span>
-                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.1em]">Subscribers</span>
+                        {/* Side Column - Metrics (Side-by-Side) & Thumbs */}
+                        <div className="col-span-1 md:col-span-2 grid grid-rows-2 gap-3 h-full">
+
+                            {/* SERIF METRICS SIDE BY SIDE with Purple Shade & Grid */}
+                            <BentoCard className="bg-purple-50/50 p-6 flex items-center justify-around border border-purple-100 shadow-sm relative overflow-hidden" delay={0.1}>
+                                <CardGridEffect />
+                                <div className="relative z-10 text-center">
+                                    <span className="font-serif text-[38px] font-bold text-[#8B5CF6] block leading-none mb-1">10K+</span>
+                                    <span className="text-[10px] text-purple-400 font-bold uppercase tracking-[0.15em]">Subscribers</span>
                                 </div>
-                                <div className="h-[1px] w-8 bg-purple-100 mx-auto my-1" />
-                                <div className="text-center">
-                                    <span className="font-serif text-[24px] font-bold text-[#2D2D2D] block leading-none">2M+</span>
-                                    <span className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.1em]">Views Reached</span>
+                                <div className="h-12 w-[1px] bg-purple-200/50 relative z-10" />
+                                <div className="relative z-10 text-center">
+                                    <span className="font-serif text-[38px] font-bold text-[#2D2D2D] block leading-none mb-1">2M+</span>
+                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.15em]">Views Reached</span>
                                 </div>
                             </BentoCard>
 
-                            {/* Thumbnail Pair to balance height */}
-                            <div className="flex-1 grid grid-cols-2 gap-2 min-h-0">
-                                <BentoCard className="bg-purple-50 relative group border border-purple-100" delay={0.2}>
-                                    <Image src="/images/poster-1.png" alt="Talent First" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                                </BentoCard>
-                                <BentoCard className="bg-purple-100 relative group border border-purple-100" delay={0.3}>
-                                    <Image src={teqthotsContent[1].image} alt="Creative" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                                </BentoCard>
+                            {/* Triple Thumbnails (Side by Side) to fill row 2 */}
+                            <div className="grid grid-cols-3 gap-3 h-full min-h-0">
+                                {ennittoFilms.map((film, i) => (
+                                    <BentoCard key={film.id} className="relative group bg-gray-900 border border-purple-100 overflow-hidden shadow-sm" delay={0.2 + (i * 0.1)}>
+                                        <Image src={film.image} alt={film.title} fill className="object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                                        <div className="absolute inset-0 bg-purple-500/10 opacity-40" />
+                                    </BentoCard>
+                                ))}
                             </div>
                         </div>
 
-                        {/* Right Column - 3 Adjusted Thumbnails (Proportionate) */}
-                        <div className="col-span-1 flex flex-col gap-2 h-full">
-                            {ennittoFilms.slice(0, 3).map((film, i) => (
-                                <BentoCard key={film.id} className="flex-1 relative group bg-gray-900 border border-purple-100 overflow-hidden min-h-0" delay={0.2 + (i * 0.1)}>
-                                    <Image src={film.image} alt={film.title} fill className="object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                                </BentoCard>
-                            ))}
-                        </div>
                     </div>
                 </div>
 
@@ -202,67 +195,72 @@ export function PlatformsSection() {
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-3 lg:h-[380px]">
 
-                        {/* Visuals Left - Divided into two thumbnails */}
-                        <div className="col-span-1 md:col-span-2 lg:col-span-1 flex flex-col gap-2 h-full">
-                            <BentoCard className="flex-1 bg-gray-100 relative group overflow-hidden border border-gray-200" delay={0.1}>
+                        {/* Visuals Left - Divided and Shaded */}
+                        <div className="col-span-1 md:col-span-1 flex flex-col gap-3 h-full">
+                            <BentoCard className="flex-1 bg-purple-50/30 relative group overflow-hidden border border-gray-100 shadow-sm" delay={0.1}>
+                                <CardGridEffect />
                                 <Image src={teqthotsContent[2].image} alt="Brand Story" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all" />
+                                <div className="absolute inset-0 bg-purple-500/5" />
                             </BentoCard>
-                            <BentoCard className="flex-1 bg-gray-200 relative group overflow-hidden border border-gray-200" delay={0.15}>
+                            <BentoCard className="flex-1 bg-purple-50/30 relative group overflow-hidden border border-gray-100 shadow-sm" delay={0.15}>
+                                <CardGridEffect />
                                 <Image src={teqthotsContent[0].image} alt="Brand Product" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all" />
+                                <div className="absolute inset-0 bg-purple-500/5" />
                             </BentoCard>
                         </div>
 
-                        {/* Main Card (2x2) - Tight Spacing */}
-                        <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-2 bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm" delay={0.2}>
+                        {/* Main Card (2x2) - Precision Aligned */}
+                        <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-2 bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-md" delay={0.2}>
                             <div>
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="p-1.5 bg-gray-50 rounded-lg">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 bg-gray-50 rounded-xl border border-gray-100">
                                         <Users size={22} className="text-[#2D2D2D]" />
                                     </div>
                                     <h3 className="font-serif text-3xl font-bold text-[#2D2D2D] tracking-tight">TeqThots</h3>
                                 </div>
-                                <p className="text-[15px] text-[#5A5A5A] leading-relaxed mb-4 max-w-[95%]">
+                                <p className="text-[15px] text-[#5A5A5A] leading-relaxed mb-6 max-w-[95%] font-light">
                                     Not just ads. We create real storytelling content for brands—founder interviews, product stories, and formats that build trust.
                                 </p>
-                                <div className="flex gap-4 text-[12px] font-bold text-gray-500 mb-2">
+                                <div className="flex gap-4 text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-wide">
                                     <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Cost-effective</span>
                                     <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" /> Fast Turnaround</span>
                                 </div>
                             </div>
 
                             <div className="flex gap-3 mt-auto">
-                                <button className="flex-1 bg-white border-2 border-[#E91E8C] text-[#E91E8C] py-2.5 rounded-lg font-bold text-[13px] hover:bg-[#E91E8C] hover:text-white transition-all flex items-center justify-center gap-2 active:scale-95 shadow-sm">
+                                <button className="flex-1 bg-white border-2 border-[#E91E8C] text-[#E91E8C] py-3 rounded-lg font-bold text-[13px] hover:bg-[#E91E8C] hover:text-white transition-all flex items-center justify-center gap-2 active:scale-95 shadow-sm">
                                     <Play size={14} fill="currentColor" /> Watch
                                 </button>
-                                <button className="flex-1 border border-gray-200 text-gray-600 py-2.5 rounded-lg font-bold text-[13px] hover:bg-gray-50 transition-all flex items-center justify-center gap-2 active:scale-95">
+                                <button className="flex-1 border border-gray-200 text-gray-500 py-3 rounded-lg font-bold text-[13px] hover:bg-gray-50 transition-all flex items-center justify-center gap-2 active:scale-95">
                                     Explore
                                 </button>
                             </div>
                         </BentoCard>
 
-                        {/* Right Column - Metrics & Partner Logo Space */}
+                        {/* Right Column - Metrics & Partner Side by Side Area */}
                         <div className="col-span-1 flex flex-col gap-3 h-full">
-                            <BentoCard className="bg-white p-4 flex-none h-[130px] flex flex-col justify-center border border-gray-200 shadow-sm" delay={0.3}>
-                                <div className="flex items-baseline justify-between mb-1.5 border-b border-gray-50 pb-1.5">
-                                    <span className="text-[22px] font-bold text-[#2D2D2D]">10+</span>
+                            <BentoCard className="bg-purple-50/40 p-5 flex flex-col justify-center border border-purple-100 shadow-sm relative overflow-hidden" delay={0.3}>
+                                <CardGridEffect />
+                                <div className="relative z-10 flex items-baseline justify-between mb-2">
+                                    <span className="text-[26px] font-bold text-[#2D2D2D]">10+</span>
                                     <span className="text-[9px] text-gray-400 uppercase font-extrabold text-right leading-tight">Brand<br />Videos</span>
                                 </div>
-                                <div className="flex items-baseline justify-between">
-                                    <span className="text-[22px] font-bold text-[#2D2D2D]">5+</span>
+                                <div className="relative z-10 flex items-baseline justify-between">
+                                    <span className="text-[26px] font-bold text-[#8B5CF6]">5+</span>
                                     <span className="text-[9px] text-gray-400 uppercase font-extrabold text-right leading-tight">Partner<br />Brands</span>
                                 </div>
                             </BentoCard>
 
-                            <BentoCard className="bg-gray-50 flex-1 border border-gray-100 flex flex-col items-center justify-center p-4 relative" delay={0.4}>
-                                <div className="grid grid-cols-2 gap-4 opacity-40">
-                                    <div className="w-8 h-8 bg-gray-200 rounded-md" />
-                                    <div className="w-8 h-8 bg-gray-200 rounded-md" />
-                                    <div className="w-8 h-8 bg-gray-200 rounded-md" />
-                                    <div className="w-8 h-8 bg-gray-200 rounded-md" />
+                            <BentoCard className="bg-white flex-1 border border-gray-100 flex flex-col items-center justify-center p-4 relative shadow-sm overflow-hidden" delay={0.4}>
+                                <div className="absolute inset-0 bg-purple-50/10" />
+                                <div className="grid grid-cols-2 gap-3 opacity-30 relative z-10">
+                                    {[1, 2, 3, 4].map(i => (
+                                        <div key={i} className="w-10 h-10 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
+                                            <div className="w-5 h-5 bg-gray-200 rounded-sm" />
+                                        </div>
+                                    ))}
                                 </div>
-                                <span className="absolute bottom-2 text-[8px] font-bold uppercase text-gray-300 tracking-[0.1em]">Partner Logistics</span>
+                                <span className="relative z-10 mt-3 text-[8px] font-bold uppercase text-gray-300 tracking-[0.2em]">Partner Logistics</span>
                             </BentoCard>
                         </div>
 
@@ -281,7 +279,7 @@ export function PlatformsSection() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-3 lg:h-[380px]">
 
                         {/* Main Card (2x2) - Soft Lighter Purple Tone */}
-                        <BentoCard className="col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-[#8E7FE0] to-[#7C3AED] p-6 flex flex-col justify-between text-white relative overflow-hidden shadow-sm border border-purple-300/20">
+                        <BentoCard className="col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-[#8E7FE0] to-[#7C3AED] p-6 flex flex-col justify-between text-white relative overflow-hidden shadow-lg border border-purple-300/20">
                             {/* Inner Soft Decor */}
                             <div className="absolute -top-10 -right-10 w-60 h-60 bg-white/10 rounded-full blur-[60px]" />
 
@@ -290,51 +288,48 @@ export function PlatformsSection() {
                                     <Clapperboard size={22} className="text-white" />
                                     <h3 className="font-serif text-3xl font-bold tracking-tight">Feature Films</h3>
                                 </div>
-                                <p className="text-[15px] text-white/95 leading-relaxed mb-5 font-light max-w-[95%]">
+                                <p className="text-[15px] text-white/95 leading-relaxed mb-6 font-light max-w-[95%]">
                                     We are building a slate of feature-length films. Stories that combine strong craft with smart production—made for theater.
                                 </p>
-                                <div className="inline-flex items-center gap-2 bg-black/10 px-3 py-1.5 rounded-full border border-white/5">
-                                    <div className="w-1.5 h-1.5 bg-emerald-300 rounded-full animate-pulse" />
+                                <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-white/5">
+                                    <div className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse shadow-[0_0_8px_rgba(110,231,183,0.5)]" />
                                     <span className="text-white/80 font-mono text-[10px] uppercase tracking-wider">In Development</span>
                                 </div>
                             </div>
                             <div className="relative z-10 mt-auto">
-                                <button className="w-full bg-white text-[#6D28D9] py-3 rounded-lg font-bold text-[13px] hover:bg-purple-50 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                <button className="w-full bg-white text-[#6D28D9] py-3.5 rounded-lg font-bold text-[13px] hover:bg-purple-50 transition-all flex items-center justify-center gap-2 shadow-md active:scale-95">
                                     Explore Projects <ArrowRight size={16} />
                                 </button>
                             </div>
                         </BentoCard>
 
-                        {/* Feature Poster Thumbnail */}
-                        <BentoCard className="col-span-1 md:col-span-2 bg-[#6D28D9] p-0 flex flex-col justify-center items-center border border-purple-400/20 relative group overflow-hidden shadow-sm" delay={0.2}>
+                        {/* Top Right Visual Card */}
+                        <BentoCard className="col-span-1 md:col-span-2 bg-purple-900 border border-purple-400/20 relative group overflow-hidden shadow-md" delay={0.2}>
                             <Image src="/images/poster-3.png" alt="Feature" fill className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
-                            <div className="relative z-10 text-center p-4">
-                                <h4 className="font-serif text-2xl text-white font-bold mb-0.5 drop-shadow-sm">Coming 2026</h4>
-                                <span className="inline-block px-3 py-0.5 border border-white/20 rounded-full text-purple-50 text-[9px] tracking-[0.1em] uppercase backdrop-blur-sm">Theatrical Release</span>
+                            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent flex flex-col justify-end p-5">
+                                <h4 className="font-serif text-2xl text-white font-bold mb-1">Coming 2026</h4>
+                                <span className="inline-block self-start px-3 py-0.5 border border-white/20 rounded-full text-purple-100 text-[10px] tracking-[0.1em] uppercase backdrop-blur-sm">Theatrical Release</span>
                             </div>
                         </BentoCard>
 
-                        {/* Unique Content Card (Replaces Rights Available) */}
-                        <BentoCard className="bg-[#94A3B8]/10 p-5 flex flex-col items-center justify-center text-center border border-gray-200 relative group overflow-hidden shadow-sm" delay={0.3}>
-                            <motion.div
-                                whileHover={{ rotate: 360 }}
-                                transition={{ duration: 0.8 }}
-                                className="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center mb-2"
-                            >
-                                <Sparkles className="w-5 h-5 text-purple-400" />
-                            </motion.div>
-                            <h5 className="text-[#2D2D2D] font-serif text-lg font-bold leading-tight">Mastering<br />IP Originals</h5>
-                            <p className="text-gray-400 text-[10px] mt-1 font-bold uppercase tracking-wider">Global Vision</p>
+                        {/* Special IP Card */}
+                        <BentoCard className="bg-purple-50/50 p-6 flex flex-col items-center justify-center text-center border border-purple-100 relative group overflow-hidden shadow-sm" delay={0.3}>
+                            <CardGridEffect />
+                            <div className="relative z-10 w-12 h-12 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform">
+                                <Sparkles className="w-6 h-6 text-purple-500" />
+                            </div>
+                            <h5 className="relative z-10 text-[#2D2D2D] font-serif text-xl font-bold leading-tight">Mastering<br />IP Originals</h5>
+                            <p className="relative z-10 text-purple-400 text-[9px] mt-2 font-bold uppercase tracking-[0.2em]">Global Vision</p>
                         </BentoCard>
 
-                        {/* Casting Call (1x1) */}
-                        <BentoCard className="bg-white p-5 flex flex-col items-center justify-center text-center relative overflow-hidden border border-purple-100 group cursor-pointer shadow-sm" delay={0.4}>
+                        {/* Casting Call */}
+                        <BentoCard className="bg-white p-6 flex flex-col items-center justify-center text-center relative overflow-hidden border border-purple-50 group cursor-pointer shadow-sm" delay={0.4}>
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center mb-2 group-hover:bg-purple-500 transition-all duration-300">
-                                <Megaphone className="w-4 h-4 text-purple-600 group-hover:text-white transition-colors" />
+                            <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#8B5CF6] transition-all duration-300">
+                                <Megaphone className="w-5 h-5 text-[#8B5CF6] group-hover:text-white transition-colors" />
                             </div>
-                            <span className="font-bold text-[#6D28D9] text-[15px] leading-tight">Casting<br />Call</span>
-                            <span className="text-[9px] text-gray-300 mt-1 uppercase font-bold opacity-0 group-hover:opacity-100 transition-all">Join Us</span>
+                            <span className="font-bold text-[#6D28D9] text-[16px] leading-tight">Casting<br />Call</span>
+                            <span className="text-[10px] text-gray-300 mt-2 uppercase font-bold tracking-widest">Available Now</span>
                         </BentoCard>
 
                     </div>
