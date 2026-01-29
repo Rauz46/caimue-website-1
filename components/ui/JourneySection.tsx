@@ -9,7 +9,7 @@ import {
     Trophy, Crown, Camera, Megaphone, Star
 } from "lucide-react";
 
-// --- Assets Configuration (Ensuring 8 Items Per Card) ---
+// --- Assets Configuration ---
 const FILM_IMAGES = [
     "/images/poster-1.png",
     "/images/poster-2.png",
@@ -81,19 +81,29 @@ export function JourneySection() {
     return (
         <FollowerPointerCard title="The Journey">
             <section className="relative py-[100px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
-                {/* --- BACKGROUND ELEMENTS --- */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                    style={{ backgroundImage: 'linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                {/* --- BACKGROUND LAYER (Z-0) --- */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                        style={{ backgroundImage: 'linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-                {/* Floating Doodles Everywhere */}
-                <motion.div {...floatAnim} transition={{ ...floatAnim.transition, delay: 0 }} className="absolute top-20 left-10 opacity-30 text-purple-400"><Clapperboard size={48} /></motion.div>
-                <motion.div {...floatAnim} transition={{ ...floatAnim.transition, delay: 1 }} className="absolute top-40 right-20 opacity-30 text-pink-400 rotate-12"><Film size={56} /></motion.div>
-                <motion.div {...floatAnim} transition={{ ...floatAnim.transition, delay: 2 }} className="absolute bottom-20 left-1/4 opacity-30 text-yellow-400 -rotate-12"><Star size={40} /></motion.div>
-                <Scribble type="wavy" className="w-40 h-10 text-pink-300 top-1/3 left-10 rotate-45 opacity-40" />
-                <Scribble type="curl" className="w-20 h-20 text-purple-300 bottom-1/3 right-10 opacity-40" />
-                <Scribble type="cross" className="w-8 h-8 text-yellow-500 top-20 right-1/3 opacity-40" />
-                <div className="absolute top-1/2 right-1/4 font-handwriting text-2xl text-purple-400/40 -rotate-12">Action!</div>
-                <div className="absolute bottom-1/4 left-10 font-handwriting text-2xl text-pink-400/40 rotate-6">Scene 1</div>
+                    {/* -- Scribbles: Top Section -- */}
+                    <motion.div {...floatAnim} className="absolute top-10 left-10 opacity-30 text-purple-400"><Clapperboard size={48} /></motion.div>
+                    <motion.div {...floatAnim} transition={{ delay: 1 }} className="absolute top-20 right-20 opacity-30 text-pink-400 rotate-12"><Film size={56} /></motion.div>
+                    <Scribble type="wavy" className="w-40 h-10 text-pink-300 top-32 left-1/4 rotate-45 opacity-40 translate-x-[-50%]" />
+                    <Scribble type="star" className="w-8 h-8 text-yellow-500 top-16 right-1/3 opacity-40" />
+
+                    {/* -- Scribbles: Left Margin -- */}
+                    <Scribble type="curl" className="w-20 h-20 text-purple-300 top-1/2 left-4 opacity-40" />
+                    <motion.div {...wobbleAnim} className="absolute bottom-1/3 left-10 text-purple-300 opacity-30"><Camera size={40} /></motion.div>
+
+                    {/* -- Scribbles: Right Margin -- */}
+                    <Scribble type="arrow" className="w-24 h-16 text-pink-300 top-1/2 right-4 opacity-40 rotate-180" />
+                    <div className="absolute bottom-1/4 right-8 font-handwriting text-2xl text-pink-400/40 rotate-6">Action!</div>
+
+                    {/* -- Scribbles: Bottom Section -- */}
+                    <Scribble type="wavy" className="w-64 h-12 text-purple-300 bottom-10 left-1/3 opacity-30" />
+                    <motion.div {...floatAnim} className="absolute bottom-20 right-1/4 opacity-30 text-yellow-400"><Star size={40} /></motion.div>
+                </div>
 
                 <div className="container mx-auto px-4 relative z-10">
 
@@ -114,15 +124,16 @@ export function JourneySection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="max-w-[800px] mx-auto font-sans text-[18px] text-[#6B21A8] leading-relaxed"
+                            className="max-w-[750px] mx-auto font-sans text-[18px] text-[#6B21A8] leading-[1.6]"
                         >
-                            <p>We&apos;ve produced films, built brands, and discovered talent across Malayalam, Tamil, and English.</p>
-                            <p>Here&apos;s what we&apos;ve done as we build toward feature cinema.</p>
+                            <p>We&apos;ve produced films, built brands, and discovered talent across Malayalam, Tamil, and English. Here&apos;s our journey as we build toward feature cinema.</p>
                         </motion.div>
                     </div>
 
                     {/* --- CARDS GRID --- */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1400px] mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1400px] mx-auto relative z-10">
+                        {/* Gutter Scribble */}
+                        <div className="absolute -left-12 top-1/2 w-8 h-8 opacity-40 hidden xl:block"><Scribble type="cross" className="w-full h-full text-purple-400" /></div>
 
                         {/* --- CARD 1: FILMS --- */}
                         <motion.div
@@ -151,8 +162,8 @@ export function JourneySection() {
                                     Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
                                 </p>
 
-                                {/* Gallery */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10">
+                                {/* Gallery - REMOVED PADDING/MARGINS FOR TIGHT FIT */}
+                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
                                     {FILM_IMAGES.map((src, i) => (
                                         <div key={i} className={`relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group/img ${i === 0 || i === 5 ? 'col-span-2' : ''}`}>
                                             <Image src={src} alt="Film" fill className="object-cover transition-transform duration-300 group-hover/img:scale-105" />
@@ -194,7 +205,7 @@ export function JourneySection() {
                                 </p>
 
                                 {/* Gallery */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10">
+                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
                                     <div className="absolute bottom-10 right-0 font-handwriting text-sm text-gray-400 -rotate-12 z-20">Organic integrations</div>
                                     <Megaphone className="absolute top-1/2 left-0 text-yellow-100 w-10 h-10 -rotate-12" />
 
@@ -239,11 +250,11 @@ export function JourneySection() {
 
                                 {/* Content */}
                                 <p className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                    We&apos;ve worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+                                    We&apos;ve worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building success careers in cinema.
                                 </p>
 
                                 {/* Gallery */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10">
+                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
                                     {CREATOR_IMAGES.map((src, i) => (
                                         <div key={i} className={`relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group/img ${i === 1 || i === 4 ? 'col-span-2' : ''}`}>
                                             <Image src={src} alt="Creator" fill className="object-cover transition-transform duration-300 group-hover/img:scale-105 grayscale group-hover/img:grayscale-0" />
