@@ -21,10 +21,10 @@ const FloatingElement = ({ children, className, depth = 1 }: { children: React.R
 const Card1Background = () => (
     <div className="absolute inset-0 overflow-hidden">
         <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-[#FCD34D] via-[#FB923C] to-[#F472B6]"
+            className="absolute inset-0 bg-gradient-to-br from-[#A78BFA] via-[#C084FC] to-[#F472B6]"
             animate={{
-                rotate: [0, 90, 180, 270, 360],
-                scale: [1, 1.1, 1, 1.1, 1],
+                rotate: [360, 270, 180, 90, 0],
+                scale: [1, 1.15, 1, 1.15, 1],
             }}
             transition={{
                 duration: 20,
@@ -80,6 +80,9 @@ const Card2Background = () => (
     </div>
 );
 
+import { HeroGrid } from "@/components/effects/HeroGrid";
+import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
+
 export default function WhoAreYouSection() {
     const card1Ref = useRef<HTMLDivElement>(null);
     const card2Ref = useRef<HTMLDivElement>(null);
@@ -115,7 +118,11 @@ export default function WhoAreYouSection() {
 
     return (
         <section className="relative py-[120px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
-            <div className="container mx-auto px-4">
+            {/* Background Effects matching Hero */}
+            <HeroGrid className="opacity-[0.15] invert z-0" />
+            <FloatingScribbles color="text-purple-600/30" />
+
+            <div className="container mx-auto px-4 relative z-10">
 
                 {/* HEADING */}
                 <div className="text-center mb-[60px]">
@@ -125,7 +132,7 @@ export default function WhoAreYouSection() {
                         className="font-serif text-[48px] font-bold text-[#4C1D95] uppercase tracking-tighter"
                         style={{ fontVariant: 'small-caps' }}
                     >
-                        Who Are You?
+                        Find Your Path
                     </motion.h2>
                     <p className="font-sans text-[18px] font-medium text-[#6B21A8] mt-4">
                         Pick your path below ↓
@@ -169,7 +176,7 @@ export default function WhoAreYouSection() {
                         <div className="absolute inset-x-0 bottom-0 p-10 pt-24 bg-gradient-to-t from-black/70 via-black/40 to-transparent backdrop-blur-[4px]">
                             <div className="text-[80px] mb-4 drop-shadow-2xl">💼</div>
                             <h3 className="font-serif text-[42px] font-bold text-white mb-4 drop-shadow-lg">Brand Owner</h3>
-                            <p className="text-white/90 text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
+                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
                                 Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
                             </p>
 
@@ -177,10 +184,10 @@ export default function WhoAreYouSection() {
                                 whileHover={{ scale: 1.05, rotate: 2 }}
                                 className="bg-white px-[48px] py-[16px] rounded-full font-bold text-[16px] shadow-2xl flex items-center gap-2 group/btn"
                             >
-                                <span className="bg-gradient-to-r from-[#FCD34D] via-[#FB923C] to-[#F472B6] bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r from-[#A78BFA] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent">
                                     Find Out More
                                 </span>
-                                <ArrowRight className="text-[#FB923C] group-hover/btn:translate-x-2 transition-transform duration-300" size={20} />
+                                <ArrowRight className="text-[#A78BFA] group-hover/btn:translate-x-2 transition-transform duration-300" size={20} />
                             </motion.button>
                         </div>
                     </motion.div>
@@ -249,7 +256,7 @@ export default function WhoAreYouSection() {
                             <h3 className="font-serif text-[42px] font-bold text-white mb-4 [text-shadow:_0_0_30px_rgb(168_85_247_/_60%)]">
                                 Creator
                             </h3>
-                            <p className="text-white/80 text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
+                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
                                 Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
                             </p>
 
