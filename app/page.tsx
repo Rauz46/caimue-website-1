@@ -145,38 +145,6 @@ export default function Home() {
       {/* ==================== WHO ARE YOU SECTION ==================== */}
       <WhoAreYouSection />
 
-      {/* ==================== CTA SECTION ==================== */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-[#4c1d95] via-[#6d28d9] to-[#2e1065] relative overflow-hidden">
-        {/* Wave from Previous Section */}
-        <WaveDividerAlt position="top" fillColor="#fafafa" className="z-10" />
-
-        {/* Background Effects - Using animated grid for edge-to-edge coverage */}
-        <HeroGrid className="opacity-20" />
-        <FloatingScribbles color="text-fuchsia-400/30" />
-
-        <div className="container text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="!text-white text-4xl md:text-7xl mb-8 tracking-tight font-bold drop-shadow-2xl">
-              Let's build something that lasts.
-            </h2>
-            <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-              Whether you're a filmmaker with a story, a brand seeking authentic content,
-              or a creator looking for sustainable growth — we're interested.
-            </p>
-            <Link
-              href="/collaborate"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-[var(--caimue-purple)] text-white font-bold text-lg rounded-full hover:bg-[var(--caimue-purple-dark)] transition-all hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] hover:-translate-y-1 active:scale-95 shadow-2xl"
-            >
-              Start a Conversation →
-            </Link>
-          </motion.div>
-        </div>
-      </section>
     </>
   );
 }

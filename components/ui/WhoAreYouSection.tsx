@@ -33,8 +33,8 @@ const Card1Background = () => (
             }}
             style={{ filter: 'blur(100px)', opacity: 0.8 }}
         />
-        <div className="absolute inset-0 opacity-[0.02]"
-            style={{ backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 40px)' }}
+        <div className="absolute inset-0 opacity-[0.05]"
+            style={{ backgroundImage: 'linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.1) 95%), linear-gradient(0deg, transparent 95%, rgba(255,255,255,0.1) 95%)', backgroundSize: '40px 40px' }}
         />
         {/* Floating Symbols */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -132,7 +132,7 @@ export default function WhoAreYouSection() {
                         className="font-serif text-[54px] font-bold text-[#4C1D95] uppercase tracking-tighter"
                         style={{ fontVariant: 'small-caps' }}
                     >
-                        Who Are You?
+                        Who Are You
                     </motion.h2>
                     <p className="font-sans text-[18px] font-medium text-[#6B21A8] mt-4">
                         Pick your path below ↓
@@ -256,7 +256,7 @@ export default function WhoAreYouSection() {
                             <h3 className="font-serif text-[42px] font-bold text-white mb-4">
                                 Creator
                             </h3>
-                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100">
+                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
                                 Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
                             </p>
 

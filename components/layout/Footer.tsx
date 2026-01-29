@@ -83,9 +83,11 @@ const WorldMap = () => (
     </div>
 );
 
+import { MagneticButton } from "@/components/ui/MagneticButton";
+
 export function Footer() {
     return (
-        <footer className="relative bg-[#0F0F0F] text-white pt-[100px] pb-[40px] overflow-hidden">
+        <footer className="relative bg-[#0F0F0F] text-white pt-[100px] overflow-hidden">
             {/* Background Effects matching Hero */}
             <HeroGrid className="opacity-[0.05] z-0" />
             <FloatingScribbles color="text-white/20" />
@@ -103,8 +105,8 @@ export function Footer() {
                 <div className="absolute top-[20%] left-[30%] opacity-40"><ArrowRight size={40} className="rotate-45" /></div>
             </div>
 
-            <div className="container relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-[60px] items-center mb-[80px]">
+            <div className="container relative z-10 mb-[80px]">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-[60px] items-center">
 
                     {/* LEFT COLUMN: Content */}
                     <div className="max-w-[550px]">
@@ -120,12 +122,14 @@ export function Footer() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                            <motion.button
-                                whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
-                                className="bg-[#E91E8C] px-[48px] py-[18px] rounded-full font-bold text-[16px] shadow-[0_0_30px_rgba(233,30,140,0.3)] flex items-center gap-3 group transition-all"
-                            >
-                                Let's Collaborate <ArrowRight className="group-hover:translate-x-1.5 transition-transform" size={20} />
-                            </motion.button>
+                            <MagneticButton>
+                                <Link
+                                    href="/collaborate"
+                                    className="px-10 py-5 bg-[var(--caimue-purple)] text-white font-bold text-lg rounded-full hover:bg-[var(--caimue-purple-dark)] transition-all hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] flex items-center gap-3 active:scale-95 shadow-2xl"
+                                >
+                                    Let's Collaborate <ArrowRight size={20} />
+                                </Link>
+                            </MagneticButton>
 
                             <a href="mailto:hello@caimue.com" className="group flex items-center gap-2">
                                 <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-all">
@@ -148,10 +152,10 @@ export function Footer() {
                 </div>
 
                 {/* DIVIDER */}
-                <div className="h-[1px] w-full bg-white/[0.08] mb-[60px]" />
+                <div className="h-[1px] w-full bg-white/[0.08] mt-[80px] mb-[60px]" />
 
                 {/* BOTTOM LINKS */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-[60px]">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
                     <div className="col-span-1">
                         <Link href="/">
                             <Image
@@ -206,12 +210,36 @@ export function Footer() {
                         </ul>
                     </div>
                 </div>
+            </div>
 
-                {/* COPYRIGHT */}
-                <div className="text-center pt-8 border-t border-white/[0.05]">
-                    <p className="text-[13px] text-[#666666]">
-                        © 2026 Caimue. An AI-first production house. All rights reserved.
+            {/* NEW WHITE BOTTOM BAR - Like Navbar */}
+            <div className="bg-white py-8 border-t border-gray-100">
+                <div className="container flex flex-col md:flex-row justify-between items-center gap-8">
+                    <Link href="/">
+                        <Image
+                            src="/logos/caimue-logo-v2.png"
+                            alt="Caimue"
+                            width={140}
+                            height={50}
+                            className="h-10 w-auto object-contain"
+                        />
+                    </Link>
+
+                    <p className="text-[14px] font-medium text-gray-500 absolute left-1/2 -translate-x-1/2 hidden lg:block">
+                        © 2026 Caimue. An AI-first production house.
                     </p>
+
+                    <div className="flex items-center gap-5">
+                        <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
+                            <Instagram size={20} />
+                        </a>
+                        <a href="https://youtube.com/@caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
+                            <Youtube size={20} />
+                        </a>
+                        <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm bg-white">
+                            <Linkedin size={20} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
