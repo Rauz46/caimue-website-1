@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { CursorProvider } from "@/components/ui/cursor-context";
+import { GlobalCursor } from "@/components/ui/following-pointer";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -47,12 +49,15 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
-          <SmoothScroll>
-            <GrainOverlay />
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </SmoothScroll>
+          <CursorProvider>
+            <GlobalCursor />
+            <SmoothScroll>
+              <GrainOverlay />
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </SmoothScroll>
+          </CursorProvider>
         </ThemeProvider>
       </body>
     </html>

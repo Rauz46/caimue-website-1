@@ -1,11 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import { cn } from "@/lib/utils";
+"use client";
 
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { useCursor } from "@/components/ui/cursor-context";
+
+export const GlobalCursor = () => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const smoothX = useSpring(x, { stiffness: 500, damping: 28 });
+    const smoothY = useSpring(y, { stiffness: 500, damping: 28 });
+    const { title, isVisible } = useCursor();
+    const [isPointer, setIsPointer] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            x.set(e.clientX);
+            y.set(e.clientY);
+
+            // Optional: Check if clicking on something interactive
+            const target = e.target as HTMLElement;
+            const isClickable = window.getComputedStyle(target).cursor === 'pointer';
+            setIsPointer(isClickable);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [x, y]);
+
+    if (!isVisible) return null;
+
+    return (
+        <motion.div
+            className="fixed top-0 left-0 z-[9999] pointer-events-none"
+            style={{
+                x: smoothX,
+                y: smoothY,
+            }}
+        >
+            {/* Main Cursor Dot */}
+            <motion.div
+                className="absolute h-4 w-4 bg-pink-500 rounded-full -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+                animate={{
+                    scale: title ? 1.5 : (isPointer ? 0.8 : 1),
+                }}
+            />
+
+            {/* Context Title Pill */}
+            <AnimatePresence>
+                {title && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 20 }}
+                        exit={{ opacity: 0, scale: 0.5, x: 10 }}
+                        className="absolute top-0 left-0 bg-pink-600 text-white text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap shadow-lg"
+                    >
+                        {title}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+};
+
+// This component now acts as a Trigger Area for the global cursor
 interface FollowerPointerCardProps {
     children: React.ReactNode;
     className?: string;
-    title?: string | React.ReactNode;
+    title?: string;
 }
 
 export const FollowerPointerCard = ({
@@ -13,116 +75,23 @@ export const FollowerPointerCard = ({
     className,
     title,
 }: FollowerPointerCardProps) => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const ref = React.useRef<HTMLDivElement>(null);
-    const [rect, setRect] = useState<DOMRect | null>(null);
-    const [isInside, setIsInside] = useState<boolean>(false);
+    const { setTitle } = useCursor();
 
-    useEffect(() => {
-        if (ref.current) {
-            setRect(ref.current.getBoundingClientRect());
-        }
-    }, []);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (rect) {
-            const scrollX = window.scrollX;
-            const scrollY = window.scrollY;
-            x.set(e.clientX - rect.left + scrollX);
-            y.set(e.clientY - rect.top + scrollY);
-        }
+    const handleMouseEnter = () => {
+        if (title) setTitle(title);
     };
 
     const handleMouseLeave = () => {
-        setIsInside(false);
-    };
-
-    const handleMouseEnter = () => {
-        setIsInside(true);
+        if (title) setTitle(null);
     };
 
     return (
         <div
-            onMouseLeave={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
-            onMouseMove={handleMouseMove}
-            style={{
-                cursor: "none",
-            }}
-            ref={ref}
+            onMouseLeave={handleMouseLeave}
             className={cn("relative", className)}
         >
-            <AnimatePresence>
-                {isInside && <FollowPointer x={x} y={y} title={title} />}
-            </AnimatePresence>
             {children}
         </div>
-    );
-};
-
-export const FollowPointer = ({
-    x,
-    y,
-    title,
-}: {
-    x: any;
-    y: any;
-    title?: string | React.ReactNode;
-}) => {
-    return (
-        <motion.div
-            className="absolute z-50 h-4 w-4 rounded-full"
-            style={{
-                top: y,
-                left: x,
-                pointerEvents: "none",
-            }}
-            initial={{
-                scale: 1,
-                opacity: 1,
-            }}
-            animate={{
-                scale: 1,
-                opacity: 1,
-            }}
-            exit={{
-                scale: 0,
-                opacity: 0,
-            }}
-        >
-            <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="1"
-                viewBox="0 0 16 16"
-                className="h-6 w-6 -translate-x-[12px] -translate-y-[10px] -rotate-[70deg] transform stroke-pink-600 text-pink-500"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"></path>
-            </svg>
-            <motion.div
-                style={{
-                    backgroundColor: "#E91E8C",
-                }}
-                initial={{
-                    scale: 0.5,
-                    opacity: 0,
-                }}
-                animate={{
-                    scale: 1,
-                    opacity: 1,
-                }}
-                exit={{
-                    scale: 0.5,
-                    opacity: 0,
-                }}
-                className="min-w-max rounded-full bg-pink-500 px-3 py-1.5 text-xs whitespace-nowrap text-white font-medium"
-            >
-                {title || "Explore"}
-            </motion.div>
-        </motion.div>
     );
 };

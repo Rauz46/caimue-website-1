@@ -146,6 +146,15 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
+  cursor: none;
+  /* Hide default cursor globally */
+}
+
+a,
+button,
+[role="button"] {
+  cursor: none !important;
+  /* Force hide on interactive elements */
 }
 
 /* Texture Utility */
