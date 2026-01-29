@@ -2,295 +2,269 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Film, Briefcase, Video, Users, Package } from "lucide-react";
+import { ArrowRight, Youtube, Clapperboard, Film, Video, Megaphone, Star, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { HeroGrid } from "@/components/effects/HeroGrid";
-import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 
-// Film posters from video scroll
+// --- Data & Assets ---
+
 const ennittoFilms = [
     { id: 1, title: "Hey Sinamika", image: "/images/Hey! Sinamika Poster.jpg" },
-    { id: 2, title: "Meiyazhagan", image: "/images/Meiyazhagan _ illustration poster - Vishnu Narayanan.jpg" },
-    { id: 3, title: "Thiruchitrambalam", image: "/images/Thiruchitrambalam.jpg" },
-    { id: 4, title: "Hi Papa", image: "/images/Hi papa.jpg" },
+    { id: 2, title: "Thiruchitrambalam", image: "/images/Thiruchitrambalam.jpg" },
+    { id: 3, title: "Short Film 1", image: "/images/poster-1.png" },
 ];
 
-// Brand content thumbnails
 const teqthotsContent = [
     { id: 1, title: "Odum Kuthira", image: "/images/Odum Kuthira Chaadum Kuthira poster.jpg" },
-    { id: 2, title: "Atharvaa", image: "/images/#Atharvaa.jpg" },
-    { id: 3, title: "Blog Graphics", image: "/images/Blog Graphics.jpg" },
-    { id: 4, title: "YouTube Designs", image: "/images/Eye-Catching YouTube Thumbnail Designs.jpg" },
+    { id: 2, title: "#Atharvaa", image: "/images/#Atharvaa.jpg" },
+    { id: 3, title: "Product Story", image: "/images/Blog Graphics.jpg" },
+    { id: 4, title: "Founder Talk", image: "/images/poster-2.png" },
 ];
 
+const featureFilms = [
+    { id: 1, title: "Untitled Project A", image: "/images/poster-1.png", label: "In Development" },
+    { id: 2, title: "Untitled Project B", image: "/images/poster-2.png", label: "Casting" },
+    { id: 3, title: "Feature 2026", image: "/images/poster-3.png", label: "Pre-Production" },
+];
+
+// --- Components ---
+
+const FloatingDoodles = () => (
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Film Reel near Ennitto */}
+        <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[20%] left-[2%] opacity-20 text-[#8B5CF6] hidden xl:block"
+        >
+            <Film size={64} />
+        </motion.div>
+
+        {/* Megaphone near TeqThots */}
+        <motion.div
+            animate={{ rotate: [-10, 10, -10], scale: [1, 1.1, 1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[15%] right-[25%] opacity-20 text-[#E91E8C] hidden xl:block"
+        >
+            <Megaphone size={56} />
+        </motion.div>
+
+        {/* Chair near Feature Films */}
+        <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[10%] right-[2%] opacity-20 text-[#F59E0B] hidden xl:block"
+        >
+            <Clapperboard size={72} />
+        </motion.div>
+
+        {/* Wavy lines and stars */}
+        <svg className="absolute top-[45%] left-[30%] w-32 h-12 opacity-30 text-[#8B5CF6] hidden xl:block" viewBox="0 0 100 20">
+            <path d="M0 10 Q 25 20 50 10 T 100 10" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+        </svg>
+
+        <div className="absolute top-[10%] right-[10%] text-[#F59E0B] opacity-40 rotate-12 text-sm font-handwriting">Action!</div>
+        <div className="absolute bottom-[20%] left-[5%] text-[#E91E8C] opacity-40 -rotate-6 text-sm font-handwriting">Cinema</div>
+    </div>
+);
+
 export function PlatformsSection() {
-    const [hoveredFilm, setHoveredFilm] = useState<number | null>(null);
-    const [hoveredBrand, setHoveredBrand] = useState<number | null>(null);
-
     return (
-        <FollowerPointerCard title="🎥 Our Platforms">
+        <FollowerPointerCard title="Our Platforms">
             <section className="relative py-[100px] bg-white overflow-hidden">
-                {/* Dark Grid Overlay */}
-                <HeroGrid className="opacity-40 z-0" style={{ filter: "brightness(0.4)" }} />
+                {/* Background Texture */}
+                <div className="absolute inset-0 z-0 opacity-[0.02]"
+                    style={{
+                        backgroundImage: 'linear-gradient(#2D2D2D 1px, transparent 1px), linear-gradient(90deg, #2D2D2D 1px, transparent 1px)',
+                        backgroundSize: '32px 32px'
+                    }}
+                />
 
-                {/* Dark Scribbles */}
-                <FloatingScribbles color="text-[#2D2D2D]/15" />
-
-                {/* Noise texture */}
-                <div className="absolute inset-0 bg-noise opacity-5 z-0" />
+                <FloatingDoodles />
 
                 <div className="container mx-auto px-4 relative z-10">
-                    {/* Heading */}
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-serif font-bold text-[#2D2D2D] text-center mb-[80px]"
-                        style={{ fontFamily: "Playfair Display, serif" }}
-                    >
-                        Our Platforms
-                    </motion.h2>
 
-                    {/* ENNITTO CARD - Large Horizontal */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        whileHover={{ y: -6 }}
-                        className="relative bg-[#FAFAF8] rounded-[20px] p-8 md:p-[50px] shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 mb-[40px] overflow-hidden group"
-                    >
-                        {/* Animated gradient border */}
-                        <div className="absolute inset-0 rounded-[20px] p-[2px] bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div className="absolute inset-[2px] bg-[#FAFAF8] rounded-[18px]" />
-                        </div>
+                    {/* --- HEADING --- */}
+                    <div className="text-center mb-[50px]">
+                        <h2 className="font-serif text-[42px] font-bold text-[#2D2D2D] tracking-wide mb-4 uppercase" style={{ fontVariantCaps: 'small-caps' }}>
+                            Our Platforms
+                        </h2>
+                        <p className="font-sans text-[16px] text-[#6B7280]">
+                            Three ways we tell stories
+                        </p>
+                    </div>
 
-                        {/* Internal Grid Effect */}
-                        <div className="absolute inset-0 opacity-10 pointer-events-none">
-                            <div className="absolute inset-0 bg-grid-pattern" style={{ filter: "brightness(0.5)" }} />
-                        </div>
+                    {/* --- CARDS GRID --- */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto items-stretch">
 
-                        {/* Shimmer effect on hover */}
+                        {/* === CARD 1: ENNITTO === */}
                         <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                        />
-
-                        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-[40px] relative z-10">
-                            {/* LEFT COLUMN - Content (60%) */}
-                            <div className="lg:col-span-3 flex flex-col justify-center">
-                                {/* Tag */}
-                                <span className="inline-block w-fit bg-[#E91E8C] text-white text-xs font-medium uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
+                            whileHover={{ y: -6 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-[24px] p-9 shadow-[0_8px_24px_rgba(139,92,246,0.25)] flex flex-col h-full text-white relative overflow-hidden group"
+                        >
+                            {/* Header */}
+                            <div className="mb-6">
+                                <span className="inline-block bg-[#E9D5FF] text-[#4C1D95] text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
                                     Cinema & Original Stories
                                 </span>
-
-                                {/* Heading */}
-                                <h3
-                                    className="text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-2"
-                                    style={{ fontFamily: "Playfair Display, serif" }}
-                                >
-                                    Ennitto
-                                </h3>
-
-                                {/* Tagline */}
-                                <p className="text-lg italic text-[#5A5A5A] mb-6">
-                                    Where Stories Become Movies
-                                </p>
-
-                                {/* Description */}
-                                <p className="text-base text-[#5A5A5A] leading-relaxed mb-6" style={{ lineHeight: 1.7 }}>
-                                    We produce original Malayalam, Tamil & English films—from shorts to features to OTT content. We discover talent, back stories that matter, and build toward theatrical and streaming releases.
-                                </p>
-
-                                {/* Key Points */}
-                                <div className="space-y-3 mb-8">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#E91E8C]"></div>
-                                        <span className="text-[#5A5A5A] font-medium">Discovers New Talent</span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#E91E8C]"></div>
-                                        <span className="text-[#5A5A5A] font-medium">Original IP & Stories</span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#E91E8C]"></div>
-                                        <span className="text-[#5A5A5A] font-medium">Theatrical & OTT Vision</span>
-                                    </div>
-                                </div>
-
-                                {/* CTA Button */}
-                                <motion.a
-                                    href="#"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="inline-flex items-center gap-2 bg-[#E91E8C] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#D01A7E] transition-colors w-fit"
-                                >
-                                    Explore Ennitto
-                                    <ArrowRight size={18} />
-                                </motion.a>
+                                <h3 className="font-serif text-[36px] font-bold leading-tight mb-2">Ennitto</h3>
+                                <p className="font-sans text-[14px] text-white/80 italic">Where Stories Become Cinema</p>
                             </div>
 
-                            {/* RIGHT COLUMN - Film Thumbnails (40%) */}
-                            <div className="lg:col-span-2">
-                                <div className="grid grid-cols-2 gap-4">
-                                    {ennittoFilms.map((film) => (
-                                        <motion.div
-                                            key={film.id}
-                                            className="relative aspect-[3/4] rounded-xl overflow-hidden bg-gradient-to-br from-pink-200 to-purple-300 group cursor-pointer"
-                                            onMouseEnter={() => setHoveredFilm(film.id)}
-                                            onMouseLeave={() => setHoveredFilm(null)}
-                                            whileHover={{ scale: 1.05 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            {/* Film Icon Placeholder */}
-                                            {/* Film Poster Image */}
-                                            <Image
-                                                src={film.image}
-                                                alt={film.title}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                                sizes="(max-width: 768px) 150px, 200px"
-                                            />
+                            {/* Description */}
+                            <p className="font-sans text-[15px] leading-[1.6] text-white/90 mb-8">
+                                We produce original Malayalam, Tamil & English films—from shorts to features. We discover talent and build stories toward theatrical and OTT releases.
+                            </p>
 
-                                            {/* Hover Overlay */}
-                                            <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: hoveredFilm === film.id ? 1 : 0 }}
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center"
-                                            >
-                                                <p className="text-white font-semibold text-sm text-center px-4">
-                                                    {film.title}
-                                                </p>
-                                            </motion.div>
-                                        </motion.div>
-                                    ))}
-                                </div>
+                            {/* Visual Showcase: Stacked Polaroids */}
+                            <div className="relative h-[180px] mb-8 flex items-center justify-center">
+                                {ennittoFilms.map((film, i) => (
+                                    <motion.div
+                                        key={film.id}
+                                        className="absolute w-[140px] bg-white p-2 pb-6 shadow-lg rounded-sm origin-bottom"
+                                        style={{
+                                            rotate: i === 0 ? '-5deg' : i === 1 ? '2deg' : '8deg',
+                                            zIndex: i,
+                                            left: i === 0 ? '10%' : i === 1 ? '30%' : '50%'
+                                        }}
+                                        whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+                                    >
+                                        <div className="aspect-video relative overflow-hidden bg-gray-200 mb-2">
+                                            <Image src={film.image} alt={film.title} fill className="object-cover" />
+                                        </div>
+                                        <div className="h-2 w-3/4 bg-gray-100 rounded-full mx-auto" />
+                                    </motion.div>
+                                ))}
                             </div>
-                        </div>
-                    </motion.div>
 
-                    {/* TEQTHOTS CARD - Horizontal (60/40 Split) */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        whileHover={{ y: -6 }}
-                        className="relative bg-[#F8F8F8] rounded-[20px] p-8 md:p-[45px] shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden group"
-                    >
-                        {/* Animated gradient border */}
-                        <div className="absolute inset-0 rounded-[20px] p-[2px] bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div className="absolute inset-[2px] bg-[#F8F8F8] rounded-[18px]" />
-                        </div>
+                            {/* CTAs */}
+                            <div className="mt-auto flex gap-3">
+                                <button className="flex-1 flex items-center justify-center gap-2 bg-white text-[#E91E8C] hover:bg-gray-50 text-[14px] font-medium py-2.5 rounded-lg transition-colors">
+                                    <Youtube size={18} />
+                                    <span>Watch</span>
+                                </button>
+                                <button className="flex-1 flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 text-[14px] font-medium py-2.5 rounded-lg transition-colors">
+                                    <span>Explore</span>
+                                    <ArrowRight size={16} />
+                                </button>
+                            </div>
+                        </motion.div>
 
-                        {/* Internal Grid Effect */}
-                        <div className="absolute inset-0 opacity-10 pointer-events-none">
-                            <div className="absolute inset-0 bg-grid-pattern" style={{ filter: "brightness(0.5)" }} />
-                        </div>
-
-                        {/* Shimmer effect on hover */}
+                        {/* === CARD 2: TEQTHOTS === */}
                         <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                        />
-
-                        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-[40px] relative z-10">
-                            {/* LEFT COLUMN - Content (60%) */}
-                            <div className="lg:col-span-3 flex flex-col justify-center">
-                                {/* Tag */}
-                                <span className="inline-block w-fit bg-[#7C3AED] text-white text-xs font-medium uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
+                            whileHover={{ y: -6 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-white border-2 border-[#E5E7EB] rounded-[24px] p-9 shadow-[0_4px_16px_rgba(0,0,0,0.08)] flex flex-col h-full text-[#2D2D2D] relative overflow-hidden"
+                        >
+                            {/* Header */}
+                            <div className="mb-6">
+                                <span className="inline-block bg-[#F3F4F6] text-[#1F2937] text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
                                     Brand Content
                                 </span>
-
-                                {/* Heading */}
-                                <h3
-                                    className="text-3xl md:text-4xl font-bold text-[#2D2D2D] mb-2"
-                                    style={{ fontFamily: "Playfair Display, serif" }}
-                                >
-                                    TeqThots
-                                </h3>
-
-                                {/* Tagline */}
-                                <p className="text-base italic text-[#5A5A5A] mb-6">
-                                    Stories That Build Brands
-                                </p>
-
-                                {/* Description */}
-                                <p className="text-[15px] text-[#5A5A5A] leading-relaxed mb-6" style={{ lineHeight: 1.7 }}>
-                                    We work with brands, startups, and teams to create content that explains what they're building. Not ads—real storytelling through founder interviews, product stories, and behind-the-scenes formats.
-                                </p>
-
-                                {/* Key Points */}
-                                <div className="space-y-3 mb-8">
-                                    <div className="flex items-center gap-3">
-                                        <Users size={16} className="text-[#7C3AED]" />
-                                        <span className="text-[#5A5A5A] font-medium">Founder Conversations</span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Package size={16} className="text-[#7C3AED]" />
-                                        <span className="text-[#5A5A5A] font-medium">Product Storytelling</span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Video size={16} className="text-[#7C3AED]" />
-                                        <span className="text-[#5A5A5A] font-medium">Brand Integrations in Films</span>
-                                    </div>
-                                </div>
-
-                                {/* CTA Button */}
-                                <motion.a
-                                    href="#"
-                                    whileHover={{ scale: 1.02, backgroundColor: "#5A5A5A", color: "#FFFFFF" }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="inline-flex items-center gap-2 border-2 border-[#5A5A5A] text-[#5A5A5A] font-semibold px-6 py-3 rounded-lg transition-all w-fit"
-                                >
-                                    Explore TeqThots
-                                    <ArrowRight size={18} />
-                                </motion.a>
+                                <h3 className="font-serif text-[36px] font-bold leading-tight mb-2 text-[#2D2D2D]">TeqThots</h3>
+                                <p className="font-sans text-[14px] text-[#6B7280] italic">Stories That Build Brands</p>
                             </div>
 
-                            {/* RIGHT COLUMN - Brand Content Thumbnails (40%) */}
-                            <div className="lg:col-span-2">
-                                <div className="grid grid-cols-2 gap-4">
-                                    {teqthotsContent.map((content) => (
+                            {/* Description */}
+                            <p className="font-sans text-[15px] leading-[1.6] text-[#4B5563] mb-8">
+                                We create brand storytelling content—founder interviews, product explainers, and formats that build trust. Not ads. Real stories.
+                            </p>
+
+                            {/* Visual Showcase: Grid Collage */}
+                            <div className="relative h-[180px] mb-8">
+                                <div className="grid grid-cols-2 gap-2 h-full w-full rotate-2 scale-90">
+                                    {teqthotsContent.slice(0, 4).map((content, i) => (
                                         <motion.div
                                             key={content.id}
-                                            className="relative aspect-[3/4] rounded-xl overflow-hidden bg-gradient-to-br from-purple-200 to-blue-300 group cursor-pointer"
-                                            onMouseEnter={() => setHoveredBrand(content.id)}
-                                            onMouseLeave={() => setHoveredBrand(null)}
-                                            whileHover={{ scale: 1.05 }}
-                                            transition={{ duration: 0.3 }}
+                                            className={`relative rounded-xl overflow-hidden shadow-sm ${i < 2 ? 'opacity-80 scale-95' : 'opacity-100 z-10 shadow-md'}`}
+                                            style={{ rotate: i % 2 === 0 ? '-2deg' : '2deg' }}
                                         >
-                                            {/* Briefcase Icon Placeholder */}
-                                            {/* Brand Content Image */}
-                                            <Image
-                                                src={content.image}
-                                                alt={content.title}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                                sizes="(max-width: 768px) 150px, 200px"
-                                            />
-
-                                            {/* Hover Overlay */}
-                                            <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: hoveredBrand === content.id ? 1 : 0 }}
-                                                className="absolute inset-0 bg-black/60 flex items-center justify-center"
-                                            >
-                                                <p className="text-white font-semibold text-sm text-center px-4">
-                                                    {content.title}
-                                                </p>
-                                            </motion.div>
+                                            <Image src={content.image} alt={content.title} fill className="object-cover" />
                                         </motion.div>
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                    </motion.div>
+
+                            {/* CTAs */}
+                            <div className="mt-auto flex gap-3">
+                                <button className="flex-1 flex items-center justify-center gap-2 bg-[#FF0000] text-white hover:bg-[#CC0000] text-[14px] font-medium py-2.5 rounded-lg transition-colors">
+                                    <Youtube size={18} />
+                                    <span>Watch</span>
+                                </button>
+                                <button className="flex-1 flex items-center justify-center gap-2 bg-[#1F2937] text-white hover:bg-[#374151] text-[14px] font-medium py-2.5 rounded-lg transition-colors">
+                                    <span>Explore</span>
+                                    <ArrowRight size={16} />
+                                </button>
+                            </div>
+                        </motion.div>
+
+                        {/* === CARD 3: FEATURE FILMS === */}
+                        <motion.div
+                            whileHover={{ y: -6 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] rounded-[24px] p-9 shadow-[0_8px_24px_rgba(124,58,237,0.25)] flex flex-col h-full text-white relative overflow-hidden"
+                        >
+                            {/* Header */}
+                            <div className="mb-6">
+                                <span className="inline-block bg-[#E9D5FF] text-[#4C1D95] text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+                                    Original Features
+                                </span>
+                                <h3 className="font-serif text-[36px] font-bold leading-tight mb-2">Feature Films</h3>
+                                <p className="font-sans text-[14px] text-white/80 italic">Stories Built for the Big Screen</p>
+                            </div>
+
+                            {/* Description */}
+                            <p className="font-sans text-[15px] leading-[1.6] text-white/90 mb-8">
+                                We're building a slate of feature-length films for theatrical and OTT releases. Stories that combine strong craft with smart production.
+                            </p>
+
+                            {/* Visual Showcase: Clapperboards */}
+                            <div className="relative h-[180px] mb-8 flex items-center justify-center">
+                                {featureFilms.map((film, i) => (
+                                    <motion.div
+                                        key={film.id}
+                                        className="absolute w-[180px] shadow-xl origin-bottom-left"
+                                        style={{
+                                            rotate: i === 0 ? '-5deg' : i === 1 ? '5deg' : '0deg',
+                                            zIndex: i,
+                                            left: i === 0 ? '5%' : i === 1 ? '35%' : '20%',
+                                            top: i * 10
+                                        }}
+                                        whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+                                    >
+                                        <div className="bg-[#2D2D2D] h-8 flex relative overflow-hidden rounded-t-lg">
+                                            {/* Clapper stripes */}
+                                            <div className="absolute inset-0 flex" style={{ transform: 'skewX(-20deg)', width: '120%' }}>
+                                                {[...Array(6)].map((_, j) => (
+                                                    <div key={j} className={`flex-1 ${j % 2 === 0 ? 'bg-white' : 'bg-[#2D2D2D]'}`} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="bg-white p-1 rounded-b-lg">
+                                            <div className="relative aspect-[16/8] bg-gray-900 rounded-sm overflow-hidden">
+                                                <Image src={film.image} alt={film.title} fill className="object-cover opacity-80" />
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <span className="text-white text-[10px] uppercase font-bold tracking-widest bg-black/50 px-2 py-1 backdrop-blur-sm border border-white/20">
+                                                        {film.label}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* CTA */}
+                            <div className="mt-auto">
+                                <button className="w-full flex items-center justify-center gap-2 bg-white text-[#7C3AED] hover:bg-gray-50 text-[14px] font-bold py-3 rounded-lg transition-colors shadow-sm">
+                                    <span>Explore Projects</span>
+                                    <ArrowRight size={18} />
+                                </button>
+                            </div>
+                        </motion.div>
+
+                    </div>
                 </div>
             </section>
         </FollowerPointerCard>
