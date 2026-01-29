@@ -23,18 +23,18 @@ const Card1Background = () => (
         <motion.div
             className="absolute inset-0 bg-gradient-to-br from-[#A78BFA] via-[#C084FC] to-[#F472B6]"
             animate={{
-                rotate: [360, 270, 180, 90, 0],
-                scale: [1, 1.15, 1, 1.15, 1],
+                rotate: [0, 45, 0],
+                scale: [1, 1.1, 1],
             }}
             transition={{
-                duration: 20,
+                duration: 15,
                 repeat: Infinity,
-                ease: "linear"
+                ease: "easeInOut"
             }}
-            style={{ filter: 'blur(60px)', opacity: 0.9 }}
+            style={{ filter: 'blur(100px)', opacity: 0.8 }}
         />
-        <div className="absolute inset-0 opacity-[0.03]"
-            style={{ backgroundImage: 'repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 0, transparent 15px)' }}
+        <div className="absolute inset-0 opacity-[0.02]"
+            style={{ backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 40px)' }}
         />
         {/* Floating Symbols */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -129,10 +129,10 @@ export default function WhoAreYouSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="font-serif text-[48px] font-bold text-[#4C1D95] uppercase tracking-tighter"
+                        className="font-serif text-[54px] font-bold text-[#4C1D95] uppercase tracking-tighter"
                         style={{ fontVariant: 'small-caps' }}
                     >
-                        Find Your Path
+                        Who Are You?
                     </motion.h2>
                     <p className="font-sans text-[18px] font-medium text-[#6B21A8] mt-4">
                         Pick your path below ↓
@@ -154,7 +154,7 @@ export default function WhoAreYouSection() {
 
                         {/* Floating Elements */}
                         <motion.div style={{ x: card1X, y: card1Y }} className="absolute inset-0 pointer-events-none">
-                            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 scale-[2.8] text-white/50 opacity-40 group-hover:opacity-80 transition-all duration-500">
+                            <div className="absolute top-[15%] left-1/2 -translate-x-1/2 scale-[3.2] text-white opacity-[0.08] transition-all duration-500 blur-[1px]">
                                 <Briefcase size={80} strokeWidth={1} />
                             </div>
 
@@ -251,12 +251,12 @@ export default function WhoAreYouSection() {
                         </motion.div>
 
                         {/* Content Area */}
-                        <div className="absolute inset-x-0 bottom-0 p-10 pt-24 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent">
-                            <div className="text-[80px] mb-4 [filter:drop-shadow(0_0_15px_rgba(168,85,247,0.4))]">🎬</div>
-                            <h3 className="font-serif text-[42px] font-bold text-white mb-4 [text-shadow:_0_0_30px_rgb(168_85_247_/_60%)]">
+                        <div className="absolute inset-x-0 bottom-0 p-10 pt-24 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent">
+                            <div className="text-[80px] mb-4 [filter:drop-shadow(0_0_20px_rgba(236,72,153,0.3))]">🎬</div>
+                            <h3 className="font-serif text-[42px] font-bold text-white mb-4">
                                 Creator
                             </h3>
-                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
+                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100">
                                 Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
                             </p>
 
