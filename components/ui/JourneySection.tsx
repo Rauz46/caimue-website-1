@@ -146,7 +146,7 @@ const MetricCard = ({ icon: Icon, number, label, description, delay, gradientFro
 export function JourneySection() {
     return (
         <FollowerPointerCard title="📊 Our Journey">
-            <section className="relative pt-[60px] pb-[80px] bg-gradient-to-br from-[#FFE5ED] via-[#FFD6E5] to-[#FFC9DD] overflow-hidden">
+            <section className="relative pt-[60px] pb-[80px] bg-gradient-to-br from-[#F3E8FF] via-[#E9D5FF] to-[#D8B4FE] overflow-hidden">
                 {/* Dark Grid Overlay - Increased opacity */}
                 <HeroGrid className="opacity-50 z-0" style={{ filter: "brightness(0.3)" }} />
 
