@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Briefcase, Video, Sparkles, TrendingUp, Target, ShoppingBag, Clapperboard, Film, Star, ArrowRight, MousePointer2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const FloatingElement = ({ children, className, depth = 1 }: { children: React.ReactNode, className?: string, depth?: number }) => {
     const x = useMotionValue(0);
@@ -152,15 +152,11 @@ export default function WhoAreYouSection() {
                         onMouseLeave={handleMouseLeave}
                         className="relative h-[600px] list-none shadow-2xl"
                     >
-                        <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
-                            <GlowingEffect
-                                spread={40}
-                                glow={true}
-                                disabled={false}
-                                proximity={64}
-                                inactiveZone={0.01}
-                            />
-
+                        <GlowCard
+                            glowColor="purple"
+                            customSize={true}
+                            className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3 shadow-none bg-transparent"
+                        >
                             {/* Inner Content Card */}
                             <div className="relative h-full overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm">
                                 <Card1Background />
@@ -200,7 +196,7 @@ export default function WhoAreYouSection() {
                                     </motion.button>
                                 </div>
                             </div>
-                        </div>
+                        </GlowCard>
                     </motion.div>
 
                     {/* BOX 2: CREATOR */}
@@ -210,15 +206,11 @@ export default function WhoAreYouSection() {
                         onMouseLeave={handleMouseLeave}
                         className="relative h-[600px] list-none shadow-2xl"
                     >
-                        <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
-                            <GlowingEffect
-                                spread={40}
-                                glow={true}
-                                disabled={false}
-                                proximity={64}
-                                inactiveZone={0.01}
-                            />
-
+                        <GlowCard
+                            glowColor="blue"
+                            customSize={true}
+                            className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3 shadow-none bg-transparent"
+                        >
                             {/* Inner Content Card */}
                             <div className="relative h-full overflow-hidden rounded-2xl bg-[#0a0a1a]">
                                 <Card2Background />
@@ -295,7 +287,7 @@ export default function WhoAreYouSection() {
                                     </motion.button>
                                 </div>
                             </div>
-                        </div>
+                        </GlowCard>
                     </motion.div>
                 </div>
 
