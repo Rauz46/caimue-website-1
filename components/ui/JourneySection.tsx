@@ -2,60 +2,105 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import {
     Film, Briefcase, Users, Clapperboard, Sparkles,
-    Trophy, Crown, Camera, Megaphone, Star
+    Crown, Star
 } from "lucide-react";
+import { LayoutGrid } from "@/components/ui/layout-grid";
 
-// --- Assets Configuration ---
-const FILM_IMAGES = [
-    "/images/poster-1.png",
-    "/images/poster-2.png",
-    "/images/poster-3.png",
-    "/images/Hey! Sinamika Poster.jpg",
-    "/images/Thiruchitrambalam.jpg",
-    "/images/Odum Kuthira Chaadum Kuthira poster.jpg",
-    "/images/poster-1.png",
-    "/images/poster-2.png",
-];
-
-const BRAND_ASSETS = [
-    "/logos/caimue-logo.png",
-    "/images/dashboard-preview.png",
-    "/logos/teqthots-logo.png",
-    "/images/poster-1.png",
-    "/logos/funshortz-logo.png",
-    "/vercel.svg",
-    "/images/poster-2.png",
-    "/logos/caimue-logo-v2.png",
-];
-
-const CREATOR_IMAGES = [
-    "/team/avatar-1.png",
-    "/team/avatar-2.png",
-    "/team/#Atharvaa.jpg",
-    "/team/A.jpg",
-    "/team/H.jpg",
-    "/team/F.jpg",
-    "/team/avatar-1.png",
-    "/team/avatar-2.png",
-];
-
-// --- Animations ---
-const floatAnim = {
-    animate: { y: [-5, 5, -5] },
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-};
-
-const wobbleAnim = {
-    animate: { rotate: [-3, 3, -3] },
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-};
+// --- Skeleton Components for LayoutGrid ---
+const FilmSkeleton = ({ title, description }: { title: string; description: string }) => (
+    <div className="text-white">
+        <p className="font-bold text-2xl mb-2">{title}</p>
+        <p className="font-normal text-sm opacity-90">{description}</p>
+    </div>
+);
 
 export function JourneySection() {
+    // --- LayoutGrid Card Configurations ---
+    const filmCards = [
+        {
+            id: 1,
+            content: <FilmSkeleton title="Hey Sinamika" description="A beautiful tale of love and friendship." />,
+            className: "md:col-span-2",
+            thumbnail: "/images/Hey! Sinamika Poster.jpg",
+        },
+        {
+            id: 2,
+            content: <FilmSkeleton title="Thiruchitrambalam" description="Exploring the nuances of family bonds." />,
+            className: "col-span-1",
+            thumbnail: "/images/Thiruchitrambalam.jpg",
+        },
+        {
+            id: 3,
+            content: <FilmSkeleton title="Odum Kuthira" description="A journey of discovery and resilience." />,
+            className: "col-span-1",
+            thumbnail: "/images/Odum Kuthira Chaadum Kuthira poster.jpg",
+        },
+        {
+            id: 4,
+            content: <FilmSkeleton title="Short Film Showcase" description="Celebrating independent storytellers." />,
+            className: "md:col-span-2",
+            thumbnail: "/images/poster-1.png",
+        },
+    ];
+
+    const brandCards = [
+        {
+            id: 11,
+            content: <FilmSkeleton title="Caimue Platform" description="Our AI-first production ecosystem." />,
+            className: "md:col-span-2",
+            thumbnail: "/images/dashboard-preview.png",
+        },
+        {
+            id: 12,
+            content: <FilmSkeleton title="TeqThots" description="Innovative brand integrations." />,
+            className: "col-span-1",
+            thumbnail: "/logos/teqthots-logo.png",
+        },
+        {
+            id: 13,
+            content: <FilmSkeleton title="FunShortz" description="Engaging micro-content for brands." />,
+            className: "col-span-1",
+            thumbnail: "/logos/funshortz-logo.png",
+        },
+        {
+            id: 14,
+            content: <FilmSkeleton title="Brand Storytelling" description="Creating impact through narrative." />,
+            className: "md:col-span-2",
+            thumbnail: "/images/poster-2.png",
+        },
+    ];
+
+    const creatorCards = [
+        {
+            id: 21,
+            content: <FilmSkeleton title="Arjun Menon" description="Director & Visionary storyteller." />,
+            className: "md:col-span-2",
+            thumbnail: "/team/avatar-1.png",
+        },
+        {
+            id: 22,
+            content: <FilmSkeleton title="Priya Kumar" description="Acclaimed Screenwriter." />,
+            className: "col-span-1",
+            thumbnail: "/team/avatar-2.png",
+        },
+        {
+            id: 23,
+            content: <FilmSkeleton title="Talent Discovery" description="Nurturing the next generation of cinema." />,
+            className: "col-span-1",
+            thumbnail: "/team/A.jpg",
+        },
+        {
+            id: 24,
+            content: <FilmSkeleton title="Collaborative Spirit" description="Building careers in cinema together." />,
+            className: "md:col-span-2",
+            thumbnail: "/team/H.jpg",
+        },
+    ];
+
     return (
         <FollowerPointerCard title="The Journey">
             <section className="relative py-[100px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
@@ -76,7 +121,6 @@ export function JourneySection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            // Fixed: Standard "The Journey So Far" - No Small Caps
                             className="font-serif text-[48px] font-bold text-[#4C1D95] mb-6 leading-tight"
                         >
                             The Journey So Far
@@ -94,26 +138,27 @@ export function JourneySection() {
                     </div>
 
                     {/* --- CARDS GRID --- */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1400px] mx-auto relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto relative z-10">
 
                         {/* --- CARD 1: FILMS --- */}
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -12, scale: 1.02 }}
                             viewport={{ once: true }}
-                            className="p-[2px] rounded-[22px] bg-gradient-to-br from-[#8B5CF6] via-[#E91E8C] to-[#F59E0B] shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                            className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-[40px] h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] hover:shadow-[0_20px_50px_-20px_rgba(76,29,149,0.2)] hover:border-purple-300/50 transition-colors"
                         >
-                            <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden group">
+                            <div className="relative z-10 h-full flex flex-col">
                                 {/* Doodles: Safe corners placement */}
                                 <motion.div
                                     animate={{ rotate: [-3, 3, -3] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                    className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"
+                                    className="absolute -top-6 -right-6 opacity-[0.07] rotate-12 z-0"
                                 >
                                     <Film size={120} />
                                 </motion.div>
                                 <Sparkles className="absolute top-6 right-6 text-yellow-400 w-6 h-6 animate-pulse z-20" />
-                                {/* Annotation moved LEFT of the icon to avoid overlap */}
                                 <div className="absolute top-[28px] right-[60px] font-handwriting text-sm text-[#E91E8C] -rotate-6 font-bold z-20 w-24 text-center leading-tight">2M+ organic views!</div>
 
                                 {/* Header */}
@@ -126,18 +171,12 @@ export function JourneySection() {
 
                                 {/* Content */}
                                 <p className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                    Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
+                                    Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically.
                                 </p>
 
-                                {/* Gallery - Matches Card 1 Logic */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
-                                    {FILM_IMAGES.map((src, i) => (
-                                        <div key={i} className={`relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group/img ${i === 0 || i === 5 ? 'col-span-2' : ''}`}>
-                                            <Image src={src} alt="Film" fill className="object-cover transition-transform duration-300 group-hover/img:scale-105" />
-                                            {i === 1 && <div className="absolute inset-0 border-4 border-white/80 pointer-events-none" />}
-                                        </div>
-                                    ))}
-                                    <Camera className="absolute -bottom-2 -right-2 text-gray-200 w-12 h-12 opacity-50 pointer-events-none" />
+                                {/* Interactive Gallery */}
+                                <div className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50">
+                                    <LayoutGrid cards={filmCards} />
                                 </div>
                             </div>
                         </motion.div>
@@ -146,20 +185,20 @@ export function JourneySection() {
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -12, scale: 1.02 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="p-[2px] rounded-[22px] bg-gradient-to-br from-[#8B5CF6] via-[#E91E8C] to-[#F59E0B] shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                            className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-[40px] h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] hover:shadow-[0_20px_50px_-20px_rgba(76,29,149,0.2)] hover:border-purple-300/50 transition-colors"
                         >
-                            <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden">
+                            <div className="relative z-10 h-full flex flex-col">
                                 {/* Doodles: Safe corners placement */}
                                 <motion.div
                                     animate={{ rotate: [-3, 3, -3] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                    className="absolute top-4 left-4 opacity-10 z-0"
+                                    className="absolute top-4 left-4 opacity-[0.07] z-0"
                                 >
                                     <Briefcase size={80} />
                                 </motion.div>
-                                {/* Adjusted Trusted Partner to be BELOW the icon but properly spaced */}
                                 <div className="absolute top-[75px] right-6 flex gap-0.5 text-[#F59E0B] text-xs z-20">
                                     {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                                 </div>
@@ -175,26 +214,12 @@ export function JourneySection() {
 
                                 {/* Content */}
                                 <p className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                    From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We&apos;ve worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
+                                    From product placements to brand storytelling, we integrate brands naturally into stories people want to watch.
                                 </p>
 
-                                {/* Gallery - Matches Card 1 Logic EXACTLY */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
-                                    <div className="absolute -bottom-4 right-0 font-handwriting text-sm text-gray-400 -rotate-12 z-20 w-24 text-right pointer-events-none">Organic integrations</div>
-                                    <Megaphone className="absolute top-1/2 -left-4 text-yellow-100 w-16 h-16 -rotate-12 pointer-events-none z-0" />
-
-                                    {BRAND_ASSETS.map((src, i) => (
-                                        <div key={i} className={`relative rounded-xl overflow-hidden shadow-sm bg-gray-50 border border-gray-100 flex items-center justify-center group/img ${i === 0 || i === 5 ? 'col-span-2' : ''}`}>
-                                            <Image
-                                                src={src}
-                                                alt="Brand"
-                                                fill={!src.endsWith('.svg')}
-                                                width={src.endsWith('.svg') ? 40 : undefined}
-                                                height={src.endsWith('.svg') ? 40 : undefined}
-                                                className={src.endsWith('.svg') ? "w-10 h-10 opacity-80" : "object-cover transition-transform duration-300 group-hover/img:scale-105"}
-                                            />
-                                        </div>
-                                    ))}
+                                {/* Interactive Gallery */}
+                                <div className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50">
+                                    <LayoutGrid cards={brandCards} />
                                 </div>
                             </div>
                         </motion.div>
@@ -203,22 +228,22 @@ export function JourneySection() {
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -12, scale: 1.02 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
-                            className="p-[2px] rounded-[22px] bg-gradient-to-br from-[#8B5CF6] via-[#E91E8C] to-[#F59E0B] shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+                            className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-[40px] h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] hover:shadow-[0_20px_50px_-20px_rgba(76,29,149,0.2)] hover:border-purple-300/50 transition-colors"
                         >
-                            <div className="bg-white rounded-[20px] p-[40px] h-full flex flex-col relative overflow-hidden">
+                            <div className="relative z-10 h-full flex flex-col">
                                 {/* Doodles: Safe placement */}
                                 <motion.div
                                     animate={{ rotate: [-3, 3, -3] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                    className="absolute -top-6 -right-6 opacity-10 rotate-12 z-0"
+                                    className="absolute -top-6 -right-6 opacity-[0.07] rotate-12 z-0"
                                 >
                                     <Clapperboard size={100} />
                                 </motion.div>
                                 <Crown className="absolute top-4 left-6 text-[#E91E8C] w-5 h-5 -rotate-12 z-20" />
                                 <div className="absolute bottom-6 left-4 font-handwriting text-sm text-[#E91E8C] -rotate-6 font-bold z-20">Building careers</div>
-                                <div className="absolute top-1/2 right-1/2 w-32 h-32 rounded-full border border-gray-100 opacity-20 pointer-events-none z-0" />
 
                                 {/* Header */}
                                 <div className="flex items-start justify-between gap-4 mb-4 relative z-10">
@@ -230,20 +255,12 @@ export function JourneySection() {
 
                                 {/* Content */}
                                 <p className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                    We&apos;ve worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+                                    We&apos;ve worked with storytellers across Malayalam, Tamil, and English, helping them bring their vision to screen.
                                 </p>
 
-                                {/* Gallery - Matches Card 1 Logic EXACTLY */}
-                                <div className="grid grid-cols-2 gap-2 flex-1 auto-rows-[80px] relative z-10 mt-auto">
-                                    {CREATOR_IMAGES.map((src, i) => (
-                                        <div key={i} className={`relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group/img ${i === 0 || i === 5 ? 'col-span-2' : ''}`}>
-                                            <Image src={src} alt="Creator" fill className="object-cover transition-transform duration-300 group-hover/img:scale-105 grayscale group-hover/img:grayscale-0" />
-                                        </div>
-                                    ))}
-                                    {/* On Set Badge */}
-                                    <div className="absolute -bottom-2 right-4 bg-yellow-200 text-yellow-900 font-handwriting text-xs px-2 py-1 rotate-3 shadow-sm z-30 pointer-events-none">
-                                        On Set
-                                    </div>
+                                {/* Interactive Gallery */}
+                                <div className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50">
+                                    <LayoutGrid cards={creatorCards} />
                                 </div>
                             </div>
                         </motion.div>
@@ -254,3 +271,4 @@ export function JourneySection() {
         </FollowerPointerCard>
     );
 }
+
