@@ -168,11 +168,10 @@ export function JourneySection() {
                                             </CardItem>
 
                                             {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1]">
-                                                    12+ Films &<br />2M+ views
+                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full text-center">
+                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1] w-full">
+                                                    12 +Films & 2M+ views
                                                 </h3>
-                                                <Film className="w-[36px] h-[36px] text-[#8B5CF6] shrink-0" strokeWidth={1.5} />
                                             </CardItem>
 
                                             {/* Content */}
@@ -222,9 +221,9 @@ export function JourneySection() {
                                             </CardItem>
 
                                             {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1]">
-                                                    Brand<br />Collaborations
+                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full text-center">
+                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1] w-full">
+                                                    Brand Collaborations
                                                 </h3>
                                             </CardItem>
 
@@ -275,11 +274,10 @@ export function JourneySection() {
                                             </CardItem>
 
                                             {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1]">
-                                                    25+ Creators<br />discovered
+                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full text-center">
+                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1] w-full">
+                                                    25+ Creators discovered
                                                 </h3>
-                                                <Users className="w-[36px] h-[36px] text-[#E91E8C] shrink-0" strokeWidth={1.5} />
                                             </CardItem>
 
                                             {/* Content */}
