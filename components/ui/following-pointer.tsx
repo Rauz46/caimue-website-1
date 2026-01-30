@@ -46,8 +46,8 @@ export const GlobalCursor = () => {
                 }}
             />
 
-            {/* Context Title Pill */}
-            <AnimatePresence>
+            {/* Context Title Pill - Removed per user request */}
+            {/* <AnimatePresence>
                 {title && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.5, x: 20 }}
@@ -58,7 +58,7 @@ export const GlobalCursor = () => {
                         {title}
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence> */}
         </motion.div>
     );
 };

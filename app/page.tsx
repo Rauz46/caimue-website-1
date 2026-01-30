@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <FollowerPointerCard title="🎬 Stories That Matter">
-        <section className="min-h-screen flex flex-col pt-32 pb-0 relative overflow-visible">
+        <section className="min-h-[75vh] flex flex-col pt-24 md:pt-32 relative overflow-visible">
           {/* Background Animation */}
           <BackgroundGradientAnimation
             containerClassName="absolute inset-0 z-0"
@@ -73,25 +73,13 @@ export default function Home() {
 
           <div className="container relative z-10 flex flex-col items-center text-center mt-12 md:mt-32 flex-1">
 
-            {/* Social Proof Strip - Above Headline */}
-            <SocialProofStrip />
+            {/* Social Proof Strip - Removed */}
 
-            <h1 className="w-full mx-auto mb-6 relative flex flex-col items-center">
-              <span className="leading-[1.15] tracking-tighter text-white text-center block font-bold drop-shadow-lg max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-4">
+            <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center">
+              <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-2">
                 <span className="block">Stories Worth Telling.</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4">
-                  <MorphingWord
-                    className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-500"
-                    words={[
-                      "Movies",
-                      "Cinema",
-                      <span key="cam" className="text-4xl md:text-6xl lg:text-8xl">📽️</span>,
-                      "Stories",
-                      <span key="cut" className="text-4xl md:text-6xl lg:text-8xl">🎬</span>,
-                      "Visions"
-                    ]}
-                  />
-                  <span>Worth Making.</span>
+                  <span>Movies Worth Making.</span>
                 </span>
               </span>
             </h1>
