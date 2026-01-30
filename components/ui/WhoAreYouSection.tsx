@@ -114,9 +114,14 @@ export default function WhoAreYouSection() {
     };
 
     return (
-        <section className="relative py-[120px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
-            {/* Background Effects matching Hero */}
-            <HeroGrid className="opacity-[0.15] invert z-0" />
+        <section className="relative py-[100px] md:py-[160px] bg-[#FAFBFF] overflow-visible">
+            {/* Seamless Background Grid matching PlatformsSection - Exactly matched dots */}
+            <div className="absolute inset-0 z-0 opacity-[0.06]"
+                style={{
+                    backgroundImage: 'radial-gradient(#2D2D2D 1px, transparent 1px)',
+                    backgroundSize: '24px 24px',
+                }}
+            />
             <FloatingScribbles color="text-purple-600/30" />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -130,7 +135,7 @@ export default function WhoAreYouSection() {
                     >
                         Who Are You
                     </motion.h2>
-                    <p className="font-sans text-[18px] font-medium text-[#6B21A8] mt-4">
+                    <p className="font-sans text-[18px] font-medium text-[#6B21A8] mt-2">
                         Pick your path below ↓
                     </p>
                 </div>
@@ -169,10 +174,10 @@ export default function WhoAreYouSection() {
                         </motion.div>
 
                         {/* Content Area */}
-                        <div className="absolute inset-x-0 bottom-0 p-10 pt-24 bg-gradient-to-t from-black/70 via-black/40 to-transparent backdrop-blur-[4px]">
+                        <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black via-black/90 to-transparent backdrop-blur-[2px]">
                             <div className="text-[80px] mb-4 drop-shadow-2xl">💼</div>
-                            <h3 className="font-serif text-[42px] font-bold text-white mb-4 drop-shadow-lg">Brand Owner</h3>
-                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
+                            <h3 className="font-serif text-[42px] font-bold mb-4 drop-shadow-lg !text-white" style={{ color: '#FFFFFF' }}>Brand Owner</h3>
+                            <p className="text-[#FFFFFF] text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100" style={{ color: '#FFFFFF' }}>
                                 Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
                             </p>
 
@@ -247,12 +252,12 @@ export default function WhoAreYouSection() {
                         </motion.div>
 
                         {/* Content Area */}
-                        <div className="absolute inset-x-0 bottom-0 p-10 pt-24 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent">
+                        <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black via-black/90 to-transparent">
                             <div className="text-[80px] mb-4 [filter:drop-shadow(0_0_20px_rgba(236,72,153,0.3))]">🎬</div>
-                            <h3 className="font-serif text-[42px] font-bold text-white mb-4">
+                            <h3 className="font-serif text-[42px] font-bold mb-4 !text-white" style={{ color: '#FFFFFF' }}>
                                 Creator
                             </h3>
-                            <p className="text-white text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium">
+                            <p className="text-[#FFFFFF] text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100" style={{ color: '#FFFFFF' }}>
                                 Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
                             </p>
 
