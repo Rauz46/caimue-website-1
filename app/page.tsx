@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <FollowerPointerCard title="🎬 Stories That Matter">
-        <section className="min-h-[85vh] flex flex-col pt-32 md:pt-40 relative overflow-visible">
+        <section className="min-h-screen flex flex-col pt-32 md:pt-48 relative overflow-visible">
           {/* Background Animation */}
           <BackgroundGradientAnimation
             containerClassName="absolute inset-0 z-0"
@@ -71,7 +71,7 @@ export default function Home() {
           {/* Editorial Scribbles */}
           <FloatingScribbles />
 
-          <div className="container relative z-10 flex flex-col items-center text-center justify-center flex-1">
+          <div className="container relative z-10 flex flex-col items-center text-center justify-center flex-1 pt-12 md:pt-20">
 
             {/* Social Proof Strip - Removed */}
 
