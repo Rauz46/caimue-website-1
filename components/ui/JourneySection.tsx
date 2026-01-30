@@ -92,15 +92,15 @@ export function JourneySection() {
         },
         {
             id: 23,
-            content: <FilmSkeleton title="Talent Alpha" description="Discovering the next breakout actor." />,
+            content: <FilmSkeleton title="Talent Alpha" description="Leading actors discovered." />,
             className: "col-span-1",
-            thumbnail: "/team/A.jpg",
+            thumbnail: "/team/F.jpg",
         },
         {
             id: 24,
-            content: <FilmSkeleton title="Production Duo" description="Actors turned creators." />,
+            content: <FilmSkeleton title="Creative Collective" description="Nurturing independent artists." />,
             className: "md:col-span-2",
-            thumbnail: "/team/H.jpg",
+            thumbnail: "/team/A.jpg",
         },
     ];
 
@@ -164,7 +164,7 @@ export function JourneySection() {
 
                                         {/* Header */}
                                         <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                            <h3 className="font-serif text-[32px] font-bold text-[#2D2D2D] leading-[1.1]">
+                                            <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1] drop-shadow-[0_0_10px_rgba(139,92,246,0.3)] transition-all">
                                                 12+ Films &<br />2M+ Views
                                             </h3>
                                             <Film className="w-[36px] h-[36px] text-[#8B5CF6] shrink-0" strokeWidth={1.5} />
@@ -213,7 +213,7 @@ export function JourneySection() {
 
                                         {/* Header */}
                                         <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                            <h3 className="font-serif text-[32px] font-bold text-[#2D2D2D] leading-[1.1]">
+                                            <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1] drop-shadow-[0_0_10px_rgba(139,92,246,0.3)] transition-all">
                                                 Brand<br />Collaborations
                                             </h3>
                                         </CardItem>
@@ -261,7 +261,7 @@ export function JourneySection() {
 
                                         {/* Header */}
                                         <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                            <h3 className="font-serif text-[32px] font-bold text-[#2D2D2D] leading-[1.1]">
+                                            <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] leading-[1.1] drop-shadow-[0_0_10px_rgba(139,92,246,0.3)] transition-all">
                                                 25+ Creators<br />Discovered
                                             </h3>
                                             <Users className="w-[36px] h-[36px] text-[#E91E8C] shrink-0" strokeWidth={1.5} />
