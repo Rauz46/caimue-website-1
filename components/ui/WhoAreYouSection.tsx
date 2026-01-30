@@ -126,8 +126,7 @@ export default function WhoAreYouSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="font-serif text-[56px] font-bold text-[#4C1D95] uppercase tracking-tighter"
-                        style={{ fontVariant: 'small-caps' }}
+                        className="font-serif text-[56px] font-bold text-[#4C1D95] tracking-tighter"
                     >
                         Who Are You
                     </motion.h2>
