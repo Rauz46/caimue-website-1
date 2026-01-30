@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Briefcase, Video, Sparkles, TrendingUp, Target, ShoppingBag, Clapperboard, Film, Star, ArrowRight, MousePointer2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 const FloatingElement = ({ children, className, depth = 1 }: { children: React.ReactNode, className?: string, depth?: number }) => {
     const x = useMotionValue(0);
@@ -114,12 +115,13 @@ export default function WhoAreYouSection() {
     };
 
     return (
-        <section className="relative py-[100px] md:py-[160px] bg-[#FAFBFF] overflow-visible">
+        <section className="relative py-[100px] md:py-[160px] bg-[#FAFBFF] overflow-visible -mt-1">
             {/* Seamless Background Grid matching PlatformsSection - Exactly matched dots */}
             <div className="absolute inset-0 z-0 opacity-[0.06]"
                 style={{
                     backgroundImage: 'radial-gradient(#2D2D2D 1px, transparent 1px)',
                     backgroundSize: '24px 24px',
+                    backgroundPosition: 'center top'
                 }}
             />
             <FloatingScribbles color="text-purple-600/30" />
@@ -148,48 +150,56 @@ export default function WhoAreYouSection() {
                         ref={card1Ref}
                         onMouseMove={handleMouseMoveCard1}
                         onMouseLeave={handleMouseLeave}
-                        className="relative h-[600px] rounded-[40px] overflow-hidden group cursor-pointer shadow-2xl"
-                        style={{ borderRadius: "40px" }}
+                        className="relative h-[600px] list-none shadow-2xl"
                     >
-                        <Card1Background />
+                        <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
+                            <GlowingEffect
+                                spread={40}
+                                glow={true}
+                                disabled={false}
+                                proximity={64}
+                                inactiveZone={0.01}
+                            />
 
-                        {/* Floating Elements */}
-                        <motion.div style={{ x: card1X, y: card1Y }} className="absolute inset-0 pointer-events-none">
-                            <div className="absolute top-[15%] left-1/2 -translate-x-1/2 scale-[3.2] text-white opacity-[0.08] transition-all duration-500 blur-[1px]">
-                                <Briefcase size={80} strokeWidth={1} />
+                            {/* Inner Content Card */}
+                            <div className="relative h-full overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm">
+                                <Card1Background />
+
+                                {/* Floating Elements */}
+                                <motion.div style={{ x: card1X, y: card1Y }} className="absolute inset-0 pointer-events-none">
+                                    <div className="absolute top-[15%] left-1/2 -translate-x-1/2 scale-[3.2] text-white opacity-[0.08] transition-all duration-500 blur-[1px]">
+                                        <Briefcase size={80} strokeWidth={1} />
+                                    </div>
+
+                                    {/* Brand Tokens */}
+                                    <div className="absolute top-[30%] left-[25%] w-10 h-10 rounded-full bg-white/20 border border-white/40 backdrop-blur-sm" />
+                                    <div className="absolute top-[15%] right-[20%] w-12 h-12 rounded-full bg-white/10 border border-white/30 backdrop-blur-sm" />
+
+                                    <motion.div animate={{ y: [0, -15, 0] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-[25%] left-[12%] text-white/70"><Sparkles size={28} /></motion.div>
+                                    <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-[12%] right-[18%] text-white/40"><Target size={36} /></motion.div>
+                                    <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-[42%] right-[12%] text-white/50"><ShoppingBag size={30} /></motion.div>
+                                    <motion.div animate={{ x: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-[45%] left-[18%] text-white/60"><TrendingUp size={34} /></motion.div>
+                                </motion.div>
+
+                                {/* Content Area - Softer, lighter purple gradient */}
+                                <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-[#4C1D95]/60 via-[#4C1D95]/30 to-transparent">
+                                    <div className="text-[80px] mb-4 drop-shadow-2xl">💼</div>
+                                    <h3 className="font-sans text-[32px] font-bold mb-3 !text-white" style={{ color: '#FFFFFF' }}>Brand Owner</h3>
+                                    <p className="text-neutral-100 text-[16px] leading-[1.6] mb-8 font-inter max-w-sm font-medium">
+                                        Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
+                                    </p>
+
+                                    <motion.button
+                                        whileHover={{ scale: 1.05, rotate: 2 }}
+                                        className="bg-white px-[48px] py-[16px] rounded-full font-bold text-[16px] shadow-2xl flex items-center gap-2 group/btn"
+                                    >
+                                        <span className="bg-gradient-to-r from-[#A78BFA] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent">
+                                            Find Out More
+                                        </span>
+                                        <ArrowRight className="text-[#A78BFA] group-hover/btn:translate-x-2 transition-transform duration-300" size={20} />
+                                    </motion.button>
+                                </div>
                             </div>
-
-                            {/* Brand Tokens */}
-                            <div className="absolute top-[30%] left-[25%] w-10 h-10 rounded-full bg-white/20 border border-white/40 backdrop-blur-sm" />
-                            <div className="absolute top-[15%] right-[20%] w-12 h-12 rounded-full bg-white/10 border border-white/30 backdrop-blur-sm" />
-
-                            {/* Floating Badges */}
-                            <div className="absolute top-[40%] right-[25%] px-3 py-1 bg-white/20 rounded-md border border-white/30 text-[10px] text-white font-bold tracking-widest uppercase">Trusted</div>
-                            <div className="absolute bottom-[45%] left-[20%] px-3 py-1 bg-white/20 rounded-md border border-white/30 text-[10px] text-white font-bold tracking-widest uppercase">Growth</div>
-
-                            <motion.div animate={{ y: [0, -15, 0] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-[25%] left-[12%] text-white/70"><Sparkles size={28} /></motion.div>
-                            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-[12%] right-[18%] text-white/40"><Target size={36} /></motion.div>
-                            <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-[42%] right-[12%] text-white/50"><ShoppingBag size={30} /></motion.div>
-                            <motion.div animate={{ x: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-[45%] left-[18%] text-white/60"><TrendingUp size={34} /></motion.div>
-                        </motion.div>
-
-                        {/* Content Area */}
-                        <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black via-black/90 to-transparent backdrop-blur-[2px]">
-                            <div className="text-[80px] mb-4 drop-shadow-2xl">💼</div>
-                            <h3 className="font-serif text-[42px] font-bold mb-4 drop-shadow-lg !text-white" style={{ color: '#FFFFFF' }}>Brand Owner</h3>
-                            <p className="text-[#FFFFFF] text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100" style={{ color: '#FFFFFF' }}>
-                                Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
-                            </p>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05, rotate: 2 }}
-                                className="bg-white px-[48px] py-[16px] rounded-full font-bold text-[16px] shadow-2xl flex items-center gap-2 group/btn"
-                            >
-                                <span className="bg-gradient-to-r from-[#A78BFA] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent">
-                                    Find Out More
-                                </span>
-                                <ArrowRight className="text-[#A78BFA] group-hover/btn:translate-x-2 transition-transform duration-300" size={20} />
-                            </motion.button>
                         </div>
                     </motion.div>
 
@@ -198,81 +208,93 @@ export default function WhoAreYouSection() {
                         ref={card2Ref}
                         onMouseMove={handleMouseMoveCard2}
                         onMouseLeave={handleMouseLeave}
-                        className="relative h-[600px] rounded-[40px] overflow-hidden group cursor-pointer shadow-2xl"
-                        style={{ borderRadius: "40px" }}
+                        className="relative h-[600px] list-none shadow-2xl"
                     >
-                        <Card2Background />
-
-                        {/* Visual Elements */}
-                        <motion.div
-                            style={{
-                                x: card2X,
-                                y: card2Y,
-                                rotateX: useTransform(card2Y, [-20, 20], [8, -8]),
-                                rotateY: useTransform(card2X, [-20, 20], [-8, 8])
-                            }}
-                            className="absolute inset-0 pointer-events-none"
-                        >
-                            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 scale-[3] text-purple-400 opacity-20 group-hover:opacity-50 transition-all duration-700 blur-[2px] group-hover:blur-0">
-                                <Video size={84} strokeWidth={1} />
-                            </div>
-
-                            {/* Neon Elements */}
-                            <motion.div
-                                animate={{ opacity: [0.2, 0.5, 0.2] }}
-                                transition={{ duration: 2.5, repeat: Infinity }}
-                                className="absolute top-[15%] left-[15%] w-40 h-40 border-2 border-cyan-500/20 rounded-full blur-2xl"
+                        <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
+                            <GlowingEffect
+                                spread={40}
+                                glow={true}
+                                disabled={false}
+                                proximity={64}
+                                inactiveZone={0.01}
                             />
-                            <motion.div
-                                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-                                transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute top-[25%] right-[20%] text-pink-500 [filter:drop-shadow(0_0_10px_rgba(236,72,153,0.6))]"
-                            >
-                                <Film size={40} />
-                            </motion.div>
-                            <motion.div
-                                animate={{ rotate: [0, -10, 0] }}
-                                transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
-                                className="absolute top-1/2 left-[15%] text-purple-400 [filter:drop-shadow(0_0_8px_rgba(168,85,247,0.5))]"
-                            >
-                                <Clapperboard size={44} />
-                            </motion.div>
-                            <div className="absolute top-[8%] right-[10%] text-yellow-400 blur-[1px] group-hover:blur-0 transition-all">
-                                <Star size={28} fill="currentColor" />
+
+                            {/* Inner Content Card */}
+                            <div className="relative h-full overflow-hidden rounded-2xl bg-[#0a0a1a]">
+                                <Card2Background />
+
+                                {/* Visual Elements */}
+                                <motion.div
+                                    style={{
+                                        x: card2X,
+                                        y: card2Y,
+                                        rotateX: useTransform(card2Y, [-20, 20], [8, -8]),
+                                        rotateY: useTransform(card2X, [-20, 20], [-8, 8])
+                                    }}
+                                    className="absolute inset-0 pointer-events-none"
+                                >
+                                    <div className="absolute top-[18%] left-1/2 -translate-x-1/2 scale-[3] text-purple-400 opacity-20 group-hover:opacity-50 transition-all duration-700 blur-[2px] group-hover:blur-0">
+                                        <Video size={84} strokeWidth={1} />
+                                    </div>
+
+                                    {/* Neon Elements */}
+                                    <motion.div
+                                        animate={{ opacity: [0.2, 0.5, 0.2] }}
+                                        transition={{ duration: 2.5, repeat: Infinity }}
+                                        className="absolute top-[15%] left-[15%] w-40 h-40 border-2 border-cyan-500/20 rounded-full blur-2xl"
+                                    />
+                                    <motion.div
+                                        animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+                                        transition={{ duration: 4, repeat: Infinity }}
+                                        className="absolute top-[25%] right-[20%] text-pink-500 [filter:drop-shadow(0_0_10px_rgba(236,72,153,0.6))]"
+                                    >
+                                        <Film size={40} />
+                                    </motion.div>
+                                    <motion.div
+                                        animate={{ rotate: [0, -10, 0] }}
+                                        transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
+                                        className="absolute top-1/2 left-[15%] text-purple-400 [filter:drop-shadow(0_0_8px_rgba(168,85,247,0.5))]"
+                                    >
+                                        <Clapperboard size={44} />
+                                    </motion.div>
+                                    <div className="absolute top-[8%] right-[10%] text-yellow-400 blur-[1px] group-hover:blur-0 transition-all">
+                                        <Star size={28} fill="currentColor" />
+                                    </div>
+
+                                    {/* Film Reels */}
+                                    <motion.div
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                                        className="absolute bottom-[40%] right-[15%] text-white/10"
+                                    >
+                                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><circle cx="12" cy="7" r="1" /><circle cx="12" cy="17" r="1" /><circle cx="7" cy="12" r="1" /><circle cx="17" cy="12" r="1" /></svg>
+                                    </motion.div>
+                                </motion.div>
+
+                                {/* Content Area - Softer, lighter purple gradient */}
+                                <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-[#4C1D95]/60 via-[#4C1D95]/30 to-transparent">
+                                    <div className="text-[80px] mb-4 [filter:drop-shadow(0_0_20px_rgba(236,72,153,0.3))]">🎬</div>
+                                    <h3 className="font-sans text-[32px] font-bold mb-3 !text-white" style={{ color: '#FFFFFF' }}>
+                                        Creator
+                                    </h3>
+                                    <p className="text-neutral-100 text-[16px] leading-[1.6] mb-8 font-inter max-w-sm font-medium">
+                                        Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
+                                    </p>
+
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        className="px-[48px] py-[16px] rounded-full font-bold text-[16px] text-white relative group/btn2 overflow-hidden"
+                                    >
+                                        {/* Gradient Border via inset trick */}
+                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 p-[2px] rounded-full">
+                                            <div className="absolute inset-0 bg-[#111827] rounded-full transition-opacity group-hover/btn2:opacity-90" />
+                                        </div>
+                                        <div className="flex items-center gap-2 relative z-10">
+                                            Find Out More <ArrowRight className="group-hover/btn2:translate-x-2 transition-transform duration-300" size={20} />
+                                        </div>
+                                    </motion.button>
+                                </div>
                             </div>
-
-                            {/* Film Reels */}
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                                className="absolute bottom-[40%] right-[15%] text-white/10"
-                            >
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><circle cx="12" cy="7" r="1" /><circle cx="12" cy="17" r="1" /><circle cx="7" cy="12" r="1" /><circle cx="17" cy="12" r="1" /></svg>
-                            </motion.div>
-                        </motion.div>
-
-                        {/* Content Area */}
-                        <div className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black via-black/90 to-transparent">
-                            <div className="text-[80px] mb-4 [filter:drop-shadow(0_0_20px_rgba(236,72,153,0.3))]">🎬</div>
-                            <h3 className="font-serif text-[42px] font-bold mb-4 !text-white" style={{ color: '#FFFFFF' }}>
-                                Creator
-                            </h3>
-                            <p className="text-[#FFFFFF] text-[16px] leading-[1.7] mb-8 font-inter max-w-sm font-medium opacity-100" style={{ color: '#FFFFFF' }}>
-                                Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
-                            </p>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                className="px-[48px] py-[16px] rounded-full font-bold text-[16px] text-white relative group/btn2 overflow-hidden"
-                            >
-                                {/* Gradient Border via inset trick */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 p-[2px] rounded-full">
-                                    <div className="absolute inset-0 bg-[#111827] rounded-full transition-opacity group-hover/btn2:opacity-90" />
-                                </div>
-                                <div className="flex items-center gap-2 relative z-10">
-                                    Find Out More <ArrowRight className="group-hover/btn2:translate-x-2 transition-transform duration-300" size={20} />
-                                </div>
-                            </motion.button>
                         </div>
                     </motion.div>
                 </div>

@@ -28,56 +28,69 @@ const footerLinks = {
 };
 
 const WorldMap = () => (
-    <div className="relative w-full h-full min-h-[300px] flex items-center justify-center pointer-events-none">
-        {/* Simple World Map Path - Simplified for artistic style */}
-        <svg viewBox="0 0 1000 500" className="w-full h-auto opacity-20 fill-white">
-            <path d="M150 100 Q 180 80, 220 120 T 300 150 Q 320 180, 300 220 Q 250 250, 200 230 T 150 180 Z" /> {/* N America */}
-            <path d="M350 250 Q 380 280, 400 350 T 380 450 Q 350 480, 320 450 T 280 350 Z" /> {/* S America */}
-            <path d="M500 100 Q 550 50, 650 80 T 750 120 Q 800 150, 750 200 T 650 250 Q 600 280, 550 250 T 500 150 Z" /> {/* Eurasia */}
-            <path d="M550 280 Q 600 300, 620 350 T 600 450 Q 550 480, 500 450 T 480 350 Z" /> {/* Africa */}
-            <path d="M800 350 Q 850 350, 880 380 T 850 450 Q 800 450, 780 400 Z" /> {/* Australia */}
-            <path d="M720 220 Q 750 240, 750 280 T 700 320" stroke="white" strokeWidth="2" fill="none" /> {/* SE Asia Islands */}
+    <div className="relative w-full h-[400px] flex items-center justify-center pointer-events-none">
+        <svg viewBox="0 0 1000 500" className="w-full h-auto opacity-40">
+            <defs>
+                <pattern id="dot-grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1.5" fill="white" fillOpacity="0.8" />
+                </pattern>
+            </defs>
+            {/* Continental Paths with Dot Pattern */}
+            <g fill="url(#dot-grid)">
+                {/* Simplified World Map Paths */}
+                <path d="M150 120 Q 200 80, 280 100 T 350 150 Q 320 220, 250 230 T 150 180 Z" /> {/* N America */}
+                <path d="M320 250 Q 350 300, 380 400 T 350 480 Q 300 480, 280 400 T 300 300 Z" /> {/* S America */}
+                <path d="M500 120 Q 600 60, 800 100 T 900 200 Q 850 280, 700 250 T 500 180 Z" /> {/* Eurasia */}
+                <path d="M550 220 Q 650 250, 680 350 T 600 460 Q 500 460, 520 350 T 550 250 Z" /> {/* Africa */}
+                <path d="M820 380 Q 880 380, 920 420 T 880 480 Q 820 480, 800 420 Z" /> {/* Australia */}
+            </g>
         </svg>
 
-        {/* Office Pins */}
-        {/* US Office */}
+        {/* Office Pins - Precise positions */}
+        {/* Tampa, US */}
         <motion.div
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            className="absolute top-[35%] left-[22%] z-20 group"
+            className="absolute top-[32%] left-[24%] z-20"
         >
-            <div className="relative">
-                <div className="absolute -inset-4 bg-purple-500/30 rounded-full animate-ping" />
-                <div className="bg-[#E91E8C] p-1.5 rounded-full relative z-10 shadow-[0_0_15px_rgba(233,30,140,0.5)]">
-                    <MapPin size={14} className="text-white" fill="currentColor" />
+            <div className="flex items-center gap-2">
+                <div className="relative">
+                    <div className="absolute -inset-2 bg-red-500/40 rounded-full animate-ping" />
+                    <div className="w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
                 </div>
-                <div className="absolute top-1/2 left-full ml-3 -translate-y-1/2 bg-white px-2 py-0.5 rounded text-[10px] font-bold text-black border border-gray-200 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    US Office
-                </div>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-0.5 bg-black/80 rounded backdrop-blur-sm border border-white/20 whitespace-nowrap">
-                    <span className="text-[10px] font-bold text-white uppercase tracking-wider">US</span>
-                </div>
+                <span className="text-[11px] font-bold text-white drop-shadow-md">Tampa</span>
             </div>
         </motion.div>
 
-        {/* India Office */}
+        {/* London, UK */}
         <motion.div
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="absolute top-[48%] left-[70%] z-20 group"
+            className="absolute top-[21%] left-[49%] z-20"
         >
-            <div className="relative">
-                <div className="absolute -inset-4 bg-pink-500/30 rounded-full animate-ping" />
-                <div className="bg-[#8B5CF6] p-1.5 rounded-full relative z-10 shadow-[0_0_15px_rgba(139,92,246,0.5)]">
-                    <MapPin size={14} className="text-white" fill="currentColor" />
+            <div className="flex items-center gap-2">
+                <div className="relative">
+                    <div className="absolute -inset-2 bg-red-500/40 rounded-full animate-ping" />
+                    <div className="w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
                 </div>
-                <div className="absolute top-1/2 left-full ml-3 -translate-y-1/2 bg-white px-2 py-0.5 rounded text-[10px] font-bold text-black border border-gray-200 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    India Office
+                <span className="text-[11px] font-bold text-white drop-shadow-md">London</span>
+            </div>
+        </motion.div>
+
+        {/* Chennai, India */}
+        <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="absolute top-[42%] left-[71%] z-20"
+        >
+            <div className="flex items-center gap-2">
+                <div className="relative">
+                    <div className="absolute -inset-2 bg-red-500/40 rounded-full animate-ping" />
+                    <div className="w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
                 </div>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-0.5 bg-black/80 rounded backdrop-blur-sm border border-white/20 whitespace-nowrap">
-                    <span className="text-[10px] font-bold text-white uppercase tracking-wider">India</span>
-                </div>
+                <span className="text-[11px] font-bold text-white drop-shadow-md">Chennai</span>
             </div>
         </motion.div>
     </div>
@@ -90,7 +103,7 @@ export function Footer() {
     return (
         <footer className="relative bg-white overflow-hidden">
             {/* FANCY A CHAT SECTION - HERO STYLE */}
-            <section className="relative h-[700px] flex items-center overflow-hidden">
+            <section className="relative min-h-[450px] md:h-[500px] flex items-center overflow-hidden">
                 <BackgroundGradientAnimation
                     containerClassName="absolute inset-0 z-0"
                     firstColor="139, 92, 246"  // Violet-500
@@ -107,81 +120,85 @@ export function Footer() {
                 <FloatingScribbles color="text-white/20" className="z-10" />
 
                 <div className="container relative z-20">
-                    <div className="max-w-4xl">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="font-serif text-5xl md:text-8xl font-bold text-white mb-8 tracking-tight drop-shadow-2xl"
-                        >
-                            Fancy a Chat?
-                        </motion.h2>
-                        <p className="text-white/90 text-xl md:text-2xl mb-12 leading-relaxed max-w-2xl font-medium drop-shadow-lg">
-                            Whether you're looking to create content, collaborate on films, or just explore what we can build together—we'd love to hear from you.
-                        </p>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className="max-w-2xl">
+                            <motion.h2
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="font-serif text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl"
+                            >
+                                Fancy a chat?
+                            </motion.h2>
+                            <p className="text-white/90 text-lg md:text-xl mb-10 leading-relaxed max-w-xl font-medium drop-shadow-lg">
+                                Discover how Caimue drives stories with impact. Teams in the US, UK, and India are ready to connect.
+                            </p>
 
-                        <div className="flex flex-wrap items-center gap-8">
-                            <MagneticButton>
-                                <Link
-                                    href="/collaborate"
-                                    className="px-12 py-6 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-xl rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(168,85,247,0.4)] flex items-center gap-3 border border-white/20"
-                                >
-                                    Let's Collaborate <ArrowRight size={24} />
-                                </Link>
-                            </MagneticButton>
+                            <div className="flex flex-wrap items-center gap-6">
+                                <MagneticButton>
+                                    <Link
+                                        href="/collaborate"
+                                        className="px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:scale-105 transition-all shadow-2xl flex items-center gap-3 border border-white/20"
+                                    >
+                                        Book Your Demo <ArrowRight size={20} />
+                                    </Link>
+                                </MagneticButton>
 
-                            <a href="mailto:hello@caimue.com" className="group flex items-center gap-4 text-white hover:text-white/80 transition-all">
-                                <div className="w-14 h-14 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:border-white shadow-lg backdrop-blur-sm bg-white/5">
-                                    <Mail size={24} />
-                                </div>
-                                <span className="text-xl font-semibold border-b-2 border-white/20 group-hover:border-white pb-1">hello@caimue.com</span>
-                            </a>
+                                <a href="mailto:hello@caimue.com" className="group flex items-center gap-4 text-white hover:text-white/80 transition-all">
+                                    <div className="w-12 h-12 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:border-white shadow-lg backdrop-blur-sm bg-white/5">
+                                        <Mail size={20} />
+                                    </div>
+                                    <span className="text-lg font-semibold border-b-2 border-white/20 group-hover:border-white pb-1">hello@caimue.com</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* World Map with Pins */}
+                        <div className="hidden lg:block">
+                            <WorldMap />
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* WHITE PLAIN BOTTOM FOOTER - NAVBAR STYLE */}
-            <div className="bg-white py-16">
+            <div className="bg-white py-10">
                 <div className="container">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                         {/* LOGO */}
                         <Link href="/" className="transition-transform hover:scale-105">
                             <Image
                                 src="/logos/caimue-logo-v2.png"
                                 alt="Caimue"
-                                width={180}
-                                height={60}
-                                className="h-12 w-auto object-contain"
+                                width={160}
+                                height={50}
+                                className="h-10 w-auto object-contain"
                             />
                         </Link>
 
                         {/* NAV ITEMS */}
-                        <nav className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-                            <Link href="/" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Home</Link>
-                            <Link href="/about" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">About</Link>
-                            <Link href="/platforms" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Platforms</Link>
-                            <Link href="/team" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Team</Link>
-                            <Link href="/collaborate" className="text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Collaborate</Link>
+                        <nav className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+                            <Link href="/" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Home</Link>
+                            <Link href="/about" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">About</Link>
+                            <Link href="/platforms" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Platforms</Link>
+                            <Link href="/team" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Team</Link>
+                            <Link href="/collaborate" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Collaborate</Link>
                         </nav>
 
                         {/* SOCIAL ICONS */}
-                        <div className="flex items-center gap-6">
-                            <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
-                                <Instagram size={22} />
+                        <div className="flex items-center gap-4">
+                            <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
+                                <Instagram size={18} />
                             </a>
-                            <a href="https://youtube.com/@caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
-                                <Youtube size={22} />
-                            </a>
-                            <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-[var(--caimue-purple)] transition-all shadow-sm hover:shadow-md bg-white">
-                                <Linkedin size={22} />
+                            <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
+                                <Linkedin size={18} />
                             </a>
                         </div>
                     </div>
 
-                    <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-400 text-[14px] font-medium">
-                        <p>© 2026 Caimue. An AI-first production house.</p>
-                        <div className="flex gap-10">
+                    <div className="mt-10 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[13px] font-medium">
+                        <p>© 2026 Caimue. All rights reserved.</p>
+                        <div className="flex gap-8">
                             <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
                         </div>
