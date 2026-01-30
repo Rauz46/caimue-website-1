@@ -20,8 +20,6 @@ const teqthotsContent = [
     { id: 3, title: "Odum Kuthira", image: "/images/Odum Kuthira Chaadum Kuthira poster.jpg" },
 ];
 
-import { GlowCard } from "@/components/ui/spotlight-card";
-
 // --- Components ---
 
 const BentoCard = ({
@@ -29,33 +27,28 @@ const BentoCard = ({
     className,
     colSpan = "col-span-1",
     rowSpan = "row-span-1",
-    delay = 0,
-    glowColor = "purple"
+    delay = 0
 }: {
     children: React.ReactNode;
     className?: string;
     colSpan?: string;
     rowSpan?: string;
     delay?: number;
-    glowColor?: 'blue' | 'purple' | 'green' | 'red' | 'orange';
 }) => (
     <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay }}
-        className={cn(colSpan, rowSpan, "h-full")}
+        whileHover={{ y: -2, transition: { duration: 0.2 } }}
+        className={cn(
+            "relative rounded-[20px] overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300",
+            colSpan,
+            rowSpan,
+            className
+        )}
     >
-        <GlowCard
-            glowColor={glowColor}
-            customSize={true}
-            className={cn(
-                "h-full w-full border-none shadow-none p-0 overflow-hidden group",
-                className
-            )}
-        >
-            {children}
-        </GlowCard>
+        {children}
     </motion.div>
 );
 
