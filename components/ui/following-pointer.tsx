@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useCursor } from "@/components/ui/cursor-context";
@@ -11,20 +11,27 @@ export const GlobalCursor = () => {
     const smoothX = useSpring(x, { stiffness: 500, damping: 28 });
     const smoothY = useSpring(y, { stiffness: 500, damping: 28 });
     const { title, isVisible } = useCursor();
-    const [isPointer, setIsPointer] = useState(false);
+    const isPointer = useRef(false);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             x.set(e.clientX);
             y.set(e.clientY);
 
-            // Optional: Check if clicking on something interactive
             const target = e.target as HTMLElement;
-            const isClickable = window.getComputedStyle(target).cursor === 'pointer';
-            setIsPointer(isClickable);
+            const clickable = window.getComputedStyle(target).cursor === 'pointer';
+
+            if (isPointer.current !== clickable) {
+                isPointer.current = clickable;
+                if (clickable) {
+                    document.body.classList.add('cursor-pointer-active');
+                } else {
+                    document.body.classList.remove('cursor-pointer-active');
+                }
+            }
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [x, y]);
 
@@ -32,33 +39,20 @@ export const GlobalCursor = () => {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 z-[9999] pointer-events-none"
+            className="fixed top-0 left-0 z-[9999] pointer-events-none will-change-transform"
             style={{
                 x: smoothX,
                 y: smoothY,
+                translateZ: 0
             }}
         >
             {/* Main Cursor Dot */}
             <motion.div
                 className="absolute h-4 w-4 bg-pink-500 rounded-full -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
                 animate={{
-                    scale: title ? 1.5 : (isPointer ? 0.8 : 1),
+                    scale: title ? 1.5 : 1,
                 }}
             />
-
-            {/* Context Title Pill - Removed per user request */}
-            {/* <AnimatePresence>
-                {title && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 20 }}
-                        exit={{ opacity: 0, scale: 0.5, x: 10 }}
-                        className="absolute top-0 left-0 bg-pink-600 text-white text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap shadow-lg"
-                    >
-                        {title}
-                    </motion.div>
-                )}
-            </AnimatePresence> */}
         </motion.div>
     );
 };

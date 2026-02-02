@@ -133,6 +133,7 @@ export default function WhoAreYouSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
                         className="font-serif text-[56px] font-bold text-[#4C1D95] tracking-tighter"
                     >
                         Who Are You
@@ -150,7 +151,10 @@ export default function WhoAreYouSection() {
                         ref={card1Ref}
                         onMouseMove={handleMouseMoveCard1}
                         onMouseLeave={handleMouseLeave}
-                        className="relative h-[600px] list-none shadow-2xl"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="relative h-[600px] list-none shadow-2xl transform-gpu"
                     >
                         <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
                             <GlowingEffect
@@ -208,7 +212,10 @@ export default function WhoAreYouSection() {
                         ref={card2Ref}
                         onMouseMove={handleMouseMoveCard2}
                         onMouseLeave={handleMouseLeave}
-                        className="relative h-[600px] list-none shadow-2xl"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="relative h-[600px] list-none shadow-2xl transform-gpu"
                     >
                         <div className="relative h-full rounded-3xl border border-purple-200/50 p-2 md:p-3">
                             <GlowingEffect

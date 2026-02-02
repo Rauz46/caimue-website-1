@@ -107,9 +107,9 @@ export function JourneySection() {
         <FollowerPointerCard title="The Journey">
             <section className="relative py-[100px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
                 {/* --- BACKGROUND LAYER --- */}
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 will-change-transform">
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                        style={{ backgroundImage: 'linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                        style={{ backgroundImage: 'linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)', backgroundSize: '40px 40px', transform: 'translate3d(0,0,0)' }} />
 
                     <FloatingScribbles color="text-purple-300/30" />
                 </div>
@@ -121,7 +121,7 @@ export function JourneySection() {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-100px" }}
                             className="font-serif text-[48px] font-bold text-[#4C1D95] mb-6 leading-tight"
                         >
                             The Journey So Far
@@ -147,8 +147,8 @@ export function JourneySection() {
                                 <motion.div
                                     initial={{ opacity: 0, y: 50 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)]"
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
                                 >
                                     <GlowingEffect
                                         spread={40}
@@ -199,9 +199,9 @@ export function JourneySection() {
                                 <motion.div
                                     initial={{ opacity: 0, y: 50 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
+                                    viewport={{ once: true, margin: "-50px" }}
                                     transition={{ delay: 0.1 }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)]"
+                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
                                 >
                                     <GlowingEffect
                                         spread={40}
@@ -257,9 +257,9 @@ export function JourneySection() {
                                 <motion.div
                                     initial={{ opacity: 0, y: 50 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
+                                    viewport={{ once: true, margin: "-50px" }}
                                     transition={{ delay: 0.2 }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)]"
+                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
                                 >
                                     <GlowingEffect
                                         spread={40}
