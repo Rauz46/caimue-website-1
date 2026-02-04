@@ -94,13 +94,13 @@ export function JourneySection() {
             id: 23,
             content: <FilmSkeleton title="Talent Alpha" description="Leading actors discovered." />,
             className: "col-span-1",
-            thumbnail: "/team/F.jpg",
+            thumbnail: "/images/F.jpg",
         },
         {
             id: 24,
             content: <FilmSkeleton title="Creative Collective" description="Nurturing independent artists." />,
             className: "md:col-span-2",
-            thumbnail: "/team/A.jpg",
+            thumbnail: "/images/A.jpg",
         },
     ];
 
