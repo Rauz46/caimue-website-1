@@ -12,6 +12,7 @@ export const GlobalCursor = () => {
     const smoothY = useSpring(y, { stiffness: 500, damping: 28 });
     const { title, isVisible } = useCursor();
     const isPointer = useRef(false);
+    const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -23,6 +24,7 @@ export const GlobalCursor = () => {
 
             if (isPointer.current !== clickable) {
                 isPointer.current = clickable;
+                setIsHovering(clickable);
                 if (clickable) {
                     document.body.classList.add('cursor-pointer-active');
                 } else {
@@ -46,13 +48,33 @@ export const GlobalCursor = () => {
                 translateZ: 0
             }}
         >
-            {/* Main Cursor Dot */}
             <motion.div
-                className="absolute h-4 w-4 bg-pink-500 rounded-full -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
                 animate={{
-                    scale: title ? 1.5 : 1,
+                    scale: isHovering || title ? 1.2 : 1,
+                    rotate: isHovering ? 15 : 0,
                 }}
-            />
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+                <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-pink-500 drop-shadow-sm"
+                    style={{
+                        transform: "translate(-4px, -4px)", // Adjust to align tip with mouse
+                    }}
+                >
+                    <path
+                        d="M8.2 2.1c-1.1-.6-2.2.4-1.8 1.5l7.9 23.4c.4 1.1 1.9 1.3 2.5.3l4.3-7.2c.2-.3.5-.5.8-.6l8.1-1.7c1.1-.2 1.4-1.6.5-2.3L8.2 2.1z"
+                        fill="currentColor"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
+                    />
+                </svg>
+            </motion.div>
         </motion.div>
     );
 };
