@@ -11,6 +11,7 @@ import {
 import { LayoutGrid } from "@/components/ui/layout-grid";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 // --- Skeleton Components for LayoutGrid ---
 const FilmSkeleton = ({ title, description }: { title: string; description: string }) => (
@@ -304,6 +305,11 @@ export function JourneySection() {
                         </CardContainer>
 
                     </div>
+                </div>
+
+                {/* Scroll Indicator at bottom of section */}
+                <div className="mt-20">
+                    <ScrollIndicator />
                 </div>
             </section>
         </FollowerPointerCard>

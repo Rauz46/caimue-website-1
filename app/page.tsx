@@ -19,6 +19,7 @@ import { PlatformsSection } from "@/components/ui/PlatformsSection";
 import { MorphingWord } from "@/components/ui/MorphingWord";
 import { JourneySection } from "@/components/ui/JourneySection";
 import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -99,26 +100,9 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.2 }}
-              className="flex flex-col items-center gap-2 text-white/40 mb-12 mt-auto"
+              className="mb-12 mt-auto"
             >
-              <span className="text-xs uppercase tracking-[0.2em] font-medium">Scroll to explore</span>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-                </svg>
-              </motion.div>
+              <ScrollIndicator />
             </motion.div>
           </div>
         </section>
