@@ -233,8 +233,8 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Bento Grid Gallery */}
-            <div className="grid grid-cols-2 gap-2 h-[250px]">
-                <div className="relative rounded-xl overflow-hidden h-full">
+            <div className="grid grid-cols-1 grid-rows-2 gap-2 h-[250px]">
+                <div className="relative rounded-xl overflow-hidden h-full w-full bg-gray-50">
                     <Image
                         src="/logos/piqual thumbnail.jpg"
                         alt="Piqual Collaboration"
@@ -242,7 +242,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
-                <div className="relative rounded-xl overflow-hidden h-full">
+                <div className="relative rounded-xl overflow-hidden h-full w-full bg-gray-50">
                     <Image
                         src="/logos/brand collab.jpg"
                         alt="Brand Collaboration"
