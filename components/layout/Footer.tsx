@@ -72,10 +72,10 @@ export function Footer() {
                             >
                                 <MagneticButton>
                                     <Link
-                                        href="/collaborate"
+                                        href="/contact"
                                         className="px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:scale-105 transition-all shadow-2xl flex items-center gap-3"
                                     >
-                                        Contact <ArrowRight size={20} />
+                                        Start a Conversation <ArrowRight size={20} />
                                     </Link>
                                 </MagneticButton>
                             </motion.div>
@@ -96,11 +96,11 @@ export function Footer() {
                         {/* LOGO */}
                         <Link href="/" className="transition-transform hover:scale-105">
                             <Image
-                                src="/logos/caimue-logo-v2.png"
+                                src="/caimue-logo.png"
                                 alt="Caimue"
-                                width={160}
+                                width={150}
                                 height={50}
-                                className="h-10 w-auto object-contain"
+                                className="h-10 w-auto object-contain brightness-0 invert"
                             />
                         </Link>
 
@@ -115,7 +115,7 @@ export function Footer() {
 
                         {/* SOCIAL ICONS */}
                         <div className="flex items-center gap-4">
-                            <a href="https://instagram.com/caimue" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
+                            <a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
                                 <Instagram size={18} />
                             </a>
                             <a href="https://linkedin.com/company/caimue" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">

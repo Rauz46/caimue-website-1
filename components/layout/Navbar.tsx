@@ -64,7 +64,7 @@ export function Navbar() {
                     <div className="hidden lg:flex items-center gap-3">
 
                         <Link
-                            href="/collaborate"
+                            href="/contact"
                             className="btn-primary text-sm"
                         >
                             Contact
@@ -131,7 +131,7 @@ export function Navbar() {
                                 transition={{ delay: 0.6 }}
                             >
                                 <Link
-                                    href="/collaborate"
+                                    href="/contact"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="btn-primary mt-4"
                                 >

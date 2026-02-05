@@ -78,11 +78,15 @@ function CTAButton({
     variant = "primary",
     icon,
     href = "#",
+    target,
+    rel,
 }: {
     text: string;
     variant?: "youtube" | "primary" | "outline" | "dark";
     icon?: React.ReactNode;
     href?: string;
+    target?: string;
+    rel?: string;
 }) {
     const styles = {
         youtube: "bg-[#FF0000] hover:bg-[#CC0000] text-white",
@@ -94,6 +98,8 @@ function CTAButton({
     return (
         <motion.a
             href={href}
+            target={target}
+            rel={rel}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-colors ${styles[variant]}`}
@@ -164,12 +170,15 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                             text="Watch on YouTube"
                             variant="youtube"
                             icon={<Youtube size={18} />}
-                            href="https://youtube.com"
+                            href="https://www.youtube.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         />
                         <CTAButton
                             text="Explore More"
                             variant="primary"
                             icon={<ArrowRight size={18} />}
+                            href="/platforms"
                         />
                     </div>
                 </div>
@@ -260,12 +269,15 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                             text="Watch on YouTube"
                             variant="youtube"
                             icon={<Youtube size={18} />}
-                            href="https://youtube.com"
+                            href="https://www.youtube.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         />
                         <CTAButton
                             text="Explore More"
                             variant="dark"
                             icon={<ArrowRight size={18} />}
+                            href="/platforms"
                         />
                     </div>
                 </div>
@@ -353,6 +365,7 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                             text="Explore More"
                             variant="primary"
                             icon={<ArrowRight size={18} />}
+                            href="/platforms"
                         />
                     </div>
                 </div>
