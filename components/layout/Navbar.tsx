@@ -37,7 +37,14 @@ export function Navbar() {
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="relative z-10">
-                        <span className="text-2xl font-bold text-[var(--caimue-purple)]">Caimue</span>
+                        <Image
+                            src="/caimue-logo.png"
+                            alt="Caimue"
+                            width={180}
+                            height={60}
+                            className="h-12 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
