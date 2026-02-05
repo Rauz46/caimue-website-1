@@ -84,8 +84,8 @@ const BrandOwnerCard = () => {
                 }}
             />
 
-            {/* Orbiting Social Icons Container */}
-            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[280px] h-[280px] flex items-center justify-center">
+            {/* Orbiting Social Icons Container - positioned higher */}
+            <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[260px] h-[260px] flex items-center justify-center">
                 {/* Center briefcase icon */}
                 <motion.div
                     className="absolute z-10"
@@ -243,8 +243,8 @@ const CreatorCard = () => {
                 transition={{ duration: 8, repeat: Infinity }}
             />
 
-            {/* Orbiting Team Faces Container */}
-            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[280px] h-[280px] flex items-center justify-center">
+            {/* Orbiting Team Faces Container - positioned higher */}
+            <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[260px] h-[260px] flex items-center justify-center">
                 {/* Center video icon */}
                 <motion.div
                     className="absolute z-10 text-purple-300"
@@ -346,10 +346,10 @@ const CreatorCard = () => {
                     <path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
                 </svg>
 
-                <h3 className="font-serif text-[36px] font-bold text-white mb-3 tracking-tight">
+                <h3 className="font-serif text-[36px] font-bold mb-3 tracking-tight" style={{ color: '#FFFFFF' }}>
                     Creator
                 </h3>
-                <p className="text-gray-300 text-[15px] leading-relaxed mb-6 max-w-[380px]">
+                <p className="text-[15px] leading-relaxed mb-6 max-w-[380px]" style={{ color: '#E5E7EB' }}>
                     Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
                 </p>
 
