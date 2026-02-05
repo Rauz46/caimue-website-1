@@ -2,40 +2,11 @@
 
 import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Sparkles, TrendingUp, Target, Megaphone, Clapperboard, Film, Star, ArrowRight, Camera, Lightbulb, Video } from "lucide-react";
+import { Youtube, Instagram, Facebook, Twitter, Send, Clapperboard, Star, ArrowRight, Video } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
-
-// Social Media Icon Components
-const SocialIcons = {
-    youtube: () => (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-        </svg>
-    ),
-    instagram: () => (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-    ),
-    facebook: () => (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-    ),
-    twitter: () => (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-    ),
-    telegram: () => (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
-            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-        </svg>
-    ),
-};
 
 // Card 1: Brand Owner - Light lavender/pink gradient with orbiting social icons
 const BrandOwnerCard = () => {
@@ -84,69 +55,69 @@ const BrandOwnerCard = () => {
                 }}
             />
 
-            {/* Orbiting Social Icons Container - positioned higher */}
-            <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[300px] h-[200px] flex items-center justify-center">
+            {/* Orbiting Social Icons Container */}
+            <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[280px] h-[180px] flex items-center justify-center">
                 {/* Center briefcase icon */}
                 <motion.div
                     className="absolute z-10"
                     animate={{ y: [-4, 4, -4] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-700 to-amber-900 shadow-2xl flex items-center justify-center relative">
-                        <div className="w-12 h-3 bg-amber-500 rounded-sm absolute top-2" />
-                        <div className="w-5 h-2 bg-amber-400 rounded-sm absolute top-0" />
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-2xl flex items-center justify-center relative">
+                        <div className="w-10 h-2.5 bg-amber-400 rounded-sm absolute top-2" />
+                        <div className="w-4 h-1.5 bg-amber-300 rounded-sm absolute top-0" />
                     </div>
                 </motion.div>
 
                 {/* Inner orbit - YouTube, Instagram, Facebook */}
                 <OrbitingCircles
-                    className="size-10 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-red-500 shadow-lg"
                     duration={20}
                     delay={0}
-                    radius={70}
+                    radius={65}
                     path={true}
                 >
-                    <div className="w-5 h-5 text-red-600"><SocialIcons.youtube /></div>
+                    <Youtube className="w-5 h-5 text-white" />
                 </OrbitingCircles>
                 <OrbitingCircles
-                    className="size-10 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 shadow-lg"
                     duration={20}
                     delay={7}
-                    radius={70}
+                    radius={65}
                     path={false}
                 >
-                    <div className="w-5 h-5 text-pink-600"><SocialIcons.instagram /></div>
+                    <Instagram className="w-5 h-5 text-white" />
                 </OrbitingCircles>
                 <OrbitingCircles
-                    className="size-10 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-blue-600 shadow-lg"
                     duration={20}
                     delay={14}
-                    radius={70}
+                    radius={65}
                     path={false}
                 >
-                    <div className="w-5 h-5 text-blue-600"><SocialIcons.facebook /></div>
+                    <Facebook className="w-5 h-5 text-white" />
                 </OrbitingCircles>
 
                 {/* Outer orbit (reverse) - X, Telegram */}
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg"
-                    radius={120}
+                    className="size-12 border-none bg-black shadow-lg"
+                    radius={105}
                     duration={25}
                     delay={0}
                     reverse
                     path={true}
                 >
-                    <div className="w-6 h-6 text-gray-900"><SocialIcons.twitter /></div>
+                    <Twitter className="w-5 h-5 text-white" />
                 </OrbitingCircles>
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg"
-                    radius={120}
+                    className="size-12 border-none bg-sky-500 shadow-lg"
+                    radius={105}
                     duration={25}
                     delay={12}
                     reverse
                     path={false}
                 >
-                    <div className="w-6 h-6 text-blue-500"><SocialIcons.telegram /></div>
+                    <Send className="w-5 h-5 text-white" />
                 </OrbitingCircles>
             </div>
 
