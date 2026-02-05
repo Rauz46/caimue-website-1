@@ -56,7 +56,7 @@ const BrandOwnerCard = () => {
             />
 
             {/* Orbiting Social Icons Container */}
-            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[320px] h-[320px] flex items-center justify-center">
+            <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[320px] h-[320px] flex items-center justify-center">
                 {/* Manual Orbit Paths */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
                     <circle cx="50%" cy="50%" r="75" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
