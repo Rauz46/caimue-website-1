@@ -46,7 +46,7 @@ export function JourneySection() {
                             className="text-xs font-bold uppercase"
                             style={{ color: "#4C1D95", letterSpacing: "1px" }}
                         >
-                            Trusted by Creators
+                            Trusted by Creators and Brands
                         </span>
                         <div className="flex gap-0.5">
                             {[...Array(5)].map((_, i) => (
@@ -72,8 +72,7 @@ export function JourneySection() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="font-serif text-5xl font-bold mb-5"
                         style={{
-                            color: "#4C1D95",
-                            fontVariant: "small-caps",
+                            color: "#000000",
                             letterSpacing: "0.02em",
                         }}
                     >
@@ -89,9 +88,7 @@ export function JourneySection() {
                         style={{ color: "#6B21A8" }}
                     >
                         <p>
-                            We've produced films, built brands, and discovered talent across Malayalam, Tamil, and English.
-                            <br />
-                            Here's our journey as we build toward feature cinema.
+                            We've produced films, built brands, and discovered talent across Malayalam, Tamil, and English. Here's our journey as we build toward feature cinema.
                         </p>
                     </motion.div>
                 </div>
@@ -145,19 +142,20 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                 flexDirection: "column",
             }}
         >
-            {/* Header with Icon */}
-            <div className="flex items-center gap-3 mb-4">
-                <motion.div
-                    animate={{ rotate: [-5, 5, -5] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
-                </motion.div>
-                <h3 className="font-serif text-[32px] font-bold" style={{ color: "#2D2D2D" }}>
-                    12+ Films &{" "}
-                    <span style={{ color: "#4C1D95" }}>2M+</span> Views
-                </h3>
-            </div>
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ rotate: [-5, 5, -5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
+            </motion.div>
+
+            {/* Header */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                12+ Films &{" "}
+                <span style={{ color: "#4C1D95" }}>2M+</span> Views
+            </h3>
 
             {/* Content */}
             <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
@@ -250,13 +248,25 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                     />
                 </div>
                 <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
-                    <span className="text-2xl font-bold text-gray-400">Logo</span>
+                    <Image
+                        src="/logos/funshortz-logo.png"
+                        alt="FunShortz"
+                        width={80}
+                        height={80}
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
                 </div>
                 <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-4">
-                    <span className="text-2xl font-bold text-gray-400">Logo</span>
+                    <Image
+                        src="/logos/caimue-logo-refreshed.png"
+                        alt="Caimue"
+                        width={80}
+                        height={80}
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
                 </div>
                 <div className="col-span-2 relative rounded-xl overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
-                    <span className="text-xl font-bold text-gray-400">Brand Collab</span>
+                    <span className="text-xl font-bold text-gray-400">Brand Collaborations</span>
                 </div>
             </div>
         </motion.div>
@@ -279,18 +289,19 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
                 flexDirection: "column",
             }}
         >
-            {/* Header with Icon */}
-            <div className="flex items-center gap-3 mb-4">
-                <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
-                </motion.div>
-                <h3 className="font-serif text-[32px] font-bold" style={{ color: "#2D2D2D" }}>
-                    25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
-                </h3>
-            </div>
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
+            </motion.div>
+
+            {/* Header */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
+            </h3>
 
             {/* Content */}
             <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
@@ -301,32 +312,32 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
             <div className="flex-1 grid grid-cols-3 gap-1.5">
                 <div className="col-span-2 relative rounded-xl overflow-hidden">
                     <Image
-                        src="/team/avatar-1.png"
-                        alt="Creator 1"
+                        src="/team/megha  2.jpg"
+                        alt="Creator Megha"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
                 <div className="relative rounded-xl overflow-hidden">
                     <Image
-                        src="/team/avatar-2.png"
-                        alt="Creator 2"
+                        src="/team/sajan.jpg"
+                        alt="Creator Sajan"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
                 <div className="relative rounded-xl overflow-hidden">
                     <Image
-                        src="/images/F.jpg"
-                        alt="Creator 3"
+                        src="/team/megha.jpg"
+                        alt="Creator Megha"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
                 <div className="col-span-2 relative rounded-xl overflow-hidden">
                     <Image
-                        src="/images/A.jpg"
-                        alt="Creator 4"
+                        src="/team/sajan 2.jpg"
+                        alt="Creator Sajan"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
