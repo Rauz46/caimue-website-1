@@ -391,7 +391,7 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
 }
 
 // Main Section Component
-export default function PlatformsSection() {
+export function PlatformsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
