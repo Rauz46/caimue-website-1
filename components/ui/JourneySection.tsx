@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Film, Briefcase, Users, Star } from "lucide-react";
 import Image from "next/image";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 export function JourneySection() {
     const sectionRef = useRef(null);
@@ -133,70 +134,74 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-10 transition-all duration-300"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                height: "600px",
-                display: "flex",
-                flexDirection: "column",
-            }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ rotate: [-5, 5, -5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
-            </motion.div>
+            <CardContainer className="inter-var h-full w-full">
+                <CardBody className="h-full w-full">
+                    <div
+                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
+                        style={{
+                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                        }}
+                    >
+                        {/* Icon in TOP RIGHT */}
+                        <CardItem translateZ="60" className="absolute top-6 right-6">
+                            <motion.div
+                                animate={{ rotate: [-5, 5, -5] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
+                            </motion.div>
+                        </CardItem>
 
-            {/* Header */}
-            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                12+ Films &{" "}
-                <span style={{ color: "#4C1D95" }}>2M+</span> Views
-            </h3>
+                        {/* Header - 2 lines */}
+                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                            12+ Films &<br />
+                            <span style={{ color: "#4C1D95" }}>2M+</span> Views
+                        </CardItem>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
-            </p>
+                        {/* Content */}
+                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                            Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
+                        </CardItem>
 
-            {/* Bento Grid Gallery */}
-            <div className="flex-1 grid grid-cols-3 gap-1.5 relative">
-                <div className="col-span-2 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Live a Little.jpg"
-                        alt="Live a Little"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Smile!.jpg"
-                        alt="Smile!"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Welcome Home.jpg"
-                        alt="Welcome Home"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-2 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Pazhampori.jpg"
-                        alt="Pazhampori"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-            </div>
+                        {/* Bento Grid Gallery */}
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 relative">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/images/Movies/Welcome Home.jpg"
+                                    alt="Welcome Home"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/images/Movies/Smile!.jpg"
+                                    alt="Smile!"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
+                                    alt="Malsya Mandooka Mahamaham"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/images/Movies/Harinarayana Kudu Charitham.jpg"
+                                    alt="Harinarayana Kudu Charitham"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                        </CardItem>
+                    </div>
+                </CardBody>
+            </CardContainer>
         </motion.div>
     );
 }
@@ -208,68 +213,76 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-10 transition-all duration-300 relative"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                height: "600px",
-                display: "flex",
-                flexDirection: "column",
-            }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
-            </motion.div>
+            <CardContainer className="inter-var h-full w-full">
+                <CardBody className="h-full w-full">
+                    <div
+                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
+                        style={{
+                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                        }}
+                    >
+                        {/* Icon in TOP RIGHT */}
+                        <CardItem translateZ="60" className="absolute top-6 right-6">
+                            <motion.div
+                                animate={{ y: [-3, 3, -3] }}
+                                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
+                            </motion.div>
+                        </CardItem>
 
-            {/* Header */}
-            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
-            </h3>
+                        {/* Header */}
+                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                            Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
+                        </CardItem>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
-            </p>
+                        {/* Content */}
+                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                            From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
+                        </CardItem>
 
-            {/* Bento Grid Gallery */}
-            <div className="flex-1 grid grid-cols-3 gap-1.5">
-                <div className="col-span-2 relative rounded-xl overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
-                    <Image
-                        src="/logos/teqthots-logo.png"
-                        alt="TeqThots"
-                        width={200}
-                        height={100}
-                        className="object-contain hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
-                    <Image
-                        src="/logos/funshortz-logo.png"
-                        alt="FunShortz"
-                        width={80}
-                        height={80}
-                        className="object-contain hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-4">
-                    <Image
-                        src="/logos/caimue-logo-refreshed.png"
-                        alt="Caimue"
-                        width={80}
-                        height={80}
-                        className="object-contain hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-2 relative rounded-xl overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
-                    <span className="text-xl font-bold text-gray-400">Brand Collaborations</span>
-                </div>
-            </div>
-        </motion.div>
+                        {/* Bento Grid Gallery */}
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/logos/piqual thumbnail.jpg"
+                                    alt="Piqual"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
+                                <Image
+                                    src="/logos/teqthots-logo.png"
+                                    alt="TeqThots"
+                                    width={80}
+                                    height={80}
+                                    className="object-contain hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-4">
+                                <Image
+                                    src="/logos/caimue-logo.png"
+                                    alt="Caimue"
+                                    width={80}
+                                    height={80}
+                                    className="object-contain hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/logos/brand collab.jpg"
+                                    alt="Brand Collaboration"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                        </CardItem>
+                    </div>
+                </CardBody>
+            </CardContainer>
+        </motion.div >
     );
 }
 
@@ -280,69 +293,77 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.7 }}
-            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-10 transition-all duration-300"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                height: "600px",
-                display: "flex",
-                flexDirection: "column",
-            }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
-            </motion.div>
+            <CardContainer className="inter-var h-full w-full">
+                <CardBody className="h-full w-full">
+                    <div
+                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
+                        style={{
+                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                        }}
+                    >
+                        {/* Icon in TOP RIGHT */}
+                        <CardItem translateZ="60" className="absolute top-6 right-6">
+                            <motion.div
+                                animate={{ scale: [1, 1.1, 1] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
+                            </motion.div>
+                        </CardItem>
 
-            {/* Header */}
-            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
-            </h3>
+                        {/* Header */}
+                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                            25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
+                        </CardItem>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
-            </p>
+                        {/* Content */}
+                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                            We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+                        </CardItem>
 
-            {/* Bento Grid Gallery */}
-            <div className="flex-1 grid grid-cols-3 gap-1.5">
-                <div className="col-span-2 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/megha  2.jpg"
-                        alt="Creator Megha"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/sajan.jpg"
-                        alt="Creator Sajan"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/megha.jpg"
-                        alt="Creator Megha"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-2 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/sajan 2.jpg"
-                        alt="Creator Sajan"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-            </div>
+                        {/* Bento Grid Gallery */}
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/team/megha  2.jpg"
+                                    alt="Creator Megha"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                    style={{ objectPosition: "center 20%" }}
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/team/sajan.jpg"
+                                    alt="Creator Sajan"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                    style={{ objectPosition: "center 30%" }}
+                                />
+                            </div>
+                            <div className="relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/team/megha.jpg"
+                                    alt="Creator Megha"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                    style={{ objectPosition: "center 25%" }}
+                                />
+                            </div>
+                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                                <Image
+                                    src="/team/sajan 2.jpg"
+                                    alt="Creator Sajan"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                    style={{ objectPosition: "center 20%" }}
+                                />
+                            </div>
+                        </CardItem>
+                    </div>
+                </CardBody>
+            </CardContainer>
         </motion.div>
     );
 }
