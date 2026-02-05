@@ -1,319 +1,337 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
-import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
-import {
-    Film, Briefcase, Users, Clapperboard, Sparkles,
-    Crown, Star
-} from "lucide-react";
-import { LayoutGrid } from "@/components/ui/layout-grid";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
-
-// --- Skeleton Components for LayoutGrid ---
-const FilmSkeleton = ({ title, description }: { title: string; description: string }) => (
-    <div className="text-white">
-        <p className="font-bold text-2xl mb-2">{title}</p>
-        <p className="font-normal text-sm opacity-90">{description}</p>
-    </div>
-);
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { Film, Briefcase, Users, Star } from "lucide-react";
+import Image from "next/image";
+import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 export function JourneySection() {
-    // --- LayoutGrid Card Configurations ---
-    const filmCards = [
-        {
-            id: 1,
-            content: <FilmSkeleton title="Hey Sinamika" description="A beautiful tale of love and friendship." />,
-            className: "md:col-span-2",
-            thumbnail: "/images/Hey! Sinamika Poster.jpg",
-        },
-        {
-            id: 2,
-            content: <FilmSkeleton title="Thiruchitrambalam" description="Exploring the nuances of family bonds." />,
-            className: "col-span-1",
-            thumbnail: "/images/Thiruchitrambalam.jpg",
-        },
-        {
-            id: 3,
-            content: <FilmSkeleton title="Odum Kuthira" description="A journey of discovery and resilience." />,
-            className: "col-span-1",
-            thumbnail: "/images/Odum Kuthira Chaadum Kuthira poster.jpg",
-        },
-        {
-            id: 4,
-            content: <FilmSkeleton title="Short Film Showcase" description="Celebrating independent storytellers." />,
-            className: "md:col-span-2",
-            thumbnail: "/images/poster-1.png",
-        },
-    ];
-
-    const brandCards = [
-        {
-            id: 11,
-            content: <FilmSkeleton title="Caimue Platform" description="Our AI-first production ecosystem." />,
-            className: "md:col-span-2",
-            thumbnail: "/images/dashboard-preview.png",
-        },
-        {
-            id: 12,
-            content: <FilmSkeleton title="TeqThots" description="Innovative brand integrations." />,
-            className: "col-span-1",
-            thumbnail: "/logos/teqthots-logo.png",
-        },
-        {
-            id: 13,
-            content: <FilmSkeleton title="FunShortz" description="Engaging micro-content for brands." />,
-            className: "col-span-1",
-            thumbnail: "/logos/funshortz-logo.png",
-        },
-        {
-            id: 14,
-            content: <FilmSkeleton title="Brand Storytelling" description="Creating impact through narrative." />,
-            className: "md:col-span-2",
-            thumbnail: "/images/poster-2.png",
-        },
-    ];
-
-    const creatorCards = [
-        {
-            id: 21,
-            content: <FilmSkeleton title="Arjun Menon" description="Visionary Director & Storyteller." />,
-            className: "md:col-span-2",
-            thumbnail: "/team/avatar-1.png",
-        },
-        {
-            id: 22,
-            content: <FilmSkeleton title="Priya Kumar" description="Award-winning Screenwriter." />,
-            className: "col-span-1",
-            thumbnail: "/team/avatar-2.png",
-        },
-        {
-            id: 23,
-            content: <FilmSkeleton title="Talent Alpha" description="Leading actors discovered." />,
-            className: "col-span-1",
-            thumbnail: "/images/F.jpg",
-        },
-        {
-            id: 24,
-            content: <FilmSkeleton title="Creative Collective" description="Nurturing independent artists." />,
-            className: "md:col-span-2",
-            thumbnail: "/images/A.jpg",
-        },
-    ];
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
     return (
-        <FollowerPointerCard title="The Journey">
-            <section className="relative py-[100px] bg-gradient-to-b from-[#F5F0FF] to-[#EDE7FF] overflow-hidden">
-                {/* --- BACKGROUND LAYER --- */}
-                <div className="absolute inset-0 z-0 will-change-transform">
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                        style={{ backgroundImage: 'linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)', backgroundSize: '40px 40px', transform: 'translate3d(0,0,0)' }} />
+        <section
+            ref={sectionRef}
+            className="relative py-[100px] overflow-hidden"
+            style={{
+                background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
+            }}
+        >
+            {/* Grid Texture Overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
+                }}
+            />
 
-                    <FloatingScribbles color="text-purple-300/30" />
-                </div>
+            {/* Hand-Drawn Scribbles */}
+            <HandDrawnScribbles />
 
-                <div className="container mx-auto px-4 relative z-10">
-
-                    {/* --- HEADER --- */}
-                    <div className="flex flex-col items-center text-center mb-[60px]">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="font-serif text-[48px] font-bold text-[#4C1D95] mb-6 leading-tight"
+            <div className="container mx-auto px-4 relative" style={{ zIndex: 10 }}>
+                {/* Header Section */}
+                <div className="flex flex-col items-center text-center mb-[60px]">
+                    {/* Trusted by Creators Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+                        style={{ background: "#E9D5FF" }}
+                    >
+                        <span
+                            className="text-xs font-bold uppercase"
+                            style={{ color: "#4C1D95", letterSpacing: "1px" }}
                         >
-                            The Journey So Far
-                        </motion.h2>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="max-w-[750px] mx-auto font-sans text-[18px] text-[#6B21A8] leading-[1.6]"
-                        >
-                            <p>We&apos;ve produced films, built brands, and discovered talent across Malayalam, Tamil, and English. Here&apos;s our journey as we build toward feature cinema.</p>
-                        </motion.div>
-                    </div>
-
-                    {/* --- CARDS GRID --- */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto relative z-10">
-
-                        {/* --- CARD 1: FILMS --- */}
-                        <CardContainer className="inter-var h-full w-full">
-                            <CardBody className="relative h-full w-full">
+                            Trusted by Creators
+                        </span>
+                        <div className="flex gap-0.5">
+                            {[...Array(5)].map((_, i) => (
                                 <motion.div
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
+                                    key={i}
+                                    animate={{ scale: [1, 1.1, 1] }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: i * 0.1,
+                                    }}
                                 >
-                                    <GlowingEffect
-                                        spread={40}
-                                        glow={true}
-                                        disabled={false}
-                                        proximity={64}
-                                        inactiveZone={0.01}
-                                    />
-                                    <div className="relative flex h-full flex-col overflow-hidden rounded-[20px] p-[30px] md:p-[40px]">
-                                        <div className="relative z-10 h-full flex flex-col">
-                                            <CardItem translateZ="60" className="absolute -top-10 -right-10 opacity-[0.08] rotate-12 z-0 pointer-events-none">
-                                                <Film size={160} />
-                                            </CardItem>
-
-                                            <CardItem translateZ="40" className="absolute top-8 right-8 z-20">
-                                                <Sparkles className="text-yellow-400 w-8 h-8 animate-pulse" />
-                                            </CardItem>
-
-                                            {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1]">
-                                                    12 +Films &<br />2M+ views
-                                                </h3>
-                                                <Film className="w-[36px] h-[36px] text-[#8B5CF6] shrink-0" strokeWidth={1.5} />
-                                            </CardItem>
-
-                                            {/* Content */}
-                                            <CardItem translateZ="30" className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                                Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically.
-                                            </CardItem>
-
-                                            {/* Annotation */}
-                                            <div className="font-handwriting text-sm text-[#E91E8C] mb-2 font-bold z-20 leading-tight">2M+ organic views!</div>
-
-                                            {/* Interactive Gallery */}
-                                            <CardItem translateZ="100" className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50 bg-gray-50/50">
-                                                <LayoutGrid cards={filmCards} />
-                                            </CardItem>
-                                        </div>
-                                    </div>
+                                    <Star size={14} fill="#F59E0B" stroke="#F59E0B" />
                                 </motion.div>
-                            </CardBody>
-                        </CardContainer>
+                            ))}
+                        </div>
+                    </motion.div>
 
-                        {/* --- CARD 2: BRANDS --- */}
-                        <CardContainer className="inter-var h-full w-full">
-                            <CardBody className="relative h-full w-full">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: 0.1 }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
-                                >
-                                    <GlowingEffect
-                                        spread={40}
-                                        glow={true}
-                                        disabled={false}
-                                        proximity={64}
-                                        inactiveZone={0.01}
-                                    />
-                                    <div className="relative flex h-full flex-col overflow-hidden rounded-[20px] p-[30px] md:p-[40px]">
-                                        <div className="relative z-10 h-full flex flex-col">
-                                            {/* Icon */}
-                                            <CardItem translateZ="60" className="absolute top-6 right-6 z-20 bg-white/50 p-2 rounded-full backdrop-blur-sm border border-purple-50">
-                                                <Briefcase className="w-[28px] h-[28px] text-[#F59E0B]" strokeWidth={2} />
-                                            </CardItem>
+                    {/* Main Heading with Small Caps */}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="font-serif text-5xl font-bold mb-5"
+                        style={{
+                            color: "#4C1D95",
+                            fontVariant: "small-caps",
+                            letterSpacing: "0.02em",
+                        }}
+                    >
+                        The Journey So Far
+                    </motion.h2>
 
-                                            <CardItem translateZ="40" className="absolute -top-10 -left-10 opacity-[0.05] z-0 pointer-events-none">
-                                                <Briefcase size={160} />
-                                            </CardItem>
-
-                                            {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1]">
-                                                    Brand<br />Collaborations
-                                                </h3>
-                                            </CardItem>
-
-                                            {/* Content */}
-                                            <CardItem translateZ="30" className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                                From product placements to brand storytelling, we integrate brands naturally into movies, short films, and digital content people want to watch.
-                                            </CardItem>
-
-                                            {/* Trusted Partner Stars */}
-                                            <div className="flex flex-col gap-1 mb-2">
-                                                <div className="flex gap-0.5 text-[#F59E0B]">
-                                                    {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
-                                                </div>
-                                                <div className="font-handwriting text-sm text-[#F59E0B] font-bold">Trusted Partner</div>
-                                            </div>
-
-                                            {/* Interactive Gallery */}
-                                            <CardItem translateZ="100" className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50 bg-gray-50/50">
-                                                <LayoutGrid cards={brandCards} />
-                                            </CardItem>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </CardBody>
-                        </CardContainer>
-
-                        {/* --- CARD 3: CREATORS --- */}
-                        <CardContainer className="inter-var h-full w-full">
-                            <CardBody className="relative h-full w-full">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: 0.2 }}
-                                    className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-[24px] p-2 md:p-3 h-full flex flex-col relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(76,29,149,0.1)] transform-gpu"
-                                >
-                                    <GlowingEffect
-                                        spread={40}
-                                        glow={true}
-                                        disabled={false}
-                                        proximity={64}
-                                        inactiveZone={0.01}
-                                    />
-                                    <div className="relative flex h-full flex-col overflow-hidden rounded-[20px] p-[30px] md:p-[40px]">
-                                        <div className="relative z-10 h-full flex flex-col">
-                                            <CardItem translateZ="60" className="absolute -top-10 -right-10 opacity-[0.08] rotate-12 z-0 pointer-events-none">
-                                                <Clapperboard size={160} />
-                                            </CardItem>
-
-                                            {/* Header */}
-                                            <CardItem translateZ="50" className="flex items-start justify-between gap-4 mb-4 relative z-10 w-full">
-                                                <h3 className="font-serif text-[32px] font-bold text-[#A855F7] leading-[1.1]">
-                                                    25+ Creators<br />discovered
-                                                </h3>
-                                                <Users className="w-[36px] h-[36px] text-[#E91E8C] shrink-0" strokeWidth={1.5} />
-                                            </CardItem>
-
-                                            {/* Content */}
-                                            <CardItem translateZ="30" className="font-sans text-[15px] leading-[1.7] text-[#5A5A5A] mb-8 relative z-10">
-                                                We&apos;ve worked with talents found creators, actors, and filmmakers across Malayalam, Tamil, and English, helping them bring their vision to screen.
-                                            </CardItem>
-
-                                            {/* Crown */}
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <Crown className="text-[#E91E8C] w-6 h-6 animate-bounce" />
-                                                <div className="font-handwriting text-sm text-[#E91E8C] font-bold">Building careers</div>
-                                            </div>
-
-                                            {/* Interactive Gallery */}
-                                            <CardItem translateZ="100" className="h-[280px] w-full relative z-10 mt-auto rounded-xl overflow-hidden border border-gray-100/50 bg-gray-50/50">
-                                                <LayoutGrid cards={creatorCards} />
-                                            </CardItem>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </CardBody>
-                        </CardContainer>
-
-                    </div>
+                    {/* Sub-heading - Exactly 2 lines */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="max-w-[750px] mx-auto font-sans text-lg leading-relaxed"
+                        style={{ color: "#6B21A8" }}
+                    >
+                        <p>
+                            We've produced films, built brands, and discovered talent across Malayalam, Tamil, and English.
+                            <br />
+                            Here's our journey as we build toward feature cinema.
+                        </p>
+                    </motion.div>
                 </div>
 
-                {/* Scroll Indicator at bottom of section */}
-                <div className="mt-20">
-                    <ScrollIndicator />
+                {/* Three Cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative" style={{ zIndex: 10 }}>
+                    {/* Card 1: Films & Views */}
+                    <FilmsCard isInView={isInView} />
+
+                    {/* Card 2: Brand Collaborations */}
+                    <BrandCard isInView={isInView} />
+
+                    {/* Card 3: Creators Discovered */}
+                    <CreatorsCard isInView={isInView} />
                 </div>
-            </section>
-        </FollowerPointerCard>
+            </div>
+
+            {/* Animation Line from Badge to Card 3 */}
+            <svg
+                className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                style={{ zIndex: 5 }}
+            >
+                <motion.path
+                    d="M 50% 120 Q 75% 300 70% 500"
+                    stroke="#E9D5FF"
+                    strokeWidth="2"
+                    strokeDasharray="5,5"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={isInView ? { pathLength: 1, opacity: 0.4 } : {}}
+                    transition={{ duration: 2, delay: 1 }}
+                />
+            </svg>
+        </section>
     );
 }
 
+// Card 1: Films & Views
+function FilmsCard({ isInView }: { isInView: boolean }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-10 transition-all duration-300"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                height: "600px",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            {/* Header with Icon */}
+            <div className="flex items-center gap-3 mb-4">
+                <motion.div
+                    animate={{ rotate: [-5, 5, -5] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
+                </motion.div>
+                <h3 className="font-serif text-[32px] font-bold" style={{ color: "#2D2D2D" }}>
+                    12+ Films &{" "}
+                    <span style={{ color: "#4C1D95" }}>2M+</span> Views
+                </h3>
+            </div>
 
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
+            </p>
+
+            {/* Bento Grid Gallery */}
+            <div className="flex-1 grid grid-cols-3 gap-1.5 relative">
+                <div className="col-span-2 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Live a Little.jpg"
+                        alt="Live a Little"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Smile!.jpg"
+                        alt="Smile!"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Welcome Home.jpg"
+                        alt="Welcome Home"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-2 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Pazhampori.jpg"
+                        alt="Pazhampori"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+// Card 2: Brand Collaborations
+function BrandCard({ isInView }: { isInView: boolean }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-10 transition-all duration-300 relative"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                height: "600px",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ y: [-3, 3, -3] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
+            </motion.div>
+
+            {/* Header */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
+            </h3>
+
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
+            </p>
+
+            {/* Bento Grid Gallery */}
+            <div className="flex-1 grid grid-cols-3 gap-1.5">
+                <div className="col-span-2 relative rounded-xl overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
+                    <Image
+                        src="/logos/teqthots-logo.png"
+                        alt="TeqThots"
+                        width={200}
+                        height={100}
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
+                    <span className="text-2xl font-bold text-gray-400">Logo</span>
+                </div>
+                <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-4">
+                    <span className="text-2xl font-bold text-gray-400">Logo</span>
+                </div>
+                <div className="col-span-2 relative rounded-xl overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
+                    <span className="text-xl font-bold text-gray-400">Brand Collab</span>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+// Card 3: Creators Discovered
+function CreatorsCard({ isInView }: { isInView: boolean }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-10 transition-all duration-300"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+                height: "600px",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            {/* Header with Icon */}
+            <div className="flex items-center gap-3 mb-4">
+                <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
+                </motion.div>
+                <h3 className="font-serif text-[32px] font-bold" style={{ color: "#2D2D2D" }}>
+                    25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
+                </h3>
+            </div>
+
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+            </p>
+
+            {/* Bento Grid Gallery */}
+            <div className="flex-1 grid grid-cols-3 gap-1.5">
+                <div className="col-span-2 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/avatar-1.png"
+                        alt="Creator 1"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/avatar-2.png"
+                        alt="Creator 2"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/F.jpg"
+                        alt="Creator 3"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-2 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/A.jpg"
+                        alt="Creator 4"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+            </div>
+        </motion.div>
+    );
+}
