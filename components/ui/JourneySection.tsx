@@ -243,34 +243,16 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                         </CardItem>
 
                         {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5">
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-2 gap-2">
+                            <div className="relative rounded-xl overflow-hidden h-full">
                                 <Image
                                     src="/logos/piqual thumbnail.jpg"
-                                    alt="Piqual"
+                                    alt="Piqual Collaboration"
                                     fill
                                     className="object-cover hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
-                                <Image
-                                    src="/logos/teqthots-logo.png"
-                                    alt="TeqThots"
-                                    width={80}
-                                    height={80}
-                                    className="object-contain hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-4">
-                                <Image
-                                    src="/logos/caimue-logo.png"
-                                    alt="Caimue"
-                                    width={80}
-                                    height={80}
-                                    className="object-contain hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                            <div className="relative rounded-xl overflow-hidden h-full">
                                 <Image
                                     src="/logos/brand collab.jpg"
                                     alt="Brand Collaboration"
