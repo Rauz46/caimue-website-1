@@ -200,64 +200,58 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 }
 
 // Card 2: Brand Collaborations
+// Card 2: Brand Collaborations
 function BrandCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+            }}
         >
-            <CardContainer className="inter-var h-full w-full">
-                <CardBody className="h-full w-full">
-                    <div
-                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
-                        style={{
-                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                        }}
-                    >
-                        {/* Icon in TOP RIGHT */}
-                        <CardItem translateZ="60" className="absolute top-6 right-6">
-                            <motion.div
-                                animate={{ y: [-3, 3, -3] }}
-                                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
-                            </motion.div>
-                        </CardItem>
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ y: [-3, 3, -3] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
+            </motion.div>
 
-                        {/* Header */}
-                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                            Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
-                        </CardItem>
+            {/* Header */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
+            </h3>
 
-                        {/* Content */}
-                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                            From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
-                        </CardItem>
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
+            </p>
 
-                        {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-2 gap-2 min-h-[200px]">
-                            <div className="relative rounded-xl overflow-hidden min-h-[200px]">
-                                <Image
-                                    src="/logos/piqual thumbnail.jpg"
-                                    alt="Piqual Collaboration"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden min-h-[200px]">
-                                <Image
-                                    src="/logos/brand collab.jpg"
-                                    alt="Brand Collaboration"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                        </CardItem>
-                    </div>
-                </CardBody>
-            </CardContainer>
-        </motion.div >
+            {/* Bento Grid Gallery */}
+            <div className="grid grid-cols-2 gap-2 h-[250px]">
+                <div className="relative rounded-xl overflow-hidden h-full">
+                    <Image
+                        src="/logos/piqual thumbnail.jpg"
+                        alt="Piqual Collaboration"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="relative rounded-xl overflow-hidden h-full">
+                    <Image
+                        src="/logos/brand collab.jpg"
+                        alt="Brand Collaboration"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+            </div>
+        </motion.div>
     );
 }
 
@@ -268,77 +262,70 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.7 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+            }}
         >
-            <CardContainer className="inter-var h-full w-full">
-                <CardBody className="h-full w-full">
-                    <div
-                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
-                        style={{
-                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                        }}
-                    >
-                        {/* Icon in TOP RIGHT */}
-                        <CardItem translateZ="60" className="absolute top-6 right-6">
-                            <motion.div
-                                animate={{ scale: [1, 1.1, 1] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
-                            </motion.div>
-                        </CardItem>
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
+            </motion.div>
 
-                        {/* Header */}
-                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                            25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
-                        </CardItem>
+            {/* Header */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
+            </h3>
 
-                        {/* Content */}
-                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                            We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
-                        </CardItem>
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+            </p>
 
-                        {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 min-h-[200px]">
-                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/team/megha  2.jpg"
-                                    alt="Creator Megha"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                    style={{ objectPosition: "center 20%" }}
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/team/sajan.jpg"
-                                    alt="Creator Sajan"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                    style={{ objectPosition: "center 30%" }}
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/team/megha.jpg"
-                                    alt="Creator Megha"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                    style={{ objectPosition: "center 25%" }}
-                                />
-                            </div>
-                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/team/sajan 2.jpg"
-                                    alt="Creator Sajan"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                    style={{ objectPosition: "center 20%" }}
-                                />
-                            </div>
-                        </CardItem>
-                    </div>
-                </CardBody>
-            </CardContainer>
+            {/* Bento Grid Gallery */}
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/megha  2.jpg"
+                        alt="Creator Megha"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 20%" }}
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/sajan.jpg"
+                        alt="Creator Sajan"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 30%" }}
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/megha.jpg"
+                        alt="Creator Megha"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 25%" }}
+                    />
+                </div>
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/sajan 2.jpg"
+                        alt="Creator Sajan"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 20%" }}
+                    />
+                </div>
+            </div>
         </motion.div>
     );
 }
