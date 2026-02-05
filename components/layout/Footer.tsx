@@ -179,10 +179,10 @@ export function Footer() {
                         {/* NAV ITEMS */}
                         <nav className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
                             <Link href="/" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Home</Link>
-                            <Link href="/about" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">About</Link>
+                            <Link href="/brands" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Brands</Link>
+                            <Link href="/creators" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Creators</Link>
                             <Link href="/platforms" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Platforms</Link>
-                            <Link href="/team" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Team</Link>
-                            <Link href="/collaborate" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Collaborate</Link>
+                            <Link href="/about" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">About</Link>
                         </nav>
 
                         {/* SOCIAL ICONS */}

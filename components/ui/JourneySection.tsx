@@ -236,7 +236,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             <div className="grid grid-cols-1 grid-rows-2 gap-2 h-[250px]">
                 <div className="relative rounded-xl overflow-hidden h-full w-full bg-gray-50 border border-gray-100">
                     <Image
-                        src="/logos/piqual thumbnail.jpg"
+                        src="/logos/thumbnail.jpg"
                         alt="Piqual Collaboration"
                         fill
                         className="object-contain hover:scale-105 transition-transform duration-300"
