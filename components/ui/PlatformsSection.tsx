@@ -170,7 +170,7 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                             text="Watch on YouTube"
                             variant="youtube"
                             icon={<Youtube size={18} />}
-                            href="https://www.youtube.com/"
+                            href="https://www.youtube.com/@ennitto"
                             target="_blank"
                             rel="noopener noreferrer"
                         />
@@ -269,7 +269,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                             text="Watch on YouTube"
                             variant="youtube"
                             icon={<Youtube size={18} />}
-                            href="https://www.youtube.com/"
+                            href="https://www.youtube.com/@TeqThots"
                             target="_blank"
                             rel="noopener noreferrer"
                         />
