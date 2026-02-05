@@ -56,31 +56,31 @@ const BrandOwnerCard = () => {
             />
 
             {/* Orbiting Social Icons Container */}
-            <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[280px] h-[180px] flex items-center justify-center">
+            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[320px] h-[320px] flex items-center justify-center">
                 {/* Manual Orbit Paths */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                    <circle cx="50%" cy="50%" r="65" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
-                    <circle cx="50%" cy="50%" r="105" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+                <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
+                    <circle cx="50%" cy="50%" r="75" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
+                    <circle cx="50%" cy="50%" r="125" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
                 </svg>
 
                 {/* Center briefcase icon */}
                 <motion.div
                     className="absolute z-10"
-                    animate={{ y: [-4, 4, -4] }}
+                    animate={{ y: [-5, 5, -5] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-2xl flex items-center justify-center relative">
-                        <div className="w-10 h-2.5 bg-amber-400 rounded-sm absolute top-2" />
-                        <div className="w-4 h-1.5 bg-amber-300 rounded-sm absolute top-0" />
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-2xl flex items-center justify-center relative">
+                        <div className="w-11 h-3 bg-amber-400 rounded-sm absolute top-3" />
+                        <div className="w-5 h-2 bg-amber-300 rounded-sm absolute top-0.5" />
                     </div>
                 </motion.div>
 
-                {/* Inner orbit - YouTube */}
+                {/* Inner orbit - YouTube, Instagram, Facebook */}
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-white shadow-lg z-20"
                     duration={20}
-                    delay={20}
-                    radius={65}
+                    delay={0}
+                    radius={75}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -88,12 +88,11 @@ const BrandOwnerCard = () => {
                     </svg>
                 </OrbitingCircles>
 
-                {/* Instagram */}
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-white shadow-lg z-20"
                     duration={20}
-                    delay={6.6}
-                    radius={65}
+                    delay={6.5}
+                    radius={75}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -101,12 +100,11 @@ const BrandOwnerCard = () => {
                     </svg>
                 </OrbitingCircles>
 
-                {/* Facebook */}
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg"
+                    className="size-11 border-none bg-white shadow-lg z-20"
                     duration={20}
-                    delay={13.2}
-                    radius={65}
+                    delay={13.3}
+                    radius={75}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -114,12 +112,12 @@ const BrandOwnerCard = () => {
                     </svg>
                 </OrbitingCircles>
 
-                {/* Outer orbit - X (Twitter) */}
+                {/* Outer orbit - X (Twitter), Telegram */}
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg"
-                    radius={105}
+                    className="size-12 border-none bg-white shadow-lg z-20"
+                    radius={125}
                     duration={25}
-                    delay={15}
+                    delay={0}
                     reverse
                     path={false}
                 >
@@ -128,12 +126,11 @@ const BrandOwnerCard = () => {
                     </svg>
                 </OrbitingCircles>
 
-                {/* Telegram */}
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg"
-                    radius={105}
+                    className="size-12 border-none bg-white shadow-lg z-20"
+                    radius={125}
                     duration={25}
-                    delay={27.5}
+                    delay={12.5}
                     reverse
                     path={false}
                 >
