@@ -165,8 +165,8 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         </CardItem>
 
                         {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 relative">
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 min-h-[200px]">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/images/Movies/Welcome Home.jpg"
                                     alt="Welcome Home"
@@ -174,7 +174,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                                     className="object-cover hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden">
+                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/images/Movies/Smile!.jpg"
                                     alt="Smile!"
@@ -182,7 +182,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                                     className="object-cover hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden">
+                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
                                     alt="Malsya Mandooka Mahamaham"
@@ -190,7 +190,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                                     className="object-cover hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/images/Movies/Harinarayana Kudu Charitham.jpg"
                                     alt="Harinarayana Kudu Charitham"
@@ -243,8 +243,8 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                         </CardItem>
 
                         {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-2 gap-2">
-                            <div className="relative rounded-xl overflow-hidden h-full">
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-2 gap-2 min-h-[200px]">
+                            <div className="relative rounded-xl overflow-hidden min-h-[200px]">
                                 <Image
                                     src="/logos/piqual thumbnail.jpg"
                                     alt="Piqual Collaboration"
@@ -252,7 +252,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                                     className="object-cover hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden h-full">
+                            <div className="relative rounded-xl overflow-hidden min-h-[200px]">
                                 <Image
                                     src="/logos/brand collab.jpg"
                                     alt="Brand Collaboration"
@@ -305,8 +305,8 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
                         </CardItem>
 
                         {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5">
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 min-h-[200px]">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/team/megha  2.jpg"
                                     alt="Creator Megha"
@@ -315,7 +315,7 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
                                     style={{ objectPosition: "center 20%" }}
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden">
+                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/team/sajan.jpg"
                                     alt="Creator Sajan"
@@ -324,7 +324,7 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
                                     style={{ objectPosition: "center 30%" }}
                                 />
                             </div>
-                            <div className="relative rounded-xl overflow-hidden">
+                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/team/megha.jpg"
                                     alt="Creator Megha"
@@ -333,7 +333,7 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
                                     style={{ objectPosition: "center 25%" }}
                                 />
                             </div>
-                            <div className="col-span-2 relative rounded-xl overflow-hidden">
+                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
                                 <Image
                                     src="/team/sajan 2.jpg"
                                     alt="Creator Sajan"
