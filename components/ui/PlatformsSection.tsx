@@ -113,8 +113,8 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
             style={{
-                background: "linear-gradient(135deg, #4C1D95 0%, #7C3AED 50%, #A855F7 100%)",
-                boxShadow: "0 8px 30px rgba(76, 29, 149, 0.4)"
+                background: "linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%)",
+                boxShadow: "0 8px 30px rgba(139, 92, 246, 0.25)"
             }}
         >
             {/* Grid overlay */}
@@ -136,26 +136,26 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                     </span>
 
                     {/* Heading */}
-                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-white mb-2">
+                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#4C1D95] mb-2">
                         Ennitto
                     </h3>
 
                     {/* Tagline */}
-                    <p className="text-white/80 italic text-base mb-5">
+                    <p className="text-gray-600 italic text-base mb-5">
                         Where Stories Become Cinema
                     </p>
 
                     {/* Description */}
-                    <p className="text-gray-300 text-[15px] leading-relaxed max-w-[500px] mb-6">
+                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
                         We produce original Malayalam, Tamil & English films—from shorts to features to OTT content. We discover talent, back stories that matter, and build toward theatrical and streaming releases.
                     </p>
 
                     {/* Metrics Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                        <MetricCard number="12+" label="Films Produced" dark />
-                        <MetricCard number="2M+" label="Views on YouTube" dark />
-                        <MetricCard number="3000+" label="Watch Hours" dark />
-                        <MetricCard number="25+" label="Creators Discovered" dark />
+                        <MetricCard number="12+" label="Films Produced" />
+                        <MetricCard number="2M+" label="Views on YouTube" />
+                        <MetricCard number="3000+" label="Watch Hours" />
+                        <MetricCard number="25+" label="Creators Discovered" />
                     </div>
 
                     {/* CTA Buttons */}
@@ -168,7 +168,7 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                         />
                         <CTAButton
                             text="Explore More"
-                            variant="outline"
+                            variant="primary"
                             icon={<ArrowRight size={18} />}
                         />
                     </div>
@@ -384,12 +384,13 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                                 className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
                             />
                         </div>
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
+                        <div className="col-span-2 relative rounded-xl overflow-hidden group h-[150px]">
                             <Image
                                 src="/images/Movies/Vishudha Sakshi.jpg"
                                 alt="Vishudha Sakshi"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
+                                style={{ objectPosition: "center 30%" }}
                             />
                         </div>
                     </div>
