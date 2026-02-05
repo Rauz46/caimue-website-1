@@ -134,74 +134,67 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
+            whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
+            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            style={{
+                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
+            }}
         >
-            <CardContainer className="inter-var h-full w-full">
-                <CardBody className="h-full w-full">
-                    <div
-                        className="bg-white rounded-[20px] p-10 transition-all duration-300 relative h-full flex flex-col"
-                        style={{
-                            boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-                        }}
-                    >
-                        {/* Icon in TOP RIGHT */}
-                        <CardItem translateZ="60" className="absolute top-6 right-6">
-                            <motion.div
-                                animate={{ rotate: [-5, 5, -5] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
-                            </motion.div>
-                        </CardItem>
+            {/* Icon in TOP RIGHT */}
+            <motion.div
+                className="absolute top-6 right-6"
+                animate={{ rotate: [-5, 5, -5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
+            </motion.div>
 
-                        {/* Header - 2 lines */}
-                        <CardItem translateZ="50" as="h3" className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                            12+ Films &<br />
-                            <span style={{ color: "#4C1D95" }}>2M+</span> Views
-                        </CardItem>
+            {/* Header - 2 lines */}
+            <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                12+ Films &<br />
+                <span style={{ color: "#4C1D95" }}>2M+</span> Views
+            </h3>
 
-                        {/* Content */}
-                        <CardItem translateZ="30" as="p" className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                            Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms. Each film was a step toward building feature-length cinema.
-                        </CardItem>
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+                Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms.
+            </p>
 
-                        {/* Bento Grid Gallery */}
-                        <CardItem translateZ="100" className="flex-1 grid grid-cols-3 gap-1.5 min-h-[200px]">
-                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/images/Movies/Welcome Home.jpg"
-                                    alt="Welcome Home"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/images/Movies/Smile!.jpg"
-                                    alt="Smile!"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
-                                    alt="Malsya Mandooka Mahamaham"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="col-span-2 relative rounded-xl overflow-hidden min-h-[100px]">
-                                <Image
-                                    src="/images/Movies/Harinarayana Kudu Charitham.jpg"
-                                    alt="Harinarayana Kudu Charitham"
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                        </CardItem>
-                    </div>
-                </CardBody>
-            </CardContainer>
+            {/* Bento Grid Gallery */}
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Welcome Home.jpg"
+                        alt="Welcome Home"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Smile!.jpg"
+                        alt="Smile!"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
+                        alt="Malsya Mandooka Mahamaham"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/images/Movies/Harinarayana Kudu Charitham.jpg"
+                        alt="Harinarayana Kudu Charitham"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+            </div>
         </motion.div>
     );
 }
