@@ -9,105 +9,19 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 
-// World Map with Dot Pattern - matching reference image style
-const WorldMapDotted = () => (
-    <div className="relative w-full h-[300px] flex items-center justify-center pointer-events-none">
-        {/* SVG Dot Pattern World Map */}
-        <svg viewBox="0 0 800 400" className="w-full h-auto max-w-[600px]">
-            <defs>
-                <pattern id="dot-pattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1.5" fill="white" fillOpacity="0.4" />
-                </pattern>
-                <clipPath id="world-clip">
-                    {/* North America */}
-                    <path d="M80 80 Q120 60, 180 70 T240 100 Q260 130, 250 170 T200 200 Q160 210, 120 190 T80 140 Z" />
-                    {/* South America */}
-                    <path d="M180 220 Q200 240, 210 300 T200 360 Q170 380, 150 350 T160 280 Q165 250, 180 220 Z" />
-                    {/* Europe */}
-                    <path d="M380 60 Q420 50, 460 60 T500 90 Q490 120, 450 130 T380 110 Q370 90, 380 60 Z" />
-                    {/* Africa */}
-                    <path d="M380 140 Q420 130, 460 150 T480 220 Q470 280, 440 320 T380 340 Q350 320, 360 260 T380 180 Z" />
-                    {/* Asia */}
-                    <path d="M480 50 Q560 40, 650 60 T740 100 Q750 150, 720 180 T620 200 Q550 210, 500 180 T480 120 Q475 80, 480 50 Z" />
-                    {/* India */}
-                    <path d="M560 180 Q580 200, 590 250 T570 300 Q540 310, 530 270 T550 210 Z" />
-                    {/* Australia */}
-                    <path d="M640 280 Q700 270, 740 300 T730 350 Q690 370, 650 350 T640 310 Z" />
-                </clipPath>
-            </defs>
+import WorldMap from "@/components/ui/world-map";
 
-            {/* Filled dot pattern using clip path */}
-            <rect width="100%" height="100%" fill="url(#dot-pattern)" clipPath="url(#world-clip)" />
-        </svg>
-
-        {/* Location Pins with Blinking Animation */}
-        {/* Tampa (HQ) */}
-        <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="absolute"
-            style={{ top: "32%", left: "22%" }}
-        >
-            <div className="flex items-center gap-2">
-                <div className="relative">
-                    <motion.div
-                        className="absolute -inset-3 bg-red-500/50 rounded-full"
-                        animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.8)]" />
-                </div>
-                <span className="text-[13px] font-bold text-white drop-shadow-lg whitespace-nowrap">Tampa(HQ)</span>
-            </div>
-        </motion.div>
-
-        {/* London */}
-        <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="absolute"
-            style={{ top: "20%", left: "52%" }}
-        >
-            <div className="flex items-center gap-2">
-                <div className="relative">
-                    <motion.div
-                        className="absolute -inset-3 bg-red-500/50 rounded-full"
-                        animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: 0.7 }}
-                    />
-                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.8)]" />
-                </div>
-                <span className="text-[13px] font-bold text-white drop-shadow-lg">London</span>
-            </div>
-        </motion.div>
-
-        {/* Chennai */}
-        <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7 }}
-            className="absolute"
-            style={{ top: "42%", left: "68%" }}
-        >
-            <div className="flex items-center gap-2">
-                <div className="relative">
-                    <motion.div
-                        className="absolute -inset-3 bg-red-500/50 rounded-full"
-                        animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: 1.4 }}
-                    />
-                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.8)]" />
-                </div>
-                <span className="text-[13px] font-bold text-white drop-shadow-lg">Chennai</span>
-            </div>
-        </motion.div>
-    </div>
-);
+// Dot locations for the world map
+const locations = [
+    {
+        start: { lat: 27.9506, lng: -82.4572, label: "Tampa(HQ)" },
+        end: { lat: 51.5074, lng: -0.1278, label: "London" },
+    },
+    {
+        start: { lat: 51.5074, lng: -0.1278, label: "London" },
+        end: { lat: 13.0827, lng: 80.2707, label: "Chennai" },
+    },
+];
 
 export function Footer() {
     return (
@@ -136,7 +50,7 @@ export function Footer() {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="font-serif text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl"
+                                className="font-serif text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl !text-white"
                             >
                                 Fancy a chat?
                             </motion.h2>
@@ -159,7 +73,7 @@ export function Footer() {
                                 <MagneticButton>
                                     <Link
                                         href="/collaborate"
-                                        className="px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:scale-105 transition-all shadow-2xl flex items-center gap-3 border border-white/20"
+                                        className="px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:scale-105 transition-all shadow-2xl flex items-center gap-3"
                                     >
                                         Contact <ArrowRight size={20} />
                                     </Link>
@@ -167,9 +81,9 @@ export function Footer() {
                             </motion.div>
                         </div>
 
-                        {/* World Map with Blinking Pins */}
-                        <div className="hidden lg:block">
-                            <WorldMapDotted />
+                        {/* Dynamic World Map */}
+                        <div className="hidden lg:block w-full">
+                            <WorldMap dots={locations} lineColor="#FF0000" />
                         </div>
                     </div>
                 </div>
