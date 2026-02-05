@@ -100,7 +100,7 @@ export function Footer() {
                                 alt="Caimue"
                                 width={150}
                                 height={50}
-                                className="h-10 w-auto object-contain brightness-0 invert"
+                                className="h-10 w-auto object-contain"
                             />
                         </Link>
 
