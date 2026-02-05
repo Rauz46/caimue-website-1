@@ -111,15 +111,18 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-[#1A1A1A] rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
-            style={{ boxShadow: "0 8px 30px rgba(0, 0, 0, 0.3)" }}
+            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
+            style={{
+                background: "linear-gradient(135deg, #4C1D95 0%, #7C3AED 50%, #A855F7 100%)",
+                boxShadow: "0 8px 30px rgba(76, 29, 149, 0.4)"
+            }}
         >
             {/* Grid overlay */}
             <div
-                className="absolute inset-0 opacity-[0.03]"
+                className="absolute inset-0 opacity-[0.05]"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
                     backgroundSize: "40px 40px",
                 }}
             />
@@ -247,8 +250,8 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     {/* Metrics Grid */}
                     <div className="grid grid-cols-3 gap-3 mb-6">
                         <MetricCard number="1M+" label="Audience Reached" />
-                        <MetricCard number="Multiple" label="Brand Collaborations" />
-                        <MetricCard number="50+" label="Videos Created" />
+                        <MetricCard number="5+" label="Brand Collaborations" />
+                        <MetricCard number="10+" label="Videos Created" />
                     </div>
 
                     {/* CTA Buttons */}
@@ -270,20 +273,20 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                 {/* Right Column (40%) - Logo Gallery */}
                 <div className="lg:w-[40%]">
                     <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
-                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group">
+                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group p-2">
                             <Image
                                 src="/logos/thumbnail.jpg"
                                 alt="Brand Thumbnail"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-all duration-300"
+                                className="object-contain group-hover:scale-105 transition-all duration-300"
                             />
                         </div>
-                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group">
+                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group p-2">
                             <Image
                                 src="/logos/brand collab.jpg"
                                 alt="Brand Collaboration"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-all duration-300"
+                                className="object-contain group-hover:scale-105 transition-all duration-300"
                             />
                         </div>
                         <div className="col-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100 group">
@@ -340,8 +343,8 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                     {/* Metrics Grid */}
                     <div className="grid grid-cols-3 gap-3 mb-6">
                         <MetricCard number="5+" label="Projects in Pipeline" />
-                        <MetricCard number="3" label="Languages" />
-                        <MetricCard number="2026" label="Coming Soon" />
+                        <MetricCard number="3" label="Malayalam, Tamil & English" />
+                        <MetricCard number="2027" label="Coming Soon" />
                     </div>
 
                     {/* CTA Button */}
@@ -373,15 +376,21 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                                 className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
                             />
                         </div>
-                        {/* Coming Soon Placeholder */}
-                        <div className="relative rounded-xl overflow-hidden bg-white/60 border-2 border-dashed border-gray-400 flex flex-col items-center justify-center">
-                            <Clapperboard size={32} className="text-gray-400 mb-2" />
-                            <span className="text-gray-500 text-sm font-medium">Coming Soon</span>
+                        <div className="relative rounded-xl overflow-hidden group">
+                            <Image
+                                src="/images/Movies/Pazhampori.jpg"
+                                alt="Pazhampori"
+                                fill
+                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
+                            />
                         </div>
-                        {/* Coming Soon Placeholder */}
-                        <div className="col-span-2 relative rounded-xl overflow-hidden bg-white/60 border-2 border-dashed border-gray-400 flex flex-col items-center justify-center py-8">
-                            <Sparkles size={32} className="text-gray-400 mb-2" />
-                            <span className="text-gray-500 text-sm font-medium">More Projects Launching 2026</span>
+                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
+                            <Image
+                                src="/images/Movies/Vishudha Sakshi.jpg"
+                                alt="Vishudha Sakshi"
+                                fill
+                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
+                            />
                         </div>
                     </div>
                 </div>
