@@ -44,10 +44,10 @@ export function JourneySection() {
                         style={{ background: "#E9D5FF" }}
                     >
                         <span
-                            className="text-xs font-bold uppercase"
+                            className="text-xs font-bold"
                             style={{ color: "#4C1D95", letterSpacing: "1px" }}
                         >
-                            Trusted by Creators and Brands
+                            Trusted by Brand & Creators
                         </span>
                         <div className="flex gap-0.5">
                             {[...Array(5)].map((_, i) => (

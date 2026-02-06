@@ -137,7 +137,7 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
                     {/* Tag */}
-                    <span className="inline-block w-fit px-3 py-1 bg-[#E9D5FF] text-[#4C1D95] rounded-full text-xs uppercase tracking-wider font-medium mb-4">
+                    <span className="inline-block w-fit px-3 py-1 bg-[#E9D5FF] text-[#4C1D95] rounded-full text-xs tracking-wider font-medium mb-4">
                         Cinema & Original Stories
                     </span>
 
@@ -333,7 +333,7 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
                     {/* Tag */}
-                    <span className="inline-block w-fit px-3 py-1 bg-white text-[#4C1D95] rounded-full text-xs uppercase tracking-wider font-medium mb-4">
+                    <span className="inline-block w-fit px-3 py-1 bg-white text-[#4C1D95] rounded-full text-xs tracking-wider font-medium mb-4">
                         Full-Length Cinema
                     </span>
 

@@ -70,14 +70,12 @@ export function Footer() {
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 }}
                             >
-                                <MagneticButton>
-                                    <Link
-                                        href="/contact"
-                                        className="px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:scale-105 transition-all shadow-2xl flex items-center gap-3"
-                                    >
-                                        Start a Conversation <ArrowRight size={20} />
-                                    </Link>
-                                </MagneticButton>
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex w-fit px-10 py-5 bg-white text-[#4C1D95] font-bold text-lg rounded-full hover:bg-gray-50 transition-colors flex items-center gap-3"
+                                >
+                                    Start a Conversation <ArrowRight size={20} />
+                                </Link>
                             </motion.div>
                         </div>
 
