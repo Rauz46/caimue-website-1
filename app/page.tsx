@@ -10,7 +10,6 @@ import { CinematicBackground } from "@/components/effects/CinematicBackground";
 import { FloatingShapes } from "@/components/effects/FloatingShapes";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { VideoScrollStrip } from "@/components/ui/VideoScrollStrip";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
@@ -40,73 +39,71 @@ const showcaseItems = [
 export default function Home() {
   return (
     <>
-      <FollowerPointerCard title="🎬 Stories That Matter">
-        <section className="min-h-screen flex flex-col pt-32 md:pt-48 relative overflow-visible">
-          {/* Background Animation */}
-          <BackgroundGradientAnimation
-            containerClassName="absolute inset-0 z-0"
-            firstColor="139, 92, 246"  // Violet-500
-            secondColor="147, 51, 234" // Purple-600
-            thirdColor="124, 58, 237"  // Violet-600
-            fourthColor="168, 85, 247" // Purple-500
-            fifthColor="192, 132, 252" // Purple-400
-            pointerColor="139, 92, 246" // Violet-500
-            gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
-            gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
-          />
+      <section className="min-h-screen flex flex-col pt-32 md:pt-48 relative overflow-visible">
+        {/* Background Animation */}
+        <BackgroundGradientAnimation
+          containerClassName="absolute inset-0 z-0"
+          firstColor="139, 92, 246"  // Violet-500
+          secondColor="147, 51, 234" // Purple-600
+          thirdColor="124, 58, 237"  // Violet-600
+          fourthColor="168, 85, 247" // Purple-500
+          fifthColor="192, 132, 252" // Purple-400
+          pointerColor="139, 92, 246" // Violet-500
+          gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
+          gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+        />
 
-          {/* Background Elements */}
-          <HeroGrid className="opacity-40 z-10" />
-          <div className="bg-noise opacity-10 z-10" />
+        {/* Background Elements */}
+        <HeroGrid className="opacity-40 z-10" />
+        <div className="bg-noise opacity-10 z-10" />
 
-          {/* Decorative Stars and Sparkles */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-            <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
-            <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
-            <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
-            <div className="absolute top-1/2 left-1/4 text-purple-400/20 text-xl">●</div>
-            <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
-            <div className="absolute top-1/3 right-1/4 text-purple-200/30 text-xl">●</div>
-          </div>
+        {/* Decorative Stars and Sparkles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+          <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
+          <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
+          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
+          <div className="absolute top-1/2 left-1/4 text-purple-400/20 text-xl">●</div>
+          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
+          <div className="absolute top-1/3 right-1/4 text-purple-200/30 text-xl">●</div>
+        </div>
 
-          {/* Editorial Scribbles */}
-          <FloatingScribbles />
+        {/* Editorial Scribbles */}
+        <FloatingScribbles />
 
-          <div className="container relative z-10 flex flex-col items-center text-center justify-center flex-1 pt-12 md:pt-20">
+        <div className="container relative z-10 flex flex-col items-center text-center justify-center flex-1 pt-12 md:pt-20">
 
-            {/* Social Proof Strip - Removed */}
+          {/* Social Proof Strip - Removed */}
 
-            <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center">
-              <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-2">
-                <span className="block">Stories Worth Telling.</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4">
-                  <span>Movies Worth Making.</span>
-                </span>
+          <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center">
+            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-2">
+              <span className="block">Stories Worth Telling.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4">
+                <span>Movies Worth Making.</span>
               </span>
-            </h1>
+            </span>
+          </h1>
 
-            {/* Subtext - Close to headline */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-snug font-medium drop-shadow"
-            >
-              Caimue is an AI-first production house creating cinema across Malayalam, Tamil, and English. We discover talent, back stories that matter, and produce films that reach audiences who care.
-            </motion.p>
+          {/* Subtext - Close to headline */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+          >
+            Caimue is an AI-first production house creating cinema across Malayalam, Tamil, and English. We discover talent, back stories that matter, and produce films that reach audiences who care.
+          </motion.p>
 
-            {/* Scroll Down Indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.2 }}
-              className="mb-12 mt-auto"
-            >
-              <ScrollIndicator />
-            </motion.div>
-          </div>
-        </section>
-      </FollowerPointerCard>
+          {/* Scroll Down Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="mb-12 mt-auto"
+          >
+            <ScrollIndicator />
+          </motion.div>
+        </div>
+      </section>
 
       {/* ==================== JOURNEY SECTION (MOVED UP) ==================== */}
       <JourneySection />
