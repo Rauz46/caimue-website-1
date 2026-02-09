@@ -388,7 +388,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 4: Feature Films - Coming Soon (Minimal Design)
+// Card 4: Feature Films - Coming Soon (Creative Redesign)
 function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
@@ -397,51 +397,126 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="relative rounded-3xl p-8 md:p-16 min-h-[400px] overflow-hidden flex flex-col items-center justify-center text-center"
             style={{
-                background: "linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%)",
-                boxShadow: "0 4px 20px rgba(139, 92, 246, 0.15)",
+                background: "linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4C1D95 100%)",
+                boxShadow: "0 8px 40px rgba(76, 29, 149, 0.4)",
             }}
         >
-            {/* Decorative elements */}
+            {/* Animated Grid Background */}
+            <div
+                className="absolute inset-0 opacity-10"
+                style={{
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                    backgroundSize: '40px 40px'
+                }}
+            />
+
+            {/* Floating Film Reel - Top Left */}
             <motion.div
-                className="absolute top-10 left-10 text-purple-300/30"
-                animate={{ rotate: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute top-8 left-8 text-white/20"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-                <Film size={48} strokeWidth={1.5} />
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="4" />
+                    <circle cx="50" cy="50" r="15" fill="currentColor" />
+                    <circle cx="50" cy="20" r="8" fill="currentColor" />
+                    <circle cx="50" cy="80" r="8" fill="currentColor" />
+                    <circle cx="20" cy="50" r="8" fill="currentColor" />
+                    <circle cx="80" cy="50" r="8" fill="currentColor" />
+                </svg>
+            </motion.div>
+
+            {/* Floating Film Reel - Bottom Right */}
+            <motion.div
+                className="absolute bottom-8 right-8 text-white/15"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            >
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="4" />
+                    <circle cx="50" cy="50" r="15" fill="currentColor" />
+                    <circle cx="50" cy="20" r="8" fill="currentColor" />
+                    <circle cx="50" cy="80" r="8" fill="currentColor" />
+                    <circle cx="20" cy="50" r="8" fill="currentColor" />
+                    <circle cx="80" cy="50" r="8" fill="currentColor" />
+                </svg>
+            </motion.div>
+
+            {/* Sparkle Effects */}
+            <motion.div
+                className="absolute top-1/4 right-1/4"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+            >
+                <Sparkles size={24} className="text-yellow-300" />
             </motion.div>
             <motion.div
-                className="absolute bottom-10 right-10 text-purple-300/30"
-                animate={{ rotate: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                className="absolute bottom-1/3 left-1/4"
+                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.9, 0.4] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
             >
-                <Clapperboard size={48} strokeWidth={1.5} />
+                <Sparkles size={20} className="text-purple-300" />
+            </motion.div>
+
+            {/* Clapperboard Icon - Top Right */}
+            <motion.div
+                className="absolute top-12 right-16 text-white/20"
+                animate={{ rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+            >
+                <Clapperboard size={56} strokeWidth={1.5} />
             </motion.div>
 
             <div className="relative z-10 max-w-2xl">
-                {/* Heading */}
-                <h3 className="font-serif text-5xl md:text-6xl font-bold text-[#4C1D95] mb-6">
+                {/* Label */}
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.6 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-white/10 border border-white/20"
+                >
+                    <Film size={16} className="text-purple-300" />
+                    <span className="text-sm font-medium text-white/80 tracking-wide">In Development</span>
+                </motion.div>
+
+                {/* Heading - Playfair Display */}
+                <h3
+                    className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight"
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                >
                     Feature Films
                 </h3>
 
-                {/* Coming Soon - Large */}
+                {/* Coming Soon - Large with Playfair Display */}
                 <motion.p
-                    className="text-6xl md:text-7xl font-bold mb-8"
+                    className="text-6xl md:text-8xl font-bold mb-8 tracking-tight"
                     style={{
-                        background: "linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)",
+                        fontFamily: "'Playfair Display', Georgia, serif",
+                        background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 30%, #FB923C 70%, #FACC15 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
+                        textShadow: "0 0 60px rgba(251, 191, 36, 0.3)"
                     }}
-                    animate={{ opacity: [0.8, 1, 0.8] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={{
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    }}
+                    transition={{ duration: 5, repeat: Infinity }}
                 >
                     Coming Soon
                 </motion.p>
 
                 {/* Description */}
-                <p className="text-gray-700 text-lg leading-relaxed">
+                <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto">
                     As we make a success of our short films and video formats, we are building a slate of feature-length films for theatrical and OTT releases.
                 </p>
+
+                {/* Decorative Line */}
+                <motion.div
+                    className="mt-8 mx-auto w-24 h-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400"
+                    animate={{ scaleX: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                />
             </div>
         </motion.div>
     );

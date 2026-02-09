@@ -232,71 +232,31 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* Infinite Scroll Gallery - Brands */}
-            <div className="relative h-[220px] overflow-hidden rounded-xl">
-                {/* Gradient overlays for smooth edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                {/* Scrolling Track */}
-                <div
-                    className="flex gap-4 animate-scroll"
-                    style={{
-                        animation: 'scroll 35s linear infinite',
-                        width: 'max-content'
-                    }}
-                >
-                    {/* First set of images */}
-                    <div className="flex-shrink-0 w-[300px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/thumbnail.jpg"
-                            alt="Piqual Collaboration"
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                    <div className="flex-shrink-0 w-[300px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/brand collab.jpg"
-                            alt="Brand Collaboration"
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                    <div className="flex-shrink-0 w-[350px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/IMG_2967.jpg"
-                            alt="Brand Content"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-
-                    {/* Duplicate set for seamless loop */}
-                    <div className="flex-shrink-0 w-[300px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/thumbnail.jpg"
-                            alt="Piqual Collaboration"
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                    <div className="flex-shrink-0 w-[300px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/brand collab.jpg"
-                            alt="Brand Collaboration"
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                    <div className="flex-shrink-0 w-[350px] h-[200px] relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                        <Image
-                            src="/logos/IMG_2967.jpg"
-                            alt="Brand Content"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
+            {/* Bento Grid Gallery - Brands (matches Card 1 layout) */}
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                    <Image
+                        src="/logos/thumbnail.jpg"
+                        alt="Piqual Collaboration"
+                        fill
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                    <Image
+                        src="/logos/brand collab.jpg"
+                        alt="Brand Collaboration"
+                        fill
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                    <Image
+                        src="/logos/IMG_2967.jpg"
+                        alt="Brand Content"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
                 </div>
             </div>
         </motion.div>
@@ -335,12 +295,13 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 We've worked with 25+ writers, directors, actors, and storytellers across English, Malayalam, and Tamil. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
-            {/* Bento Grid Gallery - Artists */}
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+            {/* Bento Grid Gallery - Artists (All 7 team images) */}
+            <div className="grid grid-cols-4 grid-rows-3 gap-2 h-[300px]">
+                {/* Row 1 */}
+                <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden">
                     <Image
                         src="/team/smile 1.png"
-                        alt="Artist photo"
+                        alt="Team collaboration"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                         style={{ objectPosition: "center 30%" }}
@@ -348,26 +309,55 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 </div>
                 <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
-                        src="/team/ads.png"
-                        alt="Artist behind the scenes"
+                        src="/team/megha.jpg"
+                        alt="Artist Megha"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 20%" }}
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/sajan.jpg"
+                        alt="Artist Sajan"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 30%" }}
+                    />
+                </div>
+                {/* Row 2 */}
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/megha  2.jpg"
+                        alt="Artist Megha"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 20%" }}
+                    />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/sajan 2.jpg"
+                        alt="Artist Sajan"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 30%" }}
+                    />
+                </div>
+                {/* Row 3 */}
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
+                    <Image
+                        src="/team/smile 2.png"
+                        alt="Team photo"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                         style={{ objectPosition: "center 40%" }}
                     />
                 </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/smile 2.png"
-                        alt="Artist photo"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 30%" }}
-                    />
-                </div>
                 <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
                         src="/team/ads 2.png"
-                        alt="Artist behind the scenes"
+                        alt="Behind the scenes"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                         style={{ objectPosition: "center 40%" }}
