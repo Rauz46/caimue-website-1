@@ -74,11 +74,11 @@ export default function Home() {
 
           {/* Social Proof Strip - Removed */}
 
-          <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center">
-            <span className="leading-[1.05] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-2">
-              <span className="block">Stories Worth Telling.</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4">
-                <span>Movies Worth Making.</span>
+          <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center overflow-visible">
+            <span className="leading-[1.2] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-3 overflow-visible">
+              <span className="block overflow-visible">Stories Worth Telling.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4 overflow-visible">
+                <span className="overflow-visible">Movies Worth Making.</span>
               </span>
             </span>
           </h1>

@@ -160,7 +160,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                 Our short films have reached over 2 million views organically on YouTube. We produce original content that connects with audiences who care about authentic storytelling.
             </p>
 
-            {/* Bento Grid Gallery */}
+            {/* Bento Grid Gallery - Films */}
             <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
                 <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
@@ -232,9 +232,9 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* Bento Grid Gallery */}
-            <div className="grid grid-cols-1 grid-rows-2 gap-2 h-[250px]">
-                <div className="relative rounded-xl overflow-hidden h-full w-full bg-gray-50 border border-gray-100">
+            {/* Bento Grid Gallery - Brands */}
+            <div className="grid grid-cols-2 grid-rows-2 gap-2 h-[250px]">
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
                         src="/logos/thumbnail.jpg"
                         alt="Piqual Collaboration"
@@ -242,12 +242,20 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                         className="object-contain hover:scale-105 transition-transform duration-300"
                     />
                 </div>
-                <div className="relative rounded-xl overflow-hidden h-full w-full bg-gray-50 border border-gray-100">
+                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
                         src="/logos/brand collab.jpg"
                         alt="Brand Collaboration"
                         fill
                         className="object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                    <Image
+                        src="/logos/IMG_2967.jpg"
+                        alt="Brand Content"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
             </div>
@@ -287,7 +295,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 We've worked with 25+ writers, directors, actors, and storytellers across English, Malayalam, and Tamil. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
-            {/* Bento Grid Gallery */}
+            {/* Bento Grid Gallery - Artists */}
             <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
                 <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
