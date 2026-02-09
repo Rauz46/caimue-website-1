@@ -110,8 +110,8 @@ function CTAButton({
     );
 }
 
-// Card 1: Ennitto (Dark Cinematic)
-function EnnittoCard({ isInView }: { isInView: boolean }) {
+// Card 1: Ennitto Malayalam
+function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -136,11 +136,6 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
-                    {/* Tag */}
-                    <span className="inline-block w-fit px-3 py-1 bg-[#E9D5FF] text-[#4C1D95] rounded-full text-xs tracking-wider font-medium mb-4">
-                        Cinema & Original Stories
-                    </span>
-
                     {/* Heading */}
                     <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#4C1D95] mb-2">
                         Ennitto
@@ -148,23 +143,23 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
 
                     {/* Tagline */}
                     <p className="text-gray-600 italic text-base mb-5">
-                        Where Stories Become Cinema
+                        A Malayalam Short Film Channel
                     </p>
+
+                    {/* Metrics Grid - 2x2 */}
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                        <MetricCard number="2M+" label="Views on YouTube" />
+                        <MetricCard number="12+" label="Short Films" />
+                        <MetricCard number="25+" label="Artists Discovered" />
+                        <MetricCard number="3000+" label="Watch Hours" />
+                    </div>
 
                     {/* Description */}
                     <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We produce original Malayalam, Tamil & English films—from shorts to features to OTT content. We discover talent, back stories that matter, and build toward theatrical and streaming releases.
+                        We produce original Malayalam films, from shorts to features to OTT content. We discover talent and build toward theatrical and streaming releases.
                     </p>
 
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                        <MetricCard number="12+" label="Films Produced" />
-                        <MetricCard number="2M+" label="Views on YouTube" />
-                        <MetricCard number="3000+" label="Watch Hours" />
-                        <MetricCard number="25+" label="Creators Discovered" />
-                    </div>
-
-                    {/* CTA Buttons */}
+                    {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
                             text="Watch on YouTube"
@@ -173,12 +168,6 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                             href="https://www.youtube.com/@ennitto"
                             target="_blank"
                             rel="noopener noreferrer"
-                        />
-                        <CTAButton
-                            text="Explore More"
-                            variant="primary"
-                            icon={<ArrowRight size={18} />}
-                            href="/platforms"
                         />
                     </div>
                 </div>
@@ -225,7 +214,95 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 2: TeqThots (Light Purplish Pink)
+// Card 2: Ennitto Tamil (NEW)
+function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
+            style={{
+                background: "linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)",
+                boxShadow: "0 8px 30px rgba(167, 139, 250, 0.2)"
+            }}
+        >
+            {/* Grid overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.05]"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
+                }}
+            />
+
+            <div className="relative z-10 flex flex-col lg:flex-row gap-8">
+                {/* Left Column (60%) */}
+                <div className="lg:w-[60%] flex flex-col">
+                    {/* Heading */}
+                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#6B21A8] mb-2">
+                        Ennitto Tamil
+                    </h3>
+
+                    {/* Tagline */}
+                    <p className="text-gray-600 italic text-base mb-5">
+                        A Tamil Short Film Channel
+                    </p>
+
+                    {/* Metrics Grid - 2x2 - NOTE: Update these with actual metrics */}
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                        <MetricCard number="500K+" label="Views on YouTube" />
+                        <MetricCard number="5+" label="Short Films" />
+                        <MetricCard number="15+" label="Artists Discovered" />
+                        <MetricCard number="1000+" label="Watch Hours" />
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
+                        We produce original Tamil films and digital narratives. We discover talent and create stories that connect with Tamil-speaking audiences.
+                    </p>
+
+                    {/* CTA Button - Only YouTube */}
+                    <div className="flex flex-wrap gap-3">
+                        <CTAButton
+                            text="Watch on YouTube"
+                            variant="youtube"
+                            icon={<Youtube size={18} />}
+                            href="https://www.youtube.com/@EnnittoTamil"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        />
+                    </div>
+                </div>
+
+                {/* Right Column (40%) - Gallery - NOTE: Update with actual Tamil film images */}
+                <div className="lg:w-[40%]">
+                    <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
+                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
+                            <Image
+                                src="/images/Movies/Smile!.jpg"
+                                alt="Tamil Film 1"
+                                fill
+                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                            />
+                        </div>
+                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
+                            <Image
+                                src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
+                                alt="Tamil Film 2"
+                                fill
+                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+// Card 3: TeqThots (Light Purplish Pink)
 function TeqThotsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
@@ -251,19 +328,20 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         Stories That Build Brands
                     </p>
 
+                    {/* Metrics Grid - 2x2 (4 metrics) */}
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                        <MetricCard number="1M+" label="Audience Reached" />
+                        <MetricCard number="5+" label="Brand Collaborations" />
+                        <MetricCard number="10+" label="Videos Created" />
+                        <MetricCard number="500K+" label="Total Views" />
+                    </div>
+
                     {/* Description */}
                     <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
                         We create brand storytelling content—founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
                     </p>
 
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-3 mb-6">
-                        <MetricCard number="1M+" label="Audience Reached" />
-                        <MetricCard number="5+" label="Brand Collaborations" />
-                        <MetricCard number="10+" label="Videos Created" />
-                    </div>
-
-                    {/* CTA Buttons */}
+                    {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
                             text="Watch on YouTube"
@@ -272,12 +350,6 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                             href="https://www.youtube.com/@TeqThots"
                             target="_blank"
                             rel="noopener noreferrer"
-                        />
-                        <CTAButton
-                            text="Explore More"
-                            variant="dark"
-                            icon={<ArrowRight size={18} />}
-                            href="/platforms"
                         />
                     </div>
                 </div>
@@ -316,98 +388,60 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 3: Feature Films (Light Lavender)
+// Card 4: Feature Films - Coming Soon (Minimal Design)
 function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="relative rounded-3xl p-8 md:p-16 min-h-[400px] overflow-hidden flex flex-col items-center justify-center text-center"
             style={{
                 background: "linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%)",
                 boxShadow: "0 4px 20px rgba(139, 92, 246, 0.15)",
             }}
         >
-            <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-                {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col">
-                    {/* Tag */}
-                    <span className="inline-block w-fit px-3 py-1 bg-white text-[#4C1D95] rounded-full text-xs tracking-wider font-medium mb-4">
-                        Full-Length Cinema
-                    </span>
+            {/* Decorative elements */}
+            <motion.div
+                className="absolute top-10 left-10 text-purple-300/30"
+                animate={{ rotate: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+            >
+                <Film size={48} strokeWidth={1.5} />
+            </motion.div>
+            <motion.div
+                className="absolute bottom-10 right-10 text-purple-300/30"
+                animate={{ rotate: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+            >
+                <Clapperboard size={48} strokeWidth={1.5} />
+            </motion.div>
 
-                    {/* Heading */}
-                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#4C1D95] mb-2">
-                        Feature Films
-                    </h3>
+            <div className="relative z-10 max-w-2xl">
+                {/* Heading */}
+                <h3 className="font-serif text-5xl md:text-6xl font-bold text-[#4C1D95] mb-6">
+                    Feature Films
+                </h3>
 
-                    {/* Tagline */}
-                    <p className="text-gray-600 italic text-base mb-5">
-                        Stories Built for the Big Screen
-                    </p>
+                {/* Coming Soon - Large */}
+                <motion.p
+                    className="text-6xl md:text-7xl font-bold mb-8"
+                    style={{
+                        background: "linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                    }}
+                    animate={{ opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    Coming Soon
+                </motion.p>
 
-                    {/* Description */}
-                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We're building a slate of feature-length films for theatrical and OTT releases. Stories that combine strong craft with smart production—made to reach audiences and built for commercial success.
-                    </p>
-
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-3 mb-6">
-                        <MetricCard number="5+" label="Projects in Pipeline" />
-                        <MetricCard number="3" label="Malayalam, Tamil & English" />
-                        <MetricCard number="2027" label="Coming Soon" />
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="flex flex-wrap gap-3">
-                        <CTAButton
-                            text="Explore More"
-                            variant="primary"
-                            icon={<ArrowRight size={18} />}
-                            href="/platforms"
-                        />
-                    </div>
-                </div>
-
-                {/* Right Column (40%) - Gallery */}
-                <div className="lg:w-[40%]">
-                    <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
-                        <div className="row-span-2 relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Live a Little.jpg"
-                                alt="Live a Little"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
-                                alt="Malsya Mandooka Mahamaham"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Pazhampori.jpg"
-                                alt="Pazhampori"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
-                            />
-                        </div>
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group h-[150px]">
-                            <Image
-                                src="/images/Movies/Vishudha Sakshi.jpg"
-                                alt="Vishudha Sakshi"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-105 transition-all duration-300"
-                                style={{ objectPosition: "center 30%" }}
-                            />
-                        </div>
-                    </div>
-                </div>
+                {/* Description */}
+                <p className="text-gray-700 text-lg leading-relaxed">
+                    As we make a success of our short films and video formats, we are building a slate of feature-length films for theatrical and OTT releases.
+                </p>
             </div>
         </motion.div>
     );
@@ -475,12 +509,14 @@ export function PlatformsSection() {
                 </h2>
             </motion.div>
 
-            {/* Cards container */}
+            {/* Cards container - Now 4 cards */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-10">
-                <EnnittoCard isInView={isInView} />
+                <EnnittoMalayalamCard isInView={isInView} />
+                <EnnittoTamilCard isInView={isInView} />
                 <TeqThotsCard isInView={isInView} />
                 <FeatureFilmsCard isInView={isInView} />
             </div>
         </section>
     );
 }
+

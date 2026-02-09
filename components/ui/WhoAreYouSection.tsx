@@ -154,7 +154,7 @@ const BrandOwnerCard = () => {
                     Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
                 </p>
 
-                <Link href="/brands">
+                <Link href="/contact">
                     <motion.button
                         whileHover={{ scale: 1.03, x: 3 }}
                         whileTap={{ scale: 0.98 }}
@@ -174,8 +174,8 @@ const BrandOwnerCard = () => {
     );
 };
 
-// Card 2: Creator - Dark cinematic with orbiting team faces
-const CreatorCard = () => {
+// Card 2: Artist - Dark cinematic with orbiting team faces
+const ArtistCard = () => {
     const cardRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -337,13 +337,13 @@ const CreatorCard = () => {
                 </svg>
 
                 <h3 className="font-serif text-[36px] font-bold mb-3 tracking-tight" style={{ color: '#FFFFFF' }}>
-                    Creator
+                    Artist
                 </h3>
                 <p className="text-[15px] leading-relaxed mb-6 max-w-[380px]" style={{ color: '#E5E7EB' }}>
-                    Have a story that deserves to be told? We discover talent, provide full production support, and help bring your vision from script to screen.
+                    Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out.
                 </p>
 
-                <Link href="/creators">
+                <Link href="/contact">
                     <motion.button
                         whileHover={{ scale: 1.03, x: 3 }}
                         whileTap={{ scale: 0.98 }}
@@ -404,7 +404,7 @@ export default function WhoAreYouSection() {
                 {/* TWO BOX LAYOUT */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px] max-w-6xl mx-auto">
                     <BrandOwnerCard />
-                    <CreatorCard />
+                    <ArtistCard />
                 </div>
             </div>
         </section>

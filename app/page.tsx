@@ -90,7 +90,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-snug font-medium drop-shadow"
           >
-            Caimue is an AI-first production house creating cinema across Malayalam, Tamil, and English. We discover talent, back stories that matter, and produce films that reach audiences who care.
+            We produce movies by discovering talent and backing stories that matter. Caimue is an AI-first production house creating movies across English, Malayalam, and Tamil.
           </motion.p>
 
           {/* Scroll Down Indicator */}

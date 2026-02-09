@@ -35,7 +35,7 @@ export function JourneySection() {
             <div className="container mx-auto px-4 relative" style={{ zIndex: 10 }}>
                 {/* Header Section */}
                 <div className="flex flex-col items-center text-center mb-[60px]">
-                    {/* Trusted by Creators Badge */}
+                    {/* Loved by Audiences Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -47,7 +47,7 @@ export function JourneySection() {
                             className="text-xs font-bold"
                             style={{ color: "#4C1D95", letterSpacing: "1px" }}
                         >
-                            Trusted by Brand & Creators
+                            Loved by Audiences
                         </span>
                         <div className="flex gap-0.5">
                             {[...Array(5)].map((_, i) => (
@@ -89,7 +89,7 @@ export function JourneySection() {
                         style={{ color: "#6B21A8" }}
                     >
                         <p>
-                            We've produced films, built brands, and discovered talent across Malayalam, Tamil, and English. Here's our journey as we build toward feature cinema.
+                            We've produced films, promoted brands, and discovered talent across English, Malayalam, and Tamil. Here's our journey as we build toward feature films.
                         </p>
                     </motion.div>
                 </div>
@@ -102,8 +102,8 @@ export function JourneySection() {
                     {/* Card 2: Brand Collaborations */}
                     <BrandCard isInView={isInView} />
 
-                    {/* Card 3: Creators Discovered */}
-                    <CreatorsCard isInView={isInView} />
+                    {/* Card 3: Artists Discovered */}
+                    <ArtistsCard isInView={isInView} />
                 </div>
             </div>
 
@@ -151,13 +151,13 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 
             {/* Header - 2 lines */}
             <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                12+ Films &<br />
+                12+ Short Films &<br />
                 <span style={{ color: "#4C1D95" }}>2M+</span> Views
             </h3>
 
             {/* Content */}
             <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                Short films and digital stories created in collaboration with independent creators. Our content has reached over 2 million views organically on YouTube, Instagram, and other platforms.
+                Our short films have reached over 2 million views organically on YouTube. We produce original content that connects with audiences who care about authentic storytelling.
             </p>
 
             {/* Bento Grid Gallery */}
@@ -255,8 +255,8 @@ function BrandCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 3: Creators Discovered
-function CreatorsCard({ isInView }: { isInView: boolean }) {
+// Card 3: Artists Discovered
+function ArtistsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -279,12 +279,12 @@ function CreatorsCard({ isInView }: { isInView: boolean }) {
 
             {/* Header */}
             <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                25+ Creators <span style={{ color: "#4C1D95" }}>Discovered</span>
+                25+ Artists <span style={{ color: "#4C1D95" }}>Discovered</span>
             </h3>
 
             {/* Content */}
             <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                We've worked with 25+ writers, directors, actors, and storytellers across Malayalam, Tamil, and English. We discover talent, provide production support, and help them bring their vision to screen. Some are now building successful careers in cinema.
+                We've worked with 25+ writers, directors, actors, and storytellers across English, Malayalam, and Tamil. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
             {/* Bento Grid Gallery */}
