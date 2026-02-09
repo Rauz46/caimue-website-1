@@ -102,19 +102,17 @@ export function Footer() {
                             />
                         </Link>
 
-                        {/* NAV ITEMS - Simplified */}
-                        <nav className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+                        {/* RIGHT SIDE: Contact + Social Icons grouped together */}
+                        <div className="flex items-center gap-6">
                             <Link href="/contact" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Contact</Link>
-                        </nav>
-
-                        {/* SOCIAL ICONS */}
-                        <div className="flex items-center gap-4">
-                            <a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
-                                <Instagram size={18} />
-                            </a>
-                            <a href="https://www.linkedin.com/company/caimue-inc" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
-                                <Linkedin size={18} />
-                            </a>
+                            <div className="flex items-center gap-4">
+                                <a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
+                                    <Instagram size={18} />
+                                </a>
+                                <a href="https://www.linkedin.com/company/caimue-inc" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
+                                    <Linkedin size={18} />
+                                </a>
+                            </div>
                         </div>
                     </div>
 

@@ -602,3 +602,14 @@ h3 {
 .animate-orbit {
   animation: orbit calc(var(--duration) * 1s) linear infinite;
 }
+
+/* Infinite Scroll Animation for Brand Collaborations */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

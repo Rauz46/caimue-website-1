@@ -32,9 +32,9 @@ const BrandOwnerCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative h-[550px] rounded-[32px] overflow-hidden group cursor-pointer"
+            className="relative h-[400px] rounded-[32px] overflow-hidden group cursor-pointer"
             style={{
-                background: "linear-gradient(145deg, #E9D5FF 0%, #DDD6FE 30%, #C7D2FE 70%, #E0E7FF 100%)",
+                background: "linear-gradient(145deg, #F3E8FF 0%, #E9D5FF 30%, #DDD6FE 70%, #E0E7FF 100%)",
                 boxShadow: "0 25px 50px -12px rgba(167, 139, 250, 0.25)"
             }}
         >
@@ -55,32 +55,32 @@ const BrandOwnerCard = () => {
                 }}
             />
 
-            {/* Orbiting Social Icons Container */}
-            <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[320px] h-[320px] flex items-center justify-center">
+            {/* Orbiting Social Icons Container - Reduced Size */}
+            <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[200px] h-[200px] flex items-center justify-center">
                 {/* Manual Orbit Paths */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
-                    <circle cx="50%" cy="50%" r="75" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
-                    <circle cx="50%" cy="50%" r="125" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
+                    <circle cx="50%" cy="50%" r="50" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
+                    <circle cx="50%" cy="50%" r="85" fill="none" stroke="rgba(76, 29, 149, 0.2)" strokeWidth="1" />
                 </svg>
 
                 {/* Center briefcase icon */}
                 <motion.div
                     className="absolute z-10"
-                    animate={{ y: [-5, 5, -5] }}
+                    animate={{ y: [-3, 3, -3] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-2xl flex items-center justify-center relative">
-                        <div className="w-11 h-3 bg-amber-400 rounded-sm absolute top-3" />
-                        <div className="w-5 h-2 bg-amber-300 rounded-sm absolute top-0.5" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-2xl flex items-center justify-center relative">
+                        <div className="w-8 h-2 bg-amber-400 rounded-sm absolute top-2" />
+                        <div className="w-3 h-1.5 bg-amber-300 rounded-sm absolute top-0.5" />
                     </div>
                 </motion.div>
 
                 {/* Inner orbit - YouTube, Instagram, Facebook */}
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg z-20"
+                    className="size-9 border-none bg-white shadow-lg z-20"
                     duration={20}
                     delay={0}
-                    radius={75}
+                    radius={50}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -89,10 +89,10 @@ const BrandOwnerCard = () => {
                 </OrbitingCircles>
 
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg z-20"
+                    className="size-9 border-none bg-white shadow-lg z-20"
                     duration={20}
                     delay={6.5}
-                    radius={75}
+                    radius={50}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -101,10 +101,10 @@ const BrandOwnerCard = () => {
                 </OrbitingCircles>
 
                 <OrbitingCircles
-                    className="size-11 border-none bg-white shadow-lg z-20"
+                    className="size-9 border-none bg-white shadow-lg z-20"
                     duration={20}
                     delay={13.3}
-                    radius={75}
+                    radius={50}
                     path={false}
                 >
                     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -114,8 +114,8 @@ const BrandOwnerCard = () => {
 
                 {/* Outer orbit - X (Twitter), Telegram */}
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg z-20"
-                    radius={125}
+                    className="size-10 border-none bg-white shadow-lg z-20"
+                    radius={85}
                     duration={25}
                     delay={0}
                     reverse
@@ -127,8 +127,8 @@ const BrandOwnerCard = () => {
                 </OrbitingCircles>
 
                 <OrbitingCircles
-                    className="size-12 border-none bg-white shadow-lg z-20"
-                    radius={125}
+                    className="size-10 border-none bg-white shadow-lg z-20"
+                    radius={85}
                     duration={25}
                     delay={12.5}
                     reverse
@@ -141,16 +141,16 @@ const BrandOwnerCard = () => {
             </div>
 
             {/* Bottom content area - no blur */}
-            <div className="absolute inset-x-0 bottom-0 p-8 pt-16 bg-gradient-to-t from-white via-white/90 to-transparent">
+            <div className="absolute inset-x-0 bottom-0 p-6 pt-12 bg-gradient-to-t from-white via-white/90 to-transparent">
                 {/* Decorative squiggle */}
                 <svg className="absolute -top-8 left-8 w-8 h-8 text-purple-400/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
                 </svg>
 
-                <h3 className="font-serif text-[36px] font-bold text-[#4C1D95] mb-3 tracking-tight">
+                <h3 className="font-serif text-[32px] font-bold text-[#4C1D95] mb-2 tracking-tight">
                     Brand Owner
                 </h3>
-                <p className="text-gray-600 text-[15px] leading-relaxed mb-6 max-w-[380px]">
+                <p className="text-gray-600 text-[14px] leading-relaxed mb-4 max-w-[380px]">
                     Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
                 </p>
 
@@ -158,7 +158,7 @@ const BrandOwnerCard = () => {
                     <motion.button
                         whileHover={{ scale: 1.03, x: 3 }}
                         whileTap={{ scale: 0.98 }}
-                        className="bg-white px-8 py-4 rounded-full font-semibold text-[15px] shadow-lg border border-purple-100 flex items-center gap-3 group/btn hover:shadow-xl transition-shadow"
+                        className="bg-white px-6 py-3 rounded-full font-semibold text-[14px] shadow-lg border border-purple-100 flex items-center gap-2 group/btn hover:shadow-xl transition-shadow"
                     >
                         <span className="bg-gradient-to-r from-[#7C3AED] to-[#A855F7] bg-clip-text text-transparent">
                             Find Out More
@@ -206,80 +206,80 @@ const ArtistCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative h-[550px] rounded-[32px] overflow-hidden group cursor-pointer"
+            className="relative h-[400px] rounded-[32px] overflow-hidden group cursor-pointer"
             style={{
-                background: "linear-gradient(145deg, #1E1B4B 0%, #312E81 40%, #3730A3 100%)",
-                boxShadow: "0 25px 50px -12px rgba(30, 27, 75, 0.5), inset 0 1px 1px rgba(255,255,255,0.1)"
+                background: "linear-gradient(145deg, #F3E8FF 0%, #E9D5FF 30%, #DDD6FE 70%, #E0E7FF 100%)",
+                boxShadow: "0 25px 50px -12px rgba(167, 139, 250, 0.25)"
             }}
         >
             {/* Spotlight Glow Effect */}
             <motion.div
                 className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
-                    background: `radial-gradient(450px circle at ${spotlightX.get()}px ${spotlightY.get()}px, rgba(168, 85, 247, 0.25), transparent 60%)`
+                    background: `radial-gradient(450px circle at ${spotlightX.get()}px ${spotlightY.get()}px, rgba(147, 51, 234, 0.2), transparent 60%)`
                 }}
             />
 
             {/* Animated gradient background */}
             <motion.div
-                className="absolute inset-0 opacity-50"
+                className="absolute inset-0 opacity-30"
                 animate={{
                     background: [
-                        "radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)",
-                        "radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)",
-                        "radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)"
+                        "radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)",
+                        "radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)",
+                        "radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)"
                     ]
                 }}
                 transition={{ duration: 8, repeat: Infinity }}
             />
 
-            {/* Orbiting Team Faces Container - positioned higher */}
-            <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[260px] h-[260px] flex items-center justify-center">
+            {/* Orbiting Team Faces Container - Reduced Size */}
+            <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[160px] h-[160px] flex items-center justify-center">
                 {/* Center video icon */}
                 <motion.div
-                    className="absolute z-10 text-purple-300"
-                    animate={{ y: [-4, 4, -4] }}
+                    className="absolute z-10 text-purple-500"
+                    animate={{ y: [-3, 3, -3] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <Video size={56} strokeWidth={1.5} />
+                    <Video size={36} strokeWidth={1.5} />
                 </motion.div>
 
                 {/* Inner orbit - Team faces */}
                 <OrbitingCircles
-                    className="size-12 border-2 border-purple-400/50 bg-transparent overflow-hidden"
+                    className="size-9 border-2 border-purple-400/50 bg-transparent overflow-hidden"
                     duration={18}
                     delay={0}
-                    radius={75}
+                    radius={50}
                     path={true}
                 >
                     <Image
                         src={teamImages[0]}
                         alt="Team member"
-                        width={48}
-                        height={48}
+                        width={36}
+                        height={36}
                         className="w-full h-full object-cover rounded-full"
                     />
                 </OrbitingCircles>
                 <OrbitingCircles
-                    className="size-12 border-2 border-pink-400/50 bg-transparent overflow-hidden"
+                    className="size-9 border-2 border-pink-400/50 bg-transparent overflow-hidden"
                     duration={18}
                     delay={9}
-                    radius={75}
+                    radius={50}
                     path={false}
                 >
                     <Image
                         src={teamImages[1]}
                         alt="Team member"
-                        width={48}
-                        height={48}
+                        width={36}
+                        height={36}
                         className="w-full h-full object-cover rounded-full"
                     />
                 </OrbitingCircles>
 
                 {/* Outer orbit (reverse) - More team faces */}
                 <OrbitingCircles
-                    className="size-14 border-2 border-cyan-400/50 bg-transparent overflow-hidden"
-                    radius={120}
+                    className="size-10 border-2 border-cyan-400/50 bg-transparent overflow-hidden"
+                    radius={75}
                     duration={22}
                     delay={0}
                     reverse
@@ -288,14 +288,14 @@ const ArtistCard = () => {
                     <Image
                         src={teamImages[2]}
                         alt="Team member"
-                        width={56}
-                        height={56}
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover rounded-full"
                     />
                 </OrbitingCircles>
                 <OrbitingCircles
-                    className="size-14 border-2 border-yellow-400/50 bg-transparent overflow-hidden"
-                    radius={120}
+                    className="size-10 border-2 border-yellow-400/50 bg-transparent overflow-hidden"
+                    radius={75}
                     duration={22}
                     delay={11}
                     reverse
@@ -304,8 +304,8 @@ const ArtistCard = () => {
                     <Image
                         src={teamImages[3]}
                         alt="Team member"
-                        width={56}
-                        height={56}
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover rounded-full"
                     />
                 </OrbitingCircles>
@@ -330,16 +330,16 @@ const ArtistCard = () => {
             </div>
 
             {/* Bottom content area */}
-            <div className="absolute inset-x-0 bottom-0 p-8 pt-20 bg-gradient-to-t from-[#1E1B4B]/98 via-[#1E1B4B]/80 to-transparent">
+            <div className="absolute inset-x-0 bottom-0 p-6 pt-12 bg-gradient-to-t from-white via-white/95 to-transparent">
                 {/* Decorative squiggle */}
-                <svg className="absolute -top-8 left-8 w-8 h-8 text-purple-400/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="absolute -top-8 left-8 w-8 h-8 text-purple-400/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
                 </svg>
 
-                <h3 className="font-serif text-[36px] font-bold mb-3 tracking-tight" style={{ color: '#FFFFFF' }}>
+                <h3 className="font-serif text-[32px] font-bold mb-2 tracking-tight text-[#4C1D95]">
                     Artist
                 </h3>
-                <p className="text-[15px] leading-relaxed mb-6 max-w-[380px]" style={{ color: '#E5E7EB' }}>
+                <p className="text-[14px] leading-relaxed mb-4 max-w-[380px] text-gray-600">
                     Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out.
                 </p>
 
@@ -347,14 +347,12 @@ const ArtistCard = () => {
                     <motion.button
                         whileHover={{ scale: 1.03, x: 3 }}
                         whileTap={{ scale: 0.98 }}
-                        className="relative px-8 py-4 rounded-full font-semibold text-[15px] text-white flex items-center gap-3 group/btn overflow-hidden"
-                        style={{
-                            background: "linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%)",
-                            boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)"
-                        }}
+                        className="bg-white px-6 py-3 rounded-full font-semibold text-[14px] shadow-lg border border-purple-100 flex items-center gap-2 group/btn hover:shadow-xl transition-shadow"
                     >
-                        <span>Find Out More</span>
-                        <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
+                        <span className="bg-gradient-to-r from-[#7C3AED] to-[#A855F7] bg-clip-text text-transparent">
+                            Find Out More
+                        </span>
+                        <ArrowRight className="text-purple-500 group-hover/btn:translate-x-1 transition-transform" size={16} />
                     </motion.button>
                 </Link>
             </div>

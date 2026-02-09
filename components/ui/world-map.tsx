@@ -169,9 +169,11 @@ export default function WorldMap({
                             x={projectPoint(dot.start.lat, dot.start.lng).x + 8}
                             y={projectPoint(dot.start.lat, dot.start.lng).y + 4}
                             fill="white"
-                            fontSize="10"
-                            fontWeight="bold"
+                            fontSize="22"
+                            fontWeight="600"
+                            letterSpacing="0.5"
                             className="pointer-events-none select-none drop-shadow-md"
+                            style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
                         >
                             {dot.start.label}
                         </text>
@@ -179,9 +181,11 @@ export default function WorldMap({
                             x={projectPoint(dot.end.lat, dot.end.lng).x + 8}
                             y={projectPoint(dot.end.lat, dot.end.lng).y + 4}
                             fill="white"
-                            fontSize="10"
-                            fontWeight="bold"
+                            fontSize="22"
+                            fontWeight="600"
+                            letterSpacing="0.5"
                             className="pointer-events-none select-none drop-shadow-md"
+                            style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
                         >
                             {dot.end.label}
                         </text>
