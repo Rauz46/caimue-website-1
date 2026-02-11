@@ -489,14 +489,15 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
 
                 {/* Coming Soon - Large with Playfair Display */}
                 <motion.p
-                    className="text-6xl md:text-8xl font-bold mb-8 tracking-tight"
+                    className="text-6xl md:text-8xl font-bold mb-8 tracking-tight leading-[1.1] pb-4"
                     style={{
                         fontFamily: "'Playfair Display', Georgia, serif",
                         background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 30%, #FB923C 70%, #FACC15 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
-                        textShadow: "0 0 60px rgba(251, 191, 36, 0.3)"
+                        textShadow: "0 0 60px rgba(251, 191, 36, 0.3)",
+                        overflow: "visible"
                     }}
                     animate={{
                         backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
