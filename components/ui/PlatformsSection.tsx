@@ -397,7 +397,7 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="relative rounded-3xl p-8 md:p-16 min-h-[400px] overflow-hidden flex flex-col items-center justify-center text-center"
             style={{
-                background: "linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4C1D95 100%)",
+                background: "linear-gradient(to bottom right, rgb(76, 29, 149), rgb(88, 28, 135))",
                 boxShadow: "0 8px 40px rgba(76, 29, 149, 0.4)",
             }}
         >
@@ -482,7 +482,7 @@ function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
                 {/* Heading - Playfair Display */}
                 <h3
                     className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
                 >
                     Feature Films
                 </h3>
