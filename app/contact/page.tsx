@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
@@ -8,6 +8,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button as StatefulButton } from "@/components/ui/stateful-button";
+import { SuccessModal } from "@/components/ui/SuccessModal";
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ export default function ContactPage() {
         subject: "",
         message: ""
     });
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [submittedName, setSubmittedName] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -38,6 +41,7 @@ export default function ContactPage() {
             });
 
             if (response.ok) {
+                setSubmittedName(formData.firstName);
                 setFormData({
                     firstName: "",
                     lastName: "",
@@ -46,6 +50,7 @@ export default function ContactPage() {
                     subject: "",
                     message: ""
                 });
+                setShowSuccess(true);
             } else {
                 throw new Error("Form submission failed");
             }
@@ -532,6 +537,12 @@ export default function ContactPage() {
                     </div>
                 </div>
             </section>
+            {/* Success Modal */}
+            <SuccessModal
+                isOpen={showSuccess}
+                onClose={() => setShowSuccess(false)}
+                senderName={submittedName}
+            />
         </main>
     );
 }
