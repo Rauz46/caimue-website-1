@@ -22,7 +22,7 @@ export function Navbar() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="fixed top-0 left-0 right-0 z-40 bg-white py-4 shadow-sm border-b border-gray-100"
+            className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md py-4 shadow-sm border-b border-gray-100"
         >
             <div className="container flex items-center justify-between">
                 {/* Logo */}
