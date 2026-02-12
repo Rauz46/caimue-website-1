@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 // Card 1: Brand Owner
 const BrandOwnerCard = () => {
@@ -297,16 +298,24 @@ const ArtistCard = () => {
 
 export default function WhoAreYouSection() {
     return (
-        <section className="relative py-[100px] md:py-[140px] bg-[#F8F8FA] overflow-visible -mt-1">
-            {/* Subtle background */}
+        <section
+            className="relative py-[100px] md:py-[140px] overflow-visible -mt-1"
+            style={{
+                background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
+            }}
+        >
+            {/* Grid Texture Overlay (same as Journey section) */}
             <div
-                className="absolute inset-0 z-0 opacity-[0.04]"
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
                 style={{
-                    backgroundImage: 'radial-gradient(#2D2D2D 1px, transparent 1px)',
-                    backgroundSize: '24px 24px',
-                    backgroundPosition: 'center top'
+                    backgroundImage:
+                        "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
                 }}
             />
+
+            {/* Hand-Drawn Scribbles (same as Journey section) */}
+            <HandDrawnScribbles />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* HEADING */}
