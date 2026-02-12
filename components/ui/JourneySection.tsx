@@ -161,7 +161,8 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Bento Grid Gallery - Films */}
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[380px]">
+                {/* Row 1 */}
                 <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
                         src="/images/Movies/Welcome Home.jpg"
@@ -178,6 +179,8 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
+
+                {/* Row 2 */}
                 <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
                         src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
@@ -192,6 +195,17 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         alt="Harinarayana Kudu Charitham"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+
+                {/* Row 3 - New Full Width Card */}
+                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-100/50">
+                    <Image
+                        src="/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg"
+                        alt="Nadha Nee Varum Kaalocha Kelkuvaan"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: "center 50%" }}
                     />
                 </div>
             </div>
@@ -232,30 +246,42 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* Bento Grid Gallery - Brands (matches Card 1 layout) */}
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[250px]">
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+            {/* Bento Grid Gallery - Brands (Optimized 5-column layout) */}
+            <div className="grid grid-cols-5 grid-rows-3 gap-2 h-[380px]">
+                {/* 1. Top Left - 60% width */}
+                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
                         src="/logos/thumbnail.jpg"
                         alt="Piqual Collaboration"
                         fill
-                        className="object-contain hover:scale-105 transition-transform duration-300"
+                        className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
-                <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                {/* 3. Right Vertical - 40% width (Increased for better framing) */}
+                <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
-                        src="/logos/brand collab.jpg"
+                        src="/logos/image.png"
                         alt="Brand Collaboration"
                         fill
-                        className="object-contain hover:scale-105 transition-transform duration-300"
+                        className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                {/* 2. Middle Left - 60% width */}
+                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
                         src="/logos/IMG_2967.jpg"
                         alt="Brand Content"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                {/* 4. Bottom Full Width */}
+                <div className="col-span-5 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                    <Image
+                        src="/logos/BRAND.jpg"
+                        alt="Brand Logos"
+                        fill
+                        className="object-contain p-2 hover:scale-105 transition-transform duration-300"
                     />
                 </div>
             </div>
@@ -295,73 +321,103 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 We've worked with 25+ writers, directors, actors, and storytellers across English, Malayalam, and Tamil. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
-            {/* Bento Grid Gallery - Artists (All 7 team images) */}
-            <div className="grid grid-cols-4 grid-rows-3 gap-2 h-[300px]">
-                {/* Row 1 */}
-                <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/smile 1.png"
-                        alt="Team collaboration"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 30%" }}
-                    />
+            {/* Grid Gallery - Artists (Custom Layout) */}
+            <div className="flex gap-2 h-[320px]">
+                {/* Left Column - Large Images */}
+                <div className="w-1/2 flex flex-col gap-2">
+                    <div className="relative flex-1 rounded-xl overflow-hidden">
+                        <Image
+                            src="/team/megha  2.jpg"
+                            alt="Megha"
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                            style={{ objectPosition: "center 20%" }}
+                        />
+                    </div>
+                    <div className="relative flex-1 rounded-xl overflow-hidden">
+                        <Image
+                            src="/team/sajan 2.jpg"
+                            alt="Sajan"
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                            style={{ objectPosition: "center 20%" }}
+                        />
+                    </div>
                 </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/megha.jpg"
-                        alt="Artist Megha"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 20%" }}
-                    />
-                </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/sajan.jpg"
-                        alt="Artist Sajan"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 30%" }}
-                    />
-                </div>
-                {/* Row 2 */}
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/megha  2.jpg"
-                        alt="Artist Megha"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 20%" }}
-                    />
-                </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/sajan 2.jpg"
-                        alt="Artist Sajan"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 30%" }}
-                    />
-                </div>
-                {/* Row 3 */}
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/smile 2.png"
-                        alt="Team photo"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 40%" }}
-                    />
-                </div>
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/team/ads 2.png"
-                        alt="Behind the scenes"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 40%" }}
-                    />
+
+                {/* Right Column - Small Images Grid */}
+                <div className="w-1/2 flex flex-col gap-2">
+                    {/* Top Row - 4 Images */}
+                    <div className="flex-1 grid grid-cols-2 gap-2">
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/image.png"
+                                alt="Artist"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/image.jpg"
+                                alt="Artist"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/smile 1.png"
+                                alt="Smile Team 1"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/smile 2.png"
+                                alt="Smile Team 2"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Bottom Row - 4 Images */}
+                    <div className="flex-1 grid grid-cols-2 gap-2">
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/image (1).jpg"
+                                alt="Artist"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/ghkl.jpg"
+                                alt="Artist"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/ads.png"
+                                alt="Ads Team 1"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden">
+                            <Image
+                                src="/team/ads 2.png"
+                                alt="Ads Team 2"
+                                fill
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </motion.div>

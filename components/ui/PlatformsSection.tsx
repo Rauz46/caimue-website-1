@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { Film, Play, ArrowRight, Youtube, Clapperboard, Sparkles } from "lucide-react";
+import { Film, Play, ArrowRight, Youtube, Clapperboard, Sparkles, Users, Clock, Globe, Briefcase, Video } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -43,27 +43,36 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
 function MetricCard({
     number,
     label,
+    icon: Icon,
     dark = false,
 }: {
     number: string;
     label: string;
+    icon?: React.ElementType;
     dark?: boolean;
 }) {
     return (
         <div
             className={`p-4 rounded-xl ${dark
                 ? "bg-white/5 border border-white/10"
-                : "bg-white border border-black/5 shadow-sm"
+                : "bg-gradient-to-br from-white to-purple-50/30 border border-purple-100/50 shadow-sm hover:shadow-md transition-shadow duration-300"
                 }`}
         >
-            <div
-                className={`font-serif text-2xl md:text-3xl font-bold ${dark ? "text-white" : "text-[#4C1D95]"
-                    }`}
-            >
-                {number}
+            <div className="flex items-start justify-between mb-2">
+                <div
+                    className={`font-serif text-2xl md:text-3xl font-bold ${dark ? "text-white" : "text-[#4C1D95]"
+                        }`}
+                >
+                    {number}
+                </div>
+                {Icon && (
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                        <Icon size={16} className="text-purple-600" strokeWidth={2.5} />
+                    </div>
+                )}
             </div>
             <div
-                className={`text-xs ${dark ? "text-gray-400" : "text-gray-500"
+                className={`text-xs ${dark ? "text-gray-400" : "text-gray-600"
                     }`}
             >
                 {label}
@@ -148,10 +157,10 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
 
                     {/* Metrics Grid - 2x2 */}
                     <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="2M+" label="Views on YouTube" />
-                        <MetricCard number="12+" label="Short Films" />
-                        <MetricCard number="25+" label="Artists Discovered" />
-                        <MetricCard number="3000+" label="Watch Hours" />
+                        <MetricCard number="2M+" label="Views on YouTube" icon={Youtube} />
+                        <MetricCard number="12+" label="Short Films" icon={Film} />
+                        <MetricCard number="25+" label="Artists Discovered" icon={Users} />
+                        <MetricCard number="3000+" label="Watch Hours" icon={Clock} />
                     </div>
 
                     {/* Description */}
@@ -177,34 +186,36 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
                     <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
                         <div className="col-span-2 relative rounded-xl overflow-hidden group">
                             <Image
-                                src="/images/Movies/ADS-369 Part 1.jpg"
-                                alt="ADS-369 Part 1"
+                                src="/images/Movies/Vishudha Sakshi.jpg"
+                                alt="Vishudha Sakshi"
+                                fill
+                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                                style={{ objectPosition: "center 50%" }}
+                            />
+                        </div>
+                        <div className="relative rounded-xl overflow-hidden group">
+                            <Image
+                                src="/images/Movies/ADS-369 Part 2.jpg"
+                                alt="ADS-369 Part 2"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
                             />
                         </div>
                         <div className="relative rounded-xl overflow-hidden group">
                             <Image
-                                src="/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg"
-                                alt="Nadha Nee Varum Kaalocha Kelkuvaan"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Welcome Home.jpg"
-                                alt="Welcome Home"
+                                src="/images/Movies/Pazhampori.jpg"
+                                alt="Pazhampori"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
                             />
                         </div>
                         <div className="col-span-2 relative rounded-xl overflow-hidden group">
                             <Image
-                                src="/images/Movies/ADS-369 Part 2.jpg"
-                                alt="ADS-369 Part 2"
+                                src="/images/Movies/ADS-369 Part 1.jpg"
+                                alt="ADS-369 Part 1"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                                style={{ objectPosition: "center 50%" }}
                             />
                         </div>
                     </div>
@@ -251,11 +262,12 @@ function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
                     </p>
 
                     {/* Metrics Grid - 2x2 - NOTE: Update these with actual metrics */}
+                    {/* Metrics Grid - 2x2 */}
                     <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="500K+" label="Views on YouTube" />
-                        <MetricCard number="5+" label="Short Films" />
-                        <MetricCard number="15+" label="Artists Discovered" />
-                        <MetricCard number="1000+" label="Watch Hours" />
+                        <MetricCard number="500K+" label="Views on YouTube" icon={Youtube} />
+                        <MetricCard number="5+" label="Short Films" icon={Film} />
+                        <MetricCard number="15+" label="Artists Discovered" icon={Users} />
+                        <MetricCard number="1000+" label="Watch Hours" icon={Clock} />
                     </div>
 
                     {/* Description */}
@@ -281,16 +293,16 @@ function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
                     <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
                         <div className="col-span-2 relative rounded-xl overflow-hidden group">
                             <Image
-                                src="/images/Movies/Smile!.jpg"
-                                alt="Tamil Film 1"
+                                src="/images/Movies/Live a Little.jpg"
+                                alt="Live a Little"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
                             />
                         </div>
                         <div className="col-span-2 relative rounded-xl overflow-hidden group">
                             <Image
-                                src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
-                                alt="Tamil Film 2"
+                                src="/images/Movies/maxresdefault.jpg"
+                                alt="Ennitto Tamil Feature"
                                 fill
                                 className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
                             />
@@ -329,11 +341,12 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     </p>
 
                     {/* Metrics Grid - 2x2 (4 metrics) */}
+                    {/* Metrics Grid - 2x2 (4 metrics) */}
                     <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="1M+" label="Audience Reached" />
-                        <MetricCard number="5+" label="Brand Collaborations" />
-                        <MetricCard number="10+" label="Videos Created" />
-                        <MetricCard number="500K+" label="Total Views" />
+                        <MetricCard number="1M+" label="Audience Reached" icon={Globe} />
+                        <MetricCard number="5+" label="Brand Collaborations" icon={Briefcase} />
+                        <MetricCard number="10+" label="Videos Created" icon={Video} />
+                        <MetricCard number="500K+" label="Total Views" icon={Youtube} />
                     </div>
 
                     {/* Description */}
@@ -356,29 +369,42 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
 
                 {/* Right Column (40%) - Logo Gallery */}
                 <div className="lg:w-[40%]">
-                    <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
-                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group p-2">
+                    {/* Bento Grid Gallery - Brands (matches Brand Collaborations layout) */}
+                    <div className="grid grid-cols-5 grid-rows-3 gap-2 h-[380px]">
+                        {/* 1. Top Left - 60% width */}
+                        <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
                                 src="/logos/thumbnail.jpg"
                                 alt="Brand Thumbnail"
                                 fill
-                                className="object-contain group-hover:scale-105 transition-all duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
-                        <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 group p-2">
+                        {/* 3. Right Vertical - 40% width */}
+                        <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/brand collab.jpg"
+                                src="/logos/image.png"
                                 alt="Brand Collaboration"
                                 fill
-                                className="object-contain group-hover:scale-105 transition-all duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
-                        <div className="col-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100 group">
+                        {/* 2. Middle Left - 60% width */}
+                        <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
                                 src="/logos/IMG_2967.jpg"
                                 alt="Brand Content"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-all duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        {/* 4. Bottom Full Width */}
+                        <div className="col-span-5 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image
+                                src="/logos/brand collab.jpg"
+                                alt="Brand Collaboration"
+                                fill
+                                className="object-contain hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     </div>
