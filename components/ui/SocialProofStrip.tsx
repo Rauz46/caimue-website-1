@@ -7,19 +7,19 @@ const creators = [
         id: 1,
         name: "Arjun Menon",
         designation: "Filmmaker",
-        image: "/team/avatar-1.png",
+        image: "/team/image.png",
     },
     {
         id: 2,
         name: "Priya Kumar",
         designation: "Content Creator",
-        image: "/team/avatar-2.png",
+        image: "/team/smile 1.png",
     },
     {
         id: 3,
         name: "Rahul Sharma",
         designation: "Director",
-        image: "/team/avatar-1.png",
+        image: "/team/smile 2.png",
     },
 ];
 

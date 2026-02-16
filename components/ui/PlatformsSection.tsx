@@ -401,7 +401,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         {/* 4. Bottom Full Width */}
                         <div className="col-span-5 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/brand collab.jpg"
+                                src="/logos/BRAND.jpg"
                                 alt="Brand Collaboration"
                                 fill
                                 className="object-contain hover:scale-105 transition-transform duration-300"

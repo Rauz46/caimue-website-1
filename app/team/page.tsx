@@ -19,7 +19,7 @@ const team: TeamMember[] = [
     {
         name: "Alex",
         role: "Director",
-        image: "/team/avatar-1.png",
+        image: "/team/image.png",
         color: "#FCD34D", // Yellow
         position: { top: "15%", left: "15%" },
         pillPos: "-top-6 left-0"
@@ -27,7 +27,7 @@ const team: TeamMember[] = [
     {
         name: "Caitlin",
         role: "Producer",
-        image: "/team/avatar-2.png",
+        image: "/team/smile 2.png",
         color: "#EC4899", // Pink
         position: { top: "25%", right: "20%" },
         pillPos: "-top-4 right-0"
@@ -35,7 +35,7 @@ const team: TeamMember[] = [
     {
         name: "Jimmy",
         role: "Lead Editor",
-        image: "/team/avatar-1.png",
+        image: "/team/smile 1.png",
         color: "#F9A8D4", // Light Pink
         position: { top: "45%", left: "25%" },
         pillPos: "-top-6 right-0"
@@ -43,7 +43,7 @@ const team: TeamMember[] = [
     {
         name: "Shanov",
         role: "Cinematographer",
-        image: "/team/avatar-1.png", // specific male avatar
+        image: "/team/image (1).jpg", // specific male avatar
         color: "#10B981", // Green
         position: { top: "50%", right: "25%" },
         pillPos: "-top-6 left-2"
@@ -51,7 +51,7 @@ const team: TeamMember[] = [
     {
         name: "Sonya",
         role: "Strategy",
-        image: "/team/avatar-2.png",
+        image: "/team/ghkl.jpg",
         color: "#3B82F6", // Blue
         position: { top: "65%", left: "12%" },
         pillPos: "-top-6 left-4"
@@ -59,7 +59,7 @@ const team: TeamMember[] = [
     {
         name: "Ashley",
         role: "Creative Tech",
-        image: "/team/avatar-1.png",
+        image: "/team/ads.png",
         color: "#F97316", // Orange
         position: { top: "75%", right: "35%" },
         pillPos: "-top-5 right-2"

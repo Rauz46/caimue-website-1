@@ -194,7 +194,7 @@ const ArtistCard = () => {
                 >
                     <div className="w-12 h-12 rounded-full overflow-hidden border-[3px] border-white shadow-lg">
                         <Image
-                            src="/team/sajan.jpg"
+                            src="/team/image.jpg"
                             alt="Team member"
                             width={48}
                             height={48}
