@@ -337,14 +337,21 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
-                    {/* Heading (No tag) */}
-                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-2">
-                        TeqThots
-                    </h3>
+                    {/* Logo instead of Heading */}
+                    <div className="mb-4">
+                        <Image
+                            src="/logos/teqthots website.png"
+                            alt="TeqThots"
+                            width={220}
+                            height={85}
+                            className="h-[85px] w-auto object-contain"
+                            priority
+                        />
+                    </div>
 
                     {/* Tagline */}
                     <p className="text-gray-600 italic text-base mb-5">
-                        Stories That Build Brands
+                        TeqThots, Stories That Build Brands
                     </p>
 
                     {/* Metrics Grid - 2x2 (4 metrics) */}
