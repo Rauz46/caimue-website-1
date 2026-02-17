@@ -150,9 +150,9 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
                         <Image
                             src="/logos/webiste logo.png"
                             alt="Ennitto"
-                            width={160}
-                            height={60}
-                            className="h-[60px] w-auto object-contain"
+                            width={220}
+                            height={85}
+                            className="h-[85px] w-auto object-contain"
                             priority
                         />
                     </div>
