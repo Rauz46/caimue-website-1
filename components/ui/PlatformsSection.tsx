@@ -145,14 +145,21 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
-                    {/* Heading */}
-                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#4C1D95] mb-2">
-                        Ennitto
-                    </h3>
+                    {/* Logo instead of Heading */}
+                    <div className="mb-4">
+                        <Image
+                            src="/logos/webiste logo.png"
+                            alt="Ennitto"
+                            width={160}
+                            height={60}
+                            className="h-[60px] w-auto object-contain"
+                            priority
+                        />
+                    </div>
 
                     {/* Tagline */}
                     <p className="text-gray-600 italic text-base mb-5">
-                        A Malayalam Short Film Channel
+                        Ennitto, a Malayalam Short Film Channel
                     </p>
 
                     {/* Metrics Grid - 2x2 */}
