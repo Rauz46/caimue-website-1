@@ -19,6 +19,7 @@ import { MorphingWord } from "@/components/ui/MorphingWord";
 import { JourneySection } from "@/components/ui/JourneySection";
 import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import MovieCardsFan from "@/components/ui/MovieCardsFan";
 
 // Video/Poster cards for the auto-scrolling marquee
 const showcaseItems = [
@@ -39,7 +40,7 @@ const showcaseItems = [
 export default function Home() {
   return (
     <>
-      <section className="min-h-screen flex flex-col pt-32 md:pt-48 relative overflow-visible">
+      <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-12">
         {/* Background Animation */}
         <BackgroundGradientAnimation
           containerClassName="absolute inset-0 z-0"
@@ -70,9 +71,8 @@ export default function Home() {
         {/* Editorial Scribbles */}
         <FloatingScribbles />
 
-        <div className="container relative z-10 flex flex-col items-center text-center justify-center flex-1 pt-12 md:pt-20">
-
-          {/* Social Proof Strip - Removed */}
+        {/* Text content — top-aligned, centered horizontally */}
+        <div className="container relative z-10 flex flex-col items-center text-center">
 
           <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center overflow-visible">
             <span className="leading-[1.2] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-3 overflow-visible">
@@ -83,26 +83,46 @@ export default function Home() {
             </span>
           </h1>
 
-          {/* Subtext - Close to headline */}
+          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-10 leading-snug font-medium drop-shadow"
+            className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-0 leading-snug font-medium drop-shadow"
           >
             We produce movies by discovering talent and backing stories that matter. Caimue is an AI-first production house creating movies across English, Malayalam, and Tamil.
           </motion.p>
-
-          {/* Scroll Down Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="mb-12 mt-auto"
-          >
-            <ScrollIndicator />
-          </motion.div>
         </div>
+
+        {/* Movie Cards Fan – full width, below the text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="relative z-10 w-full"
+        >
+          <MovieCardsFan
+            images={[
+              "/images/Movies/Vishudha Sakshi.jpg",
+              "/images/Movies/ADS-369 Part 1.jpg",
+              "/images/Movies/Pazhampori.jpg",
+              "/images/Movies/Welcome Home.jpg",
+              "/images/Movies/Smile!.jpg",
+              "/images/Movies/Live a Little.jpg",
+              "/images/Movies/Harinarayana Kudu Charitham.jpg",
+            ]}
+          />
+        </motion.div>
+
+        {/* Scroll Down Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.4 }}
+          className="relative z-10 flex justify-center mt-8 mb-4"
+        >
+          <ScrollIndicator />
+        </motion.div>
       </section>
 
       {/* ==================== JOURNEY SECTION (MOVED UP) ==================== */}
