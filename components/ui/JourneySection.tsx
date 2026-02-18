@@ -89,7 +89,7 @@ export function JourneySection() {
                         style={{ color: "#6B21A8" }}
                     >
                         <p>
-                            We've produced films, promoted brands, and discovered talent across English, Malayalam, and Tamil. Here's our journey as we build toward feature films.
+                            We've produced films, promoted brands, and discovered talent across Tamil, Malayalam, and English. Here's our journey as we build toward feature films.
                         </p>
                     </motion.div>
                 </div>
@@ -318,7 +318,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
 
             {/* Content */}
             <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                We've worked with 25+ writers, directors, actors, and storytellers across English, Malayalam, and Tamil. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
+                We've worked with 25+ writers, directors, actors, and storytellers across Tamil, Malayalam, and English. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
             {/* Grid Gallery - Artists (Custom Layout) */}

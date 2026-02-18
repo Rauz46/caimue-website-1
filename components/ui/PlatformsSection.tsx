@@ -341,7 +341,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     <div className="mb-4">
                         <Image
                             src="/logos/teqthots website.png"
-                            alt="TeqThots"
+                            alt="TeqThots English"
                             width={220}
                             height={85}
                             className="h-[85px] w-auto object-contain"
@@ -351,7 +351,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
 
                     {/* Tagline */}
                     <p className="text-gray-600 italic text-base mb-5">
-                        TeqThots, Stories That Build Brands
+                        TeqThots, Stories That Build Brands (English)
                     </p>
 
                     {/* Metrics Grid - 2x2 (4 metrics) */}
@@ -627,8 +627,8 @@ export function PlatformsSection() {
 
             {/* Cards container - Now 4 cards */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-10">
-                <EnnittoMalayalamCard isInView={isInView} />
                 <EnnittoTamilCard isInView={isInView} />
+                <EnnittoMalayalamCard isInView={isInView} />
                 <TeqThotsCard isInView={isInView} />
                 <FeatureFilmsCard isInView={isInView} />
             </div>

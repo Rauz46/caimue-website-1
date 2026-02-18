@@ -15,12 +15,13 @@ const BrandOwnerCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative bg-white rounded-[24px] p-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-500 group cursor-pointer overflow-hidden"
+            className="relative rounded-[24px] p-8 shadow-[0_4px_30px_rgba(236,72,153,0.15)] hover:shadow-[0_8px_40px_rgba(236,72,153,0.25)] transition-all duration-500 group cursor-pointer overflow-hidden border border-rose-100"
+            style={{ background: "linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)" }}
         >
             {/* ===== TOP: Illustration / Icon Area ===== */}
             <div className="relative h-[200px] mb-6 flex items-center justify-center">
                 {/* Subtle light background shape */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 to-blue-50/50 rounded-2xl" />
+                <div className="absolute inset-0 bg-white/40 rounded-2xl border border-white/40" />
 
                 {/* Decorative thin orbit rings */}
                 <svg className="absolute w-[180px] h-[180px] opacity-15 pointer-events-none" viewBox="0 0 180 180">
@@ -113,11 +114,11 @@ const BrandOwnerCard = () => {
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
             <div>
-                <h3 className="font-serif text-[32px] font-bold text-[#7C3AED] mb-2 tracking-tight">
-                    Brand Owner
+                <h3 className="font-serif text-[28px] font-bold text-[#BE185D] mb-2 tracking-tight">
+                    Are you a Brand Owner?
                 </h3>
                 {/* Separator line */}
-                <div className="w-12 h-[3px] bg-purple-300 rounded-full mb-4" />
+                <div className="w-12 h-[3px] bg-pink-400 rounded-full mb-4" />
                 <p className="text-gray-500 text-[14px] leading-relaxed mb-6">
                     Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
                 </p>
@@ -126,12 +127,12 @@ const BrandOwnerCard = () => {
                     <motion.button
                         whileHover={{ scale: 1.05, x: 5 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-white px-7 py-3 rounded-full font-semibold text-[14px] shadow-md border border-purple-200 flex items-center gap-2 group/btn hover:shadow-lg transition-all"
+                        className="bg-white px-7 py-3 rounded-full font-semibold text-[14px] shadow-md border border-pink-200 flex items-center gap-2 group/btn hover:shadow-lg transition-all"
                     >
-                        <span className="bg-gradient-to-r from-[#7C3AED] to-[#A855F7] bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-[#BE185D] to-[#EC4899] bg-clip-text text-transparent">
                             Find Out More
                         </span>
-                        <ArrowRight className="text-purple-500 group-hover/btn:translate-x-1 transition-transform" size={18} />
+                        <ArrowRight className="text-pink-500 group-hover/btn:translate-x-1 transition-transform" size={18} />
                     </motion.button>
                 </Link>
             </div>
@@ -147,12 +148,13 @@ const ArtistCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-white rounded-[24px] p-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-shadow duration-500 group cursor-pointer overflow-hidden"
+            className="relative rounded-[24px] p-8 shadow-[0_4px_30px_rgba(236,72,153,0.15)] hover:shadow-[0_8px_40px_rgba(236,72,153,0.25)] transition-all duration-500 group cursor-pointer overflow-hidden border border-rose-100"
+            style={{ background: "linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)" }}
         >
             {/* ===== TOP: Illustration / Icon Area ===== */}
             <div className="relative h-[200px] mb-6 flex items-center justify-center">
                 {/* Subtle light background shape */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-50/80 to-purple-50/50 rounded-2xl" />
+                <div className="absolute inset-0 bg-white/40 rounded-2xl border border-white/40" />
 
                 {/* Center film icon */}
                 <motion.div
@@ -270,8 +272,8 @@ const ArtistCard = () => {
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
             <div>
-                <h3 className="font-serif text-[32px] font-bold text-[#DB2777] mb-2 tracking-tight">
-                    Artist
+                <h3 className="font-serif text-[28px] font-bold text-[#DB2777] mb-2 tracking-tight">
+                    Are you an Aspiring Artist?
                 </h3>
                 {/* Separator line */}
                 <div className="w-12 h-[3px] bg-pink-300 rounded-full mb-4" />
@@ -326,7 +328,7 @@ export default function WhoAreYouSection() {
                         viewport={{ once: true, margin: "-100px" }}
                         className="font-serif text-[56px] font-bold text-[#4C1D95] tracking-tighter"
                     >
-                        Who Are You
+                        Come Work With Us
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
