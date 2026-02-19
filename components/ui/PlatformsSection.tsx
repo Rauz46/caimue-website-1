@@ -60,7 +60,7 @@ function MetricCard({
         >
             <div className="flex items-start justify-between mb-2">
                 <div
-                    className={`font-serif text-2xl md:text-3xl font-bold ${dark ? "text-white" : "text-[#4C1D95]"
+                    className={`font-serif text-3xl md:text-4xl font-extrabold ${dark ? "text-white" : "text-[#4C1D95]"
                         }`}
                 >
                     {number}
@@ -150,9 +150,9 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
                         <Image
                             src="/logos/webiste logo.png"
                             alt="Ennitto"
-                            width={220}
-                            height={85}
-                            className="h-[85px] w-auto object-contain"
+                            width={160}
+                            height={60}
+                            className="h-[60px] w-auto object-contain"
                             priority
                         />
                     </div>
@@ -259,7 +259,7 @@ function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
                     {/* Heading */}
-                    <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#6B21A8] mb-2">
+                    <h3 className="font-serif text-3xl md:text-4xl font-bold text-[#6B21A8] mb-2">
                         Ennitto Tamil
                     </h3>
 
@@ -342,9 +342,9 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         <Image
                             src="/logos/teqthots website.png"
                             alt="TeqThots English"
-                            width={220}
-                            height={85}
-                            className="h-[85px] w-auto object-contain"
+                            width={160}
+                            height={60}
+                            className="h-[60px] w-auto object-contain"
                             priority
                         />
                     </div>
