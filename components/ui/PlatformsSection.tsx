@@ -627,9 +627,9 @@ export function PlatformsSection() {
 
             {/* Cards container - Now 4 cards */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-10">
-                <EnnittoTamilCard isInView={isInView} />
                 <EnnittoMalayalamCard isInView={isInView} />
                 <TeqThotsCard isInView={isInView} />
+                <EnnittoTamilCard isInView={isInView} />
                 <FeatureFilmsCard isInView={isInView} />
             </div>
         </section>
