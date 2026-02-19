@@ -53,26 +53,31 @@ function MetricCard({
 }) {
     return (
         <div
-            className={`p-4 rounded-xl ${dark
-                ? "bg-white/5 border border-white/10"
-                : "bg-gradient-to-br from-white to-purple-50/30 border border-purple-100/50 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className={`p-5 rounded-2xl transition-all duration-300 group ${dark
+                ? "bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/15 hover:border-white/30"
+                : "bg-white/40 backdrop-blur-sm border border-white/60 shadow-[0_4px_20px_rgba(139,92,246,0.1)] hover:shadow-[0_8px_30px_rgba(139,92,246,0.2)] hover:bg-white/60"
                 }`}
         >
             <div className="flex items-start justify-between mb-2">
                 <div
-                    className={`font-serif text-3xl md:text-4xl font-extrabold ${dark ? "text-white" : "text-[#4C1D95]"
+                    className={`font-serif text-4xl md:text-5xl font-black tracking-tighter transition-transform duration-300 group-hover:scale-105 ${dark
+                        ? "text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]"
+                        : "bg-gradient-to-br from-[#4C1D95] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(124,58,237,0.2)]"
                         }`}
                 >
                     {number}
                 </div>
                 {Icon && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
-                        <Icon size={16} className="text-purple-600" strokeWidth={2.5} />
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${dark
+                        ? "bg-white/10 group-hover:bg-white/20"
+                        : "bg-gradient-to-br from-purple-100 to-purple-200 group-hover:from-purple-200 group-hover:to-pink-100 shadow-sm"
+                        }`}>
+                        <Icon size={20} className={dark ? "text-purple-300" : "text-purple-600"} strokeWidth={2.5} />
                     </div>
                 )}
             </div>
             <div
-                className={`text-xs ${dark ? "text-gray-400" : "text-gray-600"
+                className={`text-[13px] font-medium tracking-wide uppercase opacity-70 ${dark ? "text-gray-300" : "text-[#4C1D95]"
                     }`}
             >
                 {label}
