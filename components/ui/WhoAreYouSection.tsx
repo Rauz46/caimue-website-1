@@ -15,81 +15,9 @@ const BrandOwnerCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-[24px] p-8 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
+            className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
             style={{ background: "linear-gradient(135deg, #DB2777 0%, #9D174D 100%)" }}
         >
-            {/* ===== TOP: Illustration / Icon Area ===== */}
-            <div className="relative h-[200px] mb-6 flex items-center justify-center">
-                {/* Briefcase / Brand icon - CENTER (LARGEST) */}
-                <motion.div
-                    className="relative z-10"
-                >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 shadow-xl flex items-center justify-center relative">
-                        <div className="w-10 h-2 bg-amber-300/80 rounded-sm absolute top-3.5" />
-                        <div className="w-4 h-1.5 bg-amber-200 rounded-sm absolute top-1.5" />
-                    </div>
-                </motion.div>
-
-                {/* X / Twitter - top-left */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '15px', left: '25%' }}
-                >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100/60">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5">
-                            <path fill="#000000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* Facebook */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '20px', left: '45%' }}
-                >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100/60">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5">
-                            <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* YouTube - top-right */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '10px', right: '20%' }}
-                >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100/60">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5">
-                            <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* Instagram - bottom-left */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ bottom: '20px', left: '30%' }}
-                >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100/60">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5">
-                            <path fill="#E4405F" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* Telegram - bottom-right */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ bottom: '15px', right: '25%' }}
-                >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100/60">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5">
-                            <path fill="#0088CC" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                        </svg>
-                    </div>
-                </motion.div>
-            </div>
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
             <div>
@@ -127,110 +55,9 @@ const ArtistCard = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative rounded-[24px] p-8 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
+            className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
             style={{ background: "linear-gradient(135deg, #DB2777 0%, #9D174D 100%)" }}
         >
-            {/* ===== TOP: Illustration / Icon Area ===== */}
-            <div className="relative h-[200px] mb-6 flex items-center justify-center">
-                {/* Center film icon */}
-                <motion.div
-                    className="relative z-10"
-                >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 shadow-xl flex items-center justify-center">
-                        <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* Team member 1 - top-left */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '15px', left: '22%' }}
-                >
-                    <div className="w-11 h-11 rounded-full overflow-hidden border-[3px] border-white shadow-lg">
-                        <Image
-                            src="/team/megha.jpg"
-                            alt="Team member"
-                            width={44}
-                            height={44}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </motion.div>
-
-                {/* Team member 2 - top-right */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '10px', right: '22%' }}
-                >
-                    <div className="w-12 h-12 rounded-full overflow-hidden border-[3px] border-white shadow-lg">
-                        <Image
-                            src="/team/image.jpg"
-                            alt="Team member"
-                            width={48}
-                            height={48}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </motion.div>
-
-                {/* Team member 3 - bottom-left */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ bottom: '20px', left: '28%' }}
-                >
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-[3px] border-white shadow-lg">
-                        <Image
-                            src="/team/megha  2.jpg"
-                            alt="Team member"
-                            width={40}
-                            height={40}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </motion.div>
-
-                {/* Team member 4 - bottom-right */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ bottom: '15px', right: '25%' }}
-                >
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-[3px] border-white shadow-lg">
-                        <Image
-                            src="/team/sajan 2.jpg"
-                            alt="Team member"
-                            width={40}
-                            height={40}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </motion.div>
-
-                {/* Clapperboard accent - left */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '50%', left: '10%', transform: 'translateY(-50%)' }}
-                >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-400 to-pink-600 shadow-lg flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                        </svg>
-                    </div>
-                </motion.div>
-
-                {/* Star accent - right */}
-                <motion.div
-                    className="absolute z-10"
-                    style={{ top: '45%', right: '10%' }}
-                >
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-yellow-400 to-amber-500 shadow-lg flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                        </svg>
-                    </div>
-                </motion.div>
-            </div>
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
             <div>
