@@ -16,7 +16,7 @@ const BrandOwnerCard = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
-            style={{ background: "linear-gradient(135deg, #DB2777 0%, #9D174D 100%)" }}
+            style={{ background: "linear-gradient(135deg, #6D28D9 0%, #DB2777 100%)" }}
         >
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
@@ -56,7 +56,7 @@ const ArtistCard = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
-            style={{ background: "linear-gradient(135deg, #DB2777 0%, #9D174D 100%)" }}
+            style={{ background: "linear-gradient(135deg, #6D28D9 0%, #DB2777 100%)" }}
         >
 
             {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
