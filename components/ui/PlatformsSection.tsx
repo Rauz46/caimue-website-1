@@ -402,8 +402,8 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         {/* 3. Right Vertical - 40% width */}
                         <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
                             <Image
-                                src="/logos/NEVER.jpg"
-                                alt="Never Content"
+                                src="/logos/THE TEAM.jpg"
+                                alt="The Team Content"
                                 fill
                                 className="object-contain hover:scale-105 transition-transform duration-300"
                                 priority
@@ -412,8 +412,8 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         {/* 2. Middle Left - 60% width */}
                         <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-white border border-gray-100">
                             <Image
-                                src="/logos/THE TEAM.jpg"
-                                alt="The Team Content"
+                                src="/logos/NEVER.jpg"
+                                alt="Never Content"
                                 fill
                                 className="object-contain hover:scale-105 transition-transform duration-300"
                                 priority
