@@ -260,8 +260,8 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 {/* 3. Right Vertical - 40% width (Increased for better framing) */}
                 <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
-                        src="/logos/image.png"
-                        alt="Brand Collaboration"
+                        src="/logos/NEVER.png"
+                        alt="Never Content"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -269,8 +269,8 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 {/* 2. Middle Left - 60% width */}
                 <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                     <Image
-                        src="/logos/IMG_2967.jpg"
-                        alt="Brand Content"
+                        src="/logos/THE TEAM.png"
+                        alt="The Team Content"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
