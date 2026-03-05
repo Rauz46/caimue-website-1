@@ -400,23 +400,21 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                             />
                         </div>
                         {/* 3. Right Vertical - 40% width */}
-                        <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
+                        <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/THE TEAM.jpg"
-                                alt="The Team Content"
+                                src="/logos/image.png"
+                                alt="Inside Piqual Quiz"
                                 fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
-                                priority
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 2. Middle Left - 60% width */}
-                        <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-white border border-gray-100">
+                        <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/NEVER.jpg"
-                                alt="Never Content"
+                                src="/logos/IMG_2967.jpg"
+                                alt="TeqThots Team"
                                 fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
-                                priority
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 4. Bottom Full Width */}
