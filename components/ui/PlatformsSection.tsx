@@ -393,26 +393,26 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         {/* 1. Top Left - 60% width */}
                         <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/thumbnail.jpg"
-                                alt="Brand Thumbnail"
+                                src="/logos/1.png"
+                                alt="TeqThots Content 1"
                                 fill
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 3. Right Vertical - 40% width */}
-                        <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                        <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
                             <Image
-                                src="/logos/image.png"
-                                alt="Inside Piqual Quiz"
+                                src="/logos/2.png"
+                                alt="TeqThots Content 2"
                                 fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
+                                className="object-contain hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 2. Middle Left - 60% width */}
                         <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
-                                src="/logos/IMG_2967.jpg"
-                                alt="TeqThots Team"
+                                src="/logos/3.png"
+                                alt="TeqThots Content 3"
                                 fill
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
