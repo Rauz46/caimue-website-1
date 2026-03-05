@@ -389,32 +389,32 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                 {/* Right Column (40%) - Logo Gallery */}
                 <div className="lg:w-[40%]">
                     {/* Bento Grid Gallery - Brands (matches Brand Collaborations layout) */}
-                    <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[480px]">
+                    <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[420px]">
                         {/* 1. Portrait Card 1 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
+                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
                                 src="/logos/1.png"
                                 alt="TeqThots Content 1"
                                 fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 2. Portrait Card 2 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
+                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
                                 src="/logos/2.png"
                                 alt="TeqThots Content 2"
                                 fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 3. Portrait Card 3 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
+                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
                             <Image
                                 src="/logos/3.png"
                                 alt="TeqThots Content 3"
                                 fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                         {/* 4. Brand Logo Strip - Bottom Full Width */}
