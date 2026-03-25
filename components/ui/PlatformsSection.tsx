@@ -183,10 +183,10 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
                     {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
-                            text="Watch on YouTube"
-                            variant="youtube"
-                            icon={<Youtube size={18} />}
-                            href="https://www.youtube.com/@ennitto"
+                            text="Visit Website"
+                            variant="primary"
+                            icon={<Globe size={18} />}
+                            href="https://www.ennitto.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         />
@@ -290,10 +290,10 @@ function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
                     {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
-                            text="Watch on YouTube"
-                            variant="youtube"
-                            icon={<Youtube size={18} />}
-                            href="https://www.youtube.com/@EnnittoTamil"
+                            text="Visit Website"
+                            variant="primary"
+                            icon={<Globe size={18} />}
+                            href="https://www.ennitto.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         />
@@ -376,10 +376,10 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
-                            text="Watch on YouTube"
-                            variant="youtube"
-                            icon={<Youtube size={18} />}
-                            href="https://www.youtube.com/@TeqThots"
+                            text="Visit Website"
+                            variant="primary"
+                            icon={<Globe size={18} />}
+                            href="https://www.teqthots.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         />
