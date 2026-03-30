@@ -238,7 +238,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
 
             {/* Header */}
             <h3 className="font-serif text-[32px] font-bold mb-4" style={{ color: "#2D2D2D" }}>
-                Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
+                12+ Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
             </h3>
 
             {/* Content */}
