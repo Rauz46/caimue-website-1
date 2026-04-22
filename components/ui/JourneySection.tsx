@@ -279,11 +279,11 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 </div>
                 {/* 4. Bottom Full Width */}
                 <div className="col-span-5 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         src="/logos/BRAND.jpg"
                         alt="Brand Logos"
-                        fill
-                        className="object-contain p-2 hover:scale-105 transition-transform duration-300"
+                        className="absolute inset-0 w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-300"
                     />
                 </div>
             </div>

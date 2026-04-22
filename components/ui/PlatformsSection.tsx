@@ -150,34 +150,32 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
-                    {/* Logo instead of Heading */}
-                    <div className="mb-4">
-                        <Image
-                            src="/logos/webiste logo.png"
+                    {/* Logo */}
+                    <div className="mb-1">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/logos/ennitto logo.png"
                             alt="Ennitto"
-                            width={160}
-                            height={60}
-                            className="h-[60px] w-auto object-contain"
-                            priority
+                            className="w-full max-w-[260px] h-auto object-contain"
                         />
                     </div>
 
                     {/* Tagline */}
                     <p className="text-gray-600 italic text-base mb-5">
-                        Ennitto, a Malayalam Short Film Channel
+                        Original Short Films in Malayalam & Tamil
                     </p>
 
                     {/* Metrics Grid - 2x2 */}
                     <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="2M+" label="Views on YouTube" icon={Youtube} />
-                        <MetricCard number="12+" label="Short Films" icon={Film} />
-                        <MetricCard number="25+" label="Artists Discovered" icon={Users} />
-                        <MetricCard number="3000+" label="Watch Hours" icon={Clock} />
+                        <MetricCard number="2.5M+" label="Views on YouTube" icon={Youtube} />
+                        <MetricCard number="17+" label="Short Films" icon={Film} />
+                        <MetricCard number="40+" label="Artists Discovered" icon={Users} />
+                        <MetricCard number="4000+" label="Watch Hours" icon={Clock} />
                     </div>
 
                     {/* Description */}
                     <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We produce original Malayalam films, from shorts to features to OTT content. We discover talent and build toward theatrical and streaming releases.
+                        We produce original Malayalam and Tamil films, from shorts to features to OTT content. We discover talent across both languages and build toward theatrical and streaming releases.
                     </p>
 
                     {/* CTA Button - Only YouTube */}
@@ -237,96 +235,7 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 2: Ennitto Tamil (NEW)
-function EnnittoTamilCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)",
-                boxShadow: "0 8px 30px rgba(167, 139, 250, 0.2)"
-            }}
-        >
-            {/* Grid overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-
-            <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-                {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col">
-                    {/* Heading */}
-                    <h3 className="font-serif text-3xl md:text-4xl font-bold text-[#6B21A8] mb-2">
-                        Ennitto Tamil
-                    </h3>
-
-                    {/* Tagline */}
-                    <p className="text-gray-600 italic text-base mb-5">
-                        A Tamil Short Film Channel
-                    </p>
-
-                    {/* Metrics Grid - 2x2 - NOTE: Update these with actual metrics */}
-                    {/* Metrics Grid - 2x2 */}
-                    <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="500K+" label="Views on YouTube" icon={Youtube} />
-                        <MetricCard number="5+" label="Short Films" icon={Film} />
-                        <MetricCard number="15+" label="Artists Discovered" icon={Users} />
-                        <MetricCard number="1000+" label="Watch Hours" icon={Clock} />
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We produce original Tamil films and digital narratives. We discover talent and create stories that connect with Tamil-speaking audiences.
-                    </p>
-
-                    {/* CTA Button - Only YouTube */}
-                    <div className="flex flex-wrap gap-3">
-                        <CTAButton
-                            text="Visit Website"
-                            variant="primary"
-                            icon={<Globe size={18} />}
-                            href="https://www.ennitto.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        />
-                    </div>
-                </div>
-
-                {/* Right Column (40%) - Gallery - NOTE: Update with actual Tamil film images */}
-                <div className="lg:w-[40%]">
-                    <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Live a Little.jpg"
-                                alt="Live a Little"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
-                            />
-                        </div>
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/maxresdefault.jpg"
-                                alt="Ennitto Tamil Feature"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-// Card 3: TeqThots (Light Purplish Pink)
+// Card 2: TeqThots (Light Purplish Pink)
 function TeqThotsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
@@ -342,15 +251,13 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
                 <div className="lg:w-[60%] flex flex-col">
-                    {/* Logo instead of Heading */}
-                    <div className="mb-4">
-                        <Image
-                            src="/logos/teqthots website.png"
-                            alt="TeqThots English"
-                            width={160}
-                            height={60}
-                            className="h-[60px] w-auto object-contain"
-                            priority
+                    {/* Logo - using plain img to avoid Next.js caching */}
+                    <div className="mb-1">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/logos/teqthots updated logo final lasttt.png"
+                            alt="TeqThots"
+                            className="w-full max-w-[280px] h-auto object-contain"
                         />
                     </div>
 
@@ -359,8 +266,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         TeqThots, Stories That Build Brands (English)
                     </p>
 
-                    {/* Metrics Grid - 2x2 (4 metrics) */}
-                    {/* Metrics Grid - 2x2 (4 metrics) */}
+                    {/* Metrics Grid - 2x2 */}
                     <div className="grid grid-cols-2 gap-3 mb-6">
                         <MetricCard number="1M+" label="Audience Reached" icon={Globe} />
                         <MetricCard number="5+" label="Brand Collaborations" icon={Briefcase} />
@@ -370,10 +276,10 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
 
                     {/* Description */}
                     <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We create brand storytelling content—founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
+                        We create brand storytelling content - founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
                     </p>
 
-                    {/* CTA Button - Only YouTube */}
+                    {/* CTA Button */}
                     <div className="flex flex-wrap gap-3">
                         <CTAButton
                             text="Visit Website"
@@ -386,46 +292,37 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     </div>
                 </div>
 
-                {/* Right Column (40%) - Logo Gallery */}
-                <div className="lg:w-[40%]">
-                    {/* Bento Grid Gallery - Brands (matches Brand Collaborations layout) */}
-                    <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[420px]">
-                        {/* 1. Portrait Card 1 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image
-                                src="/logos/1.png"
-                                alt="TeqThots Content 1"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
+                {/* Right Column (40%) - All landscape grid */}
+                <div className="lg:w-[40%] flex flex-col gap-2">
+                    {/* 2x3 landscape image grid */}
+                    <div className="grid grid-cols-2 gap-2 flex-1">
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/NEVER.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
                         </div>
-                        {/* 2. Portrait Card 2 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image
-                                src="/logos/2.png"
-                                alt="TeqThots Content 2"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/Untitled-2.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
                         </div>
-                        {/* 3. Portrait Card 3 */}
-                        <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image
-                                src="/logos/3.png"
-                                alt="TeqThots Content 3"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/thumbnail.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
                         </div>
-                        {/* 4. Brand Logo Strip - Bottom Full Width */}
-                        <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-white border border-gray-100">
-                            <Image
-                                src="/logos/BRAND.jpg"
-                                alt="Brand Collaboration"
-                                fill
-                                className="object-contain hover:scale-105 transition-transform duration-300"
-                            />
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/Image (16).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
                         </div>
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/Image (17).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                        </div>
+                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                            <Image src="/logos/1/shared image (6).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                        </div>
+                    </div>
+                    {/* Brand Logo Strip */}
+                    <div className="rounded-xl overflow-hidden bg-white border border-gray-100 p-3">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/logos/BRAND.jpg"
+                            alt="Brand Collaborations"
+                            className="w-full h-auto object-contain"
+                        />
                     </div>
                 </div>
             </div>
@@ -433,136 +330,165 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 4: Feature Films - Coming Soon (Creative Redesign)
+// Card 3: Feature Films - Coming Soon
 function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="relative rounded-3xl p-8 md:p-16 min-h-[400px] overflow-hidden flex flex-col items-center justify-center text-center"
+            className="relative rounded-3xl overflow-hidden"
             style={{
-                background: "linear-gradient(to bottom right, rgb(76, 29, 149), rgb(88, 28, 135))",
-                boxShadow: "0 8px 40px rgba(76, 29, 149, 0.4)",
+                background: "linear-gradient(135deg, #0f0225 0%, #1a0533 30%, #2d1059 60%, #1a0533 100%)",
+                boxShadow: "0 8px 40px rgba(76, 29, 149, 0.5)",
             }}
         >
-            {/* Animated Grid Background */}
+            {/* Animated gradient blobs */}
+            <div className="absolute inset-0 overflow-hidden">
+                <motion.div
+                    className="absolute -top-20 -right-20 w-80 h-80 rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%)" }}
+                    animate={{ scale: [1, 1.2, 1], x: [0, 20, 0], y: [0, -10, 0] }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                    className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%)" }}
+                    animate={{ scale: [1, 1.3, 1], x: [0, -15, 0], y: [0, 15, 0] }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                />
+                <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(251,191,36,0.1), transparent 70%)" }}
+                    animate={{ scale: [1, 1.4, 1] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                />
+            </div>
+
+            {/* Dot grid texture */}
             <div
-                className="absolute inset-0 opacity-10"
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
+                    opacity: 0.08,
+                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
                 }}
             />
 
-            {/* Floating Film Reel - Top Left */}
-            <motion.div
-                className="absolute top-8 left-8 text-white/20"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="currentColor">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="4" />
-                    <circle cx="50" cy="50" r="15" fill="currentColor" />
-                    <circle cx="50" cy="20" r="8" fill="currentColor" />
-                    <circle cx="50" cy="80" r="8" fill="currentColor" />
-                    <circle cx="20" cy="50" r="8" fill="currentColor" />
-                    <circle cx="80" cy="50" r="8" fill="currentColor" />
-                </svg>
-            </motion.div>
+            {/* Film strip borders */}
+            <div className="absolute top-0 left-0 right-0 h-10 flex overflow-hidden opacity-10">
+                {Array.from({ length: 20 }).map((_, i) => (
+                    <div key={`top-${i}`} className="flex-shrink-0 w-12 h-10 border border-white/30 mx-0.5 rounded-sm" />
+                ))}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-10 flex overflow-hidden opacity-10">
+                {Array.from({ length: 20 }).map((_, i) => (
+                    <div key={`bot-${i}`} className="flex-shrink-0 w-12 h-10 border border-white/30 mx-0.5 rounded-sm" />
+                ))}
+            </div>
 
-            {/* Floating Film Reel - Bottom Right */}
-            <motion.div
-                className="absolute bottom-8 right-8 text-white/15"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            >
-                <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="4" />
-                    <circle cx="50" cy="50" r="15" fill="currentColor" />
-                    <circle cx="50" cy="20" r="8" fill="currentColor" />
-                    <circle cx="50" cy="80" r="8" fill="currentColor" />
-                    <circle cx="20" cy="50" r="8" fill="currentColor" />
-                    <circle cx="80" cy="50" r="8" fill="currentColor" />
-                </svg>
-            </motion.div>
+            {/* Floating sparkles */}
+            {[
+                { top: "15%", left: "10%", delay: 0, size: 16 },
+                { top: "20%", right: "15%", delay: 1, size: 20 },
+                { bottom: "25%", left: "20%", delay: 0.5, size: 14 },
+                { bottom: "20%", right: "10%", delay: 1.5, size: 18 },
+                { top: "40%", left: "5%", delay: 2, size: 12 },
+                { top: "35%", right: "8%", delay: 0.8, size: 16 },
+            ].map((pos, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute"
+                    style={{ top: pos.top, left: pos.left, right: pos.right, bottom: pos.bottom }}
+                    animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.8, 0.3], rotate: [0, 180, 360] }}
+                    transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: pos.delay }}
+                >
+                    <Sparkles size={pos.size} className="text-yellow-400/60" />
+                </motion.div>
+            ))}
 
-            {/* Sparkle Effects */}
-            <motion.div
-                className="absolute top-1/4 right-1/4"
-                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-            >
-                <Sparkles size={24} className="text-yellow-300" />
-            </motion.div>
-            <motion.div
-                className="absolute bottom-1/3 left-1/4"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.9, 0.4] }}
-                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-            >
-                <Sparkles size={20} className="text-purple-300" />
-            </motion.div>
-
-            {/* Clapperboard Icon - Top Right */}
-            <motion.div
-                className="absolute top-12 right-16 text-white/20"
-                animate={{ rotate: [0, -5, 5, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-            >
-                <Clapperboard size={56} strokeWidth={1.5} />
-            </motion.div>
-
-            <div className="relative z-10 max-w-2xl">
-                {/* Label */}
+            {/* Content */}
+            <div className="relative z-10 py-16 md:py-24 px-8 md:px-16 text-center flex flex-col items-center">
+                {/* "Coming Soon" label on top */}
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.6 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-white/10 border border-white/20"
+                    className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 border border-yellow-400/30"
+                    style={{ background: "linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.1))" }}
                 >
-                    <Film size={16} className="text-purple-300" />
-                    <span className="text-sm font-medium text-white/80 tracking-wide">In Development</span>
+                    <motion.div
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    >
+                        <Clapperboard size={16} className="text-yellow-400" />
+                    </motion.div>
+                    <span className="text-sm font-bold text-yellow-300 tracking-wider uppercase">Coming Soon</span>
                 </motion.div>
 
-                {/* Heading - Playfair Display */}
-                <h3
-                    className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
-                >
-                    Feature Films
-                </h3>
-
-                {/* Coming Soon - Large with Playfair Display */}
-                <motion.p
-                    className="text-6xl md:text-8xl font-bold mb-8 tracking-tight leading-[1.1] pb-4"
+                {/* Main heading: "Feature Films" */}
+                <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.7, duration: 0.6 }}
+                    className="mb-6 tracking-tight leading-[1.05] pb-2"
                     style={{
                         fontFamily: "'Playfair Display', Georgia, serif",
-                        background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 30%, #FB923C 70%, #FACC15 100%)",
+                        fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                        fontWeight: 900,
+                        background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 25%, #FB923C 50%, #FACC15 75%, #FDE68A 100%)",
+                        backgroundSize: "200% 200%",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
-                        textShadow: "0 0 60px rgba(251, 191, 36, 0.3)",
-                        overflow: "visible"
+                        overflow: "visible",
                     }}
-                    animate={{
-                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                    }}
-                    transition={{ duration: 5, repeat: Infinity }}
                 >
-                    Coming Soon
-                </motion.p>
+                    Feature Films
+                </motion.h3>
+
+                {/* Decorative line */}
+                <motion.div
+                    className="mb-8 flex items-center gap-3"
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
+                    transition={{ delay: 0.9, duration: 0.5 }}
+                >
+                    <div className="w-16 h-[2px] bg-gradient-to-r from-transparent to-purple-400" />
+                    <Film size={20} className="text-purple-400" />
+                    <div className="w-16 h-[2px] bg-gradient-to-l from-transparent to-purple-400" />
+                </motion.div>
 
                 {/* Description */}
-                <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto">
-                    As we make a success of our short films and video formats, we are building a slate of feature-length films for theatrical and OTT releases.
-                </p>
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 1, duration: 0.5 }}
+                    className="text-purple-200/70 text-lg leading-relaxed max-w-lg mx-auto mb-10 font-sans"
+                >
+                    We are building a slate of feature-length films for theatrical and OTT releases. From regional stories to global screens.
+                </motion.p>
 
-                {/* Decorative Line */}
+                {/* Animated countdown-style badges */}
                 <motion.div
-                    className="mt-8 mx-auto w-24 h-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400"
-                    animate={{ scaleX: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                />
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 1.1 }}
+                    className="flex flex-wrap justify-center gap-4"
+                >
+                    {["Tamil", "Malayalam", "English"].map((lang, i) => (
+                        <motion.span
+                            key={lang}
+                            className="px-5 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-sm font-medium font-sans backdrop-blur-sm"
+                            whileHover={{ scale: 1.05, borderColor: "rgba(251,191,36,0.4)" }}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={isInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ delay: 1.2 + i * 0.1 }}
+                        >
+                            {lang}
+                        </motion.span>
+                    ))}
+                </motion.div>
             </div>
         </motion.div>
     );
@@ -634,7 +560,6 @@ export function PlatformsSection() {
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-10">
                 <EnnittoMalayalamCard isInView={isInView} />
                 <TeqThotsCard isInView={isInView} />
-                <EnnittoTamilCard isInView={isInView} />
                 <FeatureFilmsCard isInView={isInView} />
             </div>
         </section>
