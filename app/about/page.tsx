@@ -11,14 +11,14 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa", role: "Board Chair", image: "/team/joseph.jpg", initials: "JO", color: "from-purple-400 to-violet-500" }, // ⟶ REPLACE
-  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/team/vivek.jpg", initials: "VS", color: "from-pink-400 to-rose-500" }, // ⟶ REPLACE
-  { name: "Vivin", role: "Startup Champion", image: "/team/vivin.jpg", initials: "V", color: "from-amber-400 to-orange-500" }, // ⟶ REPLACE
-  { name: "Anton Joseph Ciby", role: "Chief of Revenue", image: "/team/anton.jpg", initials: "AJ", color: "from-blue-400 to-indigo-500" }, // ⟶ REPLACE
-  { name: "Srividhya B", role: "Head of Finance & Ops", image: "/team/srividhya.jpg", initials: "SB", color: "from-emerald-400 to-teal-500" }, // ⟶ REPLACE
-  { name: "Sanjay R", role: "Associate Video Editor", image: "/team/sanjay.jpg", initials: "SR", color: "from-cyan-400 to-blue-500" }, // ⟶ REPLACE
-  { name: "Disha Napoleon", role: "Finance Enabler", image: "/team/disha.jpg", initials: "DN", color: "from-fuchsia-400 to-pink-500" }, // ⟶ REPLACE
-  { name: "Purnimma Ravi", role: "People Builder", image: "/team/purnimma.jpg", initials: "PR", color: "from-violet-400 to-purple-500" }, // ⟶ REPLACE
+  { name: "Joseph Olassa", role: "Board Chair", image: "/team/joseph-bg.png", initials: "JO", color: "from-purple-400 to-violet-500", hasBg: true },
+  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/team/vivek.png", initials: "VS", color: "from-pink-400 to-rose-500" },
+  { name: "Vivin", role: "Startup Champion", image: "/team/vivin.png", initials: "V", color: "from-amber-400 to-orange-500" },
+  { name: "Anton Joseph Ciby", role: "Chief of Revenue", image: "/team/anton.png", initials: "AJ", color: "from-blue-400 to-indigo-500" },
+  { name: "Srividhya B", role: "Head of Finance & Ops", image: "/team/sri.png", initials: "SB", color: "from-emerald-400 to-teal-500" },
+  { name: "Sanjay R", role: "Associate Video Editor", image: "/team/sanjay.jpg", initials: "SR", color: "from-cyan-400 to-blue-500" },
+  { name: "Disha Napoleon", role: "Finance Enabler", image: "/team/disha.png", initials: "DN", color: "from-fuchsia-400 to-pink-500" },
+  { name: "Purnimma Ravi", role: "People Builder", image: "/team/purnima.png", initials: "PR", color: "from-violet-400 to-purple-500" },
 ];
 
 const clients = [
@@ -42,32 +42,43 @@ const cultureCards = [
 // TEAM CARD SUBCOMPONENT
 // ============================================
 
-function TeamCard({ person }: { person: { name: string; role: string; image: string; initials: string; color: string } }) {
+function TeamCard({ person }: { person: { name: string; role: string; image: string; initials: string; color: string; hasBg?: boolean } }) {
   return (
     <motion.div
       className="flex flex-col items-center text-center group"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Photo with colorful blob behind */}
       <div className="relative mb-4">
-        {/* Colored blob shape behind photo */}
-        <div className={`absolute -inset-2 bg-gradient-to-br ${person.color} rounded-[2rem] rotate-3 opacity-80 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500`} />
-        <div className={`absolute -inset-2 bg-gradient-to-tr ${person.color} rounded-[2rem] -rotate-2 opacity-40 group-hover:-rotate-4 transition-all duration-500`} />
-        {/* Photo container */}
-        <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-lg">
-          {/* Initials fallback */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${person.color} flex items-center justify-center`}>
-            <span className="text-white text-3xl font-bold font-sans">{person.initials}</span>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Colour blobs — hidden when image has its own background */}
+        {!person.hasBg && (
+          <>
+            <div className={`absolute -inset-2 bg-gradient-to-br ${person.color} rounded-[2rem] rotate-3 opacity-80 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500`} />
+            <div className={`absolute -inset-2 bg-gradient-to-tr ${person.color} rounded-[2rem] -rotate-2 opacity-40 group-hover:-rotate-4 transition-all duration-500`} />
+          </>
+        )}
+        {person.hasBg ? (
+          // No container — image renders as-is with its own background
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={person.image}
             alt={person.name}
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            className="w-64 h-64 md:w-80 md:h-80 object-contain"
           />
-        </div>
+        ) : (
+          <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-lg">
+            <div className={`absolute inset-0 bg-gradient-to-br ${person.color} flex items-center justify-center`}>
+              <span className="text-white text-3xl font-bold font-sans">{person.initials}</span>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={person.image}
+              alt={person.name}
+              className="absolute inset-0 w-full h-full object-cover"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            />
+          </div>
+        )}
       </div>
       {/* Name pill */}
       <div className="bg-white rounded-full shadow-md px-4 py-1.5 -mt-1 border border-gray-100">

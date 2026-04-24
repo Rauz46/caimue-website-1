@@ -94,11 +94,11 @@ export function Footer() {
                         {/* LOGO */}
                         <Link href="/" className="transition-transform hover:scale-105">
                             <Image
-                                src="/caimue-logo.png"
+                                src="/logos/Caimue final logo.png"
                                 alt="Caimue"
-                                width={150}
-                                height={50}
-                                className="h-10 w-auto object-contain"
+                                width={200}
+                                height={70}
+                                className="h-14 w-auto object-contain"
                             />
                         </Link>
 
