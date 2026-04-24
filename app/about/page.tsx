@@ -11,7 +11,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa", role: "Board Chair", image: "/team/joseph-bg.png", initials: "JO", color: "from-purple-400 to-violet-500", hasBg: true },
+  { name: "Joseph Olassa", role: "Board Chair", image: "/team/joseph.png", initials: "JO", color: "from-purple-400 to-violet-500" },
   { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/team/vivek.png", initials: "VS", color: "from-pink-400 to-rose-500" },
   { name: "Vivin", role: "Startup Champion", image: "/team/vivin.png", initials: "V", color: "from-amber-400 to-orange-500" },
   { name: "Anton Joseph Ciby", role: "Chief of Revenue", image: "/team/anton.png", initials: "AJ", color: "from-blue-400 to-indigo-500" },
@@ -42,7 +42,7 @@ const cultureCards = [
 // TEAM CARD SUBCOMPONENT
 // ============================================
 
-function TeamCard({ person }: { person: { name: string; role: string; image: string; initials: string; color: string; hasBg?: boolean } }) {
+function TeamCard({ person }: { person: { name: string; role: string; image: string; initials: string; color: string } }) {
   return (
     <motion.div
       className="flex flex-col items-center text-center group"
@@ -50,35 +50,20 @@ function TeamCard({ person }: { person: { name: string; role: string; image: str
       transition={{ duration: 0.3 }}
     >
       <div className="relative mb-4">
-        {/* Colour blobs — hidden when image has its own background */}
-        {!person.hasBg && (
-          <>
-            <div className={`absolute -inset-2 bg-gradient-to-br ${person.color} rounded-[2rem] rotate-3 opacity-80 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500`} />
-            <div className={`absolute -inset-2 bg-gradient-to-tr ${person.color} rounded-[2rem] -rotate-2 opacity-40 group-hover:-rotate-4 transition-all duration-500`} />
-          </>
-        )}
-        {person.hasBg ? (
-          // No container — image renders as-is with its own background
-          // eslint-disable-next-line @next/next/no-img-element
+        <div className={`absolute -inset-2 bg-gradient-to-br ${person.color} rounded-[2rem] rotate-3 opacity-80 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500`} />
+        <div className={`absolute -inset-2 bg-gradient-to-tr ${person.color} rounded-[2rem] -rotate-2 opacity-40 group-hover:-rotate-4 transition-all duration-500`} />
+        <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-lg">
+          <div className={`absolute inset-0 bg-gradient-to-br ${person.color} flex items-center justify-center`}>
+            <span className="text-white text-3xl font-bold font-sans">{person.initials}</span>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={person.image}
             alt={person.name}
-            className="w-64 h-64 md:w-80 md:h-80 object-contain"
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
           />
-        ) : (
-          <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-lg">
-            <div className={`absolute inset-0 bg-gradient-to-br ${person.color} flex items-center justify-center`}>
-              <span className="text-white text-3xl font-bold font-sans">{person.initials}</span>
-            </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={person.image}
-              alt={person.name}
-              className="absolute inset-0 w-full h-full object-cover"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-            />
-          </div>
-        )}
+        </div>
       </div>
       {/* Name pill */}
       <div className="bg-white rounded-full shadow-md px-4 py-1.5 -mt-1 border border-gray-100">
