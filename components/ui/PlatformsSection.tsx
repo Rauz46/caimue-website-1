@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { Film, Play, ArrowRight, Youtube, Clapperboard, Sparkles, Users, Clock, Globe, Briefcase, Video } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
@@ -191,43 +190,67 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
                     </div>
                 </div>
 
-                {/* Right Column (40%) - Gallery */}
-                <div className="lg:w-[40%]">
-                    <div className="grid grid-cols-2 gap-2 h-full min-h-[350px]">
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/Vishudha Sakshi.jpg"
-                                alt="Vishudha Sakshi"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
-                                style={{ objectPosition: "center 50%" }}
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/ADS-369 Part 2.jpg"
+                {/* Right Column (40%) - Film Photo Collage */}
+                <div className="lg:w-[40%] flex flex-col gap-2">
+                    {/* Top: full-width hero film */}
+                    <div className="relative rounded-2xl overflow-hidden" style={{ height: "160px" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/Movies/Vishudha%20Sakshi.jpg"
+                            alt="Vishudha Sakshi"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <span className="absolute bottom-2 left-3 text-white text-[11px] font-bold drop-shadow">Vishudha Sakshi</span>
+                    </div>
+
+                    {/* Middle: two side-by-side */}
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "110px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/images/Movies/ADS-369%20Part%202.jpg"
                                 alt="ADS-369 Part 2"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                                className="w-full h-full object-cover"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">ADS-369<br/>Part 2</span>
                         </div>
-                        <div className="relative rounded-xl overflow-hidden group">
-                            <Image
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "110px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
                                 src="/images/Movies/Pazhampori.jpg"
                                 alt="Pazhampori"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
+                                className="w-full h-full object-cover"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow">Pazhampori</span>
                         </div>
-                        <div className="col-span-2 relative rounded-xl overflow-hidden group">
-                            <Image
-                                src="/images/Movies/ADS-369 Part 1.jpg"
-                                alt="ADS-369 Part 1"
-                                fill
-                                className="object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-300"
-                                style={{ objectPosition: "center 50%" }}
-                            />
+                    </div>
+
+                    {/* Bottom: feature film with views overlay */}
+                    <div className="relative rounded-2xl overflow-hidden flex-1" style={{ minHeight: "120px" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/Movies/ADS-369%20Part%201.jpg"
+                            alt="ADS-369 Part 1"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+                            <span className="text-white text-[10px] font-bold drop-shadow leading-tight">ADS-369 Part 1</span>
+                            <span className="text-white text-lg font-black drop-shadow leading-none">2.5M+<br/><span className="text-[9px] font-medium opacity-80">Views</span></span>
                         </div>
+                    </div>
+
+                    {/* Language badges */}
+                    <div className="rounded-2xl px-4 py-3 bg-white/40 border border-white/60 flex items-center gap-2 flex-wrap">
+                        {["Malayalam", "Tamil", "English"].map((lang) => (
+                            <span key={lang} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "#E9D5FF", color: "#6D28D9" }}>
+                                {lang}
+                            </span>
+                        ))}
+                        <span className="text-[11px] text-gray-500 ml-auto">OTT & Theatrical</span>
                     </div>
                 </div>
             </div>
@@ -292,37 +315,64 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     </div>
                 </div>
 
-                {/* Right Column (40%) - All landscape grid */}
+                {/* Right Column (40%) - Photo Collage */}
                 <div className="lg:w-[40%] flex flex-col gap-2">
-                    {/* 2x3 landscape image grid */}
-                    <div className="grid grid-cols-2 gap-2 flex-1">
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/NEVER.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                    {/* 3×2 photo grid */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {/* Row 1 */}
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/NEVER.jpg" alt="Never Have I Ever" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">Never Have I Ever</span>
                         </div>
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/Untitled-2.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/1/Image%20(16).jpg" alt="Team Session" className="w-full h-full object-cover" />
                         </div>
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/thumbnail.jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+
+                        {/* Row 2 */}
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/1/shared%20image%20(6).jpg" alt="Piqual Collab" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">Inside Piqual</span>
                         </div>
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/Image (16).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/1/Image%20(17).jpg" alt="Team Outdoor" className="w-full h-full object-cover" />
                         </div>
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/Image (17).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+
+                        {/* Row 3 */}
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/1/Untitled-2.jpg" alt="Team Indoor" className="w-full h-full object-cover" />
                         </div>
-                        <div className="aspect-video relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                            <Image src="/logos/1/shared image (6).jpg" alt="TeqThots Content" fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/1/thumbnail.jpg" alt="Content Creation" className="w-full h-full object-cover" />
                         </div>
                     </div>
-                    {/* Brand Logo Strip */}
-                    <div className="rounded-xl overflow-hidden bg-white border border-gray-100 p-3">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/logos/BRAND.jpg"
-                            alt="Brand Collaborations"
-                            className="w-full h-auto object-contain"
-                        />
+
+                    {/* Brand logos panel */}
+                    <div className="rounded-2xl p-4 bg-white/60 border border-white/80 backdrop-blur-sm">
+                        <div className="grid grid-cols-4 gap-x-4 gap-y-3 items-center">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/loglos/hael.png" alt="Hxeal" className="h-5 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeia" className="h-5 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="h-4 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/loglos/piqual.png" alt="Piqual" className="h-5 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" className="h-5 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/aventei.png" alt="Aventei Capital" className="h-5 w-full object-contain" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/logos/loglos/Nuivio.png" alt="Nuvio" className="h-5 w-full object-contain" />
+                            <span className="text-[11px] font-black text-gray-600 text-center tracking-tight">XIME</span>
+                        </div>
                     </div>
                 </div>
             </div>

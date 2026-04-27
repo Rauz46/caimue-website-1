@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Film, Users, Briefcase, Play, Eye, Globe } from "lucide-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
@@ -11,14 +12,14 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa", role: "Board Chair", image: "/team/joseph.png", initials: "JO", color: "from-purple-400 to-violet-500" },
-  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/team/vivek.png", initials: "VS", color: "from-pink-400 to-rose-500" },
-  { name: "Vivin", role: "Startup Champion", image: "/team/vivin.png", initials: "V", color: "from-amber-400 to-orange-500" },
-  { name: "Anton Joseph Ciby", role: "Chief of Revenue", image: "/team/anton.png", initials: "AJ", color: "from-blue-400 to-indigo-500" },
-  { name: "Srividhya B", role: "Head of Finance & Ops", image: "/team/sri.png", initials: "SB", color: "from-emerald-400 to-teal-500" },
-  { name: "Sanjay R", role: "Associate Video Editor", image: "/team/sanjay.jpg", initials: "SR", color: "from-cyan-400 to-blue-500" },
-  { name: "Disha Napoleon", role: "Finance Enabler", image: "/team/disha.png", initials: "DN", color: "from-fuchsia-400 to-pink-500" },
-  { name: "Purnimma Ravi", role: "People Builder", image: "/team/purnima.png", initials: "PR", color: "from-violet-400 to-purple-500" },
+  { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further." },
+  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything." },
+  { name: "Vivin",               role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show." },
+  { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul." },
+  { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream." },
+  { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can." },
+  { name: "Disha Napoleon",      role: "Finance Enabler",          image: "/teams%20pic/disha.png",   color: "#C026D3", bio: "Numbers person with a creative heart." },
+  { name: "Purnimma Ravi",       role: "People Builder",           image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies." },
 ];
 
 const clients = [
@@ -42,34 +43,87 @@ const cultureCards = [
 // TEAM CARD SUBCOMPONENT
 // ============================================
 
-function TeamCard({ person }: { person: { name: string; role: string; image: string; initials: string; color: string } }) {
+function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number }) {
   return (
     <motion.div
-      className="flex flex-col items-center text-center group"
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.07 }}
+      whileHover={{ y: -10, boxShadow: `0 24px 60px -10px ${person.color}45` }}
+      className="relative bg-white rounded-[28px] overflow-hidden flex flex-col cursor-default select-none"
+      style={{
+        height: "420px",
+        boxShadow: `0 4px 24px -4px ${person.color}20`,
+        border: `1.5px solid ${person.color}18`,
+      }}
     >
-      <div className="relative mb-4">
-        <div className={`absolute -inset-2 bg-gradient-to-br ${person.color} rounded-[2rem] rotate-3 opacity-80 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500`} />
-        <div className={`absolute -inset-2 bg-gradient-to-tr ${person.color} rounded-[2rem] -rotate-2 opacity-40 group-hover:-rotate-4 transition-all duration-500`} />
-        <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-lg">
-          <div className={`absolute inset-0 bg-gradient-to-br ${person.color} flex items-center justify-center`}>
-            <span className="text-white text-3xl font-bold font-sans">{person.initials}</span>
-          </div>
+      {/* ── Top text area ── */}
+      <div className="px-5 pt-5 pb-0 flex-shrink-0" style={{ height: "150px" }}>
+        {/* Role badge + <<< */}
+        <div className="flex items-center justify-between mb-3">
+          <span
+            className="text-[8.5px] font-black uppercase tracking-[0.22em] font-sans px-3 py-1.5 rounded-full border"
+            style={{ color: person.color, background: `${person.color}12`, borderColor: `${person.color}30` }}
+          >
+            {person.role}
+          </span>
+          <motion.span
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+            className="text-[10px] font-mono font-bold"
+            style={{ color: person.color }}
+          >{"<<<"}</motion.span>
+        </div>
+
+        {/* Name */}
+        <h4
+          className="font-black font-serif leading-[1.05] mb-2"
+          style={{ fontSize: "clamp(1.2rem, 1.9vw, 1.5rem)", color: "#111827", letterSpacing: "-0.02em" }}
+        >
+          {person.name}
+        </h4>
+
+        {/* Bio */}
+        <p className="text-[11px] leading-snug font-sans italic line-clamp-2" style={{ color: person.color, opacity: 0.8 }}>
+          "{person.bio}"
+        </p>
+      </div>
+
+      {/* ── Colored blob + texture + photo ── */}
+      <div className="relative flex-1">
+        {/* Color blob */}
+        <div
+          className="absolute left-3 right-3 bottom-0 rounded-t-[22px] overflow-hidden"
+          style={{ top: "8%", backgroundColor: person.color }}
+        >
+          {/* Topographic contour texture */}
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <filter id={`topo-${index}`}>
+                <feTurbulence type="turbulence" baseFrequency="0.012 0.008" numOctaves="5" seed={index * 7 + 3} result="turb" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 3 -1.4" in="turb" result="thresh" />
+                <feComposite in="thresh" in2="SourceGraphic" operator="in" />
+              </filter>
+            </defs>
+            <rect width="100%" height="100%" filter={`url(#topo-${index})`} opacity="0.18" fill="white" />
+          </svg>
+          {/* Top shine */}
+          <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ height: "38%", background: "linear-gradient(180deg,rgba(255,255,255,0.25) 0%,transparent 100%)" }} />
+          {/* Bottom deepen */}
+          <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ height: "25%", background: "linear-gradient(0deg,rgba(0,0,0,0.10) 0%,transparent 100%)" }} />
+        </div>
+
+        {/* Person photo */}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center z-10" style={{ top: "8%" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={person.image}
             alt={person.name}
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            className="w-full h-full object-cover object-top"
           />
         </div>
       </div>
-      {/* Name pill */}
-      <div className="bg-white rounded-full shadow-md px-4 py-1.5 -mt-1 border border-gray-100">
-        <h4 className="text-[var(--foreground)] font-bold text-sm font-sans whitespace-nowrap">{person.name}</h4>
-      </div>
-      <p className="text-[var(--foreground-muted)] text-xs mt-2 font-sans">{person.role}</p>
     </motion.div>
   );
 }
@@ -202,7 +256,7 @@ export default function AboutPage() {
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.15] mb-4 font-serif">
               Two channels, one{" "}
-              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em" }}>
+              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
                 creative engine
               </span>
             </h2>
@@ -225,43 +279,6 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="group relative rounded-[2rem] overflow-hidden border border-pink-200/60 bg-white shadow-xl shadow-pink-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-300/30 cursor-pointer"
             >
-              {/* Bento mosaic grid - 3 cols x 2 rows with one hero span */}
-              <div className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 p-3 md:p-4">
-                <div className="grid grid-cols-3 grid-rows-2 gap-2 md:gap-3" style={{ height: "280px" }}>
-                  {/* Hero image - spans 2 rows */}
-                  <div className="row-span-2 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logos/1/NEVER.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  {/* Top-right pair */}
-                  <div className="rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logos/1/Image (16).jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logos/1/Image (17).jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  {/* Bottom-right pair */}
-                  <div className="rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logos/1/thumbnail.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500 relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/logos/1/shared image (6).jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    {/* +more overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-pink-600/60 to-transparent flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-xs font-bold font-sans">+more</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Handwritten accent */}
-                <span className="absolute bottom-2 right-5 font-handwriting text-pink-400/30 text-lg rotate-[-6deg] z-10 pointer-events-none">
-                  tech + visuals ✧
-                </span>
-              </div>
-
               {/* Content area */}
               <div className="p-8 md:p-10">
                 <div className="flex items-center gap-3 mb-5">
@@ -273,11 +290,30 @@ export default function AboutPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[160px] md:w-[220px] h-auto object-contain" />
                 </div>
-                <p className="text-[var(--foreground-muted)] leading-relaxed mb-6 font-sans">
+                <p className="text-[var(--foreground-muted)] leading-relaxed mb-5 font-sans">
                   A platform for tech thinkers and visual explainers. TeqThots breaks down
                   complex ideas into cinematic, shareable stories, making technology
                   approachable, beautiful, and impossible to scroll past.
                 </p>
+
+                {/* Compact stat strip */}
+                <div className="flex items-center gap-4 mb-6 py-3 px-4 rounded-2xl bg-pink-50 border border-pink-100">
+                  {[
+                    { value: "1M+", label: "Reach", icon: <Globe size={11} className="text-pink-400" /> },
+                    { value: "10+", label: "Videos", icon: <Play size={11} className="text-pink-400" /> },
+                    { value: "12+", label: "Brands", icon: <Briefcase size={11} className="text-pink-400" /> },
+                  ].map(({ value, label, icon }, i) => (
+                    <div key={label} className="flex items-center gap-3">
+                      {i > 0 && <div className="w-px h-6 bg-pink-200" />}
+                      <div className="flex items-center gap-1.5">
+                        {icon}
+                        <span className="text-sm font-black text-pink-600">{value}</span>
+                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
                 <span className="inline-flex items-center gap-2 text-pink-600 font-bold font-sans group-hover:gap-3 transition-all">
                   Explore TeqThots
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -299,59 +335,6 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
             >
-              {/* All-landscape 3x3 grid to match TeqThots height */}
-              <div className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-100 p-3 md:p-4">
-                <div className="grid grid-cols-3 gap-2 md:gap-3">
-                  {/* Row 1 */}
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Smile!.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Live a Little.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/ADS-369 Part 1.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  {/* Row 2 */}
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Pazhampori.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Vishudha Sakshi.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Welcome Home.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  {/* Row 3 */}
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Harinarayana Kudu Charitham.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/ADS-369 Part 2.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  </div>
-                  <div className="aspect-video rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-500 relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/Movies/Malsya Mandooka Mahamaham.jpg" alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    {/* +more overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-600/60 to-transparent flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-xs font-bold font-sans">+more</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Handwritten accent */}
-                <span className="absolute bottom-2 left-5 font-handwriting text-purple-400/30 text-lg rotate-[5deg] z-10 pointer-events-none">
-                  ★ cinema with soul
-                </span>
-              </div>
-
               {/* Content area */}
               <div className="p-8 md:p-10">
                 <div className="flex items-center gap-3 mb-5">
@@ -363,11 +346,39 @@ export default function AboutPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[160px] md:w-[220px] h-auto object-contain" />
                 </div>
-                <p className="text-[var(--foreground-muted)] leading-relaxed mb-6 font-sans">
+                <p className="text-[var(--foreground-muted)] leading-relaxed mb-5 font-sans">
                   Short films with soul. Ennitto is our studio for culturally rooted narratives,
                   stories that honour regional identity while reaching for a global audience.
                   Every frame is a love letter to the worlds we come from.
                 </p>
+
+                {/* Compact stat strip */}
+                <div className="flex items-center gap-4 mb-4 py-3 px-4 rounded-2xl bg-purple-50 border border-purple-100">
+                  {[
+                    { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
+                    { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
+                    { value: "40+", label: "Artists", icon: <Users size={11} className="text-purple-400" /> },
+                  ].map(({ value, label, icon }, i) => (
+                    <div key={label} className="flex items-center gap-3">
+                      {i > 0 && <div className="w-px h-6 bg-purple-200" />}
+                      <div className="flex items-center gap-1.5">
+                        {icon}
+                        <span className="text-sm font-black text-purple-600">{value}</span>
+                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Language tags */}
+                <div className="flex gap-2 mb-6">
+                  {["Malayalam", "Tamil", "English"].map((lang) => (
+                    <span key={lang} className="px-3 py-1 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-600 border border-purple-100">
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+
                 <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
                   Explore Ennitto
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -437,7 +448,7 @@ export default function AboutPage() {
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               Meet the Caimue{" "}
-              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em" }}>
+              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
                 crew
               </span>
             </h2>
@@ -446,18 +457,10 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* All team members in one grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-14 md:gap-x-12 md:gap-y-16">
+          {/* Team grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5">
             {allTeam.map((person, i) => (
-              <motion.div
-                key={person.name}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-              >
-                <TeamCard person={person} />
-              </motion.div>
+              <TeamCard key={person.name} person={person} index={i} />
             ))}
           </div>
         </div>

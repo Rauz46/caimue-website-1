@@ -213,7 +213,28 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Card 2: Brand Collaborations
+function BrandLogoCell({
+    src,
+    alt,
+    bg,
+    className = "",
+}: {
+    src: string;
+    alt: string;
+    bg: string;
+    className?: string;
+}) {
+    return (
+        <motion.div
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(75,29,149,0.13)" }}
+            className={`relative rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center ${className}`}
+            style={{ background: bg, boxShadow: "0 2px 10px rgba(75,29,149,0.06)" }}
+        >
+            <Image src={src} alt={alt} fill className="object-contain p-5" />
+        </motion.div>
+    );
+}
+
 // Card 2: Brand Collaborations
 function BrandCard({ isInView }: { isInView: boolean }) {
     return (
@@ -246,46 +267,34 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* Bento Grid Gallery - Brands (Optimized 5-column layout) */}
-            <div className="grid grid-cols-5 grid-rows-3 gap-2 h-[380px]">
-                {/* 1. Top Left - 60% width */}
-                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                    <Image
-                        src="/logos/thumbnail.jpg"
-                        alt="Piqual Collaboration"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
+            {/* 2×3 Brand Logo Grid */}
+            <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[380px]">
+                {[
+                    { src: "/logos/loglos/hael.png", alt: "Hxeal" },
+                    { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeia" },
+                    { src: "/logos/loglos/piqual.png", alt: "Piqual" },
+                    { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
+                    { src: "/logos/loglos/aventei.png", alt: "Aventei" },
+                    { src: "/logos/loglos/Nuivio.png", alt: "Nuvio" },
+                ].map((logo) => (
+                    <BrandLogoCell key={logo.alt} src={logo.src} alt={logo.alt} bg="#ffffff" />
+                ))}
+            </div>
+
+            {/* More brands indicator */}
+            <div className="flex items-center justify-center gap-2 mt-4">
+                <div className="flex -space-x-1">
+                    {[...Array(6)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="w-2 h-2 rounded-full border border-white"
+                            style={{ background: i % 2 === 0 ? "#8B5CF6" : "#E9D5FF" }}
+                        />
+                    ))}
                 </div>
-                {/* 3. Right Vertical - 40% width (Increased for better framing) */}
-                <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden bg-white border border-gray-100">
-                    <Image
-                        src="/logos/THE TEAM.jpg"
-                        alt="The Team Content"
-                        fill
-                        className="object-contain hover:scale-105 transition-transform duration-300"
-                        priority
-                    />
-                </div>
-                {/* 2. Middle Left - 60% width */}
-                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-white border border-gray-100">
-                    <Image
-                        src="/logos/NEVER.jpg"
-                        alt="Never Content"
-                        fill
-                        className="object-contain hover:scale-105 transition-transform duration-300"
-                        priority
-                    />
-                </div>
-                {/* 4. Bottom Full Width */}
-                <div className="col-span-5 row-span-1 relative rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/logos/BRAND.jpg"
-                        alt="Brand Logos"
-                        className="absolute inset-0 w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
+                <span className="text-sm font-medium" style={{ color: "#7C3AED" }}>
+                    + 6 more brand partnerships
+                </span>
             </div>
         </motion.div>
     );
