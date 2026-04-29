@@ -61,13 +61,13 @@ export function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
-                        <Link href="/contact" className={`${isHome ? "hidden md:inline-flex" : "inline-flex"} btn-primary text-sm px-6 py-2`}>
+                        <Link href="/contact" className="hidden md:inline-flex btn-primary text-sm px-6 py-2">
                             Contact
                         </Link>
 
-                        {/* Hamburger — mobile only, hidden on homepage */}
+                        {/* Hamburger — mobile only */}
                         <button
-                            className={`${isHome ? "hidden" : "md:hidden"} flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-lg hover:bg-gray-100 transition-colors`}
+                            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-lg hover:bg-gray-100 transition-colors"
                             onClick={() => setMobileOpen((o) => !o)}
                             aria-label="Toggle menu"
                         >
