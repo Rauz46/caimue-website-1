@@ -95,20 +95,18 @@ export function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="block py-3 px-4 rounded-xl text-[16px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                                    className="block py-3 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
                                 >
                                     {link.label}
                                 </Link>
                             ))}
-                            <div className="pt-2 pb-1 px-4">
-                                <Link
-                                    href="/contact"
-                                    onClick={() => setMobileOpen(false)}
-                                    className="btn-primary w-full text-center text-[15px] py-3 block"
-                                >
-                                    Contact
-                                </Link>
-                            </div>
+                            <Link
+                                href="/contact"
+                                onClick={() => setMobileOpen(false)}
+                                className="block py-3 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                            >
+                                Contact
+                            </Link>
                         </div>
                     </motion.div>
                 )}
