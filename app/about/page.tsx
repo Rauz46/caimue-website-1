@@ -43,105 +43,83 @@ const cultureCards = [
 // TEAM CARD SUBCOMPONENT
 // ============================================
 
+const TAPE_COLORS = ["#FDE68A", "#FBCFE8", "#C4B5FD", "#A5F3FC", "#BBF7D0", "#FCA5A5", "#FED7AA", "#DDD6FE"];
+const ROTATIONS  = [-3, 2.5, -2, 3.5, -1.5, 3, -2.5, 1.5];
+
 function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number }) {
+  const rot       = ROTATIONS[index % ROTATIONS.length];
+  const tapeColor = TAPE_COLORS[index % TAPE_COLORS.length];
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50, rotate: rot }}
+      whileInView={{ opacity: 1, y: 0, rotate: rot }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      whileHover={{ y: -10, boxShadow: `0 28px 60px -10px ${person.color}50` }}
-      className="relative rounded-[24px] overflow-hidden flex flex-col cursor-default select-none bg-white"
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
+        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
+      className="relative cursor-default select-none bg-white"
       style={{
-        height: "360px",
-        boxShadow: `0 4px 24px -4px ${person.color}25`,
-        border: `1.5px solid ${person.color}20`,
+        padding: "10px",
+        boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
+        marginTop: index % 4 === 1 || index % 4 === 3 ? "28px" : "0px",
+        zIndex: 1,
       }}
     >
-      {/* Left color accent strip */}
-      <div className="absolute left-0 top-0 bottom-0 w-[3px] z-20" style={{ background: person.color }} />
+      {/* Tape strip */}
+      <div
+        className="absolute -top-3.5 left-1/2 w-14 h-7 rounded-sm opacity-75 z-10"
+        style={{
+          background: tapeColor,
+          transform: "translateX(-50%) rotate(-1.5deg)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+        }}
+      />
 
-      {/* ── Photo section — top 58% ── */}
-      <div className="relative overflow-hidden flex-shrink-0" style={{ height: "58%" }}>
-        {/* Colored bg behind photo */}
-        <div className="absolute inset-0" style={{ backgroundColor: `${person.color}30` }} />
+      {/* Photo */}
+      <div className="relative overflow-hidden" style={{ height: "200px" }}>
+        <div className="absolute inset-0" style={{ backgroundColor: `${person.color}25` }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={person.image}
           alt={person.name}
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
-        {/* Dark-to-transparent gradient at bottom of photo */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 45%, transparent 72%)" }}
+        {/* Subtle gradient at bottom */}
+        <div className="absolute inset-0"
+          style={{ background: `linear-gradient(to top, ${person.color}60 0%, transparent 55%)` }}
         />
-
-        {/* Animated <<< top-right */}
-        <motion.span
-          animate={{ opacity: [0.3, 0.9, 0.3] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-          className="absolute top-3 right-3 text-[11px] font-mono font-bold text-white/80 z-10"
-        >{"<<<"}</motion.span>
-
-        {/* Role badge — bottom-left of photo, overlaid on gradient */}
-        <div className="absolute bottom-3 left-4 z-10">
-          <span
-            className="text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-lg"
-            style={{ background: person.color, color: "#fff", boxShadow: `0 4px 12px ${person.color}60` }}
-          >
-            {person.role}
-          </span>
+        {/* Film-notch top-right */}
+        <div className="absolute top-2 right-2 flex gap-0.5 z-10">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="w-1 h-3 rounded-sm opacity-40" style={{ background: "#fff" }} />
+          ))}
         </div>
       </div>
 
-      {/* ── Info section — bottom 38% ── */}
-      <div className="relative flex-1 px-5 pt-4 pb-4 flex flex-col justify-between overflow-hidden">
-        {/* Faint watermark behind text */}
+      {/* Polaroid caption — white area */}
+      <div className="px-3 pt-3.5 pb-3">
+        {/* Name */}
+        <h4 className="font-serif font-bold text-gray-900 leading-tight mb-1.5"
+          style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)" }}>
+          {person.name}
+        </h4>
+        {/* Role badge */}
         <span
-          className="absolute -top-3 right-2 font-black uppercase pointer-events-none select-none leading-none"
-          style={{
-            fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-            color: `${person.color}09`,
-            letterSpacing: "-0.04em",
-          }}
+          className="inline-block text-[9px] font-black uppercase tracking-[0.18em] px-3 py-1 mb-2.5 text-white rounded-sm"
+          style={{ background: person.color, boxShadow: `0 2px 8px ${person.color}50` }}
         >
-          {person.role.split(" ")[0]}
+          {person.role}
         </span>
-
-        <div className="relative z-10">
-          {/* Name */}
-          <h4
-            className="font-black font-serif leading-[1.0] mb-1 text-gray-900"
-            style={{ fontSize: "clamp(1.1rem, 1.75vw, 1.4rem)", letterSpacing: "-0.025em" }}
-          >
-            {person.name}
-          </h4>
-
-          {/* Thin color rule under name */}
-          <div className="mb-2 h-[2px] w-8 rounded-full" style={{ background: person.color }} />
-
-          {/* Bio quote */}
-          <p
-            className="text-[11.5px] leading-snug font-sans italic line-clamp-2 mb-2.5"
-            style={{ color: "#6b7280" }}
-          >
-            <span className="text-[18px] font-serif leading-none mr-0.5 align-bottom" style={{ color: person.color }}>"</span>
-            {person.bio}
-            <span className="text-[18px] font-serif leading-none ml-0.5 align-bottom" style={{ color: person.color }}>"</span>
-          </p>
-
-          {/* Skill line */}
-          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] font-sans" style={{ color: `${person.color}99` }}>
-            {person.tags.join(" · ")}
-          </p>
-        </div>
-
-        {/* Bottom gradient accent line */}
-        <div
-          className="h-[2px] rounded-full"
-          style={{ background: `linear-gradient(to right, ${person.color}, ${person.color}20)` }}
-        />
+        {/* Bio */}
+        <p className="text-[12px] leading-relaxed font-sans italic text-gray-500 mb-2 line-clamp-2">
+          "{person.bio}"
+        </p>
+        {/* Tags */}
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] font-sans"
+          style={{ color: `${person.color}cc` }}>
+          {person.tags.join(" · ")}
+        </p>
       </div>
     </motion.div>
   );
@@ -412,7 +390,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 4,TEAM
           ================================================================= */}
-      <section className="relative py-12 md:py-16 bg-white overflow-hidden">
+      <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "linear-gradient(160deg, #f9f6f1 0%, #f3eeff 60%, #fdf0f8 100%)" }}>
         {/* Cross-hatch texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -473,8 +451,8 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Team grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+          {/* Polaroid grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" style={{ paddingBottom: "28px" }}>
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
