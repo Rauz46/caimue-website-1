@@ -230,7 +230,7 @@ function BrandLogoCell({
             className={`relative rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center ${className}`}
             style={{ background: bg, boxShadow: "0 2px 10px rgba(75,29,149,0.06)" }}
         >
-            <Image src={src} alt={alt} fill className="object-contain p-5" />
+            <Image src={src} alt={alt} fill className="object-contain p-3" />
         </motion.div>
     );
 }
@@ -267,34 +267,20 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* 2×3 Brand Logo Grid */}
-            <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[380px]">
-                {[
-                    { src: "/logos/loglos/hael.png", alt: "Hxeal" },
-                    { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeia" },
-                    { src: "/logos/loglos/piqual.png", alt: "Piqual" },
-                    { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
-                    { src: "/logos/loglos/aventei.png", alt: "Aventei" },
-                    { src: "/logos/loglos/Nuivio.png", alt: "Nuvio" },
-                ].map((logo) => (
-                    <BrandLogoCell key={logo.alt} src={logo.src} alt={logo.alt} bg="#ffffff" />
-                ))}
-            </div>
-
-            {/* More brands indicator */}
-            <div className="flex items-center justify-center gap-2 mt-4">
-                <div className="flex -space-x-1">
-                    {[...Array(6)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="w-2 h-2 rounded-full border border-white"
-                            style={{ background: i % 2 === 0 ? "#8B5CF6" : "#E9D5FF" }}
-                        />
-                    ))}
-                </div>
-                <span className="text-sm font-medium" style={{ color: "#7C3AED" }}>
-                    + 6 more brand partnerships
-                </span>
+            {/* 3×4 uniform brand logo grid */}
+            <div className="grid grid-cols-3 gap-2" style={{ gridAutoRows: "72px" }}>
+                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" bg="#ffffff" />
+                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" bg="#ffffff" />
             </div>
         </motion.div>
     );

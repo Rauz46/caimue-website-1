@@ -50,79 +50,93 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      whileHover={{ y: -10, boxShadow: `0 24px 60px -10px ${person.color}45` }}
-      className="relative bg-white rounded-[28px] overflow-hidden flex flex-col cursor-default select-none"
+      whileHover={{ y: -10, boxShadow: `0 28px 60px -10px ${person.color}50` }}
+      className="relative rounded-[24px] overflow-hidden flex flex-col cursor-default select-none bg-white"
       style={{
-        height: "420px",
-        boxShadow: `0 4px 24px -4px ${person.color}20`,
-        border: `1.5px solid ${person.color}18`,
+        height: "360px",
+        boxShadow: `0 4px 24px -4px ${person.color}25`,
+        border: `1.5px solid ${person.color}20`,
       }}
     >
-      {/* ── Top text area ── */}
-      <div className="px-5 pt-5 pb-0 flex-shrink-0" style={{ height: "150px" }}>
-        {/* Role badge + <<< */}
-        <div className="flex items-center justify-between mb-3">
+      {/* Left color accent strip */}
+      <div className="absolute left-0 top-0 bottom-0 w-[3px] z-20" style={{ background: person.color }} />
+
+      {/* ── Photo section — top 58% ── */}
+      <div className="relative overflow-hidden flex-shrink-0" style={{ height: "58%" }}>
+        {/* Colored bg behind photo */}
+        <div className="absolute inset-0" style={{ backgroundColor: `${person.color}30` }} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={person.image}
+          alt={person.name}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+        {/* Dark-to-transparent gradient at bottom of photo */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 45%, transparent 72%)" }}
+        />
+
+        {/* Animated <<< top-right */}
+        <motion.span
+          animate={{ opacity: [0.3, 0.9, 0.3] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
+          className="absolute top-3 right-3 text-[11px] font-mono font-bold text-white/80 z-10"
+        >{"<<<"}</motion.span>
+
+        {/* Role badge — bottom-left of photo, overlaid on gradient */}
+        <div className="absolute bottom-3 left-4 z-10">
           <span
-            className="text-[8.5px] font-black uppercase tracking-[0.22em] font-sans px-3 py-1.5 rounded-full border"
-            style={{ color: person.color, background: `${person.color}12`, borderColor: `${person.color}30` }}
+            className="text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-lg"
+            style={{ background: person.color, color: "#fff", boxShadow: `0 4px 12px ${person.color}60` }}
           >
             {person.role}
           </span>
-          <motion.span
-            animate={{ opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            className="text-[10px] font-mono font-bold"
-            style={{ color: person.color }}
-          >{"<<<"}</motion.span>
         </div>
-
-        {/* Name */}
-        <h4
-          className="font-black font-serif leading-[1.05] mb-2"
-          style={{ fontSize: "clamp(1.2rem, 1.9vw, 1.5rem)", color: "#111827", letterSpacing: "-0.02em" }}
-        >
-          {person.name}
-        </h4>
-
-        {/* Bio */}
-        <p className="text-[11px] leading-snug font-sans italic line-clamp-2" style={{ color: person.color, opacity: 0.8 }}>
-          "{person.bio}"
-        </p>
       </div>
 
-      {/* ── Colored blob + texture + photo ── */}
-      <div className="relative flex-1">
-        {/* Color blob */}
-        <div
-          className="absolute left-3 right-3 bottom-0 rounded-t-[22px] overflow-hidden"
-          style={{ top: "8%", backgroundColor: person.color }}
+      {/* ── Info section — bottom 38% ── */}
+      <div className="relative flex-1 px-5 pt-4 pb-4 flex flex-col justify-between overflow-hidden">
+        {/* Faint watermark behind text */}
+        <span
+          className="absolute -top-3 right-2 font-black uppercase pointer-events-none select-none leading-none"
+          style={{
+            fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+            color: `${person.color}09`,
+            letterSpacing: "-0.04em",
+          }}
         >
-          {/* Topographic contour texture */}
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <filter id={`topo-${index}`}>
-                <feTurbulence type="turbulence" baseFrequency="0.012 0.008" numOctaves="5" seed={index * 7 + 3} result="turb" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 3 -1.4" in="turb" result="thresh" />
-                <feComposite in="thresh" in2="SourceGraphic" operator="in" />
-              </filter>
-            </defs>
-            <rect width="100%" height="100%" filter={`url(#topo-${index})`} opacity="0.18" fill="white" />
-          </svg>
-          {/* Top shine */}
-          <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ height: "38%", background: "linear-gradient(180deg,rgba(255,255,255,0.25) 0%,transparent 100%)" }} />
-          {/* Bottom deepen */}
-          <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ height: "25%", background: "linear-gradient(0deg,rgba(0,0,0,0.10) 0%,transparent 100%)" }} />
+          {person.role.split(" ")[0]}
+        </span>
+
+        <div className="relative z-10">
+          {/* Name */}
+          <h4
+            className="font-black font-serif leading-[1.0] mb-1 text-gray-900"
+            style={{ fontSize: "clamp(1.1rem, 1.75vw, 1.4rem)", letterSpacing: "-0.025em" }}
+          >
+            {person.name}
+          </h4>
+
+          {/* Thin color rule under name */}
+          <div className="mb-2.5 h-[2px] w-8 rounded-full" style={{ background: person.color }} />
+
+          {/* Bio quote */}
+          <p
+            className="text-[11.5px] leading-snug font-sans italic line-clamp-2"
+            style={{ color: "#6b7280" }}
+          >
+            <span className="text-[18px] font-serif leading-none mr-0.5 align-bottom" style={{ color: person.color }}>"</span>
+            {person.bio}
+            <span className="text-[18px] font-serif leading-none ml-0.5 align-bottom" style={{ color: person.color }}>"</span>
+          </p>
         </div>
 
-        {/* Person photo */}
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center z-10" style={{ top: "8%" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={person.image}
-            alt={person.name}
-            className="w-full h-full object-cover object-top"
-          />
-        </div>
+        {/* Bottom gradient accent line */}
+        <div
+          className="h-[2px] rounded-full"
+          style={{ background: `linear-gradient(to right, ${person.color}, ${person.color}20)` }}
+        />
       </div>
     </motion.div>
   );
@@ -206,7 +220,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 3,WHAT WE DO
           ================================================================= */}
-      <section className="relative py-28 md:py-36 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
+      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
         {/* Cross-hatch lines texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -249,24 +263,86 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-20"
+            className="text-center mb-6"
           >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
+            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-sans">
               What We Do
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.15] mb-4 font-serif">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] font-serif">
               Two channels, one{" "}
               <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
                 creative engine
               </span>
             </h2>
-            <p className="text-[var(--foreground-muted)] text-lg max-w-xl mx-auto font-sans">
-              Where imagination meets intelligence, powered by AI and purpose.
-            </p>
           </motion.div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* ---- Ennitto Card ---- */}
+            <motion.a
+              href="https://ennitto.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
+            >
+              {/* Content area */}
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 text-white text-xs font-bold font-sans shadow-md">01</span>
+                  <span className="text-purple-500 text-xs font-bold tracking-[0.2em] uppercase font-sans">Channel</span>
+                </div>
+                {/* Logo */}
+                <div className="mb-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[130px] md:w-[170px] h-auto object-contain" />
+                </div>
+                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
+                  Short films with soul. Ennitto is our studio for culturally rooted narratives,
+                  stories that honour regional identity while reaching for a global audience.
+                  Every frame is a love letter to the worlds we come from.
+                </p>
+
+                {/* Compact stat strip */}
+                <div className="flex items-center gap-4 mb-3 py-2 px-3 rounded-2xl bg-purple-50 border border-purple-100">
+                  {[
+                    { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
+                    { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
+                    { value: "40+", label: "Artists", icon: <Users size={11} className="text-purple-400" /> },
+                  ].map(({ value, label, icon }, i) => (
+                    <div key={label} className="flex items-center gap-3">
+                      {i > 0 && <div className="w-px h-5 bg-purple-200" />}
+                      <div className="flex items-center gap-1.5">
+                        {icon}
+                        <span className="text-sm font-black text-purple-600">{value}</span>
+                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Language tags */}
+                <div className="flex gap-2 mb-4">
+                  {["Malayalam", "Tamil", "English"].map((lang) => (
+                    <span key={lang} className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-600 border border-purple-100">
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+
+                <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
+                  Explore Ennitto
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                </span>
+              </div>
+
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            </motion.a>
 
             {/* ---- TeqThots Card ---- */}
             <motion.a
@@ -276,35 +352,35 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               className="group relative rounded-[2rem] overflow-hidden border border-pink-200/60 bg-white shadow-xl shadow-pink-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-300/30 cursor-pointer"
             >
               {/* Content area */}
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white text-xs font-bold font-sans shadow-md">01</span>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white text-xs font-bold font-sans shadow-md">02</span>
                   <span className="text-pink-500 text-xs font-bold tracking-[0.2em] uppercase font-sans">Channel</span>
                 </div>
                 {/* Logo */}
-                <div className="mb-4">
+                <div className="mb-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[160px] md:w-[220px] h-auto object-contain" />
+                  <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[130px] md:w-[170px] h-auto object-contain" />
                 </div>
-                <p className="text-[var(--foreground-muted)] leading-relaxed mb-5 font-sans">
+                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
                   A platform for tech thinkers and visual explainers. TeqThots breaks down
                   complex ideas into cinematic, shareable stories, making technology
                   approachable, beautiful, and impossible to scroll past.
                 </p>
 
                 {/* Compact stat strip */}
-                <div className="flex items-center gap-4 mb-6 py-3 px-4 rounded-2xl bg-pink-50 border border-pink-100">
+                <div className="flex items-center gap-4 mb-4 py-2 px-3 rounded-2xl bg-pink-50 border border-pink-100">
                   {[
                     { value: "1M+", label: "Reach", icon: <Globe size={11} className="text-pink-400" /> },
                     { value: "10+", label: "Videos", icon: <Play size={11} className="text-pink-400" /> },
                     { value: "12+", label: "Brands", icon: <Briefcase size={11} className="text-pink-400" /> },
                   ].map(({ value, label, icon }, i) => (
                     <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-6 bg-pink-200" />}
+                      {i > 0 && <div className="w-px h-5 bg-pink-200" />}
                       <div className="flex items-center gap-1.5">
                         {icon}
                         <span className="text-sm font-black text-pink-600">{value}</span>
@@ -322,71 +398,6 @@ export default function AboutPage() {
 
               {/* Hover glow */}
               <div className="absolute inset-0 bg-gradient-to-t from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.a>
-
-            {/* ---- Ennitto Card ---- */}
-            <motion.a
-              href="https://ennitto.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
-            >
-              {/* Content area */}
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 text-white text-xs font-bold font-sans shadow-md">02</span>
-                  <span className="text-purple-500 text-xs font-bold tracking-[0.2em] uppercase font-sans">Channel</span>
-                </div>
-                {/* Logo */}
-                <div className="mb-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[160px] md:w-[220px] h-auto object-contain" />
-                </div>
-                <p className="text-[var(--foreground-muted)] leading-relaxed mb-5 font-sans">
-                  Short films with soul. Ennitto is our studio for culturally rooted narratives,
-                  stories that honour regional identity while reaching for a global audience.
-                  Every frame is a love letter to the worlds we come from.
-                </p>
-
-                {/* Compact stat strip */}
-                <div className="flex items-center gap-4 mb-4 py-3 px-4 rounded-2xl bg-purple-50 border border-purple-100">
-                  {[
-                    { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
-                    { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
-                    { value: "40+", label: "Artists", icon: <Users size={11} className="text-purple-400" /> },
-                  ].map(({ value, label, icon }, i) => (
-                    <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-6 bg-purple-200" />}
-                      <div className="flex items-center gap-1.5">
-                        {icon}
-                        <span className="text-sm font-black text-purple-600">{value}</span>
-                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Language tags */}
-                <div className="flex gap-2 mb-6">
-                  {["Malayalam", "Tamil", "English"].map((lang) => (
-                    <span key={lang} className="px-3 py-1 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-600 border border-purple-100">
-                      {lang}
-                    </span>
-                  ))}
-                </div>
-
-                <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
-                  Explore Ennitto
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                </span>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </motion.a>
 
           </div>
@@ -458,7 +469,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Team grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
@@ -467,32 +478,9 @@ export default function AboutPage() {
       </section>
 
       {/* =================================================================
-          SECTION 5,CLIENTS
-          ================================================================= */}
-      <section className="py-20" style={{ backgroundColor: "#f4eeff" }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-center text-purple-400 text-xs font-bold tracking-[0.25em] uppercase mb-12 font-sans">
-            Trusted by brands and startups
-          </p>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
-            {clients.map((client) => (
-              <div key={client.name} className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={client.src}
-                  alt={client.name}
-                  className="h-8 md:h-10 w-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-24 md:py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
         <div className="max-w-6xl mx-auto px-6">
           {/* Heading */}
           <motion.div
