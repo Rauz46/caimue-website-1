@@ -12,14 +12,14 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further." },
-  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything." },
-  { name: "Vivin",               role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show." },
-  { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul." },
-  { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream." },
-  { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can." },
-  { name: "Disha Napoleon",      role: "Finance Enabler",          image: "/teams%20pic/disha.png",   color: "#C026D3", bio: "Numbers person with a creative heart." },
-  { name: "Purnimma Ravi",       role: "People Builder",           image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies." },
+  { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",             tags: ["Strategy", "Vision"] },
+  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything.", tags: ["Storytelling", "Startups"] },
+  { name: "Vivin",               role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                    tags: ["Creative", "Execution"] },
+  { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul.",    tags: ["Revenue", "Growth"] },
+  { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                    tags: ["Finance", "Ops"] },
+  { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",              tags: ["Video", "Editing"] },
+  { name: "Disha Napoleon",      role: "Finance Enabler",          image: "/teams%20pic/disha.png",   color: "#C026D3", bio: "Numbers person with a creative heart.",                     tags: ["Finance", "Analytics"] },
+  { name: "Purnimma Ravi",       role: "People Builder",           image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies.",               tags: ["People", "Culture"] },
 ];
 
 const clients = [
@@ -119,17 +119,30 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
           </h4>
 
           {/* Thin color rule under name */}
-          <div className="mb-2.5 h-[2px] w-8 rounded-full" style={{ background: person.color }} />
+          <div className="mb-2 h-[2px] w-8 rounded-full" style={{ background: person.color }} />
 
           {/* Bio quote */}
           <p
-            className="text-[11.5px] leading-snug font-sans italic line-clamp-2"
+            className="text-[11.5px] leading-snug font-sans italic line-clamp-2 mb-2.5"
             style={{ color: "#6b7280" }}
           >
             <span className="text-[18px] font-serif leading-none mr-0.5 align-bottom" style={{ color: person.color }}>"</span>
             {person.bio}
             <span className="text-[18px] font-serif leading-none ml-0.5 align-bottom" style={{ color: person.color }}>"</span>
           </p>
+
+          {/* Skill tags */}
+          <div className="flex gap-1.5 flex-wrap">
+            {person.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[9.5px] font-bold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full"
+                style={{ background: `${person.color}15`, color: person.color, border: `1px solid ${person.color}25` }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom gradient accent line */}
@@ -407,7 +420,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 4,TEAM
           ================================================================= */}
-      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+      <section className="relative py-12 md:py-16 bg-white overflow-hidden">
         {/* Cross-hatch texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -452,7 +465,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
+            className="text-center mb-8"
           >
             <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
               The People
@@ -513,7 +526,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className={`${card.rotation} bg-white rounded-2xl shadow-lg border border-gray-100 p-4 w-40 md:w-48 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default`}
               >
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center mb-3">
+                <div className="aspect-square rounded-xl bg-gradient-to-br from-purple-300/60 to-pink-300/60 flex items-center justify-center mb-3">
                   <span className="text-5xl md:text-6xl">{card.emoji}</span>
                 </div>
                 <p className="text-center text-sm italic text-[var(--foreground-muted)] font-medium font-serif">
