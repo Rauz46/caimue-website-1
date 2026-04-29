@@ -131,18 +131,10 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
             <span className="text-[18px] font-serif leading-none ml-0.5 align-bottom" style={{ color: person.color }}>"</span>
           </p>
 
-          {/* Skill tags */}
-          <div className="flex gap-1.5 flex-wrap">
-            {person.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[9.5px] font-bold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full"
-                style={{ background: `${person.color}15`, color: person.color, border: `1px solid ${person.color}25` }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          {/* Skill line */}
+          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] font-sans" style={{ color: `${person.color}99` }}>
+            {person.tags.join(" · ")}
+          </p>
         </div>
 
         {/* Bottom gradient accent line */}
