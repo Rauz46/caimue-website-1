@@ -14,7 +14,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 const allTeam = [
   { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",             tags: ["Strategy", "Vision"] },
   { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything.", tags: ["Storytelling", "Startups"] },
-  { name: "Vivin",               role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                    tags: ["Creative", "Execution"] },
+  { name: "Vivin Raj",            role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                    tags: ["Creative", "Execution"] },
   { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul.",    tags: ["Revenue", "Growth"] },
   { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                    tags: ["Finance", "Ops"] },
   { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",              tags: ["Video", "Editing"] },
@@ -274,15 +274,11 @@ export default function AboutPage() {
               className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
             >
               {/* Content area */}
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 text-white text-xs font-bold font-sans shadow-md">01</span>
-                  <span className="text-purple-500 text-xs font-bold tracking-[0.2em] uppercase font-sans">Channel</span>
-                </div>
+              <div className="p-6 text-center">
                 {/* Logo */}
-                <div className="mb-3">
+                <div className="mb-3 flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[130px] md:w-[170px] h-auto object-contain" />
+                  <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[160px] md:w-[210px] h-auto object-contain" />
                 </div>
                 <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
                   Short films with soul. Ennitto is our studio for culturally rooted narratives,
@@ -291,7 +287,7 @@ export default function AboutPage() {
                 </p>
 
                 {/* Compact stat strip */}
-                <div className="flex items-center gap-4 mb-3 py-2 px-3 rounded-2xl bg-purple-50 border border-purple-100">
+                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-purple-50 border border-purple-100">
                   {[
                     { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
                     { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
@@ -308,19 +304,12 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                {/* Language tags */}
-                <div className="flex gap-2 mb-4">
-                  {["Malayalam", "Tamil", "English"].map((lang) => (
-                    <span key={lang} className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-600 border border-purple-100">
-                      {lang}
-                    </span>
-                  ))}
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
+                    Explore Ennitto
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </span>
                 </div>
-
-                <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
-                  Explore Ennitto
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                </span>
               </div>
 
               {/* Hover glow */}
@@ -339,15 +328,11 @@ export default function AboutPage() {
               className="group relative rounded-[2rem] overflow-hidden border border-pink-200/60 bg-white shadow-xl shadow-pink-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-300/30 cursor-pointer"
             >
               {/* Content area */}
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white text-xs font-bold font-sans shadow-md">02</span>
-                  <span className="text-pink-500 text-xs font-bold tracking-[0.2em] uppercase font-sans">Channel</span>
-                </div>
+              <div className="p-6 text-center">
                 {/* Logo */}
-                <div className="mb-3">
+                <div className="mb-3 flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[130px] md:w-[170px] h-auto object-contain" />
+                  <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[160px] md:w-[210px] h-auto object-contain" />
                 </div>
                 <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
                   A platform for tech thinkers and visual explainers. TeqThots breaks down
@@ -356,7 +341,7 @@ export default function AboutPage() {
                 </p>
 
                 {/* Compact stat strip */}
-                <div className="flex items-center gap-4 mb-4 py-2 px-3 rounded-2xl bg-pink-50 border border-pink-100">
+                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-pink-50 border border-pink-100">
                   {[
                     { value: "1M+", label: "Reach", icon: <Globe size={11} className="text-pink-400" /> },
                     { value: "10+", label: "Videos", icon: <Play size={11} className="text-pink-400" /> },
@@ -373,10 +358,12 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <span className="inline-flex items-center gap-2 text-pink-600 font-bold font-sans group-hover:gap-3 transition-all">
-                  Explore TeqThots
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                </span>
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center gap-2 text-pink-600 font-bold font-sans group-hover:gap-3 transition-all">
+                    Explore TeqThots
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </span>
+                </div>
               </div>
 
               {/* Hover glow */}
@@ -390,7 +377,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 4,TEAM
           ================================================================= */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "linear-gradient(160deg, #f9f6f1 0%, #f3eeff 60%, #fdf0f8 100%)" }}>
+      <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
         {/* Cross-hatch texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -443,7 +430,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               Meet the Caimue{" "}
               <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
-                crew
+                Crew
               </span>
             </h2>
             <p className="text-[var(--foreground-muted)] text-lg max-w-xl mx-auto font-sans">
