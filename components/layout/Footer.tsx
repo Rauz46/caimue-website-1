@@ -94,7 +94,7 @@ export function Footer() {
                         {/* LOGO */}
                         <Link href="/" className="transition-transform hover:scale-105">
                             <Image
-                                src="/logos/Caimue final logo.png"
+                                src="/Caimue Film Studios Logo.png"
                                 alt="Caimue"
                                 width={200}
                                 height={70}

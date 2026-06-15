@@ -5,7 +5,16 @@
       "Bash(npm run *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git commit -m ')",
+      "Bash(git ls-remote *)",
+      "Bash(ls .vercel)",
+      "Bash(cat .vercel/project.json)",
+      "Bash(npx vercel *)",
+      "Bash(vercel --version)",
+      "Bash(npm i *)",
+      "Bash(vercel --prod)",
+      "Bash(vercel whoami *)"
     ]
   }
 }
