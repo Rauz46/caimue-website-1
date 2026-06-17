@@ -278,7 +278,7 @@ export default function AboutPage() {
                 {/* Logo */}
                 <div className="mb-3 flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/ennitto%20logo.png" alt="Ennitto" className="w-[160px] md:w-[210px] h-auto object-contain" />
+                  <img src="/logos/ennitto-film-studios-logo.png" alt="Ennitto" className="w-[160px] md:w-[210px] h-auto object-contain" />
                 </div>
                 <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
                   Short films with soul. Ennitto is our studio for culturally rooted narratives,
@@ -332,7 +332,7 @@ export default function AboutPage() {
                 {/* Logo */}
                 <div className="mb-3 flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="w-[160px] md:w-[210px] h-auto object-contain" />
+                  <img src="/logos/digubi-logo.png" alt="TeqThots" className="w-[160px] md:w-[210px] h-auto object-contain" />
                 </div>
                 <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
                   A platform for tech thinkers and visual explainers. TeqThots breaks down

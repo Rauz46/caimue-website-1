@@ -148,34 +148,32 @@ function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
 
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col">
+                <div className="lg:w-[60%] flex flex-col justify-between">
                     {/* Logo */}
-                    <div className="mb-1">
+                    <div>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/logos/ennitto logo.png"
+                            src="/logos/ennitto-film-studios-logo.png"
                             alt="Ennitto"
                             className="w-full max-w-[260px] h-auto object-contain"
                         />
                     </div>
 
-                    {/* Tagline */}
-                    <p className="text-gray-600 italic text-base mb-5">
-                        Original Short Films in Malayalam & Tamil
-                    </p>
+                    {/* Metrics + Description */}
+                    <div>
+                        {/* Metrics Grid - 2x2 */}
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                            <MetricCard number="2.5M+" label="Views on YouTube" icon={Youtube} />
+                            <MetricCard number="17+" label="Short Films" icon={Film} />
+                            <MetricCard number="40+" label="Artists Discovered" icon={Users} />
+                            <MetricCard number="4000+" label="Watch Hours" icon={Clock} />
+                        </div>
 
-                    {/* Metrics Grid - 2x2 */}
-                    <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="2.5M+" label="Views on YouTube" icon={Youtube} />
-                        <MetricCard number="17+" label="Short Films" icon={Film} />
-                        <MetricCard number="40+" label="Artists Discovered" icon={Users} />
-                        <MetricCard number="4000+" label="Watch Hours" icon={Clock} />
+                        {/* Description */}
+                        <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px]">
+                            We produce original Malayalam and Tamil films, from shorts to features to OTT content. We discover talent across both languages and build toward theatrical and streaming releases.
+                        </p>
                     </div>
-
-                    {/* Description */}
-                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We produce original Malayalam and Tamil films, from shorts to features to OTT content. We discover talent across both languages and build toward theatrical and streaming releases.
-                    </p>
 
                     {/* CTA Button - Only YouTube */}
                     <div className="flex flex-wrap gap-3">
@@ -273,34 +271,32 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
         >
             <div className="relative z-10 flex flex-col lg:flex-row gap-8">
                 {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col">
-                    {/* Logo - using plain img to avoid Next.js caching */}
-                    <div className="mb-1">
+                <div className="lg:w-[60%] flex flex-col justify-between">
+                    {/* Logo */}
+                    <div>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/logos/teqthots updated logo final lasttt.png"
-                            alt="TeqThots"
+                            src="/logos/digubi-logo.png"
+                            alt="Digubi"
                             className="w-full max-w-[280px] h-auto object-contain"
                         />
                     </div>
 
-                    {/* Tagline */}
-                    <p className="text-gray-600 italic text-base mb-5">
-                        TeqThots, Stories That Build Brands (English)
-                    </p>
+                    {/* Metrics + Description */}
+                    <div>
+                        {/* Metrics Grid - 2x2 */}
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                            <MetricCard number="1M+" label="Audience Reached" icon={Globe} />
+                            <MetricCard number="5+" label="Brand Collaborations" icon={Briefcase} />
+                            <MetricCard number="10+" label="Videos Created" icon={Video} />
+                            <MetricCard number="500K+" label="Total Views" icon={Youtube} />
+                        </div>
 
-                    {/* Metrics Grid - 2x2 */}
-                    <div className="grid grid-cols-2 gap-3 mb-6">
-                        <MetricCard number="1M+" label="Audience Reached" icon={Globe} />
-                        <MetricCard number="5+" label="Brand Collaborations" icon={Briefcase} />
-                        <MetricCard number="10+" label="Videos Created" icon={Video} />
-                        <MetricCard number="500K+" label="Total Views" icon={Youtube} />
+                        {/* Description */}
+                        <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px]">
+                            We create brand storytelling content - founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
+                        </p>
                     </div>
-
-                    {/* Description */}
-                    <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px] mb-6">
-                        We create brand storytelling content - founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
-                    </p>
 
                     {/* CTA Button */}
                     <div className="flex flex-wrap gap-3">
@@ -362,7 +358,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeia" className="h-5 w-full object-contain" />
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/teqthots%20updated%20logo%20final%20lasttt.png" alt="TeqThots" className="h-4 w-full object-contain" />
+                            <img src="/logos/digubi-logo.png" alt="Digubi" className="h-4 w-full object-contain" />
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src="/logos/loglos/piqual.png" alt="Piqual" className="h-5 w-full object-contain" />
                             {/* eslint-disable-next-line @next/next/no-img-element */}
