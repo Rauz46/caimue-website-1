@@ -117,7 +117,7 @@ export function Footer() {
                     </div>
 
                     <div className="mt-10 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[13px] font-medium">
-                        <p>© 2026 Caimue. All rights reserved.</p>
+                        <p>© 2026 Caimue Film Studios. All rights reserved.</p>
                         <div className="flex gap-8">
                             <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>
