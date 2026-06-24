@@ -598,7 +598,7 @@ export function PlatformsSection() {
                 className="text-center mb-12"
             >
                 <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2D2D2D] tracking-wide">
-                    Our Platforms
+                    Our Channels
                 </h2>
             </motion.div>
 
