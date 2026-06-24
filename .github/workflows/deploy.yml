@@ -1,0 +1,59 @@
+name: Vercel Deploy (dev / staging)
+
+# Pushes to `dev` and `staging` build, lint, and deploy to Vercel.
+# `main` is intentionally NOT handled here — production stays on Vercel's
+# native Git integration so www.caimue.com is never touched by CI.
+#
+# IMPORTANT: If you keep this workflow, disable Vercel's automatic
+# deployments for the dev/staging branches (see the walkthrough / vercel.json),
+# otherwise every push deploys twice (once via CI, once via Vercel's Git hook).
+
+on:
+  push:
+    branches:
+      - dev
+      - staging
+
+# Cancel an in-flight run if a newer commit lands on the same branch.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      # Both dev and staging are Vercel "preview" deployments. The custom
+      # domains (dev.caimue.com / staging.caimue.com) are pinned to each branch
+      # in the Vercel dashboard, so the matching domain auto-aliases to the
+      # latest deployment of that branch.
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel (preview)
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
