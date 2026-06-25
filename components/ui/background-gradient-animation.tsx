@@ -18,6 +18,7 @@ export const BackgroundGradientAnimation = ({
     interactive = true,
     autoMove = false,
     maskCenter = false,
+    maskImage,
     containerClassName,
 }: {
     gradientBackgroundStart?: string;
@@ -35,6 +36,7 @@ export const BackgroundGradientAnimation = ({
     interactive?: boolean;
     autoMove?: boolean;
     maskCenter?: boolean;
+    maskImage?: string;
     containerClassName?: string;
 }) => {
     const interactiveRef = useRef<HTMLDivElement>(null);
@@ -143,18 +145,18 @@ export const BackgroundGradientAnimation = ({
                     "gradients-container h-full w-full blur-lg",
                     isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
                 )}
-                style={
-                    maskCenter
-                        ? {
-                              // Keep the moving colors out of the center (behind
-                              // the headline) and visible at the sides/bottom.
-                              WebkitMaskImage:
-                                  "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)",
-                              maskImage:
-                                  "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)",
-                          }
-                        : undefined
-                }
+                style={(() => {
+                    // Custom mask wins; otherwise maskCenter keeps the moving
+                    // colors out of the center (behind the headline).
+                    const mask =
+                        maskImage ??
+                        (maskCenter
+                            ? "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)"
+                            : undefined);
+                    return mask
+                        ? { WebkitMaskImage: mask, maskImage: mask }
+                        : undefined;
+                })()}
             >
                 <div
                     className={cn(

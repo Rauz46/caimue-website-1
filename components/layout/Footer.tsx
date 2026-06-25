@@ -30,7 +30,7 @@ export function Footer() {
             <section className="relative min-h-[400px] md:h-[450px] flex items-center overflow-hidden">
                 <BackgroundGradientAnimation
                     autoMove
-                    maskCenter
+                    maskImage="linear-gradient(to right, transparent 0%, transparent 42%, black 72%)"
                     containerClassName="absolute inset-0 z-0"
                     firstColor="124, 58, 237"
                     secondColor="109, 40, 217"
