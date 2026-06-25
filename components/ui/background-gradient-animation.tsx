@@ -16,6 +16,8 @@ export const BackgroundGradientAnimation = ({
     children,
     className,
     interactive = true,
+    autoMove = false,
+    maskCenter = false,
     containerClassName,
 }: {
     gradientBackgroundStart?: string;
@@ -31,6 +33,8 @@ export const BackgroundGradientAnimation = ({
     children?: React.ReactNode;
     className?: string;
     interactive?: boolean;
+    autoMove?: boolean;
+    maskCenter?: boolean;
     containerClassName?: string;
 }) => {
     const interactiveRef = useRef<HTMLDivElement>(null);
@@ -69,6 +73,15 @@ export const BackgroundGradientAnimation = ({
         function move() {
             if (!interactiveRef.current) return;
 
+            // When autoMove is on, drive the blob along its own slow, drifting
+            // path (biased toward the sides and bottom) instead of the cursor.
+            if (autoMove && containerRef.current) {
+                const t = performance.now() / 1000;
+                const rect = containerRef.current.getBoundingClientRect();
+                tgX.current = rect.width * (0.5 + 0.42 * Math.sin(t * 0.27));
+                tgY.current = rect.height * (0.68 + 0.3 * Math.cos(t * 0.19));
+            }
+
             curX.current += (tgX.current - curX.current) / 20;
             curY.current += (tgY.current - curY.current) / 20;
 
@@ -81,9 +94,10 @@ export const BackgroundGradientAnimation = ({
         return () => {
             cancelAnimationFrame(animationFrame);
         };
-    }, [interactive]);
+    }, [interactive, autoMove]);
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (autoMove) return; // movement is autonomous; ignore the cursor
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             tgX.current = event.clientX - rect.left;
@@ -129,6 +143,18 @@ export const BackgroundGradientAnimation = ({
                     "gradients-container h-full w-full blur-lg",
                     isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
                 )}
+                style={
+                    maskCenter
+                        ? {
+                              // Keep the moving colors out of the center (behind
+                              // the headline) and visible at the sides/bottom.
+                              WebkitMaskImage:
+                                  "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)",
+                              maskImage:
+                                  "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)",
+                          }
+                        : undefined
+                }
             >
                 <div
                     className={cn(

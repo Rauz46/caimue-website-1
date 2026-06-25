@@ -43,15 +43,17 @@ export default function Home() {
       <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-12">
         {/* Background Animation */}
         <BackgroundGradientAnimation
+          autoMove
+          maskCenter
           containerClassName="absolute inset-0 z-0"
-          firstColor="139, 92, 246"  // Violet-500
-          secondColor="147, 51, 234" // Purple-600
-          thirdColor="124, 58, 237"  // Violet-600
-          fourthColor="168, 85, 247" // Purple-500
-          fifthColor="192, 132, 252" // Purple-400
-          pointerColor="139, 92, 246" // Violet-500
-          gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
-          gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+          firstColor="124, 58, 237"  // Violet-600
+          secondColor="109, 40, 217" // Violet-700
+          thirdColor="91, 33, 182"   // Violet-800
+          fourthColor="126, 34, 206" // Purple-700
+          fifthColor="107, 33, 168"  // Purple-800
+          pointerColor="124, 58, 237" // Violet-600
+          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
+          gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
         />
 
         {/* Background Elements */}

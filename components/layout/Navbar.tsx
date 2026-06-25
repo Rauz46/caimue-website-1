@@ -41,7 +41,7 @@ export function Navbar() {
                         role="link"
                     >
                         <Image
-                            src="/caimue-logo.png"
+                            src="/Caimue final logo.png"
                             alt="Caimue - Go to homepage"
                             width={180}
                             height={60}
