@@ -20,12 +20,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Caimue | AI-First Production House",
-  description: "An AI-first production house building original Tamil and Malayalam stories at scale. Funding short films, running TeqThots and FunShortz.",
-  keywords: ["production house", "AI filmmaking", "Tamil cinema", "Malayalam cinema", "short films", "TeqThots", "FunShortz"],
+  title: "Caimue | AI-First Film Studio",
+  description: "An AI-first film studio building original Tamil and Malayalam stories at scale. Funding short films, running TeqThots and FunShortz.",
+  keywords: ["film studio", "AI filmmaking", "Tamil cinema", "Malayalam cinema", "short films", "TeqThots", "FunShortz"],
   authors: [{ name: "Caimue" }],
   openGraph: {
-    title: "Caimue | AI-First Production House",
+    title: "Caimue | AI-First Film Studio",
     description: "Building original stories at scale with AI-powered systems.",
     type: "website",
     locale: "en_US",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Caimue | AI-First Production House",
+    title: "Caimue | AI-First Film Studio",
     description: "Building original stories at scale with AI-powered systems.",
   },
 };
