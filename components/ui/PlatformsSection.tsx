@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Film, ArrowRight, Youtube, Users, Clock, Globe, Briefcase, Video, Mic } from "lucide-react";
+import { ArrowRight, Youtube, Globe, Briefcase, Video } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -173,14 +173,6 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                     />
                 </div>
 
-                {/* Metrics 2x2 */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                    <MetricCard number="2.5M+" label="YouTube Views" icon={Youtube} />
-                    <MetricCard number="17+" label="Short Films" icon={Film} />
-                    <MetricCard number="40+" label="Artists" icon={Users} />
-                    <MetricCard number="4000+" label="Watch Hours" icon={Clock} />
-                </div>
-
                 {/* Description */}
                 <p className="text-gray-700 text-[14px] leading-relaxed mb-4">
                     We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.
@@ -193,16 +185,6 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                         <PhotoTile src="/images/Movies/ADS-369%20Part%201.jpg" alt="ADS-369 Part 1" label="ADS-369" height="100px" />
                         <PhotoTile src="/images/Movies/Pazhampori.jpg" alt="Pazhampori" label="Pazhampori" height="100px" />
                     </div>
-                </div>
-
-                {/* Language badges */}
-                <div className="rounded-2xl px-3 py-2.5 bg-white/40 border border-white/60 flex items-center gap-2 flex-wrap mb-5">
-                    {["Malayalam"].map((lang) => (
-                        <span key={lang} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "#E9D5FF", color: "#6D28D9" }}>
-                            {lang}
-                        </span>
-                    ))}
-                    <span className="text-[11px] text-gray-500 ml-auto">OTT &amp; Theatrical</span>
                 </div>
 
                 {/* CTA pinned to bottom */}
@@ -250,18 +232,10 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
                 <div className="mb-5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/logos/ennamo-logo.png"
+                        src="/ennamo%20final.png"
                         alt="Ennamo"
                         className="h-12 w-auto object-contain"
                     />
-                </div>
-
-                {/* Metrics 2x2 — placeholder until real Ennamo stats are provided */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                    <MetricCard number="—" label="YouTube Views" icon={Youtube} />
-                    <MetricCard number="—" label="Short Films" icon={Film} />
-                    <MetricCard number="—" label="Artists" icon={Users} />
-                    <MetricCard number="—" label="Watch Hours" icon={Clock} />
                 </div>
 
                 {/* Description */}
@@ -276,16 +250,6 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
                         <PhotoTile src="/images/Movies/Live%20a%20Little.jpg" alt="Tamil short film" height="100px" />
                         <PhotoTile src="/images/Movies/Smile%21.jpg" alt="Tamil short film" height="100px" />
                     </div>
-                </div>
-
-                {/* Language badges */}
-                <div className="rounded-2xl px-3 py-2.5 bg-white/40 border border-white/60 flex items-center gap-2 flex-wrap mb-5">
-                    {["Tamil"].map((lang) => (
-                        <span key={lang} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "#CCFBF1", color: "#0F766E" }}>
-                            {lang}
-                        </span>
-                    ))}
-                    <span className="text-[11px] text-gray-500 ml-auto">OTT &amp; Theatrical</span>
                 </div>
 
                 {/* CTA pinned to bottom */}
@@ -320,18 +284,10 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                 <div className="mb-5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/logos/teqthots%20updated%20logo%20final%20lasttt.png"
+                        src="/teqthots%20updated%20logo%20png.png"
                         alt="TeqThots"
-                        className="h-12 w-auto object-contain"
+                        className="h-14 w-auto object-contain"
                     />
-                </div>
-
-                {/* Metrics 2x2 — placeholder until real TeqThots stats are provided */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                    <MetricCard number="—" label="Episodes" icon={Mic} />
-                    <MetricCard number="—" label="Companies" icon={Briefcase} />
-                    <MetricCard number="—" label="Watch Hours" icon={Clock} />
-                    <MetricCard number="—" label="Subscribers" icon={Users} />
                 </div>
 
                 {/* Description */}
@@ -346,16 +302,6 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                         <PhotoTile src="/images/A%20Man%20Holding%20His%20Hands%20To%20His%20Head%20With%20The%20Words%20Dark%20Reality%20Of%20Growth.jpg" alt="TeqThots episode" height="100px" />
                         <PhotoTile src="/images/Blog%20Graphics.jpg" alt="TeqThots episode" height="100px" />
                     </div>
-                </div>
-
-                {/* Topic badges */}
-                <div className="rounded-2xl px-3 py-2.5 bg-white/40 border border-white/60 flex items-center gap-2 flex-wrap mb-5">
-                    {["Founders", "Builders"].map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "#FBCFE8", color: "#BE185D" }}>
-                            {tag}
-                        </span>
-                    ))}
-                    <span className="text-[11px] text-gray-500 ml-auto">Tech &amp; Scale</span>
                 </div>
 
                 {/* CTA pinned to bottom */}
