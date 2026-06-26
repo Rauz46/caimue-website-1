@@ -122,7 +122,7 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                     <img
                         src="/ennitto%20final.png"
                         alt="Ennitto"
-                        className="h-12 w-auto object-contain"
+                        className="h-16 w-auto object-contain"
                     />
                 </div>
 
@@ -185,7 +185,7 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
                     <img
                         src="/ennamo%20final.png"
                         alt="Ennamo"
-                        className="h-12 w-auto object-contain"
+                        className="h-16 w-auto object-contain"
                     />
                 </div>
 
@@ -196,10 +196,10 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
 
                 {/* Photo collage */}
                 <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/logos/ennamo/maxresdefault.jpg" alt="Ennamo Tamil short film" height="130px" />
+                    <PhotoTile src="/logos/ennamo/kadhal%20gpt.webp" alt="Ennamo Tamil short film" height="130px" />
                     <div className="grid grid-cols-2 gap-2">
                         <PhotoTile src="/logos/ennamo/Live%20a%20Little.jpg" alt="Ennamo Tamil short film" height="100px" />
-                        <PhotoTile src="/logos/ennamo/kadhal%20gpt.webp" alt="Ennamo Tamil short film" height="100px" />
+                        <PhotoTile src="/logos/ennamo/maxresdefault.jpg" alt="Ennamo Tamil short film" height="100px" />
                     </div>
                 </div>
 
@@ -237,7 +237,7 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                     <img
                         src="/teqthots%20updated%20logo%20png.png"
                         alt="TeqThots"
-                        className="h-14 w-auto object-contain"
+                        className="h-[72px] w-auto object-contain"
                     />
                 </div>
 
@@ -291,9 +291,14 @@ function DigubiBar({ isInView }: { isInView: boolean }) {
                     alt="Digubi"
                     className="h-7 w-auto object-contain shrink-0"
                 />
-                <span className="hidden sm:block w-px h-6 bg-gray-400/30" />
-                <span className="text-[15px] md:text-base font-semibold text-[#4C1D95] truncate">
-                    Corporate Videos
+                <span className="hidden sm:block w-px h-8 bg-gray-400/30" />
+                <span className="flex flex-col min-w-0">
+                    <span className="text-[15px] md:text-base font-semibold text-[#4C1D95] truncate">
+                        Corporate Videos
+                    </span>
+                    <span className="hidden sm:block text-[12px] text-gray-500 truncate">
+                        Brand films, founder stories &amp; marketing for companies
+                    </span>
                 </span>
             </div>
             <span className="flex items-center gap-1.5 text-sm font-medium text-[#7C3AED] shrink-0">
