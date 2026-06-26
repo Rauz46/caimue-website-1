@@ -90,7 +90,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-0 leading-snug font-medium drop-shadow"
+            className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-0 leading-snug font-medium drop-shadow [text-wrap:balance]"
           >
             Caimue is an AI-first Film Studio creating movies across Tamil, Malayalam, and English. We produce movies by discovering talent and backing stories that matter.
           </motion.p>
