@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Youtube, Globe, Briefcase, Video } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -35,53 +35,6 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
                 transition={{ duration: 1.5, delay: 0.5 }}
             />
         </motion.svg>
-    );
-}
-
-// Metric Card component (compact variant for narrow 3-column cards)
-function MetricCard({
-    number,
-    label,
-    icon: Icon,
-    dark = false,
-}: {
-    number: string;
-    label: string;
-    icon?: React.ElementType;
-    dark?: boolean;
-}) {
-    return (
-        <div
-            className={`p-3 rounded-2xl transition-all duration-300 group ${dark
-                ? "bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/15 hover:border-white/30"
-                : "bg-white/40 backdrop-blur-sm border border-white/60 shadow-[0_4px_20px_rgba(139,92,246,0.1)] hover:shadow-[0_8px_30px_rgba(139,92,246,0.2)] hover:bg-white/60"
-                }`}
-        >
-            <div className="flex items-start justify-between mb-1">
-                <div
-                    className={`font-serif text-2xl md:text-3xl font-black tracking-tighter transition-transform duration-300 group-hover:scale-105 ${dark
-                        ? "text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]"
-                        : "bg-gradient-to-br from-[#4C1D95] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(124,58,237,0.2)]"
-                        }`}
-                >
-                    {number}
-                </div>
-                {Icon && (
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${dark
-                        ? "bg-white/10 group-hover:bg-white/20"
-                        : "bg-gradient-to-br from-purple-100 to-purple-200 group-hover:from-purple-200 group-hover:to-pink-100 shadow-sm"
-                        }`}>
-                        <Icon size={16} className={dark ? "text-purple-300" : "text-purple-600"} strokeWidth={2.5} />
-                    </div>
-                )}
-            </div>
-            <div
-                className={`text-[11px] font-medium tracking-wide uppercase opacity-70 leading-tight ${dark ? "text-gray-300" : "text-[#4C1D95]"
-                    }`}
-            >
-                {label}
-            </div>
-        </div>
     );
 }
 
@@ -190,12 +143,10 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto">
                     <CTAButton
-                        text="Visit Website"
+                        text="Know More"
                         variant="primary"
-                        icon={<Globe size={18} />}
-                        href="https://www.ennitto.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        icon={<ArrowRight size={18} />}
+                        href="/channels/ennitto"
                     />
                 </div>
             </div>
@@ -255,10 +206,10 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto">
                     <CTAButton
-                        text="Visit Channel"
+                        text="Know More"
                         variant="primary"
-                        icon={<Globe size={18} />}
-                        href="#"
+                        icon={<ArrowRight size={18} />}
+                        href="/channels/ennamo"
                     />
                 </div>
             </div>
@@ -307,12 +258,10 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
                 {/* CTA pinned to bottom */}
                 <div className="mt-auto">
                     <CTAButton
-                        text="Visit Website"
+                        text="Know More"
                         variant="primary"
-                        icon={<Globe size={18} />}
-                        href="https://www.teqthots.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        icon={<ArrowRight size={18} />}
+                        href="/channels/teqthots"
                     />
                 </div>
             </div>
@@ -320,105 +269,38 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-// Wide banner: Digubi - corporate videos & brand marketing
-// TODO: confirm Digubi copy and replace the "#" link with the real destination URL once provided.
-function DigubiBanner({ isInView }: { isInView: boolean }) {
-    const brandLogos = [
-        { src: "/logos/loglos/hael.png", alt: "Hxeal" },
-        { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeify" },
-        { src: "/logos/loglos/piqual.png", alt: "Piqual" },
-        { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
-        { src: "/logos/aventei.png", alt: "Aventei Capital" },
-        { src: "/logos/loglos/Nuivio.png", alt: "Nuvio" },
-        { src: "/logos/loglos/xime.png", alt: "XIME" },
-    ];
-
+// Slim secondary bar: Digubi - corporate videos (intentionally low-key)
+function DigubiBar({ isInView }: { isInView: boolean }) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
+        <motion.a
+            href="#"
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="relative rounded-3xl overflow-hidden"
+            whileHover={{ scale: 1.005 }}
+            className="group relative rounded-2xl overflow-hidden px-6 md:px-8 py-4 flex items-center justify-between gap-4"
             style={{
-                background: "linear-gradient(135deg, #0f0225 0%, #1a0533 30%, #2d1059 60%, #1a0533 100%)",
-                boxShadow: "0 8px 40px rgba(76, 29, 149, 0.4)",
+                background: "linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)",
+                boxShadow: "0 4px 20px rgba(139, 92, 246, 0.12)",
             }}
         >
-            {/* Animated gradient blobs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    className="absolute -top-20 -right-20 w-80 h-80 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%)" }}
-                    animate={{ scale: [1, 1.2, 1], x: [0, 20, 0], y: [0, -10, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            <div className="flex items-center gap-4 min-w-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/logos/digubi-logo.png"
+                    alt="Digubi"
+                    className="h-7 w-auto object-contain shrink-0"
                 />
-                <motion.div
-                    className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%)" }}
-                    animate={{ scale: [1, 1.3, 1], x: [0, -15, 0], y: [0, 15, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                />
+                <span className="hidden sm:block w-px h-6 bg-gray-400/30" />
+                <span className="text-[15px] md:text-base font-semibold text-[#4C1D95] truncate">
+                    Corporate Videos
+                </span>
             </div>
-
-            {/* Dot grid texture */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    opacity: 0.08,
-                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
-                    backgroundSize: "24px 24px",
-                }}
-            />
-
-            <div className="relative z-10 p-8 md:p-12 flex flex-col lg:flex-row lg:items-center gap-8">
-                {/* Left: brand + copy */}
-                <div className="lg:w-[55%]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/logos/digubi-logo.png"
-                        alt="Digubi"
-                        className="h-10 w-auto object-contain mb-5"
-                    />
-                    <h3
-                        className="text-white font-black tracking-tight mb-3"
-                        style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
-                    >
-                        We also do corporate videos.
-                    </h3>
-                    <p className="text-purple-200/70 text-[15px] leading-relaxed max-w-xl mb-6">
-                        Digubi is our corporate arm — brand storytelling, founder interviews, product explainers, and marketing films. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
-                    </p>
-
-                    {/* Metrics row */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-xl mb-6">
-                        <MetricCard number="1M+" label="Audience" icon={Globe} dark />
-                        <MetricCard number="5+" label="Brand Collabs" icon={Briefcase} dark />
-                        <MetricCard number="10+" label="Videos" icon={Video} dark />
-                        <MetricCard number="500K+" label="Total Views" icon={Youtube} dark />
-                    </div>
-
-                    <CTAButton
-                        text="Visit Website"
-                        variant="primary"
-                        icon={<ArrowRight size={18} />}
-                        href="#"
-                    />
-                </div>
-
-                {/* Right: brand logos panel */}
-                <div className="lg:w-[45%]">
-                    <div className="rounded-2xl p-5 bg-white/5 border border-white/10 backdrop-blur-sm">
-                        <p className="text-[11px] font-semibold tracking-widest uppercase text-purple-200/60 mb-4">Brands we&apos;ve worked with</p>
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-5 items-center">
-                            {brandLogos.map((logo) => (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img key={logo.alt} src={logo.src} alt={logo.alt} className="h-5 w-full object-contain opacity-80 brightness-0 invert" />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
+            <span className="flex items-center gap-1.5 text-sm font-medium text-[#7C3AED] shrink-0">
+                <span className="hidden sm:inline">Know More</span>
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </span>
+        </motion.a>
     );
 }
 
@@ -430,7 +312,8 @@ export function PlatformsSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white py-20 md:py-24 overflow-hidden"
+            id="channels"
+            className="relative bg-white py-20 md:py-24 overflow-hidden scroll-mt-24"
             style={{ paddingTop: "100px", paddingBottom: "80px" }}
         >
             {/* Subtle grid background */}
@@ -484,14 +367,14 @@ export function PlatformsSection() {
                 </h2>
             </motion.div>
 
-            {/* Three channels side by side + Digubi banner below */}
-            <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-8">
+            {/* Three channels side by side + slim Digubi bar below */}
+            <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-6">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
                     <EnnittoCard isInView={isInView} />
                     <EnnamoCard isInView={isInView} />
                     <TeqThotsCard isInView={isInView} />
                 </div>
-                <DigubiBanner isInView={isInView} />
+                <DigubiBar isInView={isInView} />
             </div>
         </section>
     );
