@@ -90,7 +90,7 @@ const ArtistCard = () => {
 export default function WhoAreYouSection() {
     return (
         <section
-            className="relative py-[100px] md:py-[140px] overflow-visible -mt-1"
+            className="relative pt-[48px] md:pt-[64px] pb-[100px] md:pb-[140px] overflow-visible -mt-1"
             style={{
                 background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
             }}
