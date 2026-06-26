@@ -252,124 +252,118 @@ export default function AboutPage() {
               What We Do
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] font-serif">
-              Two channels, one{" "}
+              Three channels, one{" "}
               <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
                 creative engine
               </span>
             </h2>
           </motion.div>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Cards — three channels, one uniform format */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                href: "/channels/ennitto",
+                logo: "/ennitto%20final.png",
+                name: "Ennitto",
+                description:
+                  "Short films with soul. Ennitto is our Malayalam studio for culturally rooted narratives, stories that honour regional identity while reaching for a global audience.",
+                // TODO: replace "—" placeholders with real Ennamo/TeqThots numbers when available
+                stats: [
+                  { value: "2.5M+", label: "Views", icon: Eye },
+                  { value: "17+", label: "Films", icon: Film },
+                  { value: "40+", label: "Artists", icon: Users },
+                ],
+                delay: 0,
+                theme: {
+                  border: "border-purple-200/60", shadow: "shadow-purple-200/20", hoverShadow: "hover:shadow-purple-300/30",
+                  stripBg: "bg-purple-50", stripBorder: "border-purple-100", divider: "bg-purple-200",
+                  icon: "text-purple-400", value: "text-purple-600", link: "text-purple-600", glow: "from-purple-500/5",
+                },
+              },
+              {
+                href: "/channels/ennamo",
+                logo: "/ennamo%20final.png",
+                name: "Ennamo",
+                description:
+                  "Tamil short films with soul. Ennamo is our Tamil studio by Caimue Film Studios — original stories that honour regional identity while reaching for a global audience.",
+                stats: [
+                  { value: "—", label: "Views", icon: Eye },
+                  { value: "—", label: "Films", icon: Film },
+                  { value: "—", label: "Artists", icon: Users },
+                ],
+                delay: 0.1,
+                theme: {
+                  border: "border-teal-200/60", shadow: "shadow-teal-200/20", hoverShadow: "hover:shadow-teal-300/30",
+                  stripBg: "bg-teal-50", stripBorder: "border-teal-100", divider: "bg-teal-200",
+                  icon: "text-teal-400", value: "text-teal-600", link: "text-teal-600", glow: "from-teal-500/5",
+                },
+              },
+              {
+                href: "/channels/teqthots",
+                logo: "/teqthots%20updated%20logo%20png.png",
+                name: "TeqThots",
+                description:
+                  "Documentary-style conversations that capture how companies are built. TeqThots breaks down complex ideas into cinematic, shareable stories — technology made impossible to scroll past.",
+                stats: [
+                  { value: "—", label: "Views", icon: Globe },
+                  { value: "—", label: "Videos", icon: Play },
+                  { value: "—", label: "Guests", icon: Briefcase },
+                ],
+                delay: 0.2,
+                theme: {
+                  border: "border-pink-200/60", shadow: "shadow-pink-200/20", hoverShadow: "hover:shadow-pink-300/30",
+                  stripBg: "bg-pink-50", stripBorder: "border-pink-100", divider: "bg-pink-200",
+                  icon: "text-pink-400", value: "text-pink-600", link: "text-pink-600", glow: "from-pink-500/5",
+                },
+              },
+            ].map((ch) => (
+              <motion.a
+                key={ch.name}
+                href={ch.href}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: ch.delay }}
+                className={`group relative rounded-[2rem] overflow-hidden border ${ch.theme.border} bg-white shadow-xl ${ch.theme.shadow} transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl ${ch.theme.hoverShadow} cursor-pointer`}
+              >
+                {/* Content area */}
+                <div className="p-6 text-center flex flex-col h-full">
+                  {/* Logo */}
+                  <div className="mb-3 flex justify-center items-center h-[64px]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ch.logo} alt={ch.name} className="max-h-[60px] w-auto object-contain" />
+                  </div>
+                  <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
+                    {ch.description}
+                  </p>
 
-            {/* ---- Ennitto Card ---- */}
-            <motion.a
-              href="https://ennitto.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
-            >
-              {/* Content area */}
-              <div className="p-6 text-center">
-                {/* Logo */}
-                <div className="mb-3 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/ennitto-film-studios-logo.png" alt="Ennitto" className="w-[160px] md:w-[210px] h-auto object-contain" />
-                </div>
-                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
-                  Short films with soul. Ennitto is our studio for culturally rooted narratives,
-                  stories that honour regional identity while reaching for a global audience.
-                  Every frame is a love letter to the worlds we come from.
-                </p>
-
-                {/* Compact stat strip */}
-                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-purple-50 border border-purple-100">
-                  {[
-                    { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
-                    { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
-                    { value: "40+", label: "Artists", icon: <Users size={11} className="text-purple-400" /> },
-                  ].map(({ value, label, icon }, i) => (
-                    <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-5 bg-purple-200" />}
-                      <div className="flex items-center gap-1.5">
-                        {icon}
-                        <span className="text-sm font-black text-purple-600">{value}</span>
-                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
+                  {/* Compact stat strip */}
+                  <div className={`flex items-center justify-between mb-4 py-2 px-3 rounded-2xl ${ch.theme.stripBg} border ${ch.theme.stripBorder} mt-auto`}>
+                    {ch.stats.map(({ value, label, icon: Icon }, i) => (
+                      <div key={label} className="flex items-center gap-3">
+                        {i > 0 && <div className={`w-px h-5 ${ch.theme.divider}`} />}
+                        <div className="flex items-center gap-1.5">
+                          <Icon size={11} className={ch.theme.icon} />
+                          <span className={`text-sm font-black ${ch.theme.value}`}>{value}</span>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center">
+                    <span className={`inline-flex items-center gap-2 ${ch.theme.link} font-bold font-sans group-hover:gap-3 transition-all`}>
+                      Explore {ch.name}
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex justify-center">
-                  <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
-                    Explore Ennitto
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </span>
-                </div>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.a>
-
-            {/* ---- TeqThots Card ---- */}
-            <motion.a
-              href="https://teqthots.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="group relative rounded-[2rem] overflow-hidden border border-pink-200/60 bg-white shadow-xl shadow-pink-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-300/30 cursor-pointer"
-            >
-              {/* Content area */}
-              <div className="p-6 text-center">
-                {/* Logo */}
-                <div className="mb-3 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/digubi-logo.png" alt="TeqThots" className="w-[160px] md:w-[210px] h-auto object-contain" />
-                </div>
-                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
-                  A platform for tech thinkers and visual explainers. TeqThots breaks down
-                  complex ideas into cinematic, shareable stories, making technology
-                  approachable, beautiful, and impossible to scroll past.
-                </p>
-
-                {/* Compact stat strip */}
-                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-pink-50 border border-pink-100">
-                  {[
-                    { value: "1M+", label: "Reach", icon: <Globe size={11} className="text-pink-400" /> },
-                    { value: "10+", label: "Videos", icon: <Play size={11} className="text-pink-400" /> },
-                    { value: "12+", label: "Brands", icon: <Briefcase size={11} className="text-pink-400" /> },
-                  ].map(({ value, label, icon }, i) => (
-                    <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-5 bg-pink-200" />}
-                      <div className="flex items-center gap-1.5">
-                        {icon}
-                        <span className="text-sm font-black text-pink-600">{value}</span>
-                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center">
-                  <span className="inline-flex items-center gap-2 text-pink-600 font-bold font-sans group-hover:gap-3 transition-all">
-                    Explore TeqThots
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </span>
-                </div>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.a>
-
+                {/* Hover glow */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${ch.theme.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+              </motion.a>
+            ))}
           </div>
         </div>
       </section>
