@@ -167,7 +167,7 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
                 <div className="mb-5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/logos/ennitto-film-studios-logo.png"
+                        src="/ennitto%20final.png"
                         alt="Ennitto"
                         className="h-12 w-auto object-contain"
                     />
@@ -180,10 +180,10 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
 
                 {/* Photo collage */}
                 <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/images/Movies/Vishudha%20Sakshi.jpg" alt="Vishudha Sakshi" label="Vishudha Sakshi" height="130px" />
+                    <PhotoTile src="/logos/ennitto/Vishudha%20Sakshi.jpg" alt="Vishudha Sakshi" label="Vishudha Sakshi" height="130px" />
                     <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/images/Movies/ADS-369%20Part%201.jpg" alt="ADS-369 Part 1" label="ADS-369" height="100px" />
-                        <PhotoTile src="/images/Movies/Pazhampori.jpg" alt="Pazhampori" label="Pazhampori" height="100px" />
+                        <PhotoTile src="/logos/ennitto/ADS-369%20Part%201.jpg" alt="ADS-369 Part 1" label="ADS-369" height="100px" />
+                        <PhotoTile src="/logos/ennitto/Pazhampori.jpg" alt="Pazhampori" label="Pazhampori" height="100px" />
                     </div>
                 </div>
 
@@ -243,12 +243,12 @@ function EnnamoCard({ isInView }: { isInView: boolean }) {
                     Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.
                 </p>
 
-                {/* Photo collage — placeholder stills, swap for Ennamo titles */}
+                {/* Photo collage */}
                 <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/images/Movies/ADS-369%20Final%20Part.jpg" alt="Tamil short film" label="Coming soon" height="130px" />
+                    <PhotoTile src="/logos/ennamo/maxresdefault.jpg" alt="Ennamo Tamil short film" height="130px" />
                     <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/images/Movies/Live%20a%20Little.jpg" alt="Tamil short film" height="100px" />
-                        <PhotoTile src="/images/Movies/Smile%21.jpg" alt="Tamil short film" height="100px" />
+                        <PhotoTile src="/logos/ennamo/Live%20a%20Little.jpg" alt="Ennamo Tamil short film" height="100px" />
+                        <PhotoTile src="/logos/ennamo/kadhal%20gpt.webp" alt="Ennamo Tamil short film" height="100px" />
                     </div>
                 </div>
 
@@ -297,10 +297,10 @@ function TeqThotsCard({ isInView }: { isInView: boolean }) {
 
                 {/* Photo collage */}
                 <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg" alt="TeqThots episode" label="Building in Public" height="130px" />
+                    <PhotoTile src="/logos/teqthots/thumbnail.jpg" alt="TeqThots episode" height="130px" />
                     <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/images/A%20Man%20Holding%20His%20Hands%20To%20His%20Head%20With%20The%20Words%20Dark%20Reality%20Of%20Growth.jpg" alt="TeqThots episode" height="100px" />
-                        <PhotoTile src="/images/Blog%20Graphics.jpg" alt="TeqThots episode" height="100px" />
+                        <PhotoTile src="/logos/teqthots/Image%20(16).jpg" alt="TeqThots episode" height="100px" />
+                        <PhotoTile src="/logos/teqthots/Image%20(17).jpg" alt="TeqThots episode" height="100px" />
                     </div>
                 </div>
 
