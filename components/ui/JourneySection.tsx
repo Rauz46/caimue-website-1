@@ -14,7 +14,7 @@ export function JourneySection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[100px] overflow-hidden"
+            className="relative pt-12 pb-[100px] overflow-hidden"
             style={{
                 background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
             }}

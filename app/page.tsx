@@ -40,7 +40,7 @@ const showcaseItems = [
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-12">
+      <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-6">
         {/* Background Animation */}
         <BackgroundGradientAnimation
           autoMove
