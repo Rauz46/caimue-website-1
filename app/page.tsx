@@ -107,7 +107,6 @@ export default function Home() {
             images={[
               "/images/Movies/Vishudha Sakshi.jpg",
               "/images/Movies/ADS-369 Part 1.jpg",
-              "/images/Movies/Pazhampori.jpg",
               "/images/Movies/Welcome Home.jpg",
               "/images/Movies/Smile!.jpg",
               "/images/Movies/Live a Little.jpg",
