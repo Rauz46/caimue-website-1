@@ -14,7 +14,23 @@
       "Bash(vercel --version)",
       "Bash(npm i *)",
       "Bash(vercel --prod)",
-      "Bash(vercel whoami *)"
+      "Bash(vercel whoami *)",
+      "Bash(git commit *)",
+      "PowerShell(npm run *)",
+      "PowerShell(Stop-Process *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git add *)",
+      "PowerShell(git *)",
+      "PowerShell(gh run *)",
+      "Bash(git rev-list *)",
+      "Bash(git checkout *)",
+      "Bash(git cherry-pick *)",
+      "Bash(kill bhma3r25b *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(npx eslint *)",
+      "Bash(git diff *)"
     ]
   }
 }

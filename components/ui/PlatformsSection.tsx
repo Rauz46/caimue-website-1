@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Youtube, Eye, Film, Users, Globe, Play, Briefcase } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -38,72 +39,94 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
     );
 }
 
-// CTA Button component
-function CTAButton({
-    text,
-    variant = "primary",
-    icon,
-    href = "#",
-    target,
-    rel,
-}: {
-    text: string;
-    variant?: "youtube" | "primary" | "outline" | "dark";
-    icon?: React.ReactNode;
-    href?: string;
-    target?: string;
-    rel?: string;
-}) {
-    const styles = {
-        youtube: "bg-[#FF0000] hover:bg-[#CC0000] text-white",
-        primary: "bg-[#7C3AED] hover:bg-[#6D28D9] text-white",
-        outline: "bg-transparent border-2 border-white text-white hover:bg-white/10",
-        dark: "bg-[#1F2937] hover:bg-[#374151] text-white",
-    };
+// ── Channel data ──────────────────────────────────────────────
+// TODO: replace "—" placeholders with real Ennamo/TeqThots numbers once provided.
+// TODO: paste the Ennamo YouTube channel URL when available (currently "#").
+type Stat = { value: string; label: string; icon: LucideIcon };
+type Channel = {
+    logo: string;
+    logoClass: string;
+    name: string;
+    description: string;
+    href: string;
+    youtube: string;
+    background: string;
+    shadow: string;
+    accent: string;     // text colour for stat values / links
+    stripBg: string;    // inner stat-strip background
+    stats: Stat[];
+    delay: number;
+};
 
-    return (
-        <motion.a
-            href={href}
-            target={target}
-            rel={rel}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-colors ${styles[variant]}`}
-        >
-            {icon}
-            {text}
-        </motion.a>
-    );
-}
+const channels: Channel[] = [
+    {
+        logo: "/ennitto%20final.png",
+        logoClass: "h-16",
+        name: "Ennitto",
+        description:
+            "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
+        href: "/channels/ennitto",
+        youtube: "https://www.youtube.com/@ennitto",
+        background: "linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)",
+        shadow: "0 8px 30px rgba(139, 92, 246, 0.25)",
+        accent: "#6D28D9",
+        stripBg: "rgba(255,255,255,0.6)",
+        stats: [
+            { value: "2.5M+", label: "Views", icon: Eye },
+            { value: "17+", label: "Films", icon: Film },
+            { value: "40+", label: "Artists", icon: Users },
+        ],
+        delay: 0.2,
+    },
+    {
+        logo: "/ennamo%20final.png",
+        logoClass: "h-16",
+        name: "Ennamo",
+        description:
+            "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
+        href: "/channels/ennamo",
+        youtube: "#",
+        background: "linear-gradient(135deg, #CFFAFE 0%, #CCFBF1 100%)",
+        shadow: "0 8px 30px rgba(20, 184, 166, 0.25)",
+        accent: "#0D9488",
+        stripBg: "rgba(255,255,255,0.6)",
+        stats: [
+            { value: "—", label: "Views", icon: Eye },
+            { value: "—", label: "Films", icon: Film },
+            { value: "—", label: "Artists", icon: Users },
+        ],
+        delay: 0.3,
+    },
+    {
+        logo: "/teqthots%20updated%20logo%20png.png",
+        logoClass: "h-[72px]",
+        name: "TeqThots",
+        description:
+            "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
+        href: "/channels/teqthots",
+        youtube: "https://www.youtube.com/@TeqThots",
+        background: "linear-gradient(135deg, #FCE7F3 0%, #FDE2E4 100%)",
+        shadow: "0 4px 20px rgba(236, 72, 153, 0.18)",
+        accent: "#DB2777",
+        stripBg: "rgba(255,255,255,0.65)",
+        stats: [
+            { value: "—", label: "Views", icon: Globe },
+            { value: "—", label: "Videos", icon: Play },
+            { value: "—", label: "Guests", icon: Briefcase },
+        ],
+        delay: 0.4,
+    },
+];
 
-// Small photo tile used inside the vertical card collages
-function PhotoTile({ src, alt, label, height = "120px" }: { src: string; alt: string; label?: string; height?: string }) {
-    return (
-        <div className="relative rounded-2xl overflow-hidden" style={{ height }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={alt} className="w-full h-full object-cover" />
-            {label && (
-                <>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">{label}</span>
-                </>
-            )}
-        </div>
-    );
-}
-
-// Card 1: Ennitto - Malayalam short films
-function EnnittoCard({ isInView }: { isInView: boolean }) {
+// Channel card — logo, description, stat strip, YouTube + Know More buttons
+function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: channel.delay }}
             className="relative rounded-3xl p-6 h-full flex flex-col overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)",
-                boxShadow: "0 8px 30px rgba(139, 92, 246, 0.25)",
-            }}
+            style={{ background: channel.background, boxShadow: channel.shadow }}
         >
             {/* Grid overlay */}
             <div
@@ -117,195 +140,138 @@ function EnnittoCard({ isInView }: { isInView: boolean }) {
 
             <div className="relative z-10 flex flex-col h-full">
                 {/* Logo */}
-                <div className="mb-5">
+                <div className="mb-5 flex items-center" style={{ minHeight: "72px" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/ennitto%20final.png"
-                        alt="Ennitto"
-                        className="h-16 w-auto object-contain"
-                    />
+                    <img src={channel.logo} alt={channel.name} className={`${channel.logoClass} w-auto object-contain`} />
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-700 text-[14px] leading-relaxed mb-4">
-                    We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.
+                <p className="text-gray-700 text-[14px] leading-relaxed mb-5">
+                    {channel.description}
                 </p>
 
-                {/* Photo collage */}
-                <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/logos/ennitto/Vishudha%20Sakshi.jpg" alt="Vishudha Sakshi" label="Vishudha Sakshi" height="130px" />
-                    <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/logos/ennitto/ADS-369%20Part%201.jpg" alt="ADS-369 Part 1" label="ADS-369" height="100px" />
-                        <PhotoTile src="/logos/ennitto/Pazhampori.jpg" alt="Pazhampori" label="Pazhampori" height="100px" />
-                    </div>
+                {/* Stat strip */}
+                <div
+                    className="flex items-center justify-between rounded-2xl px-4 py-3 mb-5"
+                    style={{ background: channel.stripBg }}
+                >
+                    {channel.stats.map(({ value, label, icon: Icon }, i) => (
+                        <React.Fragment key={label}>
+                            {i > 0 && <div className="w-px h-8 bg-black/10" />}
+                            <div className="flex flex-col items-center gap-0.5 px-1">
+                                <Icon size={14} style={{ color: channel.accent }} />
+                                <span className="text-[17px] font-black leading-none" style={{ color: channel.accent }}>
+                                    {value}
+                                </span>
+                                <span className="text-[10px] uppercase tracking-wide text-gray-500">{label}</span>
+                            </div>
+                        </React.Fragment>
+                    ))}
                 </div>
 
-                {/* CTA pinned to bottom */}
-                <div className="mt-auto">
-                    <CTAButton
-                        text="Know More"
-                        variant="primary"
-                        icon={<ArrowRight size={18} />}
-                        href="/channels/ennitto"
-                    />
+                {/* Buttons pinned to bottom: YouTube + Know More */}
+                <div className="mt-auto flex flex-col sm:flex-row gap-2.5">
+                    <motion.a
+                        href={channel.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm bg-[#FF0000] hover:bg-[#CC0000] text-white transition-colors"
+                    >
+                        <Youtube size={18} />
+                        YouTube
+                    </motion.a>
+                    <motion.a
+                        href={channel.href}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition-colors"
+                    >
+                        Know More
+                        <ArrowRight size={18} />
+                    </motion.a>
                 </div>
             </div>
         </motion.div>
     );
 }
 
-// Card 2: Ennamo - Tamil short films (By Caimue Film Studios)
-// TODO: replace placeholder ("—") metrics and the "#" website link with real Ennamo data once provided.
-function EnnamoCard({ isInView }: { isInView: boolean }) {
+// Digubi — corporate videos & brand presence (downplayed but proud, full purple banner)
+function DigubiBanner({ isInView }: { isInView: boolean }) {
+    const brands = [
+        { name: "Ignitho", src: "/logos/loglos/Ignitho-Updated-Logo.png" },
+        { name: "Nuivio", src: "/logos/loglos/Nuivio.png" },
+        { name: "Piqual", src: "/logos/loglos/piqual.png" },
+    ];
+
     return (
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative rounded-3xl p-6 h-full flex flex-col overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #CFFAFE 0%, #CCFBF1 100%)",
-                boxShadow: "0 8px 30px rgba(20, 184, 166, 0.25)",
-            }}
-        >
-            {/* Grid overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-
-            <div className="relative z-10 flex flex-col h-full">
-                {/* Logo */}
-                <div className="mb-5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/ennamo%20final.png"
-                        alt="Ennamo"
-                        className="h-16 w-auto object-contain"
-                    />
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-700 text-[14px] leading-relaxed mb-4">
-                    Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.
-                </p>
-
-                {/* Photo collage */}
-                <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/logos/ennamo/kadhal%20gpt.webp" alt="Ennamo Tamil short film" height="130px" />
-                    <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/logos/ennamo/Live%20a%20Little.jpg" alt="Ennamo Tamil short film" height="100px" />
-                        <PhotoTile src="/logos/ennamo/maxresdefault.jpg" alt="Ennamo Tamil short film" height="100px" />
-                    </div>
-                </div>
-
-                {/* CTA pinned to bottom */}
-                <div className="mt-auto">
-                    <CTAButton
-                        text="Know More"
-                        variant="primary"
-                        icon={<ArrowRight size={18} />}
-                        href="/channels/ennamo"
-                    />
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-// Card 3: TeqThots - documentary-style founder conversations
-function TeqThotsCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative rounded-3xl p-6 h-full flex flex-col overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #FCE7F3 0%, #FDE2E4 100%)",
-                boxShadow: "0 4px 20px rgba(236, 72, 153, 0.18)",
-            }}
-        >
-            <div className="relative z-10 flex flex-col h-full">
-                {/* Logo */}
-                <div className="mb-5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/teqthots%20updated%20logo%20png.png"
-                        alt="TeqThots"
-                        className="h-[72px] w-auto object-contain"
-                    />
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-700 text-[14px] leading-relaxed mb-4">
-                    Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.
-                </p>
-
-                {/* Photo collage */}
-                <div className="flex flex-col gap-2 mb-4">
-                    <PhotoTile src="/logos/teqthots/thumbnail.jpg" alt="TeqThots episode" height="130px" />
-                    <div className="grid grid-cols-2 gap-2">
-                        <PhotoTile src="/logos/teqthots/Image%20(16).jpg" alt="TeqThots episode" height="100px" />
-                        <PhotoTile src="/logos/teqthots/Image%20(17).jpg" alt="TeqThots episode" height="100px" />
-                    </div>
-                </div>
-
-                {/* CTA pinned to bottom */}
-                <div className="mt-auto">
-                    <CTAButton
-                        text="Know More"
-                        variant="primary"
-                        icon={<ArrowRight size={18} />}
-                        href="/channels/teqthots"
-                    />
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-// Slim secondary bar: Digubi - corporate videos (intentionally low-key)
-function DigubiBar({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.a
-            href="#"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ scale: 1.005 }}
-            className="group relative rounded-2xl overflow-hidden px-6 md:px-8 py-4 flex items-center justify-between gap-4"
+            className="relative rounded-3xl overflow-hidden px-7 md:px-10 py-8 md:py-10"
             style={{
-                background: "linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)",
-                boxShadow: "0 4px 20px rgba(139, 92, 246, 0.12)",
+                background: "linear-gradient(135deg, #4C1D95 0%, #6D28D9 55%, #7C3AED 100%)",
+                boxShadow: "0 10px 40px rgba(76, 29, 149, 0.35)",
             }}
         >
-            <div className="flex items-center gap-4 min-w-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/logos/digubi-logo.png"
-                    alt="Digubi"
-                    className="h-7 w-auto object-contain shrink-0"
-                />
-                <span className="hidden sm:block w-px h-8 bg-gray-400/30" />
-                <span className="flex flex-col min-w-0">
-                    <span className="text-[15px] md:text-base font-semibold text-[#4C1D95] truncate">
-                        Corporate Videos
-                    </span>
-                    <span className="hidden sm:block text-[12px] text-gray-500 truncate">
-                        Brand films, founder stories &amp; marketing for companies
-                    </span>
-                </span>
+            {/* Grid overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+                                     linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
+                }}
+            />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+                <div className="flex-1 min-w-0">
+                    {/* Logo on a white chip so it reads on purple */}
+                    <div className="inline-flex items-center bg-white rounded-xl px-4 py-2 mb-4 shadow-md">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/logos/digubi-logo.png" alt="Digubi" className="h-7 w-auto object-contain" />
+                    </div>
+
+                    <h3 className="font-serif text-2xl md:text-[28px] font-bold text-white mb-3">
+                        Corporate Videos &amp; Brand Presence
+                    </h3>
+                    <p className="text-white/85 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-5">
+                        We&apos;ve created corporate videos for{" "}
+                        <span className="font-semibold text-white">Ignitho, Nuivio, Piqual</span> and more — and we help
+                        brands grow their online presence through social media campaigns and marketing websites.
+                    </p>
+
+                    {/* Brand logos on white chips */}
+                    <div className="flex flex-wrap items-center gap-3">
+                        {brands.map((b) => (
+                            <div
+                                key={b.name}
+                                className="bg-white/95 rounded-lg px-3 py-2 flex items-center justify-center"
+                                style={{ height: "44px" }}
+                            >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={b.src} alt={b.name} className="max-h-7 w-auto object-contain" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* CTA */}
+                <div className="shrink-0">
+                    <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm bg-white text-[#4C1D95] hover:bg-white/90 transition-colors shadow-lg"
+                    >
+                        Know More
+                        <ArrowRight size={18} />
+                    </motion.a>
+                </div>
             </div>
-            <span className="flex items-center gap-1.5 text-sm font-medium text-[#7C3AED] shrink-0">
-                <span className="hidden sm:inline">Know More</span>
-                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </span>
-        </motion.a>
+        </motion.div>
     );
 }
 
@@ -372,14 +338,14 @@ export function PlatformsSection() {
                 </h2>
             </motion.div>
 
-            {/* Three channels side by side + slim Digubi bar below */}
+            {/* Three channels side by side + Digubi purple banner below */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-6">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                    <EnnittoCard isInView={isInView} />
-                    <EnnamoCard isInView={isInView} />
-                    <TeqThotsCard isInView={isInView} />
+                    {channels.map((channel) => (
+                        <ChannelCard key={channel.name} channel={channel} isInView={isInView} />
+                    ))}
                 </div>
-                <DigubiBar isInView={isInView} />
+                <DigubiBanner isInView={isInView} />
             </div>
         </section>
     );

@@ -15,6 +15,7 @@ import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { PlatformsSection } from "@/components/ui/PlatformsSection";
+import { FeatureFilmsSection } from "@/components/ui/FeatureFilmsSection";
 import { MorphingWord } from "@/components/ui/MorphingWord";
 import { JourneySection } from "@/components/ui/JourneySection";
 import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
@@ -132,6 +133,9 @@ export default function Home() {
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <PlatformsSection />
+
+      {/* ==================== FEATURE FILMS (COMING SOON) ==================== */}
+      <FeatureFilmsSection />
 
       {/* ==================== WHO ARE YOU SECTION ==================== */}
       <WhoAreYouSection />
