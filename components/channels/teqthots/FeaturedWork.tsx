@@ -5,12 +5,23 @@ const f = 'Plus Jakarta Sans, sans-serif';
 const serif = 'var(--font-playfair, "Playfair Display", serif)';
 
 // All videos shown uniformly, in order — no single video popped out bigger.
+// Sourced from the TeqThots YouTube channel (@TeqThots) uploads.
 const VIDEOS = [
-    { tag: 'Behind the Build', title: 'Piqual in Action – A Real Day Inside a Startup', videoId: 'PRvikFx6kU4', color: '#7C3AED' },
-    { tag: 'Startup Life', title: 'Corporate Confessions', videoId: 'L8ib0Y4VKYU', color: '#7C3AED' },
-    { tag: 'AI & SaaS', title: 'ChatGPT History', videoId: 'uBzZAAjEySk', color: '#2BA8A4' },
-    { tag: 'HR Tech', title: 'HR Myth Busting', videoId: 'dBTFAIZDnAw', color: '#8B2FC9' },
-    { tag: 'Workplace', title: 'Red Flag or Green Flag', videoId: 'Ua-pzrr4aUA', color: '#6B5ED4' },
+    { tag: 'AI Hiring', title: 'Talentou AI Hiring — Office Chain Game', videoId: 'qxEgzqbbUtc', color: '#8B2FC9' },
+    { tag: 'AI & SaaS', title: 'Real SaaS Product Debate — SimBFI × TeqThots', videoId: 'f_Wn3YpgPcw', color: '#2BA8A4' },
+    { tag: 'AI & SaaS', title: 'Prodeia — AI for IT Services Engagements', videoId: 'spNgdn3qKSU', color: '#2BA8A4' },
+    { tag: 'HR Tech', title: 'We Tried Talentou — What Recruiters Think', videoId: 'dCnnjCj-FYo', color: '#8B2FC9' },
+    { tag: 'Culture', title: 'Fun Friday Hits Different', videoId: 'r8gJExsHXsw', color: '#6B5ED4' },
+    { tag: 'AI & SaaS', title: 'Prodeia — Right-Sized Teams with AI', videoId: 'MxqQ08neZ6M', color: '#2BA8A4' },
+    { tag: 'AI Hiring', title: 'Talentou — AI Hiring That Actually Works', videoId: 'b6XyubMUoV0', color: '#8B2FC9' },
+    { tag: 'HR Tech', title: 'Talentou Recruitment AI — 3 Hiring Mistakes', videoId: 'dBTFAIZDnAw', color: '#8B2FC9' },
+    { tag: 'Behind the Build', title: 'Piqual in Action — A Real Day Inside a Startup', videoId: 'PRvikFx6kU4', color: '#7C3AED' },
+    { tag: 'Startup Life', title: 'Corporate Confessions — Startup Edition', videoId: 'L8ib0Y4VKYU', color: '#7C3AED' },
+    { tag: 'AI & SaaS', title: 'Startup Team ChatGPT History', videoId: 'uBzZAAjEySk', color: '#2BA8A4' },
+    { tag: 'Workplace', title: 'Red Flag or Green Flag — Workplace Edition', videoId: 'Ua-pzrr4aUA', color: '#6B5ED4' },
+    { tag: 'Behind the Build', title: 'Inside Piqual — Episode 1', videoId: 'zwhRON7SIPU', color: '#7C3AED' },
+    { tag: 'Behind the Build', title: 'Inside Piqual — Official Trailer', videoId: 'mAyqZp_StIA', color: '#7C3AED' },
+    { tag: 'SalesTech', title: 'Piqual Sales Quiz Challenge', videoId: 'PTcZeW620Sk', color: '#2BA8A4' },
 ];
 
 const iframeAllow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
