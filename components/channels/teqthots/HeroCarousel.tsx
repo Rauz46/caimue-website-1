@@ -24,10 +24,10 @@ export default function HeroCarousel({ videos = [] }: { videos?: any[] }) {
         <div style={{
             width: "100%",
             overflow: "hidden",
-            padding: "6rem 0 10rem",
+            padding: "2rem 0 3rem",
             position: "relative",
             perspective: "1200px",
-            marginTop: "-2rem"
+            marginTop: "0"
         }}>
             <style>{`
                 @media (max-width: 768px) {
@@ -143,15 +143,6 @@ export default function HeroCarousel({ videos = [] }: { videos?: any[] }) {
                 </svg>
             </div>
 
-            {/* Fades for smooth edges */}
-            <div style={{
-                position: "absolute", inset: "0 auto", left: 0, width: "20%",
-                background: "linear-gradient(to right, #1a0836 10%, transparent)", zIndex: 5, pointerEvents: "none"
-            }} />
-            <div style={{
-                position: "absolute", inset: "0 0 0 auto", width: "20%",
-                background: "linear-gradient(to left, #1a0836 10%, transparent)", zIndex: 5, pointerEvents: "none"
-            }} />
         </div>
     );
 }

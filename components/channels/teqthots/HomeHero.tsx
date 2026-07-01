@@ -9,7 +9,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // keeping the auto-scrolling video carousel below the headline.
 export default function HomeHero() {
     return (
-        <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-6">
+        <section className="flex flex-col pt-24 md:pt-28 relative overflow-hidden pb-0">
             {/* Caimue animated gradient background */}
             <BackgroundGradientAnimation
                 autoMove
@@ -52,9 +52,8 @@ export default function HomeHero() {
 
                 {/* Headline */}
                 <h1 className="w-full mx-auto mb-5 relative flex flex-col items-center overflow-visible">
-                    <span className="font-serif leading-[1.15] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-5xl text-4xl md:text-5xl lg:text-7xl pb-2 overflow-visible">
-                        <span className="block">Big Ideas.</span>
-                        <span className="block">Small Attention Spans.</span>
+                    <span className="font-serif leading-[1.15] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-5xl text-4xl md:text-5xl lg:text-[4.25rem] pb-2 overflow-visible">
+                        <span className="block">Big Ideas. Small Attention Spans.</span>
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
                             We Bridge the Gap.
                         </span>
