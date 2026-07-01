@@ -197,84 +197,6 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
     );
 }
 
-// Digubi — corporate videos & brand presence (downplayed but proud, full purple banner)
-function DigubiBanner({ isInView }: { isInView: boolean }) {
-    const brands = [
-        { name: "Ignitho", src: "/logos/loglos/Ignitho-Updated-Logo.png" },
-        { name: "Nuivio", src: "/logos/loglos/Nuivio.png" },
-        { name: "Piqual", src: "/logos/loglos/piqual.png" },
-    ];
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="relative rounded-3xl overflow-hidden px-7 md:px-10 py-8 md:py-10"
-            style={{
-                background: "linear-gradient(135deg, #4C1D95 0%, #6D28D9 55%, #7C3AED 100%)",
-                boxShadow: "0 10px 40px rgba(76, 29, 149, 0.35)",
-            }}
-        >
-            {/* Grid overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.06] pointer-events-none"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
-                <div className="flex-1 min-w-0">
-                    {/* Logo on a white chip so it reads on purple */}
-                    <div className="inline-flex items-center bg-white rounded-xl px-4 py-2 mb-4 shadow-md">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/logos/digubi-logo.png" alt="Digubi" className="h-7 w-auto object-contain" />
-                    </div>
-
-                    <h3 className="font-serif text-2xl md:text-[28px] font-bold text-white mb-3">
-                        Corporate Videos &amp; Brand Presence
-                    </h3>
-                    <p className="text-white/85 text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-5">
-                        We&apos;ve created corporate videos for{" "}
-                        <span className="font-semibold text-white">Ignitho, Nuivio, Piqual</span> and more — and we help
-                        brands grow their online presence through social media campaigns and marketing websites.
-                    </p>
-
-                    {/* Brand logos on white chips */}
-                    <div className="flex flex-wrap items-center gap-3">
-                        {brands.map((b) => (
-                            <div
-                                key={b.name}
-                                className="bg-white/95 rounded-lg px-3 py-2 flex items-center justify-center"
-                                style={{ height: "44px" }}
-                            >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={b.src} alt={b.name} className="max-h-7 w-auto object-contain" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* CTA */}
-                <div className="shrink-0">
-                    <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm bg-white text-[#4C1D95] hover:bg-white/90 transition-colors shadow-lg"
-                    >
-                        Know More
-                        <ArrowRight size={18} />
-                    </motion.a>
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
 // Main Section Component
 export function PlatformsSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -338,14 +260,13 @@ export function PlatformsSection() {
                 </h2>
             </motion.div>
 
-            {/* Three channels side by side + Digubi purple banner below */}
+            {/* Three channels side by side */}
             <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-6">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
                     {channels.map((channel) => (
                         <ChannelCard key={channel.name} channel={channel} isInView={isInView} />
                     ))}
                 </div>
-                <DigubiBanner isInView={isInView} />
             </div>
         </section>
     );
