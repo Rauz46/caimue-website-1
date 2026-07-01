@@ -1,346 +1,87 @@
-// REPLACE ONLY: HeroStyles + Hero component
 "use client";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HeroCarousel from "./HeroCarousel";
-import { Mail, Youtube, Linkedin, Send, CheckCircle, ArrowRight, Play, Sparkles } from "lucide-react";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { HeroGrid } from "@/components/effects/HeroGrid";
+import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
-/* ─────────────────────────────────────────────────────────
-   Scribble Components
-   ───────────────────────────────────────────────────────── */
-const ScribbleCircle = () => (
-    <motion.svg
-        viewBox="0 0 200 60"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        style={{
-            position: "absolute",
-            width: "120%",
-            height: "140%",
-            top: "-20%",
-            left: "-10%",
-            zIndex: -1,
-            pointerEvents: "none",
-        }}
-    >
-        <motion.path
-            d="M 5 30 Q 5 5 100 5 Q 195 5 195 30 Q 195 55 100 55 Q 5 55 5 30"
-            fill="none"
-            stroke="url(#scribbleGradient)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            variants={{
-                hidden: { pathLength: 0, opacity: 0 },
-                visible: {
-                    pathLength: 1,
-                    opacity: 0.6,
-                    transition: { duration: 1.5, ease: "easeInOut", delay: 1.2 }
-                }
-            }}
-        />
-        <defs>
-            <linearGradient id="scribbleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8B2FC9" />
-                <stop offset="100%" stopColor="#3ECDC8" />
-            </linearGradient>
-        </defs>
-    </motion.svg>
-);
-
-
-
-/* ─────────────────────────────────────────────────────────
-   HeroStyles — scoped font + keyframes, isolated to hero
-   ───────────────────────────────────────────────────────── */
-export function HeroStyles() {
+// TeqThots hero — Caimue homepage look (animated gradient bg + Playfair/Inter),
+// keeping the auto-scrolling video carousel below the headline.
+export default function HomeHero() {
     return (
-        <style>{`
-      @import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap');
+        <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-6">
+            {/* Caimue animated gradient background */}
+            <BackgroundGradientAnimation
+                autoMove
+                maskCenter
+                containerClassName="absolute inset-0 z-0 h-full"
+                firstColor="124, 58, 237"
+                secondColor="109, 40, 217"
+                thirdColor="91, 33, 182"
+                fourthColor="126, 34, 206"
+                fifthColor="107, 33, 168"
+                pointerColor="124, 58, 237"
+                gradientBackgroundStart="rgb(46, 16, 101)"
+                gradientBackgroundEnd="rgb(59, 7, 100)"
+            />
 
-      .hero-heading {
-        font-family: 'Clash Display', sans-serif !important;
-        font-weight: 700;
-      }
+            <HeroGrid className="opacity-40 z-10" />
+            <div className="bg-noise opacity-10 z-10" />
 
-      /* ── fade up (used for eyebrow + headline lines) ── */
-      @keyframes heroFadeUp {
-        from { opacity: 0; transform: translateY(28px); }
-        to   { opacity: 1; transform: translateY(0);    }
-      }
-      .hero-fade-up-0  { animation: heroFadeUp 0.6s ease both; }
-      .hero-fade-up-15 { animation: heroFadeUp 0.6s ease 0.15s both; }
-      .hero-fade-up-35 { animation: heroFadeUp 0.6s ease 0.35s both; }
-      .hero-fade-in-15 { animation: heroFadeIn 1s ease 1.5s both; }
+            {/* Decorative stars */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+                <div className="absolute top-20 right-1/4 text-purple-400/30 text-4xl">✦</div>
+                <div className="absolute top-40 left-1/3 text-purple-300/30 text-2xl">★</div>
+                <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
+                <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
+            </div>
 
-      @keyframes heroFadeIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-      }
+            <FloatingScribbles />
 
-      /* ── bridge halves animation ── */
-      @keyframes bridgeLeft {
-        from { opacity: 0; transform: translateX(-120px); }
-        to   { opacity: 1; transform: translateX(0);      }
-      }
-      @keyframes bridgeRight {
-        from { opacity: 0; transform: translateX(120px); }
-        to   { opacity: 1; transform: translateX(0);     }
-      }
-      @keyframes bridgeGlow {
-        0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-        40%  { opacity: 1; transform: translate(-50%, -50%) scale(1);   }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
-      }
+            {/* Text content */}
+            <div className="container relative z-10 flex flex-col items-center text-center">
+                {/* Eyebrow */}
+                <motion.span
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-block px-5 py-1.5 rounded-full border border-white/20 bg-white/5 text-purple-200 text-xs font-bold tracking-[0.15em] mb-6 font-sans"
+                >
+                    ✦ Where brands come to go viral
+                </motion.span>
 
-      .hero-bridge-left  { animation: bridgeLeft  0.7s ease-out both; }
-      .hero-bridge-right { animation: bridgeRight 0.7s ease-out both; }
-      .hero-bridge-glow  { animation: bridgeGlow  0.45s ease-out both; }
-
-    `}</style>
-    );
-}
-
-/* ─────────────────────────────────────────────────────────
-   Background word chips
-   ───────────────────────────────────────────────────────── */
-const CHIPS = [
-    { word: "SaaS", left: "7%", top: "18%", color: "#a78bfa", bg: "rgba(139,92,246,0.12)", float: "floatA", dur: "6s", delay: "0s" },
-    { word: "AI", left: "82%", top: "11%", color: "#5eead4", bg: "rgba(62,205,200,0.12)", float: "floatB", dur: "7.5s", delay: "1.2s" },
-    { word: "Trends", left: "89%", top: "54%", color: "#a78bfa", bg: "rgba(139,92,246,0.1)", float: "floatC", dur: "8s", delay: "0.5s" },
-    { word: "Corporate", left: "4%", top: "63%", color: "#c4b5fd", bg: "rgba(167,139,250,0.1)", float: "floatA", dur: "6.5s", delay: "1.8s" },
-    { word: "Product", left: "80%", top: "79%", color: "#5eead4", bg: "rgba(62,205,200,0.1)", float: "floatB", dur: "7s", delay: "0.8s" },
-    { word: "Videos", left: "10%", top: "80%", color: "#a78bfa", bg: "rgba(139,92,246,0.12)", float: "floatC", dur: "5.5s", delay: "1.5s" },
-    { word: "Knowledge", left: "46%", top: "89%", color: "#c4b5fd", bg: "rgba(167,139,250,0.1)", float: "floatA", dur: "9s", delay: "0.3s" },
-];
-
-/* ─────────────────────────────────────────────────────────
-   Hero component
-   ───────────────────────────────────────────────────────── */
-export default function HomeHero({ videos = [] }: { videos?: any[] }) {
-    const [bridgeActive, setBridgeActive] = useState(false);
-    const [glowActive, setGlowActive] = useState(false);
-
-    useEffect(() => {
-        // Lines 1 + 2 take ~0.35s + 0.6s = ~0.95s → bridge starts at 0.8s delay
-        const t1 = setTimeout(() => {
-            setBridgeActive(true);
-            // Glow fires at the end of the 0.7s slide (total ~1.5s from mount)
-            const t2 = setTimeout(() => {
-                setGlowActive(true);
-                setTimeout(() => setGlowActive(false), 450);
-            }, 700);
-            return () => clearTimeout(t2);
-        }, 800);
-        return () => clearTimeout(t1);
-    }, []);
-
-    return (
-        <>
-            <HeroStyles />
-
-            <section
-                style={{
-                    position: "relative",
-                    width: "100%",
-                    minHeight: "100vh",
-                    padding: "8rem 0 4rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    background: "radial-gradient(ellipse at 50% 50%, #2E1065 0%, #1a0836 70%)",
-                }}
-            >
-                {/* ── Background Orbs (Subtle) ── */}
-                <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
-                    <div style={{
-                        position: "absolute", top: "-10%", right: "-5%", width: "60vw", height: "60vw",
-                        background: "radial-gradient(circle, rgba(139,47,201,0.15) 0%, transparent 70%)",
-                        filter: "blur(100px)",
-                        animation: "floatA 12s ease-in-out infinite",
-                    }} />
-                    <div style={{
-                        position: "absolute", bottom: "-15%", left: "-10%", width: "50vw", height: "50vw",
-                        background: "radial-gradient(circle, rgba(62,205,200,0.1) 0%, transparent 70%)",
-                        filter: "blur(100px)",
-                        animation: "floatB 15s ease-in-out infinite",
-                    }} />
-                </div>
-
-                {/* ── Dotted overlay (With Vignette) ── */}
-                <div style={{
-                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
-                    backgroundSize: "28px 28px",
-                    maskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)",
-                    WebkitMaskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)",
-                    position: "absolute",
-                    inset: 0,
-                    pointerEvents: "none",
-                    zIndex: 1,
-                }} />
-
-                {/* ── Floating background chips ── */}
-                {CHIPS.map(({ word, left, top, color, bg, float: f, dur, delay }) => (
-                    <span key={word} className="hero-chip" style={{
-                        position: "absolute", left, top,
-                        fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
-                        fontWeight: 600, fontSize: "0.82rem",
-                        color, background: bg,
-                        border: `1px solid ${color}30`,
-                        borderRadius: "100px",
-                        padding: "4px 12px",
-                        opacity: 0.7,
-                        userSelect: "none",
-                        pointerEvents: "none",
-                        zIndex: 1,
-                        animation: `${f} ${dur} ease-in-out ${delay} infinite`,
-                    }}>
-                        {word}
-                    </span>
-                ))}
-
-                {/* ── Main content ── */}
-                <div style={{
-                    position: "relative",
-                    zIndex: 2,
-                    width: "100%",
-                    maxWidth: 1200,
-                    padding: "0 clamp(1.5rem, 5vw, 3rem)",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textAlign: "center",
-                }}>
-
-                    {/* Eyebrow badge */}
-                    <div
-                        className="hero-fade-up-0"
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            background: "rgba(20, 10, 60, 0.72)",
-                            border: "1px solid rgba(139,47,201,0.45)",
-                            borderRadius: "100px",
-                            padding: "6px 20px",
-                            marginBottom: "2.25rem",
-                            backdropFilter: "blur(12px)",
-                            position: "relative",
-                        }}
-                    >
-                        <span style={{
-                            fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
-                            fontWeight: 600,
-                            fontSize: "0.72rem",
-                            color: "rgba(255,255,255,0.9)",
-                            letterSpacing: "0.09em",
-                            textTransform: "uppercase",
-                        }}>
-                            ✦ Where Brands Come to Go Viral
+                {/* Headline */}
+                <h1 className="w-full mx-auto mb-5 relative flex flex-col items-center overflow-visible">
+                    <span className="font-serif leading-[1.15] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-5xl text-4xl md:text-5xl lg:text-7xl pb-2 overflow-visible">
+                        <span className="block">Big Ideas.</span>
+                        <span className="block">Small Attention Spans.</span>
+                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
+                            We Bridge the Gap.
                         </span>
-                    </div>
+                    </span>
+                </h1>
 
-                    {/* Headline */}
-                    <h1
-                        className="hero-heading"
-                        style={{
-                            fontSize: "clamp(2.5rem, 5vw, 5.5rem)",
-                            lineHeight: 1.05,
-                            letterSpacing: "-0.02em",
-                            margin: "0 0 2rem",
-                            color: "#fff",
-                            width: "100%",
-                        }}
-                    >
-                        {/* Line 1 */}
-                        <div className="hero-fade-up-15" style={{ display: "block" }}>
-                            Big Ideas.
-                        </div>
+                {/* Subtext */}
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow font-sans [text-wrap:balance]"
+                >
+                    SaaS demos. AI explainers. Corporate storytelling. Product launches. Knowledge drops.
+                    Trend breakdowns. If it&apos;s tech — we film it, package it, and make people actually want to watch it.
+                </motion.p>
+            </div>
 
-                        {/* Line 2 */}
-                        <div className="hero-fade-up-35" style={{ display: "block" }}>
-                            Small Attention Spans.
-                        </div>
-
-                        {/* Line 3 — bridge animation */}
-                        <div style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "relative",
-                            gap: "0.3em",
-                            /* keep invisible until bridge fires so there's no jump */
-                            visibility: bridgeActive ? "visible" : "hidden",
-                        }}>
-                            {/* "We Bridge" — slides from left */}
-                            <span
-                                id="bridge-left"
-                                className={bridgeActive ? "hero-bridge-left" : ""}
-                                style={{ color: "#fff", display: "inline-block" }}
-                            >
-                                We Bridge
-                            </span>
-
-                            {/* Glow spark at join */}
-                            {glowActive && (
-                                <span
-                                    className="hero-bridge-glow"
-                                    style={{
-                                        position: "absolute",
-                                        left: "50%", top: "50%",
-                                        width: 90, height: 90,
-                                        borderRadius: "50%",
-                                        background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(62,205,200,0.7) 30%, rgba(139,47,201,0.5) 60%, transparent 85%)",
-                                        pointerEvents: "none",
-                                        filter: "blur(4px)",
-                                        zIndex: 10,
-                                        boxShadow: "0 0 50px 10px rgba(62,205,200,0.4)",
-                                    }}
-                                />
-                            )}
-
-                            {/* "the Gap." — slides from right, gradient text */}
-                            <span
-                                id="bridge-right"
-                                className={bridgeActive ? "hero-bridge-right" : ""}
-                                style={{
-                                    display: "inline-block",
-                                    position: "relative",
-                                    background: "linear-gradient(90deg, #8B2FC9, #3ECDC8)",
-                                    WebkitBackgroundClip: "text",
-                                    WebkitTextFillColor: "transparent",
-                                    backgroundClip: "text",
-                                }}
-                            >
-                                <ScribbleCircle />
-                                the Gap.
-                            </span>
-                        </div>
-                    </h1>
-
-                    {/* Subtext */}
-                    <p
-                        className="hero-fade-in-15"
-                        style={{
-                            fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
-                            fontWeight: 300,
-                            fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
-                            color: "rgba(255,255,255,0.62)",
-                            lineHeight: 1.85,
-                            maxWidth: 820,
-                            margin: "0 0 4rem",
-                        }}
-                    >
-                        SaaS demos. AI explainers. Corporate storytelling. Product
-                        launches. Knowledge drops. Trend breakdowns. If it&apos;s
-                        tech — we film it, package it, and make people actually want
-                        to watch it.
-                    </p>
-                    <div className="hero-fade-in-15" style={{ width: "100vw", maxWidth: "100vw" }}>
-                        <HeroCarousel videos={videos} />
-                    </div>
-                </div>
-            </section>
-        </>
+            {/* Video carousel */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="relative z-10 w-full mt-6"
+            >
+                <HeroCarousel />
+            </motion.div>
+        </section>
     );
 }

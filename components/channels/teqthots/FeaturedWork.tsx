@@ -114,18 +114,18 @@ export default function FeaturedWork({ videos = [] }: { videos?: any[] }) {
                         border: '1px solid rgba(124,58,237,0.14)',
                         color: '#7C3AED',
                         borderRadius: '100px', padding: '7px 18px',
-                        fontFamily: f, fontSize: '12px', fontWeight: 600,
-                        letterSpacing: '0.1em', textTransform: 'uppercase' as const,
+                        fontFamily: f, fontSize: '12px', fontWeight: 700,
+                        letterSpacing: '0.06em',
                         marginBottom: '1.25rem',
                     }}>✦ Our Work</div>
 
                     <h2 style={{
-                        fontFamily: f, fontWeight: 800,
+                        fontFamily: 'var(--font-playfair, "Playfair Display", serif)', fontWeight: 700,
                         fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-                        lineHeight: 1.05, letterSpacing: '-0.02em',
+                        lineHeight: 1.1, letterSpacing: '-0.01em',
                         marginBottom: '0.75rem',
                     }}>
-                        <span style={{ color: '#18182B' }}>Don't take our word for it. </span>
+                        <span style={{ color: '#18182B' }}>Don&apos;t take our word for it. </span>
                         <span style={{
                             background: 'linear-gradient(90deg, #8B2FC9, #3ECDC8)',
                             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',

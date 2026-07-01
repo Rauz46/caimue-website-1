@@ -89,7 +89,7 @@ export default function WhatWeMake() {
             style={{
                 position: "relative",
                 padding: "8rem clamp(1.25rem, 6vw, 5rem)",
-                background: "#EEF0FF",
+                background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
                 overflow: "hidden",
             }}
         >
@@ -119,22 +119,21 @@ export default function WhatWeMake() {
                         borderRadius: "100px",
                         padding: "8px 20px",
                         fontFamily: "Plus Jakarta Sans, sans-serif",
-                        fontSize: "11px",
+                        fontSize: "12px",
                         fontWeight: 700,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
                         marginBottom: "1.5rem",
                         boxShadow: "0 4px 12px rgba(139,47,201,0.08)",
                     }}>
-                        ✦ THREE WAYS WE SHOW UP FOR YOUR BRAND
+                        ✦ Three ways we show up for your brand
                     </div>
 
                     <h2 style={{
-                        fontFamily: "Plus Jakarta Sans, sans-serif",
-                        fontWeight: 800,
+                        fontFamily: 'var(--font-playfair, "Playfair Display", serif)',
+                        fontWeight: 700,
                         fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                        lineHeight: 1.1,
-                        letterSpacing: "-0.03em",
+                        lineHeight: 1.12,
+                        letterSpacing: "-0.01em",
                         marginBottom: "1.25rem",
                         textAlign: "center"
                     }}>

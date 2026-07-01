@@ -119,11 +119,11 @@ export default function CTASection() {
             letterSpacing: '0.1em',
         },
         headline: {
-            fontFamily: "'Clash Display', sans-serif",
+            fontFamily: 'var(--font-playfair, "Playfair Display", serif)',
             fontWeight: 700,
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             color: 'white',
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             marginBottom: '0.75rem',
         },
         button: {
@@ -267,9 +267,9 @@ export default function CTASection() {
                         </div>
 
                         <h2 style={styles.headline}>
-                            Let&apos;s make<br />
-                            your tech<br />
-                            unforgettable.
+                            Let&apos;s build<br />
+                            something worth<br />
+                            watching.
                         </h2>
 
                         <Link href="/contact" className="cta-button" style={{ ...styles.button, textDecoration: 'none' }}>

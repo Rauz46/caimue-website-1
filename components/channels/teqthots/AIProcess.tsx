@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const f = 'Plus Jakarta Sans, sans-serif';
+const serif = 'var(--font-playfair, "Playfair Display", serif)';
 
 const STEPS = [
     {
@@ -174,24 +175,23 @@ export default function AIProcess() {
                         border: '1px solid rgba(107,70,193,0.25)',
                         color: '#6B46C1',
                         borderRadius: '100px', padding: '7px 18px',
-                        fontFamily: f, fontSize: '12px', fontWeight: 600,
-                        letterSpacing: '0.1em', textTransform: 'uppercase' as const,
+                        fontFamily: f, fontSize: '12px', fontWeight: 700,
+                        letterSpacing: '0.08em',
                         marginBottom: '1.25rem',
                     }}>✦ AI-First Production</div>
 
                     <h2 style={{
-                        fontFamily: f, fontWeight: 800,
+                        fontFamily: serif, fontWeight: 700,
                         fontSize: 'clamp(2.2rem, 5vw, 4rem)',
-                        lineHeight: 1.05, letterSpacing: '-0.02em',
+                        lineHeight: 1.1, letterSpacing: '-0.01em',
                         marginBottom: '1rem', color: '#18182B',
                         textAlign: 'center',
                     }}>
-                        We don't just make videos.<br />
-                        <span style={{ color: '#18182B' }}>We make them </span>
+                        Built with AI,<br />
                         <span style={{
-                            background: 'linear-gradient(90deg, #A78BFA, #3ECDC8)',
+                            background: 'linear-gradient(90deg, #7C3AED, #3ECDC8)',
                             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                        }}>smarter.</span>
+                        }}>start to finish.</span>
                     </h2>
 
                     <p style={{
@@ -200,7 +200,7 @@ export default function AIProcess() {
                         maxWidth: '460px', margin: '0 auto 4rem auto',
                         lineHeight: 1.8, textAlign: 'center',
                     }}>
-                        Every Digubi production runs on AI from brief to publish.
+                        Every TeqThots production runs on AI from brief to publish.
                         Faster turnaround, sharper content, zero guesswork.
                     </p>
                 </div>
