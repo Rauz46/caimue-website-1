@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Youtube, Eye, Film, Users, Globe, Play, Briefcase } from "lucide-react";
+import { ArrowRight, Youtube, Eye, Film, Users, Globe, Play, Briefcase, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
@@ -253,8 +253,23 @@ export function PlatformsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="flex flex-col items-center text-center mb-12"
             >
+                {/* Badge — same style as the Track Record section */}
+                <div
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+                    style={{ background: "#E9D5FF" }}
+                >
+                    <span className="text-xs font-bold" style={{ color: "#4C1D95", letterSpacing: "1px" }}>
+                        Now Streaming
+                    </span>
+                    <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={14} fill="#F59E0B" stroke="#F59E0B" />
+                        ))}
+                    </div>
+                </div>
+
                 <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2D2D2D] tracking-wide">
                     Our Channels
                 </h2>

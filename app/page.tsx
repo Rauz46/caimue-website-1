@@ -47,7 +47,7 @@ export default function Home() {
         <BackgroundGradientAnimation
           autoMove
           maskCenter
-          containerClassName="absolute inset-0 z-0"
+          containerClassName="absolute inset-0 z-0 h-full"
           firstColor="124, 58, 237"  // Violet-600
           secondColor="109, 40, 217" // Violet-700
           thirdColor="91, 33, 182"   // Violet-800
