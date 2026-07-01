@@ -90,10 +90,11 @@ const channels: Channel[] = [
         shadow: "0 8px 30px rgba(20, 184, 166, 0.25)",
         accent: "#0D9488",
         stripBg: "rgba(255,255,255,0.6)",
+        // TODO: provisional placeholder numbers — replace with real Ennamo figures.
         stats: [
-            { value: "—", label: "Views", icon: Eye },
-            { value: "—", label: "Films", icon: Film },
-            { value: "—", label: "Artists", icon: Users },
+            { value: "100K+", label: "Views", icon: Eye },
+            { value: "6+", label: "Films", icon: Film },
+            { value: "15+", label: "Artists", icon: Users },
         ],
         delay: 0.3,
     },
@@ -109,10 +110,11 @@ const channels: Channel[] = [
         shadow: "0 4px 20px rgba(236, 72, 153, 0.18)",
         accent: "#DB2777",
         stripBg: "rgba(255,255,255,0.65)",
+        // TODO: provisional placeholder numbers — replace with real TeqThots figures.
         stats: [
-            { value: "—", label: "Views", icon: Globe },
-            { value: "—", label: "Videos", icon: Play },
-            { value: "—", label: "Guests", icon: Briefcase },
+            { value: "250K+", label: "Views", icon: Globe },
+            { value: "20+", label: "Videos", icon: Play },
+            { value: "18+", label: "Guests", icon: Briefcase },
         ],
         delay: 0.4,
     },
