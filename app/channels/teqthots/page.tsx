@@ -1,25 +1,26 @@
-import { ChannelPage } from "@/components/ui/ChannelPage";
+import type { Metadata } from "next";
+import HomeHero from "@/components/channels/teqthots/HomeHero";
+import WhatWeMake from "@/components/channels/teqthots/WhatWeMake";
+import FeaturedWork from "@/components/channels/teqthots/FeaturedWork";
+import AIProcess from "@/components/channels/teqthots/AIProcess";
+import CTASection from "@/components/channels/teqthots/CTASection";
 
+export const metadata: Metadata = {
+    title: "TeqThots — by Caimue Film Studios",
+    description:
+        "Documentary-style conversations that capture how companies are built — deep dives into technology, strategy, and scale.",
+};
+
+// Ported from the standalone TeqThots site, reskinned to Caimue's palette.
+// Uses each section's built-in static fallback content (no YouTube API needed).
 export default function TeqThotsChannelPage() {
     return (
-        <ChannelPage
-            logo="/teqthots%20updated%20logo%20png.png"
-            name="TeqThots"
-            titleLines={["Conversations that", "build companies."]}
-            description="Documentary-style conversations that capture how companies are built — deep dives into technology, strategy, and scale."
-            longDescription="TeqThots documents the founders and builders behind companies. Through long-form conversations and behind-the-scenes stories, we explore the technology, strategy, and culture that take an idea to scale."
-            accentFrom="#FDE2E4"
-            accentTo="#BE185D"
-            aspect="16 / 9"
-            gallery={[
-                { src: "/logos/teqthots/thumbnail.jpg" },
-                { src: "/logos/teqthots/Image%20(16).jpg" },
-                { src: "/logos/teqthots/Image%20(17).jpg" },
-                { src: "/logos/teqthots/NEVER.jpg" },
-                { src: "/logos/teqthots/Untitled-2.jpg" },
-                { src: "/logos/teqthots/shared%20image%20(6).jpg" },
-            ]}
-            cta={{ text: "Visit Website", href: "https://www.teqthots.com/", external: true }}
-        />
+        <>
+            <HomeHero />
+            <WhatWeMake />
+            <FeaturedWork />
+            <AIProcess />
+            <CTASection />
+        </>
     );
 }
