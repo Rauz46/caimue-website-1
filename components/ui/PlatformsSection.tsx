@@ -165,7 +165,7 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                                 <span className="text-[17px] font-black leading-none" style={{ color: channel.accent }}>
                                     {value}
                                 </span>
-                                <span className="text-[10px] uppercase tracking-wide text-gray-500">{label}</span>
+                                <span className="text-[11px] tracking-wide text-gray-500">{label}</span>
                             </div>
                         </React.Fragment>
                     ))}

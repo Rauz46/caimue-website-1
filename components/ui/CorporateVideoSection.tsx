@@ -66,9 +66,9 @@ export function CorporateVideoSection() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col items-center text-center mb-10"
+                    className="flex flex-col items-center text-center mb-4"
                 >
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 text-[#6D28D9] text-[11px] font-bold tracking-[0.18em] uppercase mb-5">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 text-[#6D28D9] text-[13px] font-semibold tracking-wide mb-5">
                         Brand &amp; Corporate
                     </span>
                     <h2 className="font-serif text-[2rem] sm:text-4xl lg:text-[3.25rem] leading-tight font-bold text-[#4C1D95] mb-4 md:whitespace-nowrap">
@@ -81,61 +81,83 @@ export function CorporateVideoSection() {
                     </p>
                 </motion.div>
 
-                {/* ── Digubi spotlight card (the focal point) ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.15 }}
-                    className="digubi-spotlight relative mx-auto max-w-3xl rounded-[2rem] p-[2px] overflow-hidden"
-                >
-                    {/* Rotating conic glow ring */}
-                    <div className="digubi-ring absolute inset-[-40%] pointer-events-none" aria-hidden />
+                {/* ── Digubi focal presentation (boxless) ── */}
+                <div className="relative flex flex-col items-center text-center pt-6 pb-2">
+                    {/* Spotlight glow behind the logo */}
+                    <div
+                        className="absolute top-2 left-1/2 -translate-x-1/2 w-[420px] max-w-[90vw] h-[300px] pointer-events-none"
+                        style={{
+                            background:
+                                "radial-gradient(ellipse at center, rgba(124,58,237,0.22) 0%, rgba(245,158,11,0.12) 40%, transparent 70%)",
+                        }}
+                        aria-hidden
+                    />
 
-                    <div className="relative rounded-[calc(2rem-2px)] bg-white/95 backdrop-blur-sm px-8 md:px-12 py-10 md:py-12 flex flex-col items-center text-center">
-                        {/* Soft glow behind the logo */}
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-56 h-56 bg-gradient-to-br from-purple-400/25 to-amber-300/25 rounded-full blur-3xl pointer-events-none" />
+                    {/* Orbiting accent dots + sparkles */}
+                    <motion.span
+                        className="absolute left-1/2 top-16 h-2.5 w-2.5 rounded-full bg-amber-400/70 pointer-events-none"
+                        style={{ marginLeft: "-150px" }}
+                        animate={{ y: [0, -12, 0], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                        aria-hidden
+                    />
+                    <motion.span
+                        className="absolute left-1/2 top-10 h-2 w-2 rounded-full bg-purple-500/60 pointer-events-none"
+                        style={{ marginLeft: "160px" }}
+                        animate={{ y: [0, 10, 0], opacity: [0.4, 0.9, 0.4] }}
+                        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                        aria-hidden
+                    />
+                    <motion.span
+                        className="absolute left-1/2 top-24 text-purple-400/50 text-xl pointer-events-none select-none"
+                        style={{ marginLeft: "200px" }}
+                        animate={{ rotate: [0, 20, 0], opacity: [0.4, 0.8, 0.4] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        aria-hidden
+                    >
+                        ✦
+                    </motion.span>
 
-                        {/* Digubi logo — the hero */}
-                        <motion.img
-                            // eslint-disable-next-line @next/next/no-img-element
-                            src="/logos/digubi-logo.png"
-                            alt="Digubi — Digital Ubiquity"
-                            className="relative z-10 h-20 md:h-24 w-auto object-contain mb-6"
-                            animate={{ y: [0, -6, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        />
+                    {/* Digubi logo — the hero, floating free */}
+                    <motion.img
+                        // eslint-disable-next-line @next/next/no-img-element
+                        src="/logos/digubi-logo.png"
+                        alt="Digubi — Digital Ubiquity"
+                        className="relative z-10 h-24 md:h-28 w-auto object-contain mb-6 drop-shadow-[0_10px_30px_rgba(76,29,149,0.25)]"
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
 
-                        <p className="relative z-10 text-gray-600 text-[15px] md:text-base leading-relaxed max-w-xl mb-7">
-                            We&apos;ve produced corporate videos for{" "}
-                            <span className="font-semibold text-[#4C1D95]">Ignitho, Nuivio, Piqual</span> and more — and
-                            we grow their online presence end to end.
-                        </p>
+                    <p className="relative z-10 text-gray-600 text-[15px] md:text-base leading-relaxed max-w-xl mb-7">
+                        We&apos;ve produced corporate videos for{" "}
+                        <span className="font-semibold text-[#4C1D95]">Ignitho, Nuivio, Piqual</span> and more — and we
+                        grow their online presence end to end.
+                    </p>
 
-                        {/* Feature pills */}
-                        <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5 mb-8">
-                            {features.map(({ icon: Icon, label }) => (
-                                <span
-                                    key={label}
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-100 text-[#6D28D9] text-[13px] font-semibold"
-                                >
-                                    <Icon size={15} />
-                                    {label}
-                                </span>
-                            ))}
-                        </div>
-
-                        {/* CTA */}
-                        <motion.a
-                            href="#"
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                            className="relative z-10 inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition-colors shadow-lg shadow-purple-400/30"
-                        >
-                            Explore Digubi
-                            <ArrowRight size={18} />
-                        </motion.a>
+                    {/* Feature pills */}
+                    <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5 mb-8">
+                        {features.map(({ icon: Icon, label }) => (
+                            <span
+                                key={label}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 border border-purple-200/60 text-[#6D28D9] text-[13px] font-semibold shadow-sm"
+                            >
+                                <Icon size={15} />
+                                {label}
+                            </span>
+                        ))}
                     </div>
-                </motion.div>
+
+                    {/* CTA */}
+                    <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="relative z-10 inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition-colors shadow-lg shadow-purple-400/30"
+                    >
+                        Explore Digubi
+                        <ArrowRight size={18} />
+                    </motion.a>
+                </div>
             </div>
 
             {/* ── Subdued "trusted by" marquee (secondary) ── */}
@@ -145,7 +167,7 @@ export function CorporateVideoSection() {
                 transition={{ duration: 0.6, delay: 0.35 }}
                 className="relative z-10 mt-14"
             >
-                <p className="text-center text-[11px] font-bold tracking-[0.22em] uppercase text-[#9333EA]/60 mb-5">
+                <p className="text-center text-[13px] font-semibold tracking-wide text-[#9333EA]/70 mb-5">
                     Brands we&apos;ve worked with
                 </p>
                 <div className="marquee relative">
@@ -158,21 +180,6 @@ export function CorporateVideoSection() {
             </motion.div>
 
             <style>{`
-                .digubi-spotlight {
-                    box-shadow: 0 24px 70px rgba(76, 29, 149, 0.22);
-                }
-                .digubi-ring {
-                    background: conic-gradient(from 0deg,
-                        rgba(124, 58, 237, 0.55),
-                        rgba(236, 72, 153, 0.35),
-                        rgba(245, 158, 11, 0.5),
-                        rgba(124, 58, 237, 0.55));
-                    animation: digubiSpin 8s linear infinite;
-                    filter: blur(6px);
-                }
-                @keyframes digubiSpin {
-                    to { transform: rotate(360deg); }
-                }
                 .marquee {
                     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
                     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -200,7 +207,7 @@ export function CorporateVideoSection() {
                     to   { transform: translateX(-50%); }
                 }
                 @media (prefers-reduced-motion: reduce) {
-                    .marquee-track, .digubi-ring { animation: none; }
+                    .marquee-track { animation: none; }
                 }
             `}</style>
         </section>
