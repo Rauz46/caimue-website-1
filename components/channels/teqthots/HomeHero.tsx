@@ -41,7 +41,7 @@ export default function HomeHero() {
             {/* Text content */}
             <div className="container relative z-10 flex flex-col items-center text-center">
                 {/* Headline */}
-                <h1 className="w-full mx-auto mb-5 relative flex flex-col items-center overflow-visible">
+                <h1 className="w-full mx-auto mt-6 md:mt-12 mb-5 relative flex flex-col items-center overflow-visible">
                     <span className="font-serif leading-[1.15] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-5xl text-4xl md:text-5xl lg:text-[4.25rem] pb-2 overflow-visible">
                         <span className="block">Big Ideas. Small Attention Spans.</span>
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
@@ -57,8 +57,9 @@ export default function HomeHero() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-base md:text-lg text-white/90 max-w-5xl mx-auto leading-relaxed font-medium drop-shadow font-sans"
                 >
-                    SaaS demos. AI explainers. Corporate storytelling. Product launches. Knowledge drops.
-                    Trend breakdowns. If it&apos;s tech — we film it, package it, and make people actually want to watch it.
+                    SaaS demos. AI explainers. Corporate storytelling. Product launches. Knowledge drops. Trend breakdowns.
+                    <br className="hidden sm:block" />{" "}
+                    If it&apos;s tech — we film it, package it, and make people actually want to watch it.
                 </motion.p>
             </div>
 
