@@ -88,7 +88,7 @@ export default function WhatWeMake() {
             ref={sectionRef}
             style={{
                 position: "relative",
-                padding: "8rem clamp(1.25rem, 6vw, 5rem)",
+                padding: "3.5rem clamp(1.25rem, 6vw, 5rem) 6rem",
                 background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
                 overflow: "hidden",
             }}
@@ -110,7 +110,7 @@ export default function WhatWeMake() {
                 margin: "0 auto",
             }}>
                 {/* TOP SECTION */}
-                <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+                <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                     <div style={{
                         display: "inline-block",
                         background: "#fff",
@@ -151,13 +151,12 @@ export default function WhatWeMake() {
                         fontFamily: "Plus Jakarta Sans, sans-serif",
                         fontSize: "1.05rem",
                         color: "#6B6B85",
-                        maxWidth: "580px",
+                        maxWidth: "820px",
                         margin: "0 auto",
-                        lineHeight: 1.8,
+                        lineHeight: 1.7,
                     }}>
-                        Product Videos. Knowledge & Trends. Brand Stories.
-                        One studio that does all three — and makes each one look
-                        like it cost ten times more than it did.
+                        Product Videos. Knowledge &amp; Trends. Brand Stories. One studio that does all three —
+                        and makes each one look like it cost ten times more than it did.
                     </p>
                 </div>
 

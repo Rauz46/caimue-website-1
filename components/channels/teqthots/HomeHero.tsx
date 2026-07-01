@@ -40,16 +40,6 @@ export default function HomeHero() {
 
             {/* Text content */}
             <div className="container relative z-10 flex flex-col items-center text-center">
-                {/* Eyebrow */}
-                <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-block px-5 py-1.5 rounded-full border border-white/20 bg-white/5 text-purple-200 text-xs font-bold tracking-[0.15em] mb-6 font-sans"
-                >
-                    ✦ Where brands come to go viral
-                </motion.span>
-
                 {/* Headline */}
                 <h1 className="w-full mx-auto mb-5 relative flex flex-col items-center overflow-visible">
                     <span className="font-serif leading-[1.15] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-5xl text-4xl md:text-5xl lg:text-[4.25rem] pb-2 overflow-visible">
