@@ -273,6 +273,10 @@ export function PlatformsSection() {
                 <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2D2D2D] tracking-wide">
                     Our Channels
                 </h2>
+                <p className="mt-4 text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl">
+                    Original Tamil &amp; Malayalam short films and founder-led documentaries — homegrown channels
+                    building an audience on the way to feature films.
+                </p>
             </motion.div>
 
             {/* Three channels side by side */}
