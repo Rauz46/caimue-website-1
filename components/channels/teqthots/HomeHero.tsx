@@ -9,7 +9,7 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // keeping the auto-scrolling video carousel below the headline.
 export default function HomeHero() {
     return (
-        <section className="flex flex-col pt-24 md:pt-28 relative overflow-hidden pb-0">
+        <section className="flex flex-col pt-16 md:pt-20 relative overflow-hidden pb-0">
             {/* Caimue animated gradient background */}
             <BackgroundGradientAnimation
                 autoMove
@@ -55,7 +55,7 @@ export default function HomeHero() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow font-sans [text-wrap:balance]"
+                    className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed font-medium drop-shadow font-sans [text-wrap:balance]"
                 >
                     SaaS demos. AI explainers. Corporate storytelling. Product launches. Knowledge drops.
                     Trend breakdowns. If it&apos;s tech — we film it, package it, and make people actually want to watch it.
