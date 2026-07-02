@@ -265,7 +265,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             }}
         >
             {/* Top accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #F59E0B, #E91E8C)" }} />
+            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
             {/* Soft corner glow */}
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
@@ -312,7 +312,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             }}
         >
             {/* Top accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #E91E8C, #7C3AED)" }} />
+            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
             {/* Soft corner glow */}
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
