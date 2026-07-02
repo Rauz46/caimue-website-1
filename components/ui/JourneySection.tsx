@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Film, Briefcase, Users, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
@@ -127,14 +127,17 @@ export function JourneySection() {
     );
 }
 
-// Highlighted stat number — vibrant gradient so the figures pop
+// Highlighted stat number — oversized vibrant gradient so the figures pop
 function Stat({ children }: { children: React.ReactNode }) {
     return (
         <span
-            className="bg-clip-text text-transparent font-extrabold"
+            className="bg-clip-text text-transparent font-extrabold inline-block align-baseline"
             style={{
                 backgroundImage: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
                 WebkitBackgroundClip: "text",
+                fontSize: "1.6em",
+                lineHeight: 0.9,
+                letterSpacing: "-0.02em",
             }}
         >
             {children}
@@ -150,22 +153,18 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ rotate: [-5, 5, -5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Film size={36} style={{ color: "#8B5CF6" }} strokeWidth={1.5} />
-            </motion.div>
+            {/* Top accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
+            {/* Soft corner glow */}
+            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header - 2 lines */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Short Films &<br />
                 <Stat>2M+</Stat> Views
             </h3>
@@ -258,22 +257,18 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Briefcase size={36} style={{ color: "#F59E0B" }} strokeWidth={1.5} />
-            </motion.div>
+            {/* Top accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #F59E0B, #E91E8C)" }} />
+            {/* Soft corner glow */}
+            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#F59E0B" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
             </h3>
 
@@ -309,22 +304,18 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
         >
-            {/* Icon in TOP RIGHT */}
-            <motion.div
-                className="absolute top-6 right-6"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-                <Users size={36} style={{ color: "#E91E8C" }} strokeWidth={1.5} />
-            </motion.div>
+            {/* Top accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #E91E8C, #7C3AED)" }} />
+            {/* Soft corner glow */}
+            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#E91E8C" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>25+</Stat> Artists <span style={{ color: "#4C1D95" }}>Discovered</span>
             </h3>
 
