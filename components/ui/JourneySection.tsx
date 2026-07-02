@@ -225,7 +225,7 @@ function MoreTile({
                                     src={img.src}
                                     alt=""
                                     fill
-                                    className={`${bgVariant === "logo" ? "object-contain p-1" : "object-cover"} scale-125 blur-[3px]`}
+                                    className={`${bgVariant === "logo" ? "object-contain p-1" : "object-cover"} scale-110 blur-[1.5px]`}
                                     style={{ objectPosition: img.position ?? "center" }}
                                 />
                             </div>
@@ -233,15 +233,25 @@ function MoreTile({
                     })}
                 </div>
             )}
-            {/* accent tint over the mosaic (semi-transparent so thumbnails peek through) */}
+            {/* light accent tint so thumbnails stay clearly visible while keeping the card's color */}
             <div
                 className="absolute inset-0"
                 style={{
                     background: bgImages.length > 0
-                        ? `linear-gradient(135deg, ${accent}cc, ${accentSoft}e0)`
+                        ? `linear-gradient(135deg, ${accent}59, ${accentSoft}80)`
                         : `linear-gradient(135deg, ${accent}, ${accentSoft})`,
                 }}
             />
+            {/* center vignette to keep the + and label readable over the mosaic */}
+            {bgImages.length > 0 && (
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background:
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.10) 45%, transparent 75%)",
+                    }}
+                />
+            )}
             {/* shimmering glow */}
             <motion.div
                 className="absolute inset-0"
@@ -269,13 +279,16 @@ function MoreTile({
             {/* the plus */}
             <motion.span
                 className="relative font-serif font-bold text-white leading-none"
-                style={{ fontSize: "38px", textShadow: "0 2px 8px rgba(0,0,0,0.18)" }}
+                style={{ fontSize: "38px", textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}
                 animate={{ y: [0, -3, 0] }}
                 transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             >
                 +
             </motion.span>
-            <span className="relative mt-1 text-white/95 text-[10px] font-bold uppercase tracking-[0.12em]">
+            <span
+                className="relative mt-1 text-white text-[10px] font-bold uppercase tracking-[0.12em]"
+                style={{ textShadow: "0 1px 6px rgba(0,0,0,0.45)" }}
+            >
                 {label}
             </span>
         </motion.div>
