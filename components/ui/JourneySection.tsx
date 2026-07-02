@@ -77,7 +77,7 @@ export function JourneySection() {
                             letterSpacing: "0.02em",
                         }}
                     >
-                        Numbers That Tell Our Story
+                        Our Track Record
                     </motion.h2>
 
                     {/* Sub-heading - Exactly 2 lines */}
