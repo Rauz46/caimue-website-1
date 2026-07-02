@@ -155,7 +155,7 @@ function GalleryTile({
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ scale: 1.06, zIndex: 3 }}
-            className="group relative aspect-square rounded-2xl overflow-hidden border border-gray-100"
+            className="group relative h-full w-full rounded-2xl overflow-hidden border border-gray-100"
             style={{
                 background: variant === "logo" ? "#ffffff" : "#F5F0FF",
                 boxShadow: "0 2px 10px rgba(75,29,149,0.06)",
@@ -203,7 +203,7 @@ function MoreTile({
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ scale: 1.06, zIndex: 3 }}
-            className="group relative aspect-square rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-default"
+            className="group relative h-full w-full rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-default"
             style={{ background: `linear-gradient(135deg, ${accent}, ${accentSoft})` }}
         >
             {/* shimmering glow */}
@@ -246,7 +246,8 @@ function MoreTile({
     );
 }
 
-// Compact 3-column gallery: 5 tiles + a "many more" tile
+// Compact gallery: fills 2 rows (columns × 2 tiles) with the last as a "many more" tile.
+// Fixed row height keeps 2-column and 3-column cards the same overall height.
 function CompactGallery({
     images,
     accent,
@@ -255,6 +256,8 @@ function CompactGallery({
     variant = "photo",
     moreLabel = "many more",
     baseDelay = 0.35,
+    columns = 3,
+    rowHeight = 106,
 }: {
     images: GalleryImage[];
     accent: string;
@@ -263,9 +266,17 @@ function CompactGallery({
     variant?: "photo" | "logo";
     moreLabel?: string;
     baseDelay?: number;
+    columns?: number;
+    rowHeight?: number;
 }) {
     return (
-        <div className="grid grid-cols-3 gap-2.5">
+        <div
+            className="grid gap-2.5"
+            style={{
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                gridAutoRows: `${rowHeight}px`,
+            }}
+        >
             {images.map((img, i) => (
                 <GalleryTile
                     key={img.src}
@@ -315,14 +326,15 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                 <span style={{ color: "#4C1D95" }}>2M+</span> Views
             </h3>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+            {/* Content - locked to 4 lines */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-5 min-h-[104px]" style={{ color: "#5A5A5A" }}>
                 Our short films have reached over 2 million views organically on YouTube. We produce original content that connects with audiences who care about authentic storytelling.
             </p>
 
-            {/* Compact gallery */}
+            {/* Compact gallery - 2 thumbnails per row */}
             <CompactGallery
                 isInView={isInView}
+                columns={2}
                 accent="#8B5CF6"
                 accentSoft="#6D28D9"
                 moreLabel="12+ films"
@@ -330,8 +342,6 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                     { src: "/images/Movies/Welcome Home.jpg", alt: "Welcome Home" },
                     { src: "/images/Movies/Smile!.jpg", alt: "Smile!" },
                     { src: "/images/Movies/Malsya Mandooka Mahamaham.jpg", alt: "Malsya Mandooka Mahamaham" },
-                    { src: "/images/Movies/Harinarayana Kudu Charitham.jpg", alt: "Harinarayana Kudu Charitham" },
-                    { src: "/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg", alt: "Nadha Nee Varum Kaalocha Kelkuvaan", position: "center 40%" },
                 ]}
             />
         </motion.div>
@@ -365,9 +375,9 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 12+ Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
             </h3>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
+            {/* Content - locked to 4 lines */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-5 min-h-[104px]" style={{ color: "#5A5A5A" }}>
+                From product placements to brand storytelling through TeqThots, we weave brands naturally into stories people want to watch — building trust and engagement without ever feeling like ads.
             </p>
 
             {/* Compact logo gallery */}
@@ -416,9 +426,9 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 25+ Artists <span style={{ color: "#4C1D95" }}>Discovered</span>
             </h3>
 
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
-                We've worked with 25+ writers, directors, actors, and storytellers across Tamil, Malayalam, and English. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
+            {/* Content - locked to 4 lines */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-5 min-h-[104px]" style={{ color: "#5A5A5A" }}>
+                We've worked with 25+ writers, directors, and actors across Tamil, Malayalam, and English — discovering talent and bringing them together to build films under our own creative direction.
             </p>
 
             {/* Compact gallery */}
