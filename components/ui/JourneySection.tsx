@@ -190,12 +190,16 @@ function MoreTile({
     label,
     delay,
     isInView,
+    bgImages = [],
+    bgVariant = "photo",
 }: {
     accent: string;
     accentSoft: string;
     label: string;
     delay: number;
     isInView: boolean;
+    bgImages?: GalleryImage[];
+    bgVariant?: "photo" | "logo";
 }) {
     return (
         <motion.div
@@ -206,6 +210,38 @@ function MoreTile({
             className="group relative h-full w-full rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-default"
             style={{ background: `linear-gradient(135deg, ${accent}, ${accentSoft})` }}
         >
+            {/* blurred mosaic of the remaining thumbnails */}
+            {bgImages.length > 0 && (
+                <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
+                    {Array.from({ length: 6 }).map((_, i) => {
+                        const img = bgImages[i % bgImages.length];
+                        return (
+                            <div
+                                key={i}
+                                className="relative overflow-hidden"
+                                style={{ background: bgVariant === "logo" ? "#ffffff" : "transparent" }}
+                            >
+                                <Image
+                                    src={img.src}
+                                    alt=""
+                                    fill
+                                    className={`${bgVariant === "logo" ? "object-contain p-1" : "object-cover"} scale-125 blur-[3px]`}
+                                    style={{ objectPosition: img.position ?? "center" }}
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+            {/* accent tint over the mosaic (semi-transparent so thumbnails peek through) */}
+            <div
+                className="absolute inset-0"
+                style={{
+                    background: bgImages.length > 0
+                        ? `linear-gradient(135deg, ${accent}cc, ${accentSoft}e0)`
+                        : `linear-gradient(135deg, ${accent}, ${accentSoft})`,
+                }}
+            />
             {/* shimmering glow */}
             <motion.div
                 className="absolute inset-0"
@@ -255,6 +291,7 @@ function CompactGallery({
     isInView,
     variant = "photo",
     moreLabel = "many more",
+    moreImages = [],
     baseDelay = 0.35,
     columns = 3,
     rowHeight = 106,
@@ -265,6 +302,7 @@ function CompactGallery({
     isInView: boolean;
     variant?: "photo" | "logo";
     moreLabel?: string;
+    moreImages?: GalleryImage[];
     baseDelay?: number;
     columns?: number;
     rowHeight?: number;
@@ -292,6 +330,8 @@ function CompactGallery({
                 accentSoft={accentSoft}
                 label={moreLabel}
                 isInView={isInView}
+                bgImages={moreImages}
+                bgVariant={variant}
                 delay={baseDelay + images.length * 0.07}
             />
         </div>
@@ -342,6 +382,14 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                     { src: "/images/Movies/Welcome Home.jpg", alt: "Welcome Home" },
                     { src: "/images/Movies/Smile!.jpg", alt: "Smile!" },
                     { src: "/images/Movies/Malsya Mandooka Mahamaham.jpg", alt: "Malsya Mandooka Mahamaham" },
+                ]}
+                moreImages={[
+                    { src: "/images/Movies/Harinarayana Kudu Charitham.jpg", alt: "" },
+                    { src: "/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg", alt: "" },
+                    { src: "/images/Movies/Live a Little.jpg", alt: "" },
+                    { src: "/images/Movies/Pazhampori.jpg", alt: "" },
+                    { src: "/images/Movies/Vishudha Sakshi.jpg", alt: "" },
+                    { src: "/images/Movies/ADS-369 Final Part.jpg", alt: "" },
                 ]}
             />
         </motion.div>
@@ -394,6 +442,14 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                     { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
                     { src: "/logos/loglos/aventei.png", alt: "Aventei" },
                 ]}
+                moreImages={[
+                    { src: "/logos/loglos/Nuivio.png", alt: "" },
+                    { src: "/logos/loglos/xime.png", alt: "" },
+                    { src: "/logos/loglos/Ignitho-Updated-Logo.png", alt: "" },
+                    { src: "/logos/loglos/upcraft.png", alt: "" },
+                    { src: "/logos/loglos/shared%20image.png", alt: "" },
+                    { src: "/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg", alt: "" },
+                ]}
             />
         </motion.div>
     );
@@ -443,6 +499,14 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                     { src: "/team/image.png", alt: "Artist" },
                     { src: "/team/image.jpg", alt: "Artist" },
                     { src: "/team/smile 1.png", alt: "Smile Team" },
+                ]}
+                moreImages={[
+                    { src: "/team/anton.png", alt: "" },
+                    { src: "/team/disha.png", alt: "" },
+                    { src: "/team/joseph.png", alt: "" },
+                    { src: "/team/purnima.png", alt: "" },
+                    { src: "/team/sanjay.png", alt: "" },
+                    { src: "/team/sri.png", alt: "" },
                 ]}
             />
         </motion.div>
