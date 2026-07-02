@@ -77,7 +77,7 @@ export function JourneySection() {
                             letterSpacing: "0.02em",
                         }}
                     >
-                        Our Track Record
+                        Numbers That Tell Our Story
                     </motion.h2>
 
                     {/* Sub-heading - Exactly 2 lines */}
@@ -127,6 +127,21 @@ export function JourneySection() {
     );
 }
 
+// Highlighted stat number — vibrant gradient so the figures pop
+function Stat({ children }: { children: React.ReactNode }) {
+    return (
+        <span
+            className="bg-clip-text text-transparent font-extrabold"
+            style={{
+                backgroundImage: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
+                WebkitBackgroundClip: "text",
+            }}
+        >
+            {children}
+        </span>
+    );
+}
+
 // Card 1: Films & Views
 function FilmsCard({ isInView }: { isInView: boolean }) {
     return (
@@ -150,13 +165,13 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             </motion.div>
 
             {/* Header - 2 lines */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words" style={{ color: "#2D2D2D" }}>
-                12+ Short Films &<br />
-                <span style={{ color: "#4C1D95" }}>2M+</span> Views
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+                <Stat>12+</Stat> Short Films &<br />
+                <Stat>2M+</Stat> Views
             </h3>
 
             {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center" style={{ color: "#5A5A5A" }}>
                 Our short films have reached over 2 million views organically on YouTube. We produce original content that connects with audiences who care about authentic storytelling.
             </p>
 
@@ -258,12 +273,12 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             </motion.div>
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words" style={{ color: "#2D2D2D" }}>
-                12+ Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+                <Stat>12+</Stat> Brand <span style={{ color: "#4C1D95" }}>Collaborations</span>
             </h3>
 
             {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center" style={{ color: "#5A5A5A" }}>
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
@@ -309,12 +324,12 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             </motion.div>
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words" style={{ color: "#2D2D2D" }}>
-                25+ Artists <span style={{ color: "#4C1D95" }}>Discovered</span>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mt-8 mb-4 leading-tight break-words text-center" style={{ color: "#2D2D2D" }}>
+                <Stat>25+</Stat> Artists <span style={{ color: "#4C1D95" }}>Discovered</span>
             </h3>
 
             {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6" style={{ color: "#5A5A5A" }}>
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center" style={{ color: "#5A5A5A" }}>
                 We've worked with 25+ writers, directors, actors, and storytellers across Tamil, Malayalam, and English. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
