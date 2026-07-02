@@ -136,8 +136,10 @@ function Stat({ children }: { children: React.ReactNode }) {
                 backgroundImage: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
                 WebkitBackgroundClip: "text",
                 fontSize: "1.6em",
-                lineHeight: 0.9,
+                lineHeight: 1.1,
                 letterSpacing: "-0.02em",
+                paddingBottom: "0.08em",
+                overflow: "visible",
             }}
         >
             {children}
