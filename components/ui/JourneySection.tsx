@@ -127,6 +127,166 @@ export function JourneySection() {
     );
 }
 
+/* ---------- Shared gallery building blocks ---------- */
+
+type GalleryImage = {
+    src: string;
+    alt: string;
+    position?: string;
+};
+
+// A single square tile in the compact gallery grid
+function GalleryTile({
+    image,
+    accent,
+    delay,
+    isInView,
+    variant = "photo",
+}: {
+    image: GalleryImage;
+    accent: string;
+    delay: number;
+    isInView: boolean;
+    variant?: "photo" | "logo";
+}) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ scale: 1.06, zIndex: 3 }}
+            className="group relative aspect-square rounded-2xl overflow-hidden border border-gray-100"
+            style={{
+                background: variant === "logo" ? "#ffffff" : "#F5F0FF",
+                boxShadow: "0 2px 10px rgba(75,29,149,0.06)",
+            }}
+        >
+            <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className={`${
+                    variant === "logo" ? "object-contain p-3" : "object-cover"
+                } transition-transform duration-500 group-hover:scale-110`}
+                style={{ objectPosition: image.position ?? "center" }}
+            />
+            {/* soft depth gradient for photos */}
+            {variant === "photo" && (
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            )}
+            {/* accent ring on hover */}
+            <div
+                className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ borderColor: accent }}
+            />
+        </motion.div>
+    );
+}
+
+// The creative "+ many more" final tile
+function MoreTile({
+    accent,
+    accentSoft,
+    label,
+    delay,
+    isInView,
+}: {
+    accent: string;
+    accentSoft: string;
+    label: string;
+    delay: number;
+    isInView: boolean;
+}) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ scale: 1.06, zIndex: 3 }}
+            className="group relative aspect-square rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-default"
+            style={{ background: `linear-gradient(135deg, ${accent}, ${accentSoft})` }}
+        >
+            {/* shimmering glow */}
+            <motion.div
+                className="absolute inset-0"
+                style={{
+                    background:
+                        "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 60%)",
+                }}
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            {/* floating orbs */}
+            {[
+                { top: "18%", left: "72%", size: 8, dur: 3.2 },
+                { top: "68%", left: "22%", size: 6, dur: 2.6 },
+                { top: "78%", left: "78%", size: 4, dur: 3.6 },
+            ].map((o, i) => (
+                <motion.span
+                    key={i}
+                    className="absolute rounded-full bg-white/40"
+                    style={{ top: o.top, left: o.left, width: o.size, height: o.size }}
+                    animate={{ y: [0, -6, 0], opacity: [0.3, 0.7, 0.3] }}
+                    transition={{ duration: o.dur, repeat: Infinity, ease: "easeInOut" }}
+                />
+            ))}
+            {/* the plus */}
+            <motion.span
+                className="relative font-serif font-bold text-white leading-none"
+                style={{ fontSize: "38px", textShadow: "0 2px 8px rgba(0,0,0,0.18)" }}
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+            >
+                +
+            </motion.span>
+            <span className="relative mt-1 text-white/95 text-[10px] font-bold uppercase tracking-[0.12em]">
+                {label}
+            </span>
+        </motion.div>
+    );
+}
+
+// Compact 3-column gallery: 5 tiles + a "many more" tile
+function CompactGallery({
+    images,
+    accent,
+    accentSoft,
+    isInView,
+    variant = "photo",
+    moreLabel = "many more",
+    baseDelay = 0.35,
+}: {
+    images: GalleryImage[];
+    accent: string;
+    accentSoft: string;
+    isInView: boolean;
+    variant?: "photo" | "logo";
+    moreLabel?: string;
+    baseDelay?: number;
+}) {
+    return (
+        <div className="grid grid-cols-3 gap-2.5">
+            {images.map((img, i) => (
+                <GalleryTile
+                    key={img.src}
+                    image={img}
+                    accent={accent}
+                    variant={variant}
+                    isInView={isInView}
+                    delay={baseDelay + i * 0.07}
+                />
+            ))}
+            <MoreTile
+                accent={accent}
+                accentSoft={accentSoft}
+                label={moreLabel}
+                isInView={isInView}
+                delay={baseDelay + images.length * 0.07}
+            />
+        </div>
+    );
+}
+
 // Card 1: Films & Views
 function FilmsCard({ isInView }: { isInView: boolean }) {
     return (
@@ -135,7 +295,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 transition-all duration-300 relative"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -160,77 +320,20 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                 Our short films have reached over 2 million views organically on YouTube. We produce original content that connects with audiences who care about authentic storytelling.
             </p>
 
-            {/* Bento Grid Gallery - Films */}
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[380px]">
-                {/* Row 1 */}
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Welcome Home.jpg"
-                        alt="Welcome Home"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Smile!.jpg"
-                        alt="Smile!"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-
-                {/* Row 2 */}
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
-                        alt="Malsya Mandooka Mahamaham"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Harinarayana Kudu Charitham.jpg"
-                        alt="Harinarayana Kudu Charitham"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-
-                {/* Row 3 - New Full Width Card */}
-                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-100/50">
-                    <Image
-                        src="/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg"
-                        alt="Nadha Nee Varum Kaalocha Kelkuvaan"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 50%" }}
-                    />
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-function BrandLogoCell({
-    src,
-    alt,
-    bg,
-    className = "",
-}: {
-    src: string;
-    alt: string;
-    bg: string;
-    className?: string;
-}) {
-    return (
-        <motion.div
-            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(75,29,149,0.13)" }}
-            className={`relative rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center ${className}`}
-            style={{ background: bg, boxShadow: "0 2px 10px rgba(75,29,149,0.06)" }}
-        >
-            <Image src={src} alt={alt} fill className="object-contain p-3" />
+            {/* Compact gallery */}
+            <CompactGallery
+                isInView={isInView}
+                accent="#8B5CF6"
+                accentSoft="#6D28D9"
+                moreLabel="12+ films"
+                images={[
+                    { src: "/images/Movies/Welcome Home.jpg", alt: "Welcome Home" },
+                    { src: "/images/Movies/Smile!.jpg", alt: "Smile!" },
+                    { src: "/images/Movies/Malsya Mandooka Mahamaham.jpg", alt: "Malsya Mandooka Mahamaham" },
+                    { src: "/images/Movies/Harinarayana Kudu Charitham.jpg", alt: "Harinarayana Kudu Charitham" },
+                    { src: "/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg", alt: "Nadha Nee Varum Kaalocha Kelkuvaan", position: "center 40%" },
+                ]}
+            />
         </motion.div>
     );
 }
@@ -243,7 +346,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 transition-all duration-300 relative"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -267,21 +370,21 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 From product placements in films to brand storytelling through TeqThots, we integrate brands naturally into stories people want to watch. We've worked with multiple brands creating content that builds trust and drives engagement without feeling like ads.
             </p>
 
-            {/* 3×4 uniform brand logo grid */}
-            <div className="grid grid-cols-3 gap-2" style={{ gridAutoRows: "72px" }}>
-                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" bg="#ffffff" />
-            </div>
+            {/* Compact logo gallery */}
+            <CompactGallery
+                isInView={isInView}
+                variant="logo"
+                accent="#F59E0B"
+                accentSoft="#D97706"
+                moreLabel="12+ brands"
+                images={[
+                    { src: "/logos/loglos/hael.png", alt: "Hael" },
+                    { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeify" },
+                    { src: "/logos/loglos/piqual.png", alt: "Piqual" },
+                    { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
+                    { src: "/logos/loglos/aventei.png", alt: "Aventei" },
+                ]}
+            />
         </motion.div>
     );
 }
@@ -294,7 +397,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-8 transition-all duration-300 relative"
+            className="bg-white rounded-[20px] p-6 transition-all duration-300 relative"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -318,105 +421,20 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                 We've worked with 25+ writers, directors, actors, and storytellers across Tamil, Malayalam, and English. We discover artists and bring them together to create films under our creative direction. We are the producers - we build the vision, they bring their talent. Some are now building successful careers in cinema.
             </p>
 
-            {/* Grid Gallery - Artists (Custom Layout) */}
-            <div className="flex gap-2 h-[320px]">
-                {/* Left Column - Large Images */}
-                <div className="w-1/2 flex flex-col gap-2">
-                    <div className="relative flex-1 rounded-xl overflow-hidden">
-                        <Image
-                            src="/team/megha  2.jpg"
-                            alt="Megha"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                            style={{ objectPosition: "center 20%" }}
-                        />
-                    </div>
-                    <div className="relative flex-1 rounded-xl overflow-hidden">
-                        <Image
-                            src="/team/sajan 2.jpg"
-                            alt="Sajan"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                            style={{ objectPosition: "center 20%" }}
-                        />
-                    </div>
-                </div>
-
-                {/* Right Column - Small Images Grid */}
-                <div className="w-1/2 flex flex-col gap-2">
-                    {/* Top Row - 4 Images */}
-                    <div className="flex-1 grid grid-cols-2 gap-2">
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image.png"
-                                alt="Artist"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image.jpg"
-                                alt="Artist"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/smile 1.png"
-                                alt="Smile Team 1"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/smile 2.png"
-                                alt="Smile Team 2"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Bottom Row - 4 Images */}
-                    <div className="flex-1 grid grid-cols-2 gap-2">
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image (1).jpg"
-                                alt="Artist"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ghkl.jpg"
-                                alt="Artist"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ads.png"
-                                alt="Ads Team 1"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ads 2.png"
-                                alt="Ads Team 2"
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Compact gallery */}
+            <CompactGallery
+                isInView={isInView}
+                accent="#E91E8C"
+                accentSoft="#BE185D"
+                moreLabel="25+ artists"
+                images={[
+                    { src: "/team/megha  2.jpg", alt: "Megha", position: "center 20%" },
+                    { src: "/team/sajan 2.jpg", alt: "Sajan", position: "center 20%" },
+                    { src: "/team/image.png", alt: "Artist" },
+                    { src: "/team/image.jpg", alt: "Artist" },
+                    { src: "/team/smile 1.png", alt: "Smile Team" },
+                ]}
+            />
         </motion.div>
     );
 }
