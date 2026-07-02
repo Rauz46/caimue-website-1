@@ -183,23 +183,21 @@ function GalleryTile({
     );
 }
 
-// The creative "+ many more" final tile
-function MoreTile({
+// A real thumbnail whose bottom shows a "+more" bar
+function MoreThumbTile({
+    image,
     accent,
-    accentSoft,
     label,
     delay,
     isInView,
-    bgImages = [],
-    bgVariant = "photo",
+    variant = "photo",
 }: {
+    image: GalleryImage;
     accent: string;
-    accentSoft: string;
     label: string;
     delay: number;
     isInView: boolean;
-    bgImages?: GalleryImage[];
-    bgVariant?: "photo" | "logo";
+    variant?: "photo" | "logo";
 }) {
     return (
         <motion.div
@@ -207,90 +205,41 @@ function MoreTile({
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ scale: 1.06, zIndex: 3 }}
-            className="group relative h-full w-full rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-default"
-            style={{ background: `linear-gradient(135deg, ${accent}, ${accentSoft})` }}
+            className="group relative h-full w-full rounded-2xl overflow-hidden border border-gray-100"
+            style={{
+                background: variant === "logo" ? "#ffffff" : "#F5F0FF",
+                boxShadow: "0 2px 10px rgba(75,29,149,0.06)",
+            }}
         >
-            {/* blurred mosaic of the remaining thumbnails */}
-            {bgImages.length > 0 && (
-                <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
-                    {Array.from({ length: 6 }).map((_, i) => {
-                        const img = bgImages[i % bgImages.length];
-                        return (
-                            <div
-                                key={i}
-                                className="relative overflow-hidden"
-                                style={{ background: bgVariant === "logo" ? "#ffffff" : "transparent" }}
-                            >
-                                <Image
-                                    src={img.src}
-                                    alt=""
-                                    fill
-                                    className={`${bgVariant === "logo" ? "object-contain p-1" : "object-cover"} scale-110 blur-[1.5px]`}
-                                    style={{ objectPosition: img.position ?? "center" }}
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
-            {/* light accent tint so thumbnails stay clearly visible while keeping the card's color */}
+            <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className={`${
+                    variant === "logo" ? "object-contain p-3" : "object-cover"
+                } transition-transform duration-500 group-hover:scale-110`}
+                style={{ objectPosition: image.position ?? "center" }}
+            />
+            {/* "+more" bar at the bottom */}
             <div
-                className="absolute inset-0"
+                className="absolute inset-x-0 bottom-0 flex items-end justify-center pb-1.5 pt-5"
                 style={{
-                    background: bgImages.length > 0
-                        ? `linear-gradient(135deg, ${accent}59, ${accentSoft}80)`
-                        : `linear-gradient(135deg, ${accent}, ${accentSoft})`,
+                    background: `linear-gradient(to top, ${accent}f2 0%, ${accent}cc 45%, transparent 100%)`,
                 }}
-            />
-            {/* center vignette to keep the + and label readable over the mosaic */}
-            {bgImages.length > 0 && (
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background:
-                            "radial-gradient(ellipse at center, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.10) 45%, transparent 75%)",
-                    }}
-                />
-            )}
-            {/* shimmering glow */}
-            <motion.div
-                className="absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 60%)",
-                }}
-                animate={{ opacity: [0.2, 0.5, 0.2] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-            {/* floating orbs */}
-            {[
-                { top: "18%", left: "72%", size: 8, dur: 3.2 },
-                { top: "68%", left: "22%", size: 6, dur: 2.6 },
-                { top: "78%", left: "78%", size: 4, dur: 3.6 },
-            ].map((o, i) => (
-                <motion.span
-                    key={i}
-                    className="absolute rounded-full bg-white/40"
-                    style={{ top: o.top, left: o.left, width: o.size, height: o.size }}
-                    animate={{ y: [0, -6, 0], opacity: [0.3, 0.7, 0.3] }}
-                    transition={{ duration: o.dur, repeat: Infinity, ease: "easeInOut" }}
-                />
-            ))}
-            {/* the plus */}
-            <motion.span
-                className="relative font-serif font-bold text-white leading-none"
-                style={{ fontSize: "38px", textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             >
-                +
-            </motion.span>
-            <span
-                className="relative mt-1 text-white text-[10px] font-bold uppercase tracking-[0.12em]"
-                style={{ textShadow: "0 1px 6px rgba(0,0,0,0.45)" }}
-            >
-                {label}
-            </span>
+                <span
+                    className="flex items-center gap-0.5 text-white font-bold text-[11px] tracking-wide"
+                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.35)" }}
+                >
+                    <span className="text-[15px] leading-none">+</span>
+                    {label}
+                </span>
+            </div>
+            {/* accent ring on hover */}
+            <div
+                className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ borderColor: accent }}
+            />
         </motion.div>
     );
 }
@@ -300,22 +249,20 @@ function MoreTile({
 function CompactGallery({
     images,
     accent,
-    accentSoft,
     isInView,
     variant = "photo",
-    moreLabel = "many more",
-    moreImages = [],
+    moreLabel = "more",
+    moreImage,
     baseDelay = 0.35,
     columns = 3,
     rowHeight = 106,
 }: {
     images: GalleryImage[];
     accent: string;
-    accentSoft: string;
     isInView: boolean;
     variant?: "photo" | "logo";
     moreLabel?: string;
-    moreImages?: GalleryImage[];
+    moreImage: GalleryImage;
     baseDelay?: number;
     columns?: number;
     rowHeight?: number;
@@ -338,13 +285,12 @@ function CompactGallery({
                     delay={baseDelay + i * 0.07}
                 />
             ))}
-            <MoreTile
+            <MoreThumbTile
+                image={moreImage}
                 accent={accent}
-                accentSoft={accentSoft}
                 label={moreLabel}
+                variant={variant}
                 isInView={isInView}
-                bgImages={moreImages}
-                bgVariant={variant}
                 delay={baseDelay + images.length * 0.07}
             />
         </div>
@@ -389,21 +335,12 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                 isInView={isInView}
                 columns={2}
                 accent="#8B5CF6"
-                accentSoft="#6D28D9"
-                moreLabel="12+ films"
                 images={[
                     { src: "/images/Movies/Welcome Home.jpg", alt: "Welcome Home" },
                     { src: "/images/Movies/Smile!.jpg", alt: "Smile!" },
                     { src: "/images/Movies/Malsya Mandooka Mahamaham.jpg", alt: "Malsya Mandooka Mahamaham" },
                 ]}
-                moreImages={[
-                    { src: "/images/Movies/Harinarayana Kudu Charitham.jpg", alt: "" },
-                    { src: "/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg", alt: "" },
-                    { src: "/images/Movies/Live a Little.jpg", alt: "" },
-                    { src: "/images/Movies/Pazhampori.jpg", alt: "" },
-                    { src: "/images/Movies/Vishudha Sakshi.jpg", alt: "" },
-                    { src: "/images/Movies/ADS-369 Final Part.jpg", alt: "" },
-                ]}
+                moreImage={{ src: "/images/Movies/Harinarayana Kudu Charitham.jpg", alt: "Harinarayana Kudu Charitham" }}
             />
         </motion.div>
     );
@@ -446,8 +383,6 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 isInView={isInView}
                 variant="logo"
                 accent="#F59E0B"
-                accentSoft="#D97706"
-                moreLabel="12+ brands"
                 images={[
                     { src: "/logos/loglos/hael.png", alt: "Hael" },
                     { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeify" },
@@ -455,14 +390,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                     { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
                     { src: "/logos/loglos/aventei.png", alt: "Aventei" },
                 ]}
-                moreImages={[
-                    { src: "/logos/loglos/Nuivio.png", alt: "" },
-                    { src: "/logos/loglos/xime.png", alt: "" },
-                    { src: "/logos/loglos/Ignitho-Updated-Logo.png", alt: "" },
-                    { src: "/logos/loglos/upcraft.png", alt: "" },
-                    { src: "/logos/loglos/shared%20image.png", alt: "" },
-                    { src: "/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg", alt: "" },
-                ]}
+                moreImage={{ src: "/logos/loglos/Nuivio.png", alt: "Nuivio" }}
             />
         </motion.div>
     );
@@ -504,8 +432,6 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             <CompactGallery
                 isInView={isInView}
                 accent="#E91E8C"
-                accentSoft="#BE185D"
-                moreLabel="25+ artists"
                 images={[
                     { src: "/team/megha  2.jpg", alt: "Megha", position: "center 20%" },
                     { src: "/team/sajan 2.jpg", alt: "Sajan", position: "center 20%" },
@@ -513,14 +439,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                     { src: "/team/image.jpg", alt: "Artist" },
                     { src: "/team/smile 1.png", alt: "Smile Team" },
                 ]}
-                moreImages={[
-                    { src: "/team/anton.png", alt: "" },
-                    { src: "/team/disha.png", alt: "" },
-                    { src: "/team/joseph.png", alt: "" },
-                    { src: "/team/purnima.png", alt: "" },
-                    { src: "/team/sanjay.png", alt: "" },
-                    { src: "/team/sri.png", alt: "" },
-                ]}
+                moreImage={{ src: "/team/anton.png", alt: "Anton", position: "center 20%" }}
             />
         </motion.div>
     );
