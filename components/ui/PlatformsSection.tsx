@@ -46,8 +46,8 @@ type Channel = {
     name: string;
     description: string;
     youtube: string;
-    background: string;
-    shadow: string;
+    from: string;   // brand gradient start (pulled from the logo)
+    to: string;     // brand gradient end
     delay: number;
 };
 
@@ -59,8 +59,8 @@ const channels: Channel[] = [
         description:
             "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
         youtube: "https://www.youtube.com/@ennitto",
-        background: "linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)",
-        shadow: "0 8px 30px rgba(139, 92, 246, 0.25)",
+        from: "#E11D74",
+        to: "#0FB5A6",
         delay: 0.2,
     },
     {
@@ -70,8 +70,8 @@ const channels: Channel[] = [
         description:
             "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
         youtube: "#",
-        background: "linear-gradient(135deg, #CFFAFE 0%, #CCFBF1 100%)",
-        shadow: "0 8px 30px rgba(20, 184, 166, 0.25)",
+        from: "#6D5BF0",
+        to: "#F0435A",
         delay: 0.3,
     },
     {
@@ -81,8 +81,8 @@ const channels: Channel[] = [
         description:
             "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
         youtube: "https://www.youtube.com/@TeqThots",
-        background: "linear-gradient(135deg, #FCE7F3 0%, #FDE2E4 100%)",
-        shadow: "0 4px 20px rgba(236, 72, 153, 0.18)",
+        from: "#7C3AED",
+        to: "#F59E0B",
         delay: 0.4,
     },
     {
@@ -92,57 +92,87 @@ const channels: Channel[] = [
         description:
             "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
         youtube: "#",
-        background: "linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)",
-        shadow: "0 8px 30px rgba(245, 158, 11, 0.25)",
+        from: "#1E3A8A",
+        to: "#F97316",
         delay: 0.5,
     },
 ];
 
-// Channel card — logo, description, YouTube button (all center-aligned)
+// Channel card — white card with brand-gradient border, ambient glow, hover lift
 function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolean }) {
+    const { from, to } = channel;
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: channel.delay }}
-            className="relative rounded-3xl p-6 h-full flex flex-col overflow-hidden"
-            style={{ background: channel.background, boxShadow: channel.shadow }}
+            whileHover={{ y: -10 }}
+            className="group relative h-full rounded-[26px] p-[1.5px]"
+            style={{
+                background: `linear-gradient(165deg, ${from}66 0%, rgba(15,23,42,0.08) 38%, rgba(15,23,42,0.08) 62%, ${to}66 100%)`,
+                boxShadow: `0 20px 45px -20px ${from}40, 0 8px 20px -12px rgba(15,23,42,0.12)`,
+            }}
         >
-            {/* Grid overlay */}
+            {/* Hover halo behind the card */}
             <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
+                className="absolute -inset-2 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 pointer-events-none"
+                style={{ background: `linear-gradient(135deg, ${from}38, ${to}38)` }}
             />
 
-            <div className="relative z-10 flex flex-col items-center text-center h-full">
-                {/* Logo */}
-                <div className="mb-5 flex items-center justify-center" style={{ minHeight: "72px" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={channel.logo} alt={channel.name} className={`${channel.logoClass} w-auto object-contain`} />
-                </div>
+            <div className="relative h-full rounded-[24.5px] bg-white overflow-hidden flex flex-col items-center text-center px-6 pt-10 pb-7">
+                {/* Soft brand tint bleeding from the top */}
+                <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-44 pointer-events-none"
+                    style={{ background: `radial-gradient(60% 100% at 50% 0%, ${from}1F 0%, transparent 70%)` }}
+                />
+                {/* Corner glow, bottom-right */}
+                <div
+                    className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity duration-500"
+                    style={{ background: `radial-gradient(circle, ${to}24 0%, transparent 65%)` }}
+                />
+                {/* Accent line along the top edge — grows on hover */}
+                <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 h-[3px] w-16 rounded-b-full group-hover:w-32 transition-all duration-500"
+                    style={{ background: `linear-gradient(90deg, ${from}, ${to})` }}
+                />
 
-                {/* Description */}
-                <p className="text-gray-700 text-[14px] leading-relaxed mb-5">
-                    {channel.description}
-                </p>
+                <div className="relative z-10 flex flex-col items-center h-full w-full">
+                    {/* Logo */}
+                    <div className="mb-5 flex items-center justify-center transition-transform duration-500 group-hover:scale-105" style={{ minHeight: "76px" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={channel.logo} alt={channel.name} className={`${channel.logoClass} w-auto object-contain drop-shadow-sm`} />
+                    </div>
 
-                {/* YouTube button pinned to bottom */}
-                <div className="mt-auto flex justify-center w-full">
-                    <motion.a
-                        href={channel.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-lg font-medium text-sm bg-[#FF0000] hover:bg-[#CC0000] text-white transition-colors"
-                    >
-                        <Youtube size={18} />
-                        YouTube
-                    </motion.a>
+                    {/* Brand-gradient divider */}
+                    <div className="flex items-center gap-1.5 mb-5">
+                        <span className="h-1 w-1 rounded-full" style={{ background: from }} />
+                        <span className="h-[3px] w-10 rounded-full" style={{ background: `linear-gradient(90deg, ${from}, ${to})` }} />
+                        <span className="h-1 w-1 rounded-full" style={{ background: to }} />
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-[14px] leading-relaxed mb-6">
+                        {channel.description}
+                    </p>
+
+                    {/* YouTube button pinned to bottom */}
+                    <div className="mt-auto flex justify-center w-full">
+                        <motion.a
+                            href={channel.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.96 }}
+                            className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
+                            style={{
+                                background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
+                                boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
+                            }}
+                        >
+                            <Youtube size={18} />
+                            YouTube
+                        </motion.a>
+                    </div>
                 </div>
             </div>
         </motion.div>
@@ -168,6 +198,16 @@ export function PlatformsSection() {
                     backgroundImage: `linear-gradient(#8B5CF6 1px, transparent 1px),
                                      linear-gradient(90deg, #8B5CF6 1px, transparent 1px)`,
                     backgroundSize: "50px 50px",
+                }}
+            />
+
+            {/* Soft ambient color wash so the white cards lift off the page */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: `radial-gradient(45% 40% at 18% 35%, rgba(139,92,246,0.07), transparent 70%),
+                                 radial-gradient(45% 40% at 82% 65%, rgba(236,72,153,0.06), transparent 70%),
+                                 radial-gradient(40% 35% at 50% 90%, rgba(245,158,11,0.05), transparent 70%)`,
                 }}
             />
 
