@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Youtube, Eye, Film, Users, Globe, Play, Briefcase, Star } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Youtube, Star } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -40,21 +39,15 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
 }
 
 // ── Channel data ──────────────────────────────────────────────
-// TODO: replace "—" placeholders with real Ennamo/TeqThots numbers once provided.
-// TODO: paste the Ennamo YouTube channel URL when available (currently "#").
-type Stat = { value: string; label: string; icon: LucideIcon };
+// TODO: paste the Ennamo & Startup Musings YouTube channel URLs when available (currently "#").
 type Channel = {
     logo: string;
     logoClass: string;
     name: string;
     description: string;
-    href: string;
     youtube: string;
     background: string;
     shadow: string;
-    accent: string;     // text colour for stat values / links
-    stripBg: string;    // inner stat-strip background
-    stats: Stat[];
     delay: number;
 };
 
@@ -65,37 +58,20 @@ const channels: Channel[] = [
         name: "Ennitto",
         description:
             "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
-        href: "/channels/ennitto",
         youtube: "https://www.youtube.com/@ennitto",
         background: "linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)",
         shadow: "0 8px 30px rgba(139, 92, 246, 0.25)",
-        accent: "#6D28D9",
-        stripBg: "rgba(255,255,255,0.6)",
-        stats: [
-            { value: "2.5M+", label: "Views", icon: Eye },
-            { value: "17+", label: "Films", icon: Film },
-            { value: "40+", label: "Artists", icon: Users },
-        ],
         delay: 0.2,
     },
     {
-        logo: "/ennamo%20final.png",
+        logo: "/ennamo%20new.png",
         logoClass: "h-16",
         name: "Ennamo",
         description:
             "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
-        href: "/channels/ennamo",
         youtube: "#",
         background: "linear-gradient(135deg, #CFFAFE 0%, #CCFBF1 100%)",
         shadow: "0 8px 30px rgba(20, 184, 166, 0.25)",
-        accent: "#0D9488",
-        stripBg: "rgba(255,255,255,0.6)",
-        // TODO: provisional placeholder numbers — replace with real Ennamo figures.
-        stats: [
-            { value: "100K+", label: "Views", icon: Eye },
-            { value: "6+", label: "Films", icon: Film },
-            { value: "15+", label: "Artists", icon: Users },
-        ],
         delay: 0.3,
     },
     {
@@ -104,23 +80,25 @@ const channels: Channel[] = [
         name: "TeqThots",
         description:
             "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
-        href: "/channels/teqthots",
         youtube: "https://www.youtube.com/@TeqThots",
         background: "linear-gradient(135deg, #FCE7F3 0%, #FDE2E4 100%)",
         shadow: "0 4px 20px rgba(236, 72, 153, 0.18)",
-        accent: "#DB2777",
-        stripBg: "rgba(255,255,255,0.65)",
-        // TODO: provisional placeholder numbers — replace with real TeqThots figures.
-        stats: [
-            { value: "250K+", label: "Views", icon: Globe },
-            { value: "20+", label: "Videos", icon: Play },
-            { value: "18+", label: "Guests", icon: Briefcase },
-        ],
         delay: 0.4,
+    },
+    {
+        logo: "/startup%20logo.png",
+        logoClass: "h-16",
+        name: "Startup Musings",
+        description:
+            "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
+        youtube: "#",
+        background: "linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)",
+        shadow: "0 8px 30px rgba(245, 158, 11, 0.25)",
+        delay: 0.5,
     },
 ];
 
-// Channel card — logo, description, stat strip, YouTube + Know More buttons
+// Channel card — logo, description, YouTube button (all center-aligned)
 function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolean }) {
     return (
         <motion.div
@@ -140,9 +118,9 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                 }}
             />
 
-            <div className="relative z-10 flex flex-col h-full">
+            <div className="relative z-10 flex flex-col items-center text-center h-full">
                 {/* Logo */}
-                <div className="mb-5 flex items-center" style={{ minHeight: "72px" }}>
+                <div className="mb-5 flex items-center justify-center" style={{ minHeight: "72px" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={channel.logo} alt={channel.name} className={`${channel.logoClass} w-auto object-contain`} />
                 </div>
@@ -152,46 +130,18 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                     {channel.description}
                 </p>
 
-                {/* Stat strip */}
-                <div
-                    className="flex items-center justify-between rounded-2xl px-4 py-3 mb-5"
-                    style={{ background: channel.stripBg }}
-                >
-                    {channel.stats.map(({ value, label, icon: Icon }, i) => (
-                        <React.Fragment key={label}>
-                            {i > 0 && <div className="w-px h-8 bg-black/10" />}
-                            <div className="flex flex-col items-center gap-0.5 px-1">
-                                <Icon size={14} style={{ color: channel.accent }} />
-                                <span className="text-[17px] font-black leading-none" style={{ color: channel.accent }}>
-                                    {value}
-                                </span>
-                                <span className="text-[11px] tracking-wide text-gray-500">{label}</span>
-                            </div>
-                        </React.Fragment>
-                    ))}
-                </div>
-
-                {/* Buttons pinned to bottom: YouTube + Know More */}
-                <div className="mt-auto flex flex-col sm:flex-row gap-2.5">
+                {/* YouTube button pinned to bottom */}
+                <div className="mt-auto flex justify-center w-full">
                     <motion.a
                         href={channel.youtube}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm bg-[#FF0000] hover:bg-[#CC0000] text-white transition-colors"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-lg font-medium text-sm bg-[#FF0000] hover:bg-[#CC0000] text-white transition-colors"
                     >
                         <Youtube size={18} />
                         YouTube
-                    </motion.a>
-                    <motion.a
-                        href={channel.href}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition-colors"
-                    >
-                        Know More
-                        <ArrowRight size={18} />
                     </motion.a>
                 </div>
             </div>
@@ -281,9 +231,9 @@ export function PlatformsSection() {
                 </p>
             </motion.div>
 
-            {/* Three channels side by side */}
-            <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-6">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+            {/* Four channels side by side */}
+            <div className="max-w-[1320px] mx-auto px-4 md:px-8 flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
                     {channels.map((channel) => (
                         <ChannelCard key={channel.name} channel={channel} isInView={isInView} />
                     ))}
