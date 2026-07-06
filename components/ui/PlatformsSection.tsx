@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Youtube, Star } from "lucide-react";
+import { Youtube, Star, ArrowRight } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -40,12 +40,14 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
 
 // ── Channel data ──────────────────────────────────────────────
 // TODO: paste the Ennamo & Startup Musings YouTube channel URLs when available (currently "#").
+// TODO: point Startup Musings readMore to its channel page once it exists (currently "#").
 type Channel = {
     logo: string;
     logoClass: string;
     name: string;
     description: string;
     youtube: string;
+    readMore: string;
     from: string;   // brand gradient start (pulled from the logo)
     to: string;     // brand gradient end
     delay: number;
@@ -59,6 +61,7 @@ const channels: Channel[] = [
         description:
             "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
         youtube: "https://www.youtube.com/@ennitto",
+        readMore: "/channels/ennitto",
         from: "#E11D74",
         to: "#0FB5A6",
         delay: 0.2,
@@ -70,6 +73,7 @@ const channels: Channel[] = [
         description:
             "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
         youtube: "#",
+        readMore: "/channels/ennamo",
         from: "#6D5BF0",
         to: "#F0435A",
         delay: 0.3,
@@ -81,17 +85,19 @@ const channels: Channel[] = [
         description:
             "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
         youtube: "https://www.youtube.com/@TeqThots",
+        readMore: "/channels/teqthots",
         from: "#7C3AED",
         to: "#F59E0B",
         delay: 0.4,
     },
     {
         logo: "/startup%20logo.png",
-        logoClass: "h-16",
+        logoClass: "h-20",
         name: "Startup Musings",
         description:
             "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
         youtube: "#",
+        readMore: "#",
         from: "#1E3A8A",
         to: "#F97316",
         delay: 0.5,
@@ -155,15 +161,15 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                         {channel.description}
                     </p>
 
-                    {/* YouTube button pinned to bottom */}
-                    <div className="mt-auto flex justify-center w-full">
+                    {/* CTAs pinned to bottom */}
+                    <div className="mt-auto flex justify-center items-center gap-3 w-full flex-wrap">
                         <motion.a
                             href={channel.youtube}
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
                             style={{
                                 background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
                                 boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
@@ -171,6 +177,20 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                         >
                             <Youtube size={18} />
                             YouTube
+                        </motion.a>
+                        <motion.a
+                            href={channel.readMore}
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.96 }}
+                            className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full font-semibold text-sm transition-shadow duration-300"
+                            style={{
+                                color: from,
+                                border: `1.5px solid ${from}55`,
+                                background: `${from}0D`,
+                            }}
+                        >
+                            Read More
+                            <ArrowRight size={16} />
                         </motion.a>
                     </div>
                 </div>
