@@ -328,10 +328,10 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Grid Gallery - Artists (Custom Layout) */}
-            <div className="flex gap-2 flex-1 min-h-[320px]">
-                {/* Left Column - Large Images */}
-                <div className="w-1/2 flex flex-col gap-2">
-                    <div className="relative flex-1 rounded-xl overflow-hidden">
+            <div className="flex flex-col gap-2 flex-1 min-h-[320px]">
+                {/* Top Half - Large Image Left, Small Grid Right */}
+                <div className="flex-1 flex gap-2">
+                    <div className="w-1/2 relative rounded-xl overflow-hidden">
                         <Image
                             src="/team/megha  2.jpg"
                             alt="Megha"
@@ -340,21 +340,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                             style={{ objectPosition: "center 20%" }}
                         />
                     </div>
-                    <div className="relative flex-1 rounded-xl overflow-hidden">
-                        <Image
-                            src="/team/sajan 2.jpg"
-                            alt="Sajan"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                            style={{ objectPosition: "center 20%" }}
-                        />
-                    </div>
-                </div>
-
-                {/* Right Column - Small Images Grid */}
-                <div className="w-1/2 flex flex-col gap-2">
-                    {/* Top Row - 4 Images */}
-                    <div className="flex-1 grid grid-cols-2 gap-2">
+                    <div className="w-1/2 grid grid-cols-2 gap-2">
                         <div className="relative rounded-xl overflow-hidden">
                             <Image
                                 src="/team/image.png"
@@ -388,9 +374,11 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                             />
                         </div>
                     </div>
+                </div>
 
-                    {/* Bottom Row - 4 Images */}
-                    <div className="flex-1 grid grid-cols-2 gap-2">
+                {/* Bottom Half - Small Grid Left, Large Image Right */}
+                <div className="flex-1 flex gap-2">
+                    <div className="w-1/2 grid grid-cols-2 gap-2">
                         <div className="relative rounded-xl overflow-hidden">
                             <Image
                                 src="/team/image (1).jpg"
@@ -423,6 +411,15 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
+                    </div>
+                    <div className="w-1/2 relative rounded-xl overflow-hidden">
+                        <Image
+                            src="/team/sajan 2.jpg"
+                            alt="Sajan"
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                            style={{ objectPosition: "center 20%" }}
+                        />
                     </div>
                 </div>
             </div>
