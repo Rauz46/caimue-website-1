@@ -161,28 +161,28 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                         {channel.description}
                     </p>
 
-                    {/* CTAs pinned to bottom */}
-                    <div className="mt-auto flex justify-center items-center gap-3 w-full flex-wrap">
+                    {/* CTAs pinned to bottom — always side by side */}
+                    <div className="mt-auto flex items-center gap-2.5 w-full">
                         <motion.a
                             href={channel.youtube}
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
+                            className="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-full font-semibold text-sm text-white whitespace-nowrap transition-shadow duration-300"
                             style={{
                                 background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
                                 boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
                             }}
                         >
-                            <Youtube size={18} />
+                            <Youtube size={17} />
                             YouTube
                         </motion.a>
                         <motion.a
                             href={channel.readMore}
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full font-semibold text-sm transition-shadow duration-300"
+                            className="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-shadow duration-300"
                             style={{
                                 color: from,
                                 border: `1.5px solid ${from}55`,
@@ -190,7 +190,7 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                             }}
                         >
                             Read More
-                            <ArrowRight size={16} />
+                            <ArrowRight size={15} />
                         </motion.a>
                     </div>
                 </div>
