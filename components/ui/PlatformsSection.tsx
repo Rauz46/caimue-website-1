@@ -292,8 +292,8 @@ export function PlatformsSection() {
                         whileTap={{ scale: 0.96 }}
                         className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
                         style={{
-                            background: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
-                            boxShadow: "0 12px 28px -10px rgba(124,58,237,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
+                            background: "var(--caimue-pink)",
+                            boxShadow: "0 12px 28px -10px rgba(233,30,140,0.5), inset 0 1px 0 rgba(255,255,255,0.25)",
                         }}
                     >
                         Read More
