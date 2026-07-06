@@ -155,7 +155,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden flex flex-col"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -177,7 +177,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Bento Grid Gallery - Films */}
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 h-[380px]">
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
                 {/* Row 1 */}
                 <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
                     <Image
@@ -259,7 +259,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden flex flex-col"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -280,7 +280,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Staggered bento brand logo grid: big boxes for major brands, small squares for own brands */}
-            <div className="grid grid-cols-4 grid-flow-dense gap-2" style={{ gridAutoRows: "54px" }}>
+            <div className="grid grid-cols-4 grid-flow-dense gap-2 flex-1" style={{ gridAutoRows: "minmax(54px, 1fr)" }}>
                 <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" bg="#ffffff" className="col-span-2 row-span-2" />
                 <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" bg="#ffffff" className="col-span-2" />
                 <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" bg="#ffffff" />
@@ -307,7 +307,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(75, 29, 149, 0.15)" }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-all duration-300 relative overflow-hidden flex flex-col"
             style={{
                 boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
             }}
@@ -328,7 +328,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             </p>
 
             {/* Grid Gallery - Artists (Custom Layout) */}
-            <div className="flex gap-2 h-[320px]">
+            <div className="flex gap-2 flex-1 min-h-[320px]">
                 {/* Left Column - Large Images */}
                 <div className="w-1/2 flex flex-col gap-2">
                     <div className="relative flex-1 rounded-xl overflow-hidden">
