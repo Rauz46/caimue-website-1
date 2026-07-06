@@ -167,7 +167,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 
             {/* Header - 2 lines */}
             <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>12+</Stat> Short Films &<br />
+                <Stat>12+</Stat> Short Films,<br />
                 <Stat>2M+</Stat> Views
             </h3>
 
