@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Flame, TrendingUp, ShieldCheck } from "lucide-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
@@ -241,8 +240,8 @@ export default function AboutPage() {
           <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-pink-300/10 rounded-full blur-[120px]" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div className="relative z-10 container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             {/* Left — Our Story */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -260,71 +259,39 @@ export default function AboutPage() {
                 </span>
               </h2>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
-                Caimue Film Studios began with a simple belief: great stories can come from anywhere,
-                and they deserve to be told with craft. We started by producing original Tamil and
-                Malayalam short films — discovering fresh talent in acting, writing, and directing —
-                and building homegrown channels that turn everyday creators into storytellers.
+                Caimue Film Studios started with a simple belief: great stories can come from
+                anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
+                written, cast, and directed in-house — and grew past 2 million views one honest
+                story at a time.
+              </p>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+                Along the way we discovered something bigger than films: people. More than 25
+                writers, directors, and actors earned their first real credits with us, and our
+                channels became homes for regional stories and founder journeys told with
+                cinematic craft.
               </p>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
-                Along the way we added founder-led documentaries and brand films, blending traditional
-                filmmaking with AI-powered production to move faster without losing soul. Everything we
-                make is a step toward the same goal: feature films rooted in our culture, watched by
-                the world.
+                Today we blend traditional filmmaking with AI-powered production — moving faster
+                without losing soul. Every short film, documentary, and brand story is a step
+                toward one destination: feature films rooted in our culture, watched by the world.
               </p>
             </motion.div>
 
-            {/* Right — Our Values */}
-            <div className="flex flex-col gap-5">
-              {[
-                {
-                  icon: Flame,
-                  title: "Passion",
-                  description: "We chase stories we can't stop thinking about. Craft comes first, and it shows in every frame we put out.",
-                  accent: "#DB2777",
-                  soft: "#FCE7F3",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Performance",
-                  description: "We deliver. Timelines, budgets, and quality bars are commitments — and our work is measured by the results it creates.",
-                  accent: "#7C3AED",
-                  soft: "#EDE9FE",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Integrity",
-                  description: "We do right by our artists, clients, and audience. Honest stories, honest business, no shortcuts.",
-                  accent: "#0D9488",
-                  soft: "#CCFBF1",
-                },
-              ].map((value, i) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
-                  whileHover={{ y: -4 }}
-                  className="relative rounded-2xl bg-white p-5 md:p-6 overflow-hidden"
-                  style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
-                >
-                  {/* Accent bar along the left edge */}
-                  <div className="absolute top-0 left-0 bottom-0 w-1.5" style={{ background: value.accent }} />
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="flex items-center justify-center rounded-xl shrink-0"
-                      style={{ background: value.soft, color: value.accent, width: 46, height: 46 }}
-                    >
-                      <value.icon size={22} strokeWidth={2} />
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-xl font-bold text-gray-900 mb-1">{value.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed font-sans">{value.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {/* Right — Our Culture image (values built in) */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex justify-center lg:justify-end"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/our%20story.png"
+                alt="The Caimue crew on set — driven by passion, integrity, and performance"
+                className="w-full max-w-[560px] h-auto object-contain"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
