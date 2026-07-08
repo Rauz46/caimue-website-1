@@ -139,15 +139,17 @@ export default function AboutPage() {
       <section className="relative flex items-center justify-center pt-24 pb-4 md:pt-30 md:pb-6 overflow-hidden">
         {/* Animated gradient background,same as homepage */}
         <BackgroundGradientAnimation
-          containerClassName="absolute inset-0 z-0"
-          firstColor="139, 92, 246"
-          secondColor="147, 51, 234"
-          thirdColor="124, 58, 237"
-          fourthColor="168, 85, 247"
-          fifthColor="192, 132, 252"
-          pointerColor="139, 92, 246"
-          gradientBackgroundStart="rgb(76, 29, 149)"
-          gradientBackgroundEnd="rgb(88, 28, 135)"
+          autoMove
+          maskCenter
+          containerClassName="absolute inset-0 z-0 h-full"
+          firstColor="124, 58, 237"  // Violet-600
+          secondColor="109, 40, 217" // Violet-700
+          thirdColor="91, 33, 182"   // Violet-800
+          fourthColor="126, 34, 206" // Purple-700
+          fifthColor="107, 33, 168"  // Purple-800
+          pointerColor="124, 58, 237" // Violet-600
+          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
+          gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
         />
 
         {/* Subtle line grid overlay,same as homepage */}
@@ -181,7 +183,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-3xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight mb-4 font-serif"
+            className="text-2xl md:text-4xl lg:text-5xl leading-[1.1] tracking-tight mb-4 font-serif"
           >
             <span className="text-white font-bold drop-shadow-2xl block">
               The studio where{" "}
