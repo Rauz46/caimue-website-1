@@ -166,10 +166,15 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header - 2 lines */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Short Films,<br />
                 <Stat>2M+</Stat> Views
             </h3>
+
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                Original short films that have crossed 2 million organic views on YouTube.
+            </p>
 
             {/* Bento Grid Gallery - Films */}
             <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
@@ -265,9 +270,14 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
             </h3>
+
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                Brand stories woven naturally into films and TeqThots — never feeling like ads.
+            </p>
 
             {/* Staggered bento brand logo grid: big boxes for major brands, small squares for own brands */}
             <div className="grid grid-cols-4 grid-flow-dense gap-2 flex-1" style={{ gridAutoRows: "minmax(54px, 1fr)" }}>
@@ -308,9 +318,14 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-4 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>25+</Stat> Artists <span style={{ color: "#2D2D2D" }}>Discovered</span>
             </h3>
+
+            {/* Content */}
+            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                Writers, directors, and actors across Tamil, Malayalam, and English — creating under our production.
+            </p>
 
             {/* Grid Gallery - Artists (Custom Layout) */}
             <div className="flex flex-col gap-2 flex-1 min-h-[320px]">
