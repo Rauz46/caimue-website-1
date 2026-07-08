@@ -15,7 +15,7 @@ const allTeam = [
   { name: "Joseph Olassa",      role: "Board Chair",             image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",           tags: ["Strategy", "Vision"] },
   { name: "Vivin Raj",           role: "Startup Champion",        image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                  tags: ["Creative", "Execution"] },
   { name: "Srividhya B",        role: "Head of Finance & Ops",   image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                  tags: ["Finance", "Ops"] },
-  { name: "Gowtham",            role: "Growth Marketer",         image: "/teams%20pic/gowtham.png", color: "#F97316", bio: "Gets our stories in front of the audiences they deserve.", tags: ["Marketing", "Growth"] },
+  { name: "Gowtham",            role: "Marketing Champion",      image: "/teams%20pic/gowtham.png", color: "#F97316", bio: "Gets our stories in front of the audiences they deserve.", tags: ["Marketing", "Growth"] },
   // Row 2
   { name: "Sanjay R",           role: "Video Editor",            image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",            tags: ["Video", "Editing"] },
   { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/teams%20pic/megha.png",   color: "#2563EB", bio: "Builds AI-powered websites that bring our stories online.", tags: ["Web", "AI"] },
