@@ -5,41 +5,16 @@ import { motion, useInView } from "framer-motion";
 import { Video, Share2, Globe } from "lucide-react";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
-// Real clients we've produced corporate / brand work for
-const brands = [
-    { name: "Ignitho", src: "/logos/loglos/Ignitho-Updated-Logo.png" },
-    { name: "Nuivio", src: "/logos/loglos/Nuivio.png" },
-    { name: "Piqual", src: "/logos/loglos/piqual.png" },
-    { name: "Hael", src: "/logos/loglos/hael.png" },
-    { name: "Prodeify", src: "/logos/loglos/Prodeify-logo-final-768x280-1.png" },
-    { name: "Talentou", src: "/logos/loglos/cropped-Talentou-3.png" },
-    { name: "Aventei", src: "/logos/loglos/aventei.png" },
-    { name: "XIME", src: "/logos/loglos/xime.png" },
-    { name: "Upcraft", src: "/logos/loglos/upcraft.png" },
-];
-
 const features = [
     { icon: Video, label: "Corporate Videos" },
     { icon: Share2, label: "Social Media Campaigns" },
     { icon: Globe, label: "Marketing Websites" },
 ];
 
-function LogoChip({ src, name }: { src: string; name: string }) {
-    return (
-        <div className="brand-chip shrink-0 mx-2.5 flex items-center justify-center rounded-xl bg-white/90 px-6 h-[62px] w-[160px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={name} className="max-h-7 max-w-[110px] w-auto object-contain" />
-        </div>
-    );
-}
-
 // Standalone Digubi banner — light-purple background like the Track Record section
 export function CorporateVideoSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-
-    // Duplicate the list so the marquee loops seamlessly
-    const marquee = [...brands, ...brands];
 
     return (
         <section
@@ -149,56 +124,6 @@ export function CorporateVideoSection() {
                 </div>
             </div>
 
-            {/* ── Subdued "trusted by" marquee (secondary) ── */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.35 }}
-                className="relative z-10 mt-14"
-            >
-                <p className="text-center text-[13px] font-semibold tracking-wide text-[#9333EA]/70 mb-5">
-                    Brands we&apos;ve worked with
-                </p>
-                <div className="marquee relative">
-                    <div className="marquee-track flex w-max items-center">
-                        {marquee.map((b, i) => (
-                            <LogoChip key={`${b.name}-${i}`} src={b.src} name={b.name} />
-                        ))}
-                    </div>
-                </div>
-            </motion.div>
-
-            <style>{`
-                .marquee {
-                    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-                    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-                    overflow: hidden;
-                }
-                .marquee-track {
-                    animation: brandScroll 38s linear infinite;
-                }
-                .marquee:hover .marquee-track {
-                    animation-play-state: paused;
-                }
-                .brand-chip {
-                    filter: grayscale(1);
-                    opacity: 0.55;
-                    box-shadow: 0 3px 12px rgba(76, 29, 149, 0.06);
-                    transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-                }
-                .brand-chip:hover {
-                    filter: grayscale(0);
-                    opacity: 1;
-                    transform: translateY(-3px);
-                }
-                @keyframes brandScroll {
-                    from { transform: translateX(0); }
-                    to   { transform: translateX(-50%); }
-                }
-                @media (prefers-reduced-motion: reduce) {
-                    .marquee-track { animation: none; }
-                }
-            `}</style>
         </section>
     );
 }
