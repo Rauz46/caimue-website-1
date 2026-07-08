@@ -11,14 +11,16 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",             tags: ["Strategy", "Vision"] },
-  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything.", tags: ["Storytelling", "Startups"] },
-  { name: "Vivin Raj",            role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                    tags: ["Creative", "Execution"] },
-  { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul.",    tags: ["Revenue", "Growth"] },
-  { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                    tags: ["Finance", "Ops"] },
-  { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",              tags: ["Video", "Editing"] },
-  { name: "Disha Napoleon",      role: "Finance Enabler",          image: "/teams%20pic/disha.png",   color: "#C026D3", bio: "Numbers person with a creative heart.",                     tags: ["Finance", "Analytics"] },
-  { name: "Purnimma Ravi",       role: "People Builder",           image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies.",               tags: ["People", "Culture"] },
+  // Row 1
+  { name: "Joseph Olassa",      role: "Board Chair",             image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",           tags: ["Strategy", "Vision"] },
+  { name: "Vivin Raj",           role: "Startup Champion",        image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                  tags: ["Creative", "Execution"] },
+  { name: "Srividhya B",        role: "Head of Finance & Ops",   image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                  tags: ["Finance", "Ops"] },
+  // TODO: add Gowtham here (photo + role needed)
+  // Row 2
+  { name: "Sanjay R",           role: "Video Editor",            image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",            tags: ["Video", "Editing"] },
+  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/teams%20pic/megha.png",   color: "#2563EB", bio: "Builds AI-powered websites that bring our stories online.", tags: ["Web", "AI"] },
+  { name: "Jeevan",             role: "Finance Enabler",         image: "/teams%20pic/jeevan.png",  color: "#C026D3", bio: "Keeps the numbers honest so the stories can be bold.",     tags: ["Finance", "Analytics"] },
+  { name: "Purnimma Ravi",      role: "People Builder",          image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies.",              tags: ["People", "Culture"] },
 ];
 
 const clients = [
@@ -276,7 +278,7 @@ export default function AboutPage() {
               <img
                 src="/our%20story.png"
                 alt="The Caimue crew on set — driven by passion, integrity, and performance"
-                className="w-full max-w-[580px] h-auto object-contain"
+                className="w-full max-w-[660px] h-auto object-contain"
               />
             </motion.div>
           </div>
@@ -331,11 +333,8 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-8"
+            className="text-center mb-6"
           >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
-              The People
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               Meet the Caimue{" "}
               <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
