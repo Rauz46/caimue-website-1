@@ -136,7 +136,7 @@ function Stat({ children }: { children: React.ReactNode }) {
                 backgroundImage: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
                 WebkitBackgroundClip: "text",
                 fontSize: "1.6em",
-                lineHeight: 1.1,
+                lineHeight: 1,
                 letterSpacing: "-0.02em",
                 paddingBottom: "0.08em",
                 overflow: "visible",
@@ -166,7 +166,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header - 2 lines */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Short Films,<br />
                 <Stat>2M+</Stat> Views
             </h3>
@@ -270,7 +270,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>12+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
             </h3>
 
@@ -318,7 +318,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-tight break-words text-center relative" style={{ color: "#2D2D2D" }}>
+            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
                 <Stat>25+</Stat> Artists <span style={{ color: "#2D2D2D" }}>Discovered</span>
             </h3>
 
