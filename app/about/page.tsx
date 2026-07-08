@@ -167,22 +167,12 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
-          {/* Eyebrow */}
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-5 py-1.5 rounded-full border border-white/20 bg-white/5 text-purple-200 text-xs font-bold tracking-[0.2em] uppercase mb-5 font-sans"
-          >
-            About Caimue
-          </motion.span>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-2xl! md:text-3xl! lg:text-4xl! leading-[1.15] tracking-tight mb-4 font-serif"
+            className="text-3xl! md:text-4xl! lg:text-5xl! leading-[1.15] tracking-tight mb-4 font-serif"
           >
             <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               The studio where{" "}
