@@ -172,7 +172,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-3xl! md:text-4xl! lg:text-5xl! leading-[1.15] tracking-tight mb-4 font-serif"
+            className="text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif"
           >
             <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               The studio where{" "}
@@ -195,14 +195,14 @@ export default function AboutPage() {
           SECTION 3,OUR STORY & VALUES
           ================================================================= */}
       <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
-        {/* Cross-hatch lines texture */}
+        {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.07,
+            opacity: 0.06,
             backgroundImage:
-              "linear-gradient(45deg, rgba(124,58,237,0.3) 1px, transparent 1px), linear-gradient(-45deg, rgba(124,58,237,0.3) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
 
@@ -231,7 +231,7 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-10 container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             {/* Left — Our Story */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -239,9 +239,6 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-3 block font-sans">
-                Who We Are
-              </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5 font-serif">
                 Our{" "}
                 <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
@@ -273,13 +270,13 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex justify-center lg:justify-end"
+              className="flex justify-center"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/our%20story.png"
                 alt="The Caimue crew on set — driven by passion, integrity, and performance"
-                className="w-full max-w-[560px] h-auto object-contain"
+                className="w-full max-w-[580px] h-auto object-contain"
               />
             </motion.div>
           </div>
@@ -290,14 +287,14 @@ export default function AboutPage() {
           SECTION 4,TEAM
           ================================================================= */}
       <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
-        {/* Cross-hatch texture */}
+        {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.04,
+            opacity: 0.05,
             backgroundImage:
-              "linear-gradient(45deg, rgba(124,58,237,0.3) 1px, transparent 1px), linear-gradient(-45deg, rgba(124,58,237,0.3) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
 
@@ -362,8 +359,18 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="py-24 md:py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="relative py-24 md:py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
+        {/* Checked grid texture */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            opacity: 0.06,
+            backgroundImage:
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
           {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
