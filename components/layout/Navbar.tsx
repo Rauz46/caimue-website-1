@@ -21,12 +21,6 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const channelLinks = [
-        { href: "/channels/ennitto", label: "Ennitto" },
-        { href: "/channels/ennamo", label: "Ennamo" },
-        { href: "/channels/teqthots", label: "TeqThots" },
-    ];
-
     const navLinks = [
         { href: "/about", label: "About" },
     ];
@@ -58,29 +52,6 @@ export function Navbar() {
 
                     {/* Desktop nav + Contact */}
                     <div className="flex items-center gap-6">
-                        {/* Channels dropdown */}
-                        <div className="hidden md:block relative group">
-                            <button className="flex items-center gap-1 text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">
-                                Channels
-                                <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-48 invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
-                                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-2 flex flex-col">
-                                    {channelLinks.map((link) => (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            className="px-4 py-2.5 rounded-xl text-[15px] font-semibold text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
@@ -119,21 +90,6 @@ export function Navbar() {
                         className="fixed top-[72px] left-0 right-0 z-40 bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-lg md:hidden"
                     >
                         <div className="container py-4 flex flex-col gap-1">
-                            {/* Channels group */}
-                            <span className="px-4 pt-2 pb-1 text-[12px] font-bold uppercase tracking-wider text-gray-400 text-center">
-                                Channels
-                            </span>
-                            {channelLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="block py-3 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            <div className="h-px bg-gray-100 my-2" />
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}

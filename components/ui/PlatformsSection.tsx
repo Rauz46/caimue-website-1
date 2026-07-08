@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Youtube, Star, ArrowRight } from "lucide-react";
+import { Youtube, Star } from "lucide-react";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -46,6 +46,7 @@ type Channel = {
     name: string;
     description: string;
     youtube: string;
+    comingSoon?: boolean;
     from: string;   // brand gradient start (pulled from the logo)
     to: string;     // brand gradient end
     delay: number;
@@ -92,6 +93,7 @@ const channels: Channel[] = [
         description:
             "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
         youtube: "#",
+        comingSoon: true,
         from: "#1E3A8A",
         to: "#F97316",
         delay: 0.5,
@@ -155,23 +157,36 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                         {channel.description}
                     </p>
 
-                    {/* YouTube button pinned to bottom */}
+                    {/* YouTube button (or Coming soon) pinned to bottom */}
                     <div className="mt-auto flex justify-center w-full">
-                        <motion.a
-                            href={channel.youtube}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.04 }}
-                            whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
-                            style={{
-                                background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
-                                boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
-                            }}
-                        >
-                            <Youtube size={18} />
-                            YouTube
-                        </motion.a>
+                        {channel.comingSoon ? (
+                            <span
+                                className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm"
+                                style={{
+                                    color: from,
+                                    background: `linear-gradient(90deg, ${from}14, ${to}14)`,
+                                    border: `1.5px solid ${from}40`,
+                                }}
+                            >
+                                Coming soon
+                            </span>
+                        ) : (
+                            <motion.a
+                                href={channel.youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.04 }}
+                                whileTap={{ scale: 0.96 }}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
+                                style={{
+                                    background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
+                                    boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
+                                }}
+                            >
+                                <Youtube size={18} />
+                                YouTube
+                            </motion.a>
+                        )}
                     </div>
                 </div>
             </div>
@@ -272,34 +287,12 @@ export function PlatformsSection() {
             </motion.div>
 
             {/* Four channels side by side */}
-            <div className="max-w-[1320px] mx-auto px-4 md:px-8 flex flex-col gap-6">
+            <div className="max-w-[1320px] mx-auto px-4 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
                     {channels.map((channel) => (
                         <ChannelCard key={channel.name} channel={channel} isInView={isInView} />
                     ))}
                 </div>
-
-                {/* Common Read More CTA below the cards */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.7 }}
-                    className="flex justify-center mt-2"
-                >
-                    <motion.a
-                        href="/platforms"
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.96 }}
-                        className="inline-flex items-center justify-center gap-2 px-9 py-3 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
-                        style={{
-                            background: "var(--caimue-pink)",
-                            boxShadow: "0 12px 28px -10px rgba(233,30,140,0.5), inset 0 1px 0 rgba(255,255,255,0.25)",
-                        }}
-                    >
-                        Read More
-                        <ArrowRight size={16} />
-                    </motion.a>
-                </motion.div>
             </div>
         </section>
     );

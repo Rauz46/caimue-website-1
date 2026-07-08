@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Video, Share2, Globe } from "lucide-react";
+import { Video, Share2, Globe } from "lucide-react";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 // Real clients we've produced corporate / brand work for
@@ -135,7 +135,7 @@ export function CorporateVideoSection() {
                     </p>
 
                     {/* Feature pills */}
-                    <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5 mb-8">
+                    <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5">
                         {features.map(({ icon: Icon, label }) => (
                             <span
                                 key={label}
@@ -146,17 +146,6 @@ export function CorporateVideoSection() {
                             </span>
                         ))}
                     </div>
-
-                    {/* CTA */}
-                    <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="relative z-10 inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm bg-[#7C3AED] hover:bg-[#6D28D9] text-white transition-colors shadow-lg shadow-purple-400/30"
-                    >
-                        Explore Digubi
-                        <ArrowRight size={18} />
-                    </motion.a>
                 </div>
             </div>
 
