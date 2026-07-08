@@ -183,15 +183,15 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-2xl md:text-4xl lg:text-5xl leading-[1.1] tracking-tight mb-4 font-serif"
+            className="text-2xl md:text-3xl lg:text-4xl leading-[1.15] tracking-tight mb-4 font-serif"
           >
-            <span className="text-white font-bold drop-shadow-2xl block">
+            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               The studio where{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
                 imagination
               </span>
             </span>
-            <span className="text-white font-bold drop-shadow-2xl block">
+            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               meets{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
                 intelligence
