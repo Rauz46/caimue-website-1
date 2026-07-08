@@ -358,7 +358,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="relative py-24 md:py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
+      <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -376,11 +376,8 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
-              Culture
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               We work hard.{" "}
               <span className="italic text-[var(--caimue-purple)] font-light">We laugh harder.</span>
