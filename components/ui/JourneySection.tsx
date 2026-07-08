@@ -167,8 +167,8 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 
             {/* Header - 2 lines */}
             <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>12+</Stat> Short Films,<br />
-                <Stat>2M+</Stat> Views
+                <Stat>20+</Stat> Short Films,<br />
+                2M+ Views
             </h3>
 
             {/* Content */}
@@ -271,7 +271,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
 
             {/* Header */}
             <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>12+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
+                <Stat>15+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
             </h3>
 
             {/* Content */}
