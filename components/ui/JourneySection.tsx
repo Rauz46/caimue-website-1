@@ -21,7 +21,7 @@ export function JourneySection() {
         >
             {/* Grid Texture Overlay */}
             <div
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                className="absolute inset-0 opacity-[0.07] pointer-events-none"
                 style={{
                     backgroundImage:
                         "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
