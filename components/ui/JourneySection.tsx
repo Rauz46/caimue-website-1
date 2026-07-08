@@ -243,7 +243,7 @@ function BrandLogoCell({
     return (
         <motion.div
             whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(75,29,149,0.13)" }}
-            className={`relative rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center ${className}`}
+            className={`relative rounded-2xl border border-gray-400 overflow-hidden flex items-center justify-center ${className}`}
             style={{ background: bg, boxShadow: "0 2px 10px rgba(75,29,149,0.06)" }}
         >
             <Image src={src} alt={alt} fill className="object-contain p-3" />
