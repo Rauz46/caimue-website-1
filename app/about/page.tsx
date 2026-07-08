@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Film, Users, Briefcase, Play, Eye, Globe } from "lucide-react";
+import { Flame, TrendingUp, ShieldCheck } from "lucide-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
@@ -201,7 +201,7 @@ export default function AboutPage() {
       </section>
 
       {/* =================================================================
-          SECTION 3,WHAT WE DO
+          SECTION 3,OUR STORY & VALUES
           ================================================================= */}
       <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
         {/* Cross-hatch lines texture */}
@@ -240,130 +240,89 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-6"
-          >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-sans">
-              What We Do
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] font-serif">
-              Three channels, one{" "}
-              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
-                creative engine
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {/* Left — Our Story */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-3 block font-sans">
+                Who We Are
               </span>
-            </h2>
-          </motion.div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5 font-serif">
+                Our{" "}
+                <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
+                  Story
+                </span>
+              </h2>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+                Caimue Film Studios began with a simple belief: great stories can come from anywhere,
+                and they deserve to be told with craft. We started by producing original Tamil and
+                Malayalam short films — discovering fresh talent in acting, writing, and directing —
+                and building homegrown channels that turn everyday creators into storytellers.
+              </p>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
+                Along the way we added founder-led documentaries and brand films, blending traditional
+                filmmaking with AI-powered production to move faster without losing soul. Everything we
+                make is a step toward the same goal: feature films rooted in our culture, watched by
+                the world.
+              </p>
+            </motion.div>
 
-          {/* Cards — three channels, one uniform format */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                href: "/channels/ennitto",
-                logo: "/ennitto%20final.png",
-                name: "Ennitto",
-                description:
-                  "Short films with soul. Ennitto is our Malayalam studio for culturally rooted narratives, stories that honour regional identity while reaching for a global audience.",
-                // TODO: replace "—" placeholders with real Ennamo/TeqThots numbers when available
-                stats: [
-                  { value: "2.5M+", label: "Views", icon: Eye },
-                  { value: "17+", label: "Films", icon: Film },
-                  { value: "40+", label: "Artists", icon: Users },
-                ],
-                delay: 0,
-                theme: {
-                  border: "border-purple-200/60", shadow: "shadow-purple-200/20", hoverShadow: "hover:shadow-purple-300/30",
-                  stripBg: "bg-purple-50", stripBorder: "border-purple-100", divider: "bg-purple-200",
-                  icon: "text-purple-400", value: "text-purple-600", link: "text-purple-600", glow: "from-purple-500/5",
+            {/* Right — Our Values */}
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  icon: Flame,
+                  title: "Passion",
+                  description: "We chase stories we can't stop thinking about. Craft comes first, and it shows in every frame we put out.",
+                  accent: "#DB2777",
+                  soft: "#FCE7F3",
                 },
-              },
-              {
-                href: "/channels/ennamo",
-                logo: "/ennamo%20final.png",
-                name: "Ennamo",
-                description:
-                  "Tamil short films with soul. Ennamo is our Tamil studio by Caimue Film Studios — original stories that honour regional identity while reaching for a global audience.",
-                stats: [
-                  { value: "—", label: "Views", icon: Eye },
-                  { value: "—", label: "Films", icon: Film },
-                  { value: "—", label: "Artists", icon: Users },
-                ],
-                delay: 0.1,
-                theme: {
-                  border: "border-teal-200/60", shadow: "shadow-teal-200/20", hoverShadow: "hover:shadow-teal-300/30",
-                  stripBg: "bg-teal-50", stripBorder: "border-teal-100", divider: "bg-teal-200",
-                  icon: "text-teal-400", value: "text-teal-600", link: "text-teal-600", glow: "from-teal-500/5",
+                {
+                  icon: TrendingUp,
+                  title: "Performance",
+                  description: "We deliver. Timelines, budgets, and quality bars are commitments — and our work is measured by the results it creates.",
+                  accent: "#7C3AED",
+                  soft: "#EDE9FE",
                 },
-              },
-              {
-                href: "/channels/teqthots",
-                logo: "/teqthots%20updated%20logo%20png.png",
-                name: "TeqThots",
-                description:
-                  "Documentary-style conversations that capture how companies are built. TeqThots breaks down complex ideas into cinematic, shareable stories — technology made impossible to scroll past.",
-                stats: [
-                  { value: "—", label: "Views", icon: Globe },
-                  { value: "—", label: "Videos", icon: Play },
-                  { value: "—", label: "Guests", icon: Briefcase },
-                ],
-                delay: 0.2,
-                theme: {
-                  border: "border-pink-200/60", shadow: "shadow-pink-200/20", hoverShadow: "hover:shadow-pink-300/30",
-                  stripBg: "bg-pink-50", stripBorder: "border-pink-100", divider: "bg-pink-200",
-                  icon: "text-pink-400", value: "text-pink-600", link: "text-pink-600", glow: "from-pink-500/5",
+                {
+                  icon: ShieldCheck,
+                  title: "Integrity",
+                  description: "We do right by our artists, clients, and audience. Honest stories, honest business, no shortcuts.",
+                  accent: "#0D9488",
+                  soft: "#CCFBF1",
                 },
-              },
-            ].map((ch) => (
-              <motion.a
-                key={ch.name}
-                href={ch.href}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: ch.delay }}
-                className={`group relative rounded-[2rem] overflow-hidden border ${ch.theme.border} bg-white shadow-xl ${ch.theme.shadow} transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl ${ch.theme.hoverShadow} cursor-pointer`}
-              >
-                {/* Content area */}
-                <div className="p-6 text-center flex flex-col h-full">
-                  {/* Logo */}
-                  <div className="mb-3 flex justify-center items-center h-[64px]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ch.logo} alt={ch.name} className="max-h-[60px] w-auto object-contain" />
+              ].map((value, i) => (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
+                  whileHover={{ y: -4 }}
+                  className="relative rounded-2xl bg-white p-5 md:p-6 overflow-hidden"
+                  style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
+                >
+                  {/* Accent bar along the left edge */}
+                  <div className="absolute top-0 left-0 bottom-0 w-1.5" style={{ background: value.accent }} />
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="flex items-center justify-center rounded-xl shrink-0"
+                      style={{ background: value.soft, color: value.accent, width: 46, height: 46 }}
+                    >
+                      <value.icon size={22} strokeWidth={2} />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-bold text-gray-900 mb-1">{value.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed font-sans">{value.description}</p>
+                    </div>
                   </div>
-                  <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
-                    {ch.description}
-                  </p>
-
-                  {/* Compact stat strip */}
-                  <div className={`flex items-center justify-between mb-4 py-2 px-3 rounded-2xl ${ch.theme.stripBg} border ${ch.theme.stripBorder} mt-auto`}>
-                    {ch.stats.map(({ value, label, icon: Icon }, i) => (
-                      <div key={label} className="flex items-center gap-3">
-                        {i > 0 && <div className={`w-px h-5 ${ch.theme.divider}`} />}
-                        <div className="flex items-center gap-1.5">
-                          <Icon size={11} className={ch.theme.icon} />
-                          <span className={`text-sm font-black ${ch.theme.value}`}>{value}</span>
-                          <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-center">
-                    <span className={`inline-flex items-center gap-2 ${ch.theme.link} font-bold font-sans group-hover:gap-3 transition-all`}>
-                      Explore {ch.name}
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Hover glow */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${ch.theme.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-              </motion.a>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

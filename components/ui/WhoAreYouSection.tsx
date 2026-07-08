@@ -83,7 +83,7 @@ const PathCard = ({
                         className="px-7 py-3 rounded-full font-semibold text-[14px] text-white shadow-md flex items-center gap-2 group/btn hover:shadow-lg transition-all"
                         style={{ background: buttonBg }}
                     >
-                        Find Out More
+                        Get In Touch
                         <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
                     </motion.button>
                 </Link>
