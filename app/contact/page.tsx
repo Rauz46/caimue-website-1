@@ -135,39 +135,8 @@ export default function ContactPage() {
                                 </h2>
                             </motion.div>
 
-                            {/* Contact Info — Creative Pills Brought Up */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="flex flex-wrap gap-4"
-                            >
-                                <a
-                                    href="mailto:collaborations@caimue.com"
-                                    className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-violet-600 rounded-2xl px-8 py-4 text-white shadow-xl shadow-purple-200 hover:shadow-2xl hover:shadow-purple-300 hover:-translate-y-1 transition-all duration-300"
-                                >
-                                    <div className="absolute inset-x-0 -bottom-1 h-1 bg-white/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm">
-                                        <motion.span
-                                            animate={{ scale: [1, 1.2, 1] }}
-                                            transition={{ repeat: Infinity, duration: 2 }}
-                                            className="w-2 h-2 rounded-full bg-white"
-                                        />
-                                    </span>
-                                    <span className="text-base font-bold tracking-tight">collaborations@caimue.com</span>
-                                </a>
-
-                                <a
-                                    href="tel:+918428268065"
-                                    className="group inline-flex items-center gap-3 bg-white border border-purple-100/50 rounded-2xl px-6 py-4 hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 hover:shadow-md"
-                                >
-                                    <span className="text-xl">📞</span>
-                                    <span className="text-sm font-bold text-neutral-600 group-hover:text-purple-700 transition-colors uppercase tracking-widest">+91 8428268065</span>
-                                </a>
-                            </motion.div>
-
                             {/* Conversation Topics — Animated Cards */}
-                            <div className="grid grid-cols-2 gap-3 pt-4">
+                            <div className="grid grid-cols-2 gap-3">
                                 {[
                                     { icon: "💰", label: "Investment", desc: "Funding & partnerships" },
                                     { icon: "🎬", label: "Film Production", desc: "Stories worth telling" },

@@ -43,11 +43,11 @@ export function FeatureFilmsSection() {
         <section ref={sectionRef} className="relative bg-white py-20 md:py-24 overflow-hidden">
             {/* Subtle grid background */}
             <div
-                className="absolute inset-0 opacity-[0.02]"
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
                 style={{
-                    backgroundImage: `linear-gradient(#8B5CF6 1px, transparent 1px),
-                                     linear-gradient(90deg, #8B5CF6 1px, transparent 1px)`,
-                    backgroundSize: "50px 50px",
+                    backgroundImage: `linear-gradient(#4C1D95 1px, transparent 1px),
+                                     linear-gradient(90deg, #4C1D95 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
                 }}
             />
 
