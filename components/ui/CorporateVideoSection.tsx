@@ -37,7 +37,7 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[96px] overflow-hidden bg-white"
+            className="relative py-[72px] overflow-hidden bg-white"
         >
             {/* Checked grid texture */}
             <div
@@ -153,14 +153,14 @@ export function CorporateVideoSection() {
                             Video Services
                         </span>
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mb-12">
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-10">
                         Under <span className="font-semibold text-[#4C1D95]">Digubi</span>, we help companies show up
                         online — corporate films, founder stories, social campaigns and marketing sites that make
                         brands impossible to scroll past.
                     </p>
 
                     {/* Service cards — white, centered, gradient accents */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto mb-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
                         {services.map(({ icon: Icon, label, description, from, to }, i) => (
                             <motion.div
                                 key={label}
@@ -198,12 +198,6 @@ export function CorporateVideoSection() {
                         ))}
                     </div>
 
-                    {/* Client proof line */}
-                    <p className="text-gray-500 text-sm">
-                        Trusted by{" "}
-                        <span className="font-semibold text-[#4C1D95]">Ignitho, Nuivio, Piqual</span> and more — we
-                        grow their online presence end to end.
-                    </p>
                 </motion.div>
             </div>
         </section>
