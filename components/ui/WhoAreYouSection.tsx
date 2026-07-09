@@ -64,29 +64,31 @@ const PathCard = ({
                 </div>
 
                 {/* Title */}
-                <h3 className="font-serif text-[30px] font-bold text-gray-900 mb-3 tracking-tight leading-tight">
+                <h3 className="font-serif text-[30px] font-bold text-gray-900 mb-3 tracking-tight leading-tight text-center">
                     {titlePrefix}{" "}
                     <span style={{ color: accent }}>{titleAccent}</span>
                 </h3>
 
                 {/* Separator */}
-                <div className="w-12 h-[3px] rounded-full mb-4" style={{ background: accent, opacity: 0.5 }} />
+                <div className="w-12 h-[3px] rounded-full mb-4 mx-auto" style={{ background: accent, opacity: 0.5 }} />
 
-                <p className="text-gray-600 text-[15px] leading-relaxed mb-7">
+                <p className="text-gray-600 text-[15px] leading-relaxed mb-7 text-center">
                     {description}
                 </p>
 
-                <Link href="/contact" className="inline-block">
-                    <motion.button
-                        whileHover={{ scale: 1.04, x: 4 }}
-                        whileTap={{ scale: 0.96 }}
-                        className="px-7 py-3 rounded-full font-semibold text-[14px] text-white shadow-md flex items-center gap-2 group/btn hover:shadow-lg transition-all"
-                        style={{ background: buttonBg }}
-                    >
-                        Get In Touch
-                        <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
-                    </motion.button>
-                </Link>
+                <div className="flex justify-center">
+                    <Link href="/contact" className="inline-block">
+                        <motion.button
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.96 }}
+                            className="px-7 py-3 rounded-full font-semibold text-[14px] text-white shadow-md flex items-center gap-2 group/btn hover:shadow-lg transition-all"
+                            style={{ background: buttonBg }}
+                        >
+                            Get In Touch
+                            <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
+                        </motion.button>
+                    </Link>
+                </div>
             </div>
         </motion.div>
     );
