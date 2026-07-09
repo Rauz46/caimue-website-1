@@ -140,10 +140,10 @@ export default function ContactPage() {
                                     Get In Touch
                                 </motion.span>
                                 <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05]">
-                                    <span className="text-neutral-900">Let&apos;s Build</span>
+                                    <span className="text-neutral-900">Ready to Get Your</span>
                                     <br />
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-purple-400">
-                                        Something Epic
+                                        Brand Noticed?
                                     </span>
                                 </h2>
                             </motion.div>
@@ -151,10 +151,10 @@ export default function ContactPage() {
                             {/* Conversation Topics — Animated Cards */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {[
-                                    { icon: "💰", label: "Investment", desc: "Funding & partnerships", from: "#7C3AED", to: "#8B5CF6", soft: "#EDE9FE" },
-                                    { icon: "🎬", label: "Film Production", desc: "Stories worth telling", from: "#DB2777", to: "#EC4899", soft: "#FCE7F3" },
-                                    { icon: "🤝", label: "Brand Collabs", desc: "Creative campaigns", from: "#F59E0B", to: "#F97316", soft: "#FEF3C7" },
-                                    { icon: "🌟", label: "Artist Talent", desc: "Join our roster", from: "#0D9488", to: "#14B8A6", soft: "#CCFBF1" },
+                                    { icon: "💰", label: "Invest with Us", desc: "Back stories that scale", from: "#7C3AED", to: "#8B5CF6", soft: "#EDE9FE" },
+                                    { icon: "🎬", label: "Make a Film", desc: "Stories worth telling", from: "#DB2777", to: "#EC4899", soft: "#FCE7F3" },
+                                    { icon: "🤝", label: "Grow Your Brand", desc: "Let's get you noticed", from: "#F59E0B", to: "#F97316", soft: "#FEF3C7" },
+                                    { icon: "🌟", label: "Join the Team", desc: "Become part of the story", from: "#0D9488", to: "#14B8A6", soft: "#CCFBF1" },
                                 ].map((item, idx) => (
                                     <motion.div
                                         key={idx}
@@ -251,7 +251,7 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-neutral-600">Subject *</label>
+                                    <label className="text-sm font-bold text-neutral-600">What&apos;s on your mind? *</label>
                                     <input
                                         type="text"
                                         name="subject"
