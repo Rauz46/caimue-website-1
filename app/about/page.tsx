@@ -78,17 +78,13 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       />
 
       {/* Photo */}
-      <div className="relative overflow-hidden" style={{ height: "200px" }}>
+      <div className="relative overflow-hidden" style={{ height: "245px" }}>
         <div className="absolute inset-0" style={{ backgroundColor: `${person.color}25` }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={person.image}
           alt={person.name}
           className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-        {/* Subtle gradient at bottom */}
-        <div className="absolute inset-0"
-          style={{ background: `linear-gradient(to top, ${person.color}60 0%, transparent 55%)` }}
         />
         {/* Film-notch top-right */}
         <div className="absolute top-2 right-2 flex gap-0.5 z-10">
