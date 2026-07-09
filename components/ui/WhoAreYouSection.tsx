@@ -38,29 +38,22 @@ const PathCard = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay }}
             whileHover={{ y: -6 }}
-            className="relative rounded-[24px] bg-white p-8 overflow-hidden transition-shadow duration-300 group"
+            className="relative rounded-[24px] bg-white px-8 pt-7 pb-8 overflow-hidden transition-shadow duration-300 group"
             style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
         >
             {/* Accent top bar */}
             <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: buttonBg }} />
 
             <div className="relative">
-                {/* Eyebrow + icon badge */}
-                <div className="flex items-start justify-between mb-5">
+                {/* Compact eyebrow chip with icon, centered */}
+                <div className="flex justify-center mb-4">
                     <span
-                        className="text-[11px] font-bold tracking-[0.14em] px-3 py-1.5 rounded-full"
+                        className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] px-4 py-1.5 rounded-full"
                         style={{ background: accentSoft, color: accent }}
                     >
+                        {icon}
                         {eyebrow}
                     </span>
-                    <motion.div
-                        className="flex items-center justify-center rounded-xl"
-                        style={{ background: accentSoft, color: accent, width: 48, height: 48 }}
-                        animate={{ rotate: [-4, 4, -4] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        {icon}
-                    </motion.div>
                 </div>
 
                 {/* Title */}
@@ -101,7 +94,7 @@ const BrandOwnerCard = () => (
         titlePrefix="Are you a"
         titleAccent="Brand Owner?"
         description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
-        icon={<Megaphone size={24} strokeWidth={2} />}
+        icon={<Megaphone size={14} strokeWidth={2.5} />}
         accent="#7C3AED"
         accentSoft="#EDE9FE"
         buttonBg="linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)"
@@ -115,7 +108,7 @@ const ArtistCard = () => (
         titlePrefix="Are you an"
         titleAccent="Aspiring Artist?"
         description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
-        icon={<Sparkles size={24} strokeWidth={2} />}
+        icon={<Sparkles size={14} strokeWidth={2.5} />}
         accent="#DB2777"
         accentSoft="#FCE7F3"
         buttonBg="linear-gradient(135deg, #DB2777 0%, #EC4899 100%)"
