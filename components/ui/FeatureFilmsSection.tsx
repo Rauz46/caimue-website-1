@@ -15,32 +15,46 @@ const stills = [
     "/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg",
 ];
 
-function FilmFrame({ src }: { src: string }) {
+// Rotate the array so each wall row starts on a different poster
+const rotate = (arr: string[], by: number) => [...arr.slice(by), ...arr.slice(0, by)];
+
+function Poster({ src }: { src: string }) {
     return (
-        <div className="film-frame relative shrink-0 mx-2 rounded-md overflow-hidden aspect-video w-[240px]">
+        <div className="poster relative shrink-0 rounded-xl overflow-hidden aspect-video w-[300px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={src.replace(/ /g, "%20")}
                 alt="Upcoming feature film still"
                 className="w-full h-full object-cover"
             />
-            {/* Cinematic dim + purple tint */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1b0836]/80 via-[#1b0836]/25 to-transparent" />
-            {/* Coming-soon shimmer sweep */}
-            <div className="film-shimmer absolute inset-0" />
+            {/* Soft cinematic vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1b0836]/45 via-transparent to-transparent" />
+            {/* Glass edge */}
+            <div className="absolute inset-0 rounded-xl ring-1 ring-white/40 ring-inset pointer-events-none" />
+            {/* Shimmer sweep */}
+            <div className="poster-shimmer absolute inset-0" />
         </div>
     );
 }
 
-// White "Feature Films — Coming Soon" banner (boxless, cinematic reel)
+function WallRow({ posters, direction, duration }: { posters: string[]; direction: "left" | "right"; duration: number }) {
+    const loop = [...posters, ...posters];
+    return (
+        <div className="flex w-max gap-5" style={{ animation: `${direction === "left" ? "wallLeft" : "wallRight"} ${duration}s linear infinite` }}>
+            {loop.map((src, i) => (
+                <Poster key={`${src}-${i}`} src={src} />
+            ))}
+        </div>
+    );
+}
+
+// White "Feature Films — Coming Soon" banner with a 3D scrolling poster wall
 export function FeatureFilmsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-    const reel = [...stills, ...stills];
-
     return (
-        <section ref={sectionRef} className="relative bg-white py-20 md:py-24 overflow-hidden">
+        <section ref={sectionRef} className="relative bg-white pt-20 md:pt-24 pb-10 overflow-hidden">
             {/* Subtle grid background */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -63,7 +77,7 @@ export function FeatureFilmsSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="relative z-10 max-w-2xl mx-auto px-4 text-center mb-12"
+                className="relative z-10 max-w-2xl mx-auto px-4 text-center mb-10"
             >
                 {/* Animated Coming Soon badge */}
                 <motion.span
@@ -98,74 +112,80 @@ export function FeatureFilmsSection() {
                 </p>
             </motion.div>
 
-            {/* Cinematic film-strip reel (full-bleed) */}
+            {/* ── 3D scrolling poster wall ── */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="film-reel relative z-10 -rotate-1"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="poster-stage relative z-10"
             >
-                {/* Top sprocket row */}
-                <div className="sprockets" />
-
-                <div className="film-body overflow-hidden">
-                    <div className="film-track flex w-max items-center py-4">
-                        {reel.map((src, i) => (
-                            <FilmFrame key={`${src}-${i}`} src={src} />
-                        ))}
+                {/* Fade the wall edges into the white page */}
+                <div className="wall-fade">
+                    <div className="wall-clip">
+                        <div className="wall-plane flex flex-col gap-5">
+                            <WallRow posters={rotate(stills, 0)} direction="left" duration={55} />
+                            <WallRow posters={rotate(stills, 2)} direction="right" duration={70} />
+                            <WallRow posters={rotate(stills, 4)} direction="left" duration={62} />
+                        </div>
                     </div>
                 </div>
 
-                {/* Bottom sprocket row */}
-                <div className="sprockets" />
+                {/* Soft floor shadow to ground the wall */}
+                <div
+                    className="absolute left-1/2 -translate-x-1/2 bottom-2 w-[70%] h-16 pointer-events-none"
+                    style={{ background: "radial-gradient(50% 100% at 50% 50%, rgba(76,29,149,0.14) 0%, transparent 70%)", filter: "blur(10px)" }}
+                />
             </motion.div>
 
             <style>{`
-                .film-reel {
-                    background: linear-gradient(180deg, #1b0836, #2a0f52);
-                    box-shadow: 0 20px 60px rgba(27, 8, 54, 0.35);
+                .poster-stage {
+                    perspective: 1500px;
                 }
-                .sprockets {
-                    height: 16px;
-                    background-image: repeating-linear-gradient(
-                        to right,
-                        #e9d5ff 0 12px,
-                        transparent 12px 34px
-                    );
-                    background-position: center;
-                    opacity: 0.85;
-                    margin: 0 6px;
-                    border-radius: 2px;
+                .wall-fade {
+                    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+                    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
                 }
-                .film-track {
-                    animation: reelScroll 45s linear infinite;
+                .wall-clip {
+                    overflow: hidden;
+                    padding: 28px 0 36px;
+                    -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 90%, transparent);
+                    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 90%, transparent);
                 }
-                .film-reel:hover .film-track {
-                    animation-play-state: paused;
+                .wall-plane {
+                    transform: rotateX(24deg) rotateZ(-8deg) scale(1.12);
+                    transform-style: preserve-3d;
                 }
-                .film-frame {
-                    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-                    transition: transform 0.35s ease;
+                .poster {
+                    box-shadow: 0 18px 40px -12px rgba(27, 8, 54, 0.35), 0 6px 16px -8px rgba(27, 8, 54, 0.25);
+                    transition: transform 0.35s ease, box-shadow 0.35s ease;
                 }
-                .film-frame:hover {
-                    transform: scale(1.04);
+                .poster:hover {
+                    transform: translateY(-8px) scale(1.05);
+                    box-shadow: 0 28px 55px -12px rgba(27, 8, 54, 0.45), 0 10px 24px -8px rgba(27, 8, 54, 0.3);
                     z-index: 2;
                 }
-                .film-shimmer {
-                    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+                .poster-stage:hover .wall-plane > div {
+                    animation-play-state: paused;
+                }
+                .poster-shimmer {
+                    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.16) 50%, transparent 70%);
                     background-size: 250% 100%;
-                    animation: shimmerSweep 4.5s ease-in-out infinite;
+                    animation: shimmerSweep 5s ease-in-out infinite;
                 }
                 @keyframes shimmerSweep {
                     0% { background-position: 150% 0; }
                     60%, 100% { background-position: -150% 0; }
                 }
-                @keyframes reelScroll {
+                @keyframes wallLeft {
                     from { transform: translateX(0); }
                     to   { transform: translateX(-50%); }
                 }
+                @keyframes wallRight {
+                    from { transform: translateX(-50%); }
+                    to   { transform: translateX(0); }
+                }
                 @media (prefers-reduced-motion: reduce) {
-                    .film-track, .film-shimmer { animation: none; }
+                    .wall-plane > div, .poster-shimmer { animation: none !important; }
                 }
             `}</style>
         </section>
