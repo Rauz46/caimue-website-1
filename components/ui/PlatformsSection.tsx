@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Youtube, Star } from "lucide-react";
+import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -206,6 +207,8 @@ export function PlatformsSection() {
             className="relative bg-white py-20 md:py-24 overflow-hidden scroll-mt-24"
             style={{ paddingTop: "100px", paddingBottom: "80px" }}
         >
+            <SectionDownArrow />
+
             {/* Subtle grid background */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"

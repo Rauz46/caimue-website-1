@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Video, Share2, Globe } from "lucide-react";
+import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 const services = [
@@ -40,6 +41,8 @@ export function CorporateVideoSection() {
             className="relative py-[72px] overflow-hidden"
             style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
         >
+            <SectionDownArrow />
+
             {/* Checked grid texture */}
             <div
                 className="absolute inset-0 opacity-[0.05] pointer-events-none"

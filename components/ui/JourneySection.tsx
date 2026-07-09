@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 
 export function JourneySection() {
     const sectionRef = useRef(null);
@@ -19,6 +20,8 @@ export function JourneySection() {
                 background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
             }}
         >
+            <SectionDownArrow />
+
             {/* Grid Texture Overlay */}
             <div
                 className="absolute inset-0 opacity-[0.07] pointer-events-none"
