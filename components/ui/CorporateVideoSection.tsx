@@ -29,7 +29,7 @@ const services = [
     },
 ];
 
-// Standalone Digubi banner — dark spotlight stage on the light page
+// Standalone Digubi banner — airy white spotlight with floating service cards
 export function CorporateVideoSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -37,12 +37,11 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[88px] overflow-hidden"
-            style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
+            className="relative py-[96px] overflow-hidden bg-white"
         >
-            {/* Grid Texture Overlay (same as Track Record section) */}
+            {/* Checked grid texture */}
             <div
-                className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                className="absolute inset-0 opacity-[0.05] pointer-events-none"
                 style={{
                     backgroundImage:
                         "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
@@ -50,134 +49,161 @@ export function CorporateVideoSection() {
                 }}
             />
 
+            {/* Soft color washes so the white stays alive */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: `radial-gradient(50% 45% at 50% 8%, rgba(139,92,246,0.10) 0%, transparent 70%),
+                                 radial-gradient(35% 40% at 10% 85%, rgba(233,30,140,0.06) 0%, transparent 70%),
+                                 radial-gradient(35% 40% at 90% 85%, rgba(245,158,11,0.07) 0%, transparent 70%)`,
+                }}
+            />
+
             {/* Hand-Drawn Scribbles */}
             <HandDrawnScribbles />
 
+            {/* Floating sparkles */}
+            <motion.span
+                className="absolute top-24 left-[14%] text-amber-400/60 text-2xl pointer-events-none select-none hidden md:block"
+                animate={{ y: [0, -10, 0], opacity: [0.4, 0.9, 0.4] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                aria-hidden
+            >
+                ✦
+            </motion.span>
+            <motion.span
+                className="absolute top-40 right-[12%] text-purple-400/50 text-xl pointer-events-none select-none hidden md:block"
+                animate={{ y: [0, 8, 0], rotate: [0, 15, 0], opacity: [0.4, 0.8, 0.4] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                aria-hidden
+            >
+                ✧
+            </motion.span>
+            <motion.span
+                className="absolute bottom-28 left-[9%] h-2.5 w-2.5 rounded-full bg-pink-400/50 pointer-events-none hidden md:block"
+                animate={{ y: [0, -12, 0], opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                aria-hidden
+            />
+            <motion.span
+                className="absolute bottom-36 right-[8%] h-2 w-2 rounded-full bg-amber-400/60 pointer-events-none hidden md:block"
+                animate={{ y: [0, 10, 0], opacity: [0.4, 0.9, 0.4] }}
+                transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+                aria-hidden
+            />
+
             <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
-                {/* ── Dark stage panel ── */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
-                    className="relative rounded-[32px] overflow-hidden px-6 py-14 md:px-14 md:py-16"
-                    style={{
-                        background: "linear-gradient(150deg, #2E1065 0%, #3B1683 45%, #4C1D95 100%)",
-                        boxShadow:
-                            "0 40px 90px -30px rgba(46,16,101,0.55), 0 16px 40px -20px rgba(76,29,149,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
-                    }}
+                    className="flex flex-col items-center text-center"
                 >
-                    {/* Inner grid texture */}
-                    <div
-                        className="absolute inset-0 opacity-[0.07] pointer-events-none"
-                        style={{
-                            backgroundImage:
-                                "linear-gradient(#C4B5FD 1px, transparent 1px), linear-gradient(90deg, #C4B5FD 1px, transparent 1px)",
-                            backgroundSize: "44px 44px",
-                        }}
-                    />
-                    {/* Spotlight + corner glows */}
-                    <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{
-                            background: `radial-gradient(55% 60% at 50% 0%, rgba(167,139,250,0.28) 0%, transparent 65%),
-                                         radial-gradient(35% 45% at 8% 100%, rgba(233,30,140,0.16) 0%, transparent 70%),
-                                         radial-gradient(35% 45% at 92% 100%, rgba(245,158,11,0.14) 0%, transparent 70%)`,
-                        }}
-                    />
+                    {/* Badge */}
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/60 text-[#6D28D9] text-[12px] font-bold tracking-[0.18em] uppercase mb-8">
+                        Brand &amp; Corporate
+                    </span>
 
-                    {/* Floating sparkles */}
-                    <motion.span
-                        className="absolute top-10 left-[12%] text-amber-300/60 text-xl pointer-events-none select-none hidden md:block"
-                        animate={{ y: [0, -10, 0], opacity: [0.4, 0.9, 0.4] }}
+                    {/* Digubi logo in a soft halo of rotating dashed ring */}
+                    <motion.div
+                        className="relative mb-8"
+                        animate={{ y: [0, -8, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        aria-hidden
                     >
-                        ✦
-                    </motion.span>
-                    <motion.span
-                        className="absolute top-20 right-[10%] text-purple-300/60 text-2xl pointer-events-none select-none hidden md:block"
-                        animate={{ y: [0, 8, 0], rotate: [0, 15, 0], opacity: [0.4, 0.8, 0.4] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                        aria-hidden
-                    >
-                        ✧
-                    </motion.span>
-                    <motion.span
-                        className="absolute bottom-16 left-[7%] h-2.5 w-2.5 rounded-full bg-pink-400/60 pointer-events-none hidden md:block"
-                        animate={{ y: [0, -12, 0], opacity: [0.4, 1, 0.4] }}
-                        transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                        aria-hidden
-                    />
+                        {/* Halo glow */}
+                        <div
+                            className="absolute -inset-10 rounded-full pointer-events-none"
+                            style={{
+                                background:
+                                    "radial-gradient(circle, rgba(139,92,246,0.14) 0%, rgba(245,158,11,0.08) 45%, transparent 70%)",
+                            }}
+                        />
+                        {/* Rotating dashed orbit */}
+                        <div
+                            className="absolute -inset-7 rounded-full border-2 border-dashed border-purple-300/50 animate-spin pointer-events-none"
+                            style={{ animationDuration: "22s" }}
+                        />
+                        {/* Orbit accent dots pinned to the ring */}
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-md pointer-events-none" />
+                        <span className="absolute top-1/2 -right-8 -translate-y-1/2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 shadow-md pointer-events-none" />
+                        <span className="absolute -bottom-8 left-1/3 h-2 w-2 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 shadow-md pointer-events-none" />
 
-                    <div className="relative z-10 flex flex-col items-center text-center">
-                        {/* Badge */}
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 text-purple-100 text-[12px] font-bold tracking-[0.18em] uppercase mb-7">
-                            Brand &amp; Corporate
-                        </span>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/logos/digubi-logo.png"
+                            alt="Digubi — Digital Ubiquity"
+                            className="relative h-24 md:h-28 w-auto object-contain drop-shadow-[0_12px_35px_rgba(76,29,149,0.22)]"
+                        />
+                    </motion.div>
 
-                        {/* Digubi logo on a soft light disc so it reads on dark */}
-                        <motion.div
-                            className="relative mb-7"
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    {/* Headline */}
+                    <h2 className="font-serif text-3xl! md:text-4xl! lg:text-[2.75rem]! leading-tight font-bold text-[#2D2D2D] mb-4">
+                        Our Corporate{" "}
+                        <span
+                            className="italic bg-gradient-to-r from-purple-600 via-fuchsia-500 to-amber-500"
+                            style={{
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                display: "inline-block",
+                                lineHeight: 1.3,
+                                paddingBottom: "0.08em",
+                                paddingRight: "0.12em",
+                            }}
                         >
-                            <div
-                                className="absolute -inset-6 rounded-full pointer-events-none"
-                                style={{ background: "radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%)" }}
-                            />
-                            <div className="relative rounded-3xl bg-white/95 px-8 py-4 shadow-[0_18px_50px_-15px_rgba(0,0,0,0.45)]">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src="/logos/digubi-logo.png"
-                                    alt="Digubi — Digital Ubiquity"
-                                    className="h-16 md:h-20 w-auto object-contain"
+                            Video Services
+                        </span>
+                    </h2>
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mb-12">
+                        Under <span className="font-semibold text-[#4C1D95]">Digubi</span>, we help companies show up
+                        online — corporate films, founder stories, social campaigns and marketing sites that make
+                        brands impossible to scroll past.
+                    </p>
+
+                    {/* Service cards — white, centered, gradient accents */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto mb-10">
+                        {services.map(({ icon: Icon, label, description, from, to }, i) => (
+                            <motion.div
+                                key={label}
+                                initial={{ opacity: 0, y: 24 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
+                                whileHover={{ y: -8 }}
+                                className="relative flex flex-col items-center text-center rounded-[22px] bg-white px-6 py-8 overflow-hidden transition-shadow duration-300"
+                                style={{ boxShadow: "0 8px 30px rgba(75, 29, 149, 0.10)" }}
+                            >
+                                {/* Gradient accent bar along the top */}
+                                <div
+                                    className="absolute top-0 left-0 right-0 h-[5px]"
+                                    style={{ background: `linear-gradient(90deg, ${from}, ${to})` }}
                                 />
-                            </div>
-                        </motion.div>
-
-                        {/* Headline */}
-                        <h2 className="font-serif text-3xl! md:text-4xl! lg:text-[2.75rem]! leading-tight font-bold text-white! mb-4">
-                            Our Corporate{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#F59E0B]">
-                                Video Services
-                            </span>
-                        </h2>
-                        <p className="text-purple-100/90 text-base md:text-lg leading-relaxed max-w-2xl mb-10">
-                            Under <span className="font-semibold text-white">Digubi</span>, we help companies show up
-                            online — corporate films, founder stories, social campaigns and marketing sites that make
-                            brands impossible to scroll past.
-                        </p>
-
-                        {/* Service cards — centered */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mx-auto mb-9">
-                            {services.map(({ icon: Icon, label, description, from, to }, i) => (
-                                <motion.div
-                                    key={label}
-                                    initial={{ opacity: 0, y: 24 }}
-                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
-                                    whileHover={{ y: -6 }}
-                                    className="flex flex-col items-center text-center rounded-2xl border border-white/15 bg-white/[0.07] backdrop-blur-sm px-5 py-7 transition-colors duration-300 hover:bg-white/[0.12]"
+                                {/* Soft corner tint */}
+                                <div
+                                    className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-3xl opacity-[0.09] pointer-events-none"
+                                    style={{ background: from }}
+                                />
+                                <div
+                                    className="relative flex items-center justify-center w-13 h-13 rounded-2xl mb-4 shadow-lg"
+                                    style={{
+                                        width: 52,
+                                        height: 52,
+                                        background: `linear-gradient(135deg, ${from}, ${to})`,
+                                        boxShadow: `0 10px 24px -8px ${from}80`,
+                                    }}
                                 >
-                                    <div
-                                        className="flex items-center justify-center w-12 h-12 rounded-xl mb-4 shadow-lg"
-                                        style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}
-                                    >
-                                        <Icon size={22} className="text-white" />
-                                    </div>
-                                    <h3 className="text-white! font-sans font-bold text-[15px]! mb-1.5">{label}</h3>
-                                    <p className="text-purple-100/75 text-[13px] leading-relaxed">{description}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        {/* Client proof line */}
-                        <p className="text-purple-200/80 text-sm">
-                            Trusted by{" "}
-                            <span className="font-semibold text-white">Ignitho, Nuivio, Piqual</span> and more — we grow
-                            their online presence end to end.
-                        </p>
+                                    <Icon size={24} className="text-white" />
+                                </div>
+                                <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[16px]! mb-1.5">{label}</h3>
+                                <p className="text-gray-500 text-[13.5px] leading-relaxed">{description}</p>
+                            </motion.div>
+                        ))}
                     </div>
+
+                    {/* Client proof line */}
+                    <p className="text-gray-500 text-sm">
+                        Trusted by{" "}
+                        <span className="font-semibold text-[#4C1D95]">Ignitho, Nuivio, Piqual</span> and more — we
+                        grow their online presence end to end.
+                    </p>
                 </motion.div>
             </div>
         </section>
