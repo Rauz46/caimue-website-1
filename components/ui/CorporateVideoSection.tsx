@@ -37,7 +37,8 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[72px] overflow-hidden bg-white"
+            className="relative py-[72px] overflow-hidden"
+            style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
         >
             {/* Checked grid texture */}
             <div
@@ -100,7 +101,7 @@ export function CorporateVideoSection() {
                     className="flex flex-col items-center text-center"
                 >
                     {/* Badge */}
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/60 text-[#6D28D9] text-[12px] font-bold tracking-[0.18em] uppercase mb-8">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-purple-200/60 text-[#6D28D9] text-[12px] font-bold tracking-[0.18em] uppercase mb-8">
                         Brand &amp; Corporate
                     </span>
 
