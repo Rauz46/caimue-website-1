@@ -12,15 +12,31 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
 const allTeam = [
   // Row 1
-  { name: "Joseph Olassa",      role: "Board Chair",             image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",           tags: ["Strategy", "Vision"] },
-  { name: "Vivin Raj",           role: "Startup Champion",        image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                  tags: ["Creative", "Execution"] },
-  { name: "Srividhya B",        role: "Head of Finance & Ops",   image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                  tags: ["Finance", "Ops"] },
-  { name: "Gowtham S",          role: "Marketing Champion",      image: "/teams%20pic/gowtham.png", color: "#F97316", bio: "Gets our stories in front of the audiences they deserve.", tags: ["Marketing", "Growth"] },
+  { name: "Joseph Olassa",      role: "Board Chair",              image: "/team/styled/joseph.png",  color: "#7C3AED",
+    bio: "The visionary who keeps us reaching further. Decades of wisdom, zero fear of new ideas — the calm hand behind our boldest bets.",
+    fun: "Believes every meeting is better with a story", tags: ["Strategy", "Vision"] },
+  { name: "Vivin Raj",          role: "Startup Champion",         image: "/team/styled/vivin.png",   color: "#DB2777",
+    bio: "Creative force running the whole show. From scripts to strategy, he's the spark that turned a YouTube channel into a studio.",
+    fun: "Fueled by midnight edits and filter coffee", tags: ["Creative", "Execution"] },
+  { name: "Srividhya B",        role: "Head of Finance & Ops",    image: "/team/styled/sri.png",     color: "#10B981",
+    bio: "Runs the engine that powers the dream. Budgets, operations, and a hundred moving parts — all humming in perfect sync.",
+    fun: "Balances spreadsheets and shoot schedules blindfolded", tags: ["Finance", "Ops"] },
+  { name: "Gowtham S",          role: "Marketing Champion",       image: "/team/styled/gowtham.png", color: "#F97316",
+    bio: "Gets our stories in front of the audiences they deserve. Growth strategy by day, thumbnail perfectionist by night.",
+    fun: "Knows the algorithm better than it knows itself", tags: ["Marketing", "Growth"] },
   // Row 2
-  { name: "Sanjay R",           role: "Video Editor",            image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",            tags: ["Video", "Editing"] },
-  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/teams%20pic/megha.png",   color: "#2563EB", bio: "Builds AI-powered websites that bring our stories online.", tags: ["Web", "AI"] },
-  { name: "Jeevan Shreyas",     role: "Finance Enabler",         image: "/teams%20pic/jeevan.png",  color: "#C026D3", bio: "Keeps the numbers honest so the stories can be bold.",     tags: ["Finance", "Analytics"] },
-  { name: "Purnimma Ravi",      role: "People Builder",          image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies.",              tags: ["People", "Culture"] },
+  { name: "Sanjay R",           role: "Video Editor",             image: "/team/styled/sanjay.png",  color: "#06B6D4",
+    bio: "Sees stories in raw footage nobody else can. Every cut, every beat, every frame — reworked until the scene sings.",
+    fun: "Timeline zoomed in to the single frame, always", tags: ["Video", "Editing"] },
+  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/team/styled/megha.png",   color: "#2563EB",
+    bio: "Builds AI-powered websites that bring our stories online. Design sense meets machine speed, and the web keeps up.",
+    fun: "Ships sites faster than the coffee gets cold", tags: ["Web", "AI"] },
+  { name: "Jeevan Shreyas",     role: "Finance Enabler",          image: "/team/styled/jeevan.png",  color: "#C026D3",
+    bio: "Keeps the numbers honest so the stories can be bold. Clean books, clear dashboards, zero drama at month-end.",
+    fun: "Finds plot holes in budgets, not scripts", tags: ["Finance", "Analytics"] },
+  { name: "Purnimma Ravi",      role: "People Builder",           image: "/team/styled/purnima.png", color: "#8B5CF6",
+    bio: "Grows people the way others grow companies. Culture, care, and the occasional perfectly-timed intervention snack.",
+    fun: "Remembers everyone's chai order by heart", tags: ["People", "Culture"] },
 ];
 
 const clients = [
@@ -33,11 +49,11 @@ const clients = [
 ];
 
 const cultureCards = [
-  { emoji: "🎬", caption: "Craft over noise", rotation: "-rotate-[6deg]" },
-  { emoji: "🤖", caption: "AI with soul", rotation: "rotate-[4deg]" },
-  { emoji: "☕", caption: "Coffee-fueled chaos", rotation: "-rotate-[3deg]" },
-  { emoji: "🌍", caption: "Remote, everywhere", rotation: "rotate-[5deg]" },
-  { emoji: "🎉", caption: "Work hard, laugh harder", rotation: "-rotate-[4deg]" },
+  { img: "/images/culture/craft.png",   caption: "Craft over noise",         sub: "every frame earns its place",  rotation: "-rotate-[6deg]", tape: "#C4B5FD" },
+  { img: "/images/culture/ai-soul.png", caption: "AI with soul",             sub: "tech that serves the story",   rotation: "rotate-[4deg]",  tape: "#FBCFE8" },
+  { img: "/images/culture/coffee.png",  caption: "Coffee-fueled chaos",      sub: "our best ideas start here",    rotation: "-rotate-[3deg]", tape: "#FDE68A" },
+  { img: "/images/culture/remote.png",  caption: "Remote, everywhere",       sub: "three cities, one crew",       rotation: "rotate-[5deg]",  tape: "#A5F3FC" },
+  { img: "/images/culture/laugh.png",   caption: "Work hard, laugh harder",  sub: "the blooper reel is sacred",   rotation: "-rotate-[4deg]", tape: "#BBF7D0" },
 ];
 
 // ============================================
@@ -59,7 +75,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
         boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
-      className="relative cursor-default select-none bg-white"
+      className="group relative cursor-default select-none bg-white"
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
@@ -84,7 +100,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         <img
           src={person.image}
           alt={person.name}
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
         />
         {/* Film-notch top-right */}
         <div className="absolute top-2 right-2 flex gap-0.5 z-10">
@@ -95,28 +111,37 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       </div>
 
       {/* Polaroid caption — white area */}
-      <div className="px-3 pt-3.5 pb-3">
-        {/* Name */}
-        <h4 className="font-serif font-bold text-gray-900 leading-tight mb-1.5"
-          style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)" }}>
+      <div className="px-3.5 pt-3.5 pb-3.5">
+        {/* Name — big and bold */}
+        <h4 className="font-serif font-black text-gray-900 leading-tight mb-1.5"
+          style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.5rem)" }}>
           {person.name}
         </h4>
-        {/* Role badge */}
+        {/* Role — quiet pill, normal case */}
         <span
-          className="inline-block text-[9px] font-black uppercase tracking-[0.18em] px-3 py-1 mb-2.5 text-white rounded-sm"
-          style={{ background: person.color, boxShadow: `0 2px 8px ${person.color}50` }}
+          className="inline-block text-[11px] font-semibold tracking-wide px-2.5 py-[3px] mb-2.5 rounded-full"
+          style={{ background: `${person.color}14`, color: person.color, border: `1px solid ${person.color}30` }}
         >
           {person.role}
         </span>
         {/* Bio */}
-        <p className="text-[12px] leading-relaxed font-sans italic text-gray-500 mb-2 line-clamp-2">
+        <p className="text-[12px] leading-relaxed font-sans italic text-gray-500 mb-2">
           "{person.bio}"
         </p>
-        {/* Tags */}
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] font-sans"
-          style={{ color: `${person.color}cc` }}>
-          {person.tags.join(" · ")}
+        {/* Fun fact — handwritten margin note */}
+        <p className="font-handwriting text-[13px] leading-snug mb-2.5 -rotate-1"
+          style={{ color: person.color }}>
+          ✦ {person.fun}
         </p>
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {person.tags.map((tag) => (
+            <span key={tag}
+              className="text-[10px] font-semibold px-2 py-[2px] rounded-full bg-gray-100 text-gray-500">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -388,17 +413,34 @@ export default function AboutPage() {
             {cultureCards.map((card, i) => (
               <motion.div
                 key={card.caption}
-                initial={{ opacity: 0, y: 30, rotate: 0 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`${card.rotation} bg-white rounded-2xl shadow-lg border border-gray-100 p-4 w-40 md:w-48 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default`}
+                className={`${card.rotation} relative bg-white shadow-lg p-3 pb-4 w-44 md:w-52 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default`}
               >
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-purple-300/60 to-pink-300/60 flex items-center justify-center mb-3">
-                  <span className="text-5xl md:text-6xl">{card.emoji}</span>
+                {/* Tape strip */}
+                <div
+                  className="absolute -top-3 left-1/2 w-14 h-6 rounded-sm opacity-80 z-10"
+                  style={{
+                    background: card.tape,
+                    transform: "translateX(-50%) rotate(-2deg)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                  }}
+                />
+                <div className="aspect-square overflow-hidden mb-3 bg-purple-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={card.img}
+                    alt={card.caption}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.08]"
+                  />
                 </div>
-                <p className="text-center text-sm italic text-[var(--foreground-muted)] font-medium font-serif">
+                <p className="text-center text-sm font-bold text-gray-800 font-serif leading-tight mb-1">
                   {card.caption}
+                </p>
+                <p className="text-center font-handwriting text-[13px] text-purple-500 leading-tight">
+                  {card.sub}
                 </p>
               </motion.div>
             ))}
