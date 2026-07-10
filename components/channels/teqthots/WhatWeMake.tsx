@@ -347,6 +347,8 @@ export default function WhatWeMake() {
                                                     <img
                                                         src={logo.src}
                                                         alt="Partner Logo"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         style={{
                                                             height: "100%",
                                                             width: "auto",

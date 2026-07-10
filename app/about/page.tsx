@@ -100,6 +100,8 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         <img
           src={person.image}
           alt={person.name}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
         />
         {/* Film-notch top-right */}
@@ -299,6 +301,8 @@ export default function AboutPage() {
               <img
                 src="/our%20story.png"
                 alt="The Caimue crew on set — driven by passion, integrity, and performance"
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-[660px] h-auto object-contain"
               />
             </motion.div>
@@ -408,8 +412,8 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Polaroid Cards */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          {/* Polaroid Cards — always one row of five */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5 lg:gap-7 justify-items-center">
             {cultureCards.map((card, i) => (
               <motion.div
                 key={card.caption}
@@ -417,7 +421,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`${card.rotation} relative bg-white shadow-lg p-3 pb-4 w-44 md:w-52 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default`}
+                className={`${card.rotation} relative bg-white shadow-lg p-2.5 pb-3.5 w-full max-w-[220px] transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default ${i === 4 ? "col-span-2 sm:col-span-1 justify-self-center sm:justify-self-auto max-w-[170px] sm:max-w-[220px]" : ""}`}
               >
                 {/* Tape strip */}
                 <div
@@ -433,6 +437,8 @@ export default function AboutPage() {
                   <img
                     src={card.img}
                     alt={card.caption}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.08]"
                   />
                 </div>

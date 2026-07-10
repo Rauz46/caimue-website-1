@@ -54,7 +54,7 @@ export function ChannelPage({
                         className="mb-8 flex justify-center"
                     >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={logo} alt={name} className="h-16 md:h-20 w-auto object-contain" />
+                        <img src={logo} alt={name} loading="lazy" decoding="async" className="h-16 md:h-20 w-auto object-contain" />
                     </motion.div>
 
                     <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
@@ -104,6 +104,8 @@ export function ChannelPage({
                                 <img
                                     src={item.src}
                                     alt={item.label || name}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                                 {item.label && (

@@ -136,6 +136,8 @@ export function CorporateVideoSection() {
                         <img
                             src="/logos/digubi-logo.png"
                             alt="Digubi — Digital Ubiquity"
+                            loading="lazy"
+                            decoding="async"
                             className="relative h-24 md:h-28 w-auto object-contain drop-shadow-[0_12px_35px_rgba(76,29,149,0.22)]"
                         />
                     </motion.div>

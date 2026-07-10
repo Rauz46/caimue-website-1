@@ -238,6 +238,24 @@ export default function MovieCardsFan({ images = [] }: { images?: string[] }) {
           height: 100%;
           background: linear-gradient(135deg, #5b21b6 0%, #2a0a5e 100%);
         }
+
+        /* ── Mobile: smaller, tighter fan; hide the outermost pair ── */
+        @media (max-width: 768px) {
+          .fan-stage { height: 150px; margin-top: 20px; }
+          .fan-card {
+            width: 150px;
+            height: 94px;
+            margin-left: -62px;
+            border-radius: 10px;
+          }
+          .fan-card:first-child,
+          .fan-card:last-child { display: none; }
+          .fan-img, .fan-shimmer { border-radius: 10px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .fan-card { animation: none; }
+        }
       `}</style>
     </div>
   );

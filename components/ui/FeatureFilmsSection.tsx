@@ -61,7 +61,7 @@ export function FeatureFilmsSection() {
                     animate={{ opacity: 0.08 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1.4, ease: "easeInOut" }}
-                    className="absolute inset-0 pointer-events-none"
+                    className="absolute inset-0 pointer-events-none hidden md:block"
                     style={{
                         backgroundImage: `url(${activeStill.src.replace(/ /g, "%20")})`,
                         backgroundSize: "cover",
@@ -212,6 +212,8 @@ export function FeatureFilmsSection() {
                                 <img
                                     src={item.src.replace(/ /g, "%20")}
                                     alt={`${item.title} — film still`}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-full object-cover"
                                     draggable={false}
                                 />

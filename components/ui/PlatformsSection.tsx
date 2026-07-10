@@ -143,7 +143,7 @@ function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolea
                     {/* Logo */}
                     <div className="mb-5 flex items-center justify-center transition-transform duration-500 group-hover:scale-105" style={{ minHeight: "76px" }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={channel.logo} alt={channel.name} className={`${channel.logoClass} w-auto object-contain drop-shadow-sm`} />
+                        <img src={channel.logo} alt={channel.name} loading="lazy" decoding="async" className={`${channel.logoClass} w-auto object-contain drop-shadow-sm`} />
                     </div>
 
                     {/* Brand-gradient divider */}
