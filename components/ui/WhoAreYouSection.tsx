@@ -2,95 +2,124 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Megaphone, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
-// Card 1: Brand Owner
-const BrandOwnerCard = () => {
+// Shared white card for the "Come Work With Us" paths
+type PathCardProps = {
+    eyebrow: string;
+    titlePrefix: string;
+    titleAccent: string;
+    description: string;
+    icon: React.ReactNode;
+    accent: string;      // solid accent colour (hex)
+    accentSoft: string;  // tinted icon-badge background (hex)
+    buttonBg: string;    // button gradient (css)
+    delay?: number;
+};
+
+const PathCard = ({
+    eyebrow,
+    titlePrefix,
+    titleAccent,
+    description,
+    icon,
+    accent,
+    accentSoft,
+    buttonBg,
+    delay = 0,
+}: PathCardProps) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
-            style={{ background: "linear-gradient(135deg, #6D28D9 0%, #DB2777 100%)" }}
+            transition={{ duration: 0.6, delay }}
+            whileHover={{ y: -6 }}
+            className="relative rounded-[24px] bg-white px-8 pt-7 pb-8 overflow-hidden transition-shadow duration-300 group"
+            style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
         >
+            {/* Accent top bar */}
+            <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: buttonBg }} />
 
-            {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
-            <div>
-                <h3 className="font-serif text-[28px] font-bold !text-white mb-2 tracking-tight">
-                    Are you a Brand Owner?
+            <div className="relative">
+                {/* Compact eyebrow chip with icon, centered */}
+                <div className="flex justify-center mb-4">
+                    <span
+                        className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] px-4 py-1.5 rounded-full"
+                        style={{ background: accentSoft, color: accent }}
+                    >
+                        {icon}
+                        {eyebrow}
+                    </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="font-serif text-[30px] font-bold text-gray-900 mb-3 tracking-tight leading-tight text-center">
+                    {titlePrefix}{" "}
+                    <span style={{ color: accent }}>{titleAccent}</span>
                 </h3>
-                {/* Separator line */}
-                <div className="w-12 h-[3px] bg-pink-300/60 rounded-full mb-4" />
-                <p className="!text-white/90 text-[14px] leading-relaxed mb-6">
-                    Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally.
+
+                {/* Separator */}
+                <div className="w-12 h-[3px] rounded-full mb-4 mx-auto" style={{ background: accent, opacity: 0.5 }} />
+
+                <p className="text-gray-600 text-[15px] leading-relaxed mb-7 text-center">
+                    {description}
                 </p>
 
-                <Link href="/contact" className="inline-block">
-                    <motion.button
-                        whileHover={{ scale: 1.05, x: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-white px-7 py-3 rounded-full font-semibold text-[14px] shadow-md border border-pink-200 flex items-center gap-2 group/btn hover:shadow-lg transition-all"
-                    >
-                        <span className="bg-gradient-to-r from-[#BE185D] to-[#EC4899] bg-clip-text text-transparent">
-                            Find Out More
-                        </span>
-                        <ArrowRight className="text-pink-500 group-hover/btn:translate-x-1 transition-transform" size={18} />
-                    </motion.button>
-                </Link>
+                <div className="flex justify-center">
+                    <Link href="/contact" className="inline-block">
+                        <motion.button
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.96 }}
+                            className="px-7 py-3 rounded-full font-semibold text-[14px] text-white shadow-md flex items-center gap-2 group/btn hover:shadow-lg transition-all"
+                            style={{ background: buttonBg }}
+                        >
+                            Get In Touch
+                            <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
+                        </motion.button>
+                    </Link>
+                </div>
             </div>
         </motion.div>
     );
 };
+
+// Card 1: Brand Owner
+const BrandOwnerCard = () => (
+    <PathCard
+        eyebrow="For Brands"
+        titlePrefix="Are you a"
+        titleAccent="Brand Owner?"
+        description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
+        icon={<Megaphone size={14} strokeWidth={2.5} />}
+        accent="#7C3AED"
+        accentSoft="#EDE9FE"
+        buttonBg="linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)"
+    />
+);
 
 // Card 2: Artist
-const ArtistCard = () => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative rounded-[24px] p-6 shadow-[0_10px_40px_rgba(219,39,119,0.3)] hover:shadow-[0_15px_50px_rgba(219,39,119,0.4)] transition-all duration-500 group cursor-pointer overflow-hidden border border-pink-400/20"
-            style={{ background: "linear-gradient(135deg, #6D28D9 0%, #DB2777 100%)" }}
-        >
-
-            {/* ===== BOTTOM: Title + Separator + Description + Button ===== */}
-            <div>
-                <h3 className="font-serif text-[28px] font-bold !text-white mb-2 tracking-tight">
-                    Are you an Aspiring Artist?
-                </h3>
-                {/* Separator line */}
-                <div className="w-12 h-[3px] bg-pink-300/60 rounded-full mb-4" />
-                <p className="!text-white/90 text-[14px] leading-relaxed mb-6">
-                    Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out.
-                </p>
-
-                <Link href="/contact" className="inline-block">
-                    <motion.button
-                        whileHover={{ scale: 1.05, x: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-white px-7 py-3 rounded-full font-semibold text-[14px] shadow-md border border-pink-200 flex items-center gap-2 group/btn hover:shadow-lg transition-all"
-                    >
-                        <span className="bg-gradient-to-r from-[#DB2777] to-[#EC4899] bg-clip-text text-transparent">
-                            Find Out More
-                        </span>
-                        <ArrowRight className="text-pink-500 group-hover/btn:translate-x-1 transition-transform" size={18} />
-                    </motion.button>
-                </Link>
-            </div>
-        </motion.div>
-    );
-};
+const ArtistCard = () => (
+    <PathCard
+        eyebrow="For Artists"
+        titlePrefix="Are you an"
+        titleAccent="Aspiring Artist?"
+        description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
+        icon={<Sparkles size={14} strokeWidth={2.5} />}
+        accent="#DB2777"
+        accentSoft="#FCE7F3"
+        buttonBg="linear-gradient(135deg, #DB2777 0%, #EC4899 100%)"
+        delay={0.2}
+    />
+);
 
 export default function WhoAreYouSection() {
     return (
         <section
-            className="relative py-[100px] md:py-[140px] overflow-visible -mt-1"
+            className="relative pt-[48px] md:pt-[64px] pb-[100px] md:pb-[140px] overflow-visible -mt-1"
             style={{
                 background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
             }}

@@ -16,6 +16,9 @@ export const BackgroundGradientAnimation = ({
     children,
     className,
     interactive = true,
+    autoMove = false,
+    maskCenter = false,
+    maskImage,
     containerClassName,
 }: {
     gradientBackgroundStart?: string;
@@ -31,6 +34,9 @@ export const BackgroundGradientAnimation = ({
     children?: React.ReactNode;
     className?: string;
     interactive?: boolean;
+    autoMove?: boolean;
+    maskCenter?: boolean;
+    maskImage?: string;
     containerClassName?: string;
 }) => {
     const interactiveRef = useRef<HTMLDivElement>(null);
@@ -61,13 +67,35 @@ export const BackgroundGradientAnimation = ({
         document.body.style.setProperty("--blending-value", blendingValue);
     }, [gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
 
+    // Pause all animation work while the section is offscreen
+    const [inView, setInView] = useState(true);
     useEffect(() => {
-        if (!interactive) return;
+        const el = containerRef.current;
+        if (!el || typeof IntersectionObserver === "undefined") return;
+        const io = new IntersectionObserver(
+            ([entry]) => setInView(entry.isIntersecting),
+            { rootMargin: "120px" }
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!interactive || !inView) return;
 
         let animationFrame: number;
 
         function move() {
             if (!interactiveRef.current) return;
+
+            // When autoMove is on, drive the blob along its own slow, drifting
+            // path (biased toward the sides and bottom) instead of the cursor.
+            if (autoMove && containerRef.current) {
+                const t = performance.now() / 1000;
+                const rect = containerRef.current.getBoundingClientRect();
+                tgX.current = rect.width * (0.5 + 0.42 * Math.sin(t * 0.27));
+                tgY.current = rect.height * (0.68 + 0.3 * Math.cos(t * 0.19));
+            }
 
             curX.current += (tgX.current - curX.current) / 20;
             curY.current += (tgY.current - curY.current) / 20;
@@ -81,20 +109,16 @@ export const BackgroundGradientAnimation = ({
         return () => {
             cancelAnimationFrame(animationFrame);
         };
-    }, [interactive]);
+    }, [interactive, autoMove, inView]);
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (autoMove) return; // movement is autonomous; ignore the cursor
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             tgX.current = event.clientX - rect.left;
             tgY.current = event.clientY - rect.top;
         }
     };
-
-    const [isSafari, setIsSafari] = useState(false);
-    useEffect(() => {
-        setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-    }, []);
 
     return (
         <div
@@ -105,34 +129,28 @@ export const BackgroundGradientAnimation = ({
                 containerClassName
             )}
         >
-            <svg className="hidden">
-                <defs>
-                    <filter id="blurMe">
-                        <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="10"
-                            result="blur"
-                        />
-                        <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                            result="goo"
-                        />
-                        <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                </defs>
-            </svg>
             <div className={cn("", className)}>{children}</div>
             <div
                 className={cn(
-                    "gradients-container h-full w-full blur-lg",
-                    isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+                    "gradients-container h-full w-full",
+                    !inView && "anim-paused"
                 )}
+                style={(() => {
+                    // Custom mask wins; otherwise maskCenter keeps the moving
+                    // colors out of the center (behind the headline).
+                    const mask =
+                        maskImage ??
+                        (maskCenter
+                            ? "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)"
+                            : undefined);
+                    return mask
+                        ? { WebkitMaskImage: mask, maskImage: mask }
+                        : undefined;
+                })()}
             >
                 <div
                     className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_var(--first-color)_0,_var(--first-color)_50%)_no-repeat]`,
+                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.8)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
                         `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
                         `[transform-origin:center_center]`,
                         `animate-first`,

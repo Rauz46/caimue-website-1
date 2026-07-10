@@ -63,18 +63,20 @@ export default function ContactPage() {
     return (
         <main className="min-h-screen flex flex-col font-sans">
             {/* --- SECTION 1: HERO BANNER (Cinematic/Dark) --- */}
-            <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
+            <section className="relative flex items-center justify-center overflow-hidden pt-32 pb-14 md:pt-36 md:pb-16">
                 <BackgroundGradientAnimation
+                    autoMove
+                    maskCenter
                     containerClassName="absolute inset-0 z-0 !h-full !w-full"
                     className="h-full w-full"
-                    firstColor="139, 92, 246"  // Violet-500
-                    secondColor="147, 51, 234" // Purple-600
-                    thirdColor="124, 58, 237"  // Violet-600
-                    fourthColor="168, 85, 247" // Purple-500
-                    fifthColor="192, 132, 252" // Purple-400
-                    pointerColor="139, 92, 246" // Violet-500
-                    gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
-                    gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+                    firstColor="124, 58, 237"  // Violet-600
+                    secondColor="109, 40, 217" // Violet-700
+                    thirdColor="91, 33, 182"   // Violet-800
+                    fourthColor="126, 34, 206" // Purple-700
+                    fifthColor="107, 33, 168"  // Purple-800
+                    pointerColor="124, 58, 237" // Violet-600
+                    gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
+                    gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
                 />
 
                 {/* Background Elements */}
@@ -84,7 +86,7 @@ export default function ContactPage() {
                 {/* Decorative Elements */}
                 <FloatingScribbles className="scale-75 origin-center opacity-80" />
 
-                <div className="container mx-auto px-4 relative z-30 text-center pt-32 flex flex-col items-center justify-center">
+                <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -99,19 +101,33 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-sm md:text-base !text-white leading-tight drop-shadow-md font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
                     >
-                        Join the AI-first production house. Let&apos;s create stories that matter.
+                        Join the AI-first film studio.
+                        <br className="md:hidden" />
+                        <span className="hidden md:inline"> </span>
+                        Let&apos;s create stories that matter.
                     </motion.p>
                 </div>
             </section>
 
             {/* --- SECTION 2: CONTENT AREA (Light Purple Theme) --- */}
-            <section className="bg-[#f8f7ff] pt-24 pb-16 relative overflow-hidden">
+            <section
+                className="pt-20 pb-16 relative overflow-hidden"
+                style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
+            >
+                {/* Checked grid texture */}
+                <div
+                    className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                    style={{
+                        backgroundImage: `linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)`,
+                        backgroundSize: "40px 40px",
+                    }}
+                />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24 max-w-7xl mx-auto">
+                    <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
 
-                        {/* Left Column: Creative Info */}
-                        <div className="flex-1 space-y-10">
+                        {/* Left Column: Creative Info — centered on mobile */}
+                        <div className="flex-1 w-full space-y-8 text-center lg:text-left">
                             {/* Heading with gradient accent */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -126,67 +142,53 @@ export default function ContactPage() {
                                 >
                                     Get In Touch
                                 </motion.span>
-                                <h2 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
-                                    <span className="text-neutral-900">Let&apos;s Build</span>
+                                <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+                                    <span className="text-neutral-900">Ready to Get Your</span>
                                     <br />
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-purple-400">
-                                        Something Epic
+                                        Brand Noticed?
                                     </span>
                                 </h2>
                             </motion.div>
 
-                            {/* Contact Info — Creative Pills Brought Up */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="flex flex-wrap gap-4"
-                            >
-                                <a
-                                    href="mailto:collaborations@caimue.com"
-                                    className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-violet-600 rounded-2xl px-8 py-4 text-white shadow-xl shadow-purple-200 hover:shadow-2xl hover:shadow-purple-300 hover:-translate-y-1 transition-all duration-300"
-                                >
-                                    <div className="absolute inset-x-0 -bottom-1 h-1 bg-white/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm">
-                                        <motion.span
-                                            animate={{ scale: [1, 1.2, 1] }}
-                                            transition={{ repeat: Infinity, duration: 2 }}
-                                            className="w-2 h-2 rounded-full bg-white"
-                                        />
-                                    </span>
-                                    <span className="text-base font-bold tracking-tight">collaborations@caimue.com</span>
-                                </a>
-
-                                <a
-                                    href="tel:+918428268065"
-                                    className="group inline-flex items-center gap-3 bg-white border border-purple-100/50 rounded-2xl px-6 py-4 hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 hover:shadow-md"
-                                >
-                                    <span className="text-xl">📞</span>
-                                    <span className="text-sm font-bold text-neutral-600 group-hover:text-purple-700 transition-colors uppercase tracking-widest">+91 8428268065</span>
-                                </a>
-                            </motion.div>
-
                             {/* Conversation Topics — Animated Cards */}
-                            <div className="grid grid-cols-2 gap-3 pt-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {[
-                                    { icon: "💰", label: "Investment", desc: "Funding & partnerships" },
-                                    { icon: "🎬", label: "Film Production", desc: "Stories worth telling" },
-                                    { icon: "🤝", label: "Brand Collabs", desc: "Creative campaigns" },
-                                    { icon: "🌟", label: "Artist Talent", desc: "Join our roster" },
+                                    { icon: "💰", label: "Invest with Us", desc: "Back stories that scale", from: "#7C3AED", to: "#8B5CF6", soft: "#EDE9FE" },
+                                    { icon: "🎬", label: "Make a Film", desc: "Stories worth telling", from: "#DB2777", to: "#EC4899", soft: "#FCE7F3" },
+                                    { icon: "🤝", label: "Grow Your Brand", desc: "Let's get you noticed", from: "#F59E0B", to: "#F97316", soft: "#FEF3C7" },
+                                    { icon: "🌟", label: "Join the Team", desc: "Become part of the story", from: "#0D9488", to: "#14B8A6", soft: "#CCFBF1" },
                                 ].map((item, idx) => (
                                     <motion.div
                                         key={idx}
                                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
-                                        whileHover={{ y: -4, scale: 1.02 }}
-                                        className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-purple-100/60 shadow-sm hover:shadow-lg hover:border-purple-200 transition-all duration-300 cursor-default overflow-hidden"
+                                        whileHover={{ y: -6 }}
+                                        className="group relative bg-white rounded-2xl p-6 transition-all duration-300 cursor-default overflow-hidden"
+                                        style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-violet-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                                        <div className="relative z-10">
-                                            <span className="text-2xl mb-2 block">{item.icon}</span>
-                                            <h3 className="font-bold text-neutral-900 text-sm">{item.label}</h3>
-                                            <p className="text-xs text-neutral-400 mt-0.5 font-medium">{item.desc}</p>
+                                        {/* Gradient accent along the top */}
+                                        <div
+                                            className="absolute top-0 left-0 right-0 h-[4px]"
+                                            style={{ background: `linear-gradient(90deg, ${item.from}, ${item.to})` }}
+                                        />
+                                        {/* Soft corner glow */}
+                                        <div
+                                            className="absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.25] transition-opacity duration-500 pointer-events-none"
+                                            style={{ background: item.from }}
+                                        />
+                                        <div className="relative z-10 flex items-start gap-4 justify-center lg:justify-start text-left">
+                                            <span
+                                                className="flex items-center justify-center w-12 h-12 rounded-xl text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300"
+                                                style={{ background: item.soft }}
+                                            >
+                                                {item.icon}
+                                            </span>
+                                            <div>
+                                                <h3 className="font-bold text-neutral-900 text-[15px]">{item.label}</h3>
+                                                <p className="text-[12.5px] text-neutral-400 mt-1 font-medium leading-relaxed">{item.desc}</p>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -252,7 +254,7 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-neutral-600">Subject *</label>
+                                    <label className="text-sm font-bold text-neutral-600">What&apos;s on your mind? *</label>
                                     <input
                                         type="text"
                                         name="subject"
@@ -292,7 +294,7 @@ export default function ContactPage() {
             </section>
 
             {/* --- SECTION 3: GLOBAL PRESENCE (White Grid Theme) --- */}
-            <section className="relative py-28 md:py-36 overflow-hidden bg-white">
+            <section className="relative py-16 md:py-20 overflow-hidden bg-white">
                 {/* Decorative Grid */}
                 <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
                     style={{
@@ -305,7 +307,7 @@ export default function ContactPage() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Section Header */}
-                    <div className="text-center mb-16 md:mb-24">
+                    <div className="text-center mb-12">
                         <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -330,7 +332,7 @@ export default function ContactPage() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="text-neutral-400 mt-5 text-base max-w-md mx-auto"
+                            className="text-neutral-400 mt-4 text-base max-w-md mx-auto"
                         >
                             Powered by teams working across continents to deliver world-class results.
                         </motion.p>
@@ -349,7 +351,7 @@ export default function ContactPage() {
                                 ],
                                 accent: "from-purple-500 to-violet-500",
                                 monument: (
-                                    <svg viewBox="0 0 100 120" fill="none" className="w-20 h-24 md:w-24 md:h-28 opacity-[0.08] group-hover:opacity-[0.15] transition-opacity duration-500">
+                                    <svg viewBox="0 0 100 120" fill="none" className="w-20 h-24 md:w-24 md:h-28 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
                                         {/* US Capitol Dome — clean minimal */}
                                         <g fill="currentColor" className="text-purple-800">
                                             {/* Flagpole + finial */}
@@ -396,7 +398,7 @@ export default function ContactPage() {
                                 ],
                                 accent: "from-violet-500 to-pink-500",
                                 monument: (
-                                    <svg viewBox="0 0 80 120" fill="none" className="w-16 h-24 md:w-20 md:h-28 opacity-[0.08] group-hover:opacity-[0.15] transition-opacity duration-500">
+                                    <svg viewBox="0 0 80 120" fill="none" className="w-16 h-24 md:w-20 md:h-28 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
                                         {/* South Indian Temple Gopuram */}
                                         <g fill="currentColor" className="text-violet-800">
                                             {/* Kalasam (pot finial) */}
@@ -441,7 +443,7 @@ export default function ContactPage() {
                                 ],
                                 accent: "from-pink-500 to-purple-500",
                                 monument: (
-                                    <svg viewBox="0 0 70 140" fill="none" className="w-16 h-28 md:w-20 md:h-32 opacity-[0.08] group-hover:opacity-[0.15] transition-opacity duration-500">
+                                    <svg viewBox="0 0 70 140" fill="none" className="w-16 h-28 md:w-20 md:h-32 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
                                         {/* Big Ben / Elizabeth Tower */}
                                         <g fill="currentColor" className="text-pink-900">
                                             {/* Spire */}
@@ -492,18 +494,24 @@ export default function ContactPage() {
                                 className="group relative cursor-default"
                             >
                                 {/* Card */}
-                                <div className="relative bg-white border border-neutral-100 rounded-3xl p-8 pt-10 h-full flex flex-col shadow-[0_4px_40px_rgba(124,58,237,0.04)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.12)] hover:border-purple-200/60 transition-all duration-500 overflow-hidden">
-                                    {/* Gradient Accent at Top */}
-                                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${loc.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                <div className="relative bg-gradient-to-b from-purple-50/60 to-white border border-purple-100/60 rounded-3xl p-8 pt-10 h-full flex flex-col shadow-[0_4px_40px_rgba(124,58,237,0.06)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.14)] hover:border-purple-200/80 transition-all duration-500 overflow-hidden">
+                                    {/* Gradient Accent at Top — always on, grows on hover */}
+                                    <div className={`absolute top-0 left-1/2 -translate-x-1/2 h-[4px] w-20 group-hover:w-full rounded-b-full bg-gradient-to-r ${loc.accent} transition-all duration-700`} />
 
                                     {/* Monument Illustration — Top Right */}
                                     <div className="absolute top-4 right-4">
                                         {loc.monument}
                                     </div>
 
+                                    {idx === 0 && (
+                                        <span className="absolute top-5 left-8 -translate-y-1/2 text-[10px] font-black uppercase tracking-[0.16em] text-white px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 shadow-md">
+                                            HQ
+                                        </span>
+                                    )}
+
                                     {/* Flag + City */}
-                                    <div className="flex items-start gap-4 mb-5 relative z-10">
-                                        <span className="text-4xl mt-1">{loc.flag}</span>
+                                    <div className="flex items-start gap-4 mb-5 relative z-10 justify-center md:justify-start">
+                                        <span className="text-4xl mt-1 group-hover:scale-110 transition-transform duration-300 inline-block">{loc.flag}</span>
                                         <div>
                                             <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">{loc.city}</h3>
                                             <p className="text-sm text-purple-600 font-semibold mt-0.5">{loc.country}</p>
@@ -511,10 +519,10 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className={`h-[2px] w-12 bg-gradient-to-r ${loc.accent} mb-5 rounded-full group-hover:w-2/3 transition-all duration-700`} />
+                                    <div className={`h-[2px] w-12 bg-gradient-to-r ${loc.accent} mb-5 rounded-full group-hover:w-2/3 transition-all duration-700 mx-auto md:mx-0`} />
 
                                     {/* Address */}
-                                    <div className="space-y-0.5 flex-1 relative z-10">
+                                    <div className="space-y-0.5 flex-1 relative z-10 text-center md:text-left">
                                         {loc.lines.map((line, lineIdx) => (
                                             <p key={lineIdx} className="text-neutral-500 text-sm font-medium leading-relaxed">
                                                 {line}
@@ -523,7 +531,7 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Status Indicator */}
-                                    <div className="mt-6 pt-5 border-t border-neutral-50 flex items-center gap-2.5 relative z-10">
+                                    <div className="mt-6 pt-5 border-t border-neutral-50 flex items-center gap-2.5 relative z-10 justify-center md:justify-start">
                                         <motion.div
                                             animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
                                             transition={{ repeat: Infinity, duration: 2, delay: idx * 0.4 }}

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Film, Users, Briefcase, Play, Eye, Globe } from "lucide-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
@@ -12,14 +11,32 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 // ============================================
 
 const allTeam = [
-  { name: "Joseph Olassa",       role: "Board Chair",              image: "/teams%20pic/Joseph.png",  color: "#7C3AED", bio: "The visionary who keeps us reaching further.",             tags: ["Strategy", "Vision"] },
-  { name: "Vivek Sathiamoorthy", role: "Chief of Startup Success", image: "/teams%20pic/Vivek.png",   color: "#F97316", bio: "Makes founders believe their story can change everything.", tags: ["Storytelling", "Startups"] },
-  { name: "Vivin Raj",            role: "Startup Champion",         image: "/team/vivin.png",           color: "#DB2777", bio: "Creative force running the whole show.",                    tags: ["Creative", "Execution"] },
-  { name: "Anton Joseph Ciby",   role: "Chief of Revenue",         image: "/teams%20pic/anton.png",   color: "#2563EB", bio: "Turns creativity into revenue without losing the soul.",    tags: ["Revenue", "Growth"] },
-  { name: "Srividhya B",         role: "Head of Finance & Ops",    image: "/teams%20pic/sri.png",     color: "#10B981", bio: "Runs the engine that powers the dream.",                    tags: ["Finance", "Ops"] },
-  { name: "Sanjay R",            role: "Video Editor",             image: "/team/sanjay.png",         color: "#06B6D4", bio: "Sees stories in raw footage nobody else can.",              tags: ["Video", "Editing"] },
-  { name: "Disha Napoleon",      role: "Finance Enabler",          image: "/teams%20pic/disha.png",   color: "#C026D3", bio: "Numbers person with a creative heart.",                     tags: ["Finance", "Analytics"] },
-  { name: "Purnimma Ravi",       role: "People Builder",           image: "/teams%20pic/purnima.png", color: "#8B5CF6", bio: "Grows people the way others grow companies.",               tags: ["People", "Culture"] },
+  // Row 1
+  { name: "Joseph Olassa",      role: "Board Chair",              image: "/team/styled/joseph.png",  color: "#7C3AED",
+    bio: "The visionary who keeps us reaching further. Decades of wisdom, zero fear of new ideas — the calm hand behind our boldest bets.",
+    fun: "Believes every meeting is better with a story", tags: ["Strategy", "Vision"] },
+  { name: "Vivin Raj",          role: "Startup Champion",         image: "/team/styled/vivin.png",   color: "#DB2777",
+    bio: "Creative force running the whole show. From scripts to strategy, he's the spark that turned a YouTube channel into a studio.",
+    fun: "Fueled by midnight edits and filter coffee", tags: ["Creative", "Execution"] },
+  { name: "Srividhya B",        role: "Head of Finance & Ops",    image: "/team/styled/sri.png",     color: "#10B981",
+    bio: "Runs the engine that powers the dream. Budgets, operations, and a hundred moving parts — all humming in perfect sync.",
+    fun: "Balances spreadsheets and shoot schedules blindfolded", tags: ["Finance", "Ops"] },
+  { name: "Gowtham S",          role: "Marketing Champion",       image: "/team/styled/gowtham.png", color: "#F97316",
+    bio: "Gets our stories in front of the audiences they deserve. Growth strategy by day, thumbnail perfectionist by night.",
+    fun: "Knows the algorithm better than it knows itself", tags: ["Marketing", "Growth"] },
+  // Row 2
+  { name: "Sanjay R",           role: "Video Editor",             image: "/team/styled/sanjay.png",  color: "#06B6D4",
+    bio: "Sees stories in raw footage nobody else can. Every cut, every beat, every frame — reworked until the scene sings.",
+    fun: "Timeline zoomed in to the single frame, always", tags: ["Video", "Editing"] },
+  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/team/styled/megha.png",   color: "#2563EB",
+    bio: "Builds AI-powered websites that bring our stories online. Design sense meets machine speed, and the web keeps up.",
+    fun: "Ships sites faster than the coffee gets cold", tags: ["Web", "AI"] },
+  { name: "Jeevan Shreyas",     role: "Finance Enabler",          image: "/team/styled/jeevan.png",  color: "#C026D3",
+    bio: "Keeps the numbers honest so the stories can be bold. Clean books, clear dashboards, zero drama at month-end.",
+    fun: "Finds plot holes in budgets, not scripts", tags: ["Finance", "Analytics"] },
+  { name: "Purnimma Ravi",      role: "People Builder",           image: "/team/styled/purnima.png", color: "#8B5CF6",
+    bio: "Grows people the way others grow companies. Culture, care, and the occasional perfectly-timed intervention snack.",
+    fun: "Remembers everyone's chai order by heart", tags: ["People", "Culture"] },
 ];
 
 const clients = [
@@ -32,11 +49,11 @@ const clients = [
 ];
 
 const cultureCards = [
-  { emoji: "🎬", caption: "Craft over noise", rotation: "-rotate-[6deg]" },
-  { emoji: "🤖", caption: "AI with soul", rotation: "rotate-[4deg]" },
-  { emoji: "☕", caption: "Coffee-fueled chaos", rotation: "-rotate-[3deg]" },
-  { emoji: "🌍", caption: "Remote, everywhere", rotation: "rotate-[5deg]" },
-  { emoji: "🎉", caption: "Work hard, laugh harder", rotation: "-rotate-[4deg]" },
+  { img: "/images/culture/craft.png",   caption: "Craft over noise",         sub: "every frame earns its place",  rotation: "-rotate-[6deg]", tape: "#C4B5FD" },
+  { img: "/images/culture/ai-soul.png", caption: "AI with soul",             sub: "tech that serves the story",   rotation: "rotate-[4deg]",  tape: "#FBCFE8" },
+  { img: "/images/culture/coffee.png",  caption: "Coffee-fueled chaos",      sub: "our best ideas start here",    rotation: "-rotate-[3deg]", tape: "#FDE68A" },
+  { img: "/images/culture/remote.png",  caption: "Remote, everywhere",       sub: "three cities, one crew",       rotation: "rotate-[5deg]",  tape: "#A5F3FC" },
+  { img: "/images/culture/laugh.png",   caption: "Work hard, laugh harder",  sub: "the blooper reel is sacred",   rotation: "-rotate-[4deg]", tape: "#BBF7D0" },
 ];
 
 // ============================================
@@ -58,11 +75,10 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
         boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
-      className="relative cursor-default select-none bg-white"
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
-        marginTop: index % 4 === 1 || index % 4 === 3 ? "28px" : "0px",
         zIndex: 1,
       }}
     >
@@ -77,17 +93,15 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       />
 
       {/* Photo */}
-      <div className="relative overflow-hidden" style={{ height: "200px" }}>
+      <div className="relative overflow-hidden" style={{ height: "195px" }}>
         <div className="absolute inset-0" style={{ backgroundColor: `${person.color}25` }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={person.image}
           alt={person.name}
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-        {/* Subtle gradient at bottom */}
-        <div className="absolute inset-0"
-          style={{ background: `linear-gradient(to top, ${person.color}60 0%, transparent 55%)` }}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
         />
         {/* Film-notch top-right */}
         <div className="absolute top-2 right-2 flex gap-0.5 z-10">
@@ -97,28 +111,23 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         </div>
       </div>
 
-      {/* Polaroid caption — white area */}
-      <div className="px-3 pt-3.5 pb-3">
-        {/* Name */}
-        <h4 className="font-serif font-bold text-gray-900 leading-tight mb-1.5"
-          style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)" }}>
+      {/* Polaroid caption — centered on mobile, left on larger screens */}
+      <div className="px-3 pt-3 pb-3 text-center sm:text-left">
+        {/* Name — big and bold */}
+        <h4 className="font-serif font-black text-gray-900 leading-tight mb-1.5"
+          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
           {person.name}
         </h4>
-        {/* Role badge */}
+        {/* Role — quiet pill, normal case */}
         <span
-          className="inline-block text-[9px] font-black uppercase tracking-[0.18em] px-3 py-1 mb-2.5 text-white rounded-sm"
-          style={{ background: person.color, boxShadow: `0 2px 8px ${person.color}50` }}
+          className="inline-block text-[12px] font-bold tracking-wide px-3 py-[3px] mb-2 rounded-full"
+          style={{ background: `${person.color}14`, color: person.color, border: `1px solid ${person.color}30` }}
         >
           {person.role}
         </span>
         {/* Bio */}
-        <p className="text-[12px] leading-relaxed font-sans italic text-gray-500 mb-2 line-clamp-2">
+        <p className="text-[13px] leading-relaxed font-sans italic text-gray-600">
           "{person.bio}"
-        </p>
-        {/* Tags */}
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] font-sans"
-          style={{ color: `${person.color}cc` }}>
-          {person.tags.join(" · ")}
         </p>
       </div>
     </motion.div>
@@ -139,26 +148,30 @@ export default function AboutPage() {
       <section className="relative flex items-center justify-center pt-24 pb-4 md:pt-30 md:pb-6 overflow-hidden">
         {/* Animated gradient background,same as homepage */}
         <BackgroundGradientAnimation
-          containerClassName="absolute inset-0 z-0"
-          firstColor="139, 92, 246"
-          secondColor="147, 51, 234"
-          thirdColor="124, 58, 237"
-          fourthColor="168, 85, 247"
-          fifthColor="192, 132, 252"
-          pointerColor="139, 92, 246"
-          gradientBackgroundStart="rgb(76, 29, 149)"
-          gradientBackgroundEnd="rgb(88, 28, 135)"
+          autoMove
+          maskCenter
+          containerClassName="absolute inset-0 z-0 h-full"
+          firstColor="124, 58, 237"  // Violet-600
+          secondColor="109, 40, 217" // Violet-700
+          thirdColor="91, 33, 182"   // Violet-800
+          fourthColor="126, 34, 206" // Purple-700
+          fifthColor="107, 33, 168"  // Purple-800
+          pointerColor="124, 58, 237" // Violet-600
+          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
+          gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
         />
 
         {/* Subtle line grid overlay,same as homepage */}
         <HeroGrid className="opacity-40 z-10" />
         <div className="bg-noise opacity-10 z-10" />
 
-        {/* Decorative scribbles,same as homepage */}
-        <FloatingScribbles />
+        {/* Decorative scribbles,same as homepage — desktop only */}
+        <div className="hidden md:contents">
+          <FloatingScribbles />
+        </div>
 
-        {/* Decorative Stars */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        {/* Decorative Stars — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
           <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">✦</div>
           <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">★</div>
           <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
@@ -166,30 +179,20 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
-          {/* Eyebrow */}
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-5 py-1.5 rounded-full border border-white/20 bg-white/5 text-purple-200 text-xs font-bold tracking-[0.2em] uppercase mb-5 font-sans"
-          >
-            About Caimue
-          </motion.span>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-3xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight mb-4 font-serif"
+            className="text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif"
           >
-            <span className="text-white font-bold drop-shadow-2xl block">
+            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               The studio where{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
                 imagination
               </span>
             </span>
-            <span className="text-white font-bold drop-shadow-2xl block">
+            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               meets{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
                 intelligence
@@ -201,22 +204,22 @@ export default function AboutPage() {
       </section>
 
       {/* =================================================================
-          SECTION 3,WHAT WE DO
+          SECTION 3,OUR STORY & VALUES
           ================================================================= */}
       <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
-        {/* Cross-hatch lines texture */}
+        {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.07,
+            opacity: 0.06,
             backgroundImage:
-              "linear-gradient(45deg, rgba(124,58,237,0.3) 1px, transparent 1px), linear-gradient(-45deg, rgba(124,58,237,0.3) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
 
-        {/* Floating handwritten doodles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating handwritten doodles — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-12 left-[8%] text-purple-400/25 text-5xl font-handwriting -rotate-12">ideas!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -239,137 +242,58 @@ export default function AboutPage() {
           <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-pink-300/10 rounded-full blur-[120px]" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-6"
-          >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-sans">
-              What We Do
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] font-serif">
-              Two channels, one{" "}
-              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
-                creative engine
-              </span>
-            </h2>
-          </motion.div>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            {/* ---- Ennitto Card ---- */}
-            <motion.a
-              href="https://ennitto.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
+        <div className="relative z-10 container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {/* Left — Our Story */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="group relative rounded-[2rem] overflow-hidden border border-purple-200/60 bg-white shadow-xl shadow-purple-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-300/30 cursor-pointer"
+              className="text-center md:text-left"
             >
-              {/* Content area */}
-              <div className="p-6 text-center">
-                {/* Logo */}
-                <div className="mb-3 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/ennitto-film-studios-logo.png" alt="Ennitto" className="w-[160px] md:w-[210px] h-auto object-contain" />
-                </div>
-                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
-                  Short films with soul. Ennitto is our studio for culturally rooted narratives,
-                  stories that honour regional identity while reaching for a global audience.
-                  Every frame is a love letter to the worlds we come from.
-                </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5 font-serif">
+                Our{" "}
+                <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
+                  Story
+                </span>
+              </h2>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+                Caimue Film Studios started with a simple belief: great stories can come from
+                anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
+                written, cast, and directed in-house — and grew past 2 million views one honest
+                story at a time.
+              </p>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+                Along the way we discovered something bigger than films: people. More than 25
+                writers, directors, and actors earned their first real credits with us, and our
+                channels became homes for regional stories and founder journeys told with
+                cinematic craft.
+              </p>
+              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
+                Today we blend traditional filmmaking with AI-powered production — moving faster
+                without losing soul. Every short film, documentary, and brand story is a step
+                toward one destination: feature films rooted in our culture, watched by the world.
+              </p>
+            </motion.div>
 
-                {/* Compact stat strip */}
-                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-purple-50 border border-purple-100">
-                  {[
-                    { value: "2.5M+", label: "Views", icon: <Eye size={11} className="text-purple-400" /> },
-                    { value: "17+", label: "Films", icon: <Film size={11} className="text-purple-400" /> },
-                    { value: "40+", label: "Artists", icon: <Users size={11} className="text-purple-400" /> },
-                  ].map(({ value, label, icon }, i) => (
-                    <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-5 bg-purple-200" />}
-                      <div className="flex items-center gap-1.5">
-                        {icon}
-                        <span className="text-sm font-black text-purple-600">{value}</span>
-                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center">
-                  <span className="inline-flex items-center gap-2 text-purple-600 font-bold font-sans group-hover:gap-3 transition-all">
-                    Explore Ennitto
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </span>
-                </div>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.a>
-
-            {/* ---- TeqThots Card ---- */}
-            <motion.a
-              href="https://teqthots.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            {/* Right — Our Culture image (values built in) */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="group relative rounded-[2rem] overflow-hidden border border-pink-200/60 bg-white shadow-xl shadow-pink-200/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-300/30 cursor-pointer"
+              className="flex justify-center"
             >
-              {/* Content area */}
-              <div className="p-6 text-center">
-                {/* Logo */}
-                <div className="mb-3 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logos/digubi-logo.png" alt="TeqThots" className="w-[160px] md:w-[210px] h-auto object-contain" />
-                </div>
-                <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3 font-sans">
-                  A platform for tech thinkers and visual explainers. TeqThots breaks down
-                  complex ideas into cinematic, shareable stories, making technology
-                  approachable, beautiful, and impossible to scroll past.
-                </p>
-
-                {/* Compact stat strip */}
-                <div className="flex items-center justify-between mb-4 py-2 px-3 rounded-2xl bg-pink-50 border border-pink-100">
-                  {[
-                    { value: "1M+", label: "Reach", icon: <Globe size={11} className="text-pink-400" /> },
-                    { value: "10+", label: "Videos", icon: <Play size={11} className="text-pink-400" /> },
-                    { value: "12+", label: "Brands", icon: <Briefcase size={11} className="text-pink-400" /> },
-                  ].map(({ value, label, icon }, i) => (
-                    <div key={label} className="flex items-center gap-3">
-                      {i > 0 && <div className="w-px h-5 bg-pink-200" />}
-                      <div className="flex items-center gap-1.5">
-                        {icon}
-                        <span className="text-sm font-black text-pink-600">{value}</span>
-                        <span className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center">
-                  <span className="inline-flex items-center gap-2 text-pink-600 font-bold font-sans group-hover:gap-3 transition-all">
-                    Explore TeqThots
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </span>
-                </div>
-              </div>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.a>
-
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/our%20story.png"
+                alt="The Caimue crew on set — driven by passion, integrity, and performance"
+                loading="lazy"
+                decoding="async"
+                className="w-full max-w-[660px] h-auto object-contain"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -378,19 +302,19 @@ export default function AboutPage() {
           SECTION 4,TEAM
           ================================================================= */}
       <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
-        {/* Cross-hatch texture */}
+        {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.04,
+            opacity: 0.05,
             backgroundImage:
-              "linear-gradient(45deg, rgba(124,58,237,0.3) 1px, transparent 1px), linear-gradient(-45deg, rgba(124,58,237,0.3) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
 
-        {/* Floating doodles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating doodles — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-16 left-[6%] text-purple-300/20 text-5xl font-handwriting -rotate-12">team!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -422,11 +346,8 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-8"
+            className="text-center mb-6"
           >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
-              The People
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               Meet the Caimue{" "}
               <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
@@ -439,7 +360,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Polaroid grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" style={{ paddingBottom: "28px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 md:gap-6 max-w-5xl mx-auto" style={{ paddingBottom: "28px" }}>
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
@@ -450,19 +371,26 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="py-24 md:py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
+        {/* Checked grid texture */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            opacity: 0.06,
+            backgroundImage:
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
           {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <span className="text-[var(--caimue-purple)] text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-sans">
-              Culture
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               We work hard.{" "}
               <span className="italic text-[var(--caimue-purple)] font-light">We laugh harder.</span>
@@ -472,22 +400,41 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Polaroid Cards */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          {/* Polaroid Cards — always one row of five */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5 lg:gap-7 justify-items-center">
             {cultureCards.map((card, i) => (
               <motion.div
                 key={card.caption}
-                initial={{ opacity: 0, y: 30, rotate: 0 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`${card.rotation} bg-white rounded-2xl shadow-lg border border-gray-100 p-4 w-40 md:w-48 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default`}
+                className={`${card.rotation} relative bg-white shadow-lg p-2.5 pb-3.5 w-full max-w-[220px] transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default ${i === 4 ? "col-span-2 sm:col-span-1 justify-self-center sm:justify-self-auto max-w-[170px] sm:max-w-[220px]" : ""}`}
               >
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-purple-300/60 to-pink-300/60 flex items-center justify-center mb-3">
-                  <span className="text-5xl md:text-6xl">{card.emoji}</span>
+                {/* Tape strip */}
+                <div
+                  className="absolute -top-3 left-1/2 w-14 h-6 rounded-sm opacity-80 z-10"
+                  style={{
+                    background: card.tape,
+                    transform: "translateX(-50%) rotate(-2deg)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                  }}
+                />
+                <div className="aspect-square overflow-hidden mb-3 bg-purple-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={card.img}
+                    alt={card.caption}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.08]"
+                  />
                 </div>
-                <p className="text-center text-sm italic text-[var(--foreground-muted)] font-medium font-serif">
+                <p className="text-center text-sm font-bold text-gray-800 font-serif leading-tight mb-1">
                   {card.caption}
+                </p>
+                <p className="text-center font-handwriting text-[13px] text-purple-500 leading-tight">
+                  {card.sub}
                 </p>
               </motion.div>
             ))}

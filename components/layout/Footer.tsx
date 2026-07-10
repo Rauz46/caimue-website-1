@@ -29,15 +29,17 @@ export function Footer() {
             {/* FANCY A CHAT SECTION - HERO STYLE */}
             <section className="relative min-h-[400px] md:h-[450px] flex items-center overflow-hidden">
                 <BackgroundGradientAnimation
+                    autoMove
+                    maskImage="linear-gradient(to right, transparent 0%, transparent 42%, black 72%)"
                     containerClassName="absolute inset-0 z-0"
-                    firstColor="139, 92, 246"
-                    secondColor="147, 51, 234"
-                    thirdColor="124, 58, 237"
-                    fourthColor="168, 85, 247"
-                    fifthColor="192, 132, 252"
-                    pointerColor="139, 92, 246"
-                    gradientBackgroundStart="rgb(76, 29, 149)"
-                    gradientBackgroundEnd="rgb(88, 28, 135)"
+                    firstColor="124, 58, 237"
+                    secondColor="109, 40, 217"
+                    thirdColor="91, 33, 182"
+                    fourthColor="126, 34, 206"
+                    fifthColor="107, 33, 168"
+                    pointerColor="124, 58, 237"
+                    gradientBackgroundStart="rgb(46, 16, 101)"
+                    gradientBackgroundEnd="rgb(59, 7, 100)"
                 />
 
                 <HeroGrid className="opacity-30 z-10" />
@@ -45,7 +47,7 @@ export function Footer() {
 
                 <div className="container relative z-20">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="max-w-xl">
+                        <div className="max-w-xl mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
                             <motion.h2
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +96,7 @@ export function Footer() {
                         {/* LOGO */}
                         <Link href="/" className="transition-transform hover:scale-105">
                             <Image
-                                src="/Caimue Film Studios Logo.png"
+                                src="/caimue final logo FOOTER.png"
                                 alt="Caimue"
                                 width={200}
                                 height={70}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const HandDrawnScribbles = () => {
     return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }} aria-hidden="true">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block" style={{ zIndex: 1 }} aria-hidden="true">
             {/* Top Section Scribbles */}
             <motion.svg
                 className="absolute top-10 left-[10%] w-16 h-16 text-purple-500 opacity-60"

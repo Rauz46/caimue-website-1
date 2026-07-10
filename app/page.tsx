@@ -1,57 +1,34 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { AnimatedText } from "@/components/ui/AnimatedText";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import { WaveDivider, WaveDividerAlt } from "@/components/effects/WaveDivider";
-import { CinematicBackground } from "@/components/effects/CinematicBackground";
-import { FloatingShapes } from "@/components/effects/FloatingShapes";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
-import { VideoScrollStrip } from "@/components/ui/VideoScrollStrip";
-import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
-import { HeroVisualFrame } from "@/components/ui/HeroVisualFrame";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { PlatformsSection } from "@/components/ui/PlatformsSection";
-import { MorphingWord } from "@/components/ui/MorphingWord";
+import { FeatureFilmsSection } from "@/components/ui/FeatureFilmsSection";
+import { CorporateVideoSection } from "@/components/ui/CorporateVideoSection";
 import { JourneySection } from "@/components/ui/JourneySection";
 import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import MovieCardsFan from "@/components/ui/MovieCardsFan";
 
-// Video/Poster cards for the auto-scrolling marquee
-const showcaseItems = [
-  { id: 1, src: "/images/Hey!%20Sinamika%20Poster.jpg", title: "Hey Sinamika", type: "Short Film" },
-  { id: 2, src: "/images/Hi%20papa.jpg", title: "Hi Papa", type: "Short Film" },
-  { id: 3, src: "/images/Thiruchitrambalam.jpg", title: "Thiruchitrambalam", type: "FunShortz" },
-  { id: 4, src: "/images/Meiyazhagan%20_%20illustration%20poster%20-%20Vishnu%20Narayanan.jpg", title: "Meiyazhagan", type: "TeqThots" },
-  { id: 5, src: "/images/Odum%20Kuthira%20Chaadum%20Kuthira%20poster.jpg", title: "Odum Kuthira", type: "Short Film" },
-  { id: 6, src: "/images/%23Atharvaa.jpg", title: "Atharvaa", type: "FunShortz" },
-  { id: 7, src: "/images/A.jpg", title: "A", type: "TeqThots" },
-  { id: 8, src: "/images/D.jpg", title: "D", type: "Short Film" },
-];
-
-// stats (keeping for now if used elsewhere)
-
-// stats (keeping for now if used elsewhere)
-
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-12">
+      <section className="flex flex-col pt-28 md:pt-40 relative overflow-hidden pb-6">
         {/* Background Animation */}
         <BackgroundGradientAnimation
-          containerClassName="absolute inset-0 z-0"
-          firstColor="139, 92, 246"  // Violet-500
-          secondColor="147, 51, 234" // Purple-600
-          thirdColor="124, 58, 237"  // Violet-600
-          fourthColor="168, 85, 247" // Purple-500
-          fifthColor="192, 132, 252" // Purple-400
-          pointerColor="139, 92, 246" // Violet-500
-          gradientBackgroundStart="rgb(76, 29, 149)" // Violet-900
-          gradientBackgroundEnd="rgb(88, 28, 135)"   // Purple-900
+          autoMove
+          maskCenter
+          containerClassName="absolute inset-0 z-0 h-full"
+          firstColor="124, 58, 237"  // Violet-600
+          secondColor="109, 40, 217" // Violet-700
+          thirdColor="91, 33, 182"   // Violet-800
+          fourthColor="126, 34, 206" // Purple-700
+          fifthColor="107, 33, 168"  // Purple-800
+          pointerColor="124, 58, 237" // Violet-600
+          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
+          gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
         />
 
         {/* Background Elements */}
@@ -88,9 +65,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-0 leading-snug font-medium drop-shadow"
+            className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-0 leading-snug font-medium drop-shadow [text-wrap:balance]"
           >
-            Caimue is an AI-first production house creating movies across Tamil, Malayalam, and English. We produce movies by discovering talent and backing stories that matter.
+            Caimue is an AI-first Film Studio creating movies across Tamil, Malayalam, and English. We produce movies by discovering talent and backing stories that matter.
           </motion.p>
         </div>
 
@@ -105,7 +82,7 @@ export default function Home() {
             images={[
               "/images/Movies/Vishudha Sakshi.jpg",
               "/images/Movies/ADS-369 Part 1.jpg",
-              "/images/Movies/Pazhampori.jpg",
+              "/images/Movies/Malsya Mandooka Mahamaham.jpg",
               "/images/Movies/Welcome Home.jpg",
               "/images/Movies/Smile!.jpg",
               "/images/Movies/Live a Little.jpg",
@@ -130,6 +107,12 @@ export default function Home() {
 
       {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
       <PlatformsSection />
+
+      {/* ==================== DIGUBI / CORPORATE VIDEO SERVICES ==================== */}
+      <CorporateVideoSection />
+
+      {/* ==================== FEATURE FILMS (COMING SOON) ==================== */}
+      <FeatureFilmsSection />
 
       {/* ==================== WHO ARE YOU SECTION ==================== */}
       <WhoAreYouSection />

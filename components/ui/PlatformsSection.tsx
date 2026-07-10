@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Film, Play, ArrowRight, Youtube, Clapperboard, Sparkles, Users, Clock, Globe, Briefcase, Video } from "lucide-react";
+import { Youtube, Star } from "lucide-react";
+import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 
 // Hand-drawn scribble paths for margins
 const scribblePaths = {
@@ -38,503 +39,157 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
     );
 }
 
-// Metric Card component
-function MetricCard({
-    number,
-    label,
-    icon: Icon,
-    dark = false,
-}: {
-    number: string;
-    label: string;
-    icon?: React.ElementType;
-    dark?: boolean;
-}) {
+// ── Channel data ──────────────────────────────────────────────
+// TODO: paste the Ennamo & Startup Musings YouTube channel URLs when available (currently "#").
+type Channel = {
+    logo: string;
+    logoClass: string;
+    name: string;
+    description: string;
+    youtube: string;
+    comingSoon?: boolean;
+    from: string;   // brand gradient start (pulled from the logo)
+    to: string;     // brand gradient end
+    delay: number;
+};
+
+const channels: Channel[] = [
+    {
+        logo: "/ennitto%20final.png",
+        logoClass: "h-16",
+        name: "Ennitto",
+        description:
+            "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
+        youtube: "https://www.youtube.com/@ennitto",
+        from: "#E11D74",
+        to: "#0FB5A6",
+        delay: 0.2,
+    },
+    {
+        logo: "/ennamo%20new.png",
+        logoClass: "h-16",
+        name: "Ennamo",
+        description:
+            "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
+        youtube: "https://www.youtube.com/channel/UCXWl6JIzlHIJCYbaCvV_VFg",
+        from: "#6D5BF0",
+        to: "#F0435A",
+        delay: 0.3,
+    },
+    {
+        logo: "/teqthots%20updated%20logo%20png.png",
+        logoClass: "h-[72px]",
+        name: "TeqThots",
+        description:
+            "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
+        youtube: "https://www.youtube.com/@TeqThots",
+        from: "#7C3AED",
+        to: "#F59E0B",
+        delay: 0.4,
+    },
+    {
+        logo: "/startup%20musings%20final.png",
+        logoClass: "h-20",
+        name: "Startup Musings",
+        description:
+            "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
+        youtube: "#",
+        comingSoon: true,
+        from: "#1E3A8A",
+        to: "#F97316",
+        delay: 0.5,
+    },
+];
+
+// Channel card — white card with brand-gradient border, ambient glow, hover lift
+function ChannelCard({ channel, isInView }: { channel: Channel; isInView: boolean }) {
+    const { from, to } = channel;
     return (
-        <div
-            className={`p-5 rounded-2xl transition-all duration-300 group ${dark
-                ? "bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/15 hover:border-white/30"
-                : "bg-white/40 backdrop-blur-sm border border-white/60 shadow-[0_4px_20px_rgba(139,92,246,0.1)] hover:shadow-[0_8px_30px_rgba(139,92,246,0.2)] hover:bg-white/60"
-                }`}
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: channel.delay }}
+            whileHover={{ y: -10 }}
+            className="group relative h-full rounded-[26px] p-[1.5px]"
+            style={{
+                background: `linear-gradient(165deg, ${from}66 0%, rgba(15,23,42,0.08) 38%, rgba(15,23,42,0.08) 62%, ${to}66 100%)`,
+                boxShadow: `0 20px 45px -20px ${from}40, 0 8px 20px -12px rgba(15,23,42,0.12)`,
+            }}
         >
-            <div className="flex items-start justify-between mb-2">
+            {/* Hover halo behind the card */}
+            <div
+                className="absolute -inset-2 rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 pointer-events-none"
+                style={{ background: `linear-gradient(135deg, ${from}38, ${to}38)` }}
+            />
+
+            <div className="relative h-full rounded-[24.5px] bg-white overflow-hidden flex flex-col items-center text-center px-6 pt-10 pb-7">
+                {/* Soft brand tint bleeding from the top */}
                 <div
-                    className={`font-serif text-4xl md:text-5xl font-black tracking-tighter transition-transform duration-300 group-hover:scale-105 ${dark
-                        ? "text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]"
-                        : "bg-gradient-to-br from-[#4C1D95] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(124,58,237,0.2)]"
-                        }`}
-                >
-                    {number}
-                </div>
-                {Icon && (
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${dark
-                        ? "bg-white/10 group-hover:bg-white/20"
-                        : "bg-gradient-to-br from-purple-100 to-purple-200 group-hover:from-purple-200 group-hover:to-pink-100 shadow-sm"
-                        }`}>
-                        <Icon size={20} className={dark ? "text-purple-300" : "text-purple-600"} strokeWidth={2.5} />
-                    </div>
-                )}
-            </div>
-            <div
-                className={`text-[13px] font-medium tracking-wide uppercase opacity-70 ${dark ? "text-gray-300" : "text-[#4C1D95]"
-                    }`}
-            >
-                {label}
-            </div>
-        </div>
-    );
-}
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-44 pointer-events-none"
+                    style={{ background: `radial-gradient(60% 100% at 50% 0%, ${from}1F 0%, transparent 70%)` }}
+                />
+                {/* Corner glow, bottom-right */}
+                <div
+                    className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity duration-500"
+                    style={{ background: `radial-gradient(circle, ${to}24 0%, transparent 65%)` }}
+                />
+                {/* Accent line along the top edge — grows on hover */}
+                <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 h-[3px] w-16 rounded-b-full group-hover:w-32 transition-all duration-500"
+                    style={{ background: `linear-gradient(90deg, ${from}, ${to})` }}
+                />
 
-// CTA Button component
-function CTAButton({
-    text,
-    variant = "primary",
-    icon,
-    href = "#",
-    target,
-    rel,
-}: {
-    text: string;
-    variant?: "youtube" | "primary" | "outline" | "dark";
-    icon?: React.ReactNode;
-    href?: string;
-    target?: string;
-    rel?: string;
-}) {
-    const styles = {
-        youtube: "bg-[#FF0000] hover:bg-[#CC0000] text-white",
-        primary: "bg-[#7C3AED] hover:bg-[#6D28D9] text-white",
-        outline: "bg-transparent border-2 border-white text-white hover:bg-white/10",
-        dark: "bg-[#1F2937] hover:bg-[#374151] text-white",
-    };
-
-    return (
-        <motion.a
-            href={href}
-            target={target}
-            rel={rel}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-colors ${styles[variant]}`}
-        >
-            {icon}
-            {text}
-        </motion.a>
-    );
-}
-
-// Card 1: Ennitto Malayalam
-function EnnittoMalayalamCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%)",
-                boxShadow: "0 8px 30px rgba(139, 92, 246, 0.25)"
-            }}
-        >
-            {/* Grid overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-                                     linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-
-            <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-                {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col justify-between">
+                <div className="relative z-10 flex flex-col items-center h-full w-full">
                     {/* Logo */}
-                    <div>
+                    <div className="mb-5 flex items-center justify-center transition-transform duration-500 group-hover:scale-105" style={{ minHeight: "76px" }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/logos/ennitto-film-studios-logo.png"
-                            alt="Ennitto"
-                            className="w-full max-w-[260px] h-auto object-contain"
-                        />
+                        <img src={channel.logo} alt={channel.name} loading="lazy" decoding="async" className={`${channel.logoClass} w-auto object-contain drop-shadow-sm`} />
                     </div>
 
-                    {/* Metrics + Description */}
-                    <div>
-                        {/* Metrics Grid - 2x2 */}
-                        <div className="grid grid-cols-2 gap-3 mb-4">
-                            <MetricCard number="2.5M+" label="Views on YouTube" icon={Youtube} />
-                            <MetricCard number="17+" label="Short Films" icon={Film} />
-                            <MetricCard number="40+" label="Artists Discovered" icon={Users} />
-                            <MetricCard number="4000+" label="Watch Hours" icon={Clock} />
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px]">
-                            We produce original Malayalam and Tamil films, from shorts to features to OTT content. We discover talent across both languages and build toward theatrical and streaming releases.
-                        </p>
+                    {/* Brand-gradient divider */}
+                    <div className="flex items-center gap-1.5 mb-5">
+                        <span className="h-1 w-1 rounded-full" style={{ background: from }} />
+                        <span className="h-[3px] w-10 rounded-full" style={{ background: `linear-gradient(90deg, ${from}, ${to})` }} />
+                        <span className="h-1 w-1 rounded-full" style={{ background: to }} />
                     </div>
 
-                    {/* CTA Button - Only YouTube */}
-                    <div className="flex flex-wrap gap-3">
-                        <CTAButton
-                            text="Visit Website"
-                            variant="primary"
-                            icon={<Globe size={18} />}
-                            href="https://www.ennitto.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        />
-                    </div>
-                </div>
+                    {/* Description */}
+                    <p className="text-gray-600 text-[14px] leading-relaxed mb-6">
+                        {channel.description}
+                    </p>
 
-                {/* Right Column (40%) - Film Photo Collage */}
-                <div className="lg:w-[40%] flex flex-col gap-2">
-                    {/* Top: full-width hero film */}
-                    <div className="relative rounded-2xl overflow-hidden" style={{ height: "160px" }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/images/Movies/Vishudha%20Sakshi.jpg"
-                            alt="Vishudha Sakshi"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                        <span className="absolute bottom-2 left-3 text-white text-[11px] font-bold drop-shadow">Vishudha Sakshi</span>
-                    </div>
-
-                    {/* Middle: two side-by-side */}
-                    <div className="grid grid-cols-2 gap-2">
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "110px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src="/images/Movies/ADS-369%20Part%202.jpg"
-                                alt="ADS-369 Part 2"
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">ADS-369<br/>Part 2</span>
-                        </div>
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "110px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src="/images/Movies/Pazhampori.jpg"
-                                alt="Pazhampori"
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow">Pazhampori</span>
-                        </div>
-                    </div>
-
-                    {/* Bottom: feature film with views overlay */}
-                    <div className="relative rounded-2xl overflow-hidden flex-1" style={{ minHeight: "120px" }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/images/Movies/ADS-369%20Part%201.jpg"
-                            alt="ADS-369 Part 1"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                            <span className="text-white text-[10px] font-bold drop-shadow leading-tight">ADS-369 Part 1</span>
-                            <span className="text-white text-lg font-black drop-shadow leading-none">2.5M+<br/><span className="text-[9px] font-medium opacity-80">Views</span></span>
-                        </div>
-                    </div>
-
-                    {/* Language badges */}
-                    <div className="rounded-2xl px-4 py-3 bg-white/40 border border-white/60 flex items-center gap-2 flex-wrap">
-                        {["Malayalam", "Tamil", "English"].map((lang) => (
-                            <span key={lang} className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "#E9D5FF", color: "#6D28D9" }}>
-                                {lang}
+                    {/* YouTube button (or Coming soon) pinned to bottom */}
+                    <div className="mt-auto flex justify-center w-full">
+                        {channel.comingSoon ? (
+                            <span
+                                className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm"
+                                style={{
+                                    color: from,
+                                    background: `linear-gradient(90deg, ${from}14, ${to}14)`,
+                                    border: `1.5px solid ${from}40`,
+                                }}
+                            >
+                                Coming soon
                             </span>
-                        ))}
-                        <span className="text-[11px] text-gray-500 ml-auto">OTT & Theatrical</span>
+                        ) : (
+                            <motion.a
+                                href={channel.youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.04 }}
+                                whileTap={{ scale: 0.96 }}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-full font-semibold text-sm text-white transition-shadow duration-300"
+                                style={{
+                                    background: "linear-gradient(180deg, #FF1F1F 0%, #E60000 100%)",
+                                    boxShadow: "0 10px 24px -8px rgba(230,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.25)",
+                                }}
+                            >
+                                <Youtube size={18} />
+                                YouTube
+                            </motion.a>
+                        )}
                     </div>
                 </div>
-            </div>
-        </motion.div>
-    );
-}
-
-// Card 2: TeqThots (Light Purplish Pink)
-function TeqThotsCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative rounded-3xl p-8 md:p-12 min-h-[500px] overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #FCE7F3 0%, #FDE2E4 100%)",
-                boxShadow: "0 4px 20px rgba(236, 72, 153, 0.15)",
-            }}
-        >
-            <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-                {/* Left Column (60%) */}
-                <div className="lg:w-[60%] flex flex-col justify-between">
-                    {/* Logo */}
-                    <div>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/logos/digubi-logo.png"
-                            alt="Digubi"
-                            className="w-full max-w-[280px] h-auto object-contain"
-                        />
-                    </div>
-
-                    {/* Metrics + Description */}
-                    <div>
-                        {/* Metrics Grid - 2x2 */}
-                        <div className="grid grid-cols-2 gap-3 mb-4">
-                            <MetricCard number="1M+" label="Audience Reached" icon={Globe} />
-                            <MetricCard number="5+" label="Brand Collaborations" icon={Briefcase} />
-                            <MetricCard number="10+" label="Videos Created" icon={Video} />
-                            <MetricCard number="500K+" label="Total Views" icon={Youtube} />
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-gray-700 text-[15px] leading-relaxed max-w-[500px]">
-                            We create brand storytelling content - founder interviews, product explainers, and formats that build trust. Not ads. Real stories that integrate brands naturally into narratives people want to watch.
-                        </p>
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="flex flex-wrap gap-3">
-                        <CTAButton
-                            text="Visit Website"
-                            variant="primary"
-                            icon={<Globe size={18} />}
-                            href="https://www.teqthots.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        />
-                    </div>
-                </div>
-
-                {/* Right Column (40%) - Photo Collage */}
-                <div className="lg:w-[40%] flex flex-col gap-2">
-                    {/* 3×2 photo grid */}
-                    <div className="grid grid-cols-2 gap-2">
-                        {/* Row 1 */}
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/NEVER.jpg" alt="Never Have I Ever" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">Never Have I Ever</span>
-                        </div>
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/1/Image%20(16).jpg" alt="Team Session" className="w-full h-full object-cover" />
-                        </div>
-
-                        {/* Row 2 */}
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/1/shared%20image%20(6).jpg" alt="Piqual Collab" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <span className="absolute bottom-2 left-2 text-white text-[10px] font-bold drop-shadow leading-tight">Inside Piqual</span>
-                        </div>
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/1/Image%20(17).jpg" alt="Team Outdoor" className="w-full h-full object-cover" />
-                        </div>
-
-                        {/* Row 3 */}
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/1/Untitled-2.jpg" alt="Team Indoor" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="relative rounded-2xl overflow-hidden" style={{ height: "155px" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/1/thumbnail.jpg" alt="Content Creation" className="w-full h-full object-cover" />
-                        </div>
-                    </div>
-
-                    {/* Brand logos panel */}
-                    <div className="rounded-2xl p-4 bg-white/60 border border-white/80 backdrop-blur-sm">
-                        <div className="grid grid-cols-4 gap-x-4 gap-y-3 items-center">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/loglos/hael.png" alt="Hxeal" className="h-5 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeia" className="h-5 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/digubi-logo.png" alt="Digubi" className="h-4 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/loglos/piqual.png" alt="Piqual" className="h-5 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" className="h-5 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/aventei.png" alt="Aventei Capital" className="h-5 w-full object-contain" />
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/logos/loglos/Nuivio.png" alt="Nuvio" className="h-5 w-full object-contain" />
-                            <span className="text-[11px] font-black text-gray-600 text-center tracking-tight">XIME</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-// Card 3: Feature Films - Coming Soon
-function FeatureFilmsCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="relative rounded-3xl overflow-hidden"
-            style={{
-                background: "linear-gradient(135deg, #0f0225 0%, #1a0533 30%, #2d1059 60%, #1a0533 100%)",
-                boxShadow: "0 8px 40px rgba(76, 29, 149, 0.5)",
-            }}
-        >
-            {/* Animated gradient blobs */}
-            <div className="absolute inset-0 overflow-hidden">
-                <motion.div
-                    className="absolute -top-20 -right-20 w-80 h-80 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%)" }}
-                    animate={{ scale: [1, 1.2, 1], x: [0, 20, 0], y: [0, -10, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%)" }}
-                    animate={{ scale: [1, 1.3, 1], x: [0, -15, 0], y: [0, 15, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                />
-                <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(251,191,36,0.1), transparent 70%)" }}
-                    animate={{ scale: [1, 1.4, 1] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                />
-            </div>
-
-            {/* Dot grid texture */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    opacity: 0.08,
-                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
-                    backgroundSize: "24px 24px",
-                }}
-            />
-
-            {/* Film strip borders */}
-            <div className="absolute top-0 left-0 right-0 h-10 flex overflow-hidden opacity-10">
-                {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={`top-${i}`} className="flex-shrink-0 w-12 h-10 border border-white/30 mx-0.5 rounded-sm" />
-                ))}
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-10 flex overflow-hidden opacity-10">
-                {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={`bot-${i}`} className="flex-shrink-0 w-12 h-10 border border-white/30 mx-0.5 rounded-sm" />
-                ))}
-            </div>
-
-            {/* Floating sparkles */}
-            {[
-                { top: "15%", left: "10%", delay: 0, size: 16 },
-                { top: "20%", right: "15%", delay: 1, size: 20 },
-                { bottom: "25%", left: "20%", delay: 0.5, size: 14 },
-                { bottom: "20%", right: "10%", delay: 1.5, size: 18 },
-                { top: "40%", left: "5%", delay: 2, size: 12 },
-                { top: "35%", right: "8%", delay: 0.8, size: 16 },
-            ].map((pos, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{ top: pos.top, left: pos.left, right: pos.right, bottom: pos.bottom }}
-                    animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.8, 0.3], rotate: [0, 180, 360] }}
-                    transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: pos.delay }}
-                >
-                    <Sparkles size={pos.size} className="text-yellow-400/60" />
-                </motion.div>
-            ))}
-
-            {/* Content */}
-            <div className="relative z-10 py-16 md:py-24 px-8 md:px-16 text-center flex flex-col items-center">
-                {/* "Coming Soon" label on top */}
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.6 }}
-                    className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 border border-yellow-400/30"
-                    style={{ background: "linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.1))" }}
-                >
-                    <motion.div
-                        animate={{ rotate: [0, 15, -15, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    >
-                        <Clapperboard size={16} className="text-yellow-400" />
-                    </motion.div>
-                    <span className="text-sm font-bold text-yellow-300 tracking-wider uppercase">Coming Soon</span>
-                </motion.div>
-
-                {/* Main heading: "Feature Films" */}
-                <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.7, duration: 0.6 }}
-                    className="mb-6 tracking-tight leading-[1.05] pb-2"
-                    style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
-                        fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                        fontWeight: 900,
-                        background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 25%, #FB923C 50%, #FACC15 75%, #FDE68A 100%)",
-                        backgroundSize: "200% 200%",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                        overflow: "visible",
-                    }}
-                >
-                    Feature Films
-                </motion.h3>
-
-                {/* Decorative line */}
-                <motion.div
-                    className="mb-8 flex items-center gap-3"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-                    transition={{ delay: 0.9, duration: 0.5 }}
-                >
-                    <div className="w-16 h-[2px] bg-gradient-to-r from-transparent to-purple-400" />
-                    <Film size={20} className="text-purple-400" />
-                    <div className="w-16 h-[2px] bg-gradient-to-l from-transparent to-purple-400" />
-                </motion.div>
-
-                {/* Description */}
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 1, duration: 0.5 }}
-                    className="text-purple-200/70 text-lg leading-relaxed max-w-lg mx-auto mb-10 font-sans"
-                >
-                    We are building a slate of feature-length films for theatrical and OTT releases. From regional stories to global screens.
-                </motion.p>
-
-                {/* Animated countdown-style badges */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 1.1 }}
-                    className="flex flex-wrap justify-center gap-4"
-                >
-                    {["Tamil", "Malayalam", "English"].map((lang, i) => (
-                        <motion.span
-                            key={lang}
-                            className="px-5 py-2 rounded-full border border-white/15 bg-white/5 text-white/70 text-sm font-medium font-sans backdrop-blur-sm"
-                            whileHover={{ scale: 1.05, borderColor: "rgba(251,191,36,0.4)" }}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ delay: 1.2 + i * 0.1 }}
-                        >
-                            {lang}
-                        </motion.span>
-                    ))}
-                </motion.div>
             </div>
         </motion.div>
     );
@@ -548,16 +203,29 @@ export function PlatformsSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white py-20 md:py-24 overflow-hidden"
+            id="channels"
+            className="relative bg-white py-20 md:py-24 overflow-hidden scroll-mt-24"
             style={{ paddingTop: "100px", paddingBottom: "80px" }}
         >
+            <SectionDownArrow />
+
             {/* Subtle grid background */}
             <div
-                className="absolute inset-0 opacity-[0.02]"
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
                 style={{
-                    backgroundImage: `linear-gradient(#8B5CF6 1px, transparent 1px),
-                                     linear-gradient(90deg, #8B5CF6 1px, transparent 1px)`,
-                    backgroundSize: "50px 50px",
+                    backgroundImage: `linear-gradient(#4C1D95 1px, transparent 1px),
+                                     linear-gradient(90deg, #4C1D95 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
+                }}
+            />
+
+            {/* Soft ambient color wash so the white cards lift off the page */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: `radial-gradient(45% 40% at 18% 35%, rgba(139,92,246,0.07), transparent 70%),
+                                 radial-gradient(45% 40% at 82% 65%, rgba(236,72,153,0.06), transparent 70%),
+                                 radial-gradient(40% 35% at 50% 90%, rgba(245,158,11,0.05), transparent 70%)`,
                 }}
             />
 
@@ -595,20 +263,40 @@ export function PlatformsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="flex flex-col items-center text-center mb-12 px-6 md:px-4"
             >
+                {/* Badge — same style as the Track Record section */}
+                <div
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+                    style={{ background: "#E9D5FF" }}
+                >
+                    <span className="text-xs font-bold" style={{ color: "#4C1D95", letterSpacing: "1px" }}>
+                        Now Streaming
+                    </span>
+                    <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={14} fill="#F59E0B" stroke="#F59E0B" />
+                        ))}
+                    </div>
+                </div>
+
                 <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2D2D2D] tracking-wide">
-                    Our Platforms
+                    Our Channels
                 </h2>
+                <p className="mt-4 text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl">
+                    Original Tamil &amp; Malayalam short films and founder-led documentaries — homegrown channels
+                    building an audience on the way to feature films.
+                </p>
             </motion.div>
 
-            {/* Cards container - Now 4 cards */}
-            <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col gap-10">
-                <EnnittoMalayalamCard isInView={isInView} />
-                <TeqThotsCard isInView={isInView} />
-                <FeatureFilmsCard isInView={isInView} />
+            {/* Four channels side by side */}
+            <div className="max-w-[1320px] mx-auto px-6 md:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+                    {channels.map((channel) => (
+                        <ChannelCard key={channel.name} channel={channel} isInView={isInView} />
+                    ))}
+                </div>
             </div>
         </section>
     );
 }
-

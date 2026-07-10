@@ -128,11 +128,19 @@
   -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 40%, transparent 90%);
 }
 
+/* Pause CSS animations on offscreen sections (set via IntersectionObserver) */
+.anim-paused,
+.anim-paused * {
+  animation-play-state: paused !important;
+}
+
 /* ---------- Base Styles ---------- */
 * {
   box-sizing: border-box;
 }
 
+/* Keep native scrolling: `smooth` here makes wheel/keyboard scrolling feel
+   delayed and rubber-banded in some browsers. Never set it globally. */
 html {
   scroll-behavior: auto;
 }
@@ -382,9 +390,9 @@ h3 {
   /* Overlap to prevent gap */
 }
 
-/* Font Handwriting */
+/* Font Handwriting — Caveat is loaded via next/font in layout.tsx */
 .font-handwriting {
-  font-family: 'Nanum Pen Script', cursive;
+  font-family: var(--font-caveat), 'Segoe Script', cursive;
 }
 
 .wave-divider svg {

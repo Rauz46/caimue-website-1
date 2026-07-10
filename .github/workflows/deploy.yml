@@ -58,5 +58,17 @@ jobs:
       - name: Build
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
+      # --archive=tgz uploads one tarball instead of thousands of files,
+      # keeping us under the free-plan limit of 5000 uploaded files / 24h
+      # (error code "api-upload-free"). Retries cover transient failures.
       - name: Deploy to Vercel (preview)
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          for i in 1 2 3; do
+            if vercel deploy --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }}; then
+              exit 0
+            fi
+            echo "Deploy attempt $i failed; waiting 90s before retry..."
+            sleep 90
+          done
+          echo "All deploy attempts failed."
+          exit 1

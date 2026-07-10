@@ -46,7 +46,7 @@ export default function PlatformsPage() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="label text-[var(--caimue-purple)] mb-6 block"
                     >
-                        Our Platforms
+                        Our Channels
                     </motion.span>
 
                     <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
