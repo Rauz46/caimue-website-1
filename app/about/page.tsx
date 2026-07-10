@@ -75,11 +75,10 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
         boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
-      className="group relative cursor-default select-none bg-white"
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
-        marginTop: index % 4 === 1 || index % 4 === 3 ? "28px" : "0px",
         zIndex: 1,
       }}
     >
@@ -217,8 +216,8 @@ export default function AboutPage() {
           }}
         />
 
-        {/* Floating handwritten doodles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating handwritten doodles — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-12 left-[8%] text-purple-400/25 text-5xl font-handwriting -rotate-12">ideas!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -311,8 +310,8 @@ export default function AboutPage() {
           }}
         />
 
-        {/* Floating doodles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating doodles — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-16 left-[6%] text-purple-300/20 text-5xl font-handwriting -rotate-12">team!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -358,7 +357,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Polaroid grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6 max-w-5xl mx-auto" style={{ paddingBottom: "28px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 md:gap-6 max-w-5xl mx-auto" style={{ paddingBottom: "28px" }}>
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
