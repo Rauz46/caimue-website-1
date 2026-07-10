@@ -67,8 +67,21 @@ export const BackgroundGradientAnimation = ({
         document.body.style.setProperty("--blending-value", blendingValue);
     }, [gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
 
+    // Pause all animation work while the section is offscreen
+    const [inView, setInView] = useState(true);
     useEffect(() => {
-        if (!interactive) return;
+        const el = containerRef.current;
+        if (!el || typeof IntersectionObserver === "undefined") return;
+        const io = new IntersectionObserver(
+            ([entry]) => setInView(entry.isIntersecting),
+            { rootMargin: "120px" }
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!interactive || !inView) return;
 
         let animationFrame: number;
 
@@ -96,7 +109,7 @@ export const BackgroundGradientAnimation = ({
         return () => {
             cancelAnimationFrame(animationFrame);
         };
-    }, [interactive, autoMove]);
+    }, [interactive, autoMove, inView]);
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
         if (autoMove) return; // movement is autonomous; ignore the cursor
@@ -121,29 +134,12 @@ export const BackgroundGradientAnimation = ({
                 containerClassName
             )}
         >
-            <svg className="hidden">
-                <defs>
-                    <filter id="blurMe">
-                        <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="10"
-                            result="blur"
-                        />
-                        <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                            result="goo"
-                        />
-                        <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                </defs>
-            </svg>
             <div className={cn("", className)}>{children}</div>
             <div
                 className={cn(
-                    "gradients-container h-full w-full blur-lg",
-                    isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+                    "gradients-container h-full w-full",
+                    isSafari ? "blur-2xl" : "blur-[40px]",
+                    !inView && "anim-paused"
                 )}
                 style={(() => {
                     // Custom mask wins; otherwise maskCenter keeps the moving

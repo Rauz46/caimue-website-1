@@ -53,25 +53,6 @@ export function FeatureFilmsSection() {
             <div className="absolute -top-20 right-1/4 w-72 h-72 bg-purple-300/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute -bottom-24 left-1/4 w-72 h-72 bg-pink-300/20 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* Faint tint from the active still so the section subtly shifts color with the reel */}
-            <AnimatePresence>
-                <motion.div
-                    key={activeStill.src}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.08 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.4, ease: "easeInOut" }}
-                    className="absolute inset-0 pointer-events-none hidden md:block"
-                    style={{
-                        backgroundImage: `url(${activeStill.src.replace(/ /g, "%20")})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center 30%",
-                        filter: "blur(80px) saturate(1.5)",
-                        transform: "scale(1.3)",
-                    }}
-                />
-            </AnimatePresence>
-
             {/* ── Header ── */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -300,7 +281,7 @@ export function FeatureFilmsSection() {
                     --cf-gap: 260px;
                     --cf-depth: 210px;
                     position: relative;
-                    height: calc(var(--cf-w) * 9 / 16 + 90px);
+                    height: calc(var(--cf-w) * 9 / 16 + 60px);
                     perspective: 1500px;
                     transform-style: preserve-3d;
                 }
@@ -318,10 +299,9 @@ export function FeatureFilmsSection() {
                     transition:
                         transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                         opacity 0.8s ease,
-                        filter 0.8s ease,
-                        box-shadow 0.8s ease;
+                        filter 0.8s ease;
                     box-shadow: 0 24px 48px rgba(76, 29, 149, 0.22);
-                    -webkit-box-reflect: below 6px linear-gradient(transparent 72%, rgba(255, 255, 255, 0.35));
+                    will-change: transform;
                 }
                 .cf-card--center {
                     border-color: rgba(147, 51, 234, 0.35);
@@ -352,7 +332,7 @@ export function FeatureFilmsSection() {
                         --cf-gap: 150px;
                         --cf-depth: 140px;
                         perspective: 1000px;
-                        height: calc(var(--cf-w) * 9 / 16 + 70px);
+                        height: calc(var(--cf-w) * 9 / 16 + 50px);
                     }
                 }
                 @media (prefers-reduced-motion: reduce) {

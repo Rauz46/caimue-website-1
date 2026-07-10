@@ -30,23 +30,11 @@ export default function MovieCardsFan({ images = [] }: { images?: string[] }) {
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = stage.getBoundingClientRect();
-      mouseRef.current = {
-        x: (e.clientX - rect.left - rect.width / 2) / (rect.width / 2),
-        y: (e.clientY - rect.top - rect.height / 2) / (rect.height / 2),
-      };
-    };
-
-    const onLeave = () => {
-      mouseRef.current = { x: 0, y: 0 };
-    };
-
-    window.addEventListener("mousemove", onMove);
-    stage.addEventListener("mouseleave", onLeave);
+    // Parallax is pointless (and costly) on touch devices
+    if (typeof window.matchMedia === "function" && !window.matchMedia("(pointer: fine)").matches) return;
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    let running = false;
 
     const tick = () => {
       targetRef.current.x = lerp(targetRef.current.x, mouseRef.current.x, 0.06);
@@ -65,10 +53,41 @@ export default function MovieCardsFan({ images = [] }: { images?: string[] }) {
         card.style.setProperty("--pr", `${cfg.rotate + pr}deg`);
       });
 
+      // Stop the loop once the ease has settled — restarts on the next mousemove
+      const settled =
+        Math.abs(targetRef.current.x - mouseRef.current.x) < 0.001 &&
+        Math.abs(targetRef.current.y - mouseRef.current.y) < 0.001;
+      if (settled) {
+        running = false;
+        return;
+      }
       frameRef.current = requestAnimationFrame(tick);
     };
 
-    frameRef.current = requestAnimationFrame(tick);
+    const startLoop = () => {
+      if (running) return;
+      running = true;
+      frameRef.current = requestAnimationFrame(tick);
+    };
+
+    const onMove = (e: MouseEvent) => {
+      const rect = stage.getBoundingClientRect();
+      // Ignore movement while the fan is offscreen
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      mouseRef.current = {
+        x: (e.clientX - rect.left - rect.width / 2) / (rect.width / 2),
+        y: (e.clientY - rect.top - rect.height / 2) / (rect.height / 2),
+      };
+      startLoop();
+    };
+
+    const onLeave = () => {
+      mouseRef.current = { x: 0, y: 0 };
+      startLoop();
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    stage.addEventListener("mouseleave", onLeave);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -195,8 +214,8 @@ export default function MovieCardsFan({ images = [] }: { images?: string[] }) {
         }
 
         @keyframes fanFloat {
-          0%, 100% { margin-top: 0; }
-          50%       { margin-top: -12px; }
+          0%, 100% { translate: 0 0; }
+          50%       { translate: 0 -12px; }
         }
 
         @keyframes cardEntry {

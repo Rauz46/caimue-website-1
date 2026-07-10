@@ -121,17 +121,17 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         </h4>
         {/* Role — quiet pill, normal case */}
         <span
-          className="inline-block text-[11px] font-semibold tracking-wide px-2.5 py-[3px] mb-2.5 rounded-full"
+          className="inline-block text-[12.5px] font-bold tracking-wide px-3 py-1 mb-2.5 rounded-full"
           style={{ background: `${person.color}14`, color: person.color, border: `1px solid ${person.color}30` }}
         >
           {person.role}
         </span>
         {/* Bio */}
-        <p className="text-[12px] leading-relaxed font-sans italic text-gray-500 mb-2">
+        <p className="text-[13.5px] leading-relaxed font-sans italic text-gray-600 mb-2">
           "{person.bio}"
         </p>
         {/* Fun fact — handwritten margin note */}
-        <p className="font-handwriting text-[13px] leading-snug mb-2.5 -rotate-1"
+        <p className="font-handwriting text-[17px] font-bold leading-snug mb-2.5 -rotate-1"
           style={{ color: person.color }}>
           ✦ {person.fun}
         </p>
@@ -139,7 +139,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         <div className="flex flex-wrap gap-1.5">
           {person.tags.map((tag) => (
             <span key={tag}
-              className="text-[10px] font-semibold px-2 py-[2px] rounded-full bg-gray-100 text-gray-500">
+              className="text-[11px] font-semibold px-2.5 py-[3px] rounded-full bg-gray-100 text-gray-600">
               {tag}
             </span>
           ))}
