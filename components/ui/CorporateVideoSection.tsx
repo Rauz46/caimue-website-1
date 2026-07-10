@@ -170,7 +170,7 @@ export function CorporateVideoSection() {
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
                                 whileHover={{ y: -8 }}
-                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-5 pt-5 pb-4 overflow-hidden transition-shadow duration-300"
+                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-6 pt-7 pb-6 overflow-hidden transition-shadow duration-300"
                                 style={{ boxShadow: "0 8px 30px rgba(75, 29, 149, 0.10)" }}
                             >
                                 {/* Gradient accent bar along the top */}
@@ -184,21 +184,21 @@ export function CorporateVideoSection() {
                                     style={{ background: from }}
                                 />
                                 {/* Icon inline with the title */}
-                                <div className="relative flex items-center justify-center gap-2.5 mb-1.5">
+                                <div className="relative flex items-center justify-center gap-3 mb-3">
                                     <span
                                         className="flex items-center justify-center rounded-xl shrink-0"
                                         style={{
-                                            width: 34,
-                                            height: 34,
+                                            width: 40,
+                                            height: 40,
                                             background: `linear-gradient(135deg, ${from}, ${to})`,
                                             boxShadow: `0 8px 18px -8px ${from}80`,
                                         }}
                                     >
-                                        <Icon size={17} className="text-white" />
+                                        <Icon size={20} className="text-white" />
                                     </span>
-                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[16px]! mb-0!">{label}</h3>
+                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[17px]! mb-0!">{label}</h3>
                                 </div>
-                                <p className="text-gray-500 text-[13.5px] leading-relaxed max-w-[250px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
+                                <p className="text-gray-500 text-[14px] leading-relaxed max-w-[260px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
                             </motion.div>
                         ))}
                     </div>
