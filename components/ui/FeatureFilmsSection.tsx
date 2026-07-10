@@ -299,14 +299,6 @@ export function FeatureFilmsSection() {
                     from { width: 0%; }
                     to   { width: 100%; }
                 }
-                .cf-ticker {
-                    display: inline-flex;
-                    animation: cfTicker 40s linear infinite;
-                }
-                @keyframes cfTicker {
-                    from { transform: translateX(0); }
-                    to   { transform: translateX(-50%); }
-                }
                 @media (max-width: 768px) {
                     .cf-stage {
                         --cf-w: 260px;
@@ -317,7 +309,6 @@ export function FeatureFilmsSection() {
                     }
                 }
                 @media (prefers-reduced-motion: reduce) {
-                    .cf-ticker { animation: none; }
                     .cf-card { transition-duration: 0.01s; }
                 }
             `}</style>
