@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
-import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const playfair = Playfair_Display({
@@ -60,12 +59,10 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${jakarta.variable} ${caveat.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
-          <SmoothScroll>
-            <GrainOverlay />
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </SmoothScroll>
+          <GrainOverlay />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

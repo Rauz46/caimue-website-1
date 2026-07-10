@@ -139,14 +139,10 @@
   box-sizing: border-box;
 }
 
+/* Keep native scrolling: `smooth` here makes wheel/keyboard scrolling feel
+   delayed and rubber-banded in some browsers. Never set it globally. */
 html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  scroll-behavior: auto;
 }
 
 body {
