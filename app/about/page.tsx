@@ -111,8 +111,8 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         </div>
       </div>
 
-      {/* Polaroid caption — white area */}
-      <div className="px-3 pt-3 pb-3">
+      {/* Polaroid caption — centered on mobile, left on larger screens */}
+      <div className="px-3 pt-3 pb-3 text-center sm:text-left">
         {/* Name — big and bold */}
         <h4 className="font-serif font-black text-gray-900 leading-tight mb-1.5"
           style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
@@ -165,11 +165,13 @@ export default function AboutPage() {
         <HeroGrid className="opacity-40 z-10" />
         <div className="bg-noise opacity-10 z-10" />
 
-        {/* Decorative scribbles,same as homepage */}
-        <FloatingScribbles />
+        {/* Decorative scribbles,same as homepage — desktop only */}
+        <div className="hidden md:contents">
+          <FloatingScribbles />
+        </div>
 
-        {/* Decorative Stars */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        {/* Decorative Stars — desktop only */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
           <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">✦</div>
           <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">★</div>
           <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
@@ -248,6 +250,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="text-center md:text-left"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5 font-serif">
                 Our{" "}
