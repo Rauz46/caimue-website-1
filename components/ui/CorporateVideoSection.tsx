@@ -38,7 +38,7 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[72px] overflow-hidden"
+            className="relative py-24 md:py-32 overflow-hidden"
             style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
         >
             <SectionDownArrow />
@@ -123,7 +123,7 @@ export function CorporateVideoSection() {
 
                     {/* Digubi logo in a soft halo of rotating dashed ring */}
                     <motion.div
-                        className="relative mb-8"
+                        className="relative mb-10"
                         animate={{ y: [0, -8, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     >
@@ -155,14 +155,14 @@ export function CorporateVideoSection() {
                         />
                     </motion.div>
 
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-10">
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-12 md:mb-14">
                         Under <span className="font-semibold text-[#4C1D95]">Digubi</span>, we help companies show up
                         online — corporate films, founder stories, social campaigns and marketing sites that make
                         brands impossible to scroll past.
                     </p>
 
                     {/* Service cards — white, centered, gradient accents */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
                         {services.map(({ icon: Icon, label, description, from, to }, i) => (
                             <motion.div
                                 key={label}
@@ -170,7 +170,7 @@ export function CorporateVideoSection() {
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
                                 whileHover={{ y: -8 }}
-                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-6 pt-7 pb-6 overflow-hidden transition-shadow duration-300"
+                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-5 pt-8 pb-7 overflow-hidden transition-shadow duration-300"
                                 style={{ boxShadow: "0 8px 30px rgba(75, 29, 149, 0.10)" }}
                             >
                                 {/* Gradient accent bar along the top */}
@@ -184,7 +184,7 @@ export function CorporateVideoSection() {
                                     style={{ background: from }}
                                 />
                                 {/* Icon inline with the title */}
-                                <div className="relative flex items-center justify-center gap-3 mb-3">
+                                <div className="relative flex items-center justify-center gap-2.5 mb-3">
                                     <span
                                         className="flex items-center justify-center rounded-xl shrink-0"
                                         style={{
@@ -196,7 +196,7 @@ export function CorporateVideoSection() {
                                     >
                                         <Icon size={20} className="text-white" />
                                     </span>
-                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[17px]! mb-0! text-center leading-snug! [text-wrap:balance]">{label}</h3>
+                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[15px]! mb-0! text-center leading-snug! lg:whitespace-nowrap">{label}</h3>
                                 </div>
                                 <p className="text-gray-500 text-[14px] leading-relaxed max-w-[260px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
                             </motion.div>
