@@ -92,13 +92,13 @@ export function Navbar() {
                         transition={{ duration: 0.2 }}
                         className="fixed top-[72px] left-0 right-0 z-40 bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-lg md:hidden"
                     >
-                        <div className="container py-4 flex flex-col gap-1">
+                        <div className="container pt-6 pb-8 flex flex-col gap-3">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="block py-3 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                                    className="block py-3.5 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
                                 >
                                     {link.label}
                                 </Link>
@@ -106,7 +106,7 @@ export function Navbar() {
                             <Link
                                 href="/contact"
                                 onClick={() => setMobileOpen(false)}
-                                className="block py-3 px-4 mt-1 rounded-full text-[16px] font-semibold text-white bg-[var(--caimue-purple)] hover:opacity-90 transition-opacity text-center"
+                                className="block py-3.5 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
                             >
                                 Contact
                             </Link>

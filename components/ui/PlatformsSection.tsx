@@ -263,7 +263,7 @@ export function PlatformsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="flex flex-col items-center text-center mb-12"
+                className="flex flex-col items-center text-center mb-12 px-6 md:px-4"
             >
                 {/* Badge — same style as the Track Record section */}
                 <div
@@ -290,7 +290,7 @@ export function PlatformsSection() {
             </motion.div>
 
             {/* Four channels side by side */}
-            <div className="max-w-[1320px] mx-auto px-4 md:px-8">
+            <div className="max-w-[1320px] mx-auto px-6 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
                     {channels.map((channel) => (
                         <ChannelCard key={channel.name} channel={channel} isInView={isInView} />

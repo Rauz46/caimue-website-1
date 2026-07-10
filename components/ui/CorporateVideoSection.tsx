@@ -96,7 +96,7 @@ export function CorporateVideoSection() {
                 aria-hidden
             />
 
-            <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
+            <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -199,7 +199,7 @@ export function CorporateVideoSection() {
                                     <Icon size={24} className="text-white" />
                                 </div>
                                 <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[16px]! mb-1.5">{label}</h3>
-                                <p className="text-gray-500 text-[13.5px] leading-relaxed">{description}</p>
+                                <p className="text-gray-500 text-[13.5px] leading-relaxed max-w-[250px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
                             </motion.div>
                         ))}
                     </div>
