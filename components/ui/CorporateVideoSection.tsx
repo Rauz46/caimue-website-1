@@ -196,7 +196,7 @@ export function CorporateVideoSection() {
                                     >
                                         <Icon size={20} className="text-white" />
                                     </span>
-                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[17px]! mb-0!">{label}</h3>
+                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[17px]! mb-0! text-center leading-snug! [text-wrap:balance]">{label}</h3>
                                 </div>
                                 <p className="text-gray-500 text-[14px] leading-relaxed max-w-[260px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
                             </motion.div>

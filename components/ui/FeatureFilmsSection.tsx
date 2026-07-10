@@ -256,25 +256,6 @@ export function FeatureFilmsSection() {
                 </div>
             </motion.div>
 
-            {/* ── Scrolling ticker ── */}
-            <div className="relative z-10 mt-8 md:mt-10 border-t border-purple-100 bg-purple-50/70 overflow-hidden py-3">
-                <div className="cf-ticker whitespace-nowrap text-[12px] md:text-[13px] font-semibold tracking-[0.3em] uppercase text-[#7C3AED]/60">
-                    {[0, 1].map((copy) => (
-                        <span key={copy} aria-hidden={copy === 1}>
-                            {Array.from({ length: 4 }).map((_, i) => (
-                                <span key={i}>
-                                    Feature Films <span className="text-pink-500/70 mx-3">✦</span>
-                                    Coming Soon <span className="text-purple-500/70 mx-3">✦</span>
-                                    Tamil <span className="text-pink-500/70 mx-3">✦</span>
-                                    Malayalam <span className="text-purple-500/70 mx-3">✦</span>
-                                    English <span className="text-pink-500/70 mx-3">✦</span>
-                                </span>
-                            ))}
-                        </span>
-                    ))}
-                </div>
-            </div>
-
             <style>{`
                 .cf-stage {
                     --cf-w: 460px;
