@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Video, Share2, Globe } from "lucide-react";
+import { Video, Linkedin, Globe } from "lucide-react";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
@@ -15,8 +15,8 @@ const services = [
         to: "#F97316",
     },
     {
-        icon: Share2,
-        label: "Social Media Campaigns",
+        icon: Linkedin,
+        label: "LinkedIn Media Campaigns",
         description: "Content engines that keep your brand in every feed.",
         from: "#E91E8C",
         to: "#F43F5E",
@@ -38,7 +38,7 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-[72px] overflow-hidden"
+            className="relative py-24 md:py-32 overflow-hidden"
             style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
         >
             <SectionDownArrow />
@@ -103,14 +103,27 @@ export function CorporateVideoSection() {
                     transition={{ duration: 0.7 }}
                     className="flex flex-col items-center text-center"
                 >
-                    {/* Badge */}
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-purple-200/60 text-[#6D28D9] text-[12px] font-bold tracking-[0.18em] uppercase mb-8">
-                        Brand &amp; Corporate
-                    </span>
+                    {/* Headline first */}
+                    <h2 className="font-serif text-3xl! md:text-4xl! lg:text-[2.75rem]! leading-tight font-bold text-[#2D2D2D] mb-10">
+                        Our Corporate{" "}
+                        <span
+                            className="italic bg-gradient-to-r from-purple-600 via-fuchsia-500 to-amber-500"
+                            style={{
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                display: "inline-block",
+                                lineHeight: 1.3,
+                                paddingBottom: "0.08em",
+                                paddingRight: "0.12em",
+                            }}
+                        >
+                            Video Services
+                        </span>
+                    </h2>
 
                     {/* Digubi logo in a soft halo of rotating dashed ring */}
                     <motion.div
-                        className="relative mb-8"
+                        className="relative mb-10"
                         animate={{ y: [0, -8, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     >
@@ -142,31 +155,14 @@ export function CorporateVideoSection() {
                         />
                     </motion.div>
 
-                    {/* Headline */}
-                    <h2 className="font-serif text-3xl! md:text-4xl! lg:text-[2.75rem]! leading-tight font-bold text-[#2D2D2D] mb-4">
-                        Our Corporate{" "}
-                        <span
-                            className="italic bg-gradient-to-r from-purple-600 via-fuchsia-500 to-amber-500"
-                            style={{
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                                display: "inline-block",
-                                lineHeight: 1.3,
-                                paddingBottom: "0.08em",
-                                paddingRight: "0.12em",
-                            }}
-                        >
-                            Video Services
-                        </span>
-                    </h2>
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-10">
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-12 md:mb-14">
                         Under <span className="font-semibold text-[#4C1D95]">Digubi</span>, we help companies show up
                         online — corporate films, founder stories, social campaigns and marketing sites that make
                         brands impossible to scroll past.
                     </p>
 
                     {/* Service cards — white, centered, gradient accents */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
                         {services.map(({ icon: Icon, label, description, from, to }, i) => (
                             <motion.div
                                 key={label}
@@ -174,7 +170,7 @@ export function CorporateVideoSection() {
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
                                 whileHover={{ y: -8 }}
-                                className="relative flex flex-col items-center text-center rounded-[22px] bg-white px-6 py-8 overflow-hidden transition-shadow duration-300"
+                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-5 pt-8 pb-7 overflow-hidden transition-shadow duration-300"
                                 style={{ boxShadow: "0 8px 30px rgba(75, 29, 149, 0.10)" }}
                             >
                                 {/* Gradient accent bar along the top */}
@@ -187,19 +183,22 @@ export function CorporateVideoSection() {
                                     className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-3xl opacity-[0.09] pointer-events-none"
                                     style={{ background: from }}
                                 />
-                                <div
-                                    className="relative flex items-center justify-center w-13 h-13 rounded-2xl mb-4 shadow-lg"
-                                    style={{
-                                        width: 52,
-                                        height: 52,
-                                        background: `linear-gradient(135deg, ${from}, ${to})`,
-                                        boxShadow: `0 10px 24px -8px ${from}80`,
-                                    }}
-                                >
-                                    <Icon size={24} className="text-white" />
+                                {/* Icon inline with the title */}
+                                <div className="relative flex items-center justify-center gap-2.5 mb-3">
+                                    <span
+                                        className="flex items-center justify-center rounded-xl shrink-0"
+                                        style={{
+                                            width: 40,
+                                            height: 40,
+                                            background: `linear-gradient(135deg, ${from}, ${to})`,
+                                            boxShadow: `0 8px 18px -8px ${from}80`,
+                                        }}
+                                    >
+                                        <Icon size={20} className="text-white" />
+                                    </span>
+                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[15px]! mb-0! text-center leading-snug! lg:whitespace-nowrap">{label}</h3>
                                 </div>
-                                <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[16px]! mb-1.5">{label}</h3>
-                                <p className="text-gray-500 text-[13.5px] leading-relaxed max-w-[250px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
+                                <p className="text-gray-500 text-[14px] leading-relaxed max-w-[260px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
                             </motion.div>
                         ))}
                     </div>

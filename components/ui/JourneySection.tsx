@@ -168,16 +168,16 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
             {/* Soft corner glow */}
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
-            {/* Header - 2 lines */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>20+</Stat> Short Films,<br />
-                2M+ Views
-            </h3>
-
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                Original short films that have crossed 2 million organic views on YouTube.
-            </p>
+            {/* Intro — fixed height on lg so all three media grids align */}
+            <div className="lg:min-h-[200px]">
+                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
+                    <Stat>20+</Stat> Short Films,<br />
+                    2M+ Views
+                </h3>
+                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                    Original short films that have crossed 2 million organic views on YouTube.
+                </p>
+            </div>
 
             {/* Bento Grid Gallery - Films */}
             <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
@@ -240,20 +240,27 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 function BrandLogoCell({
     src,
     alt,
-    bg,
+    tint,
     className = "",
 }: {
     src: string;
     alt: string;
-    bg: string;
+    tint: string;
     className?: string;
 }) {
     return (
         <motion.div
-            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(75,29,149,0.13)" }}
-            className={`relative rounded-2xl border border-gray-300 overflow-hidden flex items-center justify-center ${className}`}
-            style={{ background: bg, boxShadow: "0 2px 10px rgba(75,29,149,0.06)" }}
+            whileHover={{ scale: 1.03, boxShadow: `0 8px 24px ${tint}99` }}
+            className={`relative rounded-2xl overflow-hidden flex items-center justify-center ${className}`}
+            style={{
+                // White core keeps logos legible; the tint halos the edges
+                background: `radial-gradient(circle at center, #ffffff 0%, #ffffff 52%, ${tint}66 100%)`,
+                border: `1.5px solid ${tint}`,
+                boxShadow: `0 2px 10px ${tint}55`,
+            }}
         >
+            {/* Colored accent bar, echoing the film cards */}
+            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: tint }} />
             <Image src={src} alt={alt} fill className="object-contain p-3" />
         </motion.div>
     );
@@ -277,31 +284,31 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             {/* Soft corner glow */}
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
-            {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>15+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
-            </h3>
-
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                Brand stories woven naturally into films and TeqThots — never feeling like ads.
-            </p>
+            {/* Intro — fixed height on lg so all three media grids align */}
+            <div className="lg:min-h-[200px]">
+                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
+                    <Stat>15+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
+                </h3>
+                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                    Brand stories woven naturally into films and TeqThots — never feeling like ads.
+                </p>
+            </div>
 
             {/* Staggered bento brand logo grid: big boxes for major brands, small squares for own brands */}
             <div className="grid grid-cols-4 grid-flow-dense gap-2 flex-1" style={{ gridAutoRows: "minmax(54px, 1fr)" }}>
-                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" bg="#ffffff" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" bg="#ffffff" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" bg="#ffffff" className="col-span-2" />
-                <BrandLogoCell src="/assets/what-we-make/logos/Susan-Lawrence_logo.webp" alt="Susan Lawrence" bg="#ffffff" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" bg="#ffffff" />
-                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" bg="#ffffff" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" bg="#ffffff" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" bg="#ffffff" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" bg="#ffffff" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" bg="#ffffff" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" tint="#A78BFA" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" tint="#F472B6" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" tint="#FBBF24" />
+                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" tint="#2DD4BF" />
+                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" tint="#60A5FA" className="col-span-2" />
+                <BrandLogoCell src="/assets/what-we-make/logos/Susan-Lawrence_logo.webp" alt="Susan Lawrence" tint="#FB7185" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" tint="#C084FC" />
+                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" tint="#FB923C" />
+                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" tint="#F472B6" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" tint="#2DD4BF" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" tint="#A78BFA" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" tint="#FBBF24" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" tint="#60A5FA" className="col-span-2" />
             </div>
         </motion.div>
     );
@@ -326,14 +333,15 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
             <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
 
             {/* Header */}
-            <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                <Stat>25+</Stat> Artists <span style={{ color: "#2D2D2D" }}>Discovered</span>
-            </h3>
-
-            {/* Content */}
-            <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                Writers, directors, and actors across Tamil, Malayalam, and English — creating under our production.
-            </p>
+            {/* Intro — fixed height on lg so all three media grids align */}
+            <div className="lg:min-h-[200px]">
+                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
+                    <Stat>25+</Stat> Artists <span style={{ color: "#2D2D2D" }}>Discovered</span>
+                </h3>
+                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
+                    Writers, directors, and actors creating under our production.
+                </p>
+            </div>
 
             {/* Grid Gallery - Artists (Custom Layout) */}
             <div className="flex flex-col gap-2 flex-1 min-h-[320px]">
