@@ -94,7 +94,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       />
 
       {/* Photo */}
-      <div className="relative overflow-hidden" style={{ height: "245px" }}>
+      <div className="relative overflow-hidden" style={{ height: "195px" }}>
         <div className="absolute inset-0" style={{ backgroundColor: `${person.color}25` }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -113,37 +113,23 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       </div>
 
       {/* Polaroid caption — white area */}
-      <div className="px-3.5 pt-3.5 pb-3.5">
+      <div className="px-3 pt-3 pb-3">
         {/* Name — big and bold */}
         <h4 className="font-serif font-black text-gray-900 leading-tight mb-1.5"
-          style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.5rem)" }}>
+          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
           {person.name}
         </h4>
         {/* Role — quiet pill, normal case */}
         <span
-          className="inline-block text-[12.5px] font-bold tracking-wide px-3 py-1 mb-2.5 rounded-full"
+          className="inline-block text-[12px] font-bold tracking-wide px-3 py-[3px] mb-2 rounded-full"
           style={{ background: `${person.color}14`, color: person.color, border: `1px solid ${person.color}30` }}
         >
           {person.role}
         </span>
         {/* Bio */}
-        <p className="text-[13.5px] leading-relaxed font-sans italic text-gray-600 mb-2">
+        <p className="text-[13px] leading-relaxed font-sans italic text-gray-600">
           "{person.bio}"
         </p>
-        {/* Fun fact — handwritten margin note */}
-        <p className="font-handwriting text-[17px] font-bold leading-snug mb-2.5 -rotate-1"
-          style={{ color: person.color }}>
-          ✦ {person.fun}
-        </p>
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {person.tags.map((tag) => (
-            <span key={tag}
-              className="text-[11px] font-semibold px-2.5 py-[3px] rounded-full bg-gray-100 text-gray-600">
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </motion.div>
   );
@@ -372,7 +358,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Polaroid grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" style={{ paddingBottom: "28px" }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6 max-w-5xl mx-auto" style={{ paddingBottom: "28px" }}>
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}

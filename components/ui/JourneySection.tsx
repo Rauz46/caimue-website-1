@@ -187,6 +187,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         src="/images/Movies/Welcome Home.jpg"
                         alt="Welcome Home"
                         fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
@@ -195,6 +196,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         src="/images/Movies/Smile!.jpg"
                         alt="Smile!"
                         fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
@@ -205,6 +207,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
                         alt="Malsya Mandooka Mahamaham"
                         fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
@@ -213,6 +216,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         src="/images/Movies/Harinarayana Kudu Charitham.jpg"
                         alt="Harinarayana Kudu Charitham"
                         fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
                     />
                 </div>
@@ -223,6 +227,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
                         src="/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg"
                         alt="Nadha Nee Varum Kaalocha Kelkuvaan"
                         fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
                         style={{ objectPosition: "center 50%" }}
                     />
@@ -339,6 +344,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                             src="/team/megha  2.jpg"
                             alt="Megha"
                             fill
+                            sizes="(max-width: 1024px) 50vw, 25vw"
                             className="object-cover hover:scale-105 transition-transform duration-300"
                             style={{ objectPosition: "center 20%" }}
                         />
@@ -349,6 +355,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/image.png"
                                 alt="Artist"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -357,6 +364,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/image.jpg"
                                 alt="Artist"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -365,6 +373,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/smile 1.png"
                                 alt="Smile Team 1"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -373,6 +382,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/smile 2.png"
                                 alt="Smile Team 2"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -387,6 +397,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/image (1).jpg"
                                 alt="Artist"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -395,6 +406,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/ghkl.jpg"
                                 alt="Artist"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -403,6 +415,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/ads.png"
                                 alt="Ads Team 1"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -411,6 +424,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                                 src="/team/ads 2.png"
                                 alt="Ads Team 2"
                                 fill
+                                sizes="(max-width: 1024px) 50vw, 25vw"
                                 className="object-cover hover:scale-105 transition-transform duration-300"
                             />
                         </div>
@@ -420,6 +434,7 @@ function ArtistsCard({ isInView }: { isInView: boolean }) {
                             src="/team/sajan 2.jpg"
                             alt="Sajan"
                             fill
+                            sizes="(max-width: 1024px) 50vw, 25vw"
                             className="object-cover hover:scale-105 transition-transform duration-300"
                             style={{ objectPosition: "center 20%" }}
                         />
