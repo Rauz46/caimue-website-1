@@ -61,9 +61,12 @@ export function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
-                        <Link href="/contact" className="hidden md:inline-flex btn-primary text-sm px-6 py-2">
-                            Contact
-                        </Link>
+                        {/* Wrapper div enforces mobile hiding even if .btn-primary sets its own display */}
+                        <div className="hidden md:block">
+                            <Link href="/contact" className="btn-primary inline-flex text-sm px-6 py-2">
+                                Contact
+                            </Link>
+                        </div>
 
                         {/* Hamburger — mobile only */}
                         <button
@@ -103,7 +106,7 @@ export function Navbar() {
                             <Link
                                 href="/contact"
                                 onClick={() => setMobileOpen(false)}
-                                className="block py-3 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                                className="block py-3 px-4 mt-1 rounded-full text-[16px] font-semibold text-white bg-[var(--caimue-purple)] hover:opacity-90 transition-opacity text-center"
                             >
                                 Contact
                             </Link>
