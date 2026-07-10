@@ -124,7 +124,7 @@ export default function ContactPage() {
                 />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
+                    <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
 
                         {/* Left Column: Creative Info */}
                         <div className="flex-1 w-full space-y-8">
