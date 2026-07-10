@@ -126,8 +126,8 @@ export default function ContactPage() {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
 
-                        {/* Left Column: Creative Info */}
-                        <div className="flex-1 w-full space-y-8">
+                        {/* Left Column: Creative Info — centered on mobile */}
+                        <div className="flex-1 w-full space-y-8 text-center lg:text-left">
                             {/* Heading with gradient accent */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -178,7 +178,7 @@ export default function ContactPage() {
                                             className="absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.25] transition-opacity duration-500 pointer-events-none"
                                             style={{ background: item.from }}
                                         />
-                                        <div className="relative z-10 flex items-start gap-4">
+                                        <div className="relative z-10 flex items-start gap-4 justify-center lg:justify-start text-left">
                                             <span
                                                 className="flex items-center justify-center w-12 h-12 rounded-xl text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300"
                                                 style={{ background: item.soft }}
@@ -510,7 +510,7 @@ export default function ContactPage() {
                                     )}
 
                                     {/* Flag + City */}
-                                    <div className="flex items-start gap-4 mb-5 relative z-10">
+                                    <div className="flex items-start gap-4 mb-5 relative z-10 justify-center md:justify-start">
                                         <span className="text-4xl mt-1 group-hover:scale-110 transition-transform duration-300 inline-block">{loc.flag}</span>
                                         <div>
                                             <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">{loc.city}</h3>
@@ -519,10 +519,10 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className={`h-[2px] w-12 bg-gradient-to-r ${loc.accent} mb-5 rounded-full group-hover:w-2/3 transition-all duration-700`} />
+                                    <div className={`h-[2px] w-12 bg-gradient-to-r ${loc.accent} mb-5 rounded-full group-hover:w-2/3 transition-all duration-700 mx-auto md:mx-0`} />
 
                                     {/* Address */}
-                                    <div className="space-y-0.5 flex-1 relative z-10">
+                                    <div className="space-y-0.5 flex-1 relative z-10 text-center md:text-left">
                                         {loc.lines.map((line, lineIdx) => (
                                             <p key={lineIdx} className="text-neutral-500 text-sm font-medium leading-relaxed">
                                                 {line}
@@ -531,7 +531,7 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Status Indicator */}
-                                    <div className="mt-6 pt-5 border-t border-neutral-50 flex items-center gap-2.5 relative z-10">
+                                    <div className="mt-6 pt-5 border-t border-neutral-50 flex items-center gap-2.5 relative z-10 justify-center md:justify-start">
                                         <motion.div
                                             animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
                                             transition={{ repeat: Infinity, duration: 2, delay: idx * 0.4 }}
