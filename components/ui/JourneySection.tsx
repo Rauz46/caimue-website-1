@@ -240,27 +240,25 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
 function BrandLogoCell({
     src,
     alt,
-    tint,
     className = "",
 }: {
     src: string;
     alt: string;
-    tint: string;
     className?: string;
 }) {
     return (
         <motion.div
-            whileHover={{ scale: 1.03, boxShadow: `0 8px 24px ${tint}99` }}
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(107, 114, 128, 0.4)" }}
             className={`relative rounded-2xl overflow-hidden flex items-center justify-center ${className}`}
             style={{
-                // White core keeps logos legible; the tint halos the edges
-                background: `radial-gradient(circle at center, #ffffff 0%, #ffffff 52%, ${tint}66 100%)`,
-                border: `1.5px solid ${tint}`,
-                boxShadow: `0 2px 10px ${tint}55`,
+                // White core keeps logos legible; grey halos the edges so only the logos carry color
+                background: "radial-gradient(circle at center, #ffffff 0%, #ffffff 52%, rgba(156, 163, 175, 0.35) 100%)",
+                border: "1.5px solid #C9CDD4",
+                boxShadow: "0 2px 10px rgba(107, 114, 128, 0.2)",
             }}
         >
-            {/* Colored accent bar, echoing the film cards */}
-            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: tint }} />
+            {/* Grey accent bar, echoing the film cards */}
+            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "#C9CDD4" }} />
             <Image src={src} alt={alt} fill className="object-contain p-3" />
         </motion.div>
     );
@@ -296,19 +294,19 @@ function BrandCard({ isInView }: { isInView: boolean }) {
 
             {/* Staggered bento brand logo grid: big boxes for major brands, small squares for own brands */}
             <div className="grid grid-cols-4 grid-flow-dense gap-2 flex-1" style={{ gridAutoRows: "minmax(54px, 1fr)" }}>
-                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" tint="#A78BFA" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" tint="#F472B6" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" tint="#FBBF24" />
-                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" tint="#2DD4BF" />
-                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" tint="#60A5FA" className="col-span-2" />
-                <BrandLogoCell src="/assets/what-we-make/logos/Susan-Lawrence_logo.webp" alt="Susan Lawrence" tint="#FB7185" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" tint="#C084FC" />
-                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" tint="#FB923C" />
-                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" tint="#F472B6" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" tint="#2DD4BF" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" tint="#A78BFA" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" tint="#FBBF24" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" tint="#60A5FA" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" />
+                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" />
+                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" className="col-span-2" />
+                <BrandLogoCell src="/assets/what-we-make/logos/Susan-Lawrence_logo.webp" alt="Susan Lawrence" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" />
+                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" />
+                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" className="col-span-2 row-span-2" />
+                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" className="col-span-2" />
+                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" className="col-span-2" />
             </div>
         </motion.div>
     );
