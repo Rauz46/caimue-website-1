@@ -77,9 +77,9 @@ const channels: Channel[] = [
         delay: 0.3,
     },
     {
-        logo: "/teqthots%20updated%20logo%20png.png",
+        logo: "/logos/teqdots-logo.png",
         logoClass: "h-[72px]",
-        name: "TeqThots",
+        name: "TeqDots",
         description:
             "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
         youtube: "https://www.youtube.com/@TeqThots",

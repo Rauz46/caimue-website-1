@@ -288,7 +288,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                     <Stat>15+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
                 </h3>
                 <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                    Brand stories woven naturally into films and TeqThots — never feeling like ads.
+                    Brand stories woven naturally into films and TeqDots — never feeling like ads.
                 </p>
             </div>
 

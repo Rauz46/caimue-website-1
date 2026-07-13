@@ -5,10 +5,10 @@ const f = 'Plus Jakarta Sans, sans-serif';
 const serif = 'var(--font-playfair, "Playfair Display", serif)';
 
 // All videos shown uniformly, in order — no single video popped out bigger.
-// Sourced from the TeqThots YouTube channel (@TeqThots) uploads.
+// Sourced from the TeqDots YouTube channel (@TeqThots) uploads.
 const VIDEOS = [
     { tag: 'AI Hiring', title: 'Talentou AI Hiring — Office Chain Game', videoId: 'qxEgzqbbUtc', color: '#8B2FC9' },
-    { tag: 'AI & SaaS', title: 'Real SaaS Product Debate — SimBFI × TeqThots', videoId: 'f_Wn3YpgPcw', color: '#2BA8A4' },
+    { tag: 'AI & SaaS', title: 'Real SaaS Product Debate — SimBFI × TeqDots', videoId: 'f_Wn3YpgPcw', color: '#2BA8A4' },
     { tag: 'AI & SaaS', title: 'Prodeia — AI for IT Services Engagements', videoId: 'spNgdn3qKSU', color: '#2BA8A4' },
     { tag: 'HR Tech', title: 'We Tried Talentou — What Recruiters Think', videoId: 'dCnnjCj-FYo', color: '#8B2FC9' },
     { tag: 'Culture', title: 'Fun Friday Hits Different', videoId: 'r8gJExsHXsw', color: '#6B5ED4' },

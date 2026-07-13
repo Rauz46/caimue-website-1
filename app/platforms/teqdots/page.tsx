@@ -27,7 +27,7 @@ const episodes = [
     },
 ];
 
-export default function TeqThotsPage() {
+export default function TeqDotsPage() {
     return (
         <>
             {/* Hero Section */}
@@ -43,8 +43,8 @@ export default function TeqThotsPage() {
                         className="mb-8"
                     >
                         <Image
-                            src="/logos/teqthots-logo.png"
-                            alt="TeqThots"
+                            src="/logos/teqdots-logo.png"
+                            alt="TeqDots"
                             width={250}
                             height={80}
                             className="mx-auto h-20 w-auto object-contain"

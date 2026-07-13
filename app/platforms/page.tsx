@@ -9,11 +9,11 @@ import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const platforms = [
     {
-        title: "TeqThots",
+        title: "TeqDots",
         description: "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
         thumbnail: "/images/Eye-Catching%20YouTube%20Thumbnail%20Designs.jpg",
-        href: "/platforms/teqthots",
-        logo: "/logos/teqthots-logo.png",
+        href: "/platforms/teqdots",
+        logo: "/logos/teqdots-logo.png",
         tagline: "Conversations that document how companies are built.",
     },
     {
