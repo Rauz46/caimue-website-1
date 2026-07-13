@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 // Caimue-reskinned rebuild of the Ennitto site (light look, Playfair/Inter),
-// mirroring the TeqThots channel page structure.
+// mirroring the TeqDots channel page structure.
 export default function EnnittoChannelPage() {
     return (
         <>

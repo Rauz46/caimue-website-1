@@ -18,7 +18,7 @@ const inter = Inter({
   display: "swap",
 });
 
-// Fonts used by the ported channel pages (e.g. TeqThots)
+// Fonts used by the ported channel pages (e.g. TeqDots)
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
@@ -33,8 +33,8 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: "Caimue | AI-First Film Studio",
-  description: "An AI-first film studio building original Tamil and Malayalam stories at scale. Funding short films, running TeqThots and FunShortz.",
-  keywords: ["film studio", "AI filmmaking", "Tamil cinema", "Malayalam cinema", "short films", "TeqThots", "FunShortz"],
+  description: "An AI-first film studio building original Tamil and Malayalam stories at scale. Funding short films, running TeqDots and FunShortz.",
+  keywords: ["film studio", "AI filmmaking", "Tamil cinema", "Malayalam cinema", "short films", "TeqDots", "FunShortz"],
   authors: [{ name: "Caimue" }],
   openGraph: {
     title: "Caimue | AI-First Film Studio",

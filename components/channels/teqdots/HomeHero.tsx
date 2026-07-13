@@ -5,7 +5,7 @@ import { BackgroundGradientAnimation } from "@/components/ui/background-gradient
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
-// TeqThots hero — Caimue homepage look (animated gradient bg + Playfair/Inter),
+// TeqDots hero — Caimue homepage look (animated gradient bg + Playfair/Inter),
 // keeping the auto-scrolling video carousel below the headline.
 export default function HomeHero() {
     return (

@@ -32,7 +32,7 @@ const services = [
     "Documentary-style brand films",
     "Product integration in original content",
     "Sponsored series development",
-    "Founder/leadership profiles (TeqThots)",
+    "Founder/leadership profiles (TeqDots)",
     "Regional language campaigns",
     "Event coverage and behind-the-scenes",
 ];

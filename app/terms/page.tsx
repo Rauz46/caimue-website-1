@@ -49,7 +49,7 @@ export default function TermsPage() {
                     {/* Sections */}
                     <Section title="1. About Caimue" delay={0.15}>
                         <p>
-                            Caimue is an AI-first film studio incorporated in the State of Florida, United States. We create original video content — including short films, regional digital series (FunShortz), and documentary-style business content (TeqThots) — across Tamil, Malayalam, and English. We also provide production funding, creative support, and distribution assistance for independent filmmakers, and content and brand partnership services for businesses.
+                            Caimue is an AI-first film studio incorporated in the State of Florida, United States. We create original video content — including short films, regional digital series (FunShortz), and documentary-style business content (TeqDots) — across Tamil, Malayalam, and English. We also provide production funding, creative support, and distribution assistance for independent filmmakers, and content and brand partnership services for businesses.
                         </p>
                         <p>
                             Our registered address is: 1211 Tech Blvd., Suite #23, Tampa, FL 33619, United States.
@@ -71,7 +71,7 @@ export default function TermsPage() {
                         <p>Through the Site and our operations, Caimue offers:</p>
                         <ul className="list-disc pl-5 space-y-2">
                             <li>
-                                <strong>Content viewing:</strong> Access to information about our productions, platforms (TeqThots, FunShortz, Ennitto short films), team, and processes.
+                                <strong>Content viewing:</strong> Access to information about our productions, platforms (TeqDots, FunShortz, Ennitto short films), team, and processes.
                             </li>
                             <li>
                                 <strong>Creator services:</strong> Filmmaker funding, production support (equipment, crew, workflow), and distribution assistance for qualifying independent filmmakers.
@@ -106,7 +106,7 @@ export default function TermsPage() {
                             All content on the Site — including but not limited to text, graphics, logos, icons, images, video content, audio clips, data compilations, and software — is the property of Caimue Inc. or its content suppliers and is protected by applicable copyright, trademark, and intellectual property laws.
                         </p>
                         <p>
-                            Our name, logos, and the names of our platforms (TeqThots, FunShortz, Ennitto) are trademarks of Caimue Inc. Nothing in these Terms grants you any right to use our trademarks, trade names, or logos without our prior written consent.
+                            Our name, logos, and the names of our platforms (TeqDots, FunShortz, Ennitto) are trademarks of Caimue Inc. Nothing in these Terms grants you any right to use our trademarks, trade names, or logos without our prior written consent.
                         </p>
                         <p>
                             You may view, download, and print content from the Site for your own personal, non-commercial reference only. Any other use — including reproduction, modification, distribution, transmission, re-publication, or display — requires our prior written consent.
