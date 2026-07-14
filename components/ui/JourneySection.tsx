@@ -237,7 +237,7 @@ function FilmsCard({ isInView }: { isInView: boolean }) {
     );
 }
 
-function BrandLogoCell({
+function CollabShot({
     src,
     alt,
     className = "",
@@ -247,20 +247,15 @@ function BrandLogoCell({
     className?: string;
 }) {
     return (
-        <motion.div
-            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(107, 114, 128, 0.4)" }}
-            className={`relative rounded-2xl overflow-hidden flex items-center justify-center ${className}`}
-            style={{
-                // White core keeps logos legible; grey halos the edges so only the logos carry color
-                background: "radial-gradient(circle at center, #ffffff 0%, #ffffff 52%, rgba(156, 163, 175, 0.35) 100%)",
-                border: "1.5px solid #C9CDD4",
-                boxShadow: "0 2px 10px rgba(107, 114, 128, 0.2)",
-            }}
-        >
-            {/* Grey accent bar, echoing the film cards */}
-            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "#C9CDD4" }} />
-            <Image src={src} alt={alt} fill className="object-contain p-3" />
-        </motion.div>
+        <div className={`relative rounded-xl overflow-hidden ${className}`}>
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes="(max-width: 1024px) 50vw, 25vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
+            />
+        </div>
     );
 }
 
@@ -292,21 +287,14 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 </p>
             </div>
 
-            {/* Staggered bento brand logo grid: big boxes for major brands, small squares for own brands */}
-            <div className="grid grid-cols-4 grid-flow-dense gap-2 flex-1" style={{ gridAutoRows: "minmax(54px, 1fr)" }}>
-                <BrandLogoCell src="/logos/loglos/hael.png" alt="Hael" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Ignitho-Updated-Logo.png" alt="Ignitho" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/shared%20image.png" alt="Spark Agency" />
-                <BrandLogoCell src="/logos/loglos/Best%20Engaging%20Storytelling%20Logo%20Design%20%F0%9F%94%BB.jpg" alt="What's The Story" />
-                <BrandLogoCell src="/logos/loglos/Prodeify-logo-final-768x280-1.png" alt="Prodeify" className="col-span-2" />
-                <BrandLogoCell src="/assets/what-we-make/logos/Susan-Lawrence_logo.webp" alt="Susan Lawrence" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/Creative%20Branding%20Logo%20_%20Minimal%20Modern%20Design%20_%20Business%20Logo%20Inspiration.jpg" alt="Idea Creative Agency" />
-                <BrandLogoCell src="/logos/loglos/upcraft.png" alt="Upcraft" />
-                <BrandLogoCell src="/logos/loglos/xime.png" alt="XIME" className="col-span-2 row-span-2" />
-                <BrandLogoCell src="/logos/loglos/cropped-Talentou-3.png" alt="Talentou" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/Nuivio.png" alt="Nuivio" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/piqual.png" alt="Piqual" className="col-span-2" />
-                <BrandLogoCell src="/logos/loglos/aventei.png" alt="Aventei" className="col-span-2" />
+            {/* Bento grid of stills from brand collaboration videos; vertical shots get tall cells */}
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
+                <CollabShot src="/collabs/heal%20brand.png" alt="Hael brand video" className="col-span-2" />
+                <CollabShot src="/collabs/prodeia.png" alt="Prodeify brand video" className="row-span-2" />
+                <CollabShot src="/collabs/piqual%20collab.png" alt="Piqual brand video" className="col-span-2" />
+                <CollabShot src="/collabs/talentou%20coolab.png" alt="Talentou brand video" />
+                <CollabShot src="/collabs/xime%20collab.png" alt="XIME brand video" />
+                <CollabShot src="/collabs/nuivio%20collab.png" alt="Nuivio brand video" />
             </div>
         </motion.div>
     );
