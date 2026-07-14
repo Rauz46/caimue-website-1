@@ -294,7 +294,7 @@ function BrandCard({ isInView }: { isInView: boolean }) {
             <div className="flex gap-2 flex-1 min-h-[420px]">
                 <div className="w-[40%] flex flex-col gap-2">
                     <CollabShot src="/collabs/heal%20brand.png" alt="Hael brand video" className="flex-1" position="55% center" />
-                    <CollabShot src="/collabs/prodeia.png" alt="Prodeia brand video" className="flex-1" />
+                    <CollabShot src="/collabs/prodeia.png" alt="Prodeia brand video" className="flex-1" position="center top" />
                 </div>
                 <div className="w-[60%] flex flex-col gap-2">
                     <CollabShot src="/collabs/piqual%20collab.png" alt="Piqual brand video" className="flex-1" />
