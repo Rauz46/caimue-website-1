@@ -241,10 +241,12 @@ function CollabShot({
     src,
     alt,
     className = "",
+    position,
 }: {
     src: string;
     alt: string;
     className?: string;
+    position?: string;
 }) {
     return (
         <div className={`relative rounded-xl overflow-hidden ${className}`}>
@@ -254,6 +256,7 @@ function CollabShot({
                 fill
                 sizes="(max-width: 1024px) 50vw, 25vw"
                 className="object-cover hover:scale-105 transition-transform duration-300"
+                style={position ? { objectPosition: position } : undefined}
             />
         </div>
     );
@@ -287,14 +290,17 @@ function BrandCard({ isInView }: { isInView: boolean }) {
                 </p>
             </div>
 
-            {/* Bento grid of stills from brand collaboration videos; vertical shots get tall cells */}
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
-                <CollabShot src="/collabs/heal%20brand.png" alt="Hael brand video" className="col-span-2" />
-                <CollabShot src="/collabs/prodeia.png" alt="Prodeify brand video" className="row-span-2" />
-                <CollabShot src="/collabs/piqual%20collab.png" alt="Piqual brand video" className="col-span-2" />
-                <CollabShot src="/collabs/talentou%20coolab.png" alt="Talentou brand video" />
-                <CollabShot src="/collabs/xime%20collab.png" alt="XIME brand video" />
-                <CollabShot src="/collabs/nuivio%20collab.png" alt="Nuivio brand video" />
+            {/* Stills from brand collaboration videos: two portrait cells on the left, three landscape cells on the right */}
+            <div className="flex gap-2 flex-1 min-h-[420px]">
+                <div className="w-[40%] flex flex-col gap-2">
+                    <CollabShot src="/collabs/heal%20brand.png" alt="Hael brand video" className="flex-1" position="55% center" />
+                    <CollabShot src="/collabs/prodeia.png" alt="Prodeia brand video" className="flex-1" />
+                </div>
+                <div className="w-[60%] flex flex-col gap-2">
+                    <CollabShot src="/collabs/piqual%20collab.png" alt="Piqual brand video" className="flex-1" />
+                    <CollabShot src="/collabs/xime%20collab.png" alt="XIME brand video" className="flex-1" />
+                    <CollabShot src="/collabs/nuivio%20collab.png" alt="Nuivio brand video" className="flex-1" />
+                </div>
             </div>
         </motion.div>
     );
