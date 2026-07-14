@@ -393,7 +393,7 @@ export default function AboutPage() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
               We work hard.{" "}
-              <span className="italic text-[var(--caimue-purple)] font-light">We laugh harder.</span>
+              <span className="italic text-[var(--caimue-purple)] font-light">We celebrate harder.</span>
             </h2>
             <p className="text-[var(--foreground-muted)] text-lg max-w-lg mx-auto font-sans">
               No rigid hierarchies, no pointless meetings, just good people, great coffee, and work that actually matters.
