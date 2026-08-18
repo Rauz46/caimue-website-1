@@ -32,21 +32,21 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Caimue | AI-First Film Studio",
-  description: "An AI-first film studio building original Tamil and Malayalam stories at scale. Funding short films, running TeqDots and FunShortz.",
-  keywords: ["film studio", "AI filmmaking", "Tamil cinema", "Malayalam cinema", "short films", "TeqDots", "FunShortz"],
+  title: "Caimue | Video-First B2B Marketing Agency",
+  description: "Caimue is a video-first B2B marketing agency — corporate videos, LinkedIn media campaigns, and marketing websites in Tamil, Malayalam, and English. Backed by a talent pipeline from TeqDots and FunShortz.",
+  keywords: ["B2B marketing agency", "video marketing", "corporate videos", "LinkedIn media campaigns", "marketing websites", "Tamil content", "Malayalam content", "TeqDots", "FunShortz"],
   authors: [{ name: "Caimue" }],
   openGraph: {
-    title: "Caimue | AI-First Film Studio",
-    description: "Building original stories at scale with AI-powered systems.",
+    title: "Caimue | Video-First B2B Marketing Agency",
+    description: "Corporate videos, LinkedIn media campaigns, and marketing websites that make brands impossible to scroll past.",
     type: "website",
     locale: "en_US",
     siteName: "Caimue",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Caimue | AI-First Film Studio",
-    description: "Building original stories at scale with AI-powered systems.",
+    title: "Caimue | Video-First B2B Marketing Agency",
+    description: "Corporate videos, LinkedIn media campaigns, and marketing websites that make brands impossible to scroll past.",
   },
 };
 

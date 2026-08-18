@@ -259,7 +259,7 @@ export default function AboutPage() {
                 </span>
               </h2>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
-                Caimue Film Studios started with a simple belief: great stories can come from
+                Caimue started with a simple belief: great stories can come from
                 anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
                 written, cast, and directed in-house — and grew past 2 million views one honest
                 story at a time.
@@ -271,9 +271,10 @@ export default function AboutPage() {
                 cinematic craft.
               </p>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
-                Today we blend traditional filmmaking with AI-powered production — moving faster
-                without losing soul. Every short film, documentary, and brand story is a step
-                toward one destination: feature films rooted in our culture, watched by the world.
+                Today that same craft powers a video-first B2B marketing agency — corporate videos,
+                LinkedIn media campaigns, and marketing websites built with the same speed and soul.
+                Our short films and features stay part of the story too, a proving ground for the
+                talent behind every brand we work with.
               </p>
             </motion.div>
 

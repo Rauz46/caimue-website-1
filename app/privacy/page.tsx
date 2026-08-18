@@ -49,7 +49,7 @@ export default function PrivacyPage() {
                     {/* Sections */}
                     <Section title="1. Who We Are" delay={0.15}>
                         <p>
-                            Caimue is an AI-first film studio headquartered in Tampa, Florida, USA, with teams in Chennai, India and London, UK. We produce original short films, regional digital content (FunShortz), and documentary-style business content (TeqDots) across Tamil, Malayalam, and English. We also partner with brands and support independent filmmakers through funding and production services.
+                            Caimue is a video-first B2B marketing agency headquartered in Tampa, Florida, USA, with teams in Chennai, India and London, UK. We produce corporate videos, LinkedIn media campaigns, and marketing websites for brands, alongside original short films, regional digital content (FunShortz), and documentary-style business content (TeqDots) across Tamil, Malayalam, and English. We also partner with brands and support independent filmmakers through funding and production services.
                         </p>
                         <p>
                             <strong>Data controller:</strong> Caimue Inc., 1211 Tech Blvd., Suite #23, Tampa, FL 33619, United States.

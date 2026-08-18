@@ -101,7 +101,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-sm md:text-base !text-white leading-tight drop-shadow-md font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
                     >
-                        Join the AI-first film studio.
+                        Partner with a video-first marketing agency.
                         <br className="md:hidden" />
                         <span className="hidden md:inline"> </span>
                         Let&apos;s create stories that matter.

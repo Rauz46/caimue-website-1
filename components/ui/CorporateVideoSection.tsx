@@ -30,7 +30,7 @@ const services = [
     },
 ];
 
-// Standalone Digubi banner — airy white spotlight with floating service cards
+// Standalone corporate video services banner — airy white spotlight with floating service cards
 export function CorporateVideoSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -121,42 +121,8 @@ export function CorporateVideoSection() {
                         </span>
                     </h2>
 
-                    {/* Digubi logo in a soft halo of rotating dashed ring */}
-                    <motion.div
-                        className="relative mb-10"
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        {/* Halo glow */}
-                        <div
-                            className="absolute -inset-10 rounded-full pointer-events-none"
-                            style={{
-                                background:
-                                    "radial-gradient(circle, rgba(139,92,246,0.14) 0%, rgba(245,158,11,0.08) 45%, transparent 70%)",
-                            }}
-                        />
-                        {/* Rotating dashed orbit */}
-                        <div
-                            className="absolute -inset-7 rounded-full border-2 border-dashed border-purple-300/50 animate-spin pointer-events-none"
-                            style={{ animationDuration: "22s" }}
-                        />
-                        {/* Orbit accent dots pinned to the ring */}
-                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-md pointer-events-none" />
-                        <span className="absolute top-1/2 -right-8 -translate-y-1/2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 shadow-md pointer-events-none" />
-                        <span className="absolute -bottom-8 left-1/3 h-2 w-2 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 shadow-md pointer-events-none" />
-
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/logos/digubi-logo.png"
-                            alt="Digubi — Digital Ubiquity"
-                            loading="lazy"
-                            decoding="async"
-                            className="relative h-24 md:h-28 w-auto object-contain drop-shadow-[0_12px_35px_rgba(76,29,149,0.22)]"
-                        />
-                    </motion.div>
-
                     <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-12 md:mb-14">
-                        Under <span className="font-semibold text-[#4C1D95]">Digubi</span>, we help companies show up
+                        We help companies show up
                         online — corporate films, founder stories, social campaigns and marketing sites that make
                         brands impossible to scroll past.
                     </p>

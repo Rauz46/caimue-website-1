@@ -49,7 +49,7 @@ export default function TermsPage() {
                     {/* Sections */}
                     <Section title="1. About Caimue" delay={0.15}>
                         <p>
-                            Caimue is an AI-first film studio incorporated in the State of Florida, United States. We create original video content — including short films, regional digital series (FunShortz), and documentary-style business content (TeqDots) — across Tamil, Malayalam, and English. We also provide production funding, creative support, and distribution assistance for independent filmmakers, and content and brand partnership services for businesses.
+                            Caimue is a video-first B2B marketing agency incorporated in the State of Florida, United States. We create corporate videos, LinkedIn media campaigns, and marketing websites for businesses, alongside original video content — including short films, regional digital series (FunShortz), and documentary-style business content (TeqDots) — across Tamil, Malayalam, and English. We also provide production funding, creative support, and distribution assistance for independent filmmakers.
                         </p>
                         <p>
                             Our registered address is: 1211 Tech Blvd., Suite #23, Tampa, FL 33619, United States.

@@ -70,7 +70,7 @@ const channels: Channel[] = [
         logoClass: "h-16",
         name: "Ennamo",
         description:
-            "Our Tamil short film channel by Caimue Film Studios. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
+            "Our Tamil short film channel by Caimue. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
         youtube: "https://www.youtube.com/channel/UCXWl6JIzlHIJCYbaCvV_VFg",
         from: "#6D5BF0",
         to: "#F0435A",

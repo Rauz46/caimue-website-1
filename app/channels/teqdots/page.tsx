@@ -4,7 +4,7 @@ import WhatWeMake from "@/components/channels/teqdots/WhatWeMake";
 import FeaturedWork from "@/components/channels/teqdots/FeaturedWork";
 
 export const metadata: Metadata = {
-    title: "TeqDots — by Caimue Film Studios",
+    title: "TeqDots — by Caimue",
     description:
         "Documentary-style conversations that capture how companies are built — deep dives into technology, strategy, and scale.",
 };
