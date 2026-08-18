@@ -53,9 +53,9 @@ export default function Home() {
 
           <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center overflow-visible">
             <span className="leading-[1.2] tracking-tight text-white text-center block font-bold drop-shadow-2xl max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-3 overflow-visible">
-              <span className="block overflow-visible">Stories Worth Telling.</span>
+              <span className="block overflow-visible">Video Worth Watching.</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308] flex flex-wrap items-center justify-center gap-x-4 overflow-visible">
-                <span className="overflow-visible">Movies Worth Making.</span>
+                <span className="overflow-visible">Brands Worth Building.</span>
               </span>
             </span>
           </h1>
@@ -67,7 +67,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-0 leading-snug font-medium drop-shadow [text-wrap:balance]"
           >
-            Caimue is a video-first B2B marketing agency — corporate videos, LinkedIn media campaigns, and marketing websites for brands across Tamil, Malayalam, and English. We build on the same storytelling and talent that shaped our films.
+            Caimue is a video-first B2B marketing agency. Corporate videos, LinkedIn campaigns, and marketing websites — made with real filmmaking craft, for brands across Tamil, Malayalam, and English.
           </motion.p>
         </div>
 
