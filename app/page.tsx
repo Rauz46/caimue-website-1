@@ -67,7 +67,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-0 leading-snug font-medium drop-shadow [text-wrap:balance]"
           >
-            Caimue is a video-first B2B marketing agency. Corporate videos, LinkedIn campaigns, and marketing websites — made with real filmmaking craft, for brands across Tamil, Malayalam, and English.
+            Caimue creates the content behind brands worth building — corporate videos, LinkedIn campaigns, and marketing websites for B2B companies.
           </motion.p>
         </div>
 
