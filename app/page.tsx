@@ -67,7 +67,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-0 leading-snug font-medium drop-shadow [text-wrap:balance]"
           >
-            Caimue creates the content behind brands worth building — corporate videos, LinkedIn campaigns, and marketing websites for B2B companies.
+            Caimue creates video content for B2B brands worth remembering — corporate films, LinkedIn campaigns, and the craft to make them land.
           </motion.p>
         </div>
 
