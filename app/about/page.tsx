@@ -81,7 +81,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
         boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
-      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""}`}
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} ${index === 8 ? "lg:col-start-2" : ""} ${index === 9 ? "md:col-start-2 lg:col-start-3" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
