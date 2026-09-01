@@ -1,0 +1,350 @@
+/* ============================================================
+   COMPATIBILITY LAYER
+   ------------------------------------------------------------
+   Pages that have not yet been rebuilt on the new design system
+   (about, contact, team, process, brands, creators, platforms/*,
+   channels/*, privacy, terms) still reference the previous
+   token and utility names.
+
+   Rather than freeze the old look in place, every legacy name is
+   re-pointed at a new-system value. Those pages therefore pick up
+   the new palette, type and radii for free.
+
+   Delete a block here once the last page referencing it has been
+   migrated to the tokens in tokens.css.
+   ============================================================ */
+
+:root {
+  /* ---- Brand aliases ---- */
+  --caimue-purple: var(--color-violet);
+  --caimue-purple-dark: #6d28d9;
+  --caimue-purple-light: var(--color-violet-soft);
+  --caimue-black: var(--color-ink);
+  --caimue-cream: var(--color-surface-alt);
+  --caimue-white: #ffffff;
+  --caimue-gray: var(--color-ink-soft);
+  --caimue-gray-light: var(--color-ink-faint);
+
+  --caimue-lime: var(--color-lime);
+  --caimue-peach: var(--color-amber);
+  --caimue-pink: var(--color-pink);
+  --caimue-cyan: var(--color-cyan);
+
+  --caimue-warm-bg: var(--color-surface-alt);
+  --caimue-warm-accent: var(--color-surface-sunk);
+
+  /* ---- Semantic aliases ---- */
+  --background: var(--color-surface);
+  --background-alt: var(--color-surface-alt);
+  --foreground: var(--color-ink);
+  --foreground-muted: var(--color-ink-soft);
+  --accent: var(--color-violet);
+  --card-bg: #ffffff;
+  --card-border: var(--color-line);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+
+  /* ---- Type / layout aliases ---- */
+  --font-heading: var(--font-display);
+  --font-body: var(--font-sans);
+  --section-padding: var(--section-y);
+  --container-width: var(--container);
+  --border-radius: 16px;
+  --border-radius-lg: var(--radius-card);
+  --border-radius-full: var(--radius-pill);
+
+  --duration-normal: 0.4s;
+  --duration-slow: 0.8s;
+  --grain-opacity: 0.04;
+}
+
+/* ---- Legacy text utilities ---- */
+
+/* Old section kickers. Matches the new .eyebrow treatment. */
+.label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-violet);
+}
+
+.font-handwriting {
+  font-family: var(--font-hand);
+}
+
+.text-light {
+  color: #ffffff !important;
+}
+
+.text-light-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-center-all * {
+  text-align: center;
+}
+
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ---- Legacy buttons ---- */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 2px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-violet);
+  color: var(--color-violet);
+  transform: translateY(-3px);
+}
+
+/* ---- Legacy colour cards ---- */
+.card-lime {
+  background: var(--color-lime) !important;
+  border: none;
+}
+
+.card-peach {
+  background: var(--color-amber) !important;
+  border: none;
+}
+
+.card-purple {
+  background: var(--color-violet-soft) !important;
+  border: none;
+}
+
+.card-lime *,
+.card-peach *,
+.card-purple * {
+  color: var(--color-ink) !important;
+}
+
+/* ---- Legacy texture / grid ---- */
+.bg-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  transform: translate3d(0, 0, 0);
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  transform: translate3d(0, 0, 0);
+}
+
+.bg-grid-pattern,
+.bg-grid-pink,
+.bg-grid-full {
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    #000 40%,
+    transparent 90%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    #000 40%,
+    transparent 90%
+  );
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+.bg-grid-pink {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 62, 165, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 62, 165, 0.08) 1px, transparent 1px);
+}
+
+.bg-grid-full {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+/* ---- Legacy marquee (pairs with .marquee in globals.css) ---- */
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2rem;
+  min-width: 100%;
+  justify-content: space-around;
+  padding-right: 2rem;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ---- Legacy wave divider ---- */
+.wave-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider.top {
+  top: -1px;
+  transform: rotate(180deg);
+}
+
+.wave-divider.bottom {
+  bottom: -2px;
+}
+
+.wave-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 80px;
+}
+
+/* ---- Legacy background-gradient-animation keyframes ---- */
+@keyframes first {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes second {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes third {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fourth {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes fifth {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-first {
+  animation: first 30s linear infinite;
+}
+.animate-second {
+  animation: second 40s linear infinite;
+}
+.animate-third {
+  animation: third 35s linear infinite;
+}
+.animate-fourth {
+  animation: fourth 45s linear infinite;
+}
+.animate-fifth {
+  animation: fifth 50s linear infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateY(calc(var(--radius) * 1px))
+      rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit calc(var(--duration) * 1s) linear infinite;
+}
+
+/* Set via IntersectionObserver to freeze offscreen CSS animations. */
+.anim-paused,
+.anim-paused * {
+  animation-play-state: paused !important;
+}

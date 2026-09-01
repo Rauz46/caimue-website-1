@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Caimue
 
-## Getting Started
+Marketing site for Caimue — a video-first B2B marketing agency.
 
-First, run the development server:
+Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS v4.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/                    Routes only — pages stay thin and compose sections
+│   ├── layout.tsx          Fonts, metadata, chrome, smooth scroll
+│   ├── page.tsx            Home
+│   └── <route>/page.tsx
+│
+├── components/
+│   ├── layout/             Navbar, Footer — site chrome
+│   ├── sections/           Page-level blocks
+│   │   ├── home/           Hero, TrackRecord, Channels, Services, …
+│   │   └── channels/       Per-channel page sections
+│   ├── ui/                 Presentational primitives (Button, SectionHeading…)
+│   ├── motion/             Animation primitives (SmoothScroll, Reveal…)
+│   └── effects/            Decorative backgrounds
+│
+├── content/
+│   └── site.ts             All copy, nav, and data. Edit words here, not in JSX.
+│
+├── lib/
+│   ├── utils.ts            cn() class merger
+│   └── motion.ts           Shared easings and framer-motion variants
+│
+└── styles/
+    ├── globals.css         Base, typography, components, utilities
+    ├── tokens.css          Design tokens (@theme) — colours, type, radii, motion
+    └── compat.css          Bridge for pages not yet on the new system
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`@/*` resolves to `src/*`.
 
-## Learn More
+## Design system
 
-To learn more about Next.js, take a look at the following resources:
+Tokens live in `src/styles/tokens.css` and are exposed to Tailwind through
+`@theme`, so `bg-violet`, `text-ink-soft`, `font-display` etc. all come from one
+place. Change a colour there and it propagates site-wide.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Display type** — Plus Jakarta Sans 700/800, tight tracking, on every heading.
+- **Body type** — Inter 400/600/700.
+- **Palette** — Caimue violet anchors a vivid secondary set (cyan, pink, amber,
+  lime, coral). Elevation uses violet-tinted shadows, never flat grey.
+- **Motion** — expo-out easing throughout; `Reveal` / `RevealGroup` handle
+  scroll entrances, Lenis handles inertial scrolling.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### `compat.css`
 
-## Deploy on Vercel
+The home page, navbar and footer are rebuilt on the new system. The remaining
+pages still reference the previous token and utility names, so `compat.css`
+re-points every legacy name (`--caimue-purple`, `.label`, `font-serif`, …) at a
+new-system value — those pages inherit the new palette and type without being
+rewritten. Delete a block from it once the last page using it has been migrated.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Performance notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Things that are load-bearing, so they don't get undone by accident:
+
+- **The hero is a server component with CSS-only entrance animation.** Gating
+  above-the-fold content behind framer-motion's `initial: { opacity: 0 }` keeps
+  it invisible until hydration and pushes LCP out to whenever the JS bundle
+  lands. CSS keyframes run on first paint instead.
+- **No animated blur filters.** Backgrounds are static multi-stop radial
+  gradients (`.mesh-*`, `.block-*`), which cost a fraction of a full-screen
+  animated `blur()` during scroll.
+- `content-visibility: auto` on offscreen sections via `.section-cv`.
+- AVIF/WebP, trimmed `deviceSizes`, and `loading="lazy"` on everything below
+  the fold.
+- Smooth scrolling and every entrance animation respect
+  `prefers-reduced-motion`.
