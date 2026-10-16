@@ -55,23 +55,8 @@ const allTeam = [
     image: "/teams%20pic/oliviya.png",
     color: "#F43F5E",
     bio: "The face and voice that makes brands feel human. Camera-ready, always on, never off-script.",
-    fun: "Never needs a second take",
-    tags: ["Content", "On-Camera"],
-  },
-  {
-    name: "Priyadharshini",
-    role: "Marketing Associate",
-    image: "/teams%20pic/Priya.png",
-    color: "#F59E0B",
-    bio: "Turns a blank page into a poster that stops the scroll. Design instinct, AI toolkit, sharp eye.",
-    fun: "Has a Figma tab open before the coffee's poured",
-    tags: ["Design", "Marketing"],
-  },
-  {
-    name: "Megha Balakrishnan",
-    role: "WordPress AI Web Creator",
-    image: "/team/styled/megha.png",
-    color: "#2563EB",
+    fun: "Never needs a second take", tags: ["Content", "On-Camera"] },
+  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/team/styled/megha.png",   color: "#2563EB",
     bio: "Builds AI-powered websites that bring our stories online. Design sense meets machine speed, and the web keeps up.",
     fun: "Ships sites faster than the coffee gets cold",
     tags: ["Web", "AI"],
@@ -183,19 +168,10 @@ function TeamCard({
       initial={{ opacity: 0, y: 50, rotate: rot }}
       whileInView={{ opacity: 1, y: 0, rotate: rot }}
       viewport={{ once: true }}
-      transition={{
-        duration: 0.55,
-        delay: index * 0.08,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      whileHover={{
-        rotate: 0,
-        y: -14,
-        scale: 1.05,
-        zIndex: 30,
-        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)",
-      }}
-      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} ${index === 8 ? "lg:col-start-2" : ""} ${index === 9 ? "md:col-start-2 lg:col-start-3" : ""}`}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
+        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} ${index === 8 ? "sm:col-span-2 sm:w-[calc(50%-14px)] md:col-span-1 md:w-full lg:col-start-2 lg:col-span-2 lg:w-[calc(50%-12px)]" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
