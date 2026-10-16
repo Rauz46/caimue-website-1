@@ -173,91 +173,94 @@ export default function SmoothTab({
   const selectedItem = items.find((i) => i.id === selected);
 
   const panel = (
-      <div
-        className={cn(
-          "relative w-full overflow-hidden rounded-xl border border-line bg-surface-raised",
-          panelClassName,
-        )}
-      >
-        <AnimatePresence custom={direction} initial={false} mode="popLayout">
-          <motion.div
-            animate="center"
-            className="absolute inset-0 h-full w-full bg-surface-raised will-change-transform"
-            custom={direction}
-            exit="exit"
-            initial="enter"
-            key={`panel-${selected}`}
-            id={`panel-${selected}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${selected}`}
-            style={{
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden",
-            }}
-            transition={transition}
-            variants={slideVariants}
-          >
-            {selectedItem?.cardContent}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
+    <div
+      className={cn(
+        "relative w-full overflow-hidden rounded-xl border border-line bg-surface-raised",
+        panelClassName,
+      )}
+    >
+      <AnimatePresence custom={direction} initial={false} mode="popLayout">
+        <motion.div
+          animate="center"
+          className="absolute inset-0 h-full w-full bg-surface-raised will-change-transform"
+          custom={direction}
+          exit="exit"
+          initial="enter"
+          key={`panel-${selected}`}
+          id={`panel-${selected}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${selected}`}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+          transition={transition}
+          variants={slideVariants}
+        >
+          {selectedItem?.cardContent}
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 
   const toolbar = (
-      <div
-        aria-label="Channels"
-        className={cn(
-          "relative mx-auto flex w-full max-w-xl items-center rounded-full border border-line bg-surface-alt p-1",
-          toolbarPosition === "top" ? "mb-8" : "mt-8",
-        )}
-        ref={containerRef}
-        role="tablist"
-      >
-        <motion.div
-          animate={{ width: pill.width, x: pill.left, opacity: pill.width ? 1 : 0 }}
-          className="absolute z-[1] rounded-full"
-          initial={false}
-          style={{
-            height: "calc(100% - 8px)",
-            top: 4,
-            background: selectedItem?.color,
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        />
+    <div
+      aria-label="Channels"
+      className={cn(
+        "relative mx-auto flex w-full max-w-xl items-center rounded-full border border-line bg-surface-alt p-1",
+        toolbarPosition === "top" ? "mb-8" : "mt-8",
+      )}
+      ref={containerRef}
+      role="tablist"
+    >
+      <motion.div
+        animate={{
+          width: pill.width,
+          x: pill.left,
+          opacity: pill.width ? 1 : 0,
+        }}
+        className="absolute z-[1] rounded-full"
+        initial={false}
+        style={{
+          height: "calc(100% - 8px)",
+          top: 4,
+          background: selectedItem?.color,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      />
 
-        <div className="relative z-[2] grid w-full grid-cols-4 gap-1">
-          {items.map((item, i) => {
-            const isSelected = selected === item.id;
-            return (
-              <button
-                aria-controls={`panel-${item.id}`}
-                aria-selected={isSelected}
-                className={cn(
-                  "truncate rounded-full px-2 py-2.5 text-[0.78rem] font-bold transition-colors duration-300 sm:text-[0.85rem]",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet",
-                  isSelected
-                    ? "text-white"
-                    : "text-ink-soft hover:bg-black/5 hover:text-ink",
-                )}
-                id={`tab-${item.id}`}
-                key={item.id}
-                onClick={() => select(item.id)}
-                onKeyDown={(e) => onKeyDown(e, i)}
-                ref={(el) => {
-                  if (el) buttonRefs.current.set(item.id, el);
-                  else buttonRefs.current.delete(item.id);
-                }}
-                role="tab"
-                tabIndex={isSelected ? 0 : -1}
-                type="button"
-              >
-                {item.title}
-              </button>
-            );
-          })}
-        </div>
+      <div className="relative z-[2] grid w-full grid-cols-4 gap-1">
+        {items.map((item, i) => {
+          const isSelected = selected === item.id;
+          return (
+            <button
+              aria-controls={`panel-${item.id}`}
+              aria-selected={isSelected}
+              className={cn(
+                "truncate rounded-full px-2 py-2.5 text-[0.78rem] font-bold transition-colors duration-300 sm:text-[0.85rem]",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet",
+                isSelected
+                  ? "text-white"
+                  : "text-ink-soft hover:bg-black/5 hover:text-ink",
+              )}
+              id={`tab-${item.id}`}
+              key={item.id}
+              onClick={() => select(item.id)}
+              onKeyDown={(e) => onKeyDown(e, i)}
+              ref={(el) => {
+                if (el) buttonRefs.current.set(item.id, el);
+                else buttonRefs.current.delete(item.id);
+              }}
+              role="tab"
+              tabIndex={isSelected ? 0 : -1}
+              type="button"
+            >
+              {item.title}
+            </button>
+          );
+        })}
       </div>
+    </div>
   );
 
   return (

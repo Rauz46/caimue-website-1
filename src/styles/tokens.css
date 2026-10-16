@@ -1,54 +1,78 @@
 /* ============================================================
    CAIMUE — DESIGN TOKENS
-   Vivid, high-energy system inspired by Canva's launch pages,
-   anchored on Caimue's violet.
+
+   Palette is sampled directly from the logo artwork rather than
+   picked by eye: #672FB2 (the script) and #FF0080 (the accent
+   mark) are the two saturated colours actually in the mark.
+   Everything else is a tint or shade of those two, so the whole
+   site is provably on-brand.
    ============================================================ */
 
 @theme {
-  /* ---------- Brand spectrum ---------- */
-  --color-violet: #7c3aed;
-  --color-violet-deep: #4c1d95;
-  --color-violet-soft: #a78bfa;
-  --color-violet-wash: #f4efff;
+  /* ---------- Brand, straight from the logo ---------- */
+  --color-violet: #672fb2;
+  --color-magenta: #ff0080;
 
-  --color-gold: #fde047;
+  /* ---------- Derived: shades of the violet ---------- */
+  --color-plum: #3a1a63;
+  --color-aubergine: #24103d;
+  --color-periwinkle: #b49ae6;
+  --color-lilac: #efe7fb;
 
-  --color-cyan: #00c4cc;
-  --color-pink: #ff3ea5;
-  --color-amber: #ffc53d;
-  --color-lime: #a3e635;
-  --color-coral: #ff6b4a;
+  /* ---------- Derived: tints of the magenta ---------- */
+  --color-blush: #ffd6ec;
+  --color-wine: #6b0037;
 
-  /* ---------- Ink & surface ---------- */
-  --color-ink: #150a26;
-  --color-ink-soft: #5b5370;
-  --color-ink-faint: #8f88a3;
+  /* ---------- Ink & paper ---------- */
+  /* Violet-cast near-black, so even the darkest surface is on-brand
+     rather than a neutral grey. */
+  --color-ink: #140a22;
+  --color-ink-soft: #574a68;
+  --color-ink-faint: #8d82a0;
 
+  /* Warm cream, not clinical white. */
+  --color-paper: #f5f1ea;
+  --color-paper-alt: #ece6dc;
   --color-surface: #ffffff;
-  --color-surface-alt: #faf7ff;
-  --color-surface-sunk: #f2ecff;
-  --color-surface-deep: #170a2e;
+  --color-surface-alt: #f5f1ea;
+  --color-surface-sunk: #ece6dc;
+  --color-surface-deep: #140a22;
   --color-surface-raised: #ffffff;
 
-  --color-line: rgba(21, 10, 38, 0.08);
-  --color-line-strong: rgba(21, 10, 38, 0.14);
+  --color-line: rgba(20, 10, 34, 0.12);
+  --color-line-strong: rgba(20, 10, 34, 0.22);
+
+  /* Aliases kept so existing utilities keep resolving. */
+  --color-violet-deep: #3a1a63;
+  --color-violet-soft: #b49ae6;
+  --color-violet-wash: #efe7fb;
+  --color-pink: #ff0080;
+  --color-cyan: #1ce8ed;
+  --color-amber: #ffd24a;
+  --color-lime: #a3e635;
+  --color-coral: #ff6b4a;
+  --color-gold: #ffd24a;
 
   /* ---------- Typography ---------- */
-  --font-display: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  /* Was Clash Display. Body copy moved to Geist earlier; leaving headings
+     on a different face was the actual inconsistency — half the type
+     system changed, half didn't. Unified on Geist throughout. */
+  --font-display: var(--font-general), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-general), system-ui, sans-serif;
   --font-hand: var(--font-caveat), "Segoe Script", cursive;
-  --font-serif: var(--font-playfair), Georgia, serif;
+  /* Legacy pages ask for font-serif; route it to the display face. */
+  --font-serif: var(--font-clash), Georgia, serif;
 
-  /* Fluid display scale. Capped well below the old values — at 1920px the
-     previous h1 hit 104px, which forced the hero headline onto four lines. */
-  --text-display-2xl: clamp(2.5rem, 5vw, 4.75rem);
-  --text-display-xl: clamp(2rem, 3.9vw, 3.5rem);
-  --text-display-lg: clamp(1.625rem, 2.6vw, 2.25rem);
-  --text-display-md: clamp(1.375rem, 1.9vw, 1.75rem);
+  /* Fluid display scale, calibrated for Clash Display — it sets much
+     wider per character than a normal grotesk, so the same rem value
+     reads far larger than it did on Plus Jakarta. */
+  --text-display-2xl: clamp(2.25rem, 4.4vw, 4.25rem);
+  --text-display-xl: clamp(1.875rem, 3.4vw, 3rem);
+  --text-display-lg: clamp(1.5rem, 2.3vw, 2rem);
+  --text-display-md: clamp(1.25rem, 1.7vw, 1.5rem);
 
   /* ---------- Radii ---------- */
-  /* Sharper than soft-UI defaults — 2026 premium reads as engineered, not
-     pillowy. Pills are kept for buttons only. */
+  /* 1em on cards, matching the reference's book covers. */
   --radius-card: 16px;
   --radius-card-lg: 20px;
   --radius-pill: 9999px;
@@ -56,20 +80,114 @@
   /* ---------- Motion ---------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* The reference's own signature ease, lifted from its CustomEase set. */
+  --ease-osmo: cubic-bezier(0.625, 0.05, 0, 1);
 }
 
 :root {
   /* Layout rhythm */
   --container: 1280px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  /* Denser: the old scale left large empty bands between sections. */
   --section-y: clamp(3.25rem, 5.5vw, 5.5rem);
+  --header-height: 5.5rem;
 
-  /* Colored, brand-tinted elevation — never flat gray */
-  --shadow-sm: 0 2px 8px -2px rgba(76, 29, 149, 0.1);
-  --shadow-md: 0 12px 28px -12px rgba(76, 29, 149, 0.22);
-  --shadow-lg: 0 28px 60px -24px rgba(76, 29, 149, 0.3);
-  --shadow-xl: 0 44px 90px -32px rgba(76, 29, 149, 0.36);
+  /* Elevation, tinted with the brand violet rather than flat grey. */
+  --shadow-sm: 0 2px 8px -2px rgba(58, 26, 99, 0.12);
+  --shadow-md: 0 12px 28px -12px rgba(58, 26, 99, 0.26);
+  --shadow-lg: 0 28px 60px -24px rgba(58, 26, 99, 0.34);
+  --shadow-xl: 0 44px 90px -32px rgba(58, 26, 99, 0.4);
 
   color-scheme: light;
+}
+
+/* ============================================================
+   FLUID EM ROOT
+
+   The reference authors every padding, radius and negative
+   margin in `em` off a single viewport-derived font-size, so
+   the whole composition ZOOMS as one object instead of
+   reflowing piece by piece. That is why it holds its
+   proportions on a 32" display and a per-element clamp() scale
+   does not.
+
+   Opted into per-section with `.u-fluid` rather than set on
+   body, because the eleven legacy pages still size in rem and
+   would collapse if the root moved under them.
+   ============================================================ */
+
+:root {
+  --size-unit: 16;
+  --size-ideal: 1920;
+  --size-container-fluid: clamp(1024px, 100vw, 3200px);
+  --fs: calc(var(--size-container-fluid) / (var(--size-ideal) / var(--size-unit)));
+}
+
+@media (max-width: 991px) {
+  :root {
+    --size-ideal: 834;
+    --size-container-fluid: clamp(768px, 100vw, 991px);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --size-ideal: 550;
+    --size-container-fluid: clamp(480px, 100vw, 767px);
+  }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --size-ideal: 402;
+    --size-container-fluid: clamp(320px, 100vw, 479px);
+  }
+}
+
+/* Everything inside sizes in `em` and scales together. */
+.u-fluid {
+  font-size: var(--fs);
+}
+
+/* Bounce curves. `--ease-bounce` is the CSS twin of the
+   reference's elastic.out(1, 0.72): it overshoots and settles
+   rather than easing flat into place. */
+:root {
+  --ease-bounce: cubic-bezier(0.34, 1.26, 0.4, 1);
+  --ease-bounce-soft: cubic-bezier(0.26, 1.12, 0.32, 1);
+  --ease-out-soft: cubic-bezier(0.22, 0.78, 0.28, 1);
+  /* Symmetric ease-in-out — slow away from rest, fast through the
+     middle, slow back into the next rest. Used for the hero letters'
+     rotate-and-drift swing, which needs both ends soft since `alternate`
+     plays it forwards and backwards forever. */
+  --ease-sway: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* ============================================================
+   SHAPE SYSTEM
+
+   `--r-action` was a small rounded-rect (0.5em), sized off the previous
+   reference's own measured button radius. That reference is gone; the
+   current one (Lokal) runs every piece of UI chrome — nav pill, CTA, chip,
+   logo plate — as a full stadium with a thin border, nothing in between.
+   Carrying the old small radius forward was, concretely, the "old button
+   design" complaint: same shape family the earlier iteration used, just
+   recoloured. Both tokens are a full stadium now, so nothing in the UI
+   still reads as leftover.
+
+     --r-action  every labelled thing you click, plus surfaces
+                 (logo plate, nav buttons, CTAs)
+     --r-tag     non-interactive data pills — kept as its own token
+                 in case a future shape needs to diverge again
+     50%         icon-only round targets (social)
+
+   One stroke width throughout. These hold `em`/px so each resolves
+   against the element that uses it and scales with the fluid root.
+   ============================================================ */
+:root {
+  --r-action: 999px;
+  --r-tag: 999px;
+  /* Floored at 2px: 0.125em of the root computes to 1.98px, which the
+     browser renders as a 1px hairline and reads as weak on saturated
+     ground. */
+  --stroke: max(2px, calc(var(--fs) * 0.125));
 }

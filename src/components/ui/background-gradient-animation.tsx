@@ -3,208 +3,234 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
-    gradientBackgroundStart = "rgb(108, 0, 162)",
-    gradientBackgroundEnd = "rgb(0, 17, 82)",
-    firstColor = "18, 113, 255",
-    secondColor = "221, 74, 255",
-    thirdColor = "100, 220, 255",
-    fourthColor = "200, 50, 50",
-    fifthColor = "180, 180, 50",
-    pointerColor = "140, 100, 255",
-    size = "80%",
-    blendingValue = "hard-light",
-    children,
-    className,
-    interactive = true,
-    autoMove = false,
-    maskCenter = false,
-    maskImage,
-    containerClassName,
+  gradientBackgroundStart = "rgb(108, 0, 162)",
+  gradientBackgroundEnd = "rgb(0, 17, 82)",
+  firstColor = "18, 113, 255",
+  secondColor = "221, 74, 255",
+  thirdColor = "100, 220, 255",
+  fourthColor = "200, 50, 50",
+  fifthColor = "180, 180, 50",
+  pointerColor = "140, 100, 255",
+  size = "80%",
+  blendingValue = "hard-light",
+  children,
+  className,
+  interactive = true,
+  autoMove = false,
+  maskCenter = false,
+  maskImage,
+  containerClassName,
 }: {
-    gradientBackgroundStart?: string;
-    gradientBackgroundEnd?: string;
-    firstColor?: string;
-    secondColor?: string;
-    thirdColor?: string;
-    fourthColor?: string;
-    fifthColor?: string;
-    pointerColor?: string;
-    size?: string;
-    blendingValue?: string;
-    children?: React.ReactNode;
-    className?: string;
-    interactive?: boolean;
-    autoMove?: boolean;
-    maskCenter?: boolean;
-    maskImage?: string;
-    containerClassName?: string;
+  gradientBackgroundStart?: string;
+  gradientBackgroundEnd?: string;
+  firstColor?: string;
+  secondColor?: string;
+  thirdColor?: string;
+  fourthColor?: string;
+  fifthColor?: string;
+  pointerColor?: string;
+  size?: string;
+  blendingValue?: string;
+  children?: React.ReactNode;
+  className?: string;
+  interactive?: boolean;
+  autoMove?: boolean;
+  maskCenter?: boolean;
+  maskImage?: string;
+  containerClassName?: string;
 }) => {
-    const interactiveRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+  const interactiveRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    // Use refs for animation values to avoid React re-renders
-    const tgX = useRef(0);
-    const tgY = useRef(0);
-    const curX = useRef(0);
-    const curY = useRef(0);
+  // Use refs for animation values to avoid React re-renders
+  const tgX = useRef(0);
+  const tgY = useRef(0);
+  const curX = useRef(0);
+  const curY = useRef(0);
 
-    useEffect(() => {
-        document.body.style.setProperty(
-            "--gradient-background-start",
-            gradientBackgroundStart
-        );
-        document.body.style.setProperty(
-            "--gradient-background-end",
-            gradientBackgroundEnd
-        );
-        document.body.style.setProperty("--first-color", firstColor);
-        document.body.style.setProperty("--second-color", secondColor);
-        document.body.style.setProperty("--third-color", thirdColor);
-        document.body.style.setProperty("--fourth-color", fourthColor);
-        document.body.style.setProperty("--fifth-color", fifthColor);
-        document.body.style.setProperty("--pointer-color", pointerColor);
-        document.body.style.setProperty("--size", size);
-        document.body.style.setProperty("--blending-value", blendingValue);
-    }, [gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
-
-    // Pause all animation work while the section is offscreen
-    const [inView, setInView] = useState(true);
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el || typeof IntersectionObserver === "undefined") return;
-        const io = new IntersectionObserver(
-            ([entry]) => setInView(entry.isIntersecting),
-            { rootMargin: "120px" }
-        );
-        io.observe(el);
-        return () => io.disconnect();
-    }, []);
-
-    useEffect(() => {
-        if (!interactive || !inView) return;
-
-        let animationFrame: number;
-
-        function move() {
-            if (!interactiveRef.current) return;
-
-            // When autoMove is on, drive the blob along its own slow, drifting
-            // path (biased toward the sides and bottom) instead of the cursor.
-            if (autoMove && containerRef.current) {
-                const t = performance.now() / 1000;
-                const rect = containerRef.current.getBoundingClientRect();
-                tgX.current = rect.width * (0.5 + 0.42 * Math.sin(t * 0.27));
-                tgY.current = rect.height * (0.68 + 0.3 * Math.cos(t * 0.19));
-            }
-
-            curX.current += (tgX.current - curX.current) / 20;
-            curY.current += (tgY.current - curY.current) / 20;
-
-            interactiveRef.current.style.transform = `translate3d(${Math.round(curX.current)}px, ${Math.round(curY.current)}px, 0)`;
-            animationFrame = requestAnimationFrame(move);
-        }
-
-        animationFrame = requestAnimationFrame(move);
-
-        return () => {
-            cancelAnimationFrame(animationFrame);
-        };
-    }, [interactive, autoMove, inView]);
-
-    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (autoMove) return; // movement is autonomous; ignore the cursor
-        if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            tgX.current = event.clientX - rect.left;
-            tgY.current = event.clientY - rect.top;
-        }
-    };
-
-    return (
-        <div
-            ref={containerRef}
-            onMouseMove={handleMouseMove}
-            className={cn(
-                "h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
-                containerClassName
-            )}
-        >
-            <div className={cn("", className)}>{children}</div>
-            <div
-                className={cn(
-                    "gradients-container h-full w-full",
-                    !inView && "anim-paused"
-                )}
-                style={(() => {
-                    // Custom mask wins; otherwise maskCenter keeps the moving
-                    // colors out of the center (behind the headline).
-                    const mask =
-                        maskImage ??
-                        (maskCenter
-                            ? "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)"
-                            : undefined);
-                    return mask
-                        ? { WebkitMaskImage: mask, maskImage: mask }
-                        : undefined;
-                })()}
-            >
-                <div
-                    className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.8)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
-                        `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-                        `[transform-origin:center_center]`,
-                        `animate-first`,
-                        `opacity-100 will-change-transform`
-                    )}
-                />
-                <div
-                    className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--second-color),_0.8)_0,_rgba(var(--second-color),_0)_50%)_no-repeat]`,
-                        `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-                        `[transform-origin:calc(50%-400px)]`,
-                        `animate-second`,
-                        `opacity-100 will-change-transform`
-                    )}
-                />
-                <div
-                    className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--third-color),_0.8)_0,_rgba(var(--third-color),_0)_50%)_no-repeat]`,
-                        `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-                        `[transform-origin:calc(50%+400px)]`,
-                        `animate-third`,
-                        `opacity-100 will-change-transform`
-                    )}
-                />
-                <div
-                    className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fourth-color),_0.8)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
-                        `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-                        `[transform-origin:calc(50%-200px)]`,
-                        `animate-fourth`,
-                        `opacity-70 will-change-transform`
-                    )}
-                />
-                <div
-                    className={cn(
-                        `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_50%)_no-repeat]`,
-                        `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-                        `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
-                        `animate-fifth`,
-                        `opacity-100 will-change-transform`
-                    )}
-                />
-
-                {interactive && (
-                    <div
-                        ref={interactiveRef}
-                        className={cn(
-                            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.8)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
-                            `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
-                            `opacity-70 will-change-transform`
-                        )}
-                    />
-                )}
-            </div>
-        </div>
+  useEffect(() => {
+    document.body.style.setProperty(
+      "--gradient-background-start",
+      gradientBackgroundStart,
     );
+    document.body.style.setProperty(
+      "--gradient-background-end",
+      gradientBackgroundEnd,
+    );
+    document.body.style.setProperty("--first-color", firstColor);
+    document.body.style.setProperty("--second-color", secondColor);
+    document.body.style.setProperty("--third-color", thirdColor);
+    document.body.style.setProperty("--fourth-color", fourthColor);
+    document.body.style.setProperty("--fifth-color", fifthColor);
+    document.body.style.setProperty("--pointer-color", pointerColor);
+    document.body.style.setProperty("--size", size);
+    document.body.style.setProperty("--blending-value", blendingValue);
+  }, [
+    gradientBackgroundStart,
+    gradientBackgroundEnd,
+    firstColor,
+    secondColor,
+    thirdColor,
+    fourthColor,
+    fifthColor,
+    pointerColor,
+    size,
+    blendingValue,
+  ]);
+
+  // Pause all animation work while the section is offscreen
+  const [inView, setInView] = useState(true);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "120px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!interactive || !inView) return;
+
+    let animationFrame: number;
+
+    // Cache the box: reading getBoundingClientRect every frame forced a
+    // layout per frame for the whole page.
+    const box = { w: 0, h: 0 };
+    const measure = () => {
+      const r = containerRef.current?.getBoundingClientRect();
+      if (r) {
+        box.w = r.width;
+        box.h = r.height;
+      }
+    };
+    measure();
+    const ro =
+      autoMove && containerRef.current && typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(measure)
+        : null;
+    if (ro && containerRef.current) ro.observe(containerRef.current);
+
+    function move() {
+      if (!interactiveRef.current) return;
+
+      // When autoMove is on, drive the blob along its own slow, drifting
+      // path (biased toward the sides and bottom) instead of the cursor.
+      if (autoMove) {
+        const t = performance.now() / 1000;
+        tgX.current = box.w * (0.5 + 0.42 * Math.sin(t * 0.27));
+        tgY.current = box.h * (0.68 + 0.3 * Math.cos(t * 0.19));
+      }
+
+      curX.current += (tgX.current - curX.current) / 20;
+      curY.current += (tgY.current - curY.current) / 20;
+
+      interactiveRef.current.style.transform = `translate3d(${Math.round(curX.current)}px, ${Math.round(curY.current)}px, 0)`;
+      animationFrame = requestAnimationFrame(move);
+    }
+
+    animationFrame = requestAnimationFrame(move);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      ro?.disconnect();
+    };
+  }, [interactive, autoMove, inView]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (autoMove) return; // movement is autonomous; ignore the cursor
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      tgX.current = event.clientX - rect.left;
+      tgY.current = event.clientY - rect.top;
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className={cn(
+        "h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
+        containerClassName,
+      )}
+    >
+      <div className={cn("", className)}>{children}</div>
+      <div
+        className={cn(
+          "gradients-container h-full w-full",
+          !inView && "anim-paused",
+        )}
+        style={(() => {
+          // Custom mask wins; otherwise maskCenter keeps the moving
+          // colors out of the center (behind the headline).
+          const mask =
+            maskImage ??
+            (maskCenter
+              ? "radial-gradient(ellipse 58% 52% at 50% 40%, transparent 0%, transparent 38%, black 78%)"
+              : undefined);
+          return mask ? { WebkitMaskImage: mask, maskImage: mask } : undefined;
+        })()}
+      >
+        <div
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.8)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[transform-origin:center_center]`,
+            `animate-first`,
+            `opacity-100 will-change-transform`,
+          )}
+        />
+        <div
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--second-color),_0.8)_0,_rgba(var(--second-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[transform-origin:calc(50%-400px)]`,
+            `animate-second`,
+            `opacity-100 will-change-transform`,
+          )}
+        />
+        <div
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--third-color),_0.8)_0,_rgba(var(--third-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[transform-origin:calc(50%+400px)]`,
+            `animate-third`,
+            `opacity-100 will-change-transform`,
+          )}
+        />
+        <div
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fourth-color),_0.8)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[transform-origin:calc(50%-200px)]`,
+            `animate-fourth`,
+            `opacity-70 will-change-transform`,
+          )}
+        />
+        <div
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
+            `animate-fifth`,
+            `opacity-100 will-change-transform`,
+          )}
+        />
+
+        {interactive && (
+          <div
+            ref={interactiveRef}
+            className={cn(
+              `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.8)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
+              `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
+              `opacity-70 will-change-transform`,
+            )}
+          />
+        )}
+      </div>
+    </div>
+  );
 };

@@ -7,8 +7,13 @@ export const site = {
   name: "Caimue",
   tagline: "Video-First B2B Marketing Agency",
   url: "https://www.caimue.com",
-  logo: "/Caimue%20final%20logo.png",
-  logoFooter: "/caimue%20final%20logo%20FOOTER.png",
+  /* The Oct 2026 wordmark, from reference/brand-guide/caimue-ink-semi-final.svg
+     with the construction guides removed: purple letters, pink dotless "i"
+     carrying play / pause / stop. Inline version: components/brand/Wordmark. */
+  logo: "/brand/caimue-logo.svg",
+  /** The logo is never recoloured: same file on every ground. */
+  logoReversed: "/brand/caimue-logo.svg",
+  logoFooter: "/caimue-logo-dark.png",
   social: {
     instagram: "https://www.instagram.com/caimue_inc/",
     linkedin: "https://www.linkedin.com/company/caimue-inc",
@@ -29,10 +34,18 @@ export const nav = {
 
 export const hero = {
   eyebrow: "Video-first B2B marketing",
-  headline: ["Video worth watching.", "Brands worth building."],
+  headline: ["Stories worth watching", "Brands worth trusting"],
   /** Index of the headline line that gets the gradient treatment. */
   gradientLine: 1,
   body: "Caimue creates video content for B2B brands worth remembering. Corporate films, LinkedIn campaigns, and the craft to make them land.",
+  /** The studio statement under the headline, with one rotating slot —
+      the agency register (Unseen, Exo Ape, basement all open with a
+      sentence like this), not a product tagline. */
+  statement: {
+    before: "A video-first B2B marketing studio making",
+    makes: ["corporate films", "LinkedIn campaigns", "marketing websites"],
+    after: "for brands worth remembering.",
+  },
   primaryCta: { href: "/contact", label: "Start a project" },
   secondaryCta: { href: "/platforms", label: "See our work" },
   /** Same figures as the track-record pillars, condensed for the hero strip. */
@@ -44,6 +57,9 @@ export const hero = {
   ],
   /** Small meta line under the nav — where the studio operates. */
   meta: "Video-first studio · Chennai · London · Tampa",
+  /** Handwritten margin note. Deliberately NOT a figure — the badge and the
+      chips already carry every number, and a third repeat reads as padding. */
+  note: "Chennai, London & Tampa",
   /**
    * Stills tiled behind the hero and dimmed. The work carries the visual
    * weight instead of a colour gradient.
@@ -144,28 +160,28 @@ export const services = {
     {
       title: "Corporate Videos",
       body: "Founder stories and brand films with cinematic polish.",
-      color: "#3B6BF0",
+      color: "#672FB2",
       icon: "film",
       image: "/collabs/xime%20collab.png",
     },
     {
       title: "LinkedIn Media Campaigns",
       body: "Content engines that keep your brand in every feed.",
-      color: "#F0566B",
+      color: "#FF0080",
       icon: "megaphone",
       image: "/collabs/nuivio%20collab.png",
     },
     {
       title: "Marketing Websites",
       body: "Sites built to turn visitors into believers.",
-      color: "#9B4DF5",
+      color: "#8E2A9E",
       icon: "sparkles",
       image: "/collabs/prodeia.png",
     },
     {
       title: "Talent Discovery",
       body: "Writers, directors, and actors creating under our production.",
-      color: "#1FA97A",
+      color: "#3A1A63",
       icon: "users",
       image: "/team/smile%201.png",
     },
@@ -311,4 +327,217 @@ export const footerCta = {
   headline: "Fancy a chat?",
   body: "Discover how Caimue drives stories with impact. Teams in the US, UK, and India are ready to connect.",
   cta: { href: "/contact", label: "Start a conversation" },
+} as const;
+
+/* ============================================================
+   HOME — the film, act by act
+
+   The homepage is written as five beats: the title card (hero), the
+   formats, the pipeline, the proof, the close. Copy here is in the
+   language of the trade — the formats a video-marketing studio actually
+   ships and the stages a film actually goes through — not brochure
+   marketing. One voice throughout: short, declarative, no adjectives
+   doing the work a noun should.
+   ============================================================ */
+
+export const formats = {
+  eyebrow: "What we make",
+  headline: ["Every format", "the feed rewards"],
+  body: "One story, cut for every screen it has to win on. Shot once, versioned for 16:9, 9:16 and 1:1 — always-on, never off-brand.",
+  items: [
+    {
+      name: "Brand films",
+      ratio: "16:9",
+      role: "Awareness",
+      accent: "#ff0080",
+      body: "The film your company would make if it had a director. Scored, graded, built to be the first thing a buyer remembers.",
+    },
+    {
+      name: "Founder stories",
+      ratio: "16:9",
+      role: "Trust",
+      accent: "#b49ae6",
+      body: "Talking-head is the format; conviction is the content. Founder-led video that turns a pitch into a point of view.",
+    },
+    {
+      name: "Explainers",
+      ratio: "16:9",
+      role: "Consideration",
+      accent: "#1ce8ed",
+      body: "Product and process made legible in ninety seconds. Motion design that earns the second view.",
+    },
+    {
+      name: "LinkedIn video ads",
+      ratio: "1:1",
+      role: "Demand",
+      accent: "#ffd24a",
+      body: "Hook in the first second, message by the third. Creative built for view-through rate and tested until it earns its budget.",
+    },
+    {
+      name: "Testimonials",
+      ratio: "16:9",
+      role: "Decision",
+      accent: "#ff6b4a",
+      body: "Customers on camera, cut for the exact moment a deal needs them.",
+    },
+    {
+      name: "Social cutdowns",
+      ratio: "9:16",
+      role: "Always-on",
+      accent: "#a3e635",
+      body: "Every shoot becomes a month of feed. Vertical cuts, captions burned in, a cadence that keeps the brand in the scroll.",
+    },
+  ],
+} as const;
+
+export const pipeline = {
+  eyebrow: "How it gets made",
+  headline: ["From brief", "to view-through"],
+  body: "A video file is an output. A video program is a sequence of decisions. These are ours, in order.",
+  steps: [
+    {
+      n: "01",
+      name: "Strategy",
+      body: "Who has to see it, where, and what it has to change. Message, audience and channel are decided before a camera is unpacked.",
+      glyph: "target",
+    },
+    {
+      n: "02",
+      name: "Pre-production",
+      body: "Scripts, storyboards, shot lists, casting, locations. The film is finished on paper first.",
+      glyph: "board",
+    },
+    {
+      n: "03",
+      name: "Production",
+      body: "Crew, light, sound, direction. One shoot, planned for every cut we will need from it.",
+      glyph: "slate",
+    },
+    {
+      n: "04",
+      name: "Post",
+      body: "Edit, colour grade, sound design, motion graphics. Versioned for 16:9, 9:16 and 1:1 on the same day.",
+      glyph: "grade",
+    },
+    {
+      n: "05",
+      name: "Distribution",
+      body: "Organic and paid, LinkedIn and YouTube, sequenced so each view sets up the next.",
+      glyph: "nodes",
+    },
+    {
+      n: "06",
+      name: "Measurement",
+      body: "Hook rate, view-through, retention, pipeline influence. What moved — and what we change next.",
+      glyph: "bars",
+    },
+  ],
+} as const;
+
+export const proof = {
+  eyebrow: "Proof, not promises",
+  headline: ["The reel", "so far"],
+  body: "Films, campaigns and channels across Tamil, Malayalam and English — built on the way to feature films.",
+} as const;
+
+export const closing = {
+  eyebrow: "Next",
+  headline: ["Your story", "starts here"],
+  body: "Tell us what the film has to do. We will tell you how it gets made.",
+  cta: { href: "/contact", label: "Start a project" },
+} as const;
+
+/* ============================================================
+   THE SCRIPT — the homepage as a film, in beats
+
+   Cold open (the title), the problem (a paragraph that lights up as it
+   is read), the turn (one line, big), what we make, how, proof, and the
+   resolution, which pays off the title: "Stories worth watching" opens
+   the film, "Brands worth trusting" closes it.
+   ============================================================ */
+
+export const script = {
+  /* Cold open. Plain, the way the best studios introduce themselves. */
+  open: {
+    /* The credit above the title, the way a film card says who presents. */
+    credit: "Caimue — a video-first marketing studio",
+    title: ["Stories worth", "watching"],
+    line: "Caimue is a video-first marketing studio. We make the films, campaigns and cutdowns B2B brands are remembered for.",
+  },
+  /* The problem, read word by word. The last phrase turns magenta. */
+  problem: {
+    eyebrow: "The problem",
+    words:
+      "Most B2B marketing is skimmed, skipped and forgotten. Decks nobody opens. Posts nobody finishes. Ads nobody can picture a day later.",
+    accentFrom: "Ads nobody",
+  },
+  /* The turn. One line that arrives at full size under the scroll. */
+  turn: {
+    lines: ["We make the one thing", "people actually watch."],
+  },
+  /* The resolution: the title, completed. */
+  close: {
+    credit: "Now showing",
+    title: ["Brands worth", "trusting"],
+    line: "Tell us what the film has to do. We will tell you how it gets made.",
+    cta: { href: "/contact", label: "Start a project" },
+  },
+} as const;
+
+/* ---------------------------------------------------------------- Home
+   The homepage film: seven chapters, read as a flat motion-graphics piece
+   in the brand system (Brand Guidelines v1.2). Copy is a first pass. */
+
+export const home = {
+  chapters: ["The hook", "The problem", "The turn", "What we make", "How it gets made", "The proof", "Next"],
+  hook: {
+    caption: "Caimue — a video-first marketing studio",
+    title: ["Video worth watching.", "Brands worth building."],
+    line: "Brand films, corporate video and LinkedIn campaigns for B2B teams. Planned, shot and cut to be remembered.",
+    cta: { href: "/contact", label: "Start a project" },
+  },
+  problem: {
+    eyebrow: "The problem",
+    title: ["Most B2B marketing is", "skimmed, skipped and forgotten."],
+    /** The one pink word on this screen. */
+    hit: "forgotten.",
+    line: "Decks nobody opens. Posts nobody finishes. Ads nobody can picture a day later.",
+  },
+  turn: {
+    eyebrow: "The turn",
+    title: ["We make the one thing", "people actually watch."],
+  },
+  formats: {
+    eyebrow: "What we make",
+    title: "Every format the feed rewards.",
+    items: formats.items.map((f) => f.name),
+  },
+  how: {
+    eyebrow: "How it gets made",
+    title: "From brief to view-through.",
+    steps: pipeline.steps.map((s) => ({ n: s.n, name: s.name })),
+  },
+  proof: {
+    eyebrow: "Proof, not promises",
+    title: "Numbers, not adjectives.",
+    stats: hero.stats,
+  },
+  close: {
+    eyebrow: "Next",
+    title: ["Your story", "starts here."],
+    line: closing.body,
+    cta: closing.cta,
+  },
+} as const;
+
+/** The hero poster: Swiss-style, set in uppercase by the stylesheet. */
+export const poster = {
+  top: ["www.caimue.com", "Video-first marketing studio"],
+  /** The split line: first word flush left, second flush right. */
+  split: ["Video", "worth"],
+  /** The kinetic word: cycles in place, one at a time. */
+  rotate: ["watching", "remembering", "sharing", "finishing"],
+  sub: "Brands worth building",
+  ticker: ["Brand films", "Corporate video", "LinkedIn campaigns", "Marketing websites", "Founder stories", "Social cutdowns"],
+  bottom: ["Chennai · London · Tampa", "Season 2026"],
 } as const;

@@ -1,0 +1,295 @@
+/* ============================================================
+   MOTION
+   ------------------------------------------------------------
+   Scroll reveals live in GSAP (see Animator.tsx), not here.
+   Elements rest VISIBLE in CSS; GSAP animates them *from* a
+   temporary state, so a JS failure can never blank the page.
+
+   What remains here is the page transition and the two
+   scroll-linked helpers, which are cheaper as native CSS.
+   ============================================================ */
+
+/* SplitText writes these; the mask is what lets a line slide up
+   from behind its own edge. */
+.split-line {
+  display: block;
+}
+
+/* ============================================================
+   SCROLL-LINKED
+   Native scroll timelines: driven by the compositor, so these
+   cost nothing on the main thread and need no scroll handler.
+   ============================================================ */
+
+@supports (animation-timeline: view()) {
+  /* Frame drifts against the scroll. */
+  .m-parallax > img,
+  .m-parallax > span > img {
+    animation: m-drift linear both;
+    animation-timeline: view();
+    scale: 1.12;
+  }
+
+  @keyframes m-drift {
+    from {
+      translate: 0 -4%;
+    }
+    to {
+      translate: 0 4%;
+    }
+  }
+
+  /* Sticky deck: the covered card compresses as the next arrives. */
+  .m-stack > * {
+    animation: m-settle linear both;
+    animation-timeline: view();
+    animation-range: exit-crossing 0% exit 100%;
+  }
+
+  @keyframes m-settle {
+    to {
+      transform: scale(0.94);
+      filter: brightness(0.8);
+    }
+  }
+}
+
+.m-stack {
+  position: sticky;
+  top: calc(var(--stack-top, 7rem) + var(--i, 0) * 1.6rem);
+}
+
+/* ============================================================
+   HOVER / POINTER
+   ============================================================ */
+
+/* Underline that draws from the left. */
+.m-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.45s var(--m-ease);
+}
+
+.m-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   Everything resolves to its final state instantly.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  
+  .m-parallax > img,
+  .m-stack > * {
+    animation: none !important;
+  }
+}
+
+
+/* ============================================================
+   PAGE TRANSITION
+   ------------------------------------------------------------
+   One solid violet panel that slides up over the page, holds
+   the mark while the next route renders, then slides off the
+   top. Only `transform` and `opacity` animate, so every frame
+   is compositor work — the old version grew an SVG stroke-width
+   past the viewport, which repainted the whole screen per frame.
+   ============================================================ */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: clip;
+  contain: strict;
+}
+
+.page-transition[data-state="idle"] {
+  visibility: hidden;
+}
+
+.page-transition__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--color-violet);
+  transform: translate3d(0, 100%, 0);
+}
+
+.page-transition__mark {
+  position: relative;
+  color: var(--color-blush);
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.page-transition[data-state="in"] .page-transition__panel,
+.page-transition[data-state="out"] .page-transition__panel {
+  will-change: transform;
+}
+
+/* ---- in: panel rises to cover, mark pops ---- */
+
+@keyframes pt-cover-in {
+  from { transform: translate3d(0, 100%, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes pt-mark-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.page-transition[data-state="in"] .page-transition__panel {
+  animation: pt-cover-in 0.42s var(--ease-osmo) forwards;
+}
+
+.page-transition[data-state="in"] .page-transition__mark {
+  animation: pt-mark-in 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+}
+
+/* ---- out: panel keeps travelling up and off ---- */
+
+@keyframes pt-cover-out {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -100%, 0); }
+}
+
+@keyframes pt-mark-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.8); }
+}
+
+.page-transition[data-state="out"] .page-transition__panel {
+  animation: pt-cover-out 0.5s var(--ease-osmo) forwards;
+}
+
+.page-transition[data-state="out"] .page-transition__mark {
+  animation: pt-mark-out 0.2s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    display: none;
+  }
+}
+
+/* ============================================================
+   DECORATION DEVICES
+   ------------------------------------------------------------
+   Ported from the reference. Values are its own, read from the
+   compiled stylesheet — not invented.
+   ============================================================ */
+
+/* ---- Giant type list ----
+   Theirs: font-size 8em, weight 700, line-height .8, black on a
+   saturated ground; hovering a word swaps it to the handwritten
+   face at 10em. */
+
+.giant-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.giant-list__item {
+  padding-block: 0.35em;
+}
+
+.giant-list__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.giant-list__default {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 7.5vw, 8rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  transition: opacity 0.25s ease;
+}
+
+/* The handwritten alternate sits on top and only appears on hover. */
+.giant-list__hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+  font-family: var(--font-hand);
+  font-size: clamp(2.75rem, 9.2vw, 10rem);
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.giant-list__link:hover .giant-list__default {
+  opacity: 0;
+}
+
+.giant-list__link:hover .giant-list__hover {
+  opacity: 1;
+}
+
+/* ---- Scattered sticker pills ----
+   Rotations sampled from the reference: -10, -5, 2.4, 4, 5, 6, 7deg. */
+
+.pill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.7em 1.4em;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  border: 2px solid var(--color-ink);
+  transition: transform 0.35s var(--ease-osmo);
+}
+
+.pill:hover {
+  transform: rotate(0deg) scale(1.05) !important;
+}
+
+/* ---- Small tilts, applied to cards and stickers ---- */
+.tilt-a { transform: rotate(-4deg); }
+.tilt-b { transform: rotate(3deg); }
+.tilt-c { transform: rotate(-6deg); }
+.tilt-d { transform: rotate(5deg); }
+.tilt-e { transform: rotate(-2.4deg); }
+.tilt-f { transform: rotate(7deg); }
+
+/* ---- Handwritten margin note ---- */
+.note {
+  font-family: var(--font-hand);
+  font-size: clamp(1.15rem, 2vw, 1.9rem);
+  line-height: 1.05;
+}

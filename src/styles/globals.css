@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./compat.css";
+@import "./motion.css";
+@import "./sections.css";
+@import "./shapes.css";
 
 /* ============================================================
    BASE
@@ -76,7 +79,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
   color: var(--color-ink);
@@ -131,10 +134,11 @@ p {
   padding-block: var(--section-y);
 }
 
-/* Long pages paint far cheaper when offscreen sections are skipped. */
+/* Deliberately NOT content-visibility: auto. It collapses the geometry of
+   descendants, which made getBoundingClientRect() report reveal targets as
+   off-screen — they got hidden and never released. */
 .section-cv {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
+  position: relative;
 }
 
 /* ============================================================
@@ -158,7 +162,7 @@ p {
 
 /* Caimue's brand gold. The hero accent line. */
 .text-gradient-gold {
-  background: linear-gradient(100deg, #fde047 0%, #facc15 50%, #eab308 100%);
+  background: linear-gradient(100deg, #ff0080 0%, #ff5fb0 48%, #ffd6ec 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -410,33 +414,30 @@ p {
 .ground-flow {
   background: linear-gradient(
     180deg,
-    #4a2a9e 0%,
-    #5b34c4 6%,
-    #6b41e6 12%,
-    #7748f2 19%,
-    #8b3dff 32%,
-    #a734e8 48%,
-    #c026d3 62%,
-    #e0409c 78%,
-    #f4622c 93%,
-    #f97316 100%
+    #24103d 0%,
+    #3a1a63 14%,
+    #4d2287 30%,
+    #672fb2 48%,
+    #8e2a9e 66%,
+    #c4118c 82%,
+    #ff0080 100%
   );
 }
 
 /* Standalone violet, used by the mobile nav sheet. */
 .ground-hero {
-  background: linear-gradient(180deg, #4a2a9e 0%, #6b46ec 60%, #7748f2 100%);
+  background: linear-gradient(180deg, #24103d 0%, #4d2287 60%, #672fb2 100%);
 }
 
 /* Full-bleed saturated colour band. */
 .block-violet {
-  background-color: #7c3aed;
+  background-color: #672fb2;
   background-image: radial-gradient(
       at 15% 12%,
-      rgba(255, 62, 165, 0.42) 0px,
+      rgba(255, 0, 128, 0.45) 0px,
       transparent 55%
     ),
-    radial-gradient(at 85% 82%, rgba(0, 196, 204, 0.36) 0px, transparent 52%);
+    radial-gradient(at 85% 82%, rgba(180, 154, 230, 0.35) 0px, transparent 52%);
 }
 
 .dot-grid {
@@ -445,23 +446,6 @@ p {
     transparent 1px
   );
   background-size: var(--dot-size, 26px) var(--dot-size, 26px);
-}
-
-/* Structural column rules. Replaces the diagonal hatch + dot field: reads
-   as engineered architecture rather than surface noise, and gives the big
-   colour fields something to measure against. */
-.col-rule {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--rule-color, rgba(255, 255, 255, 0.11)) 12%,
-    var(--rule-color, rgba(255, 255, 255, 0.11)) 88%,
-    transparent 100%
-  );
 }
 
 /* Soft vignette that keeps the section edges from looking like flat bands. */
@@ -557,169 +541,6 @@ p {
   animation-delay: var(--delay, 0s);
 }
 
-/* ============================================================
-   PREMIUM SCROLL EFFECTS
-   ------------------------------------------------------------
-   Built on native CSS scroll-driven animations rather than a
-   scroll library. They run on the compositor rather than in a
-   scroll handler, so they cost nothing on the main thread — and
-   every one degrades to a plain static layout where the feature
-   is missing.
-   ============================================================ */
-
-/* ---- Sticky card stack ---- */
-.stack-item {
-  position: sticky;
-  /* Each card parks slightly lower than the last, so they deal out
-     into a visible deck instead of landing on top of each other. */
-  top: calc(var(--stack-top, 7rem) + var(--i, 0) * 1.6rem);
-}
-
-@property --beam-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@supports (animation-timeline: view()) {
-  /* Card beneath compresses and dims as the next one covers it. */
-  .stack-item > * {
-    animation: stack-settle linear both;
-    animation-timeline: view();
-    animation-range: exit-crossing 0% exit 100%;
-  }
-
-  @keyframes stack-settle {
-    to {
-      transform: scale(0.93);
-      filter: brightness(0.78);
-    }
-  }
-
-  /* Image drifts against the scroll inside its frame. */
-  .parallax > img,
-  .parallax > span > img {
-    animation: parallax-drift linear both;
-    animation-timeline: view();
-    scale: 1.09;
-  }
-
-  @keyframes parallax-drift {
-    from {
-      translate: 0 -3.5%;
-    }
-    to {
-      translate: 0 3.5%;
-    }
-  }
-
-  /* Reading-progress bar under the navbar. */
-  .scroll-progress {
-    transform-origin: 0 50%;
-    animation: progress-grow linear both;
-    animation-timeline: scroll(root block);
-  }
-
-  @keyframes progress-grow {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
-  }
-}
-
-/* ---- Border beam ----
-   A light travelling the card's edge. The conic gradient is masked to a
-   1px ring, and only the custom angle property animates. */
-.beam::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--beam-angle),
-    transparent 0deg 200deg,
-    var(--beam-color, rgba(255, 255, 255, 0.9)) 320deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: beam-spin var(--beam-duration, 6s) linear infinite;
-  pointer-events: none;
-  z-index: 3;
-}
-
-@keyframes beam-spin {
-  to {
-    --beam-angle: 360deg;
-  }
-}
-
-/* ---- Magnetic pull ---- */
-.magnetic {
-  display: inline-flex;
-  transform: translate3d(var(--mx, 0), var(--my, 0), 0);
-  transition: transform 0.45s var(--ease-out-expo);
-  will-change: transform;
-}
-
-/* ---- Shimmer sweep, for accent text ---- */
-.shimmer {
-  background: linear-gradient(
-    100deg,
-    #fde047 0%,
-    #fff8c9 42%,
-    #fde047 60%,
-    #eab308 100%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  padding-block-end: 0.08em;
-  animation: shimmer-sweep 6s ease-in-out infinite;
-}
-
-@keyframes shimmer-sweep {
-  0%,
-  100% {
-    background-position: 120% 0;
-  }
-  50% {
-    background-position: -20% 0;
-  }
-}
-
-/* Kinetic headings. Same arm-on-mount contract as .reveal: the server output
-   is plain visible text; only JS can hide it. */
-.kinetic__word {
-  display: inline-block;
-}
-
-.kinetic[data-armed="true"] .kinetic__word {
-  opacity: 0;
-  transform: translate3d(0, 0.45em, 0);
-}
-
-.kinetic[data-armed="true"].is-visible .kinetic__word {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition:
-    opacity 0.6s var(--ease-out-expo),
-    transform 0.7s var(--ease-out-expo);
-  /* Stagger comes from the per-word --i index. */
-  transition-delay: calc(var(--i) * 45ms);
-}
-
 /* Scroll reveals. Visible by default; JS adds [data-armed] to hide, so
    server HTML and no-JS renders always show content. */
 .reveal[data-armed="true"] {
@@ -768,100 +589,6 @@ p {
   z-index: 30;
 }
 
-/* ============================================================
-   AURORA
-   ------------------------------------------------------------
-   Transform-only drift on soft radial fields. No blur filter, so
-   these composite on the GPU and never repaint while scrolling.
-   ============================================================ */
-
-.aurora-blob {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  will-change: transform;
-}
-
-@keyframes aurora-drift-1 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(6%, 8%, 0) scale(1.12);
-  }
-}
-
-@keyframes aurora-drift-2 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.08);
-  }
-  50% {
-    transform: translate3d(-8%, 6%, 0) scale(1);
-  }
-}
-
-@keyframes aurora-drift-3 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-5%, -9%, 0) scale(1.15);
-  }
-}
-
-.aurora-drift-1 {
-  animation: aurora-drift-1 22s ease-in-out infinite;
-}
-.aurora-drift-2 {
-  animation: aurora-drift-2 27s ease-in-out infinite;
-}
-.aurora-drift-3 {
-  animation: aurora-drift-3 32s ease-in-out infinite;
-}
-
-/* ============================================================
-   GLOW CARD
-   ============================================================ */
-
-.glow-card {
-  position: relative;
-  border-radius: var(--glow-radius, 20px);
-  isolation: isolate;
-}
-
-/* Light that follows the cursor, clipped to a hairline ring by the mask. */
-.glow-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: radial-gradient(
-    220px circle at var(--gx, 50%) var(--gy, 0%),
-    var(--glow, rgba(255, 255, 255, 0.55)),
-    transparent 70%
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.glow-card:hover::before {
-  opacity: 1;
-}
-
 /* Rails scroll by drag/arrow; the bar itself would cut the card bleed. */
 .no-scrollbar {
   scrollbar-width: none;
@@ -908,4 +635,139 @@ p {
     scroll-behavior: auto !important;
   }
 
+}
+
+/* ============================================================
+   PANEL STACK
+   ------------------------------------------------------------
+   The structural device from the reference: every section is a
+   flat solid-colour panel with large rounded BOTTOM corners,
+   overlapping the panel beneath it. The page reads as a deck of
+   giant cards sliding over one another rather than as one
+   continuous background.
+
+   Theirs: clip-path: inset(0 round 0 0 10em 10em) + negative
+   margins + z-index stacking. Same here, with the radius scaled
+   to the viewport so it holds on mobile.
+   ============================================================ */
+
+.panel {
+  position: relative;
+  z-index: 1;
+  clip-path: inset(0 round 0 0 var(--panel-round) var(--panel-round));
+  /* Pull up under the previous panel so the rounded corners reveal
+     the colour behind them. */
+  margin-top: calc(var(--panel-overlap) * -1);
+  padding-bottom: var(--panel-overlap);
+}
+
+:root {
+  --panel-round: clamp(2rem, 5vw, 6.5rem);
+  --panel-overlap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+/* The first panel has nothing above it to overlap. */
+.panel:first-child {
+  margin-top: 0;
+}
+
+/* Later panels sit above earlier ones so the overlap reads correctly. */
+.panel--1 { z-index: 1; }
+.panel--2 { z-index: 2; }
+.panel--3 { z-index: 3; }
+.panel--4 { z-index: 4; }
+.panel--5 { z-index: 5; }
+.panel--6 { z-index: 6; }
+.panel--7 { z-index: 7; }
+
+/* ---- Flat panel colours, all from the logo palette ---- */
+
+.panel--violet {
+  background-color: #672fb2;
+  color: #fff;
+}
+
+.panel--aubergine {
+  background-color: #24103d;
+  color: #fff;
+}
+
+.panel--plum {
+  background-color: #3a1a63;
+  color: #fff;
+}
+
+.panel--magenta {
+  background-color: #ff0080;
+  color: #fff;
+}
+
+.panel--lilac {
+  background-color: #efe7fb;
+  color: var(--color-ink);
+}
+
+.panel--blush {
+  background-color: #ffd6ec;
+  color: var(--color-ink);
+}
+
+.panel--paper {
+  background-color: #f5f1ea;
+  color: var(--color-ink);
+}
+
+.panel--white {
+  background-color: #fff;
+  color: var(--color-ink);
+}
+
+/* Headings inherit the panel's own text colour rather than the
+   global ink, so a panel can be dropped anywhere in the stack. */
+.panel h1,
+.panel h2,
+.panel h3,
+.panel h4 {
+  color: inherit;
+}
+
+/* ============================================================
+   INTRO COVER
+
+   A purple sheet with the reversed wordmark, revealed left to right,
+   held one beat, then lifted straight off the page. Transform and
+   clip-path only; it unmounts when it is gone.
+   ============================================================ */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform;
+}
+
+/* the wordmark title sequence (LoadingScreen): parts start hidden; GSAP plays them in */
+.intro__wm {
+  width: clamp(220px, 34vw, 560px);
+}
+
+.intro__wm svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.intro__wm [data-wm] {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
 }

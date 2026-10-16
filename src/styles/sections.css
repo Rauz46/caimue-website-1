@@ -1,0 +1,264 @@
+/* ============================================================
+   SECTIONS — header & hero
+
+   Authored entirely in `em` off `.u-fluid` (see tokens.css), so
+   the composition zooms as one object. Nothing here uses px
+   except hairline borders.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Panel geometry, re-expressed in the fluid unit so the corner
+   radius scales with the composition instead of with the
+   viewport width alone.
+   ------------------------------------------------------------ */
+:root {
+  --panel-round: calc(var(--fs) * 10);
+  --panel-overlap: calc(var(--fs) * 3);
+}
+
+@media (max-width: 991px) {
+  :root {
+    --panel-round: calc(var(--fs) * 2.5);
+    --panel-overlap: calc(var(--fs) * 1.5);
+  }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  /* Tall enough for a real top gap (set on .site-header__inner below)
+     plus the logo plus a little room under it — the gap is an actual
+     padding value now, not however much space centring happened to
+     leave. */
+  height: 7em;
+  display: flex;
+  background: rgb(255 255 255 / 0);
+  transition: background-color 0.4s var(--ease-osmo);
+}
+
+/* Plain white once scrolled — not a brand-colour tint. The point is to stay
+   legible over whatever panel colour is behind it further down the page,
+   not to make a colour statement of its own. */
+.site-header--solid {
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(0.5em);
+}
+
+.site-header__inner {
+  width: 100%;
+  display: flex;
+  /* Top-anchored, not vertically centred — the top gap is now the same
+     value as the left gap (was 4.5em each, both trimmed 25% to
+     3.375em), matching on purpose rather than by coincidence. */
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 3.375em 4.5em 0 3.375em;
+}
+
+@media (max-width: 991px) {
+  .site-header__inner {
+    padding: 1.5em 1.5em 0;
+  }
+}
+
+/* ---- Logo ----
+   Nav scale, not a second full-bleed moment — the hero's headline text
+   carries the composition now, so the mark is free to just be a mark here. */
+.nav-logo {
+  display: block;
+  width: calc(var(--fs) * 7);
+}
+
+.nav-logo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Nav links ----
+   Plain text, nothing else — no border, no fill, no capsule. */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25em;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: opacity 0.25s var(--ease-osmo);
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  opacity: 0.55;
+}
+
+/* Instagram/LinkedIn hide below the tablet breakpoint — four plain text
+   links plus the menu button is too many words for a 390px bar. They still
+   reach the mobile dropdown further down. */
+.nav-links a[href^="http"] {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links a[href^="http"] {
+    display: inline;
+  }
+}
+
+.menu-btn {
+  color: var(--color-ink);
+}
+
+/* ---- Mobile dropdown ----
+   This had no styling at all: no background, no positioning, so it painted
+   as bare flex-wrapped text inside the header's own 5.5em row, overlapping
+   whatever was beneath it instead of opening a panel. */
+.mobile-nav {
+  position: fixed;
+  inset: 7em 0 0;
+  z-index: 49;
+  background: var(--color-paper);
+  padding: 2em 1.5em;
+  overflow-y: auto;
+}
+
+.mobile-nav .nav-link {
+  font-size: 1.4em;
+  color: var(--color-ink);
+}
+
+/* ============================================================
+   THE FRAME and THE NAV
+
+   One gutter, --frame-x, shared by the nav and every edge in the film.
+   The nav: mark left, links and one pill right; never a bar, never a
+   colour change on scroll — it slides off the top while you scroll down
+   and returns when you scroll up. Paper over the film; ink on white
+   pages.
+   ============================================================ */
+
+:root {
+  --frame-x: calc(var(--fs) * 8);
+}
+
+@media (max-width: 991px) {
+  :root {
+    --frame-x: calc(var(--fs) * 1.5);
+  }
+}
+
+.site-header {
+  transition: transform 0.5s var(--ease-osmo);
+}
+
+.site-header--hidden {
+  transform: translateY(-100%);
+}
+
+.site-header__inner {
+  align-items: center;
+  padding: 0 var(--frame-x);
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 2.25em;
+}
+
+.nav-links {
+  gap: 2em;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: rgb(20 10 34 / 0.72);
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  opacity: 1;
+  color: var(--color-ink);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 2.75em;
+  padding-inline: 1.25em;
+  border: var(--stroke) solid rgb(20 10 34 / 0.18);
+  border-radius: var(--r-action);
+  font-family: var(--font-sans);
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition:
+    background-color 0.35s var(--ease-osmo),
+    border-color 0.35s var(--ease-osmo),
+    color 0.35s var(--ease-osmo);
+}
+
+.nav-cta:hover {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+body:has(.hero-track) .site-header .nav-link {
+  color: rgb(255 255 255 / 0.72);
+}
+
+body:has(.hero-track) .site-header .nav-link:hover,
+body:has(.hero-track) .site-header .nav-link[aria-current="page"] {
+  color: #fff;
+}
+
+body:has(.hero-track) .site-header .menu-btn {
+  color: #fff;
+}
+
+body:has(.hero-track) .site-header .nav-cta {
+  border-color: rgb(255 255 255 / 0.4);
+  color: #fff;
+}
+
+body:has(.hero-track) .site-header .nav-cta:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: var(--color-ink);
+}
+
+body:has(.hero-track) .site-header .nav-logo-img {
+  filter: invert(1);
+}
+
+body:has(.hero-track) .site-header .mobile-nav .nav-link,
+.site-header .mobile-nav .nav-link {
+  color: var(--color-ink);
+}
+
+@media (max-width: 991px) {
+  .nav-cta {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+}

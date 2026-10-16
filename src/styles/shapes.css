@@ -1,0 +1,133 @@
+/* ============================================================
+   SHAPES — Caimue's own vocabulary: arch, circle, sparkle
+
+   Flat fills only. No gradient, no blur, no drop-shadow — the same
+   restraint Google's Material 3 "Shape" system and Bauhaus both apply: a
+   few large, confident forms read as designed; many small decorated ones
+   read as noise. Every shape here is either a solid flat fill or a thin
+   outline, nothing between.
+   ============================================================ */
+
+.shape {
+  position: absolute;
+}
+
+/* ---- Arch ----
+   A flat-top, round-bottom form — the same silhouette as the mark's own
+   "C". `border-radius` on only the bottom two corners, pushed past what the
+   box could geometrically hold: the browser clamps the pair so they sum to
+   exactly the box's width, which yields a true semicircle bottom with zero
+   trig. Works as long as height exceeds half the width, which every arch
+   here satisfies. */
+.shape-arch {
+  border-radius: 0 0 999px 999px;
+}
+
+.shape-circle {
+  border-radius: 50%;
+}
+
+.shape--outline {
+  background: none !important;
+  border: var(--stroke) solid currentColor;
+}
+
+.shape-sparkle {
+  overflow: visible;
+}
+
+@keyframes shape-pop {
+  from {
+    opacity: 0;
+    scale: 0.55;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* ---- Base rule ----
+   The one deliberate colour moment: a thin gradient bar across the hero's
+   own bottom edge, the same device Lokal runs full-width at their fold —
+   colour as a hairline accent, not as a filled area. */
+.hero__rule {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--stroke);
+  background: var(--color-ink);
+}
+
+@media (max-width: 991px) {
+  .hero__rule {
+    position: static;
+    margin-top: 3em;
+  }
+}
+
+/* ============================================================
+   WORDMARK — the hero's brand signature
+   ============================================================ */
+.wordmark {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  animation: shape-pop 0.8s var(--ease-bounce) backwards;
+}
+
+/* Not a real "i" — the font's own baked-in dot can't be styled off
+   independently, so the whole glyph is skipped: a plain stem, sized to sit
+   roughly at x-height, with the sparkle carrying the position a dot would. */
+.wordmark__i {
+  position: relative;
+  display: inline-block;
+  width: 0.16em;
+  height: 0.62em;
+  margin: 0 0.05em;
+  background: currentColor;
+  border-radius: 0.03em;
+  vertical-align: -0.02em;
+}
+
+.wordmark__dot {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 0.55em;
+  height: 0.55em;
+  /* The global `svg { max-width: 100% }` reset resolves against the
+     containing block — here the 0.16em stem — and clamped the sparkle down
+     to stem-width regardless of this rule's own `width`. Same trap as the
+     logo image earlier in the project. */
+  max-width: none;
+  margin-bottom: 0.1em;
+  transform: translateX(-50%);
+  color: var(--color-violet);
+}
+
+/* Sized as a real brand signature, not a small eyebrow — deliberately
+   smaller than the 9em headline so it reads as a mark ABOVE the message,
+   not a second competing headline. */
+.hero__wordmark {
+  display: block;
+  margin-bottom: 0.3em;
+  font-size: 2.5em;
+}
+
+@media (max-width: 991px) {
+  .hero__wordmark {
+    font-size: 1.75em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark {
+    animation: none;
+  }
+}

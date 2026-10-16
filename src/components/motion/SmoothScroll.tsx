@@ -2,6 +2,10 @@
 
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Lenis-driven inertial scrolling.
@@ -29,12 +33,14 @@ export function SmoothScroll() {
       touchMultiplier: 1.6,
     });
 
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
+    // One clock for scrolling and animation: Lenis steps on GSAP's ticker
+    // and tells ScrollTrigger every time it moves, so pinned scenes and
+    // scrubbed timelines read the same scroll position in the same frame
+    // (two separate rAF loops make pins shiver).
+    lenis.on("scroll", ScrollTrigger.update);
+    const raf = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(0);
 
     // Same-page anchors must go through Lenis or they jump instantly.
     const onClick = (event: MouseEvent) => {
@@ -57,7 +63,7 @@ export function SmoothScroll() {
 
     return () => {
       document.removeEventListener("click", onClick);
-      cancelAnimationFrame(frame);
+      gsap.ticker.remove(raf);
       lenis.destroy();
     };
   }, []);

@@ -20,6 +20,8 @@ const nextConfig = {
     // Rewrites `import { X } from "lucide-react"` to per-icon deep imports so
     // the whole icon set never reaches the client bundle.
     optimizePackageImports: ["lucide-react", "framer-motion"],
+    // The dev disk cache kept serving stale CSS on this Windows checkout.
+    turbopackFileSystemCacheForDev: false,
   },
 
   async redirects() {

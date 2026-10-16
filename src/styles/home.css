@@ -1,0 +1,2303 @@
+/* ============================================================
+   THE HOMEPAGE (v18.3).
+
+   One token sheet, below, and nothing in this file uses a value that
+   is not on it. Grounds alternate the way the approver reads "a proper
+   company": purple hero, lavender tint, white, tint, white, tint,
+   purple close, white footer. Each section fits one viewport height.
+
+   Class prefix: cx- (no collisions with the legacy global sheets).
+   ============================================================ */
+
+body:has(.cx) {
+  /* colour: brand book v1.2 */
+  --purple: #672fb2;
+  --purple-deep: #4b2183;
+  --pink: #ff0080;
+  --tint: #f1ebf9;
+  --lav: #e6dcf5;
+  --lav-2: #d9cbef;
+  --lilac: #b49ae0;
+  --ink: #17151c;
+  --ink-2: #4a4753;
+  --ink-3: #6f6b78;
+  --white: #ffffff;
+  --line: rgb(103 47 178 / 0.14);
+  --line-strong: rgb(103 47 178 / 0.28);
+  --line-inv: rgb(255 255 255 / 0.18);
+  --grid-line: rgb(103 47 178 / 0.07);
+  --grid-line-inv: rgb(255 255 255 / 0.07);
+
+  /* type: one family, three weights, seven sizes */
+  --font: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  --t-display: clamp(2.75rem, 1.9rem + 3.8vw, 6rem); /* 44 → 96 */
+  --t-h2: clamp(2rem, 1.55rem + 2vw, 4rem); /* 32 → 64 */
+  --t-h3: clamp(1.5rem, 1.2rem + 1.3vw, 2.5rem); /* 24 → 40 */
+  --t-title: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem); /* 20 → 24 */
+  --t-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem); /* 18 → 22 */
+  --t-body: clamp(1rem, 0.96rem + 0.19vw, 1.125rem); /* 16 → 18 */
+  --t-label: 0.8125rem; /* 13 */
+
+  /* space: 4 px base, 8 px rhythm (layout-system skill) */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: clamp(1.25rem, 1.1667rem + 0.3704vw, 1.5rem);
+  --space-l: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
+  --space-xl: clamp(2rem, 1.6667rem + 1.4815vw, 3rem);
+  --space-2xl: clamp(2.5rem, 2rem + 2.2222vw, 4rem);
+  --space-3xl: clamp(3.5rem, 2.6667rem + 3.7037vw, 6rem);
+  --space-section: clamp(4rem, 2.6667rem + 3.7037vw, 6rem); /* 64 → 96 */
+
+  /* shape */
+  --r-s: 8px;
+  --r-m: 16px;
+  --r-l: 28px;
+  --r-sheet: 16px;
+  --r-pill: 999px;
+  --stroke: 1px;
+
+  /* grid */
+  --margin: clamp(1rem, 0.2rem + 3.6vw, 3rem);
+  --max: 1344px;
+  --wrap: min(100% - 2 * var(--margin), var(--max));
+  --header-h: 80px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  background: var(--white);
+}
+
+/* ============================================================
+   HEADER (home only): transparent over the purple hero, a white
+   bar with a hairline once past it.
+   ============================================================ */
+body:has(.cx) .site-header {
+  font-size: 16px;
+  height: var(--header-h);
+  top: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: var(--stroke) solid transparent;
+  backdrop-filter: none;
+  transition:
+    transform 0.5s var(--ease-out),
+    background-color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
+
+body:has(.cx) .site-header--solid {
+  background: var(--white);
+  border-bottom-color: var(--line);
+}
+
+body:has(.cx) .site-header--hidden {
+  transform: translateY(-100%);
+}
+
+body:has(.cx) .site-header__inner {
+  width: var(--wrap);
+  margin-inline: auto;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-l);
+}
+
+body:has(.cx) .site-header .nav-logo {
+  display: flex;
+  align-items: center;
+  width: 124px;
+}
+
+body:has(.cx) .site-header .nav-logo-img {
+  display: none;
+  width: 100%;
+  height: auto;
+  filter: none;
+}
+
+body:has(.cx) .site-header .nav-logo-img--reversed {
+  display: block;
+}
+
+body:has(.cx) .site-header--solid .nav-logo-img {
+  display: block;
+}
+
+body:has(.cx) .site-header--solid .nav-logo-img--reversed {
+  display: none;
+}
+
+body:has(.cx) .site-header__right,
+body:has(.cx) .site-header .nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+body:has(.cx) .site-header .nav-link {
+  position: relative;
+  padding: var(--space-3xs) 0;
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: rgb(255 255 255 / 0.8);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out);
+}
+
+body:has(.cx) .site-header .nav-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -2px;
+  height: var(--stroke);
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s var(--ease-out);
+}
+
+body:has(.cx) .site-header .nav-link:hover {
+  color: var(--white);
+}
+
+body:has(.cx) .site-header .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+body:has(.cx) .site-header--solid .nav-link {
+  color: var(--ink-2);
+}
+
+body:has(.cx) .site-header--solid .nav-link:hover {
+  color: var(--ink);
+}
+
+body:has(.cx) .site-header .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--space-m);
+  border: var(--stroke) solid rgb(255 255 255 / 0.5);
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--white);
+  transition:
+    background-color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+}
+
+body:has(.cx) .site-header .nav-cta:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--purple);
+}
+
+body:has(.cx) .site-header--solid .nav-cta {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--white);
+}
+
+body:has(.cx) .site-header--solid .nav-cta:hover {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+}
+
+body:has(.cx) .site-header .menu-btn {
+  color: var(--white);
+}
+
+body:has(.cx) .site-header--solid .menu-btn {
+  color: var(--ink);
+}
+
+body:has(.cx) .site-header .mobile-nav {
+  position: absolute;
+  top: calc(var(--header-h) - var(--space-2xs));
+  left: var(--margin);
+  right: var(--margin);
+  padding: var(--space-l);
+  background: var(--white);
+  border: var(--stroke) solid var(--line);
+  border-radius: var(--r-l);
+}
+
+body:has(.cx) .site-header .mobile-nav .nav-link {
+  color: var(--ink);
+  font-size: var(--t-title);
+}
+
+/* ============================================================
+   PAGE BASE
+   ============================================================ */
+.cx {
+  font-family: var(--font);
+  font-size: var(--t-body);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cx *,
+.cx *::before,
+.cx *::after {
+  box-sizing: border-box;
+}
+
+/* zero-specificity reset: every component class below outranks it */
+:where(.cx) :where(h1, h2, h3, p, ul, ol, dl, dd) {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+}
+
+:where(.cx) :where(ul, ol) {
+  list-style: none;
+}
+
+.cx-wrap {
+  width: var(--wrap);
+  margin-inline: auto;
+}
+
+.cx-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- sections and the sheet seam ---------- */
+.cx-s {
+  position: relative;
+  padding-block: var(--space-section);
+  text-align: center;
+  overflow: clip;
+}
+
+.cx-s[data-ground="purple"] {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.cx-s[data-ground="tint"] {
+  background: var(--tint);
+}
+
+.cx-s[data-ground="white"] {
+  background: var(--white);
+}
+
+/* each section after the hero is a sheet that rises over the last */
+.cx-sheet {
+  margin-top: calc(var(--r-sheet) * -1);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+}
+
+.cx-sheet[data-ground="white"],
+.cx-sheet[data-ground="tint"] {
+  box-shadow: 0 calc(var(--stroke) * -1) 0 var(--line);
+}
+
+.cx-hero {
+  z-index: 1;
+}
+.cx-engine {
+  z-index: 2;
+}
+.cx-craft {
+  z-index: 3;
+}
+.cx-fit {
+  z-index: 4;
+}
+.cx-why {
+  z-index: 5;
+}
+.cx-clients {
+  z-index: 6;
+}
+.cx-talk {
+  z-index: 7;
+}
+
+/* the texture: a ribbon of hairlines on every ground (Waves.tsx) */
+.cx-waves {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.cx-waves__move {
+  position: absolute;
+  inset: -6% 0;
+}
+
+.cx-waves svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cx-waves path {
+  fill: none;
+  stroke: var(--purple);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.17;
+}
+
+.cx-s[data-ground="tint"] .cx-waves path {
+  opacity: 0.2;
+}
+
+.cx-s[data-ground="purple"] .cx-waves path {
+  stroke: var(--white);
+  opacity: 0.18;
+}
+
+/* a second ribbon that drifts the other way, for depth */
+.cx-waves--reverse .cx-waves__move {
+  animation-direction: reverse;
+}
+
+.cx-waves--reverse path {
+  opacity: 0.1 !important;
+}
+
+/* the hero ribbon drifts sideways forever: two tiles, one loop */
+.cx-waves--drift .cx-waves__move {
+  right: auto;
+  width: 200%;
+  animation: cx-drift var(--drift, 160s) linear infinite;
+}
+
+@keyframes cx-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cx-recede,
+.cx-s > .cx-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+.cx-h1 {
+  color: var(--white);
+  font-size: var(--t-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.cx-h1__line {
+  display: block;
+}
+
+.cx-h1__line--tone {
+  color: var(--lav-2);
+}
+
+.cx-word {
+  display: inline-block;
+}
+
+.cx-h2 {
+  color: var(--ink);
+  max-width: 20ch;
+  margin-inline: auto;
+  font-size: var(--t-h2);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.cx-h2--display {
+  max-width: none;
+  font-size: var(--t-display);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.cx-h3 {
+  color: var(--ink);
+  font-size: var(--t-title);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.cx-lead {
+  max-width: 58ch;
+  margin-inline: auto;
+  font-size: var(--t-lead);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--purple);
+  text-wrap: pretty;
+}
+
+.cx-s[data-ground="purple"] .cx-h2 {
+  color: var(--white);
+}
+
+.cx-s[data-ground="purple"] .cx-lead {
+  color: var(--lav-2);
+}
+
+.cx-body {
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.cx-head {
+  display: grid;
+  gap: var(--space-m);
+  margin-bottom: var(--space-xl);
+}
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+.cx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-s);
+  margin-top: var(--space-xl);
+}
+
+.cx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 var(--space-l);
+  border: var(--stroke) solid transparent;
+  border-radius: var(--r-pill);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out);
+}
+
+.cx-btn:active {
+  transform: scale(0.98);
+}
+
+.cx-btn--light {
+  background: var(--white);
+  color: var(--purple);
+}
+
+.cx-btn--light:hover {
+  background: var(--lav);
+}
+
+.cx-btn--ghost-light {
+  border-color: rgb(255 255 255 / 0.45);
+  color: var(--white);
+}
+
+.cx-btn--ghost-light:hover {
+  border-color: var(--white);
+  background: rgb(255 255 255 / 0.08);
+}
+
+.cx-btn--outline {
+  border-color: var(--line-strong);
+  color: var(--purple);
+}
+
+.cx-btn--outline:hover {
+  border-color: var(--purple);
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* 24px = large text in WCAG terms: white on #ff0080 (3.77:1) needs 3:1 */
+.cx-btn--pink {
+  height: 64px;
+  padding: 0 var(--space-xl);
+  background: var(--pink);
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.cx-btn--pink:hover {
+  background: #d6006b;
+}
+
+.cx-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.cx-hero {
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + var(--space-2xl));
+  padding-bottom: calc(var(--r-sheet) + var(--space-2xl));
+  display: flex;
+  flex-direction: column;
+}
+
+.cx-hero__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.cx-hero__in {
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cx-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  height: 36px;
+  padding: 0 var(--space-s);
+  margin-bottom: var(--space-l);
+  border: var(--stroke) solid var(--line-inv);
+  border-radius: var(--r-pill);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* the one pink on the hero: a recording light */
+.cx-rec {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--pink);
+  animation: cx-rec 2s steps(1, end) infinite;
+}
+
+@keyframes cx-rec {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.cx-lead--hero {
+  margin-top: var(--space-l);
+}
+
+.cx-hero .cx-actions {
+  margin-top: var(--space-xl);
+}
+
+/* ============================================================
+   2. ENGINE: one graphic plays the four steps on a loop
+   ============================================================ */
+.cx-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 36svh, 420px);
+  margin-inline: auto;
+  border-radius: var(--r-l);
+  background: var(--white);
+  box-shadow: 0 0 0 var(--stroke) var(--line);
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.cx-atom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.cx-stage.is-ready .cx-atom {
+  opacity: 1;
+}
+
+.cx-atom__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: 50% 50%;
+}
+
+/* Discover: the waveform speaks */
+.cx-stage[data-state="0"] .cx-atom__fill {
+  animation: cx-voice 0.9s var(--ease-io) infinite alternate;
+  animation-delay: calc(var(--i) * -0.17s);
+}
+
+@keyframes cx-voice {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0.42);
+  }
+}
+
+/* Publish: posts go live one after another */
+.cx-stage[data-state="2"] .cx-atom__fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--purple);
+  transform-origin: 0 50%;
+  animation: cx-post 7.2s var(--ease-out) infinite;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+
+@keyframes cx-post {
+  0% {
+    transform: scaleX(0);
+  }
+  12%,
+  88% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+.cx-stage__chips {
+  position: absolute;
+  inset: var(--space-m) var(--space-m) auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.cx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  height: 32px;
+  padding: 0 var(--space-xs);
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--purple);
+  white-space: nowrap;
+}
+
+.cx-chip--quiet {
+  background: transparent;
+  box-shadow: 0 0 0 var(--stroke) var(--line);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-chip__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--purple);
+}
+
+.cx-chip__text {
+  display: grid;
+  text-align: left;
+}
+
+.cx-chip__text > span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+
+.cx-stage[data-step="0"] [data-chip="0"],
+.cx-stage[data-step="1"] [data-chip="1"],
+.cx-stage[data-step="2"] [data-chip="2"],
+.cx-stage[data-step="3"] [data-chip="3"] {
+  opacity: 1;
+  transform: none;
+}
+
+.cx-stage__days,
+.cx-stage__playhead,
+.cx-stage__count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+  pointer-events: none;
+}
+
+.cx-stage__days span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: left;
+}
+
+.cx-stage[data-state="2"] .cx-stage__days {
+  opacity: 1;
+}
+
+.cx-stage__playhead {
+  z-index: 1;
+}
+
+.cx-stage__playhead i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  animation: cx-playhead 5s linear infinite;
+}
+
+.cx-stage__playhead i::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+@keyframes cx-playhead {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--ph-w, 900px));
+  }
+}
+
+.cx-stage[data-state="1"] .cx-stage__playhead {
+  opacity: 1;
+}
+
+.cx-stage__count {
+  display: grid;
+  gap: var(--space-3xs);
+  text-align: left;
+  z-index: 1;
+}
+
+.cx-stage__num {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-stage__cap {
+  font-size: var(--t-label);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.cx-stage[data-state="3"] .cx-stage__count {
+  opacity: 1;
+}
+
+.cx-stage[data-state="3"] .cx-stage__chips .cx-chip:first-child {
+  opacity: 0;
+}
+
+/* the four steps: one hairline track each, filling in turn */
+.cx-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-l);
+  width: 100%;
+  margin: var(--space-xl) auto 0;
+  text-align: left;
+}
+
+.cx-step {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+}
+
+.cx-step__title {
+  transition: color 0.5s var(--ease-out);
+}
+
+.cx-step.is-on .cx-step__title {
+  color: var(--purple);
+}
+
+.cx-step__track {
+  position: relative;
+  display: block;
+  height: 2px;
+  margin-bottom: var(--space-2xs);
+  border-radius: var(--r-pill);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.cx-step__track i {
+  position: absolute;
+  inset: 0;
+  background: var(--purple);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.cx-step__title {
+  font-size: var(--t-title);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.cx-step__body {
+  font-size: var(--t-body);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   3. CRAFT
+   ============================================================ */
+.cx-manifesto {
+  max-width: 26ch;
+  margin: 0 auto;
+  font-size: var(--t-h3);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.cx-manifesto mark {
+  --mark: 1;
+  position: relative;
+  background: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.cx-manifesto mark::before {
+  content: "";
+  position: absolute;
+  inset: 0.08em -0.22em 0.02em;
+  z-index: -1;
+  border-radius: var(--r-pill);
+  background: var(--lav);
+  transform: scaleX(var(--mark));
+  transform-origin: 0 50%;
+}
+
+.cx-manifesto .cx-ink {
+  position: relative;
+}
+
+.cx-duo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-l);
+  width: 100%;
+  margin: var(--space-2xl) auto 0;
+  text-align: left;
+}
+
+.cx-duo__col {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  padding-top: var(--space-l);
+  border-top: var(--stroke) solid var(--line);
+}
+
+/* ============================================================
+   4. WHO WE WORK BEST WITH
+   ============================================================ */
+.cx-fit__list {
+  width: min(100%, 960px);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.cx-fit__item {
+  --on: 1;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-l);
+  padding-block: var(--space-l);
+  border-top: var(--stroke) solid var(--line);
+}
+
+.cx-fit__item:last-child {
+  border-bottom: var(--stroke) solid var(--line);
+}
+
+.cx-fit__text {
+  font-size: var(--t-h3);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  opacity: calc(0.22 + var(--on) * 0.78);
+  text-wrap: pretty;
+}
+
+.cx-tick {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-top: 0.1em;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--purple) calc(var(--on) * 100%), var(--lav));
+}
+
+.cx-tick svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cx-tick path {
+  stroke-dasharray: 1;
+}
+
+/* ============================================================
+   5. WHY
+   ============================================================ */
+.cx-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cx-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-m) var(--space-l);
+}
+
+.cx-stat + .cx-stat {
+  border-left: var(--stroke) solid var(--line);
+}
+
+.cx-stat__label {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.cx-stat__value {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--t-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-odo {
+  display: inline-flex;
+}
+
+.cx-odo__col {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+
+.cx-odo__strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--final, 0) * 1%));
+}
+
+.cx-odo__strip span {
+  display: block;
+  text-align: center;
+  height: 1em;
+  line-height: 1;
+}
+
+/* resting state without motion: show the final digit */
+.cx-odo__col[data-digit="0"] .cx-odo__strip { --final: -50; }
+.cx-odo__col[data-digit="1"] .cx-odo__strip { --final: -55; }
+.cx-odo__col[data-digit="2"] .cx-odo__strip { --final: -60; }
+.cx-odo__col[data-digit="3"] .cx-odo__strip { --final: -65; }
+.cx-odo__col[data-digit="4"] .cx-odo__strip { --final: -70; }
+.cx-odo__col[data-digit="5"] .cx-odo__strip { --final: -75; }
+.cx-odo__col[data-digit="6"] .cx-odo__strip { --final: -80; }
+.cx-odo__col[data-digit="7"] .cx-odo__strip { --final: -85; }
+.cx-odo__col[data-digit="8"] .cx-odo__strip { --final: -90; }
+.cx-odo__col[data-digit="9"] .cx-odo__strip { --final: -95; }
+
+.cx-stat__unit {
+  display: inline-block;
+}
+
+.cx-reasons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-l);
+  width: 100%;
+  margin: var(--space-2xl) auto 0;
+  text-align: left;
+}
+
+.cx-reason {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  padding-top: var(--space-l);
+}
+
+.cx-reason__rule {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--stroke);
+  background: var(--line-strong);
+}
+
+.cx-reason__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-2xs);
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  color: var(--purple);
+}
+
+/* ============================================================
+   6. CLIENTS
+   ============================================================ */
+.cx-logos {
+  width: 100%;
+  overflow: hidden;
+}
+
+.cx-logos__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.cx-logos__set {
+  display: flex;
+  gap: var(--space-m);
+  padding-right: var(--space-m);
+}
+
+.cx-logo {
+  display: grid;
+  place-items: center;
+  width: clamp(200px, 17vw, 280px);
+  height: clamp(104px, 8vw, 132px);
+  padding: var(--space-l) var(--space-xl);
+  border-radius: var(--r-l);
+  background: var(--white);
+}
+
+.cx-logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   7. TALK: the invitation left, the offices on a dot map right
+   ============================================================ */
+.cx-talk__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: var(--space-2xl);
+  text-align: left;
+}
+
+.cx-talk__copy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.cx-talk .cx-h2 {
+  margin-inline: 0;
+}
+
+.cx-talk__title {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.cx-talk .cx-lead {
+  margin-inline: 0;
+  max-width: 34ch;
+}
+
+.cx-talk .cx-actions {
+  justify-content: flex-start;
+  margin-top: var(--space-s);
+}
+
+.cx-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 106.5 / 45.03;
+}
+
+.cx-map__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cx-map__dots {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.3);
+  stroke-width: 0.46;
+  stroke-linecap: round;
+}
+
+.cx-map__arc {
+  fill: none;
+  stroke: var(--lav-2);
+  stroke-width: 0.22;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  opacity: 0.9;
+}
+
+.cx-map__runner {
+  fill: var(--white);
+}
+
+.cx-pin {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.cx-pin__dot {
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  box-shadow: 0 0 0 5px rgb(255 255 255 / 0.18);
+}
+
+.cx-pin__label {
+  position: absolute;
+  top: -1.1em;
+  display: grid;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.cx-pin--right .cx-pin__label {
+  left: 18px;
+}
+
+.cx-pin--left .cx-pin__label {
+  right: 18px;
+  text-align: right;
+}
+
+.cx-pin--top .cx-pin__label {
+  top: 10px;
+  right: 14px;
+  text-align: right;
+}
+
+.cx-pin__label b {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--white);
+}
+
+.cx-pin__label span {
+  font-size: var(--t-label);
+  font-weight: 500;
+  color: var(--lav-2);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1023px) {
+  .cx-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-xl);
+  }
+
+  .cx-reasons {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .cx-talk__grid {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+  }
+
+  .cx-talk__copy {
+    justify-items: center;
+  }
+
+  .cx-talk .cx-cue {
+    justify-self: center;
+  }
+
+  .cx-talk .cx-h2,
+  .cx-talk .cx-lead {
+    margin-inline: auto;
+  }
+
+  .cx-talk .cx-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  body:has(.cx) {
+    --header-h: 64px;
+    --r-sheet: 12px;
+  }
+
+  body:has(.cx) .site-header .nav-logo {
+    width: 104px;
+  }
+
+  body:has(.cx) .site-header .nav-links,
+  body:has(.cx) .site-header .nav-cta {
+    display: none;
+  }
+
+  body:has(.cx) .site-header .mobile-nav .nav-links,
+  body:has(.cx) .site-header .mobile-nav .nav-link {
+    display: block;
+  }
+
+  .cx-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(100%, 360px);
+    margin-inline: auto;
+  }
+
+  .cx-stage {
+    height: clamp(220px, 34svh, 300px);
+  }
+
+  .cx-steps {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-l);
+  }
+
+  .cx-duo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .cx-fit__item {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: var(--space-s);
+  }
+
+  .cx-tick {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cx-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cx-stat + .cx-stat {
+    border-left: 0;
+    border-top: var(--stroke) solid var(--line);
+  }
+
+  .cx-pin__dot {
+    left: -5px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 0.18);
+  }
+
+  .cx-pin__label {
+    top: -0.6em;
+  }
+
+  .cx-pin__label span {
+    display: none;
+  }
+
+  .cx-pin__label b {
+    font-size: var(--t-label);
+  }
+
+  .cx-pin--right .cx-pin__label {
+    left: 12px;
+  }
+
+  .cx-pin--left .cx-pin__label {
+    right: 12px;
+  }
+
+  .cx-pin--top .cx-pin__label {
+    top: 6px;
+    right: 10px;
+  }
+}
+
+/* ============================================================
+   NO MOTION: everything at rest, the engine shows its last state
+   ============================================================ */
+.cx--still .cx-step__track i {
+  transform: none;
+}
+
+.cx--still .cx-stage__count {
+  opacity: 1;
+}
+
+.cx--still .cx-map__arc {
+  stroke-dasharray: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx *,
+  .cx *::before,
+  .cx *::after {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   FOOTER (site-wide): white, after the purple close
+   ============================================================ */
+.ft {
+  --ft-ink: #17151c;
+  --ft-ink-2: #4a4753;
+  --ft-ink-3: #6f6b78;
+  --ft-purple: #672fb2;
+  --ft-line: rgb(103 47 178 / 0.14);
+  --ft-margin: clamp(1rem, 0.2rem + 3.6vw, 3rem);
+  position: relative;
+  z-index: 8;
+  background: #ffffff;
+  color: var(--ft-ink);
+  font-family: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  padding: clamp(3.5rem, 2.6667rem + 3.7037vw, 6rem) 0 clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
+}
+
+.ft__grid {
+  width: min(100% - 2 * var(--ft-margin), 1344px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) repeat(2, minmax(0, 2fr));
+  gap: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
+  padding-bottom: clamp(2.5rem, 2rem + 2.2222vw, 4rem);
+}
+
+.ft__brand {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.ft__logo {
+  display: block;
+  width: 148px;
+  height: auto;
+}
+
+.ft__blurb {
+  max-width: 34ch;
+  margin: 0;
+  font-size: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--ft-ink-2);
+}
+
+.ft__col {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.ft__title {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ft-ink-3);
+}
+
+.ft__link {
+  width: fit-content;
+  font-size: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  font-weight: 500;
+  color: var(--ft-ink);
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ft__text {
+  font-size: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  font-weight: 500;
+  color: var(--ft-ink-2);
+}
+
+.ft__link:hover {
+  color: var(--ft-purple);
+}
+
+.ft__legal {
+  width: min(100% - 2 * var(--ft-margin), 1344px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
+  border-top: 1px solid var(--ft-line);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ft-ink-3);
+}
+
+.ft__legal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.ft__legal-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ft__legal-link:hover {
+  color: var(--ft-ink);
+}
+
+@media (max-width: 1023px) {
+  .ft__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ft__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 599px) {
+  .ft__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ft__legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   CARDS: the doc's items, one card system for every section
+   ============================================================ */
+.cx-cards {
+  display: grid;
+  gap: var(--space-m);
+  width: 100%;
+  text-align: left;
+}
+
+.cx-cards--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.cx-cards--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cx-cards--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cx-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: var(--space-xs);
+  padding: var(--space-l);
+  border-radius: var(--r-l);
+  background: var(--white);
+}
+
+.cx-s[data-ground="white"] .cx-card {
+  background: var(--tint);
+}
+
+.cx-card__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-2xs);
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  color: var(--purple);
+}
+
+.cx-s[data-ground="white"] .cx-card__icon {
+  background: var(--white);
+}
+
+.cx-card__title {
+  font-size: var(--t-title);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.cx-card__body {
+  font-size: var(--t-body);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.cx-card--statement .cx-card__body {
+  font-size: var(--t-title);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+@media (max-width: 1023px) {
+  .cx-cards--4,
+  .cx-cards--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .cx-cards--4,
+  .cx-cards--3,
+  .cx-cards--2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cx-card {
+    padding: var(--space-m);
+  }
+}
+
+/* ============================================================
+   THE CUE: the wordmark's i on its side, above every section head
+   ============================================================ */
+.cx-cue {
+  display: block;
+  justify-self: center;
+  width: 72px;
+  height: 24px;
+  margin-bottom: var(--space-2xs);
+}
+
+.cx-talk .cx-cue {
+  justify-self: start;
+}
+
+.cx-hero .cx-cue {
+  width: 96px;
+  height: 32px;
+  margin-bottom: var(--space-l);
+}
+
+.cx-cue svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cx-cue__bar {
+  fill: var(--pink);
+}
+
+.cx-cue__band {
+  fill: var(--purple);
+}
+
+.cx-s[data-ground="purple"] .cx-cue__band {
+  fill: var(--purple-deep);
+}
+
+.cx-cue__sym {
+  fill: var(--white);
+}
+
+/* each card's icon again, large and faint, set into the corner */
+.cx-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.cx-card > :not(.cx-card__mark) {
+  position: relative;
+  z-index: 1;
+}
+
+.cx-card__mark {
+  position: absolute;
+  right: calc(var(--space-l) * -1);
+  bottom: calc(var(--space-l) * -1);
+  color: var(--purple);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.cx-card__mark svg {
+  display: block;
+}
+
+/* ============================================================
+   NAV: always a plain white strip (overrides the transparent
+   over-the-hero state above)
+   ============================================================ */
+body:has(.cx) .site-header {
+  background: var(--white);
+  border-bottom-color: var(--line);
+}
+
+body:has(.cx) .site-header .nav-logo-img {
+  display: block;
+}
+
+body:has(.cx) .site-header .nav-logo-img--reversed {
+  display: none;
+}
+
+body:has(.cx) .site-header .nav-link {
+  color: var(--ink-2);
+}
+
+body:has(.cx) .site-header .nav-link:hover {
+  color: var(--ink);
+}
+
+body:has(.cx) .site-header .nav-cta {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--white);
+}
+
+body:has(.cx) .site-header .nav-cta:hover {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+  color: var(--white);
+}
+
+body:has(.cx) .site-header .menu-btn {
+  color: var(--ink);
+}
+
+/* the logo keeps its own colours everywhere: no inverted or reversed versions */
+.site-header .nav-logo-img {
+  filter: none !important;
+}
+
+/* the intro plays on white: the logo keeps its own colours */
+.intro {
+  background: #ffffff;
+}
+
+/* ============================================================
+   v19: THE DECK'S STRUCTURE (Caimue Corporate Deck V1)
+   ============================================================ */
+
+/* the deck's section label, led by the cue */
+.cx-label {
+  display: inline-flex;
+  align-items: center;
+  justify-self: center;
+  gap: var(--space-xs);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+
+.cx-s[data-ground="purple"] .cx-label {
+  color: var(--white);
+}
+
+.cx-label .cx-cue,
+.cx-hero .cx-label .cx-cue {
+  width: 48px;
+  height: 16px;
+  margin: 0;
+}
+
+.cx-label--hero {
+  margin-bottom: var(--space-l);
+}
+
+.cx-talk .cx-label {
+  justify-self: start;
+}
+
+.cx-kicker {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.cx-kicker--accent {
+  color: var(--purple);
+}
+
+.cx-note {
+  margin-top: var(--space-l);
+  font-size: var(--t-body);
+  font-weight: 500;
+  color: var(--purple);
+}
+
+/* ---------- the problem: what we hear / how caimue approaches it ---------- */
+.cx-pair {
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.cx-pair__top,
+.cx-pair__bottom {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  padding: var(--space-l);
+}
+
+.cx-pair__bottom {
+  border-top: var(--stroke) dashed var(--line-strong);
+}
+
+.cx-pair__quote {
+  font-size: var(--t-title);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ---------- what we make: play-mark lists ---------- */
+.cx-list {
+  display: grid;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xs);
+}
+
+.cx-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--t-body);
+  color: var(--ink-2);
+}
+
+.cx-list__play {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  fill: var(--pink);
+}
+
+/* ---------- featured clients: seven logos and the open slot ---------- */
+.cx-clientgrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-m);
+  text-align: left;
+}
+
+.cx-client {
+  grid-template-rows: 1fr auto;
+  gap: var(--space-s);
+  min-height: 176px;
+}
+
+.cx-client__logo {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: var(--space-xs) var(--space-s);
+  border-radius: var(--r-m);
+  background: var(--white);
+}
+
+.cx-client__logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 64px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.cx-client__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+}
+
+.cx-client__sector {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cx-client__no {
+  font-size: var(--t-label);
+  font-weight: 600;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-client--you {
+  padding: 0;
+  background: var(--purple) !important;
+}
+
+.cx-client__cta {
+  display: grid;
+  align-content: space-between;
+  height: 100%;
+  padding: var(--space-l);
+  color: var(--white);
+  text-decoration: none;
+  font-size: var(--t-title);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.cx-client__next {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  background: var(--pink);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.cx-client__cta:hover .cx-client__next {
+  transform: translateX(4px);
+}
+
+/* ---------- results: five figures ---------- */
+.cx-results__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-m);
+  text-align: left;
+}
+
+.cx-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.cx-result__value {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-result__label {
+  font-size: var(--t-body);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* ---------- why caimue: a figure closes each card ---------- */
+.cx-why__card {
+  grid-template-rows: auto auto 1fr auto;
+}
+
+.cx-why__fig {
+  display: grid;
+  gap: var(--space-3xs);
+  margin-top: var(--space-s);
+  padding-top: var(--space-s);
+  border-top: var(--stroke) solid var(--line);
+}
+
+.cx-why__fig b {
+  font-size: var(--t-title);
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.cx-why__fig span {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---------- how we work: five steps on one line ---------- */
+.cx-steps5 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-m);
+  text-align: left;
+}
+
+.cx-step5 {
+  grid-template-rows: auto auto 1fr;
+}
+
+.cx-step5__when {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  margin-bottom: var(--space-2xs);
+  padding: 0 var(--space-xs);
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  font-size: var(--t-label);
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.cx-s[data-ground="white"] .cx-step5__when {
+  background: var(--white);
+}
+
+/* ---------- the wrap: two pins ---------- */
+.cx-pin__label b {
+  white-space: nowrap;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1023px) {
+  .cx-clientgrid,
+  .cx-results__grid,
+  .cx-steps5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cx-talk .cx-label {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .cx-clientgrid,
+  .cx-results__grid,
+  .cx-steps5,
+  .cx-figures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* phones: the wrap title may break, and the map labels sit under their pins */
+@media (max-width: 767px) {
+  .cx-talk__title {
+    white-space: normal;
+  }
+
+  .cx-pin--left .cx-pin__label,
+  .cx-pin--right .cx-pin__label {
+    top: 12px;
+    left: 0;
+    right: auto;
+    width: 96px;
+    transform: translateX(-50%);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .cx-pin__label b {
+    white-space: normal;
+  }
+}
+
+/* casing as the deck sets it: only the section labels are in capitals there */
+.cx-label--hero,
+.cx-kicker,
+.cx-why__fig span {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   HERO GROUND: the dot field (DotField.tsx)
+   ============================================================ */
+.cx-dots {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* the cue and the logo share one pink: the logo's own #ff0080 */
+.cx-cue__bar {
+  fill: #ff0080;
+}
+
+/* ============================================================
+   HERO v20: the logo's purple, text on one side, image on the other
+   ============================================================ */
+.cx-s[data-ground="purple"] {
+  background: #5b299d;
+}
+
+.cx-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  align-items: center;
+  gap: var(--space-2xl);
+  text-align: left;
+}
+
+.cx-hero__copy {
+  display: grid;
+  justify-items: start;
+}
+
+.cx-hero__copy .cx-label {
+  justify-self: start;
+}
+
+.cx-hero__copy .cx-h1 {
+  text-wrap: balance;
+}
+
+.cx-hero__copy .cx-lead {
+  margin-inline: 0;
+  max-width: 34ch;
+}
+
+.cx-hero__media {
+  margin: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 4 / 5;
+  max-height: calc(100svh - var(--header-h) - var(--space-2xl) * 2 - var(--r-sheet));
+  border-radius: var(--r-l);
+  overflow: hidden;
+  clip-path: inset(0% 0% 0% 0% round 28px);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.cx-hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1023px) {
+  .cx-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .cx-hero__media {
+    justify-self: stretch;
+    max-width: none;
+    max-height: 420px;
+  }
+}
+
+/* ============================================================
+   HERO v22: maayasthra.com's layout at a normal size. Two title
+   lines (first left, second right), the lead in the lower left.
+   The ground is the logo purple, flat, with nothing over it.
+   ============================================================ */
+.cx-mh {
+  position: relative;
+  flex: 1;
+  width: var(--wrap);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  container-type: inline-size;
+  color: var(--white);
+}
+
+.cx-mh__type {
+  --mh: clamp(3rem, 7.2cqi, 6.5rem);
+  position: relative;
+}
+
+.cx-mh__h1 {
+  display: grid;
+  margin: 0;
+  color: var(--white);
+  font-size: var(--mh);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.cx-mh__l1 {
+  justify-self: start;
+}
+
+.cx-mh__l2 {
+  justify-self: end;
+}
+
+.cx-mh__l1,
+.cx-mh__l2 {
+  white-space: nowrap;
+}
+
+/* the word masks keep the descenders (the g) */
+.cx-mh__h1 .cx-word-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.cx-mh__lead {
+  position: absolute;
+  left: 0;
+  bottom: 0.2em;
+  max-width: min(22rem, 40cqi);
+  margin: 0;
+  text-align: left;
+  font-size: var(--t-body);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--white);
+  text-wrap: pretty;
+}
+
+@media (max-width: 899px) {
+  .cx-mh__type {
+    --mh: clamp(2.5rem, 11cqi, 4.5rem);
+  }
+
+  .cx-mh__lead {
+    position: static;
+    max-width: 34rem;
+    margin-top: var(--space-l);
+  }
+}

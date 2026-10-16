@@ -12,37 +12,97 @@ import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
 const allTeam = [
   // Row 1
-  { name: "Joseph Olassa",      role: "Board Chair",              image: "/team/styled/joseph.png",  color: "#7C3AED",
+  {
+    name: "Joseph Olassa",
+    role: "Board Chair",
+    image: "/team/styled/joseph.png",
+    color: "#7C3AED",
     bio: "The visionary who keeps us reaching further. Decades of wisdom, zero fear of new ideas — the calm hand behind our boldest bets.",
-    fun: "Believes every meeting is better with a story", tags: ["Strategy", "Vision"] },
-  { name: "Vivin Raj",          role: "Startup Champion",         image: "/team/styled/vivin.png",   color: "#DB2777",
+    fun: "Believes every meeting is better with a story",
+    tags: ["Strategy", "Vision"],
+  },
+  {
+    name: "Vivin Raj",
+    role: "Startup Champion",
+    image: "/team/styled/vivin.png",
+    color: "#DB2777",
     bio: "Creative force running the whole show. From scripts to strategy, he's the spark that turned a YouTube channel into a studio.",
-    fun: "Fueled by midnight edits and filter coffee", tags: ["Creative", "Execution"] },
-  { name: "Srividhya B",        role: "Head of Finance & Ops",    image: "/team/styled/sri.png",     color: "#10B981",
+    fun: "Fueled by midnight edits and filter coffee",
+    tags: ["Creative", "Execution"],
+  },
+  {
+    name: "Srividhya B",
+    role: "Head of Finance & Ops",
+    image: "/team/styled/sri.png",
+    color: "#10B981",
     bio: "Runs the engine that powers the dream. Budgets, operations, and a hundred moving parts — all humming in perfect sync.",
-    fun: "Balances spreadsheets and shoot schedules blindfolded", tags: ["Finance", "Ops"] },
-  { name: "Gowtham S",          role: "Marketing Champion",       image: "/team/styled/gowtham.png", color: "#F97316",
+    fun: "Balances spreadsheets and shoot schedules blindfolded",
+    tags: ["Finance", "Ops"],
+  },
+  {
+    name: "Gowtham S",
+    role: "Marketing Champion",
+    image: "/team/styled/gowtham.png",
+    color: "#F97316",
     bio: "Gets our stories in front of the audiences they deserve. Growth strategy by day, thumbnail perfectionist by night.",
-    fun: "Knows the algorithm better than it knows itself", tags: ["Marketing", "Growth"] },
+    fun: "Knows the algorithm better than it knows itself",
+    tags: ["Marketing", "Growth"],
+  },
   // Row 2
-  { name: "Oliviya Selvaraj",   role: "Content Creator & Brand Host", image: "/teams%20pic/oliviya.png", color: "#F43F5E",
+  {
+    name: "Oliviya Selvaraj",
+    role: "Content Creator & Brand Host",
+    image: "/teams%20pic/oliviya.png",
+    color: "#F43F5E",
     bio: "The face and voice that makes brands feel human. Camera-ready, always on, never off-script.",
-    fun: "Never needs a second take", tags: ["Content", "On-Camera"] },
-  { name: "Priyadharshini",     role: "Marketing Associate",      image: "/teams%20pic/Priya.png",   color: "#F59E0B",
+    fun: "Never needs a second take",
+    tags: ["Content", "On-Camera"],
+  },
+  {
+    name: "Priyadharshini",
+    role: "Marketing Associate",
+    image: "/teams%20pic/Priya.png",
+    color: "#F59E0B",
     bio: "Turns a blank page into a poster that stops the scroll. Design instinct, AI toolkit, sharp eye.",
-    fun: "Has a Figma tab open before the coffee's poured", tags: ["Design", "Marketing"] },
-  { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/team/styled/megha.png",   color: "#2563EB",
+    fun: "Has a Figma tab open before the coffee's poured",
+    tags: ["Design", "Marketing"],
+  },
+  {
+    name: "Megha Balakrishnan",
+    role: "WordPress AI Web Creator",
+    image: "/team/styled/megha.png",
+    color: "#2563EB",
     bio: "Builds AI-powered websites that bring our stories online. Design sense meets machine speed, and the web keeps up.",
-    fun: "Ships sites faster than the coffee gets cold", tags: ["Web", "AI"] },
-  { name: "Godson Azariah",     role: "AI Web Developer",         image: "/teams%20pic/godson.png",  color: "#0891B2",
+    fun: "Ships sites faster than the coffee gets cold",
+    tags: ["Web", "AI"],
+  },
+  {
+    name: "Godson Azariah",
+    role: "AI Web Developer",
+    image: "/teams%20pic/godson.png",
+    color: "#0891B2",
     bio: "Builds the websites that carry every story. Self-taught, fast-shipping, quietly essential.",
-    fun: "Ships a feature between two cups of chai", tags: ["Web", "Dev"] },
-  { name: "Jeevan Shreyas",     role: "Finance Enabler",          image: "/team/styled/jeevan.png",  color: "#C026D3",
+    fun: "Ships a feature between two cups of chai",
+    tags: ["Web", "Dev"],
+  },
+  {
+    name: "Jeevan Shreyas",
+    role: "Finance Enabler",
+    image: "/team/styled/jeevan.png",
+    color: "#C026D3",
     bio: "Keeps the numbers honest so the stories can be bold. Clean books, clear dashboards, zero drama at month-end.",
-    fun: "Finds plot holes in budgets, not scripts", tags: ["Finance", "Analytics"] },
-  { name: "Purnimma Ravi",      role: "People Builder",           image: "/team/styled/purnima.png", color: "#8B5CF6",
+    fun: "Finds plot holes in budgets, not scripts",
+    tags: ["Finance", "Analytics"],
+  },
+  {
+    name: "Purnimma Ravi",
+    role: "People Builder",
+    image: "/team/styled/purnima.png",
+    color: "#8B5CF6",
     bio: "Grows people the way others grow companies. Culture, care, and the occasional perfectly-timed intervention snack.",
-    fun: "Remembers everyone's chai order by heart", tags: ["People", "Culture"] },
+    fun: "Remembers everyone's chai order by heart",
+    tags: ["People", "Culture"],
+  },
 ];
 
 const clients = [
@@ -55,22 +115,67 @@ const clients = [
 ];
 
 const cultureCards = [
-  { img: "/images/culture/craft.png",   caption: "Craft over noise",         sub: "every frame earns its place",  rotation: "-rotate-[6deg]", tape: "#C4B5FD" },
-  { img: "/images/culture/ai-soul.png", caption: "AI with soul",             sub: "tech that serves the story",   rotation: "rotate-[4deg]",  tape: "#FBCFE8" },
-  { img: "/images/culture/coffee.png",  caption: "Coffee-fueled chaos",      sub: "our best ideas start here",    rotation: "-rotate-[3deg]", tape: "#FDE68A" },
-  { img: "/images/culture/remote.png",  caption: "Remote, everywhere",       sub: "three cities, one crew",       rotation: "rotate-[5deg]",  tape: "#A5F3FC" },
-  { img: "/images/culture/laugh.png",   caption: "Work hard, laugh harder",  sub: "the blooper reel is sacred",   rotation: "-rotate-[4deg]", tape: "#BBF7D0" },
+  {
+    img: "/images/culture/craft.png",
+    caption: "Craft over noise",
+    sub: "every frame earns its place",
+    rotation: "-rotate-[6deg]",
+    tape: "#C4B5FD",
+  },
+  {
+    img: "/images/culture/ai-soul.png",
+    caption: "AI with soul",
+    sub: "tech that serves the story",
+    rotation: "rotate-[4deg]",
+    tape: "#FBCFE8",
+  },
+  {
+    img: "/images/culture/coffee.png",
+    caption: "Coffee-fueled chaos",
+    sub: "our best ideas start here",
+    rotation: "-rotate-[3deg]",
+    tape: "#FDE68A",
+  },
+  {
+    img: "/images/culture/remote.png",
+    caption: "Remote, everywhere",
+    sub: "three cities, one crew",
+    rotation: "rotate-[5deg]",
+    tape: "#A5F3FC",
+  },
+  {
+    img: "/images/culture/laugh.png",
+    caption: "Work hard, laugh harder",
+    sub: "the blooper reel is sacred",
+    rotation: "-rotate-[4deg]",
+    tape: "#BBF7D0",
+  },
 ];
 
 // ============================================
 // TEAM CARD SUBCOMPONENT
 // ============================================
 
-const TAPE_COLORS = ["#FDE68A", "#FBCFE8", "#C4B5FD", "#A5F3FC", "#BBF7D0", "#FCA5A5", "#FED7AA", "#DDD6FE"];
-const ROTATIONS  = [-3, 2.5, -2, 3.5, -1.5, 3, -2.5, 1.5];
+const TAPE_COLORS = [
+  "#FDE68A",
+  "#FBCFE8",
+  "#C4B5FD",
+  "#A5F3FC",
+  "#BBF7D0",
+  "#FCA5A5",
+  "#FED7AA",
+  "#DDD6FE",
+];
+const ROTATIONS = [-3, 2.5, -2, 3.5, -1.5, 3, -2.5, 1.5];
 
-function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number }) {
-  const rot       = ROTATIONS[index % ROTATIONS.length];
+function TeamCard({
+  person,
+  index,
+}: {
+  person: (typeof allTeam)[0];
+  index: number;
+}) {
+  const rot = ROTATIONS[index % ROTATIONS.length];
   const tapeColor = TAPE_COLORS[index % TAPE_COLORS.length];
 
   return (
@@ -78,9 +183,18 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       initial={{ opacity: 0, y: 50, rotate: rot }}
       whileInView={{ opacity: 1, y: 0, rotate: rot }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
-        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
+      transition={{
+        duration: 0.55,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      whileHover={{
+        rotate: 0,
+        y: -14,
+        scale: 1.05,
+        zIndex: 30,
+        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)",
+      }}
       className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} ${index === 8 ? "lg:col-start-2" : ""} ${index === 9 ? "md:col-start-2 lg:col-start-3" : ""}`}
       style={{
         padding: "10px",
@@ -100,7 +214,10 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
 
       {/* Photo */}
       <div className="relative overflow-hidden" style={{ height: "195px" }}>
-        <div className="absolute inset-0" style={{ backgroundColor: `${person.color}25` }} />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: `${person.color}25` }}
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={person.image}
@@ -112,7 +229,11 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
         {/* Film-notch top-right */}
         <div className="absolute top-2 right-2 flex gap-0.5 z-10">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="w-1 h-3 rounded-sm opacity-40" style={{ background: "#fff" }} />
+            <div
+              key={i}
+              className="w-1 h-3 rounded-sm opacity-40"
+              style={{ background: "#fff" }}
+            />
           ))}
         </div>
       </div>
@@ -120,14 +241,20 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       {/* Polaroid caption — centered on mobile, left on larger screens */}
       <div className="px-3 pt-3 pb-3 text-center sm:text-left">
         {/* Name — big and bold */}
-        <h4 className="font-black text-gray-900 leading-tight mb-1.5"
-          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
+        <h4
+          className="font-black text-gray-900 leading-tight mb-1.5"
+          style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}
+        >
           {person.name}
         </h4>
         {/* Role — quiet pill, normal case */}
         <span
           className="inline-block text-[12px] font-bold tracking-wide px-3 py-[3px] mb-2 rounded-full"
-          style={{ background: `${person.color}14`, color: person.color, border: `1px solid ${person.color}30` }}
+          style={{
+            background: `${person.color}14`,
+            color: person.color,
+            border: `1px solid ${person.color}30`,
+          }}
         >
           {person.role}
         </span>
@@ -147,7 +274,6 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-
       {/* =================================================================
           SECTION 1,HERO
           ================================================================= */}
@@ -155,7 +281,6 @@ export default function AboutPage() {
         className="ground-hero relative flex items-center justify-center overflow-hidden pb-16"
         style={{ paddingTop: NAV_HEIGHT + 72 }}
       >
-
         {/* Subtle line grid overlay,same as homepage */}
         <HeroGrid className="opacity-40 z-10" />
         <div className="bg-noise opacity-10 z-10" />
@@ -167,10 +292,18 @@ export default function AboutPage() {
 
         {/* Decorative Stars — desktop only */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
-          <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">✦</div>
-          <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">★</div>
-          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
-          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">✦</div>
+          <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">
+            ✦
+          </div>
+          <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">
+            ★
+          </div>
+          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">
+            ✧
+          </div>
+          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">
+            ✦
+          </div>
         </div>
 
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
@@ -183,25 +316,22 @@ export default function AboutPage() {
           >
             <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
               The studio where{" "}
-              <span className="text-gradient-gold">
-                imagination
-              </span>
+              <span className="text-gradient-gold">imagination</span>
             </span>
             <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
-              meets{" "}
-              <span className="text-gradient-gold">
-                intelligence
-              </span>
+              meets <span className="text-gradient-gold">intelligence</span>
             </span>
           </motion.h1>
-
         </div>
       </section>
 
       {/* =================================================================
           SECTION 3,OUR STORY & VALUES
           ================================================================= */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "var(--color-surface-alt)" }}>
+      <section
+        className="relative py-12 md:py-16 overflow-hidden"
+        style={{ backgroundColor: "var(--color-surface-alt)" }}
+      >
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -215,26 +345,74 @@ export default function AboutPage() {
 
         {/* Floating handwritten doodles — desktop only */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
-            className="absolute top-12 left-[8%] text-purple-400/25 text-5xl font-handwriting -rotate-12">ideas!</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
-            className="absolute top-20 right-[10%] text-pink-400/20 text-4xl font-handwriting rotate-6">create ✦</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.7 }}
-            className="absolute bottom-24 left-[12%] text-purple-500/20 text-3xl font-handwriting rotate-3">★ stories</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.9 }}
-            className="absolute bottom-16 right-[8%] text-pink-400/20 text-4xl font-handwriting -rotate-6">play →</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }}
-            className="absolute top-1/2 left-[3%] text-purple-300/15 text-6xl font-handwriting -rotate-90">AI</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.8 }}
-            className="absolute top-1/3 right-[3%] text-purple-300/15 text-5xl font-handwriting rotate-90">film</motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="absolute top-12 left-[8%] text-purple-400/25 text-5xl font-handwriting -rotate-12"
+          >
+            ideas!
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="absolute top-20 right-[10%] text-pink-400/20 text-4xl font-handwriting rotate-6"
+          >
+            create ✦
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="absolute bottom-24 left-[12%] text-purple-500/20 text-3xl font-handwriting rotate-3"
+          >
+            ★ stories
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="absolute bottom-16 right-[8%] text-pink-400/20 text-4xl font-handwriting -rotate-6"
+          >
+            play →
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="absolute top-1/2 left-[3%] text-purple-300/15 text-6xl font-handwriting -rotate-90"
+          >
+            AI
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="absolute top-1/3 right-[3%] text-purple-300/15 text-5xl font-handwriting rotate-90"
+          >
+            film
+          </motion.span>
 
           {/* Decorative circles */}
-          <div className="absolute top-16 right-1/4 w-32 h-32 rounded-full border-2 border-dashed border-purple-300/15 animate-spin" style={{ animationDuration: "25s" }} />
-          <div className="absolute bottom-20 left-[20%] w-20 h-20 rounded-full border border-pink-300/15 animate-spin" style={{ animationDuration: "18s", animationDirection: "reverse" }} />
+          <div
+            className="absolute top-16 right-1/4 w-32 h-32 rounded-full border-2 border-dashed border-purple-300/15 animate-spin"
+            style={{ animationDuration: "25s" }}
+          />
+          <div
+            className="absolute bottom-20 left-[20%] w-20 h-20 rounded-full border border-pink-300/15 animate-spin"
+            style={{ animationDuration: "18s", animationDirection: "reverse" }}
+          />
 
           {/* Soft glow blobs */}
-          <div className="absolute top-0 right-1/3 w-64 h-64 bg-purple-300/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-pink-300/10 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-1/3 w-64 h-64 bg-radial from-purple-300/10 to-transparent to-70% scale-150 rounded-full" />
+          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-radial from-pink-300/10 to-transparent to-70% scale-150 rounded-full" />
         </div>
 
         <div className="relative z-10 container">
@@ -248,27 +426,25 @@ export default function AboutPage() {
               className="text-center md:text-left"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5">
-                Our{" "}
-                <span className="text-gradient">
-                  Story
-                </span>
+                Our <span className="text-gradient">Story</span>
               </h2>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
                 Caimue started with a simple belief: great stories can come from
-                anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
-                written, cast, and directed in-house — and grew past 2 million views one honest
-                story at a time.
+                anywhere. We began on YouTube, producing original Malayalam and
+                Tamil short films — written, cast, and directed in-house — and
+                grew past 2 million views one honest story at a time.
               </p>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
-                Along the way we discovered something bigger than films: people. More than 25
-                writers, directors, and actors earned their first real credits with us, and our
-                channels became homes for regional stories and founder journeys told with
-                cinematic craft.
+                Along the way we discovered something bigger than films: people.
+                More than 25 writers, directors, and actors earned their first
+                real credits with us, and our channels became homes for regional
+                stories and founder journeys told with cinematic craft.
               </p>
               <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
-                Today that same craft powers a video-first B2B marketing agency — corporate videos,
-                LinkedIn media campaigns, and marketing websites built with the same speed and soul.
-                Our short films and features stay part of the story too, a proving ground for the
+                Today that same craft powers a video-first B2B marketing agency
+                — corporate videos, LinkedIn media campaigns, and marketing
+                websites built with the same speed and soul. Our short films and
+                features stay part of the story too, a proving ground for the
                 talent behind every brand we work with.
               </p>
             </motion.div>
@@ -297,7 +473,10 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 4,TEAM
           ================================================================= */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
+      <section
+        className="relative py-12 md:py-16 overflow-hidden"
+        style={{ background: "white" }}
+      >
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -311,18 +490,52 @@ export default function AboutPage() {
 
         {/* Floating doodles — desktop only */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
-            className="absolute top-16 left-[6%] text-purple-300/20 text-5xl font-handwriting -rotate-12">team!</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
-            className="absolute top-24 right-[8%] text-pink-300/20 text-4xl font-handwriting rotate-8">creators ✦</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.7 }}
-            className="absolute bottom-20 left-[10%] text-amber-300/20 text-3xl font-handwriting rotate-3">★ builders</motion.span>
-          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.9 }}
-            className="absolute bottom-24 right-[6%] text-blue-300/20 text-4xl font-handwriting -rotate-6">dreamers →</motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="absolute top-16 left-[6%] text-purple-300/20 text-5xl font-handwriting -rotate-12"
+          >
+            team!
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="absolute top-24 right-[8%] text-pink-300/20 text-4xl font-handwriting rotate-8"
+          >
+            creators ✦
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="absolute bottom-20 left-[10%] text-amber-300/20 text-3xl font-handwriting rotate-3"
+          >
+            ★ builders
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="absolute bottom-24 right-[6%] text-blue-300/20 text-4xl font-handwriting -rotate-6"
+          >
+            dreamers →
+          </motion.span>
 
           {/* Decorative shapes */}
-          <div className="absolute top-12 right-1/4 w-24 h-24 rounded-full border-2 border-dashed border-purple-200/20 animate-spin" style={{ animationDuration: "30s" }} />
-          <div className="absolute bottom-16 left-1/3 w-16 h-16 rounded-full border border-pink-200/20 animate-spin" style={{ animationDuration: "20s", animationDirection: "reverse" }} />
+          <div
+            className="absolute top-12 right-1/4 w-24 h-24 rounded-full border-2 border-dashed border-purple-200/20 animate-spin"
+            style={{ animationDuration: "30s" }}
+          />
+          <div
+            className="absolute bottom-16 left-1/3 w-16 h-16 rounded-full border border-pink-200/20 animate-spin"
+            style={{ animationDuration: "20s", animationDirection: "reverse" }}
+          />
 
           {/* Dot accents */}
           <div className="absolute top-1/3 left-[4%] w-3 h-3 rounded-full bg-purple-400/30" />
@@ -331,8 +544,8 @@ export default function AboutPage() {
           <div className="absolute bottom-1/4 left-[8%] w-5 h-5 rounded-full bg-blue-400/15" />
 
           {/* Soft glow blobs */}
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-purple-200/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-200/10 rounded-full blur-[130px]" />
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-radial from-purple-200/10 to-transparent to-70% scale-150 rounded-full" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-radial from-pink-200/10 to-transparent to-70% scale-150 rounded-full" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -345,18 +558,19 @@ export default function AboutPage() {
             className="text-center mb-6"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4">
-              Meet the Caimue{" "}
-              <span className="text-gradient">
-                Crew
-              </span>
+              Meet the Caimue <span className="text-gradient">Crew</span>
             </h2>
             <p className="text-[var(--foreground-muted)] text-lg max-w-xl mx-auto font-sans">
-              A small, mighty team of builders, creators, and dreamers who refuse to play it safe.
+              A small, mighty team of builders, creators, and dreamers who
+              refuse to play it safe.
             </p>
           </motion.div>
 
           {/* Polaroid grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 md:gap-6 max-w-5xl mx-auto" style={{ paddingBottom: "28px" }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 md:gap-6 max-w-5xl mx-auto"
+            style={{ paddingBottom: "28px" }}
+          >
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
@@ -367,7 +581,10 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden" style={{ backgroundColor: "var(--color-surface-sunk)" }}>
+      <section
+        className="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden"
+        style={{ backgroundColor: "var(--color-surface-sunk)" }}
+      >
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -389,10 +606,13 @@ export default function AboutPage() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4">
               We work hard.{" "}
-              <span className="italic text-[var(--caimue-purple)] font-light">We celebrate harder.</span>
+              <span className="italic text-[var(--caimue-purple)] font-light">
+                We celebrate harder.
+              </span>
             </h2>
             <p className="text-[var(--foreground-muted)] text-lg max-w-lg mx-auto font-sans">
-              No rigid hierarchies, no pointless meetings, just good people, great coffee, and work that actually matters.
+              No rigid hierarchies, no pointless meetings, just good people,
+              great coffee, and work that actually matters.
             </p>
           </motion.div>
 
@@ -437,7 +657,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

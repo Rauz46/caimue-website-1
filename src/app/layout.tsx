@@ -1,56 +1,15 @@
 import type { Metadata } from "next";
-import {
-  Caveat,
-  Inter,
-  Playfair_Display,
-  Plus_Jakarta_Sans,
-} from "next/font/google";
+import { clash, generalSans, caveat, satoshi, instrument, geistMono, urbanist } from "@/lib/fonts";
 import "@/styles/globals.css";
+import "@/styles/home.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { Animator } from "@/components/motion/Animator";
+import { PageTransition } from "@/components/motion/PageTransition";
+import { LoadingScreen } from "@/components/motion/LoadingScreen";
+import { PageReveal } from "@/components/motion/PageReveal";
 import { site } from "@/content/site";
-
-/**
- * Three faces, minimum weights each — every extra weight is another blocking
- * font file on first paint.
- */
-
-/** Display face — geometric, heavy, tight. Carries every headline. */
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  display: "swap",
-  preload: true,
-});
-
-/** Body face. */
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-  preload: true,
-});
-
-/** Editorial serif — the "Fancy a chat?" headline and legacy pages. */
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  preload: false,
-});
-
-/** Handwritten accent, used for the film-set margin notes. */
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  preload: false,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -95,13 +54,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${inter.variable} ${playfair.variable} ${caveat.variable}`}
+      className={`${clash.variable} ${generalSans.variable} ${caveat.variable} ${satoshi.variable} ${instrument.variable} ${geistMono.variable} ${urbanist.variable}`}
     >
       <body>
+        <LoadingScreen />
         <SmoothScroll />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <Animator />
+        <PageTransition />
+        <PageReveal>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </PageReveal>
       </body>
     </html>
   );

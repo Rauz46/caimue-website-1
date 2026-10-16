@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local-only reference material (not tracked)
+/reference/
+
+# Local design research — never pushed
+reference/
