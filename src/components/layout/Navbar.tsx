@@ -76,22 +76,6 @@ export function Navbar() {
           {link.label}
         </Link>
       ))}
-      <a
-        href={site.social.instagram}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="nav-link"
-      >
-        Instagram
-      </a>
-      <a
-        href={site.social.linkedin}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="nav-link"
-      >
-        LinkedIn
-      </a>
     </>
   );
 

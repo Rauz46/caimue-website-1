@@ -59,15 +59,6 @@ const allTeam = [
     tags: ["Content", "On-Camera"],
   },
   {
-    name: "Priyadharshini",
-    role: "Marketing Associate",
-    image: "/teams%20pic/Priya.png",
-    color: "#F59E0B",
-    bio: "Turns a blank page into a poster that stops the scroll. Design instinct, AI toolkit, sharp eye.",
-    fun: "Has a Figma tab open before the coffee's poured",
-    tags: ["Design", "Marketing"],
-  },
-  {
     name: "Megha Balakrishnan",
     role: "WordPress AI Web Creator",
     image: "/team/styled/megha.png",
@@ -84,24 +75,6 @@ const allTeam = [
     bio: "Builds the websites that carry every story. Self-taught, fast-shipping, quietly essential.",
     fun: "Ships a feature between two cups of chai",
     tags: ["Web", "Dev"],
-  },
-  {
-    name: "Jeevan Shreyas",
-    role: "Finance Enabler",
-    image: "/team/styled/jeevan.png",
-    color: "#C026D3",
-    bio: "Keeps the numbers honest so the stories can be bold. Clean books, clear dashboards, zero drama at month-end.",
-    fun: "Finds plot holes in budgets, not scripts",
-    tags: ["Finance", "Analytics"],
-  },
-  {
-    name: "Purnimma Ravi",
-    role: "People Builder",
-    image: "/team/styled/purnima.png",
-    color: "#8B5CF6",
-    bio: "Grows people the way others grow companies. Culture, care, and the occasional perfectly-timed intervention snack.",
-    fun: "Remembers everyone's chai order by heart",
-    tags: ["People", "Culture"],
   },
 ];
 
@@ -195,7 +168,7 @@ function TeamCard({
         zIndex: 30,
         boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)",
       }}
-      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} ${index === 8 ? "lg:col-start-2" : ""} ${index === 9 ? "md:col-start-2 lg:col-start-3" : ""}`}
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] mx-auto sm:max-w-none ${index % 4 === 1 || index % 4 === 3 ? "md:mt-7" : ""} lg:col-span-2 ${index === 4 ? "lg:col-start-2" : ""} ${index === 6 ? "sm:col-span-2 sm:w-[calc(50%-14px)] md:col-span-1 md:w-full md:col-start-2 lg:col-start-auto" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
@@ -568,7 +541,7 @@ export default function AboutPage() {
 
           {/* Polaroid grid */}
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 md:gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-7 md:gap-6 max-w-5xl mx-auto"
             style={{ paddingBottom: "28px" }}
           >
             {allTeam.map((person, i) => (

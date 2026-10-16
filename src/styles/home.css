@@ -9,7 +9,8 @@
    Class prefix: cx- (no collisions with the legacy global sheets).
    ============================================================ */
 
-body:has(.cx) {
+body:has(.cx),
+.site-header {
   /* colour: brand book v1.2 */
   --purple: #672fb2;
   --purple-deep: #4b2183;
@@ -75,7 +76,7 @@ body:has(.cx) {
    HEADER (home only): transparent over the purple hero, a white
    bar with a hairline once past it.
    ============================================================ */
-body:has(.cx) .site-header {
+.site-header {
   font-size: 16px;
   height: var(--header-h);
   top: 0;
@@ -91,16 +92,16 @@ body:has(.cx) .site-header {
     border-color 0.35s var(--ease-out);
 }
 
-body:has(.cx) .site-header--solid {
+.site-header--solid {
   background: var(--white);
   border-bottom-color: var(--line);
 }
 
-body:has(.cx) .site-header--hidden {
+.site-header--hidden {
   transform: translateY(-100%);
 }
 
-body:has(.cx) .site-header__inner {
+.site-header__inner {
   width: var(--wrap);
   margin-inline: auto;
   height: 100%;
@@ -111,39 +112,39 @@ body:has(.cx) .site-header__inner {
   gap: var(--space-l);
 }
 
-body:has(.cx) .site-header .nav-logo {
+.site-header .nav-logo {
   display: flex;
   align-items: center;
   width: 124px;
 }
 
-body:has(.cx) .site-header .nav-logo-img {
+.site-header .nav-logo-img {
   display: none;
   width: 100%;
   height: auto;
   filter: none;
 }
 
-body:has(.cx) .site-header .nav-logo-img--reversed {
+.site-header .nav-logo-img--reversed {
   display: block;
 }
 
-body:has(.cx) .site-header--solid .nav-logo-img {
+.site-header--solid .nav-logo-img {
   display: block;
 }
 
-body:has(.cx) .site-header--solid .nav-logo-img--reversed {
+.site-header--solid .nav-logo-img--reversed {
   display: none;
 }
 
-body:has(.cx) .site-header__right,
-body:has(.cx) .site-header .nav-links {
+.site-header__right,
+.site-header .nav-links {
   display: flex;
   align-items: center;
   gap: var(--space-l);
 }
 
-body:has(.cx) .site-header .nav-link {
+.site-header .nav-link {
   position: relative;
   padding: var(--space-3xs) 0;
   font-family: var(--font);
@@ -156,7 +157,7 @@ body:has(.cx) .site-header .nav-link {
   transition: color 0.3s var(--ease-out);
 }
 
-body:has(.cx) .site-header .nav-link::after {
+.site-header .nav-link::after {
   content: "";
   position: absolute;
   inset: auto 0 -2px;
@@ -167,23 +168,23 @@ body:has(.cx) .site-header .nav-link::after {
   transition: transform 0.4s var(--ease-out);
 }
 
-body:has(.cx) .site-header .nav-link:hover {
+.site-header .nav-link:hover {
   color: var(--white);
 }
 
-body:has(.cx) .site-header .nav-link:hover::after {
+.site-header .nav-link:hover::after {
   transform: scaleX(1);
 }
 
-body:has(.cx) .site-header--solid .nav-link {
+.site-header--solid .nav-link {
   color: var(--ink-2);
 }
 
-body:has(.cx) .site-header--solid .nav-link:hover {
+.site-header--solid .nav-link:hover {
   color: var(--ink);
 }
 
-body:has(.cx) .site-header .nav-cta {
+.site-header .nav-cta {
   display: inline-flex;
   align-items: center;
   height: 44px;
@@ -202,32 +203,32 @@ body:has(.cx) .site-header .nav-cta {
     color 0.35s var(--ease-out);
 }
 
-body:has(.cx) .site-header .nav-cta:hover {
+.site-header .nav-cta:hover {
   background: var(--white);
   border-color: var(--white);
   color: var(--purple);
 }
 
-body:has(.cx) .site-header--solid .nav-cta {
+.site-header--solid .nav-cta {
   background: var(--purple);
   border-color: var(--purple);
   color: var(--white);
 }
 
-body:has(.cx) .site-header--solid .nav-cta:hover {
+.site-header--solid .nav-cta:hover {
   background: var(--purple-deep);
   border-color: var(--purple-deep);
 }
 
-body:has(.cx) .site-header .menu-btn {
+.site-header .menu-btn {
   color: var(--white);
 }
 
-body:has(.cx) .site-header--solid .menu-btn {
+.site-header--solid .menu-btn {
   color: var(--ink);
 }
 
-body:has(.cx) .site-header .mobile-nav {
+.site-header .mobile-nav {
   position: absolute;
   top: calc(var(--header-h) - var(--space-2xs));
   left: var(--margin);
@@ -238,7 +239,7 @@ body:has(.cx) .site-header .mobile-nav {
   border-radius: var(--r-l);
 }
 
-body:has(.cx) .site-header .mobile-nav .nav-link {
+.site-header .mobile-nav .nav-link {
   color: var(--ink);
   font-size: var(--t-title);
 }
@@ -1356,22 +1357,23 @@ body:has(.cx) .site-header .mobile-nav .nav-link {
 }
 
 @media (max-width: 767px) {
-  body:has(.cx) {
+  body:has(.cx),
+  .site-header {
     --header-h: 64px;
     --r-sheet: 12px;
   }
 
-  body:has(.cx) .site-header .nav-logo {
+  .site-header .nav-logo {
     width: 104px;
   }
 
-  body:has(.cx) .site-header .nav-links,
-  body:has(.cx) .site-header .nav-cta {
+  .site-header .nav-links,
+  .site-header .nav-cta {
     display: none;
   }
 
-  body:has(.cx) .site-header .mobile-nav .nav-links,
-  body:has(.cx) .site-header .mobile-nav .nav-link {
+  .site-header .mobile-nav .nav-links,
+  .site-header .mobile-nav .nav-link {
     display: block;
   }
 
@@ -1764,40 +1766,40 @@ body:has(.cx) .site-header .mobile-nav .nav-link {
    NAV: always a plain white strip (overrides the transparent
    over-the-hero state above)
    ============================================================ */
-body:has(.cx) .site-header {
+.site-header {
   background: var(--white);
   border-bottom-color: var(--line);
 }
 
-body:has(.cx) .site-header .nav-logo-img {
+.site-header .nav-logo-img {
   display: block;
 }
 
-body:has(.cx) .site-header .nav-logo-img--reversed {
+.site-header .nav-logo-img--reversed {
   display: none;
 }
 
-body:has(.cx) .site-header .nav-link {
+.site-header .nav-link {
   color: var(--ink-2);
 }
 
-body:has(.cx) .site-header .nav-link:hover {
+.site-header .nav-link:hover {
   color: var(--ink);
 }
 
-body:has(.cx) .site-header .nav-cta {
+.site-header .nav-cta {
   background: var(--purple);
   border-color: var(--purple);
   color: var(--white);
 }
 
-body:has(.cx) .site-header .nav-cta:hover {
+.site-header .nav-cta:hover {
   background: var(--purple-deep);
   border-color: var(--purple-deep);
   color: var(--white);
 }
 
-body:has(.cx) .site-header .menu-btn {
+.site-header .menu-btn {
   color: var(--ink);
 }
 
