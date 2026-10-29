@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 /**
  * The ruled grid on the light sections brightens a little around the pointer.
- * Sets --mx / --my on the hovered section; the light itself is a masked
- * ::after in home-ignitho.css. Mouse only, and nothing under reduced motion.
+ * Moves a 400px masked ::after (home-ignitho.css) to the pointer by transform, so only
+ * that circle repaints. Mouse only, and nothing under reduced motion.
  */
 export function GridSpot() {
   useEffect(() => {
@@ -26,8 +26,16 @@ export function GridSpot() {
       raf = requestAnimationFrame(() => {
         raf = 0;
         if (!last) return;
-        last.el.style.setProperty("--mx", `${last.x}px`);
-        last.el.style.setProperty("--my", `${last.y}px`);
+        // the section's grid is 56px, centred horizontally and starting at the top;
+        // the circle's own grid is offset so its lines sit exactly on the section's
+        const { el, x, y } = last;
+        const left = x - 200;
+        const top = y - 200;
+        const x0 = (el.clientWidth - 56) / 2;
+        el.style.setProperty("--spot-x", `${left}px`);
+        el.style.setProperty("--spot-y", `${top}px`);
+        el.style.setProperty("--spot-bx", `${(((x0 - left) % 56) + 56) % 56}px`);
+        el.style.setProperty("--spot-by", `${(((0 - top) % 56) + 56) % 56}px`);
       });
     };
     const enter = (e: PointerEvent) => (e.currentTarget as HTMLElement).setAttribute("data-spot", "");

@@ -18,7 +18,7 @@ function parse(value: string) {
 }
 
 /** Counts up to the real figure once `run` turns true; renders the final value until then. */
-function Count({ value, run }: { value: string; run: boolean }) {
+export function Count({ value, run }: { value: string; run: boolean }) {
   const { n, dp, suffix } = parse(value);
   const [shown, setShown] = useState(value);
 
@@ -29,7 +29,7 @@ function Count({ value, run }: { value: string; run: boolean }) {
     const t0 = performance.now();
     let raf = 0;
     const step = (now: number) => {
-      const p = Math.min(1, (now - t0) / dur);
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
       const eased = 1 - Math.pow(1 - p, 4);
       setShown((n * eased).toFixed(dp) + suffix);
       if (p < 1) raf = requestAnimationFrame(step);

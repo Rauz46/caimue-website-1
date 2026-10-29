@@ -98,12 +98,14 @@ export const geistMono = Geist_Mono({
  * The homepage face (v18). Urbanist: a geometric sans with soft, round
  * terminals (no sharp spurs at display size), and the face the site's
  * approver already reads as professional. SIL Open Font License, so free
- * for commercial use. 400 body, 500 UI, 600 headings, 700 the hero title.
+ * for commercial use. 400 body, 500 UI, 600 headings, 700 the hero title,
+ * 800 the display titles of the homepage sections and their card titles.
  */
 export const urbanist = Urbanist({
   variable: "--font-urbanist",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  /* the variable font (wght 100 to 900): the hero animates its weight axis */
   display: "swap",
   preload: true,
 });
+

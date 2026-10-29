@@ -1,4 +1,7 @@
-@import "tailwindcss";
+/* Tailwind scans only src/ for class names (not the whole project root with its
+   research and tool folders): less work for the CSS worker, which timed out on a
+   low-memory machine (Turbopack panic "timeout while receiving message", 29 Oct 2026) */
+@import "tailwindcss" source("../");
 @import "./tokens.css";
 @import "./compat.css";
 @import "./motion.css";
@@ -204,7 +207,7 @@ p {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.22em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--color-violet);
 }
 
@@ -734,9 +737,10 @@ p {
 /* ============================================================
    INTRO COVER
 
-   A purple sheet with the reversed wordmark, revealed left to right,
-   held one beat, then lifted straight off the page. Transform and
-   clip-path only; it unmounts when it is gone.
+   A white sheet where the wordmark's full stop drops, sweeps the
+   baseline raising each letter and lands in the e; one held beat,
+   then the full stop opens into an iris onto the page. It unmounts
+   when it is gone.
    ============================================================ */
 
 .intro {
@@ -747,11 +751,17 @@ p {
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  will-change: transform;
+}
+
+/* the exit: the wordmark's full stop opens into a circular window onto the page */
+.intro--iris {
+  -webkit-mask: radial-gradient(circle at var(--ix) var(--iy), transparent var(--ir), #000 calc(var(--ir) + 1px));
+  mask: radial-gradient(circle at var(--ix) var(--iy), transparent var(--ir), #000 calc(var(--ir) + 1px));
 }
 
 /* the wordmark title sequence (LoadingScreen): parts start hidden; GSAP plays them in */
 .intro__wm {
+  position: relative;
   width: clamp(220px, 34vw, 560px);
 }
 

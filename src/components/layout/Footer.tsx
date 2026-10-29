@@ -3,46 +3,31 @@ import { nav, site } from "@/content/site";
 import { Wordmark } from "@/components/brand/Wordmark";
 
 /**
- * The footer: white, after the purple close. The wordmark and one line
- * about the studio, then three short columns (company, social, offices)
- * and the legal row. Styles live in home.css (.ft).
+ * The footer, kept minimal the way top studio sites sign off: the
+ * wordmark across the full width, then one quiet line under a hairline
+ * (the year, the socials, the legal links). No repeated navigation.
+ * Styles live in home.css (.ft).
  */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="ft">
-      <div className="ft__grid">
-        <div className="ft__brand">
-          <Link href="/" aria-label={site.name}>
-            <Wordmark className="ft__logo" />
-          </Link>
-        </div>
+    <footer className="ft ft--min">
+      <Link href="/" className="ft__mark" aria-label={site.name}>
+        <Wordmark className="ft__mark-svg" />
+      </Link>
 
-        <nav className="ft__col" aria-label="Site">
-          {nav.primary.map((link) => (
-            <Link key={link.href} href={link.href} className="ft__link">
-              {link.label}
-            </Link>
-          ))}
-          <Link href={nav.cta.href} className="ft__link">
-            {nav.cta.label}
-          </Link>
-        </nav>
-
-        <nav className="ft__col" aria-label="Social">
-          <a href={site.social.instagram} target="_blank" rel="noreferrer noopener" className="ft__link">
-            Instagram
-          </a>
-          <a href={site.social.linkedin} target="_blank" rel="noreferrer noopener" className="ft__link">
+      <div className="ft__bar">
+        <span>
+          © {year} {site.name}
+        </span>
+        <span className="ft__social">
+          <a href={site.social.linkedin} target="_blank" rel="noreferrer noopener" className="ft__legal-link">
             LinkedIn
           </a>
-        </nav>
-      </div>
-
-      <div className="ft__legal">
-        <span>
-          © {year} {site.name} · Video-first B2B marketing · Headquartered in the US
+          <a href={site.social.instagram} target="_blank" rel="noreferrer noopener" className="ft__legal-link">
+            Instagram
+          </a>
         </span>
         <span className="ft__legal-links">
           {nav.legal.map((l) => (

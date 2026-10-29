@@ -75,7 +75,13 @@ function markRevealed() {
  * and behind an opaque cover for the first third of it the extra 6% was
  * never visible as "zoom" anyway.
  */
-const START_SCALE = 1.16;
+/* 0.94, growing to 1 (Oct 2026): the intro now exits by pushing through
+   the wordmark's full stop (the word grows past camera), so the page
+   beyond must grow too: a shrinking page under a growing exit is a
+   mirrored Z vector and reads as the camera changing its mind. */
+/* 1 (Oct 2026): the intro now ends by a window onto the reel filling the screen, so the page
+   stays at rest underneath; only the revealed signal is kept */
+const START_SCALE = 1;
 
 export function PageReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -111,8 +117,11 @@ export function PageReveal({ children }: { children: ReactNode }) {
         }
         markRevealed();
       }}
+      /* zoom about the middle of the first screen (the intro always starts
+         at scroll 0), not of the whole document: about the document's
+         centre, the hero sat above the viewport while the iris opened */
       style={{
-        transformOrigin: "center center",
+        transformOrigin: "50% 50vh",
         willChange: "transform",
       }}
     >

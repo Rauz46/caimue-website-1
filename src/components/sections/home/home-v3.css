@@ -1,0 +1,4098 @@
+/* ============================================================
+   THE HOMEPAGE v4 (29 Oct 2026): theadaffair.com's section system
+   (reference/adaffair-live) in Caimue colour and Urbanist.
+   Their cream ground -> the brand's purple tint; their red -> the
+   brand purple; deep pink only on the primary button. Their serif
+   accent word -> the same word in purple. Tokens from home.css.
+   ============================================================ */
+
+.ca {
+  --ca-ground: var(--tint);
+  --ca-line: rgb(103 47 178 / 0.13);
+  --ca-radius: 28px;
+  --ca-radius-s: 20px;
+  --ca-gap: clamp(16px, 1.6vw, 24px);
+  --pink-deep: #d6006b;
+  --navy: #160a33;
+  background: var(--ca-ground);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+/* the browser's own surfaces, in the palette */
+html:has(.ca) {
+  scrollbar-color: var(--lilac) var(--tint);
+  accent-color: var(--purple);
+}
+
+.ca ::selection,
+.ft ::selection {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca input {
+  caret-color: var(--purple);
+}
+
+.ca a:focus-visible,
+.ca button:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.ca-wrap {
+  width: min(1400px, 92vw);
+  margin-inline: auto;
+}
+
+.ca-pad {
+  padding-block: clamp(80px, 8vw, 112px);
+}
+
+/* ---------- type ---------- */
+.ca-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.ca-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ca-pulse 1.8s ease-in-out infinite;
+}
+
+.ca-eyebrow--center {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes ca-pulse {
+  50% {
+    opacity: 0.35;
+    transform: scale(1.5);
+  }
+}
+
+.ca-h2 {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.ca-h2--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ca-h2--inv {
+  color: var(--white);
+}
+
+/* theadaffair.com's accent word, in the brand purple */
+.ca-ital {
+  color: var(--purple);
+}
+
+.ca-h2--inv .ca-ital {
+  color: var(--lav-2);
+}
+
+.ca-p {
+  margin: 1.4rem 0 0;
+  max-width: 38rem;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.ca-p--inv {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.ca-head {
+  margin-bottom: clamp(2rem, 3vw, 2.6rem);
+}
+
+.ca-more {
+  margin-top: 2.2rem;
+}
+
+/* ---------- buttons ---------- */
+.ca-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 26px;
+  border: 1.5px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s var(--ease-out);
+}
+
+.ca-btn:hover {
+  transform: translateY(-2px);
+}
+
+.ca-btn:active {
+  transform: scale(0.97);
+}
+
+.ca-btn:focus-visible {
+  outline: 3px solid var(--lav-2);
+  outline-offset: 3px;
+}
+
+.ca-btn--pink {
+  background: var(--pink-deep);
+  color: var(--white);
+}
+
+.ca-btn--pink:hover {
+  background: #b8005c;
+}
+
+.ca-btn--purple {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-btn--purple:hover {
+  background: var(--purple-deep);
+}
+
+.ca-btn--ghost-light {
+  border-color: rgb(255 255 255 / 0.45);
+  color: var(--white);
+}
+
+.ca-btn--ghost-light:hover {
+  border-color: var(--white);
+  background: rgb(255 255 255 / 0.1);
+}
+
+.ca-btn--line {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.ca-btn--line:hover {
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* the white frame every showpiece sits in */
+.ca-frame {
+  position: relative;
+  border: 1px solid var(--ca-line);
+  border-radius: var(--ca-radius);
+  background: var(--white);
+  box-shadow: 0 40px 80px -60px rgb(75 33 131 / 0.45);
+}
+
+.ca-frame--grid {
+  overflow: hidden;
+  background: #fdfcff;
+}
+
+/* the flat brand forms */
+.ca-mark {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  fill: var(--purple);
+}
+
+.ca-mark__knock {
+  fill: var(--white);
+  stroke: var(--white);
+}
+
+/* ============================================================
+   2. CLIENTS: logo rings
+   ============================================================ */
+.ca-clients {
+  padding: clamp(5rem, 7vw, 7.5rem) 0 2rem;
+}
+
+.ca-clients .ca-eyebrow {
+  margin-bottom: 2.6rem;
+}
+
+.ca-rings {
+  width: min(1400px, 92vw);
+  margin-inline: auto;
+}
+
+.ca-rings__track {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  justify-items: center;
+}
+
+.ca-ring {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: min(100%, 168px);
+  aspect-ratio: 1;
+  border: 1px solid var(--ca-line);
+  border-radius: 50%;
+  background: var(--white);
+  transition: border-color 0.32s ease;
+}
+
+.ca-ring img {
+  width: 66%;
+  height: 46%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition:
+    filter 0.32s ease,
+    opacity 0.32s ease,
+    transform 0.32s var(--ease-out);
+}
+
+.ca-ring:hover {
+  border-color: var(--purple);
+}
+
+.ca-ring:hover img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+@keyframes ca-ring {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   3. PROOF: four figures on hairlines
+   ============================================================ */
+.ca-proof-s {
+  padding: 2rem 0 0;
+}
+
+.ca-proof {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--ca-line);
+}
+
+.ca-proof__item {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1rem, 2vw, 2rem);
+}
+
+/* the lead figure takes the left column, bottom-aligned with the last row */
+.ca-proof__item:first-child {
+  grid-row: 1 / span 3;
+  justify-content: center;
+  padding-left: 0;
+  border-right: 1px solid var(--ca-line);
+}
+
+.ca-proof__item:first-child .ca-proof__v {
+  font-size: clamp(3.5rem, 8.4vw, 8.5rem);
+  letter-spacing: -0.05em;
+}
+
+.ca-proof__item:first-child .ca-proof__line {
+  max-width: 30ch;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+}
+
+/* the other three: figure and line on one row each */
+.ca-proof__item:not(:first-child) {
+  display: grid;
+  grid-template-columns: clamp(5.5rem, 9vw, 8.5rem) minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(1.25rem, 2.4vw, 2.5rem);
+  padding-right: 0;
+}
+
+.ca-proof__item:not(:first-child) .ca-proof__line {
+  margin-top: 0;
+}
+
+.ca-proof__item:nth-child(n + 3) {
+  border-top: 1px solid var(--ca-line);
+}
+
+.ca-proof__v {
+  font-size: clamp(2.25rem, 3.5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+
+.ca-proof__line {
+  margin-top: 0.9rem;
+  max-width: 24ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+/* ============================================================
+   4. THE WORK: three cards fanned in one frame
+   ============================================================ */
+.ca-fan {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ca-gap);
+  padding: clamp(1.5rem, 3vw, 3.5rem);
+  background: #fdfcff;
+}
+
+/* the slot is what the scroll animation moves; the card inside keeps its tilt and hover */
+.ca-fan__slot {
+  display: flex;
+}
+
+.ca-fan__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--ca-radius-s);
+  background: var(--purple);
+  color: var(--white);
+  box-shadow: 0 30px 50px -36px rgb(45 16 95 / 0.6);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.ca-fan__card--1 {
+  transform: rotate(-1.5deg) translateY(12px);
+}
+
+.ca-fan__card--2 {
+  background: var(--navy);
+}
+
+.ca-fan__card--3 {
+  transform: rotate(1.5deg) translateY(12px);
+  background: var(--lav-2);
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .ca-fan__card:hover {
+    transform: rotate(0) translateY(-6px);
+  }
+}
+
+.ca-fan__pic {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.ca-fan__plate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 60%;
+  aspect-ratio: 2.3;
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 20px 36px -24px rgb(10 4 30 / 0.6);
+}
+
+.ca-fan__plate img {
+  width: 66%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.ca-fan__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 1.6rem 1.8rem;
+}
+
+.ca-fan__client {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ca-fan__sentence {
+  margin: 0.6rem 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  text-wrap: pretty;
+}
+
+.ca-fan__metric {
+  margin: auto 0 0;
+  padding-top: 1.4rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.ca-fan__metric::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.2rem;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+/* ============================================================
+   5. WHAT WE DO: the isometric services floor and its card
+   ============================================================ */
+.ca-floor-stage {
+  position: relative;
+  height: clamp(420px, 32vw, 480px);
+}
+
+.ca-floor-scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 2400px;
+  transition:
+    filter 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.ca-floor-stage.is-open .ca-floor-scene {
+  filter: blur(3px) saturate(0.7);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.ca-floor {
+  --cell: clamp(140px, 11.5vw, 180px);
+  --gap: clamp(20px, 2vw, 30px);
+  position: relative;
+  width: calc(var(--cell) * 3 + var(--gap) * 2);
+  height: calc(var(--cell) * 3 + var(--gap) * 2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateY(-4%) rotateX(56deg) rotateZ(-42deg);
+  transform-style: preserve-3d;
+}
+
+/* the floor's own module lines, in the plane of the floor: they run through the gaps
+   between the slabs and fade out past the board */
+.ca-floor::before {
+  content: "";
+  position: absolute;
+  inset: calc((var(--cell) + var(--gap)) * -2);
+  background-image:
+    linear-gradient(var(--line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-strong) 1px, transparent 1px);
+  background-size: calc(var(--cell) + var(--gap)) calc(var(--cell) + var(--gap));
+  background-position: calc(var(--gap) / -2) calc(var(--gap) / -2);
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent);
+  mask-image: radial-gradient(closest-side, #000 45%, transparent);
+  pointer-events: none;
+}
+
+.ca-tile-cell {
+  position: absolute;
+  left: calc(var(--c) * (var(--cell) + var(--gap)));
+  top: calc(var(--r) * (var(--cell) + var(--gap)));
+  width: var(--cell);
+  height: var(--cell);
+  transform-style: preserve-3d;
+}
+
+/* a slab: the face, and a two-tone edge underneath for its thickness */
+.ca-tile {
+  --edge-1: #e2d6f4;
+  --edge-2: #c6b1e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 18px;
+  border: 1px solid var(--ca-line);
+  border-radius: 22px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    0 30px 30px -10px rgb(75 33 131 / 0.25);
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.ca-tile:hover,
+.ca-tile:focus-visible {
+  transform: translate3d(-8px, -8px, 0);
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    8px 46px 40px -10px rgb(75 33 131 / 0.3);
+  outline: none;
+}
+
+.ca-tile:focus-visible {
+  border-color: var(--purple);
+}
+
+.ca-tile__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.ca-tile__no {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+
+.ca-tile__title {
+  font-size: clamp(1rem, 0.9rem + 0.35vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.ca-tile-cell:nth-child(even) .ca-mark {
+  fill: var(--lilac);
+}
+
+/* every third slab purple, two lavender: the board reads as a composition */
+.ca-tile-cell:nth-child(2) .ca-tile,
+.ca-tile-cell:nth-child(6) .ca-tile {
+  --edge-1: #5a27a0;
+  --edge-2: #3f1a78;
+  border-color: transparent;
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-tile-cell:nth-child(4) .ca-tile,
+.ca-tile-cell:nth-child(7) .ca-tile {
+  --edge-1: #c9b6ea;
+  --edge-2: #a88ad8;
+  border-color: transparent;
+  background: var(--lav-2);
+}
+
+.ca-tile-cell:nth-child(2) .ca-tile__no,
+.ca-tile-cell:nth-child(6) .ca-tile__no {
+  color: var(--lav-2);
+}
+
+.ca-tile-cell:nth-child(2) .ca-mark,
+.ca-tile-cell:nth-child(6) .ca-mark {
+  fill: var(--white);
+}
+
+.ca-tile-cell:nth-child(2) .ca-mark__knock,
+.ca-tile-cell:nth-child(6) .ca-mark__knock {
+  fill: var(--purple);
+  stroke: var(--purple);
+}
+
+.ca-tile-cell:nth-child(4) .ca-mark,
+.ca-tile-cell:nth-child(7) .ca-mark {
+  fill: var(--purple);
+}
+
+/* the card a tile opens */
+.ca-detail {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  width: min(520px, calc(100% - 2rem));
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 1px solid var(--ca-line);
+  border-radius: var(--ca-radius);
+  background: var(--white);
+  box-shadow: 0 50px 90px -50px rgb(45 16 95 / 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.94);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s var(--ease-out);
+}
+
+.ca-floor-stage.is-open .ca-detail {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.ca-detail__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ca-line);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.ca-detail__close:hover {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-detail__no {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+
+.ca-detail .ca-mark {
+  width: 56px;
+  height: 56px;
+}
+
+.ca-detail__t {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.ca-detail__p {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.ca-svc-list {
+  display: none;
+}
+
+/* ============================================================
+   6. HOW WE WORK: the FAQ pattern
+   ============================================================ */
+.ca-faq-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.ca-faq-grid__l .ca-h2 {
+  max-width: 12ch;
+}
+
+.ca-faq {
+  border-top: 1px solid var(--ca-line);
+}
+
+.ca-faq:last-child {
+  border-bottom: 1px solid var(--ca-line);
+}
+
+.ca-faq__q {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.4rem 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ca-faq__stage {
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.ca-faq__when {
+  padding: 6px 12px;
+  border: 1px solid var(--ca-line);
+  border-radius: var(--r-pill);
+  background: var(--white);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--purple);
+  white-space: nowrap;
+}
+
+/* the plus that turns into a minus */
+.ca-faq__ic {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--ca-line);
+  border-radius: 50%;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.ca-faq__ic::before,
+.ca-faq__ic::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -6px;
+  border-radius: 1px;
+  background: var(--purple);
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.3s ease;
+}
+
+.ca-faq__ic::after {
+  transform: rotate(90deg);
+}
+
+.ca-faq.is-open .ca-faq__ic {
+  border-color: var(--purple);
+  background: var(--purple);
+}
+
+.ca-faq.is-open .ca-faq__ic::before,
+.ca-faq.is-open .ca-faq__ic::after {
+  background: var(--white);
+}
+
+.ca-faq.is-open .ca-faq__ic::after {
+  transform: rotate(0);
+}
+
+.ca-faq__q:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+}
+
+.ca-faq__a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+
+.ca-faq__a > div {
+  overflow: hidden;
+}
+
+.ca-faq.is-open .ca-faq__a {
+  grid-template-rows: 1fr;
+}
+
+.ca-faq__a p {
+  margin: 0;
+  padding: 0 4rem 1.5rem 0;
+  max-width: 40rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   THE MOVING LINE (theadaffair.com's "Start the affair" strip)
+   ============================================================ */
+.ca-mq {
+  overflow: hidden;
+  padding-block: clamp(1.4rem, 2.4vw, 2.2rem);
+  border-block: 1px solid var(--ca-line);
+}
+
+.ca-mq__track {
+  display: flex;
+  width: max-content;
+  animation: ca-ring 60s linear infinite;
+}
+
+.ca-mq__row {
+  display: flex;
+  flex: none;
+}
+
+.ca-mq__item {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  padding-right: 0.45em;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.ca-mq__mark {
+  flex: none;
+  width: 0.6em;
+  height: 0.6em;
+  fill: var(--purple);
+}
+
+/* ============================================================
+   7. WHERE WE CAME FROM: the centred statement
+   ============================================================ */
+.ca-about__in {
+  display: grid;
+  justify-items: center;
+  max-width: 840px;
+  text-align: center;
+}
+
+.ca-about .ca-h2 {
+  max-width: 18ch;
+  font-size: clamp(2.4rem, 5.6vw, 4.75rem);
+}
+
+.ca-about .ca-p {
+  margin-inline: auto;
+}
+
+/* the three channel frames under the statement: the middle one larger and raised */
+.ca-stills {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--ca-gap);
+  align-items: end;
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.ca-still {
+  margin: 0;
+}
+
+.ca-still:nth-child(2) {
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+}
+
+.ca-still__frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: var(--ca-radius-s);
+  background: var(--lav);
+  box-shadow: 0 34px 60px -40px rgb(45 16 95 / 0.55);
+}
+
+.ca-still__frame img {
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .ca-still:hover .ca-still__frame img {
+    transform: scale(1.04);
+  }
+}
+
+.ca-still figcaption {
+  margin-top: 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   8. THE FREE REVIEW: the CTA card
+   ============================================================ */
+.ca-cta {
+  padding: 0 0 clamp(80px, 8vw, 112px);
+}
+
+.ca-cta-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  border-radius: var(--ca-radius);
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-cta-card .ca-h2 {
+  font-size: clamp(2.1rem, 4.4vw, 3.75rem);
+}
+
+.ca-form,
+.ca-form__done {
+  margin: 0;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border-radius: var(--ca-radius-s);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.ca-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.ca-form__done {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.ca-field {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.ca-field input {
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgb(103 47 178 / 0.28);
+  border-radius: 12px;
+  background: var(--white);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: border-color 0.2s ease;
+}
+
+.ca-field input:focus-visible {
+  border-color: var(--purple);
+  outline: 2px solid var(--purple);
+  outline-offset: 1px;
+}
+
+.ca-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.ca-check input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--purple);
+}
+
+.ca-form .ca-btn {
+  justify-self: start;
+}
+
+.ca-form__note {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .ca-floor {
+    --cell: 136px;
+  }
+}
+
+@media (max-width: 899px) {
+  .ca-proof {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .ca-proof__item:not(:first-child) {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .ca-proof__item:first-child {
+    grid-row: auto;
+    padding-inline: 0;
+    border-right: 0;
+  }
+
+  .ca-proof__item:not(:first-child) {
+    padding-inline: 0;
+    border-top: 1px solid var(--ca-line);
+  }
+
+  .ca-fan,
+  .ca-faq-grid,
+  .ca-cta-card,
+  .ca-stills {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ca-still:nth-child(2) {
+    margin-bottom: 0;
+  }
+
+  .ca-rings__track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ca-fan__card--1,
+  .ca-fan__card--3 {
+    transform: none;
+  }
+
+  /* phones: theadaffair.com's fallback list instead of the floor */
+  .ca-floor-stage {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .ca-floor-scene,
+  .ca-detail {
+    display: none;
+  }
+
+  .ca-svc-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ca-svc {
+    padding: 1.25rem;
+    border: 1px solid var(--ca-line);
+    border-radius: var(--ca-radius-s);
+    background: var(--white);
+  }
+
+  .ca-svc__t {
+    margin: 1.5rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .ca-svc__p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+
+  .ca-svc:nth-child(even) .ca-mark {
+    fill: var(--lilac);
+  }
+
+  .ca-faq__a p {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .ca-proof__item:not(:first-child) .ca-proof__v {
+    font-size: 2rem;
+  }
+
+  .ca-proof__item {
+    padding-block: 1.25rem;
+  }
+
+  .ca-faq__q {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .ca-faq__when {
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .ca-faq__ic {
+    grid-row: 1 / 3;
+    grid-column: 2;
+  }
+
+  .hx-actions .ca-btn {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-mq__track,
+  .ca-eyebrow::before {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   GROUNDS AND DEVICES (29 Oct 2026, colorize pass)
+   The page was one flat tint from the logos to the footer. Now the
+   grounds keep the approver's rhythm: purple hero, white, tint,
+   deep purple for the services floor (the one colour block), white,
+   tint, white. Two Caimue corners at page scale, each anchored to
+   its section's edge and cropped by it.
+   ============================================================ */
+.ca-g-white {
+  background: var(--white);
+}
+
+.ca-g-deep {
+  background: var(--purple-deep);
+  color: var(--white);
+}
+
+.ca-mq {
+  background: var(--white);
+}
+
+.ca-cta {
+  padding-top: clamp(80px, 8vw, 112px);
+}
+
+.ca-g-white .ca-ring {
+  border-color: transparent;
+  background: var(--tint);
+}
+
+.ca-services,
+.ca-about {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.ca-device {
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+/* services: a purple corner hanging into the top right beside the heading, cropped by the
+   section's top edge; its rounded and square lower corners both show, so it reads as the mark */
+.ca-device--services {
+  right: 5vw;
+  top: -13vw;
+  width: min(30vw, 520px);
+  border-radius: 24% 24% 0 24%;
+  background: var(--purple);
+}
+
+/* where we came from: a white corner off the top right, square corner down and to the right */
+.ca-device--origin {
+  right: -11vw;
+  top: -17vw;
+  width: min(30vw, 540px);
+  border-radius: 24% 24% 0 24%;
+  background: var(--white);
+}
+
+/* the deep section's type and floor */
+.ca-g-deep .ca-h2 {
+  color: var(--white);
+}
+
+.ca-g-deep .ca-ital {
+  color: var(--lav-2);
+}
+
+.ca-board {
+  position: relative;
+}
+
+.ca-g-deep .ca-floor::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.16) 1px, transparent 1px);
+}
+
+.ca-g-deep .ca-tile {
+  border-color: transparent;
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    0 34px 34px -12px rgb(12 3 32 / 0.45);
+}
+
+.ca-g-deep .ca-tile-cell:nth-child(2) .ca-tile,
+.ca-g-deep .ca-tile-cell:nth-child(6) .ca-tile {
+  --edge-1: #8a55e6;
+  --edge-2: #5a27a0;
+  background: #8a55e6;
+}
+
+.ca-g-deep .ca-tile-cell:nth-child(2) .ca-mark__knock,
+.ca-g-deep .ca-tile-cell:nth-child(6) .ca-mark__knock {
+  fill: #8a55e6;
+  stroke: #8a55e6;
+}
+
+.ca-g-deep .ca-tile-cell:nth-child(2) .ca-tile__no,
+.ca-g-deep .ca-tile-cell:nth-child(6) .ca-tile__no {
+  color: var(--white);
+}
+
+.ca-g-deep .ca-svc {
+  border-color: transparent;
+  color: var(--ink);
+}
+
+@media (max-width: 899px) {
+  .ca-device--services {
+    width: 44vw;
+    right: -6vw;
+    top: -20vw;
+  }
+
+  .ca-device--origin {
+    width: 52vw;
+    right: -20vw;
+    top: -16vw;
+  }
+}
+
+/* ============================================================
+   29 Oct 2026, copy v3 pass
+   ============================================================ */
+
+/* the light ground: the brand's neutral surface instead of the candy lavender */
+.ca,
+.ca-g-surface {
+  background: #f3f2f5;
+}
+
+.ca-g-white .ca-ring {
+  background: #f3f2f5;
+}
+
+/* clients: the six marks in one seamless loop. Two identical sets, each carrying its own
+   trailing gap, so -50% lands exactly on the start of the second set. Paused on hover. */
+.ca-rings {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ca-rings .ca-rings__track {
+  display: flex;
+  width: max-content;
+  animation: ca-ring 38s linear infinite;
+}
+
+.ca-rings__set {
+  display: flex;
+  flex: none;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  padding-right: clamp(1rem, 2vw, 1.75rem);
+}
+
+.ca-rings .ca-ring {
+  width: clamp(120px, 11vw, 156px);
+}
+
+@media (hover: hover) {
+  .ca-rings:hover .ca-rings__track {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 899px) {
+  .ca-rings .ca-rings__track {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-rings .ca-rings__track {
+    animation: none;
+  }
+}
+
+/* proof: three figures now, the lead beside two rows */
+.ca-proof {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.ca-proof__item:first-child {
+  grid-row: 1 / span 2;
+}
+
+/* the work card's result line */
+.ca-fan__result {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+/* where we came from: on deep navy, so the film frames sit in a dark room */
+.ca-g-navy {
+  background: #160a33;
+  color: var(--white);
+}
+
+.ca-g-navy .ca-h2 {
+  color: var(--white);
+}
+
+.ca-g-navy .ca-ital {
+  color: var(--lav-2);
+}
+
+.ca-g-navy .ca-p {
+  color: rgb(255 255 255 / 0.78);
+}
+
+.ca-g-navy .ca-device--origin {
+  background: #2a1460;
+}
+
+.ca-g-navy .ca-still__frame {
+  border-color: #2a1460;
+  background: #2a1460;
+  box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.7);
+}
+
+.ca-g-navy .ca-still figcaption {
+  color: rgb(255 255 255 / 0.7);
+}
+
+.ca-g-navy .ca-btn--purple {
+  background: var(--white);
+  color: #160a33;
+}
+
+.ca-g-navy .ca-btn--purple:hover {
+  background: var(--lav-2);
+}
+
+@media (max-width: 899px) {
+  .ca-proof {
+    grid-template-rows: none;
+  }
+
+  .ca-proof__item:first-child {
+    grid-row: auto;
+  }
+}
+
+/* the two sets touch; each set's trailing padding is the only gap at the seam */
+.ca-rings .ca-rings__track {
+  gap: 0;
+}
+
+.ca-proof__item:not(:first-child) .ca-proof__line {
+  max-width: 34ch;
+}
+
+/* ============================================================
+   29 Oct 2026, design pass (desktop first)
+   ============================================================ */
+
+/* the page's fine grain: one fixed, static layer over everything, so flat grounds read as a
+   surface, not as an empty fill. Never on a scrolling element. */
+body:has(.ca)::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* clients: a little quicker (one half is now twelve logos wide) */
+.ca-rings .ca-rings__track {
+  animation-duration: 48s;
+}
+
+/* ---------- the work cards, finished ---------- */
+a.ca-fan__card {
+  text-decoration: none;
+  color: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    0 30px 50px -36px rgb(45 16 95 / 0.6);
+}
+
+.ca-fan__card--1 { color: var(--white); }
+.ca-fan__card--2 { color: var(--white); }
+.ca-fan__card--3 {
+  color: var(--ink);
+  box-shadow:
+    inset 0 0 0 1px rgb(23 21 28 / 0.06),
+    0 30px 50px -36px rgb(45 16 95 / 0.45);
+}
+
+/* the picture is a deeper tone of its card, so every card is two planes, not one fill */
+.ca-fan__card--1 .ca-fan__pic { background: #5a27a0; }
+.ca-fan__card--2 .ca-fan__pic { background: #24114a; }
+.ca-fan__card--3 .ca-fan__pic { background: #cbb8ec; }
+
+.ca-fan__pic {
+  margin-bottom: 1.6rem;
+}
+
+.ca-fan__plate {
+  transition: transform 0.7s var(--ease-out);
+}
+
+.ca-fan__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.ca-fan__foot .ca-fan__metric {
+  margin: 0;
+  padding: 0;
+}
+
+.ca-fan__foot .ca-fan__metric::before {
+  display: none;
+}
+
+.ca-fan__go {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 50%;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.5s var(--ease-out);
+}
+
+.ca-fan__go svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) {
+  a.ca-fan__card:hover .ca-fan__plate {
+    transform: scale(1.05);
+  }
+
+  a.ca-fan__card:hover .ca-fan__go {
+    border-color: transparent;
+    background: var(--white);
+    color: var(--purple);
+    transform: rotate(45deg);
+  }
+
+  .ca-fan__card--3:hover .ca-fan__go {
+    background: var(--purple);
+    color: var(--white);
+  }
+}
+
+a.ca-fan__card:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 4px;
+}
+
+/* ---------- services: a tile opens its card beside the floor ---------- */
+.ca-floor-scene {
+  transition:
+    transform 0.9s var(--ease-out),
+    opacity 0.5s ease;
+}
+
+.ca-floor-stage.is-open .ca-floor-scene {
+  transform: translateX(-18%);
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ca-floor-stage.is-open .ca-tile:not(.is-active) {
+  opacity: 0.5;
+}
+
+.ca-tile {
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    opacity 0.4s ease;
+}
+
+.ca-tile.is-active {
+  transform: translate3d(-14px, -14px, 0);
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    16px 60px 50px -14px rgb(12 3 32 / 0.55);
+}
+
+.ca-detail {
+  left: auto;
+  right: 3%;
+  width: min(440px, 40%);
+  transform: translate(32px, -50%);
+  transition:
+    opacity 0.45s ease,
+    transform 0.8s var(--ease-out);
+}
+
+.ca-floor-stage.is-open .ca-detail {
+  transform: translate(0, -50%);
+}
+
+.ca-detail__body {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.ca-detail__body > * {
+  animation: ca-rise 0.6s var(--ease-out) both;
+}
+
+.ca-detail__body > :nth-child(2) { animation-delay: 0.05s; }
+.ca-detail__body > :nth-child(3) { animation-delay: 0.1s; }
+.ca-detail__body > :nth-child(4) { animation-delay: 0.15s; }
+
+@keyframes ca-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.ca-detail__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- where we came from: the frames in depth ---------- */
+.ca-about {
+  display: flex;
+  align-items: center;
+  min-height: 118vh;
+}
+
+.ca-about__in {
+  position: relative;
+  z-index: 2;
+}
+
+.ca-space {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.ca-space__cam {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.ca-space__f {
+  position: absolute;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #24114a;
+  transform: translate(-50%, -50%) translateZ(var(--z));
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 40px 80px -30px rgb(0 0 0 / 0.75);
+}
+
+.ca-space__f img {
+  object-fit: cover;
+}
+
+.ca-space__f[data-depth="back"] img {
+  filter: brightness(0.5) saturate(0.7);
+}
+
+.ca-space__f[data-depth="mid"] img {
+  filter: brightness(0.72) saturate(0.85);
+}
+
+/* ---------- navigation: the links centred on the bar, the logo and the button at its ends ---------- */
+@media (min-width: 900px) {
+  .site-header .site-header__inner {
+    position: relative;
+  }
+
+  .site-header .nav-links {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* the tiles share the floor's plane, so in 3D hit testing the floor won and no tile could be
+   hovered or clicked: the floor lets the pointer through, and each cell sits a hair above it */
+.ca-floor {
+  pointer-events: none;
+}
+
+.ca-tile-cell {
+  transform: translateZ(2px);
+}
+
+.ca-tile {
+  pointer-events: auto;
+}
+
+/* the grain sits under the navigation, so the white bar stays clean */
+body:has(.ca)::after {
+  z-index: 40;
+}
+
+/* each card sets its own ink (the link rule must not let the section's colour through) */
+a.ca-fan__card--1,
+a.ca-fan__card--2 {
+  color: var(--white);
+}
+
+a.ca-fan__card--3 {
+  color: var(--ink);
+}
+
+/* the services card is white on the deep ground: its type is ink */
+.ca-detail {
+  color: var(--ink);
+}
+
+/* ============================================================
+   29 Oct 2026, design pass 3: the sticker language from the hero,
+   carried through the page
+   ============================================================ */
+
+/* ---------- proof: three cards, each with its own evidence ---------- */
+.ca-bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--ca-gap);
+  min-height: 520px;
+}
+
+.ca-bento__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: clamp(1.75rem, 2.6vw, 2.5rem);
+  border-radius: var(--ca-radius);
+}
+
+.ca-bento__card .ca-proof__v {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(3rem, 5vw, 5.25rem);
+  line-height: 0.95;
+}
+
+.ca-bento__card .ca-proof__line {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.75rem;
+  max-width: 26ch;
+  font-size: 1.0625rem;
+}
+
+.ca-bento__card--a {
+  grid-row: 1 / span 2;
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-bento__card--a .ca-proof__v {
+  color: var(--white);
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
+}
+
+.ca-bento__card--a .ca-proof__line {
+  color: rgb(255 255 255 / 0.84);
+}
+
+.ca-bento__card--b {
+  background: var(--lav-2);
+}
+
+.ca-bento__card--b .ca-proof__v {
+  color: #160a33;
+}
+
+.ca-bento__card--c {
+  background: #160a33;
+  color: var(--white);
+}
+
+.ca-bento__card--c .ca-proof__v {
+  color: var(--white);
+}
+
+.ca-bento__card--c .ca-proof__line {
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* three channel frames, fanned like a hand of cards in the top right */
+.ca-bento__stills {
+  position: absolute;
+  top: 9%;
+  right: 7%;
+  width: 46%;
+  aspect-ratio: 16 / 11;
+}
+
+.ca-bento__still {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: 18px;
+  background: var(--lav);
+  box-shadow: 0 30px 50px -28px rgb(20 4 50 / 0.7);
+}
+
+.ca-bento__still img {
+  object-fit: cover;
+}
+
+.ca-bento__still:nth-child(1) { rotate: -9deg; translate: -18% 8%; }
+.ca-bento__still:nth-child(2) { rotate: 6deg; translate: 14% -4%; }
+.ca-bento__still:nth-child(3) { rotate: -1deg; translate: 0 0; }
+
+/* the six marks, overlapping like a row of avatars */
+.ca-bento__logos {
+  position: absolute;
+  top: clamp(1.75rem, 2.6vw, 2.5rem);
+  right: clamp(1.75rem, 2.6vw, 2.5rem);
+  display: flex;
+}
+
+.ca-bento__logo {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-left: -14px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 0 0 3px var(--lav-2), 0 10px 18px -10px rgb(20 4 50 / 0.45);
+}
+
+.ca-bento__logo img {
+  width: 72%;
+  height: auto;
+}
+
+.ca-bento__tiles {
+  position: absolute;
+  top: clamp(1.75rem, 2.6vw, 2.5rem);
+  right: clamp(1.75rem, 2.6vw, 2.5rem);
+  width: 150px;
+}
+
+.ca-bento__tiles .mt {
+  --mt-play: var(--pink);
+  --mt-pause: var(--lav-2);
+  --mt-stop: var(--white);
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- work cards: a brand sticker pressed onto each picture ---------- */
+.ca-fan__sticker {
+  position: absolute;
+  z-index: 2;
+  top: 14%;
+  right: 13%;
+  width: 54px;
+  height: 54px;
+  rotate: 12deg;
+  filter: drop-shadow(0 10px 14px rgb(20 4 50 / 0.35));
+}
+
+.ca-fan__sticker .ca-mark {
+  width: 100%;
+  height: 100%;
+}
+
+.ca-fan__sticker--1 .ca-mark { fill: var(--lav-2); }
+.ca-fan__sticker--1 .ca-mark__knock { fill: var(--purple); stroke: var(--purple); }
+.ca-fan__sticker--2 .ca-mark { fill: var(--pink); }
+.ca-fan__sticker--3 { rotate: -10deg; left: 13%; right: auto; }
+.ca-fan__sticker--3 .ca-mark { fill: var(--purple); }
+
+/* ---------- how we work: the four dates as stickers under the heading ---------- */
+.ca-weeks {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ca-weeks li {
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 14px 24px -16px rgb(20 4 50 / 0.45);
+}
+
+.ca-weeks li:nth-child(1) { background: var(--purple); color: var(--white); rotate: -3deg; }
+.ca-weeks li:nth-child(2) { background: var(--lav-2); color: #160a33; rotate: 2deg; margin-left: 2.5rem; }
+.ca-weeks li:nth-child(3) { background: #160a33; color: var(--white); rotate: -2deg; margin-left: 1rem; }
+.ca-weeks li:nth-child(4) { background: var(--white); color: var(--purple); rotate: 3deg; margin-left: 3.5rem; box-shadow: inset 0 0 0 1.5px var(--purple), 0 14px 24px -16px rgb(20 4 50 / 0.45); }
+
+/* ---------- services: tiles lift off the floor in 3D; the card rises off it ---------- */
+.ca-tile:hover,
+.ca-tile:focus-visible {
+  transform: translateZ(34px);
+}
+
+.ca-tile.is-active {
+  transform: translateZ(80px);
+}
+
+/* the tile's shadow stays on the floor and softens as the tile rises */
+.ca-tile-cell::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 22px;
+  background: rgb(8 2 24 / 0.55);
+  filter: blur(14px);
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    inset 0.45s var(--ease-out);
+  pointer-events: none;
+}
+
+.ca-tile-cell:hover::before {
+  opacity: 0.8;
+  inset: 2%;
+}
+
+.ca-tile-cell:has(.is-active)::before {
+  opacity: 1;
+  inset: -4%;
+}
+
+/* closed, the card lies on the floor, small and tilted with it; open, it stands up and comes forward */
+.ca-detail {
+  transform-origin: 0% 50%;
+  transform: translate(-40%, -40%) perspective(1400px) rotateX(56deg) rotateZ(-42deg) scale(0.5);
+  transition:
+    opacity 0.35s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ca-floor-stage.is-open .ca-detail {
+  transform: translate(0, -50%) perspective(1400px) rotateX(0) rotateZ(0) scale(1);
+}
+
+.ca-detail .ca-mark {
+  fill: var(--purple);
+}
+
+/* hero tiles on the purple: the purples would vanish, so lavender and white */
+.hx .mt {
+  --mt-play: var(--pink);
+  --mt-pause: var(--lav-2);
+  --mt-stop: var(--white);
+}
+
+.ca-bento__logo {
+  width: 68px;
+  height: 68px;
+}
+
+.ca-bento__logo img {
+  width: 62%;
+  max-height: 40%;
+  object-fit: contain;
+}
+
+.ca-faq-grid__l .ca-h2 {
+  max-width: 15ch;
+}
+
+/* the four dates step down in one even diagonal */
+.ca-weeks li:nth-child(1) { margin-left: 0; }
+.ca-weeks li:nth-child(2) { margin-left: 1.5rem; }
+.ca-weeks li:nth-child(3) { margin-left: 3rem; }
+.ca-weeks li:nth-child(4) { margin-left: 4.5rem; }
+
+.ca-faq-grid__l .ca-h2 {
+  max-width: none;
+  font-size: clamp(2.25rem, 3.7vw, 3.5rem);
+}
+
+/* ============================================================
+   29 Oct 2026, pass 4: professional, not playful; textures visible
+   ============================================================ */
+
+/* the page grain, now strong enough to read as a surface */
+body:has(.ca)::after {
+  opacity: 0.075;
+}
+
+/* a heavier, tactile grain inside every coloured surface (riso-like), laid with overlay so it
+   takes the colour of the card it sits on */
+.ca-bento__card::after,
+a.ca-fan__card::after,
+.ca-g-deep::after,
+.ca-g-navy::after,
+.hx::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+a.ca-fan__card {
+  position: relative;
+}
+
+.ca-fan__pic,
+.ca-fan__body {
+  position: relative;
+  z-index: 1;
+}
+
+.ca-g-deep > *,
+.ca-g-navy > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ca-g-deep .ca-device,
+.ca-g-navy .ca-space {
+  position: absolute;
+}
+
+.ca-g-deep .ca-device {
+  z-index: 0;
+}
+
+/* proof: three clean cards, the figure at full strength, a hairline inside the edge */
+.ca-bento__card {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.ca-bento__card--b {
+  box-shadow: inset 0 0 0 1px rgb(23 21 28 / 0.06);
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card .ca-proof__line {
+  position: relative;
+  z-index: 1;
+}
+
+.ca-bento__card--a .ca-proof__v {
+  font-size: clamp(4rem, 8.4vw, 9rem);
+  letter-spacing: -0.055em;
+}
+
+/* work cards stand straight */
+.ca-fan__card--1,
+.ca-fan__card--3 {
+  transform: none;
+}
+
+/* the dates: one quiet column of pills, the first one filled */
+.ca-weeks li {
+  rotate: 0deg !important;
+  margin-left: 0 !important;
+  padding: 10px 18px;
+  font-size: 0.9375rem;
+  background: transparent !important;
+  color: var(--purple) !important;
+  box-shadow: inset 0 0 0 1px var(--line-strong) !important;
+}
+
+.ca-weeks li:first-child {
+  background: var(--purple) !important;
+  color: var(--white) !important;
+  box-shadow: none !important;
+}
+
+.ca-g-navy .ca-space {
+  z-index: 0;
+}
+
+.ca-g-navy .ca-about__in {
+  z-index: 2;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 5: everything centred, every section sized to
+   its content (one rhythm), texture you can see (no grids)
+   ============================================================ */
+
+/* one vertical rhythm for every section */
+.ca-pad {
+  padding-block: clamp(64px, 6vw, 96px);
+}
+
+.ca-clients {
+  padding: clamp(48px, 4.4vw, 72px) 0 clamp(28px, 2.6vw, 40px);
+}
+
+.ca-clients .ca-eyebrow {
+  margin-bottom: 1.75rem;
+}
+
+.ca-proof-s {
+  padding: 0 0 clamp(64px, 6vw, 96px);
+}
+
+/* centred heads: heading, line and button on one axis */
+.ca-head {
+  display: grid;
+  justify-items: center;
+  margin-bottom: clamp(2rem, 3vw, 2.75rem);
+  text-align: center;
+}
+
+.ca-h2 {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ca-head .ca-p {
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.ca-more {
+  display: flex;
+  justify-content: center;
+}
+
+/* proof: three equal cards in one row, centred figures, compact */
+.ca-bento {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: none;
+  min-height: 0;
+}
+
+.ca-bento__card,
+.ca-bento__card--a {
+  grid-row: auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card--a .ca-proof__v {
+  font-size: clamp(2.75rem, 4.2vw, 4.5rem);
+  letter-spacing: -0.045em;
+}
+
+.ca-bento__card .ca-proof__line {
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+/* services: the floor centred under its head; the open card no longer pushes it sideways */
+.ca-floor-stage.is-open .ca-floor-scene {
+  transform: translateX(-16%);
+}
+
+/* how we work: the head centred over one centred list; the date pills already sit in each row */
+.ca-faq-grid {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(2rem, 3vw, 2.75rem);
+}
+
+.ca-faq-grid__l {
+  text-align: center;
+}
+
+.ca-faq-grid__l .ca-h2 {
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
+}
+
+.ca-weeks {
+  display: none;
+}
+
+.ca-faq-grid > :last-child {
+  width: min(860px, 100%);
+}
+
+/* where we came from: sized to its content */
+.ca-about {
+  min-height: 92vh;
+}
+
+/* ---------- texture you can see: a fine film grain everywhere, no grids ---------- */
+body:has(.ca)::after {
+  opacity: 0.11;
+}
+
+.ca-bento__card::after,
+a.ca-fan__card::after,
+.ca-g-deep::after,
+.ca-g-navy::after,
+.hx::after {
+  opacity: 0.5;
+}
+
+/* centred sections keep their symmetry: no off-axis corner behind the services head */
+.ca-device--services {
+  display: none;
+}
+
+.ca-floor-stage {
+  height: clamp(400px, 30vw, 460px);
+}
+
+/* ============================================================
+   29 Oct 2026, pass 6
+   ============================================================ */
+
+/* ---------- the grid texture on the light sections: very faint lines, brightened in a soft
+   circle around the pointer. It sits under the content and never over type. ---------- */
+.ca-gridded {
+  position: relative;
+  isolation: isolate;
+  --mx: -999px;
+  --my: -999px;
+}
+
+.ca-gridded::before,
+.ca-gridded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+}
+
+/* the lit copy of the grid, masked to a circle that follows the pointer */
+.ca-gridded::after {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.22) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(240px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+  mask-image: radial-gradient(240px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@media (hover: hover) {
+  .ca-gridded:hover::after {
+    opacity: 1;
+  }
+}
+
+/* ---------- proof cards: chip, figure, line; one featured card ---------- */
+.ca-bento__card {
+  gap: 0;
+  border: 1px solid var(--ca-line);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 30px 50px -44px rgb(45 16 95 / 0.45);
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    border-color 0.3s ease;
+}
+
+.ca-bento__card--a,
+.ca-bento__card--b,
+.ca-bento__card--c {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card--b .ca-proof__v,
+.ca-bento__card--c .ca-proof__v {
+  margin-top: 1.25rem;
+  color: var(--purple);
+}
+
+.ca-bento__card .ca-proof__line,
+.ca-bento__card--c .ca-proof__line {
+  color: var(--ink-2);
+}
+
+/* the featured card: the brand purple, white type */
+.ca-bento__card--a {
+  border-color: transparent;
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-bento__card--a .ca-proof__v {
+  color: var(--white);
+}
+
+.ca-bento__card--a .ca-proof__line {
+  color: rgb(255 255 255 / 0.82);
+}
+
+.ca-bento__ic {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--tint);
+  color: var(--purple);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.5s var(--ease-out);
+}
+
+.ca-bento__ic svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.75;
+}
+
+.ca-bento__card--a .ca-bento__ic {
+  background: rgb(255 255 255 / 0.14);
+  color: var(--white);
+}
+
+@media (hover: hover) {
+  .ca-bento__card:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 40px 60px -40px rgb(45 16 95 / 0.55);
+  }
+
+  .ca-bento__card:not(.ca-bento__card--a):hover .ca-bento__ic {
+    background: var(--purple);
+    color: var(--white);
+  }
+}
+
+/* ---------- work cards: one white case card, a tinted stage for the logo, the result in its own panel ---------- */
+.ca-fan {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+a.ca-fan__card,
+a.ca-fan__card--1,
+a.ca-fan__card--2,
+a.ca-fan__card--3 {
+  border: 1px solid var(--ca-line);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 30px 50px -44px rgb(45 16 95 / 0.45);
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    border-color 0.3s ease;
+}
+
+a.ca-fan__card::after {
+  display: none;
+}
+
+.ca-fan__card--1 .ca-fan__pic,
+.ca-fan__card--2 .ca-fan__pic,
+.ca-fan__card--3 .ca-fan__pic {
+  margin: 8px 8px 1.5rem;
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  background: var(--tint);
+}
+
+.ca-fan__card--2 .ca-fan__pic {
+  background: #ece8f3;
+}
+
+.ca-fan__card--3 .ca-fan__pic {
+  background: #e9e1f6;
+}
+
+.ca-fan__plate {
+  width: 56%;
+  box-shadow: 0 18px 30px -22px rgb(45 16 95 / 0.45);
+}
+
+.ca-fan__client {
+  color: var(--ink);
+}
+
+.ca-fan__sentence {
+  color: var(--ink-2);
+  opacity: 1;
+}
+
+.ca-fan__foot {
+  border-top: 0;
+  padding-top: 1.25rem;
+}
+
+/* the result sits in a tinted panel, so the number reads as the point of the card */
+.ca-fan__foot .ca-fan__metric {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--tint);
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.ca-fan__result {
+  color: var(--purple);
+  opacity: 1;
+}
+
+.ca-fan__go {
+  border-color: var(--line-strong);
+  color: var(--purple);
+}
+
+@media (hover: hover) {
+  a.ca-fan__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--line-strong);
+    box-shadow: 0 46px 70px -44px rgb(45 16 95 / 0.55);
+  }
+
+  a.ca-fan__card:hover .ca-fan__go,
+  .ca-fan__card--3:hover .ca-fan__go {
+    border-color: transparent;
+    background: var(--purple);
+    color: var(--white);
+  }
+}
+
+/* ---------- services: a larger floor, and a hover that cannot flicker ---------- */
+.ca-floor {
+  --cell: clamp(170px, 14vw, 230px);
+  --gap: clamp(22px, 2vw, 32px);
+}
+
+.ca-floor-stage {
+  height: clamp(480px, 38vw, 600px);
+}
+
+/* the hover belongs to the still cell, not to the tile that rises out from under the pointer
+   (that rise used to drop the hover, the tile fell back, the hover came back: a fast flicker) */
+.ca-tile-cell {
+  pointer-events: auto;
+}
+
+.ca-tile:hover {
+  transform: none;
+}
+
+.ca-tile-cell:hover .ca-tile {
+  transform: translateZ(34px);
+}
+
+.ca-tile-cell .ca-tile.is-active {
+  transform: translateZ(80px);
+}
+
+/* ---------- where we came from: three frames a side, mirrored, the middle kept clear ---------- */
+.ca-about {
+  min-height: 86vh;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 7
+   ============================================================ */
+
+/* every heading on exactly two lines: the break is in the markup, so the width never adds a third */
+.ca-h2 {
+  max-width: none;
+}
+
+/* ---------- the grid, refined: finer, quieter, cleared behind the content so it never crosses
+   a card edge or a list rule; it lives in the margins and the pointer lights it softly ---------- */
+.ca-gridded::before,
+.ca-gridded::after {
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 50%, transparent 45%, #000 100%);
+  mask-image: radial-gradient(ellipse 58% 62% at 50% 50%, transparent 45%, #000 100%);
+}
+
+.ca-gridded::before {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.045) 1px, transparent 1px);
+}
+
+.ca-gridded::after {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.12) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(200px circle at var(--mx) var(--my), #000 0%, transparent 100%),
+    radial-gradient(ellipse 58% 62% at 50% 50%, transparent 45%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(200px circle at var(--mx) var(--my), #000 0%, transparent 100%),
+    radial-gradient(ellipse 58% 62% at 50% 50%, transparent 45%, #000 100%);
+  mask-composite: intersect;
+}
+
+/* ---------- proof: three identical cards, one structure (chip, figure, line, left aligned) ---------- */
+.ca-bento__card,
+.ca-bento__card--a {
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 1.75rem 1.75rem 2rem;
+  border: 1px solid var(--ca-line);
+  background: var(--white);
+  color: var(--ink);
+  text-align: left;
+}
+
+.ca-bento__card--a .ca-bento__ic {
+  background: var(--tint);
+  color: var(--purple);
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card--a .ca-proof__v {
+  margin-top: 2.5rem;
+  font-size: clamp(2.75rem, 4vw, 4.25rem);
+  color: var(--ink);
+}
+
+.ca-bento__card .ca-proof__line,
+.ca-bento__card--a .ca-proof__line {
+  margin: 0.6rem 0 0;
+  max-width: 28ch;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* a short purple rule under the chip ties the three together */
+.ca-bento__card .ca-proof__v::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  margin-bottom: 1.25rem;
+  border-radius: 2px;
+  background: var(--purple);
+}
+
+@media (hover: hover) {
+  .ca-bento__card:hover .ca-bento__ic,
+  .ca-bento__card--a:hover .ca-bento__ic {
+    background: var(--purple);
+    color: var(--white);
+  }
+}
+
+/* ---------- work cards: no logos; the client and a big arrow, the line, the result ---------- */
+.ca-fan__body {
+  padding: 1.75rem 1.75rem 1.75rem;
+}
+
+.ca-fan__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ca-line);
+}
+
+.ca-fan__client {
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.ca-fan__arrow {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: var(--purple);
+  transition: transform 0.6s var(--ease-out), color 0.3s ease;
+}
+
+.ca-fan__arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ca-fan__foot {
+  padding-top: 1.5rem;
+}
+
+@media (hover: hover) {
+  a.ca-fan__card:hover .ca-fan__arrow {
+    transform: translate(6px, -6px);
+    color: var(--purple-deep);
+  }
+}
+
+/* the three card tops share one height, so the dividers line up across the row */
+.ca-fan__top {
+  min-height: 7rem;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 8, from the references (Digital Fans, Awwwards
+   services-card pick): a dark, uniform bento for the figures; the
+   case cards in the brand colour with one big accent arrow
+   ============================================================ */
+
+/* ---------- proof: three identical deep navy cards, chip top left, figure and line at the foot ---------- */
+.ca-bento__card,
+.ca-bento__card--a,
+.ca-bento__card--b,
+.ca-bento__card--c {
+  justify-content: space-between;
+  min-height: 260px;
+  border: 1px solid rgb(255 255 255 / 0.06);
+  background: #160a33;
+  color: var(--white);
+  box-shadow: 0 30px 60px -40px rgb(22 10 51 / 0.7);
+}
+
+.ca-bento__card .ca-bento__ic,
+.ca-bento__card--a .ca-bento__ic {
+  background: rgb(255 255 255 / 0.08);
+  color: var(--lav-2);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card--a .ca-proof__v,
+.ca-bento__card--b .ca-proof__v,
+.ca-bento__card--c .ca-proof__v {
+  margin-top: auto;
+  padding-top: 2rem;
+  color: var(--white);
+}
+
+/* the accent: one short pink rule over each figure */
+.ca-bento__card .ca-proof__v::before {
+  background: var(--pink);
+}
+
+.ca-bento__card .ca-proof__line,
+.ca-bento__card--a .ca-proof__line,
+.ca-bento__card--c .ca-proof__line {
+  color: rgb(255 255 255 / 0.68);
+}
+
+@media (hover: hover) {
+  .ca-bento__card:hover {
+    border-color: rgb(217 203 239 / 0.22);
+    box-shadow: 0 40px 70px -40px rgb(22 10 51 / 0.85);
+  }
+
+  .ca-bento__card:hover .ca-bento__ic,
+  .ca-bento__card--a:hover .ca-bento__ic {
+    background: var(--lav-2);
+    color: #160a33;
+  }
+}
+
+/* ---------- work: the case card in the brand purple, a big pink arrow as the link ---------- */
+a.ca-fan__card,
+a.ca-fan__card--1,
+a.ca-fan__card--2,
+a.ca-fan__card--3 {
+  border-color: transparent;
+  background: var(--purple);
+  color: var(--white);
+  box-shadow: 0 34px 60px -40px rgb(45 16 95 / 0.65);
+}
+
+a.ca-fan__card::after {
+  display: block;
+}
+
+.ca-fan__client {
+  color: var(--white);
+}
+
+.ca-fan__sentence {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.ca-fan__top {
+  border-bottom-color: rgb(255 255 255 / 0.18);
+}
+
+.ca-fan__arrow {
+  width: 76px;
+  height: 76px;
+  color: var(--pink);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.ca-fan__arrow svg path {
+  stroke-width: 4.5;
+}
+
+.ca-fan__foot .ca-fan__metric {
+  background: rgb(255 255 255 / 0.1);
+  color: var(--white);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.ca-fan__result {
+  color: var(--lav-2);
+}
+
+@media (hover: hover) {
+  a.ca-fan__card:hover {
+    background: #5a27a0;
+    box-shadow: 0 46px 80px -44px rgb(45 16 95 / 0.8);
+  }
+
+  /* the arrow turns to point straight ahead and steps forward */
+  a.ca-fan__card:hover .ca-fan__arrow {
+    color: var(--pink);
+    transform: rotate(45deg) scale(1.06);
+  }
+}
+
+/* every proof line reserves two lines, so the three figures sit on one baseline */
+.ca-bento__card .ca-proof__line {
+  min-height: 3.2em;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 10: premium on the same colours (refs: spotlight
+   cards, gradient hairline borders, layered dark shadows)
+   ============================================================ */
+
+/* light falls from the top of each dark section, and a hairline that fades at both ends
+   marks where one section meets the next */
+.ca-g-navy {
+  background-image:
+    linear-gradient(90deg, transparent, rgb(255 255 255 / 0.12) 50%, transparent),
+    radial-gradient(ellipse 55% 42% at 50% 0%, rgb(103 47 178 / 0.22), transparent 72%);
+  background-size: 100% 1px, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* the spotlight card: the pointer lights the surface and the edge */
+.ca-bento__card,
+a.ca-fan__card {
+  --cx: 50%;
+  --cy: -200px;
+}
+
+.ca-bento__card {
+  background-image: radial-gradient(420px circle at var(--cx) var(--cy), rgb(217 203 239 / 0.09), transparent 45%);
+}
+
+a.ca-fan__card {
+  background-image: radial-gradient(420px circle at var(--cx) var(--cy), rgb(255 255 255 / 0.14), transparent 45%);
+}
+
+/* the edge: a 1px ring brighter at the top (light catching the card), and brighter
+   again where the pointer is */
+.ca-bento__card::before,
+a.ca-fan__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(260px circle at var(--cx) var(--cy), rgb(217 203 239 / 0.7), transparent 60%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0.02));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.ca-bento__card,
+a.ca-fan__card {
+  border-color: transparent !important;
+}
+
+/* layered dark shadows: a tight contact shadow and a long soft one, so the cards sit above
+   the ground instead of on it */
+.ca-bento__card,
+.ca-bento__card--a,
+.ca-bento__card--b,
+.ca-bento__card--c {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.4),
+    0 12px 24px -12px rgb(0 0 0 / 0.5),
+    0 40px 80px -40px rgb(6 2 16 / 0.8);
+}
+
+a.ca-fan__card,
+a.ca-fan__card--1,
+a.ca-fan__card--2,
+a.ca-fan__card--3 {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.35),
+    0 16px 32px -16px rgb(20 6 50 / 0.6),
+    0 50px 90px -40px rgb(103 47 178 / 0.45);
+}
+
+/* the stages list: each open row sits on a faint raised plate */
+.ca-faq {
+  transition: background-color 0.4s ease;
+}
+
+.ca-faq.is-open {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.03), transparent);
+}
+
+.ca-faq__q,
+.ca-faq__a p {
+  padding-inline: 1.25rem;
+}
+
+/* hover changes only the colour, so the spotlight layer stays on */
+@media (hover: hover) {
+  a.ca-fan__card:hover {
+    background-color: #5a27a0;
+    background-image: radial-gradient(420px circle at var(--cx) var(--cy), rgb(255 255 255 / 0.16), transparent 45%);
+  }
+}
+
+/* ============================================================
+   29 Oct 2026, pass 11
+   ============================================================ */
+
+/* no cursor glow on the cards: the surface is flat, the edge keeps only its static top light */
+.ca-bento__card,
+a.ca-fan__card,
+a.ca-fan__card:hover {
+  background-image: none;
+}
+
+.ca-bento__card::before,
+a.ca-fan__card::before {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0.02));
+}
+
+/* the grid: clearly visible in the side margins, fading to nothing behind the centred content */
+.ca-gridded::before,
+.ca-gridded::after {
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 12%, transparent 34%, transparent 66%, #000 88%, #000 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 12%, transparent 34%, transparent 66%, #000 88%, #000 100%);
+}
+
+.ca-gridded::before {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.11) 1px, transparent 1px);
+}
+
+.ca-gridded::after {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.26) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.26) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%),
+    linear-gradient(90deg, #000 0%, #000 12%, transparent 34%, transparent 66%, #000 88%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%),
+    linear-gradient(90deg, #000 0%, #000 12%, transparent 34%, transparent 66%, #000 88%, #000 100%);
+  mask-composite: intersect;
+}
+
+/* small pink plus marks at the grid crossings nearest the content edge: a registration-mark detail */
+.ca-gridded > .ca-wrap,
+.ca-gridded > .ca-rings {
+  position: relative;
+}
+
+/* ---------- the pink accent, used sparingly and with a job ---------- */
+
+/* the label dot over the clients */
+.ca-eyebrow::before {
+  background: var(--pink);
+}
+
+/* a short pink bar centred under every section heading */
+.ca-head::after,
+.ca-faq-grid__l::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+  background: var(--pink);
+}
+
+.ca-head .ca-p {
+  order: 2;
+}
+
+.ca-head::after {
+  order: 1;
+}
+
+/* proof: the figure's plus sign in pink */
+.ca-proof__v span[aria-hidden] {
+  background: none;
+}
+
+/* work: the "Result" label and the result panel's edge in pink */
+.ca-fan__result {
+  color: #ff8fc4;
+}
+
+.ca-fan__foot .ca-fan__metric {
+  box-shadow: inset 3px 0 0 var(--pink), inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+/* how we work: the open stage's control in pink, its title marked */
+.ca-faq.is-open .ca-faq__ic {
+  border-color: var(--pink);
+  background: var(--pink);
+}
+
+.ca-faq.is-open .ca-faq__stage {
+  color: var(--purple);
+}
+
+/* secondary buttons fill pink on hover */
+.ca-btn--line:hover {
+  border-color: var(--pink-deep);
+  background: var(--pink-deep);
+  color: var(--white);
+}
+
+/* the open services tile wears a pink edge */
+.ca-tile.is-active {
+  box-shadow:
+    0 0 0 2px var(--pink),
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    16px 60px 50px -14px rgb(12 3 32 / 0.55);
+}
+
+.ca-detail__no {
+  color: var(--pink-deep);
+}
+
+/* the plus sign of each figure in pink */
+.ca-proof__sfx {
+  color: var(--pink);
+}
+
+/* ============================================================
+   29 Oct 2026, pass 12: the ground rhythm the user set
+   dark hero, light, purple, white, light, purple, white footer
+   ============================================================ */
+.ca-g-light {
+  background: var(--tint);
+}
+
+.ca-g-plain {
+  background: var(--white);
+}
+
+.ca-g-purple {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.ca-g-purple .ca-h2 {
+  color: var(--white);
+}
+
+.ca-g-purple .ca-ital {
+  color: var(--lav-2);
+}
+
+.ca-g-purple .ca-p {
+  color: rgb(255 255 255 / 0.82);
+}
+
+/* smaller grid squares everywhere */
+.ca-gridded::before,
+.ca-gridded::after {
+  background-size: 56px 56px;
+}
+
+/* the grid in white hairlines on the purple grounds */
+.ca-gridded--inv::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+}
+
+.ca-gridded--inv::after {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.28) 1px, transparent 1px);
+}
+
+/* the pink bar under headings stays pink on purple; it reads against both */
+
+/* ---------- proof on the light ground: white cards, purple figures, pink plus ---------- */
+.ca-bento__card,
+.ca-bento__card--a,
+.ca-bento__card--b,
+.ca-bento__card--c {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow:
+    0 1px 2px rgb(45 16 95 / 0.06),
+    0 12px 24px -14px rgb(45 16 95 / 0.18),
+    0 40px 70px -44px rgb(45 16 95 / 0.35);
+}
+
+.ca-bento__card::before {
+  background: linear-gradient(180deg, rgb(103 47 178 / 0.18), rgb(103 47 178 / 0.06) 50%, rgb(103 47 178 / 0.1));
+}
+
+.ca-bento__card .ca-bento__ic,
+.ca-bento__card--a .ca-bento__ic {
+  background: var(--tint);
+  color: var(--purple);
+  box-shadow: none;
+}
+
+.ca-bento__card .ca-proof__v,
+.ca-bento__card--a .ca-proof__v,
+.ca-bento__card--b .ca-proof__v,
+.ca-bento__card--c .ca-proof__v {
+  color: var(--purple-deep);
+}
+
+.ca-bento__card .ca-proof__line,
+.ca-bento__card--a .ca-proof__line,
+.ca-bento__card--c .ca-proof__line {
+  color: var(--ink-2);
+}
+
+@media (hover: hover) {
+  .ca-bento__card:hover .ca-bento__ic,
+  .ca-bento__card--a:hover .ca-bento__ic {
+    background: var(--purple);
+    color: var(--white);
+  }
+}
+
+/* ---------- work on the purple ground: white case cards, the big pink arrow ---------- */
+a.ca-fan__card,
+a.ca-fan__card--1,
+a.ca-fan__card--2,
+a.ca-fan__card--3,
+a.ca-fan__card:hover {
+  background-color: var(--white);
+  color: var(--ink);
+  box-shadow:
+    0 1px 2px rgb(12 3 32 / 0.12),
+    0 16px 30px -16px rgb(12 3 32 / 0.35),
+    0 50px 80px -40px rgb(12 3 32 / 0.5);
+}
+
+a.ca-fan__card::before {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0) 40%);
+}
+
+a.ca-fan__card::after {
+  opacity: 0.2;
+}
+
+.ca-fan__client {
+  color: var(--ink);
+}
+
+.ca-fan__sentence {
+  color: var(--ink-2);
+}
+
+.ca-fan__top {
+  border-bottom-color: var(--ca-line);
+}
+
+.ca-fan__foot .ca-fan__metric {
+  background: var(--tint);
+  color: var(--ink);
+  box-shadow: inset 3px 0 0 var(--pink);
+}
+
+.ca-fan__result {
+  color: var(--pink-deep);
+}
+
+@media (hover: hover) {
+  a.ca-fan__card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* ---------- services on white: dark type, purple floor lines, white tiles hold their edge ---------- */
+.ca-g-plain .ca-h2 {
+  color: var(--ink);
+}
+
+.ca-g-plain .ca-ital {
+  color: var(--purple);
+}
+
+.ca-g-plain .ca-floor::before {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.14) 1px, transparent 1px);
+}
+
+.ca-g-plain .ca-tile {
+  border: 1px solid rgb(103 47 178 / 0.14);
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    0 30px 30px -12px rgb(45 16 95 / 0.25);
+}
+
+.ca-g-plain .ca-tile-cell:nth-child(2) .ca-tile,
+.ca-g-plain .ca-tile-cell:nth-child(6) .ca-tile {
+  --edge-1: #5a27a0;
+  --edge-2: #3f1a78;
+  background: var(--purple);
+}
+
+.ca-g-plain .ca-tile-cell:nth-child(2) .ca-mark__knock,
+.ca-g-plain .ca-tile-cell:nth-child(6) .ca-mark__knock {
+  fill: var(--purple);
+  stroke: var(--purple);
+}
+
+.ca-g-plain .ca-tile-cell::before {
+  background: rgb(45 16 95 / 0.35);
+}
+
+.ca-g-plain .ca-tile.is-active {
+  box-shadow:
+    0 0 0 2px var(--pink),
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    16px 60px 50px -14px rgb(45 16 95 / 0.35);
+}
+
+.ca-g-plain .ca-detail {
+  box-shadow: 0 0 0 1px var(--ca-line), 0 50px 90px -50px rgb(45 16 95 / 0.45);
+}
+
+/* ---------- where we came from on purple: texture (grain, grid), frames framed in white ---------- */
+.ca-g-origin {
+  position: relative;
+}
+
+.ca-g-origin::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.ca-g-origin .ca-space__f {
+  box-shadow:
+    0 0 0 4px rgb(255 255 255 / 0.9),
+    0 40px 70px -30px rgb(12 3 32 / 0.7);
+}
+
+.ca-g-origin .ca-space__f[data-depth="back"] img {
+  filter: brightness(0.75) saturate(0.8);
+}
+
+.ca-g-origin .ca-space__f[data-depth="mid"] img {
+  filter: none;
+}
+
+.ca-g-origin .ca-btn--purple {
+  background: var(--white);
+  color: var(--purple);
+}
+
+.ca-g-origin .ca-btn--purple:hover {
+  background: var(--pink-deep);
+  color: var(--white);
+}
+
+/* ============================================================
+   29 Oct 2026, pass 13: one strict rhythm. Every coloured section
+   is the same brand purple, every light one true white (no tints,
+   no greys): dark hero, purple, white, purple, white, purple, white.
+   ============================================================ */
+.ca-g-deep {
+  background: var(--purple);
+}
+
+.ca-g-plain,
+.ca-g-work {
+  background: var(--white);
+}
+
+/* clients and figures on purple */
+.ca-g-purple .ca-eyebrow {
+  color: var(--white);
+}
+
+.ca-g-purple .ca-ring,
+.ca-g-purple .ca-rings .ca-ring {
+  border: 0;
+  background: var(--white);
+  box-shadow: 0 20px 40px -28px rgb(12 3 32 / 0.6);
+}
+
+.ca-g-purple .ca-ring img {
+  filter: grayscale(1);
+  opacity: 0.75;
+}
+
+.ca-g-purple .ca-ring:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+.ca-g-purple .ca-bento__card,
+.ca-g-purple .ca-bento__card--a,
+.ca-g-purple .ca-bento__card--b,
+.ca-g-purple .ca-bento__card--c {
+  box-shadow:
+    0 1px 2px rgb(12 3 32 / 0.12),
+    0 16px 30px -16px rgb(12 3 32 / 0.35),
+    0 50px 80px -40px rgb(12 3 32 / 0.5);
+}
+
+/* work on white: the purple case card with the big pink arrow */
+.ca-g-work a.ca-fan__card,
+.ca-g-work a.ca-fan__card:hover {
+  background-color: var(--purple);
+  color: var(--white);
+  box-shadow:
+    0 1px 2px rgb(45 16 95 / 0.12),
+    0 16px 32px -16px rgb(45 16 95 / 0.4),
+    0 50px 90px -40px rgb(103 47 178 / 0.45);
+}
+
+.ca-g-work a.ca-fan__card:hover {
+  background-color: #5a27a0;
+}
+
+.ca-g-work a.ca-fan__card::before {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0.02));
+}
+
+.ca-g-work a.ca-fan__card::after {
+  opacity: 0.5;
+}
+
+.ca-g-work .ca-fan__client {
+  color: var(--white);
+}
+
+.ca-g-work .ca-fan__sentence {
+  color: rgb(255 255 255 / 0.82);
+}
+
+.ca-g-work .ca-fan__top {
+  border-bottom-color: rgb(255 255 255 / 0.18);
+}
+
+.ca-g-work .ca-fan__foot .ca-fan__metric {
+  background: rgb(255 255 255 / 0.1);
+  color: var(--white);
+  box-shadow: inset 3px 0 0 var(--pink), inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.ca-g-work .ca-fan__result {
+  color: #ff8fc4;
+}
+
+/* services back on colour: tiles from the deep set, lifted a shade so they read on purple */
+.ca-g-deep .ca-tile-cell:nth-child(2) .ca-tile,
+.ca-g-deep .ca-tile-cell:nth-child(6) .ca-tile {
+  --edge-1: #4b2183;
+  --edge-2: #3a1868;
+  background: #8a55e6;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 14
+   ============================================================ */
+
+/* the coloured sections in the brand book's purple deep (#4B2183): it follows the dark hero
+   without a jump, and the brand purple stays for cards and accents */
+.ca-g-purple,
+.ca-g-deep {
+  background: var(--purple-deep);
+}
+
+/* a finer grid */
+.ca-gridded::before,
+.ca-gridded::after {
+  background-size: 40px 40px;
+}
+
+/* ---------- clients: no bubbles. White marks in one row, hairlines between them ---------- */
+.ca-g-purple .ca-ring,
+.ca-g-purple .ca-rings .ca-ring {
+  width: clamp(150px, 13vw, 200px);
+  aspect-ratio: auto;
+  height: 72px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset -1px 0 0 rgb(255 255 255 / 0.16);
+}
+
+.ca-rings__set {
+  gap: 0;
+  padding-right: 0;
+}
+
+.ca-g-purple .ca-ring img {
+  width: 58%;
+  height: 56%;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.ca-g-purple .ca-ring:hover img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 1;
+}
+
+.ca-g-purple .ca-rings {
+  border-block: 1px solid rgb(255 255 255 / 0.16);
+}
+
+/* ---------- the brand book's rule: corners for cards. One square corner, bottom right ---------- */
+.ca-bento__card,
+a.ca-fan__card {
+  border-radius: 28px 28px 6px 28px;
+}
+
+.ca-bento__ic {
+  border-radius: 14px 14px 3px 14px;
+}
+
+/* ---------- services: one grid only (the floor's), a smaller floor ---------- */
+.ca-floor {
+  --cell: clamp(130px, 10.5vw, 168px);
+  --gap: clamp(18px, 1.6vw, 26px);
+}
+
+.ca-floor-stage {
+  height: clamp(380px, 29vw, 450px);
+}
+
+.ca-g-deep .ca-floor::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+}
+
+/* ============================================================
+   29 Oct 2026, pass 15
+   ============================================================ */
+
+/* ---------- clients: two rows of logo cards, opposite directions, faded at the edges ---------- */
+.ca-lr {
+  display: grid;
+  gap: 14px;
+  padding-block: 6px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+
+.ca-lr__row {
+  overflow: hidden;
+}
+
+.ca-lr__track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  will-change: transform;
+}
+
+.ca-lr__card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: clamp(190px, 15vw, 236px);
+  height: 92px;
+  border-radius: 18px 18px 4px 18px;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    inset 0 1px 0 rgb(255 255 255 / 0.12);
+  transition:
+    background-color 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.ca-lr__card img {
+  width: 52%;
+  height: 50%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.72;
+  transition:
+    filter 0.5s var(--ease-out),
+    opacity 0.5s var(--ease-out);
+}
+
+/* hover: the card turns white and the mark shows its real colours */
+@media (hover: hover) {
+  .ca-lr__card:hover {
+    background: var(--white);
+    box-shadow: 0 18px 34px -18px rgb(12 3 32 / 0.6);
+    transform: translateY(-3px);
+  }
+
+  .ca-lr__card:hover img {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.ca-clients .ca-eyebrow {
+  margin-bottom: 2rem;
+}
+
+/* ---------- a gentler grid ---------- */
+.ca-gridded::before {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.065) 1px, transparent 1px);
+}
+
+.ca-gridded::after {
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.16) 1px, transparent 1px);
+}
+
+.ca-gridded--inv::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+}
+
+.ca-gridded--inv::after {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.16) 1px, transparent 1px);
+}
+
+/* ---------- services: the floor back to full size ---------- */
+.ca-floor {
+  --cell: clamp(170px, 14vw, 224px);
+  --gap: clamp(22px, 2vw, 30px);
+}
+
+.ca-floor-stage {
+  height: clamp(500px, 40vw, 620px);
+}
+
+/* the line masks keep room for descenders (g, y, p) */
+.ca-h2 > div {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 16
+   ============================================================ */
+
+/* ---------- proof: three illustrated figures, no cards ---------- */
+.ca-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.ca-stat {
+  display: grid;
+  justify-items: center;
+  padding: 1rem clamp(1rem, 3vw, 3rem) 0.5rem;
+  text-align: center;
+}
+
+.ca-stat + .ca-stat {
+  box-shadow: inset 1px 0 0 rgb(255 255 255 / 0.14);
+}
+
+.ca-art {
+  width: min(220px, 80%);
+  height: auto;
+  overflow: visible;
+}
+
+.ca-art [data-art] {
+  transform-box: fill-box;
+}
+
+.ca-stat .ca-proof__v {
+  margin-top: 1.75rem;
+  font-size: clamp(2.75rem, 4.2vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--white);
+}
+
+.ca-stat .ca-proof__line {
+  margin-top: 0.75rem;
+  min-height: 0;
+  max-width: 26ch;
+  color: rgb(255 255 255 / 0.72);
+  text-wrap: balance;
+}
+
+/* ---------- performance: no blended overlays (each one re-composited every scroll frame,
+   the one over the hero on every video frame); the page grain alone carries the texture ---------- */
+.hx::after,
+.ca-bento__card::after,
+a.ca-fan__card::after {
+  display: none;
+}
+
+.ca-g-deep::after,
+.ca-g-navy::after,
+.ca-g-origin::after {
+  mix-blend-mode: normal;
+  opacity: 0.05;
+}
+
+.ca-space__cam {
+  will-change: auto;
+}
+
+/* the figures share one baseline; no margin escapes the section (it showed the page ground) */
+.ca-stats {
+  margin-top: 0;
+}
+
+.ca-proof-s {
+  padding-top: clamp(2rem, 3.4vw, 3rem);
+}
+
+.ca-stat {
+  align-content: start;
+}
+
+.ca-stat .ca-proof__line {
+  min-height: 3.2em;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 17
+   ============================================================ */
+
+/* a much quieter page grain */
+body:has(.ca)::after {
+  opacity: 0.04;
+}
+
+/* ---------- clients + proof as one section ---------- */
+.ca-proof-s {
+  padding: clamp(56px, 5vw, 80px) 0 clamp(64px, 6vw, 96px);
+}
+
+.ca-proof-s .ca-eyebrow {
+  margin-bottom: 1.75rem;
+}
+
+/* the marquee: each client is its mark on a white tile plus its name in large type, divided
+   by small pink Caimue corners; one row, edges faded */
+.ca-lr {
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.ca-lr__item {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 18px;
+  padding-right: 40px;
+}
+
+.ca-lr__tile {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px 16px 4px 16px;
+  background: var(--white);
+  box-shadow: 0 14px 26px -16px rgb(12 3 32 / 0.6);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.ca-lr__tile img {
+  width: 78%;
+  height: 52%;
+  object-fit: contain;
+}
+
+.ca-lr__name {
+  font-size: clamp(2rem, 3.2vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--white);
+  white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+.ca-lr__sep {
+  width: 16px;
+  height: 16px;
+  margin-left: 22px;
+  fill: var(--pink);
+}
+
+.ca-lr__track {
+  gap: 0;
+}
+
+@media (hover: hover) {
+  .ca-lr__item:hover .ca-lr__name {
+    color: var(--lav-2);
+  }
+
+  .ca-lr__item:hover .ca-lr__tile {
+    transform: rotate(-6deg) scale(1.08);
+  }
+}
+
+/* ---------- the 3D figures (3dicons, CC0, recoloured to the brand) ---------- */
+.ca-stat__art {
+  display: block;
+  width: clamp(150px, 13vw, 200px);
+  aspect-ratio: 1;
+}
+
+.ca-stat__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 26px 30px rgb(12 3 32 / 0.45));
+}
+
+.ca-stat .ca-proof__v {
+  margin-top: 1rem;
+}
+
+.ca-stat {
+  padding-top: 0;
+}
+
+/* ---------- where we came from: the frames closer and in one aligned frame ---------- */
+.ca-about {
+  min-height: 78vh;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 18
+   ============================================================ */
+
+/* ---------- clients: the 3D ring ---------- */
+.ca-ring3 {
+  --ring-r: clamp(520px, 44vw, 760px);
+  position: relative;
+  height: 230px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.ca-ring3__stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1500px;
+  perspective-origin: 50% 20%;
+}
+
+.ca-ring3__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--ring-r) * -1));
+  will-change: transform;
+}
+
+.ca-ring3__tile {
+  position: absolute;
+  left: -100px;
+  top: -86px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: 200px;
+  margin: 0;
+  backface-visibility: hidden;
+}
+
+.ca-ring3__mark {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 120px;
+  border-radius: 22px 22px 6px 22px;
+  background: var(--white);
+  box-shadow: 0 24px 40px -24px rgb(12 3 32 / 0.7);
+}
+
+.ca-ring3__mark img {
+  width: 62%;
+  height: 46%;
+  object-fit: contain;
+}
+
+.ca-ring3__tile figcaption {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* ---------- the illustrations (unDraw, MIT, recoloured to the brand) ---------- */
+.ca-stat__art {
+  width: clamp(220px, 19vw, 300px);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+}
+
+.ca-stat__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+}
+
+/* ---------- the footer: its wordmark slides up into place as it is revealed ---------- */
+.ft {
+  overflow: hidden;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 19
+   ============================================================ */
+
+/* ---------- clients: one quiet row of white tiles ---------- */
+.ca-tiles {
+  overflow: hidden;
+  padding-block: 8px 28px;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.ca-tiles__track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+}
+
+.ca-tiles__tile {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 196px;
+  height: 100px;
+  border-radius: 20px 20px 5px 20px;
+  background: var(--white);
+  box-shadow: 0 18px 32px -22px rgb(12 3 32 / 0.6);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.ca-tiles__tile img {
+  width: 62%;
+  height: 46%;
+  object-fit: contain;
+}
+
+@media (hover: hover) {
+  .ca-tiles__tile:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* ---------- the illustrations, fitted: one box size, sitting on one baseline ---------- */
+.ca-stat__art {
+  width: min(250px, 100%);
+  height: 170px;
+  aspect-ratio: auto;
+}
+
+.ca-stat__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+
+.ca-stat .ca-proof__v {
+  margin-top: 1.5rem;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 21: two26.studio ideas in Caimue colour
+   ============================================================ */
+
+/* ---------- the clients ribbon ---------- */
+.ca-rib {
+  position: relative;
+  height: 300px;
+  margin: -1rem 0 clamp(1rem, 2vw, 2rem);
+  overflow: hidden;
+}
+
+.ca-rib__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 24px 30px rgb(12 3 32 / 0.35));
+}
+
+.ca-rib__mark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 170px;
+  height: 80px;
+  will-change: transform;
+}
+
+.ca-rib__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- the scroll fill (two26's paragraph): words go from faint to full as it scrolls ---------- */
+.ca-fill .ca-fw {
+  opacity: 0.22;
+}
+
+/* ---------- the proof illustrations, drawn in code ---------- */
+.ca-stat__art {
+  width: min(280px, 100%);
+  height: 150px;
+}
+
+.ca-art2 {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ca-art2 [data-art="dot"] {
+  transform-box: fill-box;
+}
+
+.ca-art2--brands {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-content: center;
+}
+
+.ca-art2__tile {
+  display: grid;
+  place-items: center;
+  height: 62px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--white);
+  box-shadow: 0 12px 22px -14px rgb(12 3 32 / 0.55);
+}
+
+.ca-art2__tile img {
+  width: 70%;
+  height: 50%;
+  object-fit: contain;
+}
+
+.ca-art2--crew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ca-art2__av {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin-left: -18px;
+  border-radius: 50%;
+  background: var(--lav-2);
+  color: var(--purple-deep);
+  box-shadow: 0 0 0 4px var(--purple-deep);
+}
+
+.ca-art2__av:first-child {
+  margin-left: 0;
+}
+
+.ca-art2__av svg {
+  width: 36px;
+  height: 36px;
+  stroke-width: 1.75;
+}
+
+.ca-art2__av--1 { background: var(--white); }
+.ca-art2__av--2 { background: #b89fe2; }
+.ca-art2__av--3 { background: var(--white); }
+.ca-art2__av--4 { background: var(--lav-2); }
+
+.ca-art2__av--plus {
+  background: var(--pink);
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   29 Oct 2026, pass 23
+   ============================================================ */
+
+/* the straight band sits a little tighter */
+.ca-rib {
+  height: 200px;
+}
+
+/* ---------- the proof illustrations, alive ---------- */
+/* views: the latest point keeps sending out a soft ring */
+.ca-art2 [data-art="dot"]:first-of-type {
+  animation: ca-ping 2.4s ease-out infinite;
+  transform-origin: 262px 30px;
+}
+
+@keyframes ca-ping {
+  0% { opacity: 0.6; transform: scale(0.6); }
+  70% { opacity: 0; transform: scale(2.2); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* brands: pill tiles, and a lavender light passes along them in turn */
+.ca-art2__tile {
+  height: 48px;
+  border-radius: 999px;
+  animation: ca-tile 6s ease-in-out infinite;
+}
+
+.ca-art2__tile:nth-child(2) { animation-delay: 1s; }
+.ca-art2__tile:nth-child(3) { animation-delay: 2s; }
+.ca-art2__tile:nth-child(4) { animation-delay: 3s; }
+.ca-art2__tile:nth-child(5) { animation-delay: 4s; }
+.ca-art2__tile:nth-child(6) { animation-delay: 5s; }
+
+@keyframes ca-tile {
+  0%, 20%, 100% { box-shadow: 0 0 0 0 rgb(217 203 239 / 0), 0 12px 22px -14px rgb(12 3 32 / 0.55); transform: translateY(0); }
+  8% { box-shadow: 0 0 0 4px rgb(255 0 128 / 0.55), 0 16px 26px -14px rgb(12 3 32 / 0.6); transform: translateY(-3px); }
+}
+
+/* creators: the group swells one by one, like a wave through a crowd */
+.ca-art2__av {
+  animation: ca-av 4.2s ease-in-out infinite;
+}
+
+.ca-art2__av:nth-child(2) { animation-delay: 0.15s; }
+.ca-art2__av:nth-child(3) { animation-delay: 0.3s; }
+.ca-art2__av:nth-child(4) { animation-delay: 0.45s; }
+.ca-art2__av:nth-child(5) { animation-delay: 0.6s; }
+.ca-art2__av:nth-child(6) { animation-delay: 0.75s; }
+
+@keyframes ca-av {
+  0%, 30%, 100% { transform: scale(1); }
+  12% { transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-art2 [data-art="dot"],
+  .ca-art2__tile,
+  .ca-art2__av {
+    animation: none;
+  }
+}
+
+/* ---------- the footer reveal: the page slides up off the footer, which stays put ---------- */
+.ca {
+  position: relative;
+  z-index: 1;
+}
+
+.ft {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+}
+
+.ft__mark {
+  transform: none !important;
+}
+
+/* section two is the sheet that slides up over the held hero */
+.ca-proof-s {
+  position: relative;
+  z-index: 2;
+  border-radius: 40px 40px 0 0;
+  box-shadow: 0 -30px 60px -20px rgb(8 4 15 / 0.6);
+}
+
+/* section two no longer slides over the hero: no sheet radius or shadow (its clip-path shapes it) */
+.ca-proof-s {
+  border-radius: 0;
+  box-shadow: none;
+}

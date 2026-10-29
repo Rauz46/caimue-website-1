@@ -230,9 +230,11 @@ body:has(.cx),
 
 .site-header .mobile-nav {
   position: absolute;
-  top: calc(var(--header-h) - var(--space-2xs));
+  top: calc(var(--header-h) + var(--space-2xs));
   left: var(--margin);
   right: var(--margin);
+  /* sections.css pins .mobile-nav to the header's bottom edge, which crushed it to its padding */
+  bottom: auto;
   padding: var(--space-l);
   background: var(--white);
   border: var(--stroke) solid var(--line);
@@ -613,8 +615,8 @@ body:has(.cx),
   border-radius: var(--r-pill);
   font-size: var(--t-label);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--white);
 }
 
@@ -797,7 +799,7 @@ body:has(.cx),
   font-size: var(--t-label);
   font-weight: 600;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ink-3);
   text-align: left;
 }
@@ -1067,8 +1069,8 @@ body:has(.cx),
 .cx-stat__label {
   font-size: var(--t-label);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-3);
 }
 
@@ -1487,18 +1489,137 @@ body:has(.cx),
   position: relative;
   z-index: 8;
   background: #ffffff;
+  border-top: 1px solid var(--ft-line);
   color: var(--ft-ink);
   font-family: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
   padding: clamp(3.5rem, 2.6667rem + 3.7037vw, 6rem) 0 clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
 }
 
+/* the whole footer runs on the wordmark's full-width margins, so every edge lines up with it */
+/* under the wordmark: one row on four equal columns (offices, offices, site, social),
+   opened by a hairline, so each column starts on a quarter of the mark */
 .ft__grid {
-  width: min(100% - 2 * var(--ft-margin), 1344px);
+  width: calc(100% - 2 * var(--ft-margin));
   margin-inline: auto;
   display: grid;
-  grid-template-columns: minmax(0, 8fr) repeat(2, minmax(0, 2fr));
-  gap: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
-  padding-bottom: clamp(2.5rem, 2rem + 2.2222vw, 4rem);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.6fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 1rem + 2vw, 3.5rem);
+  padding-block: 0 clamp(2.5rem, 2rem + 2.2222vw, 4rem);
+}
+
+.ft__line {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ft-purple);
+  max-width: 22ch;
+}
+
+.ft__office-addr {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ft-ink-2);
+  max-width: 30ch;
+}
+
+.ft__social {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.ft__news {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.ft__news .ft__text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.ft__news-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ft__news-row input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid rgb(103 47 178 / 0.28);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--ft-ink);
+  background: #fff;
+}
+
+.ft__news-row input:focus-visible {
+  outline: 2px solid var(--ft-purple);
+  outline-offset: 1px;
+}
+
+.ft__news-row button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ft-purple);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ft__news-row button:hover {
+  background: #4b2183;
+}
+
+.ft__news-done {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ft-purple);
+}
+
+.ft__office {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.ft__office-role {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ft-purple);
+}
+
+.ft__office-place {
+  font-size: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  font-weight: 500;
+  color: var(--ft-ink);
+}
+
+/* the wordmark first, across the whole width of the page: the sign-off */
+.ft__mark {
+  display: block;
+  width: calc(100% - 2 * var(--ft-margin));
+  margin: 0 auto clamp(1.5rem, 1.2rem + 1.2vw, 2.5rem);
+}
+
+.ft__mark-svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .ft__brand {
@@ -1531,8 +1652,8 @@ body:has(.cx),
   margin: 0 0 0.25rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ft-ink-3);
 }
 
@@ -1556,7 +1677,7 @@ body:has(.cx),
 }
 
 .ft__legal {
-  width: min(100% - 2 * var(--ft-margin), 1344px);
+  width: calc(100% - 2 * var(--ft-margin));
   margin-inline: auto;
   display: flex;
   align-items: center;
@@ -1584,18 +1705,22 @@ body:has(.cx),
 }
 
 @media (max-width: 1023px) {
+  /* offices on the first row, links on the second, still on two shared columns */
   .ft__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .ft__brand {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2rem;
   }
 }
 
 @media (max-width: 599px) {
+  /* the blurb and the newsletter take the full width; the links sit beside the places */
   .ft__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ft__brand,
+  .ft__grid > .ft__col:nth-child(3) {
+    grid-column: 1 / -1;
   }
 
   .ft__legal {
@@ -1722,20 +1847,20 @@ body:has(.cx),
   overflow: visible;
 }
 
-.cx-cue__bar {
-  fill: var(--pink);
+/* play / pause / stop tiles (components/brand/MediaTiles): pink once, on play */
+.mt {
+  --mt-play: var(--pink);
+  --mt-pause: var(--purple);
+  --mt-stop: var(--purple-deep);
+  display: block;
+  overflow: visible;
 }
 
-.cx-cue__band {
-  fill: var(--purple);
-}
-
-.cx-s[data-ground="purple"] .cx-cue__band {
-  fill: var(--purple-deep);
-}
-
-.cx-cue__sym {
-  fill: var(--white);
+/* on the purple grounds the purples would vanish: lavender and white instead */
+.cx-hero .mt,
+.cx-s[data-ground="purple"] .mt {
+  --mt-pause: var(--lav-2);
+  --mt-stop: var(--white);
 }
 
 /* each card's icon again, large and faint, set into the corner */
@@ -1808,6 +1933,44 @@ body:has(.cx),
   filter: none !important;
 }
 
+/* ============================================================
+   NAV: one floating container (Oct 2026, after mindmarket.com,
+   without its split into two boxes). The header itself is
+   transparent; its row is a white rounded box inset from the top
+   and held to the content width, with the logo, the links and the
+   CTA all inside it. A hairline and a soft drop keep it visible
+   over white sections.
+   ============================================================ */
+.site-header {
+  --nav-gap: 16px;
+  --nav-h: 64px;
+  height: calc(var(--nav-gap) + var(--nav-h));
+  align-items: flex-end;
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.site-header .site-header__inner {
+  height: var(--nav-h);
+  padding: 0 10px 0 30px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  box-shadow:
+    0 0 0 1px rgb(103 47 178 / 0.08),
+    0 14px 34px -22px rgb(45 16 95 / 0.45);
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    --nav-gap: 10px;
+    --nav-h: 54px;
+  }
+
+  .site-header .site-header__inner {
+    padding: 0 20px 0 22px;
+  }
+}
+
 /* the intro plays on white: the logo keeps its own colours */
 .intro {
   background: #ffffff;
@@ -1825,8 +1988,8 @@ body:has(.cx),
   gap: var(--space-xs);
   font-size: var(--t-label);
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--purple);
 }
 
@@ -1852,8 +2015,8 @@ body:has(.cx),
 .cx-kicker {
   font-size: var(--t-label);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-3);
 }
 
@@ -2052,7 +2215,7 @@ body:has(.cx),
   font-size: var(--t-label);
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ink-3);
 }
 
@@ -2156,9 +2319,9 @@ body:has(.cx),
   pointer-events: none;
 }
 
-/* the cue and the logo share one pink: the logo's own #ff0080 */
-.cx-cue__bar {
-  fill: #ff0080;
+/* the cue's play tile and the logo share one pink: the logo's own #ff0080 */
+.mt {
+  --mt-play: #ff0080;
 }
 
 /* ============================================================
@@ -2302,4 +2465,109 @@ body:has(.cx),
     max-width: 34rem;
     margin-top: var(--space-l);
   }
+}
+
+/* the minimal footer: the wordmark, then one line */
+.ft--min {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0 clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+}
+
+.ft--min .ft__mark {
+  margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem);
+}
+
+.ft__bar {
+  width: calc(100% - 2 * var(--ft-margin));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding-top: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  border-top: 1px solid var(--ft-line);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ft-ink-3);
+}
+
+.ft__bar .ft__social {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+}
+
+.ft__bar .ft__legal-links {
+  justify-self: end;
+}
+
+/* ---------- the navbar's Dynamic Island entrance (Navbar.tsx drives data-intro) ---------- */
+.site-header .site-header__inner {
+  transition:
+    background-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.nav-island {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 999px;
+  background: #0b0710;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  transition: opacity 0.45s ease;
+}
+
+.site-header__inner[data-intro="wait"],
+.site-header__inner[data-intro="island"] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.site-header__inner[data-intro="wait"] > :not(.nav-island),
+.site-header__inner[data-intro="island"] > :not(.nav-island) {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.site-header__inner > :not(.nav-island) {
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-header__inner[data-intro="open"] > :nth-child(3) {
+  transition-delay: 0.08s;
+}
+
+/* open: the black dissolves into the white bar */
+.site-header__inner[data-intro="open"] .nav-island {
+  opacity: 0 !important;
+  transition-delay: 0.05s;
+}
+
+.site-header__inner[data-intro="done"] .nav-island {
+  display: none;
+}
+
+@media (scripting: none) {
+  .site-header__inner[data-intro="wait"] > :not(.nav-island) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* the island in the bar's own white, so it springs open without a colour change */
+.nav-island {
+  background: var(--white, #ffffff);
+  box-shadow:
+    0 0 0 1px rgb(103 47 178 / 0.08),
+    0 14px 34px -22px rgb(45 16 95 / 0.45);
+}
+
+/* open: the contents are revealed by the staggered rise in Navbar.tsx, not by a fade of the whole row */
+.site-header__inner[data-intro="open"] > :not(.nav-island),
+.site-header__inner[data-intro="done"] > :not(.nav-island) {
+  transition: none;
 }

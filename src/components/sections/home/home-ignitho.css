@@ -23,20 +23,27 @@
   background-color: var(--white);
 }
 
-/* hover: the same grid, a little stronger, in a soft circle round the pointer (GridSpot.tsx) */
+/* hover: the same grid, a little stronger, in a soft 400px circle that follows the pointer
+   (GridSpot.tsx). The circle moves by transform and only its own 400px repaints, so moving the
+   mouse never repaints the whole section. */
 .cx-s.cx-sheet:not(.cx-hero):not(.cx-talk)::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 0;
+  width: 400px;
+  height: 400px;
   pointer-events: none;
   background-image:
     linear-gradient(rgb(103 47 178 / 0.12) 1px, transparent 1px),
     linear-gradient(90deg, rgb(103 47 178 / 0.12) 1px, transparent 1px);
   background-size: 56px 56px;
-  background-position: center top;
-  -webkit-mask-image: radial-gradient(200px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
-  mask-image: radial-gradient(200px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+  background-position: var(--spot-bx, 0) var(--spot-by, 0);
+  -webkit-mask-image: radial-gradient(circle closest-side, #000, transparent);
+  mask-image: radial-gradient(circle closest-side, #000, transparent);
+  transform: translate3d(var(--spot-x, -999px), var(--spot-y, -999px), 0);
+  will-change: transform;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -405,12 +412,13 @@
   background-size: 60px 60px;
 }
 
+/* held to the page's content width, so the copy lines up with every section above */
 .cx-talk .cx-wrap.cx-talk__grid {
-  width: 100%;
-  max-width: 1440px;
-  grid-template-columns: minmax(0, 520px) 1fr;
-  gap: 32px;
-  padding: 38px 50px;
+  width: var(--wrap);
+  max-width: none;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 4vw, 72px);
+  padding: clamp(64px, 3vw + 36px, 96px) 0;
 }
 
 .cx-talk .cx-talk__copy {
@@ -447,12 +455,14 @@
   font-weight: 600;
 }
 
+/* the map fills its column; the inline padding is the room the two labels need,
+   since Tampa's hangs off the left of its pin and Chennai's off the right */
 .cx-talk .cx-talk__map {
-  justify-self: end;
-  width: 520px;
-  max-width: 100%;
-  /* room for the Chennai label, which hangs off the right of its pin */
-  margin-right: 150px;
+  justify-self: stretch;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 0 0 auto;
+  padding: 0 clamp(56px, 4.4vw, 70px) 0 clamp(40px, 3.4vw, 56px);
 }
 
 
@@ -473,13 +483,13 @@
   .cx-talk .cx-wrap.cx-talk__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 40px;
-    padding: 48px 20px;
+    padding: 56px 0;
     text-align: center;
   }
 
   .cx-talk .cx-lead { margin-inline: auto; }
   .cx-talk .cx-actions { justify-content: center; }
-  .cx-talk .cx-talk__map { justify-self: center; width: 100%; max-width: 440px; margin-right: 0; }
+  .cx-talk .cx-talk__map { justify-self: center; max-width: 480px; margin: 0; padding-inline: 44px 52px; }
 }
 
 @media (max-width: 600px) {
@@ -966,4 +976,293 @@
 
 .cx-s.cx-sheet[data-ground="white"] .cb__fig span {
   color: var(--ink-3);
+}
+
+
+/* ============================================================
+   HOVER ON THE HOME CARDS: the whole card rises a little, as one
+   object. Nothing inside it changes: no ring change, no growing
+   disc, no tilting icon, no photo zoom.
+   ============================================================ */
+.cx :is(.cw, .cq, .cm, .cs, .cb__cell, .cx-step5)::before,
+.cx .cx-ico,
+.cx .cx-media img {
+  transition: none;
+}
+
+/* the scroll reveal switches this transition off while it runs (Home.tsx), so the two never mix */
+.cx :is(.cw, .cq, .cm, .cs, .cb__cell, .cx-step5) {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cx :is(.cw, .cq, .cm, .cs, .cb__cell, .cx-step5):hover {
+  transform: translateY(-4px);
+  border-color: rgb(103 47 178 / 0.08);
+  box-shadow:
+    0 0 0 6px var(--ring),
+    0 0 0 7px var(--ring-edge),
+    0 18px 40px -24px rgb(75 33 131 / 0.3);
+}
+
+.cx .cx-s.cx-sheet[data-ground="white"] :is(.cq, .cb__cell):hover {
+  border-color: rgb(103 47 178 / 0.12);
+}
+
+.cx :is(.cw, .cq, .cm, .cs, .cb__cell, .cx-step5):hover::before {
+  transform: none;
+  background: #f3eefb;
+}
+
+.cx :is(.cq, .cm, .cb__cell):hover .cx-ico,
+.cx .cx-has-media:hover .cx-media img {
+  transform: none;
+}
+
+/* resting edge for the card whose edge differs from the shared one */
+.cx .cx-s.cx-sheet.cx-why .cb__cell:hover {
+  border-color: rgb(103 47 178 / 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx :is(.cw, .cq, .cm, .cs, .cb__cell, .cx-step5):hover { transform: none; }
+}
+
+/* ============================================================
+   RESULTS: the deck's charts, drawn in code, grow with their
+   figures (in step with the 1.6s count)
+   ============================================================ */
+.cs__pic .rc {
+  display: block;
+  width: 52px;
+  height: 52px;
+  overflow: visible;
+}
+
+.rc--bars rect {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0.08);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 0.11s);
+}
+
+.rc--play .rc__halo {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transform: scale(0.55);
+  opacity: 0;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+}
+
+.rc--play .rc__halo--2 {
+  transition-delay: 0.2s;
+}
+
+.rc--rise .rc__grow {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0.4);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rc--rise .rc__arrow {
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease 0.3s;
+}
+
+.rc--ring .rc__arc {
+  stroke-dasharray: 0 100;
+  transition: stroke-dasharray 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-band.is-on .rc--bars rect,
+.cs-band.is-on .rc--rise .rc__grow {
+  transform: none;
+}
+
+.cs-band.is-on .rc--play .rc__halo,
+.cs-band.is-on .rc--rise .rc__arrow {
+  transform: none;
+  opacity: 1;
+}
+
+.cs-band.is-on .rc--ring .rc__arc {
+  stroke-dasharray: var(--pct) 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rc--bars rect,
+  .rc--play .rc__halo,
+  .rc--rise .rc__grow,
+  .rc--rise .rc__arrow {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+
+  .rc--ring .rc__arc {
+    stroke-dasharray: var(--pct) 100;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   WHY CAIMUE, refined: the deck illustration shown whole, the
+   icon as a badge set over its lower edge, the reason under it,
+   and the figure closing the card in its own footer panel
+   ============================================================ */
+.cx .cx-s.cx-sheet.cx-why .cb__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px;
+  border-radius: 24px;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cx-media.cx-media--why {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  border-radius: 17px;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cx-media--why img {
+  opacity: 1;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+/* the badge rides the illustration's edge; the title sits under it */
+.cx .cx-s.cx-sheet.cx-why .cb__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin: -24px 14px 0;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__head .cx-ico,
+.cx .cx-s.cx-sheet.cx-why .cb__cell:hover .cb__head .cx-ico {
+  order: -1;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #672fb2;
+  color: #fff;
+  transform: none;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 10px 22px -10px rgb(75 33 131 / 0.6);
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__head .cx-ico svg {
+  width: 21px;
+  height: 21px;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #17131f;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__body {
+  margin: 8px 14px 0;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: #4e4762;
+}
+
+/* the proof: its own panel at the foot, level across the row */
+.cx .cx-s.cx-sheet.cx-why .cb__fig {
+  display: grid;
+  gap: 4px;
+  margin: auto 0 0;
+  padding: 16px 18px 15px;
+  border-top: 0;
+  border-radius: 16px;
+  background: #f4eefc;
+  box-shadow: inset 0 0 0 1px rgb(103 47 178 / 0.08);
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__body + .cb__fig {
+  margin-top: 20px;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__fig b {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: #3f1b70;
+}
+
+.cx .cx-s.cx-sheet.cx-why .cb__fig span {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #7a6e93;
+}
+
+/* ============================================================
+   GRID, quieter: the ruled grid moves onto its own layer so it
+   can fade. It clears in a soft oval behind each heading, thins
+   out toward the top and bottom of the section, and its lines
+   sit a touch lighter, so it reads as structure, not pattern.
+   ============================================================ */
+.cx-s.cx-sheet[data-ground="tint"]:not(.cx-hero):not(.cx-talk),
+.cx-s.cx-sheet[data-ground="white"]:not(.cx-hero):not(.cx-talk) {
+  background-image: none;
+}
+
+.cx-s.cx-sheet:not(.cx-hero):not(.cx-talk)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+  -webkit-mask-image:
+    radial-gradient(ellipse 38% 230px at 50% 210px, transparent 0%, transparent 35%, #000 100%),
+    linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 38% 230px at 50% 210px, transparent 0%, transparent 35%, #000 100%),
+    linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent 100%);
+  mask-composite: intersect;
+}
+
+.cx-s.cx-sheet[data-ground="tint"]:not(.cx-hero):not(.cx-talk) {
+  --grid-line: rgb(103 47 178 / 0.1);
+}
+
+.cx-s.cx-sheet[data-ground="white"]:not(.cx-hero):not(.cx-talk) {
+  --grid-line: rgb(103 47 178 / 0.065);
+}
+
+/* phones: the heading takes the full width, so the clear oval widens */
+@media (max-width: 700px) {
+  .cx-s.cx-sheet:not(.cx-hero):not(.cx-talk)::before {
+    -webkit-mask-image:
+      radial-gradient(ellipse 80% 260px at 50% 220px, transparent 0%, transparent 40%, #000 100%),
+      linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 120px), transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 80% 260px at 50% 220px, transparent 0%, transparent 40%, #000 100%),
+      linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 120px), transparent 100%);
+  }
+}
+
+/* who we are: the figure labels at the section description's size (18px on phones, 22px wide) */
+.cx .cx-s.cx-sheet.cx-who .cw__label {
+  font-size: var(--t-lead);
+  line-height: 1.4;
 }
