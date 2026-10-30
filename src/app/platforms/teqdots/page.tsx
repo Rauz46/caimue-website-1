@@ -37,7 +37,6 @@ export default function TeqDotsPage() {
       {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
         <HeroGrid />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--caimue-purple)]/10 via-transparent to-transparent" />
 
         <div className="container text-center relative">
           <motion.div
@@ -62,7 +61,7 @@ export default function TeqDotsPage() {
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="drive decisions."
+              text="drive decisions"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -83,7 +82,7 @@ export default function TeqDotsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Feature Your Company
             </MagneticButton>
           </motion.div>
@@ -174,7 +173,7 @@ export default function TeqDotsPage() {
               We partner with companies building interesting things. If your
               journey has lessons worth sharing, let's talk.
             </p>
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Get in Touch
             </MagneticButton>
           </motion.div>

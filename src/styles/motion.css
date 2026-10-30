@@ -119,15 +119,14 @@
 .page-transition__panel {
   position: absolute;
   inset: 0;
-  background: var(--color-violet);
+  background: #fff;
   transform: translate3d(0, 100%, 0);
 }
 
 .page-transition__mark {
   position: relative;
-  color: var(--color-blush);
+  width: min(50vw, 560px);
   opacity: 0;
-  transform: scale(0.6);
 }
 
 .page-transition[data-state="in"] .page-transition__panel,

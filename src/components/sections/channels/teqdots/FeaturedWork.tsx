@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-const f = "Plus Jakarta Sans, sans-serif";
-const serif = 'var(--font-playfair, "Playfair Display", serif)';
+const f = "var(--font-outfit), sans-serif";
+const serif = "var(--font-outfit), sans-serif";
 
 // All videos shown uniformly, in order — no single video popped out bigger.
 // Sourced from the TeqDots YouTube channel (@TeqThots) uploads.
@@ -200,7 +200,7 @@ export default function FeaturedWork() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Watch it.
+              Watch it
             </span>
           </h2>
 
@@ -251,7 +251,7 @@ export default function FeaturedWork() {
                     height: 0,
                   }}
                 >
-                  <iframe
+                  <iframe loading="lazy"
                     src={`https://www.youtube-nocookie.com/embed/${card.videoId}?rel=0&modestbranding=1&playsinline=1`}
                     title={card.title}
                     allowFullScreen

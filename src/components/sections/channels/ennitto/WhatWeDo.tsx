@@ -1,4 +1,5 @@
 "use client";
+import { optimised } from "@/lib/optimised";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -70,7 +71,7 @@ export function WhatWeDo() {
             ✦ What we do
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#4C1D95] mb-4">
-            A studio for regional stories.
+            A studio for regional stories
           </h2>
           <p className="text-[#6B21A8] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             Ennitto is our Malayalam short-film studio under Caimue — original
@@ -97,7 +98,7 @@ export function WhatWeDo() {
                 <div className="relative h-44 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={item.image}
+                    src={optimised(item.image, 750)}
                     alt={item.title}
                     loading="lazy"
                     decoding="async"

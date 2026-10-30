@@ -49,7 +49,6 @@ export default function ShortFilmsPage() {
       {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
         <HeroGrid />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--caimue-purple)]/5 to-transparent" />
 
         <div className="container text-center relative">
           <motion.span
@@ -63,12 +62,12 @@ export default function ShortFilmsPage() {
 
           <h1 className="max-w-4xl mx-auto mb-8 flex flex-col items-center gap-y-2">
             <AnimatedText
-              text="Original stories."
+              text="Original stories"
               delay={0.4}
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="Professional execution."
+              text="Professional execution"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -89,7 +88,7 @@ export default function ShortFilmsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Submit Your Script
             </MagneticButton>
           </motion.div>
@@ -180,7 +179,7 @@ export default function ShortFilmsPage() {
                           key={award}
                           className="flex items-center gap-2 text-sm text-[var(--caimue-cream)]"
                         >
-                          <span className="text-yellow-500">🏆</span>
+                          <span className="text-yellow-500"></span>
                           {award}
                         </div>
                       ))}

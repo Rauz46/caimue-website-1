@@ -1,5 +1,6 @@
 // ADD AFTER: <Hero /> in HomePage
 "use client";
+import { optimised } from "@/lib/optimised";
 import { useState, useEffect, useRef } from "react";
 
 export default function WhatWeMake() {
@@ -57,7 +58,7 @@ export default function WhatWeMake() {
   };
 
   const cardHeadline: React.CSSProperties = {
-    fontFamily: "Plus Jakarta Sans, sans-serif",
+    fontFamily: "var(--font-outfit), sans-serif",
     fontWeight: 800,
     fontSize: "1.75rem",
     lineHeight: 1.2,
@@ -65,7 +66,7 @@ export default function WhatWeMake() {
   };
 
   const description: React.CSSProperties = {
-    fontFamily: "Plus Jakarta Sans, sans-serif",
+    fontFamily: "var(--font-outfit), sans-serif",
     fontSize: "0.9rem",
     color: "#6B6B85",
     lineHeight: 1.6,
@@ -124,7 +125,7 @@ export default function WhatWeMake() {
               color: "#8B2FC9",
               borderRadius: "100px",
               padding: "8px 20px",
-              fontFamily: "Plus Jakarta Sans, sans-serif",
+              fontFamily: "var(--font-outfit), sans-serif",
               fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "0.06em",
@@ -137,7 +138,7 @@ export default function WhatWeMake() {
 
           <h2
             style={{
-              fontFamily: 'var(--font-playfair, "Playfair Display", serif)',
+              fontFamily: "var(--font-outfit), sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
               lineHeight: 1.12,
@@ -158,13 +159,13 @@ export default function WhatWeMake() {
                 backgroundClip: "text",
               }}
             >
-              will ever need.
+              will ever need
             </span>
           </h2>
 
           <p
             style={{
-              fontFamily: "Plus Jakarta Sans, sans-serif",
+              fontFamily: "var(--font-outfit), sans-serif",
               fontSize: "1.05rem",
               color: "#6B6B85",
               maxWidth: "820px",
@@ -204,7 +205,6 @@ export default function WhatWeMake() {
                 e.currentTarget.style.borderColor = "#E8E4FF";
               }}
             >
-              <div style={{ ...iconBox, background: "#F5F3FF" }}>🎬</div>
               <div
                 style={{
                   flexGrow: 1,
@@ -213,9 +213,9 @@ export default function WhatWeMake() {
                 }}
               >
                 <h3 style={cardHeadline}>
-                  <span style={{ color: "#18182B" }}>Your Product.</span>
+                  <span style={{ color: "#18182B" }}>Your Product</span>
                   <br />
-                  <span style={{ color: "#8B2FC9" }}>Centre Stage.</span>
+                  <span style={{ color: "#8B2FC9" }}>Centre Stage</span>
                 </h3>
                 <p style={description}>
                   We turn what your product does into content that makes people
@@ -237,7 +237,7 @@ export default function WhatWeMake() {
                       gridColumn: "span 2",
                       borderRadius: "16px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/new/maxresdefault.jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fnew%2Fmaxresdefault.jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center 20%",
                       position: "relative",
@@ -270,7 +270,7 @@ export default function WhatWeMake() {
                     style={{
                       borderRadius: "12px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/new/sddefault.webp')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fnew%2Fsddefault.webp&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "100px",
@@ -280,7 +280,7 @@ export default function WhatWeMake() {
                     style={{
                       borderRadius: "12px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/new/shared image (6).jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fnew%2Fshared%20image%20(6).jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "100px",
@@ -293,7 +293,7 @@ export default function WhatWeMake() {
                       gridColumn: "span 2",
                       borderRadius: "12px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/new/Image (17).jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fnew%2FImage%20(17).jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center 30%",
                       height: "120px",
@@ -321,7 +321,6 @@ export default function WhatWeMake() {
                 e.currentTarget.style.borderColor = "#E8E4FF";
               }}
             >
-              <div style={{ ...iconBox, background: "#FFFBEB" }}>🤖</div>
               <div
                 style={{
                   flexGrow: 1,
@@ -332,7 +331,7 @@ export default function WhatWeMake() {
                 <h3 style={cardHeadline}>
                   <span style={{ color: "#18182B" }}>Be the Brand</span>
                   <br />
-                  <span style={{ color: "#8B2FC9" }}>That Knows.</span>
+                  <span style={{ color: "#8B2FC9" }}>That Knows</span>
                 </h3>
                 <p style={description}>
                   Educate while you sell. We make you the most informed and
@@ -353,7 +352,7 @@ export default function WhatWeMake() {
                       height: "170px",
                       borderRadius: "16px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/IMG_2967.jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2FIMG_2967.jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center 40%",
                     }}
@@ -372,7 +371,7 @@ export default function WhatWeMake() {
                       style={{
                         borderRadius: "12px",
                         backgroundImage:
-                          "url('/assets/what-we-make/new/image.png')",
+                          "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fimage.png&w=750&q=75')",
                         backgroundSize: "cover",
                         backgroundPosition: "center 5%",
                       }}
@@ -381,7 +380,7 @@ export default function WhatWeMake() {
                       style={{
                         borderRadius: "12px",
                         backgroundImage:
-                          "url('/assets/what-we-make/new/THE TEAM.jpg')",
+                          "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2FTHE%20TEAM.jpg&w=750&q=75')",
                         backgroundSize: "cover",
                         backgroundPosition: "center 5%",
                       }}
@@ -446,7 +445,7 @@ export default function WhatWeMake() {
                           }}
                         >
                           <img
-                            src={logo.src}
+                            src={optimised(logo.src, 750)}
                             alt="Partner Logo"
                             loading="lazy"
                             decoding="async"
@@ -483,7 +482,6 @@ export default function WhatWeMake() {
                 e.currentTarget.style.borderColor = "#E8E4FF";
               }}
             >
-              <div style={{ ...iconBox, background: "#ECFDF5" }}>🎙️</div>
               <div
                 style={{
                   flexGrow: 1,
@@ -494,7 +492,7 @@ export default function WhatWeMake() {
                 <h3 style={cardHeadline}>
                   <span style={{ color: "#18182B" }}>The Story</span>
                   <br />
-                  <span style={{ color: "#8B2FC9" }}>Behind the Build.</span>
+                  <span style={{ color: "#8B2FC9" }}>Behind the Build</span>
                 </h3>
                 <p style={description}>
                   People buy from people. We tell founder journeys and culture
@@ -515,7 +513,7 @@ export default function WhatWeMake() {
                       gridColumn: "span 2",
                       borderRadius: "16px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/NEVER.jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2FNEVER.jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "120px",
@@ -525,7 +523,7 @@ export default function WhatWeMake() {
                     style={{
                       borderRadius: "12px",
                       backgroundImage:
-                        "url('/assets/what-we-make/new/thumbnail.jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fnew%2Fthumbnail.jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "180px",
@@ -546,7 +544,7 @@ export default function WhatWeMake() {
                         key={i}
                         style={{
                           borderRadius: "10px",
-                          backgroundImage: `url('${img}')`,
+                          backgroundImage: `url('${optimised(img, 750)}')`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                           height: "86px",
@@ -559,7 +557,7 @@ export default function WhatWeMake() {
                       gridColumn: "span 2",
                       borderRadius: "12px",
                       backgroundImage:
-                        "url('/assets/what-we-make/story/Untitled-2.jpg')",
+                        "url('/_next/image?url=%2Fassets%2Fwhat-we-make%2Fstory%2FUntitled-2.jpg&w=750&q=75')",
                       backgroundSize: "cover",
                       backgroundPosition: "center top",
                       height: "160px",

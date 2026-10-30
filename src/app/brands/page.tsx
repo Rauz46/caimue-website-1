@@ -7,23 +7,19 @@ import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const idealBrands = [
   {
-    icon: "🎯",
     title: "Purpose-Driven",
     description: "Brands that stand for something beyond their product.",
   },
   {
-    icon: "🌏",
     title: "Regional Focus",
     description:
       "Looking to connect authentically with Tamil & Malayalam audiences.",
   },
   {
-    icon: "📖",
     title: "Story-First",
     description: "Willing to invest in narratives, not just advertisements.",
   },
   {
-    icon: "🤝",
     title: "Long-term Partners",
     description:
       "Interested in building ongoing relationships, not one-off campaigns.",
@@ -62,7 +58,7 @@ export default function BrandsPage() {
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="not just buys it."
+              text="not just buys it"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -162,7 +158,6 @@ export default function BrandsPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center p-6 card"
               >
-                <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="text-[var(--foreground)] text-lg font-serif mb-2">
                   {item.title}
                 </h3>
@@ -191,7 +186,7 @@ export default function BrandsPage() {
               Share your brand goals and we&apos;ll propose content ideas that
               align with your vision and resonate with your audience.
             </p>
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Start a Conversation
             </MagneticButton>
           </motion.div>

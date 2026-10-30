@@ -81,12 +81,12 @@ export default function ProcessPage() {
 
           <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
             <AnimatedText
-              text="From idea to audience."
+              text="From idea to audience"
               delay={0.4}
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="Systematically."
+              text="Systematically"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -204,7 +204,7 @@ export default function ProcessPage() {
               Whether you're at idea stage or ready to roll — we're here to
               help.
             </p>
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Submit Your Idea
             </MagneticButton>
           </motion.div>

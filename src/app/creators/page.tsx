@@ -7,25 +7,21 @@ import { HeroGrid } from "@/components/effects/HeroGrid";
 
 const offerings = [
   {
-    icon: "💰",
     title: "Funding",
     description:
       "Production budget for your short film. No strings attached loans — we invest in your story.",
   },
   {
-    icon: "🎬",
     title: "Production Support",
     description:
       "Access to equipment, crew networks, and production expertise when you need it.",
   },
   {
-    icon: "📺",
     title: "Distribution",
     description:
       "We handle festival submissions, OTT pitches, and audience building so you can focus on creating.",
   },
   {
-    icon: "🔄",
     title: "Continuity",
     description:
       "This isn't a one-off deal. We build long-term partnerships that grow with your career.",
@@ -55,7 +51,7 @@ export default function CreatorsPage() {
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="not a one-off deal."
+              text="not a one-off deal"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -102,7 +98,6 @@ export default function CreatorsPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="card p-8"
               >
-                <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="text-[var(--foreground)] text-xl font-serif mb-3">
                   {item.title}
                 </h3>
@@ -193,7 +188,7 @@ export default function CreatorsPage() {
               content series idea, or collaboration proposal — we want to hear
               it.
             </p>
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Submit Your Project
             </MagneticButton>
           </motion.div>

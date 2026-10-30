@@ -57,6 +57,11 @@
   /* Was Clash Display. Body copy moved to Geist earlier; leaving headings
      on a different face was the actual inconsistency — half the type
      system changed, half didn't. Unified on Geist throughout. */
+  --font-general: var(--font-outfit);
+  --font-clash: var(--font-outfit);
+  --font-satoshi: var(--font-outfit);
+  --font-caveat: var(--font-outfit);
+  --font-instrument: var(--font-outfit);
   --font-display: var(--font-general), "Segoe UI", system-ui, sans-serif;
   --font-sans: var(--font-general), system-ui, sans-serif;
   --font-hand: var(--font-caveat), "Segoe Script", cursive;

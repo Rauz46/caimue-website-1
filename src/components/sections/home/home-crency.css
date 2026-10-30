@@ -24,7 +24,7 @@
   --cz-lilac: #b49ae0;
   --cz-close: #5b299d;
   /* the display face: Urbanist ExtraBold, smooth and geometric like the wordmark */
-  --cz-display: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  --cz-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
   /* one spacing system for every section:
      --cz-gap   from a visible edge (a colour change) to the first content */

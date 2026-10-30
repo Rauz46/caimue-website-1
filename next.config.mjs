@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to succeed despite type errors.
-    ignoreBuildErrors: true,
-  },
-
   images: {
     // AVIF first, WebP fallback. The poster/team art is heavy JPEG+PNG, so
     // this is the single biggest transfer win on the site.
@@ -27,6 +21,8 @@ const nextConfig = {
   async redirects() {
     // TeqThots was rebranded to TeqDots (July 2026)
     return [
+      { source: "/channels", destination: "/platforms", permanent: false },
+      { source: "/collaborate", destination: "/contact", permanent: false },
       {
         source: "/channels/teqthots",
         destination: "/channels/teqdots",

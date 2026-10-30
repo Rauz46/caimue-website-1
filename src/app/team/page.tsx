@@ -214,17 +214,13 @@ export default function TeamPage() {
             <span className="label text-[var(--accent)] mb-4 block">
               Our Workflow
             </span>
-            <h2>Chaos Managed. Creativity Unleashed.</h2>
+            <h2>Chaos Managed. Creativity Unleashed</h2>
           </motion.div>
 
-          <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] bg-gray-100 rounded-3xl border border-gray-200 shadow-2xl overflow-hidden group">
+          <div className="relative w-full max-w-5xl mx-auto aspect-[16/9] bg-[#f4effb] rounded-2xl overflow-hidden group">
             {/* Placeholder Team Photo Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-200 flex items-center justify-center">
-              <span className="text-gray-400 font-bold text-4xl opacity-20 uppercase tracking-widest text-center">
-                Team Workflow Photo
-                <br />
-                <span className="text-sm">(User to Upload Team Shot)</span>
-              </span>
+            <div className="absolute inset-0 bg-[#f4effb]">
+              
             </div>
             {/* Or use unoptimized placeholder if needed: <Image src="/team/workflow-bg.jpg" fill className="object-cover opacity-50" /> */}
 

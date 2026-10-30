@@ -80,7 +80,7 @@ export default function HeroCarousel({ videos = [] }: { videos?: any[] }) {
                 transition: "all 0.5s ease",
               }}
             >
-              <iframe
+              <iframe loading="lazy"
                 src={`https://www.youtube-nocookie.com/embed/${card.videoId}?autoplay=1&mute=1&loop=1&playlist=${card.videoId}&controls=0&modestbranding=1&playsinline=1`}
                 style={{
                   position: "absolute",
@@ -162,7 +162,7 @@ export default function HeroCarousel({ videos = [] }: { videos?: any[] }) {
           top: "15%",
           right: "12%",
           transform: "rotate(12deg)",
-          fontFamily: "var(--font-caveat, 'Caveat', cursive)",
+          fontFamily: "var(--font-outfit), sans-serif",
           fontSize: "1.5rem",
           color: "#c4b5fd",
           opacity: 0.8,

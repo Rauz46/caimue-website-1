@@ -44,7 +44,7 @@ export function MagneticButton({
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={`${buttonClass} ${className}`}
+      className={`btn ${buttonClass} ${className}`}
     >
       {children}
     </motion.div>

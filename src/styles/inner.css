@@ -1,0 +1,43 @@
+/* ============================================================
+   Inner pages (everything but the homepage): mostly white with the
+   homepage's grid, its lighter headings and solid accents. Unlayered, so
+   it wins over Tailwind's utilities.
+   ============================================================ */
+main:not(:has(> .ca)) {
+  --color-surface-alt: transparent;
+  --color-surface-sunk: transparent;
+  --background-secondary: transparent;
+  --background-alt: transparent;
+  background-color: #fff;
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center top;
+}
+
+main:not(:has(> .ca)) section:not(.ca section) {
+  background: transparent !important;
+}
+
+main:not(:has(> .ca)) :is(h1, h2, h3):not(.ca *) {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+main:not(:has(> .ca)) :is(.text-gradient, .text-gradient-gold, .text-gradient-warm, .text-gradient-cool) {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: #672fb2;
+}
+
+main:not(:has(> .ca)) :is(.btn-primary, .btn-secondary) {
+  width: fit-content;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+main:not(:has(> .ca)) a:has(> :is(.btn-primary, .btn-secondary)) {
+  display: inline-block;
+}

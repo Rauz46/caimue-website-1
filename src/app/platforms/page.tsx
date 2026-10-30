@@ -55,12 +55,12 @@ export default function PlatformsPage() {
 
           <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
             <AnimatedText
-              text="Three verticals."
+              text="Three verticals"
               delay={0.4}
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="One philosophy."
+              text="One philosophy"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />

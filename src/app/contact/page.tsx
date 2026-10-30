@@ -3,8 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { HeroGrid } from "@/components/effects/HeroGrid";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
+import { FreeReview } from "@/components/sections/home/FreeReview";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button as StatefulButton } from "@/components/ui/stateful-button";
@@ -66,34 +65,16 @@ export default function ContactPage() {
     <main className="min-h-screen flex flex-col font-sans">
       {/* --- SECTION 1: HERO BANNER (Cinematic/Dark) --- */}
       <section className="relative flex items-center justify-center overflow-hidden pt-32 pb-14 md:pt-36 md:pb-16">
-        <BackgroundGradientAnimation
-          autoMove
-          maskCenter
-          containerClassName="absolute inset-0 z-0 !h-full !w-full"
-          className="h-full w-full"
-          firstColor="124, 58, 237" // Violet-600
-          secondColor="109, 40, 217" // Violet-700
-          thirdColor="91, 33, 182" // Violet-800
-          fourthColor="126, 34, 206" // Purple-700
-          fifthColor="107, 33, 168" // Purple-800
-          pointerColor="124, 58, 237" // Violet-600
-          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
-          gradientBackgroundEnd="rgb(59, 7, 100)" // Deep purple
-        />
 
         {/* Background Elements */}
         <HeroGrid className="opacity-40 z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-noise opacity-10 z-10 pointer-events-none" />
-
-        {/* Decorative Elements */}
-        <FloatingScribbles className="scale-75 origin-center opacity-80" />
 
         <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-xl md:text-3xl font-bold !text-white leading-none tracking-tight drop-shadow-2xl"
+            className="text-4xl md:text-5xl !text-[#110a1f] leading-none tracking-tight"
           >
             Let&apos;s Collaborate
           </motion.h1>
@@ -101,7 +82,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-sm md:text-base !text-white leading-tight drop-shadow-md font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
+            className="mt-3 text-base md:text-lg !text-[#110a1f] leading-tight max-w-2xl mx-auto"
           >
             Partner with a video-first marketing agency.
             <br className="md:hidden" />
@@ -110,6 +91,10 @@ export default function ContactPage() {
           </motion.p>
         </div>
       </section>
+
+      <div className="cx ca">
+        <FreeReview />
+      </div>
 
       {/* --- SECTION 2: CONTENT AREA (Light Purple Theme) --- */}
       <section
@@ -156,7 +141,6 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   {
-                    icon: "💰",
                     label: "Invest with Us",
                     desc: "Back stories that scale",
                     from: "#7C3AED",
@@ -164,7 +148,6 @@ export default function ContactPage() {
                     soft: "#EDE9FE",
                   },
                   {
-                    icon: "🎬",
                     label: "Make a Film",
                     desc: "Stories worth telling",
                     from: "#DB2777",
@@ -172,7 +155,6 @@ export default function ContactPage() {
                     soft: "#FCE7F3",
                   },
                   {
-                    icon: "🤝",
                     label: "Grow Your Brand",
                     desc: "Let's get you noticed",
                     from: "#F59E0B",
@@ -180,7 +162,6 @@ export default function ContactPage() {
                     soft: "#FEF3C7",
                   },
                   {
-                    icon: "🌟",
                     label: "Join the Team",
                     desc: "Become part of the story",
                     from: "#0D9488",
@@ -210,12 +191,6 @@ export default function ContactPage() {
                       style={{ background: item.from }}
                     />
                     <div className="relative z-10 flex items-start gap-4 justify-center lg:justify-start text-left">
-                      <span
-                        className="flex items-center justify-center w-12 h-12 rounded-xl text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300"
-                        style={{ background: item.soft }}
-                      >
-                        {item.icon}
-                      </span>
                       <div>
                         <h3 className="font-bold text-neutral-900 text-[15px]">
                           {item.label}
@@ -362,7 +337,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="inline-block text-sm font-semibold text-purple-500 mb-4 tracking-wide"
             >
-              🌍 Our global presence
+              Our global presence
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -370,9 +345,9 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
             >
-              <span className="text-neutral-900">Three Cities. </span>
+              <span className="text-neutral-900">Three Cities </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-purple-400">
-                One Vision.
+                One Vision
               </span>
             </motion.h2>
             <motion.p

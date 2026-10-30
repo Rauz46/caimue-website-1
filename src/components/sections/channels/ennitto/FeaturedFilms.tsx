@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-const f = "Plus Jakarta Sans, sans-serif";
-const serif = 'var(--font-playfair, "Playfair Display", serif)';
+const f = "var(--font-outfit), sans-serif";
+const serif = "var(--font-outfit), sans-serif";
 
 // All films shown uniformly, in order — sourced from the @ennitto channel uploads.
 const VIDEOS = [
@@ -189,7 +189,7 @@ export function FeaturedFilms() {
               marginBottom: "0.75rem",
             }}
           >
-            <span style={{ color: "#18182B" }}>Watch the stories. </span>
+            <span style={{ color: "#18182B" }}>Watch the stories </span>
             <span
               style={{
                 background: "linear-gradient(90deg, #7C3AED, #DB2777)",
@@ -197,7 +197,7 @@ export function FeaturedFilms() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              See the talent.
+              See the talent
             </span>
           </h2>
 
@@ -248,7 +248,7 @@ export function FeaturedFilms() {
                     height: 0,
                   }}
                 >
-                  <iframe
+                  <iframe loading="lazy"
                     src={`https://www.youtube-nocookie.com/embed/${card.videoId}?rel=0&modestbranding=1&playsinline=1`}
                     title={card.title}
                     allowFullScreen

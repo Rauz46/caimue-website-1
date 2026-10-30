@@ -63,7 +63,6 @@ export default function FunShortzPage() {
       {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center justify-center pt-24 relative overflow-hidden">
         <HeroGrid />
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-[var(--caimue-purple)]/10" />
 
         <div className="container text-center relative">
           <motion.div
@@ -72,13 +71,7 @@ export default function FunShortzPage() {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <Image
-              src="/logos/funshortz-logo.png"
-              alt="FunShortz"
-              width={250}
-              height={80}
-              className="mx-auto h-20 w-auto object-contain"
-            />
+            
           </motion.div>
 
           <h1 className="max-w-4xl mx-auto mb-8 flex flex-wrap justify-center gap-x-4">
@@ -88,7 +81,7 @@ export default function FunShortzPage() {
               className="text-[var(--foreground)]"
             />
             <AnimatedText
-              text="reimagined."
+              text="reimagined"
               delay={0.8}
               className="text-[var(--caimue-purple)]"
             />
@@ -109,7 +102,7 @@ export default function FunShortzPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <MagneticButton href="/collaborate" variant="primary">
+            <MagneticButton href="/contact" variant="primary">
               Collaborate With Us
             </MagneticButton>
           </motion.div>

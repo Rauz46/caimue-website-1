@@ -17,6 +17,12 @@ export function Footer() {
         <Wordmark className="ft__mark-svg" />
       </Link>
 
+      <div className="ft__say">
+        <p>Caimue is a creative marketing agency that helps B2B brands get remembered and win inbound leads.</p>
+        <p className="ft__creed">If nobody would watch it, we do not make it.</p>
+        <p>Tampa, Florida</p>
+      </div>
+
       <div className="ft__bar">
         <span>
           © {year} {site.name}

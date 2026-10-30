@@ -193,7 +193,7 @@ function TeamCard({
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={person.image}
+          src={optimised(person.image, 384)}
           alt={person.name}
           loading="lazy"
           decoding="async"
@@ -244,6 +244,9 @@ function TeamCard({
 // MAIN PAGE COMPONENT
 // ============================================
 
+/** A resized, modern-format copy of a local image, for the plain img tags on this page. */
+const optimised = (src: string, width: number) => `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
@@ -251,33 +254,11 @@ export default function AboutPage() {
           SECTION 1,HERO
           ================================================================= */}
       <section
-        className="ground-hero relative flex items-center justify-center overflow-hidden pb-16"
+        className="relative flex items-center justify-center overflow-hidden pb-16"
         style={{ paddingTop: NAV_HEIGHT + 72 }}
       >
         {/* Subtle line grid overlay,same as homepage */}
         <HeroGrid className="opacity-40 z-10" />
-        <div className="bg-noise opacity-10 z-10" />
-
-        {/* Decorative scribbles,same as homepage — desktop only */}
-        <div className="hidden md:contents">
-          <FloatingScribbles />
-        </div>
-
-        {/* Decorative Stars — desktop only */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
-          <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">
-            ✦
-          </div>
-          <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">
-            ★
-          </div>
-          <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">
-            ✧
-          </div>
-          <div className="absolute bottom-1/4 left-1/2 text-purple-300/30 text-2xl">
-            ✦
-          </div>
-        </div>
 
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
           {/* Headline */}
@@ -287,11 +268,11 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4"
           >
-            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
+            <span className="block md:whitespace-nowrap">
               The studio where{" "}
               <span className="text-gradient-gold">imagination</span>
             </span>
-            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
+            <span className="block md:whitespace-nowrap">
               meets <span className="text-gradient-gold">intelligence</span>
             </span>
           </motion.h1>
@@ -305,19 +286,10 @@ export default function AboutPage() {
         className="relative py-12 md:py-16 overflow-hidden"
         style={{ backgroundColor: "var(--color-surface-alt)" }}
       >
-        {/* Checked grid texture */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            opacity: 0.06,
-            backgroundImage:
-              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+        
 
-        {/* Floating handwritten doodles — desktop only */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+        {/* Floating handwritten doodles: retired */}
+        <div className="hidden">
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -432,7 +404,7 @@ export default function AboutPage() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/our%20story.png"
+                src={optimised("/our story.png", 750)}
                 alt="The Caimue crew on set — driven by passion, integrity, and performance"
                 loading="lazy"
                 decoding="async"
@@ -580,7 +552,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4">
               We work hard.{" "}
               <span className="italic text-[var(--caimue-purple)] font-light">
-                We celebrate harder.
+                We celebrate harder
               </span>
             </h2>
             <p className="text-[var(--foreground-muted)] text-lg max-w-lg mx-auto font-sans">
@@ -612,7 +584,7 @@ export default function AboutPage() {
                 <div className="aspect-square overflow-hidden mb-3 bg-purple-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={card.img}
+                    src={optimised(card.img, 384)}
                     alt={card.caption}
                     loading="lazy"
                     decoding="async"
