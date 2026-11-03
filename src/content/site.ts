@@ -21,10 +21,9 @@ export const site = {
 } as const;
 
 export const nav = {
-  /** Website copy v2: five links, one button, no dropdowns. Work and Services are homepage
-      sections until their pages are built; Originals is the channels page. */
+  /** Three links, one button, no dropdowns. Services is a homepage section until its page
+      is built; Originals is the channels page. */
   primary: [
-    { href: "/#work", label: "Work" },
     { href: "/#services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/platforms", label: "Originals" },

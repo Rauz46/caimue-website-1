@@ -1,0 +1,1220 @@
+/* ============================================================
+   The homepage's design layer (Nov 2026). Loads after home-v3.css.
+   One column from the hero to the footer wordmark, twelve columns on a
+   24px gutter. One type scale. One flat card.
+   Type: 95 display / 72 figure / 32 sub / 22 body / 17 small (at 1907).
+   ============================================================ */
+:root {
+  --ed-edge: clamp(16px, 4vw, 80px);
+  --ed-gutter: 24px;
+  --ed-inset: 28px;
+  --ed-radius: 12px;
+  --ed-ink: #110a1f;
+  --ed-purple: #672fb2;
+  --ed-rule: rgb(17 10 31 / 0.14);
+  --ed-rule-inv: rgb(255 255 255 / 0.2);
+  --ed-display: clamp(2.25rem, min(3.5vw, 7.4vh), 4.25rem);
+  --ed-title: clamp(2.25rem, min(3.8vw, 7.6vh), 5rem);
+  --ed-sub: clamp(1.375rem, min(1.7vw, 3.4vh), 2.25rem);
+  --ed-body: clamp(1.0625rem, 1.15vw, 1.375rem);
+  --ed-small: clamp(0.9375rem, 0.9vw, 1.125rem);
+}
+
+/* ---------- grounds ---------- */
+.ca-stage .ca-two.ca-gridded { background: var(--ed-purple); }
+.ca-services.ca-g-deep.ca-g-dark { background: #e4d9f5; color: var(--ed-ink); }
+
+/* ---------- type ---------- */
+.ca .ca-h2,
+.ca .ca-about .ca-h2,
+.ca-two .ca-two__title {
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.ca-g-dark .ca-p { color: rgb(255 255 255 / 0.86); }
+
+/* ---------- the service tiles' title and the card a tile opens ---------- */
+.ca-services .ca-floor-stage .ca-tile__title { font-weight: 500; letter-spacing: 0; }
+.ca-services .ca-tile__no { font-weight: 500; font-variant-numeric: tabular-nums; }
+.ca-svc__t { font-weight: 500; }
+.ca-services .ca-detail { border-radius: var(--ed-radius); }
+.ca-services .ca-detail__t { font-weight: 500; letter-spacing: -0.025em; }
+
+/* ---------- the glass box ---------- */
+
+/* ---------- one column through every section ---------- */
+@media (min-width: 900px) {
+
+  .ca .ca-h2,
+  .ca .ca-about .ca-h2,
+  .ca-two .ca-two__title,
+  .ca-stage .hx-h1 {
+    font-size: var(--ed-display);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  /* the review form on the contact page shares .ca, and keeps its own size */
+  .ca .ca-rev__say .ca-h2 { font-size: clamp(1.875rem, 2.8vw, 2.75rem); }
+
+  /* ---------- hero ---------- */
+  .ca-stage .hx-in { padding-left: var(--ed-edge); }
+
+  .ca-stage .hx-tag {
+    width: 40.6vw;
+    margin-bottom: clamp(16px, 3vh, 28px);
+    font-size: var(--ed-small);
+    letter-spacing: 0;
+    color: rgb(255 255 255 / 0.82);
+  }
+
+  .ca-stage .hx-lead {
+    max-width: 31em;
+    font-size: var(--ed-body);
+    font-weight: 300;
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  /* ---------- work: heading, the box, the words, all centred ---------- */
+
+  /* ---------- services: the box stays; the head, then the floor filling what is left ---------- */
+  .ca-services .ca-head {
+    position: relative;
+    z-index: 2;
+    align-self: stretch;
+    width: 100%;
+    margin: 0;
+  }
+
+  .ca-services .ca-head .ca-p {
+    max-width: 58rem;
+    margin-top: 12px;
+    font-size: var(--ed-body);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .ca-services .ca-board {
+    --ed-cell: clamp(150px, min(12.5vw, 24vh), 235px);
+    flex: 1 1 0;
+    min-height: 0;
+  }
+
+  .ca-services .ca-floor {
+    --cell: var(--ed-cell);
+    --gap: clamp(22px, 2vw, 34px);
+  }
+
+  .ca-services .ca-floor-stage {
+    /* the tiles sit low in their 3 by 3 box, so the box is raised by a quarter cell to centre what shows */
+    position: absolute;
+    inset: calc(var(--ed-cell) * -0.25) 0 calc(var(--ed-cell) * 0.25);
+    height: auto;
+    margin-top: 0;
+  }
+
+  .ca-services .ca-more {
+    position: relative;
+    z-index: 2;
+    flex: none;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  /* ---------- footer: the wordmark runs the same column ---------- */
+  .ft.ft--min {
+    --ft-margin: var(--ed-edge);
+    --ft-line: var(--ed-rule);
+    border-top: 0;
+    padding-top: clamp(5rem, 7vw, 8rem);
+  }
+
+  .ft--min .ft__say { font-size: var(--ed-body); }
+  .ft--min .ft__bar { font-size: var(--ed-small); font-weight: 400; color: rgb(17 10 31 / 0.72); }
+}
+
+/* every section but the hero: one column, the heading opening at the same line */
+@media (min-width: 900px) {
+  .ca-screen {
+    justify-content: flex-start;
+    padding-block: 104px 32px;
+  }
+
+  .ca-two .ca-two__in,
+  .ca-screen > .ca-wrap {
+    width: calc(100% - 2 * var(--ed-edge));
+    max-width: none;
+  }
+
+  .ca-screen > .ca-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .ca-screen .ca-head { flex: none; }
+}
+
+/* ---------- the page below the hero, after the owner's reference sites, read from their own styles ---------- */
+:root {
+  --pg-light: #f4f2f7;
+  --pg-dark: #0b0816;
+  --pg-edge: var(--ed-edge, clamp(16px, 4vw, 80px));
+  --pg-r: 24px;
+  --fr-w: 1280px;
+  --fr-line: rgb(228 217 245 / 0.13);
+  --fr-text: rgb(255 255 255 / 0.66);
+  --fr-h2: clamp(2.125rem, 2.9vw, 2.875rem);
+  --fr-body: clamp(0.9375rem, 0.98vw, 1.0625rem);
+  --fr-small: clamp(0.8125rem, 0.86vw, 0.9375rem);
+  --pg-max: 1280px;
+  --pg-sec: clamp(88px, 7.4vw, 120px);
+  --pg-lead: clamp(1rem, 1vw, 1.125rem);
+  --pg-small: clamp(0.875rem, 0.88vw, 1rem);
+  --pg-title: clamp(1.125rem, 1.25vw, 1.375rem);
+}
+
+/* the service box: the same box, at the height its floor needs */
+.svb.ca-services.ca-g-deep.ca-g-dark { height: auto; min-height: 0; padding-block: clamp(64px, 5vw, 88px); }
+.svb .ca-wrap { display: block; height: auto; }
+.svb .ca-board { position: relative; height: clamp(380px, 28vw, 500px); margin-top: clamp(8px, 1.2vw, 20px); }
+.ca .svb .ca-h2 { font-size: var(--fr-h2); font-weight: 400; letter-spacing: -0.03em; }
+
+/* ---------- services on the light ground: lavender after the dark hero, so the click opens onto a new world ---------- */
+.ca-services.ca-g-deep .ca-h2 { color: var(--ed-ink); }
+.ca-services.ca-g-deep .ca-p,
+.ca-services.ca-g-deep .ca-p--inv { color: rgb(17 10 31 / 0.76); }
+
+.ca-services.ca-g-deep .ca-floor::before {
+  opacity: 1;
+  background-image:
+    linear-gradient(rgb(103 47 178 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 47 178 / 0.14) 1px, transparent 1px);
+}
+
+.ca-services.ca-g-deep .ca-tile {
+  box-shadow:
+    0 2px 0 var(--edge-1),
+    0 4px 0 var(--edge-1),
+    0 6px 0 var(--edge-2),
+    0 9px 0 var(--edge-2),
+    0 34px 34px -14px rgb(62 26 117 / 0.34);
+}
+
+/* the fourth tile would vanish in lavender on the lavender ground, so it takes the ink the hero left behind */
+.ca-services.ca-g-deep .ca-tile-cell:nth-child(4) .ca-tile {
+  --edge-1: #2a1b47;
+  --edge-2: #1b1130;
+  background: var(--ed-ink);
+  color: #fff;
+}
+
+.ca-services.ca-g-deep .ca-tile-cell:nth-child(4) .ca-tile__no { color: #e4d9f5; }
+.ca-services.ca-g-deep .ca-tile-cell:nth-child(4) .ca-mark { fill: #e4d9f5; }
+.ca-services .ca-floor-stage.is-open .ca-floor-scene { opacity: 0.5; }
+
+
+/* the frame: one shell width, hairlines down its sides */
+.fr { --line: var(--fr-line); padding: 0 var(--pg-edge); }
+.fr--dark { background: var(--pg-dark); color: #fff; }
+.fr-shell { max-width: var(--fr-w); margin: 0 auto; border-inline: 1px solid var(--line); }
+.fr + .fr .fr-shell { border-top: 1px solid var(--line); }
+
+/* the split head: heading left, its line right */
+.fr-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; padding: clamp(80px, 7vw, 108px) 40px clamp(40px, 3.6vw, 56px); }
+.ca .fr .ca-h2 { max-width: none; margin: 0; font-size: var(--fr-h2); font-weight: 400; line-height: 1.12; letter-spacing: -0.03em; color: #fff; text-align: left; }
+.fr-kicker { margin: 12px 0 0; font-size: var(--fr-body); color: #b79ce3; }
+.fr-head > p { max-width: 30rem; justify-self: end; margin: 0; font-size: var(--fr-body); line-height: 1.5; color: var(--fr-text); text-wrap: pretty; }
+
+/* the panel: one illustrated plane, lit from within and scored with fine lines */
+.fr-panel {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(60% 70% at 50% 100%, rgb(103 47 178 / 0.34), transparent 72%),
+    repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.028) 0 1px, transparent 1px 4px),
+    #0f0b1d;
+}
+
+/* the track record: three figures on a light ground, given room */
+.tr { padding: clamp(88px, 7.4vw, 120px) var(--pg-edge); background: #fff; color: var(--ed-ink); text-align: center; }
+.tr-in { max-width: var(--fr-w); margin: 0 auto; }
+.ca .tr .ca-h2 { max-width: none; margin: 0; font-size: var(--fr-h2); font-weight: 400; letter-spacing: -0.03em; color: var(--ed-ink); }
+.tr-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: clamp(48px, 4.6vw, 72px) 0 clamp(40px, 3.6vw, 56px); padding: 0; list-style: none; }
+.tr-stats li { display: grid; justify-items: center; gap: 12px; padding: 8px 24px; }
+.tr-stats li + li { border-left: 1px solid rgb(17 10 31 / 0.1); }
+.tr-stats .ca-proof__v { display: block; margin: 0; font-size: clamp(2.75rem, 4.4vw, 4.75rem); font-weight: 300; line-height: 1; letter-spacing: -0.045em; color: var(--ed-ink); font-variant-numeric: tabular-nums; }
+.tr-stats .ca-proof__sfx { color: var(--ed-purple); }
+.tr-stats li > span:last-child { max-width: 18em; font-size: var(--fr-body); line-height: 1.45; color: rgb(17 10 31 / 0.66); }
+
+/* why us: four tinted cells, each marked with one of the brand's own forms */
+.wy4 { padding: var(--pg-sec) var(--pg-edge); background: var(--pg-light); color: var(--ed-ink); }
+.wy4-head { text-align: center; }
+.wy4 .ca-h2 { max-width: none; margin: 0; color: var(--ed-ink); }
+.wy4-accent { font-weight: 500; color: var(--ed-purple); }
+.wy4-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: clamp(48px, 5vw, 80px) 0 0; padding: 0; overflow: hidden; border-radius: var(--pg-r); list-style: none; }
+
+.wy4-grid li {
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(280px, 22vw, 360px);
+  padding: clamp(24px, 2.4vw, 40px);
+  background: #ebe5f4;
+}
+
+.wy4-grid li:nth-child(even) { background: #e2d9f0; }
+.wy4-grid .ca-mark { width: 36px; height: 36px; fill: var(--ed-purple); }
+.wy4-grid .ca-mark__knock { fill: #ebe5f4; stroke: #ebe5f4; }
+.wy4-grid li:nth-child(even) .ca-mark__knock { fill: #e2d9f0; stroke: #e2d9f0; }
+.wy4-grid h3 { margin: auto 0 0; padding-top: 40px; font-size: var(--pg-title); font-weight: 500; line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; }
+.wy4-grid p { margin: 12px 0 0; font-size: var(--pg-small); line-height: 1.55; color: rgb(17 10 31 / 0.72); text-wrap: pretty; }
+
+
+.ca .wy4 .ca-h2 { font-size: var(--fr-h2); font-weight: 400; letter-spacing: -0.03em; }
+
+/* the shared heading of the three sections: centred, large, one weight */
+:root { --sx-h2: clamp(2.75rem, 4.6vw, 5rem); --sx-lead: clamp(1.25rem, 1.6vw, 1.75rem); --sx-body: clamp(1.0625rem, 1.15vw, 1.3125rem); }
+.ca .st2 .ca-h2,
+.ca .md .ca-h2,
+.ca .cx2 .ca-h2 { max-width: none; margin: 0; font-size: var(--sx-h2); font-weight: 500; line-height: 1.02; letter-spacing: -0.035em; text-align: center; color: inherit; text-wrap: balance; }
+
+/* the story: two chapters, the films then the company, one arrow between */
+.st3 { padding: clamp(88px, 7.4vw, 128px) var(--pg-edge); background: var(--pg-dark); color: #fff; }
+.st3-in { max-width: var(--pg-max); margin: 0 auto; }
+.st3-head { text-align: center; }
+.ca .st3 .ca-h2 { max-width: none; margin: 0; font-size: var(--sx-h2); font-weight: 500; line-height: 1.02; letter-spacing: -0.035em; text-align: center; color: #fff; }
+.st3-sub { margin: 16px 0 0; font-size: var(--sx-lead); color: #b79ce3; }
+
+.st3-chapters { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 1.6vw, 28px); margin-top: clamp(48px, 4.6vw, 72px); }
+
+.st3-ch { display: flex; flex-direction: column; overflow: hidden; border-radius: 28px; }
+.st3-ch--films { background: #1a1230; box-shadow: inset 0 0 0 1px rgb(228 217 245 / 0.1); }
+.st3-ch--brand { background: #fff; color: var(--ed-ink); }
+
+.st3-art { position: relative; height: clamp(220px, 19vw, 320px); }
+.st3-ch--films .st3-art { background: radial-gradient(70% 90% at 50% 100%, rgb(103 47 178 / 0.5), transparent 75%); }
+.st3-art--brand { display: grid; place-items: center; background: #f1ebfa; }
+.st3-mark { width: 58%; height: auto; }
+
+.st3-film { position: absolute; top: 54%; left: 50%; width: 40%; aspect-ratio: 16 / 9; margin: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.14), 0 24px 48px -16px rgb(0 0 0 / 0.7); }
+.st3-film img { object-fit: cover; }
+.st3-film--0 { transform: translate(-112%, -50%) rotate(-6deg); }
+.st3-film--0 img { transform: scale(1.08); }
+.st3-film--1 { z-index: 2; width: 46%; transform: translate(-50%, -58%); }
+.st3-film--2 { transform: translate(12%, -50%) rotate(6deg); }
+
+.st3-words { margin: 0; padding: clamp(28px, 2.6vw, 44px); font-size: clamp(1.125rem, 1.35vw, 1.5rem); line-height: 1.45; letter-spacing: -0.01em; text-wrap: pretty; }
+.st3-ch--films .st3-words { color: #fff; }
+.st3-ch--brand .st3-words { color: var(--ed-ink); }
+
+.st3-arrow {
+  position: absolute;
+  top: calc(clamp(220px, 19vw, 320px) - 28px);
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-left: -28px;
+  border-radius: 50%;
+  background: var(--ed-purple);
+  color: #fff;
+  box-shadow: 0 0 0 6px var(--pg-dark);
+}
+
+.st3-arrow svg { width: 22px; height: 22px; }
+
+/* the method: five cards on the purple ground */
+.md { padding: clamp(72px, 6vw, 104px) var(--pg-edge); background: var(--ed-purple); color: #fff; }
+.md-in { max-width: var(--pg-max); margin: 0 auto; }
+.md-head { text-align: center; }
+.md-sub { margin: 12px 0 0; font-size: var(--sx-body); color: rgb(255 255 255 / 0.84); }
+.ca .md .ca-h2 { font-size: clamp(2.5rem, 3.8vw, 4rem); }
+.md-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.1vw, 20px); margin: clamp(36px, 3.4vw, 56px) 0 0; padding: 0; list-style: none; }
+
+.md-c {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(20px, 1.7vw, 28px);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 48px -28px rgb(40 12 90 / 0.5);
+  transition: translate 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .md-c:hover { translate: 0 -4px; }
+}
+
+.md-c__top { display: flex; align-items: center; justify-content: space-between; }
+.md-c .ca-mark { width: 24px; height: 24px; fill: var(--ed-purple); }
+.md-c .ca-mark__knock { fill: #fff; stroke: #fff; }
+.md-no { font-size: var(--pg-small); font-variant-numeric: tabular-nums; color: rgb(17 10 31 / 0.45); }
+.md-c h3 { margin: clamp(28px, 2.6vw, 40px) 0 0; font-size: clamp(1.125rem, 1.25vw, 1.375rem); font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; color: var(--ed-ink); text-wrap: balance; }
+.md-c p { margin: 10px 0 0; font-size: var(--pg-small); line-height: 1.5; color: rgb(17 10 31 / 0.7); text-wrap: pretty; }
+
+/* the close: one line, its words and the button */
+.cx2 { padding: clamp(80px, 6.4vw, 112px) var(--pg-edge); background: var(--pg-dark); color: #fff; text-align: center; }
+.cx2-in { max-width: 56rem; margin: 0 auto; }
+.ca .cx2 .ca-h2 { font-size: clamp(2.5rem, 4.4vw, 4.5rem); }
+.cx2-accent { color: #b79ce3; }
+.cx2 p { max-width: 38rem; margin: 20px auto 32px; font-size: var(--sx-body); line-height: 1.55; color: rgb(255 255 255 / 0.76); }
+
+@media (max-width: 899px) {
+  .st3-chapters { grid-template-columns: minmax(0, 1fr); }
+  .st3-arrow { display: none; }
+  .md-cards { grid-template-columns: minmax(0, 1fr); }
+  .md-c h3 { margin-top: 16px; }
+  .tr-stats { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .tr-stats li + li { border-left: 0; }
+}
+
+/* ---------- small things that ship with every page ---------- */
+.ca ::selection { background: #672fb2; color: #fff; }
+.ca .ca-btn { font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease, translate 0.16s ease-out, scale 0.16s ease-out; }
+.ca .ca-btn:active { scale: 0.97; }
+.ca a:focus-visible,
+.ca button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.pn-arrow { flex: none; width: 1em; height: 1em; margin-left: 0.5em; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ca .ca-btn:has(.pn-arrow):hover .pn-arrow { translate: 2px 0; }
+}
+
+.pn-arrow { transition: translate 0.2s ease-out; }
+
+@media (min-width: 900px) {
+  .ca-services.ca-g-deep.ca-g-dark { border-radius: var(--pn-r); }
+}
+
+/* ---------- one type scale for every section below the hero: one heading, one description,
+   one card title, one card text, one paragraph. Declared last, so it is the only size that counts ---------- */
+:root {
+  --t-h2: clamp(2.5rem, 3.4vw, 3.75rem);
+  --t-sub: clamp(1.125rem, 1.2vw, 1.375rem);
+  --t-title: clamp(1.125rem, 1.2vw, 1.375rem);
+  --t-text: clamp(0.9375rem, 0.92vw, 1.0625rem);
+  --t-body: clamp(1.0625rem, 1.05vw, 1.1875rem);
+}
+
+.cx.ca section .ca-h2 {
+  max-width: none;
+  margin: 0;
+  font-size: var(--t-h2);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-align: center;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+.cx.ca .wy4-accent,
+.cx.ca .cx2-accent { font-weight: 500; }
+
+/* the line under each heading */
+.cx.ca .ca-services .ca-head .ca-p,
+.cx.ca .st3-sub,
+.cx.ca .md-sub,
+.cx.ca .cx2 p {
+  max-width: 38rem;
+  margin: 14px auto 0;
+  font-size: var(--t-sub);
+  line-height: 1.45;
+}
+
+.cx.ca .cx2 p { margin-bottom: 32px; }
+
+/* card titles and card text */
+.cx.ca .md-c h3,
+.cx.ca .wy4-grid h3 { font-size: var(--t-title); line-height: 1.25; letter-spacing: -0.015em; }
+.cx.ca .md-c p,
+.cx.ca .wy4-grid p,
+.cx.ca .tr-stats li > span:last-child { font-size: var(--t-text); line-height: 1.5; }
+
+/* the story's two paragraphs */
+.cx.ca .st3-words { font-size: var(--t-body); line-height: 1.55; }
+
+/* the service box: lower, the floor smaller to match */
+.cx.ca .svb.ca-services.ca-g-deep.ca-g-dark { padding-block: clamp(56px, 4.4vw, 80px); }
+.cx.ca .svb .ca-board { --ed-cell: clamp(120px, 9.6vw, 184px); height: clamp(300px, 22vw, 420px); }
+
+/* every section below the hero shares one content width */
+.cx.ca .wy4-in { max-width: var(--pg-max); margin: 0 auto; }
+
+/* the story's first chapter: the play form, for the films, in place of the stills */
+.cx.ca .st3-art--films { display: grid; place-items: center; }
+.st3-play { width: clamp(88px, 7.4vw, 132px); height: auto; fill: var(--ed-purple); filter: drop-shadow(0 24px 40px rgb(103 47 178 / 0.45)); }
+.st3-play__knock { fill: #fff; }
+
+/* the story: one centred column, no cards */
+.cx.ca .st3-flow { display: flex; flex-direction: column; align-items: center; gap: clamp(28px, 2.6vw, 40px); max-width: 52rem; margin: clamp(48px, 4.4vw, 72px) auto 0; text-align: center; }
+.cx.ca .st3-flow .st3-words { margin: 0; padding: 0; font-size: clamp(1.375rem, 1.75vw, 2rem); line-height: 1.45; letter-spacing: -0.015em; color: #fff; text-wrap: pretty; }
+.cx.ca .st3-flow .st3-play { width: 40px; height: auto; fill: var(--ed-purple); filter: none; }
+
+/* the story: the first paragraph on one side, the second on the other, a step lower */
+.cx.ca .st3-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(32px, 4vw, 72px);
+  max-width: var(--pg-max);
+  text-align: left;
+}
+
+.cx.ca .st3-flow .st3-words:first-child { grid-column: 1; }
+.cx.ca .st3-flow .st3-play { grid-column: 2; align-self: center; }
+.cx.ca .st3-flow .st3-words:last-child { grid-column: 3; margin-top: clamp(96px, 9vw, 160px); }
+
+@media (max-width: 899px) {
+  .cx.ca .st3-flow { grid-template-columns: minmax(0, 1fr); row-gap: 24px; text-align: left; }
+  .cx.ca .st3-flow .st3-words:first-child,
+  .cx.ca .st3-flow .st3-play,
+  .cx.ca .st3-flow .st3-words:last-child { grid-column: 1; margin-top: 0; }
+}
+
+/* titles: every word starts with a capital (owner, 3 Nov 2026); set in CSS so the copy stays as written */
+.cx.ca h1,
+.cx.ca h2,
+.cx.ca h3,
+.cx.ca .ca-tile__title { text-transform: capitalize; }
+
+/* ---------- design pass, 3 Nov 2026 (from Directive, TripleDart and Growth Catalyst) ---------- */
+
+/* headings in one weight; the word that matters only takes the brand colour (owner: same boldness for every word) */
+.cx.ca section .ca-h2 { font-weight: 300; letter-spacing: -0.035em; }
+.cx.ca .h2-em { font-weight: inherit; letter-spacing: inherit; color: var(--ed-purple); }
+.cx.ca .st3 .h2-em,
+.cx.ca .cx2 .h2-em { color: #b79ce3; }
+.cx.ca .md .ca-h2 { color: #e6dcf5; }
+.cx.ca .md .h2-em { color: #fff; }
+
+/* the track record: the figures carry the section, large and bold */
+.cx.ca .tr-stats { margin-block: clamp(40px, 4vw, 64px) clamp(40px, 3.6vw, 56px); }
+.cx.ca .tr-stats li { gap: 14px; padding-block: 16px; }
+.cx.ca .tr-stats .ca-proof__v { font-size: clamp(3rem, 4.2vw, 5rem); font-weight: 600; letter-spacing: -0.05em; }
+
+/* why us: each form sits in a white square, the cells a little lower */
+.cx.ca .wy4-grid li { min-height: clamp(250px, 19vw, 320px); }
+.cx.ca .wy4-grid .ca-mark { box-sizing: content-box; width: 28px; height: 28px; padding: 14px; border-radius: 16px; background: #fff; }
+.cx.ca .wy4-grid .ca-mark__knock,
+.cx.ca .wy4-grid li:nth-child(even) .ca-mark__knock { fill: #fff; stroke: #fff; }
+
+/* buttons with the arrow in a white disc: it leaves to the right on hover and a second one comes in from the left */
+.cx.ca .ca-btn--go { gap: 14px; padding-right: 8px; }
+.go-disc {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ed-purple);
+}
+
+.ca-btn--pink .go-disc { color: var(--pink-deep); }
+.go-disc svg { grid-area: 1 / 1; width: 16px; height: 16px; transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.go-disc svg + svg { translate: -220% 0; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ca-btn--go:hover .go-disc svg:first-child { translate: 220% 0; }
+  .ca-btn--go:hover .go-disc svg + svg { translate: 0 0; }
+}
+
+
+/* why us on smaller screens: two cells a row, then one */
+@media (max-width: 899px) {
+  .cx.ca .wy4-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cx.ca .wy4-grid li { min-height: 0; }
+  .cx.ca .wy4-grid h3 { padding-top: 32px; }
+}
+
+@media (max-width: 599px) {
+  .cx.ca .wy4-grid { grid-template-columns: minmax(0, 1fr); }
+  .cx.ca .wy4-grid li:nth-child(even) { background: #ebe5f4; }
+  .cx.ca .wy4-grid li + li { border-top: 1px solid rgb(103 47 178 / 0.12); }
+}
+
+/* cards carry no numbers (owner, 3 Nov 2026): the service tiles keep their form at the top right */
+.cx.ca .ca-tile__top { justify-content: flex-end; }
+
+/* a small square grid behind every section below the hero, faded where the words sit */
+.cx.ca .st3,
+.cx.ca .tr,
+.cx.ca .md,
+.cx.ca .wy4,
+.cx.ca .cx2 { --grid: rgb(103 47 178 / 0.09); position: relative; isolation: isolate; }
+
+.cx.ca .st3,
+.cx.ca .cx2 { --grid: rgb(255 255 255 / 0.07); }
+.cx.ca .md { --grid: rgb(255 255 255 / 0.1); }
+
+.cx.ca .st3::before,
+.cx.ca .tr::before,
+.cx.ca .md::before,
+.cx.ca .wy4::before,
+.cx.ca .cx2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center center;
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.3) 50%, #000 100%);
+  mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.3) 50%, #000 100%);
+}
+
+/* cards: the title on the left, an icon for what the card says on the right of the same line (owner, 3 Nov 2026) */
+.cd-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.cx.ca .cd-head h3 { flex: 1 1 auto; min-width: 0; margin: 0; padding: 0; }
+.cd-ic { display: grid; flex: none; place-items: center; width: 44px; height: 44px; margin-top: -4px; border-radius: 12px; background: #f1ebf9; color: var(--ed-purple); }
+.cd-ic svg { width: 22px; height: 22px; }
+.cx.ca .md-c p,
+.cx.ca .wy4-grid p { margin-top: 14px; }
+.cx.ca .wy4-grid li { min-height: 0; }
+.cx.ca .wy4-grid .cd-ic { background: #fff; }
+.cd-nw { white-space: nowrap; }
+.cx.ca .wy4-grid li { padding: clamp(24px, 2vw, 32px); }
+.cx.ca .wy4-grid .cd-head { gap: 12px; }
+.cx.ca .wy4-grid .cd-ic { width: 40px; height: 40px; }
+/* the service cards on phones share the same first line */
+.cx.ca .ca-svc .cd-head h3 { font-size: 1.25rem; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em; }
+
+/* ---------- 3 Nov 2026, owner round ---------- */
+
+/* the story: the two paragraphs side by side, top-aligned, no mark between */
+@media (min-width: 900px) {
+  .cx.ca .st3-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 6vw, 112px); }
+  .cx.ca .st3-flow .st3-words:last-child { grid-column: 2; margin-top: 0; }
+}
+
+/* the method: the cards tilt a little toward the pointer, and their first line stands off the card */
+.cx.ca .md-cards { perspective: 1200px; }
+.cx.ca .md-c {
+  transform-style: preserve-3d;
+  transition:
+    translate 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    rotate 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease;
+}
+
+.cx.ca .md-c .cd-head { transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .md-c:hover { translate: 0 -6px; box-shadow: 0 40px 64px -32px rgb(30 8 70 / 0.6); }
+  .cx.ca .md-c:hover .cd-head { translate: 0 0 28px; }
+}
+
+/* why us: glass cards over the brand's own forms. The forms are flat and solid; only the cards are glass */
+.wy4-stage { position: relative; margin-top: clamp(48px, 5vw, 80px); }
+.cx.ca .wy4-grid { position: relative; z-index: 1; gap: clamp(14px, 1.4vw, 24px); margin: 0; overflow: visible; border-radius: 0; }
+.wy4-forms { position: absolute; inset: -14% -3%; z-index: 0; pointer-events: none; }
+
+.wy4-form {
+  position: absolute;
+  height: auto;
+  animation: wy4-drift var(--t, 18s) ease-in-out infinite alternate;
+}
+
+.wy4-form--corner { top: 0; left: 6%; width: clamp(180px, 19vw, 340px); fill: var(--ed-purple); --dx: 28px; --dy: 22px; }
+.wy4-form--disc { top: 34%; left: 38%; width: clamp(160px, 16vw, 290px); fill: #b49ae0; --dx: -30px; --dy: -16px; --t: 22s; }
+.wy4-form--deep { top: -6%; left: 64%; width: clamp(150px, 14vw, 260px); fill: #4b2183; --dx: -20px; --dy: 26px; --t: 20s; }
+.wy4-form--pink { right: 7%; bottom: 6%; width: clamp(64px, 5.6vw, 104px); fill: #ff0080; --dx: 18px; --dy: -20px; --t: 16s; }
+
+@keyframes wy4-drift {
+  to { translate: var(--dx) var(--dy); }
+}
+
+.cx.ca .wy4-grid li,
+.cx.ca .wy4-grid li:nth-child(even) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.6);
+  border-radius: 24px;
+  background: rgb(255 255 255 / 0.44);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 1px 0 0 rgb(255 255 255 / 0.45),
+    inset 0 -1px 0 rgb(103 47 178 / 0.08),
+    0 24px 48px -26px rgb(60 20 120 / 0.38);
+}
+
+/* the light catching the top of the glass */
+.cx.ca .wy4-grid li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(150deg, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 38%);
+  pointer-events: none;
+}
+
+.cx.ca .wy4-grid .cd-ic { background: rgb(255 255 255 / 0.78); box-shadow: inset 0 1px 0 #fff; }
+
+@media (max-width: 599px) {
+  .cx.ca .wy4-grid li + li { border-top: 1px solid rgb(255 255 255 / 0.6); }
+  .wy4-forms { inset: -4% -10%; }
+  .wy4-form--corner { top: 4%; left: -6%; }
+  .wy4-form--disc { top: 40%; left: 46%; }
+  .wy4-form--deep { top: 70%; left: -8%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wy4-form { animation: none; }
+}
+/* the forms may reach past the row, never past the page */
+.cx.ca .wy4 { overflow-x: clip; }
+/* the glass cards: a little more tint for reading, a slimmer first line so every title fits beside its icon */
+.cx.ca .wy4-grid { gap: clamp(12px, 1.1vw, 18px); }
+.cx.ca .wy4-grid li,
+.cx.ca .wy4-grid li:nth-child(even) { padding: clamp(22px, 1.8vw, 30px); background: rgb(255 255 255 / 0.5); }
+.cx.ca .wy4-grid .cd-head { gap: 10px; }
+.cx.ca .wy4-grid .cd-ic { width: 36px; height: 36px; border-radius: 11px; }
+.cx.ca .wy4-grid .cd-ic svg { width: 20px; height: 20px; }
+/* in-between widths: the method as three then two, why us as two by two, so every title fits beside its icon */
+.cx.ca .wy4-grid li,
+.cx.ca .wy4-grid li:nth-child(even) { padding: 24px; }
+.cx.ca .wy4-grid .cd-head { gap: 8px; }
+.cx.ca .wy4-grid .cd-ic { width: 32px; height: 32px; border-radius: 10px; }
+.cx.ca .wy4-grid .cd-ic svg { width: 18px; height: 18px; }
+
+@media (min-width: 900px) and (max-width: 1279px) {
+  .cx.ca .md-cards { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .cx.ca .md-c { grid-column: span 2; }
+  .cx.ca .md-c:nth-child(n + 4) { grid-column: span 3; }
+}
+
+@media (min-width: 900px) and (max-width: 1359px) {
+  .cx.ca .wy4-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 699px) {
+  .cx.ca .wy4-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- 3 Nov 2026, second pass on the method and why cards ---------- */
+
+/* the method: the tilt and lift come from script (small, eased); a soft light and a lit edge follow the pointer.
+   Nothing on the card moves on its own */
+.cx.ca .md-c { position: relative; isolation: isolate; transition: box-shadow 0.5s ease; }
+.cx.ca .md-c .cd-head { transition: none; }
+
+.cx.ca .md-c::before,
+.cx.ca .md-c::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.cx.ca .md-c::before {
+  z-index: -1;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgb(103 47 178 / 0.09), transparent 65%);
+}
+
+.cx.ca .md-c::after {
+  padding: 1.5px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgb(103 47 178 / 0.75), rgb(183 156 227 / 0.35) 45%, transparent 72%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .md-c:hover { translate: none; box-shadow: 0 36px 60px -30px rgb(30 8 70 / 0.55); }
+  .cx.ca .md-c:hover .cd-head { translate: none; }
+  .cx.ca .md-c:hover::before,
+  .cx.ca .md-c:hover::after { opacity: 1; }
+}
+
+/* why us: a soft mesh of the brand's colours behind the glass, each glow drawn soft (no filter) and drifting slowly */
+.wy4-glow { position: absolute; inset: -20% -6%; z-index: 0; pointer-events: none; }
+
+.wy4-orb {
+  position: absolute;
+  aspect-ratio: 1.35;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--c), transparent);
+  animation: wy4-drift var(--t, 20s) ease-in-out infinite alternate;
+}
+
+.wy4-orb--a { top: 8%; left: 0; width: 40%; --c: rgb(103 47 178 / 0.85); --dx: 40px; --dy: 18px; }
+.wy4-orb--b { top: 30%; left: 26%; width: 38%; --c: rgb(180 154 224 / 0.95); --dx: -36px; --dy: -14px; --t: 24s; }
+.wy4-orb--c { top: 0; left: 50%; width: 34%; --c: rgb(75 33 131 / 0.75); --dx: -28px; --dy: 22px; --t: 22s; }
+.wy4-orb--d { top: 38%; left: 68%; width: 26%; --c: rgb(255 0 128 / 0.42); --dx: 26px; --dy: -18px; --t: 18s; }
+.wy4-orb--e { top: -4%; left: 78%; width: 26%; --c: rgb(217 203 239 / 1); --dx: -20px; --dy: 16px; --t: 26s; }
+
+@media (max-width: 699px) {
+  .wy4-glow { inset: -4% -24%; }
+  .wy4-orb { width: 90%; }
+  .wy4-orb--a { top: 0; left: -10%; }
+  .wy4-orb--b { top: 22%; left: 30%; }
+  .wy4-orb--c { top: 44%; left: -6%; }
+  .wy4-orb--d { top: 64%; left: 36%; width: 70%; }
+  .wy4-orb--e { top: 80%; left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wy4-orb { animation: none; }
+}
+/* each glow centred on the row (margin-top in % is read against the width, so w / 2.7 is half the glow's own height) */
+.cx.ca .wy4-orb { top: calc(50% + var(--oy, 0%)); width: var(--w); margin-top: calc(var(--w) / -2.7); }
+.cx.ca .wy4-orb--a { --w: 40%; --oy: -6%; --c: rgb(103 47 178 / 0.9); }
+.cx.ca .wy4-orb--b { --w: 36%; --oy: 8%; --c: rgb(180 154 224 / 1); }
+.cx.ca .wy4-orb--c { --w: 34%; --oy: -10%; --c: rgb(75 33 131 / 0.8); }
+.cx.ca .wy4-orb--d { --w: 26%; --oy: 6%; --c: rgb(255 0 128 / 0.45); }
+.cx.ca .wy4-orb--e { --w: 26%; --oy: -12%; --c: rgb(217 203 239 / 1); }
+
+@media (max-width: 699px) {
+  .cx.ca .wy4-orb { --w: 90%; margin-top: 0; }
+  .cx.ca .wy4-orb--a { top: 0; }
+  .cx.ca .wy4-orb--b { top: 20%; }
+  .cx.ca .wy4-orb--c { top: 42%; }
+  .cx.ca .wy4-orb--d { top: 62%; --w: 70%; }
+  .cx.ca .wy4-orb--e { top: 78%; }
+}
+
+/* ---------- 3 Nov 2026: our story after the owner's reference (copy on the left, a purple card with its picture on the right) ---------- */
+.sty { position: relative; isolation: isolate; overflow: hidden; padding: clamp(88px, 7.4vw, 128px) var(--pg-edge); background: #f7f6fa; color: var(--ed-ink); }
+
+.sty::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(103 47 178 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(103 47 178 / 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center center;
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.3) 50%, #000 100%);
+  mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.3) 50%, #000 100%);
+}
+
+/* faint line drawings scattered on the ground, as in the reference */
+.sty-doodles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.sty-dd { position: absolute; width: 28px; height: 28px; color: rgb(103 47 178 / 0.22); stroke-width: 1.5; }
+.sty-dd--1 { top: 8%; left: 7%; width: 34px; height: 34px; fill: rgb(183 156 227 / 0.35); stroke: none; }
+.sty-dd--2 { top: 6%; left: 33%; }
+.sty-dd--3 { top: 30%; left: 49%; width: 32px; height: 32px; }
+.sty-dd--4 { top: 50%; left: 4%; width: 34px; height: 34px; }
+.sty-dd--5 { top: 54%; right: 3.5%; width: 32px; height: 32px; }
+.sty-dd--6 { top: 7%; right: 7%; }
+.sty-dd--7 { bottom: 9%; left: 34%; width: 22px; height: 22px; }
+
+.sty-in {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(48px, 6vw, 112px);
+  max-width: var(--pg-max);
+  margin: 0 auto;
+}
+
+.cx.ca .sty .ca-h2 { text-align: left; color: var(--ed-ink); }
+.sty-sub { margin: 14px 0 0; font-size: var(--t-sub); line-height: 1.45; color: var(--ed-purple); }
+.sty-p { max-width: 34rem; margin: clamp(28px, 2.6vw, 40px) 0 0; font-size: var(--t-body); line-height: 1.7; color: var(--ed-ink); text-wrap: pretty; }
+
+.sty-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(183 156 227 / 0.22);
+  border-radius: 32px;
+  background: #341a57;
+  color: #fff;
+  box-shadow: 0 48px 80px -44px rgb(52 26 87 / 0.6);
+}
+
+.sty-card__p { margin: 0; padding: clamp(32px, 3.2vw, 52px) clamp(32px, 3.2vw, 52px) 0; font-size: var(--t-body); line-height: 1.65; color: #fff; text-wrap: pretty; }
+
+/* the picture shares the card's purple, and fades in from it at the top */
+.sty-art {
+  position: relative;
+  aspect-ratio: 1376 / 768;
+  margin-top: clamp(4px, 0.8vw, 12px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 24%);
+  mask-image: linear-gradient(to bottom, transparent, #000 24%);
+}
+
+.sty-art img { object-fit: cover; }
+
+@media (max-width: 899px) {
+  .sty-in { grid-template-columns: minmax(0, 1fr); }
+  .sty-card { border-radius: 24px; }
+  .sty-dd--3,
+  .sty-dd--7 { display: none; }
+}
+
+/* ---------- the method, made calm: no light or lit edge, a slow lean and lift only, and a thin line drawn along the top ---------- */
+.cx.ca .md-c::before { display: none; }
+
+.cx.ca .md-c::after {
+  inset: 0 24px auto;
+  height: 2px;
+  padding: 0;
+  border-radius: 0 0 2px 2px;
+  background: var(--ed-purple);
+  -webkit-mask: none;
+  mask: none;
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cx.ca .md-c { transition: box-shadow 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .md-c:hover { box-shadow: 0 40px 70px -36px rgb(30 8 70 / 0.5); }
+  .cx.ca .md-c:hover::after { transform: scaleX(1); }
+}
+/* the side doodles stay just outside the content column at every width */
+.sty-dd--4 { left: max(1%, calc((100% - var(--pg-max)) / 2 - 76px)); }
+.sty-dd--5 { right: max(1%, calc((100% - var(--pg-max)) / 2 - 76px)); }
+.sty-dd--1 { left: max(2%, calc((100% - var(--pg-max)) / 2 - 40px)); }
+.sty-dd--6 { right: max(2%, calc((100% - var(--pg-max)) / 2 - 40px)); }
+@media (max-width: 1499px) { .sty-dd--4, .sty-dd--5 { top: auto; bottom: 6%; } }
+
+/* ---------- 3 Nov 2026, fourth pass ---------- */
+
+/* our story back on its own dark ground (owner); the layout stays */
+.cx.ca .sty { background: var(--pg-dark); color: #fff; }
+.cx.ca .sty::before {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+}
+.cx.ca .sty .ca-h2 { color: #fff; }
+.cx.ca .sty .h2-em { color: #b79ce3; }
+.cx.ca .sty-sub { color: #b79ce3; }
+.cx.ca .sty-p { color: rgb(255 255 255 / 0.86); }
+.cx.ca .sty-dd { color: rgb(183 156 227 / 0.3); }
+.cx.ca .sty-dd--1 { fill: rgb(183 156 227 / 0.3); }
+.cx.ca .sty-card { border-color: rgb(183 156 227 / 0.2); box-shadow: 0 48px 90px -40px rgb(0 0 0 / 0.7); }
+
+/* the method: Apple's card hover, read from apple.com: the card grows a few pixels and its shadow deepens,
+   0.3s on cubic-bezier(0, 0, 0.5, 1). No tilt, no light, no line */
+.cx.ca .md-c::after { display: none; }
+.cx.ca .md-c {
+  box-shadow: 8px 8px 16px 0 rgb(30 8 70 / 0.16);
+  transition:
+    scale 0.3s cubic-bezier(0, 0, 0.5, 1),
+    box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .md-c:hover { translate: none; scale: 1.02; box-shadow: 10px 14px 28px 0 rgb(30 8 70 / 0.28); }
+}
+
+/* why us: each card holds its own colour and the words sit on a pane of Liquid Glass over it.
+   The pane's rim is Apple's own: two thin inner highlights, top left and bottom right */
+.cx.ca .wy4-grid li.wy4-c,
+.cx.ca .wy4-grid li.wy4-c:nth-child(even) {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: clamp(300px, 22vw, 360px);
+  padding: 10px;
+  border: 0;
+  border-radius: 28px;
+  background: #1e0b38;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 8px 8px 16px 0 rgb(30 8 70 / 0.14);
+  transition:
+    scale 0.3s cubic-bezier(0, 0, 0.5, 1),
+    box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.cx.ca .wy4-grid li.wy4-c::before { display: none; }
+
+.wy4-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(62% 56% at var(--ax) var(--ay), var(--a1), transparent 70%),
+    radial-gradient(56% 52% at var(--bx) var(--by), var(--a2), transparent 70%),
+    radial-gradient(74% 62% at var(--qx) var(--qy), var(--a3), transparent 72%),
+    #1e0b38;
+  transition: scale 0.6s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.wy4-c:nth-child(1) .wy4-art { --ax: 18%; --ay: 18%; --a1: #8b4fe0; --bx: 88%; --by: 34%; --a2: rgb(180 154 224 / 0.85); --qx: 50%; --qy: 105%; --a3: #4b2183; }
+.wy4-c:nth-child(2) .wy4-art { --ax: 82%; --ay: 14%; --a1: #672fb2; --bx: 12%; --by: 42%; --a2: rgb(217 203 239 / 0.75); --qx: 70%; --qy: 100%; --a3: #8b4fe0; }
+.wy4-c:nth-child(3) .wy4-art { --ax: 30%; --ay: 10%; --a1: rgb(180 154 224 / 0.9); --bx: 86%; --by: 50%; --a2: #672fb2; --qx: 20%; --qy: 100%; --a3: #4b2183; }
+.wy4-c:nth-child(4) .wy4-art { --ax: 74%; --ay: 16%; --a1: #8b4fe0; --bx: 16%; --by: 30%; --a2: rgb(255 0 128 / 0.6); --qx: 60%; --qy: 104%; --a3: #672fb2; }
+
+.wy4-glass {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding: clamp(18px, 1.5vw, 24px);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.1);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+  box-shadow:
+    inset 1.8px 1.8px 0.5px -1.4px rgb(255 255 255 / 0.75),
+    inset -1.5px -1.5px 0.5px -1.1px rgb(255 255 255 / 0.45),
+    0 12px 32px -14px rgb(0 0 0 / 0.4);
+}
+
+.cx.ca .wy4-glass h3 { color: #fff; }
+.cx.ca .wy4-glass p { color: rgb(255 255 255 / 0.8); }
+.cx.ca .wy4-grid .wy4-glass .cd-ic {
+  background: rgb(255 255 255 / 0.14);
+  color: #fff;
+  box-shadow:
+    inset 1.2px 1.2px 0.5px -0.8px rgb(255 255 255 / 0.7),
+    inset -1px -1px 0.5px -0.7px rgb(255 255 255 / 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .wy4-grid li.wy4-c:hover { scale: 1.02; box-shadow: 10px 14px 28px 0 rgb(30 8 70 / 0.26); }
+  .wy4-c:hover .wy4-art { scale: 1.08; }
+}
+
+@media (max-width: 699px) {
+  .cx.ca .wy4-grid li.wy4-c,
+  .cx.ca .wy4-grid li.wy4-c:nth-child(even) { min-height: 260px; border-top: 0; }
+}
+/* the card takes the new picture's own purple */
+.cx.ca .sty-card { background: #2f1a4c; }
+/* one structure for all four: the same band of colour on top, the glass filling the rest, so every pane starts on one line */
+.cx.ca .wy4-grid li.wy4-c,
+.cx.ca .wy4-grid li.wy4-c:nth-child(even) { min-height: 0; padding: 8px; }
+.cx.ca .wy4-glass { flex: 1 1 auto; margin-top: clamp(96px, 7.4vw, 136px); padding: 20px; }
+
+/* ---------- 3 Nov 2026, fifth pass ---------- */
+
+/* our story: the heading centred, the two paragraphs side by side, the team picture centred below them */
+.sty-wrap { position: relative; z-index: 1; max-width: var(--pg-max); margin: 0 auto; }
+.sty-top { text-align: center; }
+.cx.ca .sty .ca-h2 { text-align: center; }
+.cx.ca .sty-top .sty-sub { margin-inline: auto; }
+.sty-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(48px, 6vw, 112px); margin-top: clamp(40px, 4vw, 64px); }
+.cx.ca .sty-cols .sty-p { max-width: none; margin: 0; }
+
+.sty-pic {
+  position: relative;
+  max-width: 1040px;
+  aspect-ratio: 1376 / 768;
+  margin: clamp(48px, 4.6vw, 72px) auto 0;
+  overflow: hidden;
+  border: 1px solid rgb(183 156 227 / 0.2);
+  border-radius: 28px;
+  box-shadow: 0 48px 90px -40px rgb(0 0 0 / 0.7);
+}
+
+.sty-pic img { object-fit: cover; }
+.sty-dd--3,
+.sty-dd--7 { display: none; }
+
+@media (max-width: 899px) {
+  .sty-cols { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .sty-pic { border-radius: 20px; }
+}
+
+/* why us: Directive's value cells. Alternating soft tints, a fine purple rule beside the words, the line icon on the
+   title's line, the text anchored at the foot (TripleDart's structure). On hover a cell fills with the deep purple */
+.wv-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(48px, 5vw, 80px) 0 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  list-style: none;
+}
+
+.wv { display: flex; min-height: clamp(300px, 23vw, 380px); padding: 28px; background: #ebe5f4; transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.wv:nth-child(even) { background: #f3eff9; }
+.wv-body { display: flex; flex: 1; flex-direction: column; padding-left: 18px; border-left: 1px solid rgb(103 47 178 / 0.45); transition: border-color 0.5s ease; }
+.cx.ca .wv h3 { color: var(--ed-ink); transition: color 0.5s ease; }
+.cx.ca .wv .cd-head { gap: 8px; }
+.cx.ca .wv .cd-ic { width: auto; height: auto; margin-top: -2px; border-radius: 0; background: none; box-shadow: none; color: var(--ed-purple); transition: color 0.5s ease; }
+.cx.ca .wv .cd-ic svg { width: 28px; height: 28px; stroke-width: 1.5; }
+.cx.ca .wv p { margin: auto 0 0; padding-top: 28px; font-size: var(--t-text); line-height: 1.55; color: rgb(17 10 31 / 0.7); transition: color 0.5s ease; }
+
+@media (hover: hover) and (pointer: fine) {
+  .wv:hover,
+  .wv:nth-child(even):hover { background: #4b2183; }
+  .wv:hover .wv-body { border-color: rgb(217 203 239 / 0.55); }
+  .cx.ca .wv:hover h3 { color: #fff; }
+  .cx.ca .wv:hover .cd-ic { color: #d9cbef; }
+  .cx.ca .wv:hover p { color: rgb(255 255 255 / 0.82); }
+}
+
+@media (max-width: 1439px) {
+  .wv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wv { min-height: 260px; }
+  .wv:nth-child(2),
+  .wv:nth-child(3) { background: #f3eff9; }
+  .wv:nth-child(4) { background: #ebe5f4; }
+}
+
+@media (max-width: 699px) {
+  .wv-grid { grid-template-columns: minmax(0, 1fr); border-radius: 24px; }
+  .wv { min-height: 0; padding: 24px; }
+  .wv:nth-child(odd) { background: #ebe5f4; }
+  .wv:nth-child(even) { background: #f3eff9; }
+}
+.cx.ca .wv h3 { margin: 0; font-size: var(--t-title); font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; text-wrap: balance; }
+/* the alternate cells are white, so every cell keeps its edge against the light ground */
+.wv-grid { box-shadow: 0 0 0 1px rgb(103 47 178 / 0.1); }
+.wv:nth-child(even) { background: #fff; }
+@media (max-width: 1439px) {
+  .wv:nth-child(2), .wv:nth-child(3) { background: #fff; }
+  .wv:nth-child(4) { background: #ebe5f4; }
+}
+@media (max-width: 699px) {
+  .wv:nth-child(even) { background: #fff; }
+}
+
+/* ---------- 3 Nov 2026, sixth pass ---------- */
+
+/* our story: the team as a cut-out, a small design element under the words, settling into the ground at its foot */
+.cx.ca .sty-pic {
+  width: min(560px, 80%);
+  max-width: none;
+  aspect-ratio: 1376 / 684;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+.cx.ca .sty-pic img { object-fit: contain; }
+
+/* why us: the same card as the method, on the purple tint, with the same hover */
+.wn-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.1vw, 20px); margin: clamp(48px, 5vw, 80px) 0 0; padding: 0; list-style: none; }
+
+.wn {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(20px, 1.7vw, 28px);
+  border-radius: 20px;
+  background: #e9e1f5;
+  box-shadow: 8px 8px 16px 0 rgb(60 20 120 / 0.08);
+  transition:
+    scale 0.3s cubic-bezier(0, 0, 0.5, 1),
+    box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.cx.ca .wn h3 { margin: 0; font-size: var(--t-title); font-weight: 500; line-height: 1.25; letter-spacing: -0.015em; color: var(--ed-ink); text-wrap: balance; }
+.cx.ca .wn p { margin: 14px 0 0; font-size: var(--t-text); line-height: 1.55; color: rgb(17 10 31 / 0.72); text-wrap: pretty; }
+.cx.ca .wn .cd-ic { background: #fff; }
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .wn:hover { scale: 1.02; box-shadow: 10px 14px 28px 0 rgb(60 20 120 / 0.16); }
+}
+
+@media (max-width: 1439px) {
+  .wn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 699px) {
+  .wn-grid { grid-template-columns: minmax(0, 1fr); }
+}
+.wn { padding: 24px; }
+.cx.ca .wn .cd-head { gap: 12px; }
+.cx.ca .wn .cd-ic { width: 36px; height: 36px; border-radius: 11px; }
+.cx.ca .wn .cd-ic svg { width: 20px; height: 20px; }
+
+/* ---------- 3 Nov 2026, seventh pass ---------- */
+
+/* the footer reveal: the close's lower corners round as the page lifts off the footer (set from script) */
+.cx.ca .cx2 { overflow: hidden; }
+
+/* our story: the brand's forms lean behind the team, one purple, one pink, one faint; all fade out at the foot */
+.sty-stage {
+  position: relative;
+  width: min(1000px, 100%);
+  margin: clamp(48px, 4.6vw, 72px) auto 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 64%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 64%, transparent 98%);
+}
+
+.cx.ca .sty-pic { z-index: 1; margin: 0 auto; -webkit-mask-image: none; mask-image: none; }
+
+.sty-shape { position: absolute; bottom: -6%; border-radius: clamp(28px, 3vw, 48px); pointer-events: none; }
+.sty-shape--a { left: 15%; width: 30%; height: 82%; background: linear-gradient(180deg, #7b3fe0 0%, rgb(103 47 178 / 0.55) 55%, rgb(103 47 178 / 0) 100%); transform: skewX(-32deg); }
+.sty-shape--b { right: 15%; width: 26%; height: 62%; background: linear-gradient(180deg, #e0307e 0%, rgb(160 40 140 / 0.6) 55%, rgb(103 47 178 / 0) 100%); transform: skewX(32deg); }
+.sty-shape--c { right: -2%; width: 34%; height: 46%; background: linear-gradient(180deg, rgb(103 47 178 / 0.32), rgb(103 47 178 / 0)); transform: skewX(-32deg); }
+
+@media (max-width: 899px) {
+  .sty-shape--a { left: 6%; width: 38%; }
+  .sty-shape--b { right: 6%; width: 34%; }
+  .sty-shape--c { display: none; }
+}
+
+/* why us: the cards in the brand purple, white words; the icon in a white square */
+.wn {
+  background: linear-gradient(160deg, #7a3fd2 0%, #672fb2 60%, #5d29a3 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    8px 8px 16px 0 rgb(60 20 120 / 0.18);
+}
+
+.cx.ca .wn h3 { color: #fff; }
+.cx.ca .wn p { color: rgb(255 255 255 / 0.84); }
+.cx.ca .wn .cd-ic { background: #fff; color: var(--ed-purple); }
+
+@media (hover: hover) and (pointer: fine) {
+  .cx.ca .wn:hover { box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 10px 14px 28px 0 rgb(60 20 120 / 0.3); }
+}
+.sty-shape--a { width: 32%; height: 94%; }
+.sty-shape--b { width: 28%; height: 74%; }
+.sty-shape--c { height: 58%; background: linear-gradient(180deg, rgb(103 47 178 / 0.45), rgb(103 47 178 / 0)); }
+
+/* ---------- 3 Nov 2026, eighth pass: our story, the words on the left, the team on the right, a shorter section ---------- */
+.cx.ca .sty { padding-block: clamp(72px, 6vw, 104px); }
+.sty-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: clamp(40px, 5vw, 96px); margin-top: clamp(32px, 3vw, 48px); }
+.sty-text { display: grid; gap: clamp(18px, 1.6vw, 24px); }
+.cx.ca .sty-text .sty-p { max-width: 36rem; margin: 0; }
+.cx.ca .sty-body .sty-stage { width: 100%; margin: 0; }
+.cx.ca .sty-body .sty-pic { width: 100%; }
+.sty-dd--4, .sty-dd--5 { display: none; }
+
+@media (max-width: 899px) {
+  .sty-body { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cx.ca .sty-body .sty-pic { width: min(520px, 100%); }
+}
+.cx.ca .sty-body .sty-shape--a { left: 6%; width: 36%; height: 112%; }
+.cx.ca .sty-body .sty-shape--b { right: 4%; width: 32%; height: 92%; }
+.cx.ca .sty-body .sty-stage { padding-top: clamp(24px, 3vw, 48px); }
+.cx.ca .sty-body .sty-shape--a { height: 98%; }
+.cx.ca .sty-body .sty-shape--b { height: 82%; }
+
+/* the footer: even breathing above and below (the extra top padding read as a gap) */
+.ft.ft--min { padding-top: clamp(2.75rem, 3.4vw, 4rem); padding-bottom: clamp(2rem, 2.4vw, 2.75rem); }
