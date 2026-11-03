@@ -26,33 +26,37 @@ const FILM_H = 1536;
 const ART_W = 1600;
 const ART_H = 1000;
 
+/* the arrow in the button's white disc, the same one the buttons further down the page use */
+const ARROW = (
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" />
+  </svg>
+);
+
 const CSS = `
 .hx{position:relative;isolation:isolate;overflow:clip;height:100vh;height:100svh;min-height:600px;display:grid;align-items:center;
   padding:calc(var(--header-h, 80px) + 8px) 0 clamp(20px,3.4vh,40px);color:#fff;background:#120b20}
-.hx-video{position:absolute;left:0;top:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:100% 50%;pointer-events:none}
+.hx-video{position:absolute;left:0;top:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:100% 0%;pointer-events:none}
 .hx-rail{z-index:-1}
-.hx::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 1px 1px,rgb(217 203 239/.3) 1.1px,transparent 1.5px);background-size:40px 40px;background-position:center top;-webkit-mask-image:linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000);mask-image:linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000)}
+.hx::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(to right,rgb(217 203 239/.075) 1px,transparent 1px),linear-gradient(to bottom,rgb(217 203 239/.075) 1px,transparent 1px);background-size:44px 44px;background-position:0 0;-webkit-mask-image:linear-gradient(90deg,#000,rgb(0 0 0/.4) 10%,rgb(0 0 0/.16) 34%,transparent 50%);mask-image:linear-gradient(90deg,#000,rgb(0 0 0/.4) 10%,rgb(0 0 0/.16) 34%,transparent 50%)}
 .hx-bb,.hx-light{position:absolute;left:0;top:0;z-index:-1;width:${ART_W}px;height:${ART_H}px;max-width:none;transform-origin:0 0;pointer-events:none;visibility:hidden}
 .hx-bb{object-fit:cover}
 .hx-light{background:linear-gradient(170deg,rgb(255 255 255/.16),transparent 38%,transparent 62%,rgb(10 4 24/.3))}
-.hx-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;box-sizing:border-box;width:100%;padding-left:10%}
-.hx-tag{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:calc(46.8vw - 10vw);margin:0 0 clamp(16px,2.6vh,28px);font-size:.9375rem;font-weight:400;letter-spacing:.02em;color:rgb(255 255 255/.75)}
-.hx-tag::after{content:"";height:1px;background:rgb(255 255 255/.3)}
+.hx-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;box-sizing:border-box;width:100%;padding-left:var(--ed-edge,clamp(16px,4vw,80px))}
+.hx-tag{display:block;width:calc(46.8vw - 10vw);margin:0 0 clamp(16px,2.6vh,28px);font-size:.9375rem;font-weight:400;letter-spacing:.02em;color:rgb(255 255 255/.75)}
 .hx-h1{margin:0 0 0 -.03em;font-family:var(--font-outfit),sans-serif;font-weight:500;font-size:clamp(2.5rem,min(4.6vw,10vh),6.25rem);line-height:1.06;letter-spacing:-.025em}
 .hx-line{display:block;white-space:nowrap}
 .hx-line > span{display:inline-block}
 .hx-line--2{margin-top:.04em}
 .hx-tone{position:relative;display:inline-block;color:var(--lav-2)}
 .hx-under{position:absolute;left:0;bottom:-.1em;width:100%;height:.14em;overflow:visible;pointer-events:none}
-.hx-lead{margin:clamp(16px,2.8vh,28px) 0 0;max-width:26em;font-size:clamp(1.0625rem,1.15vw,1.375rem);font-weight:300;line-height:1.55;color:rgb(255 255 255/.82);text-wrap:pretty}
-.hx-actions{display:flex;gap:24px;margin-top:clamp(20px,3.4vh,32px)}
-.hx-actions .ca-btn svg{width:1em;height:1em;margin-left:.75em}
+.hx-lead{margin:clamp(16px,2.8vh,28px) 0 0;max-width:30em;font-size:clamp(1.0625rem,1.15vw,1.375rem);font-weight:300;line-height:1.55;color:rgb(255 255 255/.82);text-wrap:pretty}
+.hx-actions{display:flex;gap:24px;margin-top:clamp(24px,4.2vh,40px)}
 @media (max-width:899px){
   .hx{align-items:end}
-  .hx-tag::after{display:none}
-  .hx-video{height:48%;object-position:82% 50%;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+  .hx-video{height:48% !important;object-position:82% 50%;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
   .hx-tag{width:auto;letter-spacing:.12em}
-  .hx-h1{font-size:10vw}
+  .hx-h1{font-size:9vw}
   .hx-in{width:calc(100% - 32px);margin-inline:auto;padding-left:0}
   .hx-lead{font-size:1.0625rem;margin-top:16px}
   .hx-actions{margin-top:20px;gap:12px}
@@ -84,6 +88,7 @@ function faceMatrix(video: HTMLElement) {
   const e = p3[1] - p0[1] + h * p3[1];
   return `matrix3d(${a / ART_W},${d / ART_W},0,${g / ART_W},${b / ART_H},${e / ART_H},0,${h / ART_H},0,0,1,0,${p0[0]},${p0[1]},0,1)`;
 }
+
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -144,13 +149,13 @@ export function Hero() {
       <i className="hx-light" aria-hidden />
       <Image className="hx-video hx-rail" src="/hero/billboard-rail.webp" alt="" fill sizes="100vw" />
       <div className="hx-in">
-        <p className="hx-tag">B2B creative marketing agency</p>
-        <h1 className="hx-h1" aria-label="Creative that clicks, growth that follows">
+        <p className="hx-tag">From visibility to pipeline</p>
+        <h1 className="hx-h1" aria-label="Brands that get found, leads that follow">
           <span className="hx-line" aria-hidden>
             <span>
-              Creative that{" "}
+              Brands that get{" "}
               <span className="hx-tone">
-                clicks
+                found
                 <svg className="hx-under" viewBox="0 0 300 40" preserveAspectRatio="none">
                   <path d="M6 26 C 70 10, 160 8, 294 20" fill="none" stroke="#ff0080" strokeWidth={6} strokeLinecap="round" />
                 </svg>
@@ -158,19 +163,20 @@ export function Hero() {
             </span>
           </span>
           <span className="hx-line hx-line--2" aria-hidden>
-            <span>Growth that follows</span>
+            <span>Leads that follow</span>
           </span>
         </h1>
         <p className="hx-lead">
-          We are a creative marketing agency headquartered in Tampa, helping B2B brands turn attention into inbound leads through
-          brand strategy, websites, video marketing, social media and campaigns.
+          We are a B2B inbound lead generation company headquartered in Tampa. We turn your website, search, LinkedIn and video into more
+          enquiries from the buyers you want.
         </p>
         <div className="hx-actions">
-          <Link href="/contact" className="ca-btn ca-btn--pink">
+          <Link href="/contact" className="ca-btn ca-btn--pink ca-btn--go">
             Contact
-          </Link>
-          <Link href="/#work" className="ca-btn ca-btn--ghost-light">
-            See the work
+            <span className="go-disc" aria-hidden>
+              {ARROW}
+              {ARROW}
+            </span>
           </Link>
         </div>
       </div>

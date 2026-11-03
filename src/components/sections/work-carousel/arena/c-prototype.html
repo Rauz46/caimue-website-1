@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#110a1f; --ink-2:#1a1130; --purple:#672fb2; --purple-deep:#3e1a75; --lav:#e4d9f5; --lav-deep:#b7a2dc;
+  --u:1px; --cw:760px; --ch:655px;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);background:#fff}
+
+.wc{position:relative;height:100vh;height:100dvh;overflow:hidden;background-color:#fff;
+  background-image:linear-gradient(rgba(103,47,178,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(103,47,178,.045) 1px,transparent 1px);
+  background-size:64px 64px;background-position:center top;
+  user-select:none;-webkit-user-select:none}
+.wc-nav{height:80px}
+.wc h2{font-size:min(5vw,10vh);font-weight:500;letter-spacing:-.035em;line-height:1;text-align:center}
+
+.wc-rail{position:absolute;left:0;right:0;touch-action:pan-y;cursor:grab}
+.wc-rail.is-drag{cursor:grabbing}
+.wc-rail.is-drag .wc-card{cursor:grabbing}
+
+/* the card: one dark object, the same ink as the services floor */
+.wc-card{position:absolute;left:50%;top:0;width:var(--cw);height:var(--ch);margin-left:calc(var(--cw) / -2);
+  border-radius:calc(var(--u) * 34);background:var(--ink);overflow:hidden;transform-origin:50% 50%;
+  box-shadow:0 calc(var(--u) * 34) calc(var(--u) * 70) calc(var(--u) * -30) rgba(17,10,31,.55);cursor:pointer;visibility:hidden;contain:layout paint}
+.wc.is-moving .wc-card{will-change:transform}
+
+.wc-scene{position:absolute;inset:0;perspective:calc(var(--u) * 2300);perspective-origin:50% 38%}
+.wc-iso{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d}
+.wc-iso *{transform-style:preserve-3d}
+
+.wc-floor{position:absolute;
+  background-image:linear-gradient(rgba(228,217,245,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(228,217,245,.085) 1px,transparent 1px)}
+.wc-ground{position:absolute;background:#040108;border-radius:calc(var(--u) * 40);filter:blur(calc(var(--u) * 26))}
+
+.wc-sheet,.wc-tile{position:absolute;left:0;top:0}
+.wc-ex{position:absolute;inset:0}
+.wc-face{position:absolute;inset:0;overflow:hidden;transform-style:flat!important}
+.wc-face *{transform-style:flat!important}
+.wc-img{position:absolute;background-repeat:no-repeat;background-color:#fff}
+.wc-dim{position:absolute;inset:0;background:#5a3aa8;mix-blend-mode:multiply;will-change:opacity}
+.wc-rim{position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 calc(var(--u) * 1.5) rgba(255,255,255,.55);pointer-events:none}
+.wc-plumb{position:absolute;background:#e4d9f5;transform-origin:50% 0;will-change:opacity}
+.wc-mark{position:absolute;background:#e4d9f5;will-change:opacity}
+.wc-cast{position:absolute;left:0;top:0;background:#1d0a4a;will-change:transform,opacity}
+
+/* words sit directly on the card */
+.wc-words{position:absolute;left:calc(var(--u) * 44);bottom:calc(var(--u) * 40);width:calc(var(--u) * 560);
+  transform-origin:0 100%;color:#fff;pointer-events:none}
+.wc-words img{display:block;height:calc(var(--u) * 40);width:auto;max-width:calc(var(--u) * 210);object-fit:contain;object-position:0 100%;filter:brightness(0) invert(1);margin-bottom:calc(var(--u) * 16)}
+.wc-words p{font-size:calc(var(--u) * 22.5);line-height:1.36;font-weight:400;letter-spacing:-.005em;color:#efe9f8;text-wrap:pretty}
+
+.wc-ctrl{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;align-items:center;gap:10px}
+.wc-btn,.wc-arrow{height:52px;border-radius:26px;font:500 17px/1 Outfit,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .18s ease,color .18s ease;border:1.5px solid var(--purple)}
+.wc-btn{padding:0 28px}
+.wc-btn.fill{background:var(--purple);color:#fff}
+.wc-btn.line{background:#fff;color:var(--purple)}
+.wc-arrow{width:52px;padding:0;background:#fff;color:var(--ink);border-color:rgba(17,10,31,.22)}
+.wc-arrow svg{width:18px;height:18px}
+.wc-btn:active,.wc-arrow:active{transform:scale(.96)}
+@media (hover:hover){
+  .wc-btn.fill:hover{background:#5a27a0}
+  .wc-btn.line:hover,.wc-arrow:hover{background:var(--lav)}
+}
+.wc-btn:focus-visible,.wc-arrow:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+@media (max-width:640px){.wc-btn{padding:0 16px;font-size:15px;height:46px}.wc-arrow{width:46px;height:46px}.wc-ctrl{gap:6px}}
+</style>
+</head>
+<body>
+<section class="wc" aria-roledescription="carousel" aria-label="Our work">
+  <div class="wc-nav"></div>
+  <h2>Our work</h2>
+  <div class="wc-rail"></div>
+  <div class="wc-ctrl">
+    <button class="wc-arrow wc-prev" type="button" aria-label="Previous"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 9H3M8 4 3 9l5 5"/></svg></button>
+    <a class="wc-btn fill" href="#">Open the work</a>
+    <a class="wc-btn line" href="#">See all the work</a>
+    <button class="wc-arrow wc-next" type="button" aria-label="Next"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h12M10 4l5 5-5 5"/></svg></button>
+  </div>
+</section>
+<script>
+(() => {
+const BASE = 'file:///C:/Users/Godson/web%20programs/caimue-page/public';
+/* crop = [x, y, w, h] in the 1440-wide capture. Any picture works here: a poster, a deck page or a film frame is only a different src and crop.
+   w = sheet width in design units. Sheets are listed bottom to top. */
+const WORK = [
+ {name:'Aventei', slug:'aventei', logo:'01-micro-pe', tile:'purple',
+  text:'A US-focused micro private equity firm that needed a brand to match its ambition. We built its identity, website and LinkedIn from launch.',
+  sheets:[{crop:[60,2520,1320,800],w:450},{crop:[790,310,560,515],w:310},{crop:[50,200,800,225],w:600}]},
+ {name:'Ignitho', slug:'ignitho', logo:'02-data-ai', tile:'lav',
+  text:'A data and AI company that sounded like every other. We rebuilt its story, website, sales deck and LinkedIn, and put its people on camera.',
+  sheets:[{crop:[30,1190,1030,400],w:450},{crop:[60,1790,1320,600],w:400},{crop:[300,215,860,290],w:600}]},
+ {name:'Simbfi', slug:'simbfi', logo:'05-finance', tile:'purple',
+  text:'A finance firm that had outgrown its website. New CEO, new services, same old pages. We repositioned it for business owners, not accountants.',
+  sheets:[{crop:[120,2130,1200,440],w:450},{crop:[880,200,510,470],w:310},{crop:[40,185,840,250],w:600}]},
+ {name:'Piqual', slug:'piqual', logo:'04-b2b-lead-gen', tile:'lav',
+  text:'A sales company people mistook for an email tool. We rewrote its website and social around the real story: a human sales team, powered by AI.',
+  sheets:[{crop:[200,1400,1040,600],w:450},{crop:[900,170,420,330],w:330},{crop:[50,170,820,190],w:600}]},
+ {name:'Talentou', slug:'talentou', logo:'07-talent-hiring', tile:'purple',
+  text:'A hiring brand that needed to be noticed in a crowded feed. We design the campaigns and posters that bring the right candidates in.',
+  sheets:[{crop:[200,1370,1040,590],w:450},{crop:[860,235,450,315],w:330},{crop:[50,195,800,170],w:600}]},
+];
+
+/* where each sheet sits in plane space: closed (a tight pile) and open (exploded). bottom to top */
+const LAYOUT = {
+  tile:{w:540,h:390,t:30},
+  thick:[20,20,24],
+  closed:[[16,10],[0,0],[-14,-8]],
+  open:[[150,170],[-205,110],[30,-20]],
+  zClosed:[82,124,168],
+  zOpen:[92,178,272],
+};
+const ROT_X = 56, ROT_Z = -35;
+const COPIES = 5;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const rail = document.querySelector('.wc-rail');
+const sec = document.querySelector('.wc');
+const head = sec.querySelector('h2');
+const n = WORK.length;
+const lerp = (a,b,t)=>a+(b-a)*t;
+const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
+const smooth = t=>t*t*t*(t*(t*6-15)+10);
+const el = (cls,parent)=>{const d=document.createElement('div');d.className=cls;if(parent)parent.appendChild(d);return d};
+
+let G = {u:1,W:0,H:0,cw:0,ch:0,s:.6,Xs:0,step:0,k:1.3};
+const cards = WORK.map((w,i)=>{
+  const c = el('wc-card',rail);
+  c.setAttribute('aria-label',w.name);
+  c.setAttribute('role','group');
+  const scene = el('wc-scene',c);
+  const iso = el('wc-iso',scene);
+  const floor = el('wc-floor',iso);
+  const ground = el('wc-ground',iso);
+  const tile = el('wc-tile',iso);
+  const sheets = w.sheets.map(()=>el('wc-sheet',iso));
+  const words = el('wc-words',c);
+  const logo = new Image(); logo.alt = w.name; logo.style.height = `calc(var(--u) * ${{aventei:44,ignitho:36,simbfi:36,piqual:48,talentou:31}[w.slug]})`; logo.draggable = false; logo.src = `${BASE}/logos/trim/${w.logo}.webp`;
+  const p = document.createElement('p'); p.textContent = w.text;
+  words.append(logo,p);
+  return {c,scene,iso,floor,ground,tile,sheets,words,w,i,parts:[],on:false};
+});
+
+function buildStack(card){
+  const u = G.u, L = LAYOUT, w = card.w;
+  const lavTile = w.tile==='lav';
+  const px = v=>Math.round(v*u*100)/100+'px';
+  /* faint floor grid in plane space, like the services floor */
+  const fs = 1500*u, cell = 75*u;
+  Object.assign(card.floor.style,{left:px(-750),top:px(-750),width:fs+'px',height:fs+'px',backgroundSize:`${cell}px ${cell}px`,transform:'translateZ(-2px)'});
+  const gw=L.tile.w, gh=L.tile.h;
+  Object.assign(card.ground.style,{left:px(-gw/2+14),top:px(-gh/2+30),width:px(gw),height:px(gh)});
+
+  function solid(parent,w_,h_,t,top,edgeA,edgeB,radius){
+    parent.innerHTML='';
+    Object.assign(parent.style,{width:px(w_),height:px(h_)});
+    for(let i=COPIES;i>=1;i--){
+      const ex = el('wc-ex',parent);
+      ex.style.background = i>COPIES*.55 ? edgeB : edgeA;
+      ex.style.borderRadius = px(radius);
+      ex.style.transform = `translateZ(${-(t*u)*i/COPIES}px)`;
+    }
+    const f = el('wc-face',parent);
+    f.style.background = top; f.style.borderRadius = px(radius);
+    return f;
+  }
+  /* base tile, flat solid, thick */
+  solid(card.tile,L.tile.w,L.tile.h,L.tile.t, lavTile?'#e4d9f5':'#672fb2', lavTile?'#b7a2dc':'#4a2190', lavTile?'#9f87cc':'#3e1a75', 30);
+  card.tile.style.left=px(-L.tile.w/2); card.tile.style.top=px(-L.tile.h/2); card.tile.style.transform=`translateZ(${px(L.tile.t)})`;
+
+  /* sheets */
+  card.parts = w.sheets.map((s,j)=>{
+    const [cx,cy,cw,ch] = s.crop;
+    const mat = 0;
+    const W = s.w, H = (W-2*mat)*ch/cw+2*mat;
+    const f = solid(card.sheets[j],W,H,L.thick[j],'#fff','#efe8fa','#b7a2dc',14);
+    card.sheets[j].style.left=px(-W/2); card.sheets[j].style.top=px(-H/2);
+    const imgW=(W-2*mat)*u, zoom=imgW/cw;
+    const im = el('wc-img',f);
+    const use = j===w.sheets.length-1 ? `${w.slug}.webp` : `${w.slug}-sm.webp`;
+    Object.assign(im.style,{left:px(mat),top:px(mat),right:px(mat),bottom:px(mat),borderRadius:px(14),
+      backgroundImage:`url(${BASE}/work/${use})`,backgroundSize:`${1440*zoom}px auto`,backgroundPosition:`${-cx*zoom}px ${-cy*zoom}px`});
+    const dim = el('wc-dim',f);
+    el('wc-rim',f);
+    const plumbs = [[0,0],[W,H]].map(([cx_,cy_])=>{
+      const l = el('wc-plumb',card.sheets[j]);
+      const ins = 5;
+      const ax = cx_===0?ins:W-ins, ay = cy_===0?ins:H-ins;
+      Object.assign(l.style,{left:px(ax),top:px(ay),width:Math.max(1,1.4*u)+'px',height:'100px'});
+      const m = el('wc-mark',card.sheets[j]);
+      Object.assign(m.style,{left:px(ax-4),top:px(ay-4),width:px(9),height:px(9),borderRadius:px(2.5)});
+      l._mark = m;
+      return l;
+    });
+    return {W,H,face:f,dim,cast:null,j,plumbs,t:L.thick[j]};
+  });
+  /* contact shadow: drawn inside the face of the sheet below, so it stops at its edge */
+  card.parts.forEach((p,j)=>{
+    const upper = card.parts[j+1];
+    const host = j===card.parts.length-1 ? null : p.face;
+    if(!host) return;
+    const cast = el('wc-cast',host);
+    Object.assign(cast.style,{width:px(upper.W),height:px(upper.H),borderRadius:px(18),filter:`blur(${px(20)})`});
+    p.cast = cast;
+    p.face.insertBefore(cast,p.dim);
+  });
+  /* the lowest sheet also casts on the base tile */
+  const tileFace = card.tile.querySelector('.wc-face');
+  const tc = el('wc-cast',tileFace);
+  const b = card.parts[0];
+  Object.assign(tc.style,{width:px(b.W),height:px(b.H),borderRadius:px(18),filter:`blur(${px(24)})`});
+  card.tileCast = tc;
+}
+
+function layout(){
+  const W = innerWidth, H = innerHeight;
+  const fs = parseFloat(getComputedStyle(head).fontSize);
+  const top = 80 + fs + fs*.2;
+  const ctrl = sec.querySelector('.wc-ctrl').offsetHeight;
+  const bottom = 22 + ctrl + 26;
+  const rh = Math.max(280,H - top - bottom);
+  let cw = rh*1.16, ch = rh;
+  if(cw > W-40){cw=W-40; ch=cw/1.16}
+  const u = cw/900;
+  const side = (W-cw)/2, gap = 20, margin = 26;
+  const s = clamp((side-gap-margin)/cw,.5,.74);
+  rail.style.top = top+'px'; rail.style.height = rh+'px';
+  sec.style.setProperty('--u',u+'px');
+  sec.style.setProperty('--cw',cw+'px');
+  sec.style.setProperty('--ch',ch+'px');
+  const fontPx = 22.5*u;
+  G = {u,W,H,cw,ch,s,Xs:cw/2+gap+cw*s/2,step:Math.max(cw*s+gap,W/2-(cw/2+gap+cw*s/2)+cw*s/2+30),k:clamp(14.5/(fontPx*s),1,1.48)};
+  cards.forEach(c=>{buildStack(c);c.c.style.top=(rh-ch)/2+'px'});
+  wake();
+}
+
+/* motion state */
+let x = 0, v = 0, target = 0, mode = 'rest', lastWheel = 0;
+let dragging = false, dragX = 0, dragStart = 0, dragMoved = 0, lastMoveT = 0;
+let tx = 0, ty = 0, ptx = 0, pty = 0;
+let intro = reduced ? 1 : 0;
+let raf = 0, lastT = 0, focus = -1;
+
+const wrap = d=>{d=((d+n/2)%n+n)%n-n/2;return d};
+
+function paint(){
+  const {u,s,Xs,step,k,cw,ch} = G;
+  cards.forEach(card=>{
+    const d = wrap(card.i - x), a = Math.abs(d);
+    const vis = a < 2.05;
+    card.c.style.visibility = vis ? 'visible' : 'hidden';
+    if(!vis) return;
+    const near = Math.min(a,1);
+    const e = smooth(1-near);          /* 1 at the centre, 0 from one step away */
+    const X = Math.sign(d)*(a<=1 ? Xs*a : Xs+(a-1)*step);
+    const sc = lerp(s,1,e);
+    card.c.style.transform = `translate3d(${X.toFixed(2)}px,0,0) scale(${sc.toFixed(4)})`;
+    card.c.style.zIndex = 100-Math.round(a*20);
+    /* words grow relative to a shrinking card, so they stay readable on the side cards */
+    card.words.style.transform = `scale(${lerp(k,1,e).toFixed(4)})`;
+
+    const open = e*intro;
+    const L = LAYOUT;
+    /* the stack sits a little higher when off centre, to clear the larger words */
+    const px_ = lerp(.5,.475,e)*cw, py_ = lerp(.37,.5,e)*ch;
+    const tw = e;
+    const rx = ROT_X + pty*tw, rz = ROT_Z + ptx*tw;
+    const ss = lerp(.94,1,e);
+    card.iso.style.transform = `translate3d(${px_.toFixed(2)}px,${py_.toFixed(2)}px,0) rotateX(${rx.toFixed(3)}deg) rotateZ(${rz.toFixed(3)}deg) scale3d(${ss},${ss},${ss})`;
+
+    const zs=[];
+    card.parts.forEach((p,j)=>{
+      const ox = lerp(L.closed[j][0],L.open[j][0],open)*u, oy = lerp(L.closed[j][1],L.open[j][1],open)*u;
+      const z = lerp(L.zClosed[j],L.zOpen[j],open)*u;
+      zs[j]={ox,oy,z};
+      card.sheets[j].style.transform = `translate3d(${ox.toFixed(2)}px,${oy.toFixed(2)}px,${z.toFixed(2)}px)`;
+      const drop = Math.max(0,z-p.t*u)/100;
+      const po = (clamp((open-.35)/.5,0,1)*.42).toFixed(3);
+      p.plumbs.forEach(l=>{l.style.transform = `translateZ(${(-p.t*u).toFixed(2)}px) rotateX(-90deg) scaleY(${drop.toFixed(4)})`;l.style.opacity = po;l._mark.style.transform = `translateZ(${(-z+1).toFixed(2)}px)`;l._mark.style.opacity = (po*1.7).toFixed(3)});
+    });
+    card.parts.forEach((p,j)=>{
+      const top = j===card.parts.length-1;
+      /* lower sheets sit in the shade of the sheets above, and catch light as the stack opens */
+      p.dim.style.opacity = top ? 0 : lerp(j===0?.8:.62, j===0?.22:.06, open).toFixed(3);
+      if(p.cast){
+        const up = zs[j+1], me = zs[j], gap = up.z-me.z, q = card.parts[j+1];
+        const lx = (up.ox-me.ox)+(p.W-q.W)/2*u+gap*.10, ly = (up.oy-me.oy)+(p.H-q.H)/2*u+gap*.34;
+        p.cast.style.transform = `translate(${lx.toFixed(2)}px,${ly.toFixed(2)}px)`;
+        p.cast.style.opacity = lerp(.9,.4,open).toFixed(3);
+      }
+    });
+    const b = zs[0], q = card.parts[0], gap = b.z-L.tile.t*u;
+    const lx = b.ox+(L.tile.w-q.W)/2*u+gap*.10, ly = b.oy+(L.tile.h-q.H)/2*u+gap*.34;
+    card.tileCast.style.transform = `translate(${lx.toFixed(2)}px,${ly.toFixed(2)}px)`;
+    card.tileCast.style.opacity = lerp(.8,.42,open).toFixed(3);
+  });
+  const f = ((Math.round(x)%n)+n)%n;
+  if(f!==focus){
+    focus=f;
+    cards.forEach((c,i)=>{c.c.classList.toggle('is-on',i===f);c.c.setAttribute('aria-current',i===f?'true':'false')});
+  }
+}
+
+function tick(t){
+  const dt = Math.min(.034,(t-lastT)/1000||.016); lastT = t;
+  if(!dragging){
+    if(mode==='glide'){
+      x += v*dt;
+      v *= Math.exp(-3.2*dt);
+      if(performance.now()-lastWheel>130 && Math.abs(v)<1.6){target=v>=0?Math.ceil(x-.08):Math.floor(x+.08);mode='settle'}
+    }else if(mode==='settle'){
+      const K=reduced?400:58, C=reduced?40:15.2;
+      v += ((target-x)*K - v*C)*dt;
+      x += v*dt;
+      if(Math.abs(target-x)<.0006 && Math.abs(v)<.003){x=target;v=0;mode='rest'}
+    }
+  }
+  const tiltEase = 1-Math.exp(-7*dt);
+  ptx += (tx-ptx)*tiltEase; pty += (ty-pty)*tiltEase;
+  if(intro<1){intro=Math.min(1,intro+dt/1.15)}
+  paint();
+  const busy = dragging||mode!=='rest'||intro<1||Math.abs(tx-ptx)>.004||Math.abs(ty-pty)>.004;
+  sec.classList.toggle('is-moving',busy);
+  raf = busy ? requestAnimationFrame(tick) : 0;
+}
+function wake(){ if(!raf){lastT=performance.now();raf=requestAnimationFrame(tick)} }
+function go(delta){
+  target = (mode==='settle'?target:Math.round(x))+delta; mode='settle';
+  if(reduced){x=target;v=0;mode='rest';paint();return}
+  wake();
+}
+sec.querySelector('.wc-next').addEventListener('click',()=>go(1));
+sec.querySelector('.wc-prev').addEventListener('click',()=>go(-1));
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){e.preventDefault();go(1)}
+  if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}
+});
+/* sideways wheel only; vertical scroll is left alone */
+rail.addEventListener('wheel',e=>{
+  if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  if(reduced){ if(Math.abs(e.deltaX)>20 && performance.now()-lastWheel>500){lastWheel=performance.now();go(Math.sign(e.deltaX))} return }
+  const unit = e.deltaMode===1?18:1;
+  v += e.deltaX*unit/G.cw*5; v = clamp(v,-7,7);
+  mode='glide'; lastWheel=performance.now(); wake();
+},{passive:false});
+/* drag */
+rail.addEventListener('pointerdown',e=>{
+  if(e.button) return;
+  dragging=true; dragX=e.clientX; dragStart=x; dragMoved=0; v=0; lastMoveT=performance.now();
+  rail.setPointerCapture(e.pointerId); wake();
+});
+rail.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  const dx=e.clientX-dragX; dragMoved=Math.max(dragMoved,Math.abs(dx));
+  if(dragMoved>5) rail.classList.add('is-drag');
+  const now=performance.now(), dtm=Math.max(1,now-lastMoveT)/1000;
+  const nx=dragStart-dx/G.Xs;
+  v=lerp(v,(nx-x)/dtm,.35); x=nx; lastMoveT=now;
+});
+function endDrag(e){
+  if(!dragging) return;
+  dragging=false; rail.classList.remove('is-drag');
+  if(dragMoved<=5){
+    /* a click: centre a side card */
+    const hit=document.elementsFromPoint(e.clientX,e.clientY).find(n_=>n_.classList&&n_.classList.contains('wc-card'));
+    const c=hit&&cards.find(k=>k.c===hit);
+    v=0;
+    if(c){target=Math.round(x)+Math.round(wrap(c.i-x));mode='settle'}else{target=Math.round(x);mode='settle'}
+  }else{
+    if(performance.now()-lastMoveT>90) v=0;
+    v=clamp(v,-6,6);
+    target=Math.round(x+v*.2);
+    target=clamp(target,Math.round(dragStart)-2,Math.round(dragStart)+2);
+    mode='settle';
+  }
+  wake();
+}
+rail.addEventListener('pointerup',endDrag);
+rail.addEventListener('pointercancel',endDrag);
+/* pointer turns the focused stack a few degrees */
+if(!reduced) sec.addEventListener('pointermove',e=>{
+  if(dragging) return;
+  tx=clamp((e.clientX/innerWidth-.5)*2,-1,1)*5;
+  ty=clamp(-(e.clientY/innerHeight-.5)*2,-1,1)*3.2;
+  wake();
+});
+sec.addEventListener('pointerleave',()=>{tx=0;ty=0;wake()});
+/* decode everything up front so no card hitches the first time it comes on screen */
+const keep = WORK.flatMap(w=>[`${w.slug}.webp`,`${w.slug}-sm.webp`]).map(n_=>{const im=new Image();im.src=`${BASE}/work/${n_}`;if(im.decode)im.decode().catch(()=>{});return im});
+addEventListener('resize',layout);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(layout);
+layout();
+})();
+</script>
+</body>
+</html>

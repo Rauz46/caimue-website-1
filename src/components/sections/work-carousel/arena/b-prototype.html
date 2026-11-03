@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<style>
+:root{--ink:#110a1f;--purple:#672fb2;--lav:#e4d9f5;--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#fff}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.wc{position:relative;height:100vh;height:100svh;min-height:560px;display:grid;grid-template-rows:80px auto minmax(0,1fr) auto;overflow:hidden;background:#fff}
+.wc::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgb(103 47 178/.035) 1px,transparent 1px),linear-gradient(90deg,rgb(103 47 178/.035) 1px,transparent 1px);
+  background-size:56px 56px;background-position:center top}
+.wc-nav{grid-row:1}
+.wc-title{grid-row:2;position:relative;text-align:center;font-weight:500;font-size:min(5vw,10vh);line-height:1;letter-spacing:-.04em;padding-bottom:.28em}
+
+.wc-stage{grid-row:3;position:relative;min-height:0;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;overscroll-behavior-x:contain}
+.wc-stage.is-drag{cursor:grabbing}
+.wc-gl{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:1}
+
+.wc-card{position:absolute;left:50%;top:50%;z-index:2;border-radius:var(--r);will-change:transform;transform-origin:50% 50%;color:#fff;--tx:#fff;outline:0}
+.wc-card[data-env=lav]{color:var(--ink)}
+.wc-card:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
+/* Before the first frame and without WebGL the shell paints its own ground */
+.wc-ground{position:absolute;inset:0;border-radius:inherit;transition:opacity .5s var(--ease)}
+.wc-card[data-env=ink] .wc-ground{background:var(--ink)}
+.wc-card[data-env=purple] .wc-ground{background:var(--purple)}
+.wc-card[data-env=lav] .wc-ground{background:var(--lav)}
+.gl-on .wc-ground{opacity:0}
+/* Depth on the page itself: strongest on the card in front, driven by distance */
+.wc-shade{position:absolute;inset:1px;border-radius:inherit;box-shadow:0 34px 60px -28px rgb(17 10 31/.42),0 10px 22px -12px rgb(17 10 31/.22);opacity:0;pointer-events:none}
+
+.wc-words{position:absolute;left:var(--pad);bottom:var(--pad);width:var(--tw);transform-origin:0 100%;will-change:transform;pointer-events:none}
+.wc-logo{display:block;height:var(--logo);width:auto;max-width:60%;object-fit:contain;object-position:left bottom;margin-bottom:calc(var(--logo)*.36);-webkit-user-drag:none}
+.wc-card[data-env=ink] .wc-logo,.wc-card[data-env=purple] .wc-logo{filter:brightness(0) invert(1)}
+.wc-text{font-size:var(--fs);line-height:1.34;letter-spacing:-.005em}
+
+/* Fallback: the same crop, straight, on the same ground */
+.wc-flat{display:none;position:absolute;left:var(--pad);top:var(--pad);border-radius:14px;background-repeat:no-repeat}
+.no-gl .wc-flat{display:block}
+.no-gl .wc-gl{display:none}
+
+.wc-ctl{grid-row:4;position:relative;z-index:3;display:flex;justify-content:center;align-items:center;gap:10px;padding:clamp(12px,2.2vh,22px) 16px clamp(16px,3vh,30px)}
+.wc-btn{display:inline-flex;align-items:center;height:52px;padding:0 27px;border-radius:999px;font:500 17px/1 Outfit,system-ui,sans-serif;letter-spacing:-.01em;text-decoration:none;white-space:nowrap;transition:transform .16s var(--ease),background-color .16s,color .16s}
+.wc-btn:active,.wc-arrow:active{transform:scale(.97)}
+.wc-solid{background:var(--purple);color:#fff}
+.wc-line{box-shadow:inset 0 0 0 1.5px var(--purple);color:var(--purple);background:#fff}
+.wc-arrow{width:44px;height:44px;border:0;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1.5px rgb(17 10 31/.18);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:transform .16s var(--ease),background-color .16s,color .16s,box-shadow .16s}
+.wc-arrow svg{width:17px;height:17px}
+.wc-btn:focus-visible,.wc-arrow:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+@media (hover:hover){
+  .wc-solid:hover{background:#110a1f}
+  .wc-line:hover{background:var(--lav)}
+  .wc-arrow:hover{background:var(--purple);color:#fff;box-shadow:none}
+}
+@media (max-width:560px){.wc-btn{height:46px;padding:0 18px;font-size:15px}.wc-arrow{width:40px;height:40px;flex:none}.wc-ctl{gap:6px;padding-inline:8px}.wc-title{font-size:clamp(40px,12vw,64px)}}
+</style>
+</head>
+<body>
+<section class="wc" aria-labelledby="wc-title">
+  <div class="wc-nav" aria-hidden="true"></div>
+  <h2 class="wc-title" id="wc-title">Our work</h2>
+  <div class="wc-stage" id="stage">
+    <canvas class="wc-gl" id="gl" aria-hidden="true"></canvas>
+  </div>
+  <div class="wc-ctl">
+    <button class="wc-arrow wc-prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
+    <a class="wc-btn wc-solid" href="#" id="wc-open">Open the work</a>
+    <a class="wc-btn wc-line" href="#">See all the work</a>
+    <button class="wc-arrow wc-next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
+
+<script>
+/* Plain script: builds the cards and all motion, so words and controls work even if the 3D module never loads. */
+const BASE = "file:///C:/Users/Godson/web%20programs/caimue-page/public";
+window.WORK = [
+  {name:"Aventei", slug:"aventei", logo:"/logos/trim/01-micro-pe.webp", env:"ink",
+   text:"A US-focused micro private equity firm that needed a brand to match its ambition. We built its identity, website and LinkedIn from launch.",
+   crop:[40,96,1320,730]},
+  {name:"Ignitho", slug:"ignitho", logo:"/logos/trim/02-data-ai.webp", env:"purple",
+   text:"A data and AI company that sounded like every other. We rebuilt its story, website, sales deck and LinkedIn, and put its people on camera.",
+   crop:[150,100,1140,690]},
+  {name:"Simbfi", slug:"simbfi", logo:"/logos/trim/05-finance.webp", env:"lav",
+   text:"A finance firm that had outgrown its website. New CEO, new services, same old pages. We repositioned it for business owners, not accountants.",
+   crop:[50,84,1340,650]},
+  {name:"Piqual", slug:"piqual", logo:"/logos/trim/04-b2b-lead-gen.webp", env:"ink",
+   text:"A sales company people mistook for an email tool. We rewrote its website and social around the real story: a human sales team, powered by AI.",
+   crop:[50,88,1220,570]},
+  {name:"Talentou", slug:"talentou", logo:"/logos/trim/07-talent-hiring.webp", env:"lav",
+   text:"A hiring brand that needed to be noticed in a crowded feed. We design the campaigns and posters that bring the right candidates in.",
+   crop:[50,90,820,540]}
+];
+window.WORK_BASE = BASE;
+
+(() => {
+  const N = WORK.length;
+  const stage = document.getElementById("stage");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  const cards = WORK.map((w, i) => {
+    const el = document.createElement("article");
+    el.className = "wc-card";
+    el.dataset.env = w.env;
+    el.tabIndex = -1;
+    el.setAttribute("aria-label", w.name);
+    const [cx, cy, cw, ch] = w.crop;
+    el.innerHTML =
+      `<i class="wc-shade"></i><i class="wc-ground"></i>` +
+      `<div class="wc-flat" style="background-image:url('${BASE}/work/${w.slug}-sm.webp');background-size:${(1440 / cw) * 100}% auto;background-position:${(cx / (1440 - cw)) * 100}% ${(cy / (3600 - ch)) * 100}%"></div>` +
+      `<div class="wc-words"><img class="wc-logo" src="${BASE}${w.logo}" alt="${w.name}" draggable="false"><p class="wc-text">${w.text}</p></div>`;
+    stage.appendChild(el);
+    return { el, shade: el.children[0], words: el.querySelector(".wc-words"), flat: el.querySelector(".wc-flat") };
+  });
+
+  /* Layout: scale falls linearly with distance, which keeps the gap between neighbours exactly constant. */
+  const L = { W: 800, H: 600, S: .62, g: .035, cs: 1, sw: 0, sh: 0 };
+  function layout() {
+    const r = stage.getBoundingClientRect();
+    L.sw = r.width; L.sh = r.height;
+    const vw = r.width;
+    const phone = vw < 760;
+    L.S = phone ? .86 : .62;
+    L.g = phone ? .04 : .035;
+    L.H = Math.max(280, r.height);
+    const fit = phone ? vw - 56 : vw / (1 + 2 * L.S + 3.8 * L.g);   // outer margin = the gap, so the next card waits just off screen
+    L.W = Math.min(fit, L.H * 1.5);
+    if (L.W < 560 && !phone) L.W = Math.min(560, vw - 48);
+    const fs = Math.max(15, L.W * .0232);
+    const pad = Math.round(Math.max(20, L.W * .04));
+    L.cs = Math.max(1, 13 / (fs * L.S));
+    const tw = Math.min((L.W - 2 * pad) / L.cs, L.W * .8);
+    stage.style.setProperty("--fs", fs + "px");
+    stage.style.setProperty("--pad", pad + "px");
+    stage.style.setProperty("--tw", tw + "px");
+    stage.style.setProperty("--logo", Math.round(Math.max(26, L.W * .046)) + "px");
+    L.r = Math.round(Math.max(20, L.W * .036));
+    stage.style.setProperty("--r", L.r + "px");
+    const availW = L.W - 2 * pad, availH = L.H - 3 * pad - Math.max(26, L.W * .046) * 1.36 - fs * 1.34 * 4;
+    cards.forEach((c, i) => {
+      const asp = WORK[i].crop[2] / WORK[i].crop[3], bw = Math.min(availW, availH * asp);
+      c.flat.style.width = bw + "px";
+      c.flat.style.height = bw / asp + "px";
+    });
+    for (const c of cards) {
+      c.el.style.width = L.W + "px";
+      c.el.style.height = L.H + "px";
+      c.el.style.marginLeft = -L.W / 2 + "px";
+      c.el.style.marginTop = -L.H / 2 + "px";
+    }
+  }
+
+  const wrap = (x) => { x = ((x % N) + N) % N; return x > N / 2 ? x - N : x; };
+  const step1 = () => .5 + L.g + L.S / 2;       // centre of d=0 to centre of d=1, in W
+  const stepN = () => L.S + L.g;                // every further step, in W
+  function cardX(d) {
+    const a = Math.abs(d), s = Math.sign(d);
+    return s * L.W * (a <= 1 ? a * step1() : step1() + (a - 1) * stepN());
+  }
+
+  /* Motion state */
+  const M = { p: 0, v: 0, target: 0, drag: false, wheel: false, raf: 0, intro: 1, onframe: null, focused: -1 };
+  const K = 64, C = 2 * Math.sqrt(K) * .94;
+  let last = 0;
+
+  function frame(t) {
+    M.raf = 0;
+    const dt = Math.min(.034, last ? (t - last) / 1000 : .016);
+    last = t;
+    if (!M.drag) {
+      if (reduce.matches) { M.p = M.target; M.v = 0; }
+      else {
+        // two substeps keep the spring stable at low frame rates
+        for (let i = 0; i < 2; i++) {
+          const h = dt / 2;
+          M.v += (K * (M.target - M.p) - C * M.v) * h;
+          M.p += M.v * h;
+        }
+      }
+    }
+    if (M.intro > 0) {
+      M.intro = reduce.matches ? 0 : Math.max(0, M.intro - dt / 1.5);
+    }
+    paint();
+    const resting = !M.drag && !M.wheel && Math.abs(M.target - M.p) < 4e-4 && Math.abs(M.v) < 4e-3 && M.intro === 0;
+    if (resting) {
+      if (M.p !== M.target) { M.p = M.target; M.v = 0; paint(); }
+      last = 0;
+      return;
+    }
+    kick();
+  }
+  function kick() { if (!M.raf) M.raf = requestAnimationFrame(frame); }
+
+  function paint() {
+    const views = [];
+    for (let i = 0; i < N; i++) {
+      const d = wrap(i - M.p), a = Math.abs(d), c = cards[i];
+      const s = a <= 1 ? 1 - (1 - L.S) * a : L.S;
+      const x = cardX(d);
+      const fade = a <= 2 ? 1 : Math.max(0, 1 - (a - 2) * 4);
+      c.el.style.transform = `translate3d(${x.toFixed(2)}px,0,0) scale(${s.toFixed(4)})`;
+      c.el.style.opacity = fade < 1 ? fade.toFixed(3) : "";
+      c.el.style.visibility = fade === 0 ? "hidden" : "";
+      c.shade.style.opacity = (1 - Math.min(a, 1)).toFixed(3);
+      const ks = 1 + (L.cs - 1) * Math.min(a, 1);
+      c.words.style.transform = `scale(${ks.toFixed(4)})`;
+      const w = L.W * s, h = L.H * s, left = L.sw / 2 + x - w / 2;
+      if (left < L.sw && left + w > 0 && fade > 0) views.push({ i, d, a, x: left, y: (L.sh - h) / 2, w, h, s, fade });
+    }
+    const f = ((Math.round(M.p) % N) + N) % N;
+    if (f !== M.focused) {
+      M.focused = f;
+      cards.forEach((c, i) => { c.el.classList.toggle("is-on", i === f); c.el.tabIndex = i === f ? 0 : -1; c.el.setAttribute("aria-current", i === f ? "true" : "false"); });
+    }
+    if (M.onframe) M.onframe(views, M, L);
+  }
+
+  window.WC = { M, L, kick, paint, cards };
+
+  function go(delta) {
+    M.target = Math.round(M.target) + delta;
+    kick();
+  }
+  document.querySelector(".wc-next").addEventListener("click", () => go(1));
+  document.querySelector(".wc-prev").addEventListener("click", () => go(-1));
+  document.querySelectorAll(".wc-btn").forEach((a) => a.addEventListener("click", (e) => e.preventDefault()));
+  addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+  });
+
+  /* Sideways wheel and trackpad only. A mostly vertical gesture is left to the page. */
+  let wheelT = 0;
+  stage.addEventListener("wheel", (e) => {
+    const dx = e.deltaMode === 1 ? e.deltaX * 16 : e.deltaX;
+    if (Math.abs(dx) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    M.wheel = true;
+    M.target += dx / (L.W * step1());
+    clearTimeout(wheelT);
+    wheelT = setTimeout(() => { M.wheel = false; M.target = Math.round(M.target); kick(); }, 110);
+    kick();
+  }, { passive: false });
+
+  /* Drag */
+  let pid = null, sx = 0, sp = 0, moved = false, lx = 0, lt = 0, vel = 0, downCard = -1;
+  stage.addEventListener("pointerdown", (e) => {
+    if (e.button) return;
+    pid = e.pointerId; sx = lx = e.clientX; sp = M.p; moved = false; lt = e.timeStamp; vel = 0;
+    const hit = e.target.closest && e.target.closest(".wc-card");
+    downCard = hit ? cards.findIndex((c) => c.el === hit) : -1;
+  });
+  addEventListener("pointermove", (e) => {
+    if (e.pointerId !== pid) return;
+    const dx = e.clientX - sx;
+    if (!moved && Math.abs(dx) < 6) return;
+    if (!moved) {
+      moved = true; M.drag = true; M.v = 0; sp = M.p; sx = e.clientX; lx = e.clientX;
+      stage.classList.add("is-drag");
+      try { stage.setPointerCapture(pid); } catch {}
+      kick();
+      return;
+    }
+    const unit = L.W * step1();
+    const dtm = Math.max(1, e.timeStamp - lt);
+    vel = vel * .7 + (-(e.clientX - lx) / unit / (dtm / 1000)) * .3;
+    lx = e.clientX; lt = e.timeStamp;
+    M.p = sp - (e.clientX - sx) / unit;
+    M.target = M.p;
+    kick();
+  });
+  const up = (e) => {
+    if (e.pointerId !== pid) return;
+    pid = null;
+    stage.classList.remove("is-drag");
+    if (moved) {
+      M.drag = false;
+      const stale = e.timeStamp - lt > 90;
+      M.v = stale ? 0 : Math.max(-6, Math.min(6, vel));
+      M.target = Math.round(M.p + (stale ? 0 : vel * .16));
+      kick();
+    } else if (downCard >= 0) {
+      const d = Math.round(wrap(downCard - M.p));
+      if (d) { M.target = Math.round(M.target) + d; kick(); }
+    }
+  };
+  addEventListener("pointerup", up);
+  addEventListener("pointercancel", up);
+
+  let rt = 0;
+  addEventListener("resize", () => { cancelAnimationFrame(rt); rt = requestAnimationFrame(() => { layout(); if (WC.onresize) WC.onresize(); paint(); }); });
+  layout();
+  paint();
+  kick();
+})();
+</script>
+
+<script type="module">
+import * as THREE from "three";
+
+const { M, L, kick, paint } = window.WC;
+const WORK = window.WORK, BASE = window.WORK_BASE;
+const noGL = () => document.documentElement.classList.add("no-gl");
+const glOn = () => document.documentElement.classList.add("gl-on");
+
+/* Rounded slab with a real bevel. Analytic normals, so it stays smooth at under a thousand triangles. */
+function slabGeometry(w, h, t, r, b, N = 7, B = 4) {
+  const ring = [];
+  const cx = w / 2 - r, cy = h / 2 - r;
+  [[cx, cy, 0], [-cx, cy, 1], [-cx, -cy, 2], [cx, -cy, 3]].forEach(([x, y, q]) => {
+    for (let i = 0; i <= N; i++) {
+      const a = (q + i / N) * Math.PI / 2;
+      ring.push([x, y, Math.cos(a), Math.sin(a)]);
+    }
+  });
+  const R = ring.length;
+  const pos = [], nor = [], uv = [], idx = [];
+  const push = (x, y, z, nx, ny, nz) => { pos.push(x, y, z); nor.push(nx, ny, nz); uv.push(x / w + .5, y / h + .5); };
+  /* face: group 0 */
+  push(0, 0, t / 2, 0, 0, 1);
+  for (const [x, y, nx, ny] of ring) push(x + nx * (r - b), y + ny * (r - b), t / 2, 0, 0, 1);
+  for (let i = 0; i < R; i++) idx.push(0, 1 + i, 1 + (i + 1) % R);
+  const faceCount = idx.length;
+  /* bevels, side wall, back bevel: group 1 */
+  const start = pos.length / 3;
+  const rows = 2 * B + 2;
+  for (let k = 0; k < rows; k++) {
+    const front = k <= B;
+    const a = front ? (k / B) * Math.PI / 2 : ((k - B - 1) / B) * Math.PI / 2 + Math.PI / 2;
+    const sa = Math.sin(a), ca = Math.cos(a);
+    const z = front ? t / 2 - b + b * ca : -t / 2 + b + b * ca;
+    for (const [x, y, nx, ny] of ring) {
+      const o = r - b + b * sa;
+      push(x + nx * o, y + ny * o, z, nx * sa, ny * sa, ca);
+    }
+  }
+  for (let k = 0; k < rows - 1; k++) for (let i = 0; i < R; i++) {
+    const j = (i + 1) % R;
+    const p = start + k * R + i, q = start + k * R + j, s = start + (k + 1) * R + i, u = start + (k + 1) * R + j;
+    idx.push(p, s, q, q, s, u);
+  }
+  /* back */
+  const c = pos.length / 3;
+  push(0, 0, -t / 2, 0, 0, -1);
+  for (const [x, y, nx, ny] of ring) push(x + nx * (r - b), y + ny * (r - b), -t / 2, 0, 0, -1);
+  for (let i = 0; i < R; i++) idx.push(c, c + 1 + (i + 1) % R, c + 1 + i);
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("normal", new THREE.Float32BufferAttribute(nor, 3));
+  g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.addGroup(0, faceCount, 0);
+  g.addGroup(faceCount, idx.length - faceCount, 1);
+  return g;
+}
+
+/* Photographer's sweep: floor bending up into a wall. No horizon line, only light. */
+function sweepGeometry() {
+  const prof = [];
+  const zf = 12, zb = -7, R = 6, top = 16;
+  prof.push([0, zf, 1, 0]);
+  prof.push([0, zb + R, 1, 0]);
+  for (let i = 1; i <= 16; i++) {
+    const a = (i / 16) * Math.PI / 2;
+    prof.push([R - R * Math.cos(a), zb + R - R * Math.sin(a), Math.cos(a), Math.sin(a)]);
+  }
+  prof.push([top, zb, 0, 1]);
+  const X = 26, pos = [], nor = [], idx = [];
+  prof.forEach(([y, z, ny, nz]) => { pos.push(-X, y, z, X, y, z); nor.push(0, ny, nz, 0, ny, nz); });
+  for (let i = 0; i < prof.length - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("normal", new THREE.Float32BufferAttribute(nor, 3));
+  g.setIndex(idx);
+  return g;
+}
+
+/* Studio for reflections: a large soft key, a tall strip and a low lavender bounce. Baked once. */
+function studioEnv(renderer) {
+  const s = new THREE.Scene();
+  s.background = new THREE.Color(.012, .009, .022);
+  const box = (w, h, x, y, z, r, g, b) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b), side: THREE.DoubleSide }));
+    m.position.set(x, y, z); m.lookAt(0, 0, 0); s.add(m);
+  };
+  box(9, 6, -6, 7, 5, 7, 6.8, 7.6);          // big soft key, upper left
+  const win = new THREE.Mesh(new THREE.PlaneGeometry(8, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color(1.3, 1.24, 1.5), side: THREE.DoubleSide }));
+  win.position.set(-14.5, -5, 5); win.lookAt(0, 0, 0); win.rotateZ(.82); s.add(win);   // a tall window, seen only as a slanted sheen on the lacquer
+  box(1.6, 12, 9, 2, 3, 13, 12, 15);         // strip, right, draws the bevel line
+  box(14, 3, 0, -6, 6, .9, .55, 1.5);        // low violet bounce
+  box(5, 2.2, 2, 9, -6, 5, 4.4, 6);          // top rim
+  const pm = new THREE.PMREMGenerator(renderer);
+  const rt = pm.fromScene(s, .012);
+  pm.dispose();
+  return rt.texture;
+}
+
+const ENV = {
+  ink:    { floor: 0x241642, key: 440, face: 105, fill: 300, amb: 0,    wall: 0x7a4fe0, envF: .06, edge: 0xf6f2fd, dim: .72, floorRough: .7 },
+  purple: { floor: 0x6c33ba, key: 195, face: 100, fill: 120, amb: .16,  wall: 0xd9c6ff, envF: .08, edge: 0xfaf7ff, dim: .84, floorRough: .75 },
+  lav:    { floor: 0xe9dffa, key: 165, face: 90,  fill: 90,  amb: 1.15, wall: 0xffffff, envF: .12, edge: 0x7a3fd0, dim: .96, floorRough: .8 },
+};
+
+async function start() {
+  const canvas = document.getElementById("gl");
+  let renderer;
+  try {
+    if (new URLSearchParams(location.search).has("nogl")) throw new Error("forced");
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: (devicePixelRatio || 1) < 1.5, alpha: true, premultipliedAlpha: true, powerPreference: "high-performance", stencil: false });
+  } catch { noGL(); return; }
+
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+  renderer.setClearColor(0x000000, 0);
+  renderer.autoClear = false;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.VSMShadowMap;
+  canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); noGL(); });
+
+  const size = () => renderer.setSize(L.sw, L.sh, false);
+  size();
+  window.WC.onresize = size;
+
+  /* Textures: each work is cropped hard, so the object carries a piece of it at scale. */
+  const loadCrop = (w) => new Promise((res, rej) => {
+    const im = new Image();
+    im.decoding = "async";
+    if (!location.protocol.startsWith("file")) im.crossOrigin = "anonymous";
+    im.onload = () => {
+      const [cx, cy, cw, ch] = w.crop;
+      const c = document.createElement("canvas");
+      c.width = cw; c.height = ch;
+      const cx2 = c.getContext("2d");
+      cx2.drawImage(im, cx, cy, cw, ch, 0, 0, cw, ch);
+      try { cx2.getImageData(0, 0, 1, 1); } catch (err) { rej(err); return; }
+      const t = new THREE.CanvasTexture(c);
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.anisotropy = Math.min(12, renderer.capabilities.getMaxAnisotropy());
+      t.generateMipmaps = true;
+      t.minFilter = THREE.LinearMipmapLinearFilter;
+      res(t);
+    };
+    im.onerror = rej;
+    im.src = `${BASE}/work/${w.slug}.webp`;
+  });
+
+  let tex;
+  try {
+    tex = await Promise.all(WORK.map(loadCrop));
+    tex.forEach((t) => renderer.initTexture(t));   // throws on file:// without the flag: fall back cleanly
+  } catch { noGL(); return; }
+
+  /* Point-light highlights look like CG. Specular comes only from the baked softboxes, like a photo studio. */
+  const softOnly = (m) => {
+    m.onBeforeCompile = (sh) => {
+      sh.fragmentShader = sh.fragmentShader.replace("#include <lights_fragment_end>",
+        `#include <lights_fragment_end>
+ reflectedLight.directSpecular = vec3(0.);
+ #ifdef USE_CLEARCOAT
+ clearcoatSpecularDirect = vec3(0.);
+ #endif`);
+    };
+    return m;
+  };
+
+  const scene = new THREE.Scene();
+  scene.environment = studioEnv(renderer);
+
+  const floorM = softOnly(new THREE.MeshStandardMaterial({ color: 0x2c1d4f, roughness: .65, metalness: 0, dithering: true }));
+  const floor = new THREE.Mesh(sweepGeometry(), floorM);
+  floor.receiveShadow = true;
+  scene.add(floor);
+
+  const faceM = softOnly(new THREE.MeshPhysicalMaterial({
+    map: tex[0], roughness: .62, metalness: 0, clearcoat: 1, clearcoatRoughness: .05,
+    emissive: 0xffffff, emissiveMap: tex[0], emissiveIntensity: .1, dithering: true,
+  }));
+  const edgeM = softOnly(new THREE.MeshPhysicalMaterial({ color: 0xf3eefb, roughness: .34, metalness: 0, clearcoat: .4, clearcoatRoughness: .2, dithering: true }));
+
+  /* One unit of area per slab, whatever its shape: a wide web crop and a near-square poster weigh the same. */
+  const geos = WORK.map((w) => {
+    const asp = w.crop[2] / w.crop[3];
+    const hh = Math.min(3.5, Math.sqrt(18.5 / asp)), ww = hh * asp;
+    return slabGeometry(ww, hh, .56, .27, .085);
+  });
+  const slab = new THREE.Mesh(geos[0], [faceM, edgeM]);
+  slab.castShadow = true;
+  slab.rotation.order = "YXZ";
+  scene.add(slab);
+
+  const key = new THREE.SpotLight(0xfff8ff, 300, 0, .66, 1, 2);
+  key.position.set(-1.6, 11.5, 3.2);
+  key.target.position.set(.5, 0, .8);
+  key.castShadow = true;
+  key.shadow.mapSize.set(512, 512);
+  key.shadow.radius = 13;
+  key.shadow.blurSamples = 10;
+  key.shadow.bias = -.0006;
+  key.shadow.camera.near = 3;
+  key.shadow.camera.far = 22;
+  scene.add(key, key.target);
+  const amb = new THREE.AmbientLight(0xffffff, 0);
+  scene.add(amb);
+
+  /* Lights the print from camera left and close, so brightness really falls off across the object */
+  const faceL = new THREE.SpotLight(0xffffff, 120, 0, .9, 1, 2);
+  faceL.position.set(-5.4, 3.6, 6.2);
+  faceL.target.position.set(.4, 2.8, 0);
+  scene.add(faceL, faceL.target);
+
+  /* A shadowless pool on the wall behind the object: what separates it from the room. */
+  const wall = new THREE.SpotLight(0xffffff, 26, 0, .62, 1, 2);
+  wall.position.set(.5, 12, .5);
+  wall.target.position.set(1.2, 4.6, -7);
+  scene.add(wall, wall.target);
+
+  const camera = new THREE.PerspectiveCamera(36, 1, .1, 80);
+  const look = new THREE.Vector3();
+
+  /* Rounds each card's corners by multiplying what is already in the canvas by an antialiased mask. */
+  const maskU = { uSize: { value: new THREE.Vector2() }, uR: { value: 20 } };
+  const maskM = new THREE.ShaderMaterial({
+    uniforms: maskU, depthTest: false, depthWrite: false, transparent: true, toneMapped: false,
+    blending: THREE.CustomBlending, blendEquation: THREE.AddEquation,
+    blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcAlphaFactor,
+    blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.SrcAlphaFactor,
+    vertexShader: `varying vec2 v; void main(){ v = position.xy; gl_Position = vec4(position.xy, 0., 1.); }`,
+    fragmentShader: `varying vec2 v; uniform vec2 uSize; uniform float uR;
+      void main(){ vec2 p = abs(v) * uSize * .5; vec2 q = p - uSize * .5 + uR;
+        float d = length(max(q, 0.)) + min(max(q.x, q.y), 0.) - uR;
+        gl_FragColor = vec4(0., 0., 0., 1. - smoothstep(-.75, .75, d)); }`,
+  });
+  const maskG = new THREE.BufferGeometry();
+  maskG.setAttribute("position", new THREE.Float32BufferAttribute([-1, -1, 0, 3, -1, 0, -1, 3, 0], 3));
+  const maskMesh = new THREE.Mesh(maskG, maskM);
+  maskMesh.frustumCulled = false;
+  const maskScene = new THREE.Scene();
+  maskScene.add(maskMesh);
+  const maskCam = new THREE.Camera();
+
+  const ease = (x) => 1 - Math.pow(1 - x, 3);
+  const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+
+  /* Stays smooth on weaker GPUs: if a move runs slow, resolution steps down once and stays there. */
+  let tPrev = 0, tSum = 0, tN = 0;
+  function governor() {
+    const now = performance.now(), gap = now - tPrev;
+    tPrev = now;
+    if (gap > 120) { tSum = tN = 0; return; }
+    tSum += gap; tN++;
+    if (tN < 30) return;
+    const avg = tSum / tN, pr = renderer.getPixelRatio();
+    tSum = tN = 0;
+    if (avg > 21 && pr > 1) renderer.setPixelRatio(Math.max(1, pr - .25));
+  }
+
+  function draw(views) {
+    governor();
+    renderer.setScissorTest(false);
+    renderer.setViewport(0, 0, L.sw, L.sh);
+    renderer.clear(true, true, false);
+    renderer.setScissorTest(true);
+    const intro = ease(1 - M.intro);
+    const rad = L.r;
+    views.sort((a, b) => b.a - a.a);
+    const vel = clamp(M.v, -5, 5);
+
+    for (const v of views) {
+      const w = WORK[v.i], e = ENV[w.env];
+      const vx = Math.floor(v.x), vy = Math.floor(L.sh - v.y - v.h);
+      const vw = Math.ceil(v.x + v.w) - vx, vh = Math.ceil(L.sh - v.y) - vy;
+      renderer.setViewport(vx, vy, vw, vh);
+      renderer.setScissor(vx, vy, vw, vh);
+      renderer.clearDepth();
+
+      const dd = clamp(v.d, -1.7, 1.7);
+      const near = 1 - Math.min(v.a, 1);       // 1 at centre
+      const asp = L.W / L.H;
+
+      /* Environment: the room recedes on side cards; the object in front is the one under the key */
+      const dim = e.dim + (1 - e.dim) * near;
+      floorM.color.setHex(e.floor);
+      floorM.roughness = e.floorRough;
+      floorM.envMapIntensity = e.envF;
+      key.intensity = e.key * dim * (.82 + .18 * intro);
+      wall.intensity = e.fill * dim;
+      faceL.intensity = e.face * dim;
+      amb.intensity = e.amb * dim;
+      wall.color.setHex(e.wall);
+      scene.environmentIntensity = .95 * dim;
+      edgeM.color.setHex(e.edge);
+      faceM.map = tex[v.i];
+      faceM.emissiveMap = tex[v.i];
+      faceM.emissiveIntensity = .08 * dim;
+
+      /* Pose: a real rotation driven only by distance to centre, plus the speed of the row */
+      const y0 = -.42, p0 = .1, r0 = -.05;
+      slab.geometry = geos[v.i];
+      slab.rotation.y = y0 - dd * .44 - vel * .1 + (1 - intro) * .5;
+      slab.rotation.x = p0 + Math.abs(dd) * .05 - Math.abs(vel) * .012 + (1 - intro) * .1;
+      slab.rotation.z = r0 + dd * .05 + vel * .02;
+      slab.position.set(.22 - dd * .2, 3.0 + Math.abs(dd) * .05, .1);
+      slab.updateMatrixWorld();
+
+      /* Camera: true perspective, drifting with the card so the room slides past the object */
+      const dist = 8.6 * Math.min(1.38, Math.max(1, 1.24 / asp));
+      camera.aspect = asp;
+      camera.position.set(dd * 1.1, 4.4, dist);
+      look.set(dd * .3, 2.3 - Math.min(.3, Math.max(0, 1.24 - asp) * 1.6), 0);
+      camera.lookAt(look);
+      camera.updateProjectionMatrix();
+
+      renderer.render(scene, camera);
+
+      maskU.uSize.value.set(vw, vh);
+      maskU.uR.value = rad * v.s;
+      renderer.render(maskScene, maskCam);
+    }
+    renderer.setScissorTest(false);
+  }
+
+  M.onframe = (views) => draw(views);
+  M.intro = 1;
+  glOn();
+  paint();
+  kick();
+}
+start().catch((e) => { console.error(e); noGL(); });
+</script>
+</body>
+</html>

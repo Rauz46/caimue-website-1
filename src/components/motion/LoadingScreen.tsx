@@ -12,18 +12,12 @@ function signalFill() {
   window.dispatchEvent(new Event("caimue:fill"));
 }
 
-/* how long the head holds alone on the plain cover: about the time it takes to read six words */
-const READ_HOLD = 1.6;
 
 /**
  * The intro (Oct 2026):
  *   1. on a white cover the pink dot bounces the caimue logo into place;
- *   2. the logo steps back and the hero's head appears alone on the plain
- *      white, in near-black ink, set exactly where the hero shows it, and
- *      holds for a reading beat;
- *   3. the white wipes upward off the dark hero. The real head is shown
- *      underneath in the same place, so the words turn from ink to white
- *      exactly at the moving edge.
+ *   2. the logo steps back and the white wipes straight up off the dark hero
+ *      (3 Nov 2026: no headline on the cover, the owner wants logo then hero).
  * Each beat starts from the one before. Styled inline: it must not depend
  * on a stylesheet arriving.
  */
@@ -79,38 +73,11 @@ export function LoadingScreen() {
     });
     tl.to(mark, { y: -30, autoAlpha: 0, filter: "blur(6px)", duration: 0.55, ease: "power3.in" });
 
-    let clone: HTMLElement | null = null;
-    if (hero) {
-      const r = hero.getBoundingClientRect();
-      clone = hero.cloneNode(true) as HTMLElement;
-      clone.removeAttribute("aria-label");
-      clone.setAttribute("aria-hidden", "true");
-      clone.style.visibility = "visible";
-      Object.assign(clone.style, {
-        position: "fixed",
-        left: `${r.left}px`,
-        top: `${r.top}px`,
-        width: `${r.width}px`,
-        margin: "0",
-        textAlign: "left",
-        color: "#110a1f",
-        textShadow: "none",
-      });
-      const tone = clone.querySelector<HTMLElement>(".hx-tone");
-      if (tone) tone.style.color = "#110a1f";
-      clone.querySelectorAll<SVGElement>(".hx-under").forEach((u) => u.remove());
-      sheet.appendChild(clone);
-      // the words rise in, then hold alone on the plain page
-      tl.from(clone.querySelectorAll(".hx-line > span"), { yPercent: 110, autoAlpha: 0, duration: 0.9, stagger: 0.1, ease: "power4.out" }, 0.3);
-      tl.to({}, { duration: READ_HOLD });
-    }
-
-    // the white wipes up off the dark hero. The real head is shown underneath first, so the
-    // words turn from ink to white exactly at the moving edge (no grey wash, no second set)
+    // straight from the logo to the hero: the white wipes up off it as the mark leaves (owner: no headline in the intro)
     tl.add(() => {
       if (hero) hero.style.visibility = "";
       signalFill();
-    });
+    }, "-=0.2");
     tl.fromTo(sheet, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.05, ease: "expo.inOut" });
   };
 
