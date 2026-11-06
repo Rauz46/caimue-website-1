@@ -18,9 +18,23 @@ const nextConfig = {
     turbopackFileSystemCacheForDev: false,
   },
 
+  // The homepage and the services page are the hand-built pages in public/concepts/k-magnet
+  // (Nov 2026). They are served at / and /services; their file paths redirect there so the
+  // site has one version of each.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/", destination: "/concepts/k-magnet/streaks.html" },
+        { source: "/services", destination: "/concepts/k-magnet/services.html" },
+      ],
+    };
+  },
+
   async redirects() {
     // TeqThots was rebranded to TeqDots (July 2026)
     return [
+      { source: "/concepts/k-magnet/streaks.html", destination: "/", permanent: false },
+      { source: "/concepts/k-magnet/services.html", destination: "/services", permanent: false },
       { source: "/channels", destination: "/platforms", permanent: false },
       { source: "/collaborate", destination: "/contact", permanent: false },
       {

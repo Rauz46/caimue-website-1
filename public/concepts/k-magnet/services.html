@@ -315,7 +315,7 @@ footer h4{font-family:var(--mono);font-size:13px;font-weight:400;color:rgba(255,
 /* hero v22: text centred on the pinch */
 .hero{align-items:center;padding:0}
 .hero canvas#pinchCv{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero{background:#0D0520 url(hero-poster.webp) center/cover no-repeat;color:#fff}
+.hero{background:#0D0520 url(/concepts/k-magnet/hero-poster.webp) center/cover no-repeat;color:#fff}
 .hero h1{max-width:13em;margin-left:auto;margin-right:auto;text-shadow:0 2px 30px rgba(13,5,32,.6)}
 .hero .focus{position:absolute;z-index:1;left:50%;top:50%;width:min(1100px,100vw);height:min(760px,92%);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(13,5,32,.82),rgba(13,5,32,.55) 55%,rgba(13,5,32,0));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent);mask-image:radial-gradient(closest-side,#000 45%,transparent);pointer-events:none}
 .hero .in{z-index:2;max-width:1240px}
@@ -657,8 +657,8 @@ body{background:var(--c-paper)}
 .after-portal{background:var(--c-paper);padding:var(--s-s) 0 var(--s-s)}
 
 /* ---------- hero bits kept from the last rounds ---------- */
-.hero{background-image:url(hero-poster-streaks.webp)}
-@media (max-width:759px){.hero{background-image:url(hero-poster-streaks-m.webp)}}
+.hero{background-image:url(/concepts/k-magnet/hero-poster-streaks.webp)}
+@media (max-width:759px){.hero{background-image:url(/concepts/k-magnet/hero-poster-streaks-m.webp)}}
 .hero .focus{background:radial-gradient(closest-side,rgba(13,5,32,.5),rgba(13,5,32,.28) 55%,rgba(13,5,32,0))}
 .hero .chan li{gap:10px;padding:6px 18px 6px 6px;border-radius:999px;background:linear-gradient(rgba(255,255,255,.13),rgba(255,255,255,.05)),rgba(24,10,58,.34);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.28),0 14px 34px -16px rgba(10,3,30,.6)}
 .hero .chan li svg,.hero .chan li.r svg{width:28px;height:28px;padding:7px;border-radius:50%;background:rgba(255,255,255,.14);stroke:#fff;stroke-width:1.5}
@@ -2361,12 +2361,12 @@ body{background:var(--c-paper)}
 
 <header class="top" id="top">
   <div class="bar">
-    <a href="streaks.html" aria-label="Caimue home"><img src="../shared/caimue-logo.svg" alt="Caimue"></a>
+    <a href="/" aria-label="Caimue home"><img src="/concepts/shared/caimue-logo.svg" alt="Caimue"></a>
     <ul>
       <li><a href="#top-svc" aria-current="page">Services</a></li>
-      <li><a href="streaks.html#method">What we do</a></li>
-      <li><a href="streaks.html#why">Why Caimue</a></li>
-      <li><a href="streaks.html#partners">Clients</a></li>
+      <li><a href="/#method">What we do</a></li>
+      <li><a href="/#why">Why Caimue</a></li>
+      <li><a href="/#partners">Clients</a></li>
     </ul>
     <a class="btn sm mag" href="/contact"><span>Contact</span></a>
   </div>
@@ -2693,10 +2693,10 @@ body{background:var(--c-paper)}
 <footer class="x-ft cf-ft">
   <div class="x-w">
     <div class="cf-top">
-      <div class="cf-brand"><a href="streaks.html" aria-label="Caimue home"><img src="../shared/caimue-logo.svg" alt="Caimue" width="148" height="40"></a><p>A B2B inbound lead generation company headquartered in Tampa.</p></div>
+      <div class="cf-brand"><a href="/" aria-label="Caimue home"><img src="/concepts/shared/caimue-logo.svg" alt="Caimue" width="148" height="40"></a><p>A B2B inbound lead generation company headquartered in Tampa.</p></div>
       <nav class="cf-cols" aria-label="Footer">
-        <div><h3>Services</h3><a href="services.html#svc-web">Website and conversion</a><a href="services.html#svc-search">Search and AI search</a><a href="services.html#svc-content">Content and video</a><a href="services.html#svc-linkedin">LinkedIn and social</a><a href="services.html#svc-paid">Paid media and ABM</a><a href="services.html#svc-ops">Marketing ops and analytics</a></div>
-        <div><h3>Caimue</h3><a href="streaks.html#method">What we do</a><a href="streaks.html#why">Why Caimue</a><a href="streaks.html#partners">Clients</a><a href="/contact">Contact</a></div>
+        <div><h3>Services</h3><a href="/services#svc-web">Website and conversion</a><a href="/services#svc-search">Search and AI search</a><a href="/services#svc-content">Content and video</a><a href="/services#svc-linkedin">LinkedIn and social</a><a href="/services#svc-paid">Paid media and ABM</a><a href="/services#svc-ops">Marketing ops and analytics</a></div>
+        <div><h3>Caimue</h3><a href="/#method">What we do</a><a href="/#why">Why Caimue</a><a href="/#partners">Clients</a><a href="/contact">Contact</a></div>
         <div><h3>Social</h3><a href="https://www.linkedin.com/company/caimue-inc" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noreferrer noopener">Instagram</a></div>
       </nav>
     </div>
@@ -2938,7 +2938,7 @@ $$(".x-qa button").forEach((bt) => bt.addEventListener("click", () => {
   const x = cv.getContext("2d"); if (!x) return;
   const TPA = [28, -82.5], LAT0 = 76, LAT1 = -54, LON0 = -168, LON1 = 192, STEP = 0.95;
   let land = null;
-  const mask = new Image(); mask.src = "land-mask.png";
+  const mask = new Image(); mask.src = "/concepts/k-magnet/land-mask.png";
   mask.onload = () => { const c = document.createElement("canvas"); c.width = mask.width; c.height = mask.height; const g = c.getContext("2d"); g.drawImage(mask, 0, 0); land = { d: g.getImageData(0, 0, c.width, c.height).data, w: c.width, h: c.height }; draw(); };
   function draw() {
     const dpr = Math.min(devicePixelRatio || 1, 1.5), W = cv.clientWidth, H = cv.clientHeight; if (!W || !H) return;
