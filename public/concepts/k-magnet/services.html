@@ -6,7 +6,7 @@
 <title>Services · Caimue</title>
 <!--
   Caimue services page concept (v2). Header as streaks.html; every word below the nav comes from
-  Caimue_Services_Page_Content_v3.docx, with the owner's rules: "buyer(s)" reads "potential client(s)" or
+  v4-content/Caimue_Services_Page_Content.docx, with the owner's rules: "buyer(s)" reads "potential client(s)" or
   "clients", "pipeline" reads "qualified leads" or "deals", headings in Title Case.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2203,6 +2203,27 @@ body{background:var(--c-paper)}
 .cf-bt a:hover{color:var(--c-ink)}
 @media (max-width:900px){.cf-top,.cf-cols{grid-template-columns:minmax(0,1fr)}.cf-cols{gap:var(--s-l)}}
 
+/* footer, after aventei.com (owner 9 Nov): one row - logo left, the page links centred, social right - then a
+   hairline and a bar with the copyright and the legal links, on a light grey ground */
+.cf-ft.cf-av{background:#F6F6F9;padding:40px 0 28px}
+.cf-av .x-w{width:min(100% - 64px,1280px)}
+.cf-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding-bottom:28px;border-bottom:1px solid rgba(23,12,40,.1)}
+.cf-logo img{display:block;width:132px;height:auto}
+.cf-nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+.cf-nav a,.cf-bar a{font-size:.9375rem;color:var(--c-ink2);transition:color .2s ease}
+.cf-nav a:hover,.cf-bar a:hover,.cf-soc a:hover{color:var(--c-purple)}
+.cf-soc{display:flex;justify-content:flex-end;gap:16px}
+.cf-soc a{display:grid;place-items:center;width:36px;height:36px;color:var(--c-ink2);transition:color .2s ease}
+.cf-soc svg{width:20px;height:20px}
+.cf-bar{display:flex;justify-content:space-between;align-items:center;gap:12px 32px;flex-wrap:wrap;padding-top:20px;font-size:.875rem;color:var(--c-ink3)}
+.cf-bar p{margin:0}
+.cf-bar .cf-ad{margin-left:12px;opacity:1}
+.cf-bar div{display:flex;gap:24px}
+.cf-av a:focus-visible{outline:2px solid var(--c-purple);outline-offset:3px;border-radius:4px}
+@media (max-width:860px){.cf-row{grid-template-columns:1fr;justify-items:center;text-align:center}.cf-soc{justify-content:center}.cf-bar{justify-content:center;text-align:center}.cf-bar .cf-ad{display:block;margin:4px 0 0}}
+/* the close: the sentence sits on two lines, "first" included */
+.cf-sub{max-width:47em!important;text-wrap:pretty}
+
 /* ==========================================================================
    Polish pass (6 Nov), both pages.
    1  pink that carries white text is #DB0075 (4.9:1); #FF0080 stays for marks, dots and lines.
@@ -2355,6 +2376,462 @@ body{background:var(--c-paper)}
 .inc2-h h3{font-size:1.0625rem;line-height:1.25;letter-spacing:-.015em;font-weight:700;color:var(--c-ink)}
 .inc2 .ii{width:36px;height:36px;flex:none;border-radius:11px;display:grid;place-items:center;background:var(--c-lav);color:var(--c-purple)}
 .inc2 p{margin-top:10px;font-size:var(--t-small);line-height:1.55;color:var(--c-ink2)}
+
+/* ==========================================================================
+   Page format (9 Nov, the approver's): dark hero, then a saturated light tint, then white, then
+   tint, white … to the end; the close in the hero's colour; the footer. No section is taller
+   than one screen. Cards on a tint are white; cards on white are tinted.
+   ========================================================================== */
+:root{--c-tint:#ECE1FB;--c-tintCard:#F5EFFD}
+#problem,#method,#services,#agents,#partners,#why{padding:clamp(52px,8.5vh,84px) 0}
+:is(#problem,#method,#services,#agents,#why) .ed-head{margin-bottom:clamp(24px,4.2vh,44px)}
+:is(#problem,#method,#services,#agents,#why) .ed-head h2{font-size:clamp(2.25rem,1.5rem + 2.3vw,3.5rem);line-height:1.06}
+:is(#problem,#method,#services,#agents,#why) .ed-head p{margin-top:clamp(10px,1.6vh,16px);font-size:var(--t-body)}
+
+/* tint grounds, with the faint grid */
+#problem,#services,#partners{background:var(--c-tint)}
+#problem::before,#services::before{--gl2:rgba(103,47,178,.08);display:block}
+/* white grounds, no grid */
+#method,#agents,#why{background:#fff}
+#method::before,#agents::before,#why::before{display:none}
+
+/* 2  problem on tint: white cards, a shorter stage */
+#problem .wq-c{background:#fff}
+#problem .wq-c .wq-v{height:clamp(116px,15vh,150px)}
+#problem .wq-t{padding:clamp(14px,2vh,20px) var(--s-m) var(--s-m)}
+#problem .wq-t p{margin-top:8px}
+
+/* 3  what we do on white: dark text, the rail kept */
+#method .ed-head.on-dark h2{color:var(--c-ink)}
+#method .ed-head.on-dark p{color:var(--c-ink2)}
+#method .mt-g li{padding:var(--s-l) var(--s-m) var(--s-xs);background:var(--c-tintCard);box-shadow:none}
+#method .mt-g li+li{box-shadow:-1px 0 0 #fff}
+#method .mt-g h3{color:var(--c-ink)}
+#method .mt-g p{color:var(--c-ink2)}
+#method .sn{background:#fff;box-shadow:inset 0 0 0 1px rgba(103,47,178,.18);color:var(--c-purple)}
+#method .mt-g.m4 li:first-child{border-radius:0 0 0 18px}
+#method .mt-g.m4 li:last-child{border-radius:0 0 18px 0}
+#method .mt-g.m4{padding-bottom:4px}
+
+/* 4  services on tint */
+#services .st-bar{margin-top:0}
+#services .st-panel{margin-top:clamp(16px,2.6vh,28px)}
+#services .st-p{min-height:0}
+#services .st-tx{padding:var(--s-xl) var(--s-xl) var(--s-xl) var(--s-2xl)}
+#services .st-v{padding:8px}
+
+/* 5  team and agents on white: tinted cards */
+#agents .ag-c{padding:clamp(20px,3vh,32px) var(--s-xl)}
+#agents .ag-c.own{background:var(--c-tintCard);box-shadow:inset 0 0 0 1px rgba(103,47,178,.08)}
+#agents .ag-c.run{background:var(--c-tint);box-shadow:inset 0 0 0 1px rgba(103,47,178,.14)}
+#agents .ag-c ul{margin-top:clamp(12px,2vh,20px)}
+#agents .ag-c li{padding:clamp(8px,1.2vh,12px) 0}
+#agents .ag-close{margin-top:clamp(16px,2.6vh,28px);background:var(--c-tintCard);box-shadow:inset 0 0 0 1px rgba(103,47,178,.08);font-size:var(--t-body)}
+
+/* 6  brands on tint: the marks in ink, their own colours on hover */
+#partners.td-logos{padding:clamp(44px,7vh,68px) 0}
+#partners h2.lg-h{color:var(--c-ink);font-size:clamp(1.75rem,1.3rem + 1.4vw,2.5rem);margin-bottom:clamp(16px,2.6vh,28px)}
+#partners .lg-c img{filter:brightness(0);opacity:.62}
+#partners .lg-c:hover{background:#fff;box-shadow:0 18px 40px -22px rgba(45,19,92,.45)}
+
+/* 7  why on white: tinted cards, a shorter stage */
+#why .wq-c{background:var(--c-tintCard);box-shadow:inset 0 0 0 1px rgba(103,47,178,.08)}
+#why .wq.q6{gap:12px}
+#why .wq.q6 .wq-v{height:clamp(96px,12.5vh,124px)}
+#why .wq.q6 .mini{transform:scale(.86)}
+#why .wq-t{padding:clamp(12px,1.8vh,18px) var(--s-m) var(--s-m)}
+#why .wq-t p{margin-top:6px}
+#why .st-more{margin-top:clamp(20px,3.2vh,32px)}
+
+/* 8  the close in the hero's colour */
+.cf-cta{background:radial-gradient(90% 120% at 10% 0%,#3A1673 0%,rgba(58,22,115,0) 60%),radial-gradient(80% 120% at 92% 100%,#1E1556 0%,rgba(30,21,86,0) 65%),#26104F}
+#why .wq.q6 .wq-v{height:clamp(92px,11.5vh,112px)}
+#why .ed-head{margin-bottom:clamp(20px,3.4vh,36px)}
+/* one screen at most, on short screens too: the services scene is sized by the screen's height,
+   and the busiest sections tighten below 820px tall */
+#services .st-stage .mo{max-width:calc((100vh - 380px) * 1.476);margin:0 auto}
+@media (max-height:820px){
+  #problem,#method,#services,#agents,#why{padding:clamp(40px,6vh,56px) 0}
+  :is(#problem,#method,#services,#agents,#why) .ed-head{margin-bottom:clamp(18px,3vh,28px)}
+  :is(#problem,#method,#services,#agents,#why) .ed-head h2{font-size:clamp(2rem,1.4rem + 1.9vw,3rem)}
+  #why .wq.q6 .wq-v{height:84px}
+  #why .wq.q6 .mini{transform:scale(.74)}
+  #why .wq-t h3{font-size:1.1875rem}
+  #why .st-more{margin-top:18px}
+  #agents .ag-c li{padding:7px 0}
+  #services .st-tx{padding:var(--s-l) var(--s-l) var(--s-l) var(--s-xl)}
+}
+/* the small objects fit their shorter stages: compact rows, the video as a thumbnail only */
+#why .wq.q6 .mr{height:34px;font-size:.78rem}
+#why .wq.q6 .mi{width:26px;height:26px}
+#why .wq.q6 .vl{display:none}
+#why .wq.q6 .vthumb{height:96px}
+#why .wq.q6 .mini.team .tl{width:36px;height:36px}
+@media (max-height:820px){#why .wq.q6 .mini>.mr:nth-child(3){display:none}#why .wq.q6 .vthumb{height:92px}}
+@media (max-height:740px){
+  #problem,#method,#services,#agents,#why{padding:34px 0}
+  #why .wq.q6 .wq-v{height:76px}
+  #why .wq.q6 .mini{transform:scale(.7)}
+  #why .wq-t{padding:10px var(--s-m) 14px}
+  #why .wq-t p{font-size:.8125rem;line-height:1.5}
+}
+#why .wq.q6 .mini>.mr:nth-child(3){display:none}
+
+/* ==========================================================================
+   One type scale for every page, measured from aventei.com (9 Nov, owner):
+   hero 70 / section 48 / CTA 56 / card large 32 / card small 24 / hero text 20 / body 18 / card text 16 /
+   nav 18 / buttons 17 / footer 16 and 14. Phone: hero 48, section 35, CTA 40, card large 26, card small 22.
+   Line heights: hero 1.2, section 1.1, cards 1.3, text 1.65. Loaded last on home, services and about.
+   ========================================================================== */
+:root{--ty-h1:min(70px,4.3vw);--ty-h2:48px;--ty-cta:56px;--ty-h3l:32px;--ty-h3s:24px;--ty-lead:20px;--ty-body:18px;--ty-card:16px}
+@media (max-width:760px){:root{--ty-h1:min(48px,10.5vw);--ty-h2:35px;--ty-cta:40px;--ty-h3l:26px;--ty-h3s:22px;--ty-lead:18px}}
+
+/* navigation and buttons */
+html body .top nav a,html body .top li a{font-size:18px!important}
+html body .btn2,html body .ax-b,html body .hz-b1,html body .hz-b2,html body .cf .btn2{font-size:17px!important}
+
+/* hero */
+html body main h1,html body .ax-h .lt,html body .ax-h .bd,html body .hz-h{font-size:var(--ty-h1)!important;line-height:1.2!important}
+html body .ax-h .lt+.bd,html body .ax-h .bd{margin-top:0}
+html body .ax-tag,html body .hz-badge{font-size:22px!important;font-weight:600!important;letter-spacing:1.5px!important}
+html body .ax-sub,html body .hz-sub,html body main h1+p{font-size:var(--ty-lead)!important;line-height:1.65!important}
+
+/* section headings and their sentences */
+html body main section h2{font-size:var(--ty-h2)!important;line-height:1.1!important}
+html body main section p{font-size:var(--ty-body);line-height:1.65}
+html body .ed-head p,html body .ab-st-tx p,html body .st-tx>p,html body .sxp-sub{font-size:var(--ty-body)!important;line-height:1.65!important}
+
+/* the close */
+html body #close h2,html body .cf h2{font-size:var(--ty-cta)!important;line-height:1.1!important}
+html body #close p,html body .cf-sub{font-size:17px!important;line-height:1.65!important}
+
+/* cards: titles small by default, the big feature cards large; card text 16 */
+html body main h3{font-size:var(--ty-h3s)!important;line-height:1.3!important}
+html body .agx-h h3,html body #services .st-tx h3,html body .st-tx h3{font-size:var(--ty-h3l)!important;line-height:1.2!important}
+html body .wq-t p,html body .inc2 p,html body .nt-bio,html body .ab-cc p,html body .sc-c>span:not(.sc-i),html body .agx-l li,html body .st-in li,html body .ag-c li,html body .sxp-get p{font-size:var(--ty-card)!important;line-height:1.65!important}
+html body .sc-c>b,html body .sc-n>b{font-size:46px!important;line-height:1.1!important}
+html body .nt-role{font-size:14px!important}
+
+/* scenes keep their own drawn sizes */
+html body .mo p,html body .mo h3{font-size:inherit!important;line-height:inherit!important}
+
+/* footer */
+html body .cf-nav a{font-size:16px!important}
+html body .cf-bar,html body .cf-bar a,html body .cf-bar p{font-size:14px!important}
+@media (max-width:760px){html body .ax-tag,html body .hz-badge{font-size:16px!important;letter-spacing:.5px!important}}
+html body .ed-head h2,html body .ed-head p{margin-left:auto!important;margin-right:auto!important}
+
+/* the close (owner 9 Nov, after aventei.com's): copy and button stacked on the left, the dotted map on the right */
+html body .cf-cta{text-align:left}
+html body .cf-cta .cf-in{width:min(100% - 64px,1120px);display:flex;flex-direction:column;align-items:flex-start}
+html body .cf-cta .cf-in>*{max-width:560px}
+html body .cf-cta .cf-sub{max-width:560px!important;margin-left:0!important}
+html body .cf-cta #portalBtn{margin-top:32px;align-self:flex-start;position:static;transform:none}
+html body .cf-cta #cfMap{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+@media (max-width:860px){html body .cf-cta .cf-in>*{max-width:none}}
+html body .cf-cta .cf-in>*{max-width:680px}
+html body .cf-cta .cf-sub{max-width:680px!important}
+/* the close, calmer (owner 9 Nov): heading 44, sentence 16 on two lines, copy column clear of the map */
+html body #close h2,html body .cf h2{font-size:clamp(32px,2.2vw + 12px,44px)!important;line-height:1.12!important}
+html body #close p,html body .cf-sub{font-size:16px!important;line-height:1.6!important}
+html body .cf-cta .cf-in>*{max-width:600px!important}
+html body .cf-cta .cf-sub{max-width:600px!important;margin-top:16px!important}
+html body .cf-cta #portalBtn{margin-top:28px}
+/* ==========================================================================
+   Hero ground, copied from the owner's reference (9 Nov): near-black navy middle, a vivid purple glow band on the
+   top edge, soft wavy glow bands along the foot (violet, blue-violet, lavender-pink highlight at the lower left).
+   The waves are drawn shapes under a heavy blur, so they read as light. Opening: the top band comes down, the foot
+   bands rise, their blur tightens. After: each band drifts sideways at its own pace and breathes a little.
+   ========================================================================== */
+.ax.ax-io{background:#05031A}
+.ax.ax-io .gb,.ax.ax-io .gb-grain{display:none!important}
+.aw{position:absolute;left:-12%;right:-12%;z-index:0;pointer-events:none}
+.aw i{position:absolute;inset:0;background-repeat:repeat-x;background-size:1600px 100%}
+.aw-top{top:-4%;height:34%;filter:blur(44px)}
+.aw-bot{bottom:-8%;height:58%;filter:blur(42px)}
+.aw-top i{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1600'%20height='400'%20viewBox='0%200%201600%20400'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20x2='1'%20y1='0'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%23A35BFF'/%3E%3Cstop%20offset='0.5'%20stop-color='%237A35F5'/%3E%3Cstop%20offset='1'%20stop-color='%23A35BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20fill='url(%23g)'%20d='M0,0%20L0,211.3%20L16,211.0%20L32,210.2%20L48,209.0%20L64,207.3%20L80,205.4%20L96,203.1%20L112,200.4%20L128,197.6%20L144,194.5%20L160,191.3%20L176,187.9%20L192,184.5%20L208,181.0%20L224,177.5%20L240,174.1%20L256,170.7%20L272,167.5%20L288,164.4%20L304,161.4%20L320,158.7%20L336,156.1%20L352,153.8%20L368,151.7%20L384,149.8%20L400,148.2%20L416,146.8%20L432,145.6%20L448,144.6%20L464,143.8%20L480,143.2%20L496,142.7%20L512,142.3%20L528,142.0%20L544,141.7%20L560,141.5%20L576,141.2%20L592,141.0%20L608,140.7%20L624,140.2%20L640,139.7%20L656,139.1%20L672,138.3%20L688,137.3%20L704,136.1%20L720,134.8%20L736,133.3%20L752,131.6%20L768,129.8%20L784,127.7%20L800,125.6%20L816,123.3%20L832,120.9%20L848,118.5%20L864,116.0%20L880,113.5%20L896,111.1%20L912,108.7%20L928,106.4%20L944,104.3%20L960,102.3%20L976,100.6%20L992,99.2%20L1008,98.0%20L1024,97.2%20L1040,96.7%20L1056,96.6%20L1072,96.9%20L1088,97.7%20L1104,98.9%20L1120,100.5%20L1136,102.5%20L1152,105.0%20L1168,107.9%20L1184,111.2%20L1200,114.9%20L1216,118.9%20L1232,123.3%20L1248,127.9%20L1264,132.8%20L1280,138.0%20L1296,143.2%20L1312,148.6%20L1328,154.1%20L1344,159.5%20L1360,164.9%20L1376,170.2%20L1392,175.4%20L1408,180.3%20L1424,185.1%20L1440,189.5%20L1456,193.6%20L1472,197.3%20L1488,200.7%20L1504,203.6%20L1520,206.1%20L1536,208.1%20L1552,209.6%20L1568,210.7%20L1584,211.2%20L1600,211.3%20L1600,0%20Z'/%3E%3C/svg%3E");animation:aw-x 46s linear infinite}
+.aw-bot .w1{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1600'%20height='400'%20viewBox='0%200%201600%20400'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20x2='1'%20y1='0'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%238B3DFF'/%3E%3Cstop%20offset='0.5'%20stop-color='%237C4DFF'/%3E%3Cstop%20offset='1'%20stop-color='%238B3DFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20fill='url(%23g)'%20d='M0,400%20L0,150.0%20L16,155.5%20L32,160.9%20L48,166.2%20L64,171.4%20L80,176.4%20L96,181.1%20L112,185.5%20L128,189.6%20L144,193.4%20L160,196.7%20L176,199.7%20L192,202.1%20L208,204.2%20L224,205.8%20L240,206.9%20L256,207.6%20L272,207.8%20L288,207.6%20L304,206.9%20L320,205.9%20L336,204.5%20L352,202.8%20L368,200.8%20L384,198.5%20L400,196.0%20L416,193.3%20L432,190.5%20L448,187.6%20L464,184.6%20L480,181.6%20L496,178.6%20L512,175.7%20L528,172.8%20L544,170.1%20L560,167.5%20L576,165.1%20L592,162.9%20L608,160.8%20L624,159.0%20L640,157.4%20L656,155.9%20L672,154.7%20L688,153.6%20L704,152.8%20L720,152.0%20L736,151.5%20L752,151.0%20L768,150.6%20L784,150.3%20L800,150.0%20L816,149.7%20L832,149.4%20L848,149.0%20L864,148.5%20L880,148.0%20L896,147.2%20L912,146.4%20L928,145.3%20L944,144.1%20L960,142.6%20L976,141.0%20L992,139.2%20L1008,137.1%20L1024,134.9%20L1040,132.5%20L1056,129.9%20L1072,127.2%20L1088,124.3%20L1104,121.4%20L1120,118.4%20L1136,115.4%20L1152,112.4%20L1168,109.5%20L1184,106.7%20L1200,104.0%20L1216,101.5%20L1232,99.2%20L1248,97.2%20L1264,95.5%20L1280,94.1%20L1296,93.1%20L1312,92.4%20L1328,92.2%20L1344,92.4%20L1360,93.1%20L1376,94.2%20L1392,95.8%20L1408,97.9%20L1424,100.3%20L1440,103.3%20L1456,106.6%20L1472,110.4%20L1488,114.5%20L1504,118.9%20L1520,123.6%20L1536,128.6%20L1552,133.8%20L1568,139.1%20L1584,144.5%20L1600,150.0%20L1600,400%20Z'/%3E%3C/svg%3E");animation:aw-x 52s linear infinite}
+.aw-bot .w2{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1600'%20height='400'%20viewBox='0%200%201600%20400'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20x2='1'%20y1='0'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%23B07CFF'/%3E%3Cstop%20offset='0.35'%20stop-color='%236B6BFF'/%3E%3Cstop%20offset='0.7'%20stop-color='%238F6BFF'/%3E%3Cstop%20offset='1'%20stop-color='%23B07CFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20fill='url(%23g)'%20d='M0,400%20L0,252.1%20L16,248.7%20L32,245.4%20L48,242.2%20L64,239.0%20L80,235.9%20L96,233.0%20L112,230.3%20L128,227.7%20L144,225.3%20L160,223.2%20L176,221.2%20L192,219.5%20L208,218.0%20L224,216.8%20L240,215.7%20L256,214.8%20L272,214.1%20L288,213.6%20L304,213.2%20L320,212.9%20L336,212.7%20L352,212.6%20L368,212.5%20L384,212.4%20L400,212.3%20L416,212.1%20L432,212.0%20L448,211.7%20L464,211.3%20L480,210.8%20L496,210.2%20L512,209.4%20L528,208.5%20L544,207.4%20L560,206.3%20L576,204.9%20L592,203.5%20L608,201.9%20L624,200.2%20L640,198.5%20L656,196.7%20L672,194.8%20L688,193.0%20L704,191.2%20L720,189.5%20L736,187.9%20L752,186.4%20L768,185.0%20L784,183.9%20L800,183.0%20L816,182.3%20L832,182.0%20L848,181.9%20L864,182.1%20L880,182.7%20L896,183.7%20L912,185.0%20L928,186.6%20L944,188.7%20L960,191.1%20L976,193.8%20L992,196.8%20L1008,200.2%20L1024,203.9%20L1040,207.8%20L1056,211.9%20L1072,216.2%20L1088,220.7%20L1104,225.3%20L1120,230.0%20L1136,234.6%20L1152,239.3%20L1168,243.9%20L1184,248.4%20L1200,252.7%20L1216,256.8%20L1232,260.7%20L1248,264.3%20L1264,267.6%20L1280,270.5%20L1296,273.1%20L1312,275.4%20L1328,277.2%20L1344,278.6%20L1360,279.5%20L1376,280.1%20L1392,280.2%20L1408,279.9%20L1424,279.2%20L1440,278.1%20L1456,276.6%20L1472,274.8%20L1488,272.7%20L1504,270.3%20L1520,267.7%20L1536,264.8%20L1552,261.8%20L1568,258.6%20L1584,255.4%20L1600,252.1%20L1600,400%20Z'/%3E%3C/svg%3E");animation:aw-x 38s linear infinite reverse;opacity:.9}
+.aw-bot .w3{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1600'%20height='400'%20viewBox='0%200%201600%20400'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20x2='1'%20y1='0'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%23F6D2FF'/%3E%3Cstop%20offset='0.3'%20stop-color='%23C9A6FF'/%3E%3Cstop%20offset='0.65'%20stop-color='%23A88BFF'/%3E%3Cstop%20offset='1'%20stop-color='%23F6D2FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20fill='url(%23g)'%20d='M0,400%20L0,284.0%20L16,284.2%20L32,284.4%20L48,284.5%20L64,284.6%20L80,284.6%20L96,284.6%20L112,284.4%20L128,284.1%20L144,283.8%20L160,283.3%20L176,282.8%20L192,282.2%20L208,281.5%20L224,280.7%20L240,279.9%20L256,279.1%20L272,278.2%20L288,277.4%20L304,276.6%20L320,275.8%20L336,275.2%20L352,274.6%20L368,274.2%20L384,273.9%20L400,273.7%20L416,273.8%20L432,274.0%20L448,274.5%20L464,275.2%20L480,276.1%20L496,277.2%20L512,278.6%20L528,280.3%20L544,282.1%20L560,284.3%20L576,286.6%20L592,289.1%20L608,291.8%20L624,294.7%20L640,297.7%20L656,300.9%20L672,304.1%20L688,307.4%20L704,310.7%20L720,314.0%20L736,317.3%20L752,320.5%20L768,323.6%20L784,326.6%20L800,329.4%20L816,332.0%20L832,334.4%20L848,336.5%20L864,338.4%20L880,339.9%20L896,341.2%20L912,342.2%20L928,342.8%20L944,343.1%20L960,343.1%20L976,342.8%20L992,342.1%20L1008,341.1%20L1024,339.9%20L1040,338.3%20L1056,336.5%20L1072,334.5%20L1088,332.2%20L1104,329.8%20L1120,327.2%20L1136,324.4%20L1152,321.6%20L1168,318.8%20L1184,315.8%20L1200,312.9%20L1216,310.1%20L1232,307.2%20L1248,304.5%20L1264,301.8%20L1280,299.3%20L1296,297.0%20L1312,294.8%20L1328,292.8%20L1344,290.9%20L1360,289.3%20L1376,287.9%20L1392,286.6%20L1408,285.6%20L1424,284.7%20L1440,284.1%20L1456,283.6%20L1472,283.2%20L1488,283.0%20L1504,282.9%20L1520,283.0%20L1536,283.1%20L1552,283.3%20L1568,283.5%20L1584,283.7%20L1600,284.0%20L1600,400%20Z'/%3E%3C/svg%3E");animation:aw-x 64s linear infinite;opacity:.85}
+.aw-hl{position:absolute;z-index:0;pointer-events:none;left:-6%;bottom:-14%;width:46vw;height:30vh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,226,255,.85),rgba(242,190,255,.4) 55%,rgba(242,190,255,0));filter:blur(30px)}
+.aw-hl.r{left:auto;right:-8%;bottom:-16%;width:34vw;height:26vh;background:radial-gradient(closest-side,rgba(150,170,255,.6),rgba(120,140,255,0));}
+@keyframes aw-x{from{background-position:0 100%}to{background-position:1600px 100%}}
+.aw-bot{animation:aw-breathe 11s ease-in-out 2.6s infinite alternate}
+.aw-top{animation:aw-breathe-t 13s ease-in-out 2.6s infinite alternate}
+@keyframes aw-breathe{from{transform:translateY(0) scaleY(1)}to{transform:translateY(2%) scaleY(1.06)}}
+@keyframes aw-breathe-t{from{transform:translateY(0)}to{transform:translateY(-6%)}}
+/* opening */
+.ax.js .aw-top{translate:0 -100%;opacity:0}
+.ax.js .aw-bot{translate:0 70%;opacity:0}
+.ax.js .aw-hl{opacity:0}
+.ax.js.on .aw-top{translate:0 0;opacity:1;transition:translate 1.6s cubic-bezier(.16,1,.3,1),opacity 1.2s ease-out}
+.ax.js.on .aw-bot{translate:0 0;opacity:1;transition:translate 1.8s cubic-bezier(.16,1,.3,1) .1s,opacity 1.3s ease-out .1s}
+.ax.js.on .aw-hl{opacity:1;transition:opacity 1.6s ease-out .6s}
+.ax-io .ax-sub{color:rgba(232,226,252,.8)}
+@media (max-width:760px){.aw-top{height:18%}.aw-bot{height:38%}.aw-hl{width:90vw;height:20vh}}
+@media (prefers-reduced-motion:reduce){.aw i,.aw-bot,.aw-top{animation:none}}
+/* subtle grid on the dark middle only, seen at the sides (owner 9 Nov) */
+.aw-grid{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(217,200,247,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(217,200,247,.09) 1px,transparent 1px);background-size:64px 64px;background-position:calc(50% - 32px) 0;
+  -webkit-mask-image:linear-gradient(180deg,transparent 12%,#000 26%,#000 58%,transparent 74%),linear-gradient(90deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 34%,transparent 66%,rgba(0,0,0,.5) 82%,#000 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,transparent 12%,#000 26%,#000 58%,transparent 74%),linear-gradient(90deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 34%,transparent 66%,rgba(0,0,0,.5) 82%,#000 100%);mask-composite:intersect}
+.ax.js .aw-grid{opacity:0}
+.ax.js.on .aw-grid{opacity:1;transition:opacity 1.4s ease-out 1s}
+/* performance (owner 9 Nov: "optimize without changing a pixel"): the bands used to slide by animating
+   background-position under a container blur, so the browser re-painted and re-blurred them every frame.
+   Now each band is a wider layer that blurs once and slides by transform on the compositor; same picture,
+   same speeds, same directions. */
+.aw-top,.aw-bot{filter:none!important}
+.aw i{left:0;right:auto;width:calc(100% + 1600px);background-position:0 100%!important;will-change:transform;backface-visibility:hidden}
+.aw-top i{filter:blur(44px)}
+.aw-bot i{filter:blur(42px)}
+@keyframes aw-tx{from{transform:translate3d(-1600px,0,0)}to{transform:translate3d(0,0,0)}}
+.aw-top i{animation:aw-tx 46s linear infinite}
+.aw-bot .w1{animation:aw-tx 52s linear infinite}
+.aw-bot .w2{animation:aw-tx 38s linear infinite reverse}
+.aw-bot .w3{animation:aw-tx 64s linear infinite}
+.aw-hl{will-change:opacity}
+@media (prefers-reduced-motion:reduce){.aw i{animation:none}}
+/* scene words and fixes, shared by every page that shows the service scenes (moved out of hero2.css) */
+.m-tx{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:10.5px;line-height:1.3;color:#7A7287;letter-spacing:0}
+.m-tx.m-md{font-size:12px;font-weight:600;color:#1E1530}
+.m-tx.m-h{font-size:19px;line-height:1.15;font-weight:650;letter-spacing:-.02em;color:#1E1530;white-space:normal;margin-bottom:8px}
+.m-tx.m-s{font-size:11.5px;color:#6B6378}
+.m-pg{display:flex;flex-direction:column}
+.m-tx.m-in{font-size:12.5px;color:#1E1530;margin-top:2px;clip-path:inset(0 calc((1 - var(--tw,1)) * 100%) 0 0)}
+.m-tx.m-qv{font-size:12px;color:#1E1530;clip-path:inset(0 calc((1 - var(--tw,1)) * 100%) 0 0)}
+.m-tx.m-al{font-size:11.5px;color:#2A2140;clip-path:inset(0 calc((1 - var(--tw,1)) * 100%) 0 0)}
+.m-ans{display:flex;flex-direction:column;gap:3px}
+.m-tx.m-pt{font-size:12px;line-height:1.4;color:#1E1530;white-space:normal;margin-bottom:8px}
+.m-tx.m-cb{font-size:11px;line-height:1.35;color:#1E1530;white-space:normal}
+.m-row .m-tx+.m-tx,.m-t .m-tx+.m-tx{margin-top:2px}
+.m-row{height:50px!important;padding:0 12px!important;display:flex!important;flex-direction:column;justify-content:center;gap:1px;overflow:hidden}
+.m-tx.m-cb{color:#fff}
+.m-lgo[data-l]::after,.m-fav[data-l]::after{content:attr(data-l);display:grid;place-items:center;width:100%;height:100%;font-size:13px;font-weight:650;color:#4B2183}
+.m-lgo[data-l],.m-fav[data-l]{display:grid;background:#EFE7FB}
+.m-lgo.m-p[data-l]::after{color:#fff}
+.mo[data-scene="content"] .m-badge{left:auto;right:20px}
+
+/* ==========================================================================
+   Services page in the homepage's system (owner 9 Nov). The first banner is a quieter cousin of the homepage
+   hero: the same near-black navy and the same purple glow on the top edge, but still - no wave bands, no
+   opening sequence - so the homepage keeps the big first impression. Below it, the homepage's grounds
+   (lavender / white), side grid, cards, tab control and type; no pink swashes.
+   ========================================================================== */
+/* navigation matches the homepage */
+html body .top .btn{background:#4B2183}
+html body .top .btn:hover{background:#2A1158}
+/* no pink swash under headings (as on the homepage) */
+html body .mk .sw{display:none}
+
+/* ---------- first banner: dark, still, one glow on the top edge, faint side grid ---------- */
+html body .sh{background:
+  radial-gradient(60% 34% at 50% -8%,rgba(139,61,255,.62) 0%,rgba(110,43,232,.28) 45%,rgba(110,43,232,0) 75%),
+  radial-gradient(28% 22% at 14% -4%,rgba(176,124,255,.4) 0%,rgba(176,124,255,0) 70%),
+  radial-gradient(28% 22% at 86% -4%,rgba(154,77,255,.35) 0%,rgba(154,77,255,0) 70%),
+  #05031A}
+html body .sh::before{background-image:linear-gradient(rgba(217,200,247,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(217,200,247,.09) 1px,transparent 1px);background-size:64px 64px;background-position:calc(50% - 32px) 0;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 34%,transparent 66%,rgba(0,0,0,.5) 82%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 34%,transparent 66%,rgba(0,0,0,.5) 82%,#000 100%)}
+html body .sh::after{display:none}
+html body .sh .sh-tag{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(217,200,247,.2);color:#E4D6FB}
+html body .sh .sh-sub{color:rgba(232,226,252,.8)}
+/* the six service cards in the banner: quiet glass, the homepage's card line (title left, icon right) */
+html body .sh-ix a{background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(217,200,247,.14);border-radius:20px;transition:background-color .25s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+@media (hover:hover){html body .sh-ix a:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}}
+html body .sh-ix .ic2{background:rgba(255,255,255,.08);color:#E4D6FB}
+html body .sh-ix a:last-child .ic2{background:rgba(255,255,255,.08);color:#E4D6FB}
+
+/* ---------- grounds and rhythm, as on the homepage ---------- */
+html body #system,html body #start{background:var(--c-tint)}
+html body #services-x{background:#fff}
+html body #system,html body #services-x,html body #start{padding:clamp(88px,12vh,136px) 0!important}
+html body :is(#system,#services-x,#start)::before{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--sg) 1px,transparent 1px),linear-gradient(90deg,var(--sg) 1px,transparent 1px);background-size:64px 64px;background-position:calc(50% - 32px) 0;
+  -webkit-mask-image:radial-gradient(ellipse 56% 70% at 50% 50%,rgba(0,0,0,.05) 0%,rgba(0,0,0,.25) 50%,#000 100%),linear-gradient(transparent,#000 64px,#000 calc(100% - 64px),transparent);-webkit-mask-composite:source-in;
+  mask-image:radial-gradient(ellipse 56% 70% at 50% 50%,rgba(0,0,0,.05) 0%,rgba(0,0,0,.25) 50%,#000 100%),linear-gradient(transparent,#000 64px,#000 calc(100% - 64px),transparent);mask-composite:intersect}
+html body #system,html body #start{--sg:rgba(103,47,178,.1)}
+html body #services-x{--sg:rgba(103,47,178,.075)}
+html body .sx .sx-bar{margin-top:0}
+
+/* ---------- the tab control: the homepage's quiet track with a raised white pill ---------- */
+html body .sx-tabs{gap:2px;padding:4px;background:#F2ECFB;box-shadow:inset 0 0 0 1px rgba(103,47,178,.08)}
+html body .sx-tabs button{color:var(--c-ink2)}
+html body .sx-tabs button .k-ic{color:var(--c-ink3)}
+html body .sx-tabs button[aria-selected="true"]{color:var(--c-ink)}
+html body .sx-tabs button[aria-selected="true"] .k-ic{color:var(--c-purple)}
+html body .sx-ind{top:4px;background:#fff;box-shadow:0 0 0 1px rgba(23,12,40,.05),0 1px 2px rgba(23,12,40,.06),0 6px 16px -8px rgba(45,19,92,.28)}
+
+/* ---------- cards: the homepage's white card (hairline, soft shadow, squircle), text aligned to its title ---------- */
+html body .inc2,html body .ws2-c,html body .sy2-card{box-shadow:inset 0 0 0 1px rgba(23,12,40,.07),0 18px 40px -30px rgba(45,19,92,.28)}
+@supports (corner-shape:squircle){html body .inc2,html body .ws2-c{corner-shape:squircle;border-radius:40px}}
+html body .inc2{padding:24px}
+html body .inc2 p{margin-left:0!important;padding-left:0!important;color:var(--c-ink2)}
+html body .ws2-c{padding:32px;border:0!important}
+html body .ws2-c.lead{background:var(--c-plum);box-shadow:0 30px 60px -36px rgba(45,19,92,.6)}
+html body .ws2-c.lead .ws2-m i,html body .ws2-c.lead .ws2-m span{opacity:1}
+/* fixes: no gap between the banner and the next ground; the plum card reads white */
+html body #top-svc{margin-bottom:0!important}
+html body .ws2-c.lead h3{color:#fff!important}
+html body .ws2-c.lead p{color:rgba(247,243,253,.78)!important}
+
+/* plan card wave foot: same strips as the homepage approach card */
+html body .ws2-c.lead .agx-wv i:nth-child(1){background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27600%27%20height%3D%27150%27%20viewBox%3D%270%200%20600%20150%27%3E%3Cpath%20fill%3D%27rgba%28255%2C255%2C255%2C.06%29%27%20d%3D%27M0%2C150%20L0%2C52.0%20L6%2C53.9%20L12%2C55.8%20L18%2C57.7%20L24%2C59.5%20L30%2C61.3%20L36%2C62.9%20L42%2C64.5%20L48%2C66.0%20L54%2C67.3%20L60%2C68.6%20L66%2C69.7%20L72%2C70.6%20L78%2C71.4%20L84%2C72.1%20L90%2C72.6%20L96%2C72.9%20L102%2C73.1%20L108%2C73.1%20L114%2C73.0%20L120%2C72.8%20L126%2C72.5%20L132%2C72.0%20L138%2C71.4%20L144%2C70.8%20L150%2C70.0%20L156%2C69.2%20L162%2C68.3%20L168%2C67.4%20L174%2C66.4%20L180%2C65.4%20L186%2C64.4%20L192%2C63.4%20L198%2C62.5%20L204%2C61.5%20L210%2C60.6%20L216%2C59.7%20L222%2C58.8%20L228%2C58.0%20L234%2C57.3%20L240%2C56.6%20L246%2C55.9%20L252%2C55.4%20L258%2C54.8%20L264%2C54.3%20L270%2C53.9%20L276%2C53.4%20L282%2C53.1%20L288%2C52.7%20L294%2C52.3%20L300%2C52.0%20L306%2C51.7%20L312%2C51.3%20L318%2C50.9%20L324%2C50.6%20L330%2C50.1%20L336%2C49.7%20L342%2C49.2%20L348%2C48.6%20L354%2C48.1%20L360%2C47.4%20L366%2C46.7%20L372%2C46.0%20L378%2C45.2%20L384%2C44.3%20L390%2C43.4%20L396%2C42.5%20L402%2C41.5%20L408%2C40.6%20L414%2C39.6%20L420%2C38.6%20L426%2C37.6%20L432%2C36.6%20L438%2C35.7%20L444%2C34.8%20L450%2C34.0%20L456%2C33.2%20L462%2C32.6%20L468%2C32.0%20L474%2C31.5%20L480%2C31.2%20L486%2C31.0%20L492%2C30.9%20L498%2C30.9%20L504%2C31.1%20L510%2C31.4%20L516%2C31.9%20L522%2C32.6%20L528%2C33.4%20L534%2C34.3%20L540%2C35.4%20L546%2C36.7%20L552%2C38.0%20L558%2C39.5%20L564%2C41.1%20L570%2C42.7%20L576%2C44.5%20L582%2C46.3%20L588%2C48.2%20L594%2C50.1%20L600%2C52.0%20L600%2C150%20Z%27/%3E%3C/svg%3E")}
+html body .ws2-c.lead .agx-wv i:nth-child(2){background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27600%27%20height%3D%27150%27%20viewBox%3D%270%200%20600%20150%27%3E%3Cpath%20fill%3D%27rgba%28155%2C107%2C227%2C.2%29%27%20d%3D%27M0%2C150%20L0%2C96.6%20L6%2C95.7%20L12%2C94.7%20L18%2C93.6%20L24%2C92.4%20L30%2C91.2%20L36%2C90.0%20L42%2C88.7%20L48%2C87.5%20L54%2C86.2%20L60%2C85.0%20L66%2C83.7%20L72%2C82.5%20L78%2C81.4%20L84%2C80.3%20L90%2C79.2%20L96%2C78.3%20L102%2C77.4%20L108%2C76.5%20L114%2C75.8%20L120%2C75.1%20L126%2C74.5%20L132%2C73.9%20L138%2C73.5%20L144%2C73.1%20L150%2C72.7%20L156%2C72.4%20L162%2C72.2%20L168%2C72.0%20L174%2C71.9%20L180%2C71.8%20L186%2C71.7%20L192%2C71.6%20L198%2C71.5%20L204%2C71.5%20L210%2C71.4%20L216%2C71.3%20L222%2C71.2%20L228%2C71.1%20L234%2C71.0%20L240%2C70.8%20L246%2C70.7%20L252%2C70.5%20L258%2C70.2%20L264%2C70.0%20L270%2C69.7%20L276%2C69.4%20L282%2C69.1%20L288%2C68.8%20L294%2C68.5%20L300%2C68.2%20L306%2C68.0%20L312%2C67.7%20L318%2C67.5%20L324%2C67.3%20L330%2C67.2%20L336%2C67.2%20L342%2C67.2%20L348%2C67.3%20L354%2C67.4%20L360%2C67.7%20L366%2C68.0%20L372%2C68.5%20L378%2C69.0%20L384%2C69.7%20L390%2C70.4%20L396%2C71.2%20L402%2C72.2%20L408%2C73.2%20L414%2C74.3%20L420%2C75.5%20L426%2C76.8%20L432%2C78.1%20L438%2C79.5%20L444%2C81.0%20L450%2C82.4%20L456%2C83.9%20L462%2C85.4%20L468%2C86.9%20L474%2C88.3%20L480%2C89.8%20L486%2C91.1%20L492%2C92.5%20L498%2C93.7%20L504%2C94.9%20L510%2C95.9%20L516%2C96.9%20L522%2C97.7%20L528%2C98.5%20L534%2C99.1%20L540%2C99.5%20L546%2C99.8%20L552%2C100.0%20L558%2C100.0%20L564%2C99.9%20L570%2C99.7%20L576%2C99.3%20L582%2C98.8%20L588%2C98.2%20L594%2C97.5%20L600%2C96.6%20L600%2C150%20Z%27/%3E%3C/svg%3E")}
+html body .ws2-c.lead .agx-wv i:nth-child(3){background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27600%27%20height%3D%27150%27%20viewBox%3D%270%200%20600%20150%27%3E%3Cpath%20fill%3D%27rgba%28155%2C107%2C227%2C.34%29%27%20d%3D%27M0%2C150%20L0%2C96.7%20L6%2C96.2%20L12%2C95.9%20L18%2C95.6%20L24%2C95.3%20L30%2C95.2%20L36%2C95.1%20L42%2C95.1%20L48%2C95.2%20L54%2C95.3%20L60%2C95.4%20L66%2C95.6%20L72%2C95.9%20L78%2C96.1%20L84%2C96.4%20L90%2C96.7%20L96%2C97.0%20L102%2C97.3%20L108%2C97.6%20L114%2C97.9%20L120%2C98.1%20L126%2C98.4%20L132%2C98.6%20L138%2C98.8%20L144%2C99.0%20L150%2C99.2%20L156%2C99.4%20L162%2C99.5%20L168%2C99.6%20L174%2C99.7%20L180%2C99.8%20L186%2C99.9%20L192%2C100.0%20L198%2C100.1%20L204%2C100.2%20L210%2C100.4%20L216%2C100.5%20L222%2C100.7%20L228%2C100.9%20L234%2C101.2%20L240%2C101.5%20L246%2C101.8%20L252%2C102.2%20L258%2C102.6%20L264%2C103.2%20L270%2C103.7%20L276%2C104.3%20L282%2C105.0%20L288%2C105.7%20L294%2C106.5%20L300%2C107.3%20L306%2C108.2%20L312%2C109.1%20L318%2C110.0%20L324%2C111.0%20L330%2C112.0%20L336%2C112.9%20L342%2C113.9%20L348%2C114.8%20L354%2C115.8%20L360%2C116.7%20L366%2C117.5%20L372%2C118.3%20L378%2C119.1%20L384%2C119.7%20L390%2C120.3%20L396%2C120.8%20L402%2C121.3%20L408%2C121.6%20L414%2C121.8%20L420%2C121.9%20L426%2C121.9%20L432%2C121.8%20L438%2C121.5%20L444%2C121.2%20L450%2C120.7%20L456%2C120.2%20L462%2C119.5%20L468%2C118.8%20L474%2C117.9%20L480%2C117.0%20L486%2C116.0%20L492%2C115.0%20L498%2C113.9%20L504%2C112.7%20L510%2C111.5%20L516%2C110.3%20L522%2C109.1%20L528%2C107.9%20L534%2C106.7%20L540%2C105.5%20L546%2C104.4%20L552%2C103.3%20L558%2C102.2%20L564%2C101.2%20L570%2C100.3%20L576%2C99.4%20L582%2C98.6%20L588%2C97.9%20L594%2C97.3%20L600%2C96.7%20L600%2C150%20Z%27/%3E%3C/svg%3E")}
+
+/* ==========================================================================
+   Services page, round 2 (owner 9 Nov): every section in the homepage's system.
+   ========================================================================== */
+/* banner: shorter - headline on two lines, compact chips - and a soft violet glow drifting along its foot */
+html body .sh{padding:150px 0 64px!important;min-height:0!important}
+html body .sh .sh-h{font-size:min(56px,3.9vw)!important;max-width:1120px;margin-left:auto;margin-right:auto;line-height:1.12!important}
+html body .sh .sh-sub{margin-top:18px}
+html body .sh .sh-cta{margin-top:28px}
+html body .sh-ix{margin-top:56px!important}
+html body .sh-ix a{min-height:0!important;padding:14px 16px!important;align-items:center!important}
+html body .sh-ix a em{display:none}
+html body .sh-ix a b{font-size:15px;line-height:1.3}
+.sh-glow{position:absolute;left:-12%;right:-12%;bottom:-36%;height:70%;z-index:-1;pointer-events:none}
+.sh-glow i{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
+.sh-glow i:first-child{left:6%;bottom:0;width:58%;height:70%;background:radial-gradient(closest-side,rgba(139,61,255,.55),rgba(110,43,232,.18) 60%,transparent);animation:sh-g1 26s ease-in-out infinite alternate}
+.sh-glow i:last-child{right:4%;bottom:6%;width:46%;height:60%;background:radial-gradient(closest-side,rgba(242,190,255,.28),rgba(150,120,255,.12) 60%,transparent);animation:sh-g2 34s ease-in-out infinite alternate}
+@keyframes sh-g1{from{transform:translate3d(0,0,0)}to{transform:translate3d(12%,-6%,0)}}
+@keyframes sh-g2{from{transform:translate3d(0,0,0)}to{transform:translate3d(-14%,-4%,0)}}
+html body .sh .btn2.pink{background:#fff;color:#1B0F3F;box-shadow:0 10px 30px -10px rgba(10,4,24,.6)}
+html body .sh .btn2.pink:hover{background:#F3ECFC}
+html body .sh .btn2.ghost{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#fff}
+
+/* service panels: the top is the homepage's deep plum card - copy left, the motion scene right */
+html body .sxp-top{grid-template-columns:minmax(0,4.6fr) minmax(0,7.4fr)!important;gap:0!important;align-items:stretch!important;padding:8px;border-radius:28px;background:var(--c-plum);box-shadow:0 40px 90px -46px rgba(45,19,92,.55)}
+@supports (corner-shape:squircle){html body .sxp-top{corner-shape:squircle;border-radius:48px}}
+html body .sxp-tx{padding:40px 32px 40px 36px;display:flex;flex-direction:column;justify-content:center;color:#fff}
+html body .sxp-tx h2{color:#fff!important;font-size:40px!important;line-height:1.1!important}
+html body .sxp-tx .sxp-name{color:#D9C8F7}
+html body .sxp-tx .sxp-name .k-ic{color:#D9C8F7}
+html body .sxp-tx .sxp-sub{color:rgba(247,243,253,.76)!important;font-size:17px!important}
+html body .sxp-get{background:rgba(255,255,255,.07)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)!important;color:#fff}
+html body .sxp-get p,html body .sxp-get small{color:rgba(247,243,253,.85)!important}
+html body .sxp-tx .btn2{background:#fff!important;color:var(--c-plum)!important;align-self:flex-start}
+html body .sxp-stage{padding:0!important;background:none!important;box-shadow:none!important;border-radius:22px;overflow:hidden}
+html body .sxp-stage .mo{border-radius:22px}
+
+/* how it works: numbered step cards on one row */
+html body .sxp-how{background:none!important;padding:0!important;gap:10px!important;margin-top:20px!important}
+html body .sxp-how small{width:100%;margin-bottom:4px;font-size:15px;font-weight:500;color:var(--c-ink2)}
+html body .sxp-how span{flex:1;min-width:160px;height:auto!important;padding:16px!important;border-radius:16px!important;background:#fff!important;color:var(--c-ink)!important;box-shadow:inset 0 0 0 1px rgba(23,12,40,.07),0 12px 28px -22px rgba(45,19,92,.3);align-items:flex-start!important;flex-direction:column;gap:10px!important;font-size:15px!important;line-height:1.4}
+html body .sxp-how span i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#F1EBF9;color:var(--c-purple);font-style:normal;font-size:13px;font-weight:600}
+html body .sxp-how .ar2{display:none}
+
+/* connections diagram card: squircle like the homepage stage */
+@supports (corner-shape:squircle){html body .sy2-card{corner-shape:squircle;border-radius:48px}}
+
+/* plan cards: the plum one carries the homepage's soft wave foot */
+html body .ws2-c{position:relative;overflow:hidden;isolation:isolate}
+html body .ws2-c>*:not(.agx-wv){position:relative;z-index:1}
+html body .ws2-c.lead{padding-bottom:96px}
+html body .ws2-c .agx-wv{position:absolute;left:0;right:0;bottom:0;height:96px;z-index:0;pointer-events:none}
+html body .ws2-c .agx-wv i{position:absolute;inset:0;background-repeat:repeat-x;background-size:448px 96px;background-position:0 100%;animation:sv-wv 40s linear infinite}
+html body .ws2-c .agx-wv i:nth-child(2){animation-duration:56s;animation-direction:reverse}
+html body .ws2-c .agx-wv i:nth-child(3){animation-duration:72s}
+@keyframes sv-wv{from{background-position:0 100%}to{background-position:448px 100%}}
+
+/* grid-cell hover, as on the homepage */
+.sg-c{position:absolute;left:0;top:0;width:64px;height:64px;z-index:-1;pointer-events:none;background:rgba(103,47,178,.025);box-shadow:inset 0 0 0 1px rgba(103,47,178,.05);opacity:0;transition:opacity .5s ease}
+.sg-c.on{opacity:1;transform:var(--p);transition:opacity .35s ease}
+
+@media (prefers-reduced-motion:reduce){.sh-glow i,html body .ws2-c .agx-wv i{animation:none}}
+@media (max-width:1000px){html body .sxp-top{grid-template-columns:minmax(0,1fr)!important}html body .sh .sh-h{font-size:clamp(2rem,8.4vw,2.75rem)!important}}
+/* fixes: no wave foot on the plan card (the strips did not tile); even step cards; one-line panel button */
+html body .ws2-c .agx-wv{display:none}
+html body .ws2-c.lead{padding-bottom:32px}
+html body .sxp-how{align-items:stretch!important}
+html body .sxp-how span{justify-content:flex-start}
+html body .sxp-tx .btn2{white-space:nowrap;max-width:100%}
+html body .sxp-tx .btn2 span{white-space:nowrap}
+
+/* ==========================================================================
+   Services page, round 3 (owner 9 Nov)
+   ========================================================================== */
+/* banner: the homepage's ground (shared aurora.css) without its opening; shorter; no service chips */
+html body .sh{background:#05031A!important;padding:150px 0 170px!important}
+html body .sh::before{display:none}
+html body .sh>.w{position:relative;z-index:2}
+html body .sh .aw-top{height:26%}
+html body .sh .aw-bot{height:46%}
+html body .sh .aw-hl{height:22vh}
+
+/* connections diagram: a deep plum stage, glass chips with white text, a fine lavender line, a soft lavender ring
+   where the light passes (no pink glow) */
+html body .sy2-card{padding:8px;background:#fff}
+html body .sy2-card .mo{background:radial-gradient(120% 90% at 50% 0%,#3D1B78 0%,#2D135C 55%,#1E0D40 100%)!important}
+html body .sy2-card .mo::before{background-image:linear-gradient(rgba(217,200,247,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(217,200,247,.07) 1px,transparent 1px)!important}
+html body .m-stg-h{color:#D9C8F7!important;font-size:18px!important;font-weight:600!important;letter-spacing:-.01em!important}
+html body .m-nd{background:rgba(255,255,255,.07)!important;box-shadow:inset 0 0 0 1px rgba(217,200,247,.2)!important;color:#fff!important}
+html body .m-nd .m-ni{background:rgba(255,255,255,.1)!important;color:#E4D6FB!important}
+html body .m-nd.m-end .m-ni{background:var(--c-pink)!important;color:#fff!important}
+html body .m-nd::after{box-shadow:0 0 0 1.5px #D9C8F7!important}
+html body .sy2-card .paths path{stroke:rgba(217,200,247,.32)!important}
+html body .sy2-card .paths path.lit{stroke:#fff!important}
+html body .sy2-card .m-pulse{background:#fff!important;box-shadow:0 0 0 3px rgba(255,255,255,.18)!important}
+
+/* included: white cards on a lavender panel, so the cards stand off the white ground; quieter descriptions */
+html body .sxp-inc{padding:16px!important;gap:12px!important;border-radius:28px;background:var(--c-tint)}
+@supports (corner-shape:squircle){html body .sxp-inc{corner-shape:squircle;border-radius:48px}}
+html body .inc2{box-shadow:0 1px 2px rgba(23,12,40,.05),0 12px 28px -22px rgba(45,19,92,.3)!important;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+@media (hover:hover){html body .inc2:hover{transform:translateY(-4px)}}
+html body .inc2 .inc2-h h3{font-size:20px!important}
+html body .inc2 p{font-size:15px!important;line-height:1.6!important;color:var(--c-ink3)!important}
+
+/* how it works: one quiet flow line - the steps as plain pills with arrows, no numbers, no cards */
+html body .sxp-how{display:flex!important;align-items:center!important;flex-wrap:wrap;gap:10px 12px!important;margin-top:16px!important;padding:16px 20px!important;border-radius:20px;background:#fff!important;box-shadow:inset 0 0 0 1px rgba(23,12,40,.07)}
+html body .sxp-how small{width:auto!important;margin:0 8px 0 0!important;font-size:15px;font-weight:600;color:var(--c-ink)}
+html body .sxp-how span{flex:none!important;min-width:0!important;flex-direction:row!important;align-items:center!important;height:36px!important;padding:0 14px!important;border-radius:999px!important;background:#F6F1FD!important;box-shadow:none!important;font-size:14px!important;color:var(--c-ink)!important}
+html body .sxp-how .ar2{display:inline-block!important;width:14px;height:14px;color:var(--c-ink3)}
+
+/* three ways to start: three equal white cards in the owner's card line (title left, icon right) */
+html body .ws2-c{background:#fff!important;padding:28px 28px 30px!important}
+html body .ws2-c .ws2-h{display:flex;align-items:center;justify-content:space-between;gap:16px}
+html body .ws2-c .ws2-h h3{color:var(--c-ink)!important;font-size:24px!important}
+html body .ws2-c .ii{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:#F1EBF9;color:var(--c-purple)}
+html body .ws2-c .ii .k-ic{width:20px;height:20px}
+html body .ws2-c p{margin-top:12px;color:var(--c-ink2)!important}
+html body .ws2-c .ws2-h h3{margin:0!important}
+html body .ws2-c .ws2-h{margin:0}
+html body .sxp-how span{padding:0 12px!important;font-size:13.5px!important}
+html body .sxp-how{gap:8px 10px!important}
+html body .sxp-tx .btn2{white-space:normal!important;height:auto!important;min-height:52px;padding:12px 22px!important;text-align:left;line-height:1.3}
+html body .sxp-tx .btn2 span{white-space:normal!important}
+html body .sxp-how small{width:100%!important;margin:0 0 2px!important}
+html body .sxp-how{gap:8px 6px!important}
+html body .sxp-how span{padding:0 11px!important;font-size:13.5px!important}
+/* banner about 40% shorter (owner 9 Nov): less space above and below, headline a step smaller, the glow bands scaled to match */
+html body .sh{padding:104px 0 44px!important}
+html body .sh .sh-h{font-size:min(48px,3.4vw)!important}
+html body .sh .sh-tag{margin-bottom:0}
+html body .sh .sh-sub{margin-top:12px!important}
+html body .sh .sh-cta{margin-top:22px!important}
+html body .sh .aw-top{height:22%}
+html body .sh .aw-bot{height:40%}
+html body .sh .aw-hl{height:16vh}
+html body .sh{padding:96px 0 30px!important}
+html body .sh .sh-h{font-size:min(44px,3.1vw)!important;line-height:1.1!important}
+html body .sh .sh-sub{margin-top:10px!important;font-size:18px!important}
+html body .sh .sh-cta{margin-top:18px!important}
+html body .sh .sh-cta .btn2{height:50px}
+
+/* inner-page banners share one size with About: 500px, headline 48 (owner 9 Nov) */
+html body .sh{height:500px;padding:76px 0 0!important;display:flex;align-items:center}
+html body .sh>.w{width:100%}
+html body .sh .sh-h{font-size:min(48px,3.4vw)!important;line-height:1.12!important}
+
+/* inner banners: less space on top, copy centred between the nav and the glow (matches About) */
+html body .sh{height:auto!important;padding:136px 0 96px!important;display:block!important}
+/* inner banners: one fixed size (owner), copy centred below the nav */
+html body .sh{height:440px!important;padding:76px 0 0!important;display:flex!important;align-items:center}
+@media (max-width:760px){html body .sh{height:auto!important;padding:120px 0 64px!important}}
+html body .sh .sh-h{margin-top:0!important}
+/* optical centring (owner 9 Nov): centre the copy in the dark space between the nav and the glow, not in the box */
+html body .sh{padding:76px 0 84px!important}
 </style>
 </head>
 <body>
@@ -2364,9 +2841,8 @@ body{background:var(--c-paper)}
     <a href="/" aria-label="Caimue home"><img src="/concepts/shared/caimue-logo.svg" alt="Caimue"></a>
     <ul>
       <li><a href="#top-svc" aria-current="page">Services</a></li>
-      <li><a href="/#method">What we do</a></li>
-      <li><a href="/#why">Why Caimue</a></li>
-      <li><a href="/#partners">Clients</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/testimonials">Testimonials</a></li>
     </ul>
     <a class="btn sm mag" href="/contact"><span>Contact</span></a>
   </div>
@@ -2420,34 +2896,34 @@ body{background:var(--c-paper)}
 <template id="sc-web">
   <div class="m-o m-win" style="left:24px;top:38px;width:360px;height:344px">
     <div class="m-bar"><span class="m-dots"><i></i><i></i><i></i></span><span class="m-url"><svg class="k-ic"><use href="#i-globe"/></svg>yourcompany.com</span></div>
-    <div class="m-pg"><i class="m-sk m-dk" style="width:70%"></i><i class="m-sk m-dk" style="width:48%"></i><i class="m-sk" style="width:84%"></i></div>
+    <div class="m-pg"><span class="m-tx m-h">Payroll for teams that grow fast</span><span class="m-tx m-s">See it on your own data in 20 minutes</span></div>
     <div class="m-form">
-      <span class="m-fld" style="top:14px"><small>Name</small><i class="m-ty" data-k="ty1"></i></span>
-      <span class="m-fld" style="top:66px"><small>Work email</small><i class="m-ty m-t2" data-k="ty2"></i></span>
-      <span class="m-send" data-k="send"><b class="m-a" data-k="sendA">Send enquiry</b><b class="m-b" data-k="sendB"><svg class="k-ic"><use href="#i-check"/></svg>Sent</b></span>
+      <span class="m-fld" style="top:14px"><small>Name</small><span class="m-tx m-in" data-k="ty1">Maya Chen</span></span>
+      <span class="m-fld" style="top:66px"><small>Work email</small><span class="m-tx m-in" data-k="ty2">maya@northwind.io</span></span>
+      <span class="m-send" data-k="send"><b class="m-a" data-k="sendA">Send inquiry</b><b class="m-b" data-k="sendB"><svg class="k-ic"><use href="#i-check"/></svg>Sent</b></span>
     </div>
   </div>
   <div class="m-o m-panel" style="left:404px;top:70px;width:196px;height:282px">
     <div class="m-ph"><svg class="k-ic"><use href="#i-inbox"/></svg>In your CRM</div>
-    <div class="m-rows" data-k="rows"><span class="m-row m-old"><i class="m-sk" style="width:60%"></i><i class="m-sk" style="width:38%"></i></span><span class="m-row m-old"><i class="m-sk" style="width:54%"></i><i class="m-sk" style="width:42%"></i></span><span class="m-row m-old"><i class="m-sk" style="width:64%"></i><i class="m-sk" style="width:30%"></i></span></div>
+    <div class="m-rows" data-k="rows"><span class="m-row m-old"><span class="m-tx m-md">Orbit Systems</span><span class="m-tx">Demo request</span></span><span class="m-row m-old"><span class="m-tx m-md">Keystone Bank</span><span class="m-tx">Pricing question</span></span><span class="m-row m-old"><span class="m-tx m-md">Brightline Health</span><span class="m-tx">Guide download</span></span></div>
   </div>
-  <span class="m-tok" data-k="tok"><b class="m-tl" data-k="tokL"><svg class="k-ic"><use href="#i-check"/></svg>Sent</b><span class="m-tr" data-k="tokR"><span class="m-ri"><svg class="k-ic"><use href="#i-inbox"/></svg></span><span><b>New enquiry</b><em><svg class="k-ic"><use href="#i-search"/></svg>From Google</em></span></span></span>
+  <span class="m-tok" data-k="tok"><b class="m-tl" data-k="tokL"><svg class="k-ic"><use href="#i-check"/></svg>Sent</b><span class="m-tr" data-k="tokR"><span class="m-ri"><svg class="k-ic"><use href="#i-inbox"/></svg></span><span><b>New inquiry</b><em><svg class="k-ic"><use href="#i-search"/></svg>From Google</em></span></span></span>
   <span class="m-ring" data-k="ring" style="left:416px;top:122px;width:172px;height:50px"></span>
   <span class="m-cur" data-k="cur"><svg class="k-ic"><use href="#i-cur"/></svg></span>
 </template>
 
 <template id="sc-search">
   <div class="m-o m-win" style="left:24px;top:28px;width:350px;height:364px">
-    <div class="m-q"><svg class="k-ic"><use href="#i-search"/></svg><i class="m-sk m-qty" data-k="qty"></i></div>
-    <span class="m-res m-r0" data-k="r0"><span class="m-fav"></span><span class="m-t"><i class="m-sk m-md" style="width:44%"></i><i class="m-sk" style="width:78%"></i></span></span>
-    <span class="m-res m-r1" data-k="r1"><span class="m-fav"></span><span class="m-t"><i class="m-sk m-md" style="width:52%"></i><i class="m-sk" style="width:70%"></i></span></span>
-    <span class="m-res m-r2" data-k="r2"><span class="m-fav"></span><span class="m-t"><i class="m-sk m-md" style="width:40%"></i><i class="m-sk" style="width:82%"></i></span></span>
-    <span class="m-res m-you" data-k="you"><span class="m-fav m-p"><svg class="k-ic"><use href="#i-globe"/></svg></span><span class="m-t"><b>yourcompany.com</b><i class="m-sk" style="width:74%"></i></span><em data-k="p1">Page one</em></span>
+    <div class="m-q"><svg class="k-ic"><use href="#i-search"/></svg><span class="m-tx m-qv" data-k="qty">b2b inbound lead generation</span></div>
+    <span class="m-res m-r0" data-k="r0"><span class="m-fav" data-l="M"></span><span class="m-t"><span class="m-tx m-md">What is inbound marketing?</span><span class="m-tx">marketingguide.com</span></span></span>
+    <span class="m-res m-r1" data-k="r1"><span class="m-fav" data-l="A"></span><span class="m-t"><span class="m-tx m-md">12 B2B agencies compared</span><span class="m-tx">agencylist.io</span></span></span>
+    <span class="m-res m-r2" data-k="r2"><span class="m-fav" data-l="G"></span><span class="m-t"><span class="m-tx m-md">Lead generation, explained</span><span class="m-tx">growthnotes.com</span></span></span>
+    <span class="m-res m-you" data-k="you"><span class="m-fav m-p"><svg class="k-ic"><use href="#i-globe"/></svg></span><span class="m-t"><b>yourcompany.com</b><span class="m-tx">Inbound leads for B2B teams</span></span><em data-k="p1">Page one</em></span>
   </div>
   <div class="m-o m-panel m-ai" style="left:394px;top:58px;width:206px;height:304px">
     <div class="m-ph"><svg class="k-ic"><use href="#i-spark"/></svg>Answer</div>
     <span class="m-ask">Who helps B2B companies get found?</span>
-    <span class="m-ans"><i class="m-sk m-ln" data-k="l1" style="width:92%"></i><i class="m-sk m-ln" data-k="l2" style="width:84%"></i><i class="m-sk m-ln" data-k="l3" style="width:56%"></i></span>
+    <span class="m-ans"><span class="m-tx m-al" data-k="l1">Agencies that pair marketing</span><span class="m-tx m-al" data-k="l2">experts with AI agents, such as</span><span class="m-tx m-al" data-k="l3">this one:</span></span>
     <span class="m-slot"></span>
     <span class="m-eng"><b data-k="e1">ChatGPT</b><b data-k="e2">Perplexity</b><b data-k="e3">Gemini</b></span>
   </div>
@@ -2462,7 +2938,7 @@ body{background:var(--c-paper)}
   <span class="m-tile" data-k="t0" style="top:28px"><span class="m-ti"><svg class="k-ic"><use href="#i-cam"/></svg></span><span class="m-tt"><b>Short video</b><em>30 to 90 seconds</em></span><i class="m-tk"><svg class="k-ic"><use href="#i-check"/></svg></i></span>
   <span class="m-tile" data-k="t1" style="top:108px"><span class="m-ti"><svg class="k-ic"><use href="#i-news"/></svg></span><span class="m-tt"><b>Posts</b><em>In their own voice</em></span><i class="m-tk"><svg class="k-ic"><use href="#i-check"/></svg></i></span>
   <span class="m-tile" data-k="t2" style="top:188px"><span class="m-ti"><svg class="k-ic"><use href="#i-layers"/></svg></span><span class="m-tt"><b>Carousels</b><em>Planned a month ahead</em></span><i class="m-tk"><svg class="k-ic"><use href="#i-check"/></svg></i></span>
-  <span class="m-tile" data-k="t3" style="top:268px"><span class="m-ti"><svg class="k-ic"><use href="#i-file"/></svg></span><span class="m-tt"><b>Case study</b><em>Sales-ready page and PDF</em></span><i class="m-tk"><svg class="k-ic"><use href="#i-check"/></svg></i></span>
+  <span class="m-tile" data-k="t3" style="top:268px"><span class="m-ti"><svg class="k-ic"><use href="#i-file"/></svg></span><span class="m-tt"><b>Case study</b><em>Page and PDF, ready to share</em></span><i class="m-tk"><svg class="k-ic"><use href="#i-check"/></svg></i></span>
   <i class="m-pulse" data-k="p0"></i><i class="m-pulse" data-k="p1"></i><i class="m-pulse" data-k="p2"></i><i class="m-pulse" data-k="p3"></i>
   <span class="m-badge" data-k="badge"><svg class="k-ic"><use href="#i-calendar"/></svg>A month of content from one hour of your time</span>
 </template>
@@ -2470,25 +2946,25 @@ body{background:var(--c-paper)}
 <template id="sc-li">
   <div class="m-o m-win m-post" style="left:24px;top:30px;width:300px;height:360px">
     <div class="m-ph2"><span class="m-lg"><svg class="k-ic"><use href="#i-bld"/></svg></span><span class="m-who">Your company<small>Company page</small></span><svg class="k-ic in"><use href="#i-in"/></svg></div>
-    <div class="m-pb"><i class="m-sk" style="width:92%"></i><i class="m-sk" style="width:66%"></i><span class="m-media"><i class="m-c1"></i><i class="m-c2"></i></span>
-      <span class="m-react"><b data-k="re1"><svg class="k-ic"><use href="#i-heart"/></svg></b><b data-k="re2"><svg class="k-ic"><use href="#i-msg"/></svg></b><i class="m-sk" style="width:60px"></i></span></div>
+    <div class="m-pb"><span class="m-tx m-pt">How we cut onboarding from six weeks to two, and what we would change.</span><span class="m-media"><i class="m-c1"></i><i class="m-c2"></i></span>
+      <span class="m-react"><b data-k="re1"><svg class="k-ic"><use href="#i-heart"/></svg></b><b data-k="re2"><svg class="k-ic"><use href="#i-msg"/></svg></b><span class="m-tx">24 comments</span></span></div>
   </div>
   <div class="m-o m-panel" style="left:344px;top:60px;width:256px;height:300px">
     <div class="m-ph"><svg class="k-ic"><use href="#i-msg"/></svg>Messages</div>
-    <span class="m-row m-old" style="position:absolute;left:14px;right:14px;top:234px"><i class="m-sk" style="width:58%"></i><i class="m-sk" style="width:36%"></i></span>
+    <span class="m-row m-old" style="position:absolute;left:14px;right:14px;top:234px"><span class="m-tx m-md">Daniel Brooks</span><span class="m-tx">Thanks for sharing this</span></span>
     <span class="m-flag" data-k="flag"><svg class="k-ic"><use href="#i-spark"/></svg>Warm conversation flagged</span>
     <span class="m-reply" data-k="reply"><span class="m-dotty"><i data-k="d1"></i><i data-k="d2"></i><i data-k="d3"></i></span></span>
   </div>
-  <span class="m-cmt" data-k="cmt"><span class="m-face"></span><span class="m-bub"><i class="m-sk" style="width:86%"></i><i class="m-sk" style="width:52%"></i></span></span>
+  <span class="m-cmt" data-k="cmt"><span class="m-face"></span><span class="m-bub"><span class="m-tx m-cb">We have the same problem. Could we talk next week?</span></span></span>
 </template>
 
 <template id="sc-paid">
   <div class="m-o m-win m-acc" style="left:24px;top:28px;width:340px;height:364px" data-k="acc">
     <div class="m-ph"><svg class="k-ic"><use href="#i-target"/></svg>Named target accounts</div>
-    <span class="m-ar" data-k="a0" style="top:52px"><span class="m-lgo"></span><span class="m-t"><i class="m-sk m-md" style="width:58%"></i><i class="m-sk" style="width:34%"></i></span><em>Tier 2</em></span>
-    <span class="m-ar m-pick" data-k="a1" style="top:114px"><span class="m-lgo m-p"></span><span class="m-t"><i class="m-sk m-md" style="width:50%"></i><i class="m-sk" style="width:40%"></i></span><span class="m-bc"><i data-k="b0"></i><i data-k="b1"></i><i data-k="b2"></i><i data-k="b3"></i></span><em class="m-t1">Tier 1</em></span>
-    <span class="m-ar" data-k="a2" style="top:176px"><span class="m-lgo"></span><span class="m-t"><i class="m-sk m-md" style="width:62%"></i><i class="m-sk" style="width:30%"></i></span><em>Tier 1</em></span>
-    <span class="m-ar" data-k="a3" style="top:238px"><span class="m-lgo"></span><span class="m-t"><i class="m-sk m-md" style="width:46%"></i><i class="m-sk" style="width:38%"></i></span><em>Tier 2</em></span>
+    <span class="m-ar" data-k="a0" style="top:52px"><span class="m-lgo" data-l="N"></span><span class="m-t"><span class="m-tx m-md">Northwind Logistics</span><span class="m-tx">Logistics, 800 people</span></span><em>Tier 2</em></span>
+    <span class="m-ar m-pick" data-k="a1" style="top:114px"><span class="m-lgo m-p" data-l="B"></span><span class="m-t"><span class="m-tx m-md">Brightline Health</span><span class="m-tx">Healthcare, 1,200 people</span></span><span class="m-bc"><i data-k="b0"></i><i data-k="b1"></i><i data-k="b2"></i><i data-k="b3"></i></span><em class="m-t1">Tier 1</em></span>
+    <span class="m-ar" data-k="a2" style="top:176px"><span class="m-lgo" data-l="O"></span><span class="m-t"><span class="m-tx m-md">Orbit Systems</span><span class="m-tx">Software, 350 people</span></span><em>Tier 1</em></span>
+    <span class="m-ar" data-k="a3" style="top:238px"><span class="m-lgo" data-l="K"></span><span class="m-t"><span class="m-tx m-md">Keystone Bank</span><span class="m-tx">Finance, 2,000 people</span></span><em>Tier 2</em></span>
     <span class="m-cm" data-k="cm"><svg class="k-ic"><use href="#i-users"/></svg>Buying committee mapped</span>
   </div>
   <span class="m-brk" data-k="brk" style="left:34px;top:136px;width:320px;height:56px"><i></i><i></i><i></i><i></i></span>
@@ -2514,7 +2990,7 @@ body{background:var(--c-paper)}
     <span class="m-stp" style="top:110px"><b data-k="c1"><svg class="k-ic"><use href="#i-check"/></svg></b>Source attached</span>
     <span class="m-stp" style="top:164px"><b data-k="c2"><svg class="k-ic"><use href="#i-check"/></svg></b>Enriched and scored</span>
     <span class="m-stp" style="top:218px"><b data-k="c3"><svg class="k-ic"><use href="#i-check"/></svg></b>Sent to the right person</span>
-    <span class="m-dest" data-k="dest"><span class="m-av"><svg class="k-ic"><use href="#i-user"/></svg></span>Your sales team</span>
+    <span class="m-dest" data-k="dest"><span class="m-av"><svg class="k-ic"><use href="#i-user"/></svg></span>Your account lead</span>
   </div>
   <span class="m-lead" data-k="lead"><svg class="k-ic"><use href="#i-inbox"/></svg>New lead</span>
   <span class="m-badge m-left" data-k="badge"><svg class="k-ic"><use href="#i-clock"/></svg>A reply within minutes, not days</span>
@@ -2523,29 +2999,24 @@ body{background:var(--c-paper)}
 
 <!-- 1  hero: the promise, then the six services as an index you can jump from -->
 <section class="c sh" id="top-svc" aria-label="Services">
+  <div class="aw-grid" aria-hidden="true"></div>
+  <div class="aw aw-top" aria-hidden="true"><i></i></div>
+  <div class="aw aw-bot" aria-hidden="true"><i class="w1"></i><i class="w2"></i><i class="w3"></i></div>
+  <div class="aw-hl" aria-hidden="true"></div><div class="aw-hl r" aria-hidden="true"></div>
   <div class="w">
-    <span class="sh-tag rv2"><i></i>Services</span>
-    <h1 class="sh-h mask"><span>Everything Between A Potential Client’s First Search And Their First <span class="mk">Enquiry<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></span></h1>
+    <h1 class="sh-h mask"><span>Everything Between A Potential Client’s First Search And Their First <span class="mk">Inquiry<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></span></h1>
     <p class="sh-sub rv2" style="--d:.1s">Six services that work as one system. Start with the one that is blocking leads today. Add the rest when the numbers say so.</p>
     <div class="sh-cta rv2" style="--d:.16s">
       <a class="btn2 pink mag2" href="/contact"><span>Book a strategy call</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
       <a class="btn2 ghost" href="#system"><span>See how it works</span></a>
     </div>
-    <nav class="sh-ix" aria-label="The six services">
-      <a href="#svc-web" style="--i:0"><span class="ic2"><svg class="k-ic"><use href="#i-cur"/></svg></span><b>Website and conversion</b><em>A website with one job: enquiries</em></a>
-      <a href="#svc-search" style="--i:1"><span class="ic2"><svg class="k-ic"><use href="#i-search"/></svg></span><b>Search and AI search</b><em>On page one, in the answer</em></a>
-      <a href="#svc-content" style="--i:2"><span class="ic2"><svg class="k-ic"><use href="#i-play"/></svg></span><b>Content and video</b><em>Content clients actually watch</em></a>
-      <a href="#svc-linkedin" style="--i:3"><span class="ic2"><svg class="k-ic"><use href="#i-in"/></svg></span><b>LinkedIn and social</b><em>From posting to conversations</em></a>
-      <a href="#svc-paid" style="--i:4"><span class="ic2"><svg class="k-ic"><use href="#i-target"/></svg></span><b>Paid media and ABM</b><em>Spend that lands on named accounts</em></a>
-      <a href="#svc-ops" style="--i:5"><span class="ic2"><svg class="k-ic"><use href="#i-chart"/></svg></span><b>Marketing ops and analytics</b><em>Every lead, traced to its source</em></a>
-    </nav>
   </div>
 </section>
 
 <!-- 2  how the services fit together: one lead's light running through the four stages -->
 <section class="c sy2" id="system" aria-label="How the services fit together">
   <div class="w">
-    <header class="ed-head"><h2 class="rv2">Leads Come From The Connections, Not The <span class="mk">Channels<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2><p class="rv2">Search brings the visitor. Video earns the trust. The website takes the enquiry. Ops tells you it happened and where it came from.</p></header>
+    <header class="ed-head"><h2 class="rv2">Leads Come From The Connections, Not The <span class="mk">Channels<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2><p class="rv2">Search brings the visitor. Video earns the trust. The website takes the inquiry. Ops tells you it happened and where it came from.</p></header>
     <div class="sy2-card rv2"><div class="mo" data-scene="sy" data-w="1120" data-h="400"><div class="mo-in" style="width:1120px;height:400px">
       <svg class="paths" viewBox="0 0 1120 400" aria-hidden="true">
         <path d="M262 124 C 300 124, 300 214, 342 214"/><path d="M262 204 C 300 204, 300 214, 342 214"/><path d="M262 284 C 300 284, 300 214, 342 214"/>
@@ -2583,29 +3054,29 @@ body{background:var(--c-paper)}
       <div class="sxp-top">
         <div class="sxp-tx">
           <span class="sxp-name"><svg class="k-ic"><use href="#i-cur"/></svg>Website and Conversion</span>
-          <h2>A Website With One Job: <span class="mk">Enquiries<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2>
+          <h2>A Website With One Job: <span class="mk">Inquiries<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2>
           <p class="sxp-sub">We rewrite the message, rebuild the pages that matter and connect every form to your CRM, so the visitors you already have start turning into leads.</p>
-          <div class="sxp-get"><span class="gk"><svg class="k-ic"><use href="#i-check"/></svg></span><p><small>What you get</small>A site that sorts the right visitor in ten seconds and gives them a reason to act. Enquiry rate by page and source, reported monthly.</p></div>
+          <div class="sxp-get"><span class="gk"><svg class="k-ic"><use href="#i-check"/></svg></span><p><small>What you get</small>A site that sorts the right visitor in ten seconds and gives them a reason to act. Inquiry rate by page and source, reported monthly.</p></div>
           <a class="btn2 ink" href="/contact"><span>Talk to us about website and conversion</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="web"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Messaging and positioning</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>Client and competitor research. A positioning line and homepage narrative. Service page messaging written for your potential client’s problem.</p></div><div class="inc2"><div class="inc2-h"><h3>Homepage and key pages</h3><span class="ii"><svg class="k-ic"><use href="#i-pages"/></svg></span></div><p>The pages that carry most enquiries: home, services, solutions, about, contact. Wireframe, copy, design, build. Video in the hero.</p></div><div class="inc2"><div class="inc2-h"><h3>Offers and landing pages</h3><span class="ii"><svg class="k-ic"><use href="#i-gift"/></svg></span></div><p>A reason to get in touch before they are ready to buy: an assessment, a guide, a calculator. One page per offer.</p></div><div class="inc2"><div class="inc2-h"><h3>Conversion optimisation</h3><span class="ii"><svg class="k-ic"><use href="#i-flask"/></svg></span></div><p>Heatmaps and session review. Headline, offer and form tests every month. Speed and mobile fixes.</p></div><div class="inc2"><div class="inc2-h"><h3>Forms, chat and routing</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Every form and chat connected to your CRM with the source attached. Captcha and consent on every form. Leads reach a person fast.</p></div><div class="inc2"><div class="inc2-h"><h3>Platforms</h3><span class="ii"><svg class="k-ic"><use href="#i-code"/></svg></span></div><p>Webflow, WordPress or Next.js. We build in the CMS you have unless it is the problem.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Research the potential client</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>Rewrite the message</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>Rebuild the pages</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>Wire tracking and routing before launch</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>5</i>Test and improve every month</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Messaging and positioning</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>Client and competitor research. A positioning line and homepage narrative. Service page messaging written for your potential client’s problem.</p></div><div class="inc2"><div class="inc2-h"><h3>Homepage and key pages</h3><span class="ii"><svg class="k-ic"><use href="#i-pages"/></svg></span></div><p>The pages that carry most inquiries: home, services, solutions, about, contact. Wireframe, copy, design, build. Video in the hero.</p></div><div class="inc2"><div class="inc2-h"><h3>Offers and landing pages</h3><span class="ii"><svg class="k-ic"><use href="#i-gift"/></svg></span></div><p>A reason to get in touch before they are ready to buy: an assessment, a guide, a calculator. One page per offer.</p></div><div class="inc2"><div class="inc2-h"><h3>Conversion optimization</h3><span class="ii"><svg class="k-ic"><use href="#i-flask"/></svg></span></div><p>Heatmaps and session review. Headline, offer and form tests every month. Speed and mobile fixes.</p></div><div class="inc2"><div class="inc2-h"><h3>Forms, chat and routing</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Every form and chat connected to your CRM with the source attached. Captcha and consent on every form. Leads reach a person fast.</p></div><div class="inc2"><div class="inc2-h"><h3>Platforms</h3><span class="ii"><svg class="k-ic"><use href="#i-code"/></svg></span></div><p>Webflow, WordPress or Next.js. We build in the CMS you have unless it is the problem.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Research the potential client</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Rewrite the message</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Rebuild the pages</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Wire tracking and routing before launch</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Test and improve every month</span></div>
     </div>
     <div class="sxp" role="tabpanel" id="svc-search" aria-labelledby="tb-search" hidden>
       <div class="sxp-top">
         <div class="sxp-tx">
           <span class="sxp-name"><svg class="k-ic"><use href="#i-search"/></svg>Search and AI Search</span>
-          <h2>On Page One, In The <span class="mk">Answer<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2>
-          <p class="sxp-sub">Your potential clients search on Google and ask AI. We make sure you show up in both, for the searches that lead to enquiries, and we track every lead that search produces.</p>
-          <div class="sxp-get"><span class="gk"><svg class="k-ic"><use href="#i-check"/></svg></span><p><small>What you get</small>Page one for the searches that matter and your name in the AI answer, tracked prompt by prompt. Enquiries from search reported by page.</p></div>
+          <h2>On Page One. In The <span class="mk">Answer<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2>
+          <p class="sxp-sub">Your potential clients search on Google and ask AI. We make sure you show up in both, for the searches that lead to inquiries, and we track every lead that search produces.</p>
+          <div class="sxp-get"><span class="gk"><svg class="k-ic"><use href="#i-check"/></svg></span><p><small>What you get</small>Page one for the searches that matter and your name in the AI answer, tracked prompt by prompt. Inquiries from search reported by page.</p></div>
           <a class="btn2 ink" href="/contact"><span>Talk to us about search and AI search</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="search"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Search strategy</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>Keyword and prompt research. Intent mapping and topic clusters. Competitor gap analysis. The ten searches closest to a purchase, won first.</p></div><div class="inc2"><div class="inc2-h"><h3>Technical SEO</h3><span class="ii"><svg class="k-ic"><use href="#i-gauge"/></svg></span></div><p>Audit and fixes. Site structure and internal links. Schema, speed and Core Web Vitals. A site Google can crawl and trust.</p></div><div class="inc2"><div class="inc2-h"><h3>Content for search</h3><span class="ii"><svg class="k-ic"><use href="#i-pen"/></svg></span></div><p>Problem, comparison and use-case pages. Articles and FAQ pages written to the potential client’s question. Refreshes of content that is losing ground.</p></div><div class="inc2"><div class="inc2-h"><h3>AI search optimisation (GEO / AEO)</h3><span class="ii"><svg class="k-ic"><use href="#i-spark"/></svg></span></div><p>Prompt tracking across ChatGPT, Perplexity, Gemini and Google AI Overviews. Entity and knowledge graph work. Structured answers and llms.txt. Citation acquisition.</p></div><div class="inc2"><div class="inc2-h"><h3>Authority</h3><span class="ii"><svg class="k-ic"><use href="#i-award"/></svg></span></div><p>Digital PR and expert commentary. Link outreach. Listings and reviews on G2, Clutch and the directories your clients use.</p></div><div class="inc2"><div class="inc2-h"><h3>Reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Rankings, clicks and AI citations next to enquiries from organic search, by page, every month.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Benchmark where you rank and where you are cited</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>Fix the foundation</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>Publish and earn authority every week</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>Measure against leads, not rankings</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Search strategy</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>Keyword and prompt research. Intent mapping and topic clusters. Competitor gap analysis. The ten searches closest to a purchase, won first.</p></div><div class="inc2"><div class="inc2-h"><h3>Technical SEO</h3><span class="ii"><svg class="k-ic"><use href="#i-gauge"/></svg></span></div><p>Audit and fixes. Site structure and internal links. Schema, speed and Core Web Vitals. A site Google can crawl and trust.</p></div><div class="inc2"><div class="inc2-h"><h3>Content for search</h3><span class="ii"><svg class="k-ic"><use href="#i-pen"/></svg></span></div><p>Problem, comparison and use-case pages. Articles and FAQ pages written to the potential client’s question. Refreshes of content that is losing ground.</p></div><div class="inc2"><div class="inc2-h"><h3>AI search optimization (GEO / AEO)</h3><span class="ii"><svg class="k-ic"><use href="#i-spark"/></svg></span></div><p>Prompt tracking across ChatGPT, Perplexity, Gemini and Google AI Overviews. Entity and knowledge graph work. Structured answers and llms.txt. Citation acquisition.</p></div><div class="inc2"><div class="inc2-h"><h3>Authority</h3><span class="ii"><svg class="k-ic"><use href="#i-award"/></svg></span></div><p>Digital PR and expert commentary. Link outreach. Listings and reviews on G2, Clutch and the directories your clients use.</p></div><div class="inc2"><div class="inc2-h"><h3>Reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Rankings, clicks and AI citations next to inquiries from organic search, by page, every month.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Benchmark where you rank and where you are cited</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Fix the foundation</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Publish and earn authority every week</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Measure against leads, not rankings</span></div>
     </div>
     <div class="sxp" role="tabpanel" id="svc-content" aria-labelledby="tb-content" hidden>
       <div class="sxp-top">
@@ -2618,22 +3089,22 @@ body{background:var(--c-paper)}
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="content"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Content strategy</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>The questions potential clients ask on sales calls become the themes. One theme a month, four weeks of angles, formats chosen for each channel.</p></div><div class="inc2"><div class="inc2-h"><h3>Short video</h3><span class="ii"><svg class="k-ic"><use href="#i-cam"/></svg></span></div><p>30 to 90 second explainers. Leaders answering real questions. Product and feature clips. Shot remotely or in our studio, edited, captioned, branded.</p></div><div class="inc2"><div class="inc2-h"><h3>Leader content</h3><span class="ii"><svg class="k-ic"><use href="#i-user"/></svg></span></div><p>One recorded interview a month becomes posts, carousels and short videos in their own voice. They approve every piece.</p></div><div class="inc2"><div class="inc2-h"><h3>Case studies</h3><span class="ii"><svg class="k-ic"><use href="#i-file"/></svg></span></div><p>Written and video versions in one format: the problem, what was done, the numbers up front. Sales-ready page and PDF.</p></div><div class="inc2"><div class="inc2-h"><h3>Long-form and search content</h3><span class="ii"><svg class="k-ic"><use href="#i-book"/></svg></span></div><p>Guides, comparisons and FAQ pages repurposed from the video and written to rank and get cited.</p></div><div class="inc2"><div class="inc2-h"><h3>Production</h3><span class="ii"><svg class="k-ic"><use href="#i-play"/></svg></span></div><p>Scripting, shot lists, studio in Chennai, remote capture kit for the US, editing, thumbnails, posting plan.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Interview once a month</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>We cut, write and design</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>You approve</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>We publish weekly across LinkedIn, your site and YouTube</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>5</i>We report which pieces started conversations</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Content strategy</h3><span class="ii"><svg class="k-ic"><use href="#i-compass"/></svg></span></div><p>The questions potential clients ask on sales calls become the themes. One theme a month, four weeks of angles, formats chosen for each channel.</p></div><div class="inc2"><div class="inc2-h"><h3>Short video</h3><span class="ii"><svg class="k-ic"><use href="#i-cam"/></svg></span></div><p>30 to 90 second explainers. Leaders answering real questions. Product and feature clips. Shot remotely or with our team in Chennai, edited, captioned, branded.</p></div><div class="inc2"><div class="inc2-h"><h3>Leader content</h3><span class="ii"><svg class="k-ic"><use href="#i-user"/></svg></span></div><p>One recorded interview a month becomes posts, carousels and short videos in their own voice. They approve every piece.</p></div><div class="inc2"><div class="inc2-h"><h3>Case studies</h3><span class="ii"><svg class="k-ic"><use href="#i-file"/></svg></span></div><p>Written and video versions in one format: the problem, what was done, the numbers up front. Sales-ready page and PDF.</p></div><div class="inc2"><div class="inc2-h"><h3>Long-form and search content</h3><span class="ii"><svg class="k-ic"><use href="#i-book"/></svg></span></div><p>Guides, comparisons and FAQ pages repurposed from the video and written to rank and get cited.</p></div><div class="inc2"><div class="inc2-h"><h3>Production</h3><span class="ii"><svg class="k-ic"><use href="#i-play"/></svg></span></div><p>Scripting, shot lists, in-house production team in Chennai, remote capture kit for the US, editing, thumbnails, posting plan.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Interview once a month</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>We cut, write and design</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>You approve</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>We publish weekly across LinkedIn, your site and YouTube</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>We report which pieces started conversations</span></div>
     </div>
     <div class="sxp" role="tabpanel" id="svc-linkedin" aria-labelledby="tb-linkedin" hidden>
       <div class="sxp-top">
         <div class="sxp-tx">
           <span class="sxp-name"><svg class="k-ic"><use href="#i-in"/></svg>LinkedIn and Social</span>
           <h2>From Posting To <span class="mk">Conversations<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2>
-          <p class="sxp-sub">Your potential clients are on LinkedIn every day. We run your company page and your leaders’ profiles to reach them every week, and we track the conversations that turn into enquiries.</p>
+          <p class="sxp-sub">Your potential clients are on LinkedIn every day. We run your company page and your leaders’ profiles to reach them every week, and we track the conversations that turn into inquiries.</p>
           <div class="sxp-get"><span class="gk"><svg class="k-ic"><use href="#i-check"/></svg></span><p><small>What you get</small>An audience of potential clients, not peers. A weekly presence from the company and its leaders. Conversations that are seen and followed up.</p></div>
           <a class="btn2 ink" href="/contact"><span>Talk to us about LinkedIn and social</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="li"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Page and profile foundation</h3><span class="ii"><svg class="k-ic"><use href="#i-bld"/></svg></span></div><p>Company page rebuilt. Leader headlines, about sections and featured content rewritten so a potential client understands you in one scroll.</p></div><div class="inc2"><div class="inc2-h"><h3>Monthly theme and plan</h3><span class="ii"><svg class="k-ic"><use href="#i-calendar"/></svg></span></div><p>One topic a month. Weekly angles for the page and for each leader. Video and carousel formats planned a month ahead.</p></div><div class="inc2"><div class="inc2-h"><h3>Leader content</h3><span class="ii"><svg class="k-ic"><use href="#i-user"/></svg></span></div><p>Posts and short videos drafted from interviews, in their voice, approved by them, posted on their behalf or scheduled for them.</p></div><div class="inc2"><div class="inc2-h"><h3>Engagement and outreach</h3><span class="ii"><svg class="k-ic"><use href="#i-msg"/></svg></span></div><p>A daily routine of replying and commenting. Connection requests to target titles. Every potential client who engages is logged.</p></div><div class="inc2"><div class="inc2-h"><h3>Follow-up</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Warm conversations flagged to your team with context, or handled by ours, so a comment becomes a call.</p></div><div class="inc2"><div class="inc2-h"><h3>Reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Engagement from your target titles, profile visits, messages and enquiries attributed to LinkedIn, every month.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Rebuild the foundation</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>Plan the month</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>Publish and engage every week</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>Review which posts reached potential clients and started conversations</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Page and profile foundation</h3><span class="ii"><svg class="k-ic"><use href="#i-bld"/></svg></span></div><p>Company page rebuilt. Leader headlines, about sections and featured content rewritten so a potential client understands you in one scroll.</p></div><div class="inc2"><div class="inc2-h"><h3>Monthly theme and plan</h3><span class="ii"><svg class="k-ic"><use href="#i-calendar"/></svg></span></div><p>One topic a month. Weekly angles for the page and for each leader. Video and carousel formats planned a month ahead.</p></div><div class="inc2"><div class="inc2-h"><h3>Leader content</h3><span class="ii"><svg class="k-ic"><use href="#i-user"/></svg></span></div><p>Posts and short videos drafted from interviews, in their voice, approved by them, posted on their behalf or scheduled for them.</p></div><div class="inc2"><div class="inc2-h"><h3>Engagement and outreach</h3><span class="ii"><svg class="k-ic"><use href="#i-msg"/></svg></span></div><p>A daily routine of replying and commenting. Connection requests to target titles. Every potential client who engages is logged.</p></div><div class="inc2"><div class="inc2-h"><h3>Follow-up</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Warm conversations flagged to your team with context, or handled by ours, so a comment becomes a call.</p></div><div class="inc2"><div class="inc2-h"><h3>Reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Engagement from potential client titles, profile visits, messages and inquiries attributed to LinkedIn, every month.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Rebuild the foundation</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Plan the month</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Publish and engage every week</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Review which posts reached potential clients and started conversations</span></div>
     </div>
     <div class="sxp" role="tabpanel" id="svc-paid" aria-labelledby="tb-paid" hidden>
       <div class="sxp-top">
@@ -2646,8 +3117,8 @@ body{background:var(--c-paper)}
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="paid"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Account selection</h3><span class="ii"><svg class="k-ic"><use href="#i-target"/></svg></span></div><p>Ideal customer profile and tiers. A named target account list built with your sales team. The buying committee mapped for each account.</p></div><div class="inc2"><div class="inc2-h"><h3>LinkedIn Ads</h3><span class="ii"><svg class="k-ic"><use href="#i-in"/></svg></span></div><p>Sponsored content, video and thought-leader ads to target accounts and titles. Retargeting. Lead forms connected to your CRM.</p></div><div class="inc2"><div class="inc2-h"><h3>Google Ads</h3><span class="ii"><svg class="k-ic"><use href="#i-search"/></svg></span></div><p>Search campaigns, brand and non-brand, for potential clients already looking. Landing pages per offer. Search-term review and negatives every week.</p></div><div class="inc2"><div class="inc2-h"><h3>Creative and landing pages</h3><span class="ii"><svg class="k-ic"><use href="#i-cam"/></svg></span></div><p>Video-first ads produced in-house. Weekly creative batches tested by hook, format and page, so costs stay down.</p></div><div class="inc2"><div class="inc2-h"><h3>Tracking and attribution</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Server-side tracking. CRM conversions sent back to LinkedIn and Google so the platforms optimise for qualified leads, not form fills.</p></div><div class="inc2"><div class="inc2-h"><h3>Budget management</h3><span class="ii"><svg class="k-ic"><use href="#i-wallet"/></svg></span></div><p>Spend moves weekly to the campaigns producing qualified leads. If the numbers say spend less, we say spend less. Flat fee, never a share of ad spend.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Research the potential client</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>Build the account list</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>Launch with room to learn</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>Test creative weekly</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>5</i>Read every campaign against qualified leads and move the budget</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Account selection</h3><span class="ii"><svg class="k-ic"><use href="#i-target"/></svg></span></div><p>Ideal customer profile and tiers. A named target account list built with your sales team. The buying committee mapped for each account.</p></div><div class="inc2"><div class="inc2-h"><h3>LinkedIn Ads</h3><span class="ii"><svg class="k-ic"><use href="#i-in"/></svg></span></div><p>Sponsored content, video and thought-leader ads to target accounts and titles. Retargeting. Lead forms connected to your CRM.</p></div><div class="inc2"><div class="inc2-h"><h3>Google Ads</h3><span class="ii"><svg class="k-ic"><use href="#i-search"/></svg></span></div><p>Search campaigns, brand and non-brand, for potential clients already looking. Landing pages per offer. Search-term review and negatives every week.</p></div><div class="inc2"><div class="inc2-h"><h3>Creative and landing pages</h3><span class="ii"><svg class="k-ic"><use href="#i-cam"/></svg></span></div><p>Video-first ads produced in-house. Weekly creative batches tested by hook, format and page, so costs stay down.</p></div><div class="inc2"><div class="inc2-h"><h3>Tracking and attribution</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>Server-side tracking. CRM conversions sent back to LinkedIn and Google so the platforms optimize for qualified leads, not form fills.</p></div><div class="inc2"><div class="inc2-h"><h3>Budget management</h3><span class="ii"><svg class="k-ic"><use href="#i-wallet"/></svg></span></div><p>Spend moves weekly to the campaigns producing qualified leads. If the numbers say spend less, we say spend less. Flat fee, never a share of ad spend.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Research the potential client</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Build the account list</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Launch with room to learn</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Test creative weekly</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Read every campaign against qualified leads and move the budget</span></div>
     </div>
     <div class="sxp" role="tabpanel" id="svc-ops" aria-labelledby="tb-ops" hidden>
       <div class="sxp-top">
@@ -2660,8 +3131,8 @@ body{background:var(--c-paper)}
         </div>
         <div class="sxp-stage" aria-hidden="true"><div class="mo" data-scene="ops"><div class="mo-in"></div></div></div>
       </div>
-      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Tracking setup</h3><span class="ii"><svg class="k-ic"><use href="#i-gauge"/></svg></span></div><p>GA4 and Tag Manager. Form, call and chat tracking with source, campaign and page. UTM standards everyone follows.</p></div><div class="inc2"><div class="inc2-h"><h3>CRM setup and cleanup</h3><span class="ii"><svg class="k-ic"><use href="#i-db"/></svg></span></div><p>HubSpot or Salesforce set up or cleaned. Fields, deal stages and lifecycle stages. Duplicates removed.</p></div><div class="inc2"><div class="inc2-h"><h3>Lead enrichment and routing</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>New leads enriched, scored and sent to the right person with their history attached, in minutes.</p></div><div class="inc2"><div class="inc2-h"><h3>Attribution and reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Enquiries, qualified leads and deals by channel in one dashboard. A board-ready summary every month.</p></div><div class="inc2"><div class="inc2-h"><h3>Marketing agents</h3><span class="ii"><svg class="k-ic"><use href="#i-bot"/></svg></span></div><p>Reporting, enrichment, routing and anomaly alerts automated so the system keeps running without hands.</p></div><div class="inc2"><div class="inc2-h"><h3>Handover and training</h3><span class="ii"><svg class="k-ic"><use href="#i-book"/></svg></span></div><p>Everything documented. Your team trained to run what we build. It stays in your accounts.</p></div></div>
-      <div class="sxp-how"><small>How it works</small><span><i>1</i>Audit the gaps</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>2</i>Build the data layer</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>3</i>Report on leads by source</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span><i>4</i>Automate the repetitive work with agents</span></div>
+      <div class="sxp-inc"><div class="inc2"><div class="inc2-h"><h3>Tracking setup</h3><span class="ii"><svg class="k-ic"><use href="#i-gauge"/></svg></span></div><p>GA4 and Tag Manager. Form, call and chat tracking with source, campaign and page. UTM standards everyone follows.</p></div><div class="inc2"><div class="inc2-h"><h3>CRM setup and cleanup</h3><span class="ii"><svg class="k-ic"><use href="#i-db"/></svg></span></div><p>HubSpot or Salesforce set up or cleaned. Fields, deal stages and lifecycle stages. Duplicates removed.</p></div><div class="inc2"><div class="inc2-h"><h3>Lead enrichment and routing</h3><span class="ii"><svg class="k-ic"><use href="#i-route"/></svg></span></div><p>New leads enriched, scored and sent to the right person with their history attached, in minutes.</p></div><div class="inc2"><div class="inc2-h"><h3>Attribution and reporting</h3><span class="ii"><svg class="k-ic"><use href="#i-chart"/></svg></span></div><p>Inquiries, qualified leads and deals by channel in one dashboard. A board-ready summary every month.</p></div><div class="inc2"><div class="inc2-h"><h3>Marketing agents</h3><span class="ii"><svg class="k-ic"><use href="#i-bot"/></svg></span></div><p>Reporting, enrichment, routing and anomaly alerts automated so the system keeps running without hands.</p></div><div class="inc2"><div class="inc2-h"><h3>Handover and training</h3><span class="ii"><svg class="k-ic"><use href="#i-book"/></svg></span></div><p>Everything documented. Your team trained to run what we build. It stays in your accounts.</p></div></div>
+      <div class="sxp-how"><small>How it works</small><span>Audit the gaps</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Build the data layer</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Report on leads by source</span><svg class="k-ic ar2"><use href="#i-arrow"/></svg><span>Automate the repetitive work with agents</span></div>
     </div>
   </div>
 </section>
@@ -2671,36 +3142,49 @@ body{background:var(--c-paper)}
   <div class="w">
     <header class="ed-head"><h2 class="rv2">Three Ways To <span class="mk">Start<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></h2><p class="rv2">Pricing depends on scope and what you already have in place. We agree it in a statement of work before anything starts.</p></header>
     <div class="ws2-g" id="wsG">
-      <article class="ws2-c lead"><div class="ws2-m" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><h3>Inbound system</h3><p>All six services as needed, one team accountable for leads, weekly delivery, monthly review. Starts with a 90-day plan.</p></article>
-      <article class="ws2-c"><div class="ws2-m" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><h3>Single service</h3><p>One service, scoped in a statement of work, with the same tracking and review. Add more when the numbers say so.</p></article>
-      <article class="ws2-c"><div class="ws2-m" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><h3>Launch project</h3><p>A new company, product or positioning. Messaging, website, LinkedIn and first content shipped in a fixed window.</p></article>
+      <article class="ws2-c"><div class="ws2-h"><h3>Inbound system</h3><span class="ii"><svg class="k-ic"><use href="#i-layers"/></svg></span></div><p>All six services as needed, one team accountable for leads, weekly delivery, monthly review. Starts with a 90-day plan.</p></article>
+      <article class="ws2-c"><div class="ws2-h"><h3>Single service</h3><span class="ii"><svg class="k-ic"><use href="#i-target"/></svg></span></div><p>One service, scoped in a statement of work, with the same tracking and review. Add more when the numbers say so.</p></article>
+      <article class="ws2-c"><div class="ws2-h"><h3>Launch project</h3><span class="ii"><svg class="k-ic"><use href="#i-spark"/></svg></span></div><p>A new company, product or positioning. Messaging, website, LinkedIn and first content shipped in a fixed window.</p></article>
     </div>
   </div>
 </section>
 
+<script>
+/* the homepage's quiet grid-cell hover, on the services sections */
+(() => {
+  if (!matchMedia("(hover: hover) and (pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  ["system", "services-x", "start"].forEach((id) => {
+    const sec = document.getElementById(id); if (!sec) return;
+    const pool = Array.from({ length: 2 }, () => { const c = document.createElement("i"); c.className = "sg-c"; c.setAttribute("aria-hidden", "true"); sec.prepend(c); return c; });
+    let k = 0, last = "", raf = 0, x = 0, y = 0;
+    sec.addEventListener("pointermove", (e) => { const r = sec.getBoundingClientRect(); x = e.clientX - r.left; y = e.clientY - r.top;
+      if (!raf) raf = requestAnimationFrame(() => { raf = 0; const ox = (sec.clientWidth / 2) % 64;
+        const cx = Math.floor((x - ox) / 64) * 64 + ox, cy = Math.floor(y / 64) * 64, key = cx + "," + cy; if (key === last) return; last = key;
+        pool.forEach((c) => c.classList.remove("on")); const c = pool[k++ % pool.length]; c.style.setProperty("--p", `translate(${cx}px,${cy}px)`); c.style.transform = `translate(${cx}px,${cy}px)`; void c.offsetWidth; c.classList.add("on"); }); });
+    sec.addEventListener("pointerleave", () => { pool.forEach((c) => c.classList.remove("on")); last = ""; });
+  });
+})();
+</script>
 <!-- close: the map, every route arcing into Tampa -->
 <section class="c cf-cta" id="close" aria-label="Contact">
   <canvas id="cfMap" aria-hidden="true"></canvas>
   <div class="cf-in">
-    <h2 class="mask"><span>Tell Us What Is Blocking <span class="mk">Leads<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span> This Quarter</span></h2>
-    <p class="cf-sub rv2">Bring your website, your LinkedIn and your last ten enquiries. We will tell you where to start.</p>
-    <a class="btn2 pink mag2 rv2" id="portalBtn" style="--d:.12s" href="/contact"><span>Book a strategy call</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+    <h2 class="mask"><span>Fancy A <span class="mk">Chat?<svg class="sw" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 21 C 70 9, 160 6, 294 15"/></svg></span></span></h2>
+    <p class="cf-sub rv2">Tell us about your business and the potential clients you want to reach. We will show you where your next inbound leads can come from, and what to fix first.</p>
+    <a class="btn2 pink mag2 rv2" id="portalBtn" style="--d:.12s" href="/contact"><span>Talk to our team</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
   </div>
 </section>
 
 </main>
 
-<footer class="x-ft cf-ft">
+<footer class="x-ft cf-ft cf-av">
   <div class="x-w">
-    <div class="cf-top">
-      <div class="cf-brand"><a href="/" aria-label="Caimue home"><img src="/concepts/shared/caimue-logo.svg" alt="Caimue" width="148" height="40"></a><p>A B2B inbound lead generation company headquartered in Tampa.</p></div>
-      <nav class="cf-cols" aria-label="Footer">
-        <div><h3>Services</h3><a href="/services#svc-web">Website and conversion</a><a href="/services#svc-search">Search and AI search</a><a href="/services#svc-content">Content and video</a><a href="/services#svc-linkedin">LinkedIn and social</a><a href="/services#svc-paid">Paid media and ABM</a><a href="/services#svc-ops">Marketing ops and analytics</a></div>
-        <div><h3>Caimue</h3><a href="/#method">What we do</a><a href="/#why">Why Caimue</a><a href="/#partners">Clients</a><a href="/contact">Contact</a></div>
-        <div><h3>Social</h3><a href="https://www.linkedin.com/company/caimue-inc" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noreferrer noopener">Instagram</a></div>
-      </nav>
+    <div class="cf-row">
+      <a class="cf-logo" href="/" aria-label="Caimue home"><img src="/concepts/shared/caimue-logo.svg" alt="Caimue" width="148" height="40"></a>
+      <nav class="cf-nav" aria-label="Footer"><a href="/services">Services</a><a href="/about">About</a><a href="/testimonials">Testimonials</a><a href="/careers">Careers</a><a href="/contact">Contact</a></nav>
+      <div class="cf-soc"><a href="https://www.linkedin.com/company/caimue-inc" target="_blank" rel="noreferrer noopener" aria-label="Caimue on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9H9.5v-11Z"/></svg></a></div>
     </div>
-    <div class="cf-bt"><span>© 2026 Caimue</span><div><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div></div>
+    <div class="cf-bar"><p>© 2026 Caimue. All rights reserved. <span class="cf-ad">6th Floor, Arihant Technopolis, Chennai, Tamil Nadu 600096</span></p><div><a href="/privacy">Privacy policy</a><a href="/terms">Terms and conditions</a></div></div>
   </div>
 </footer>
 
@@ -2711,7 +3195,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fine = matchMedia("(pointer: fine)").matches;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-if (fine && !reduce) $$(".mag").forEach((b) => {
+if (false && fine && !reduce) $$(".mag").forEach((b) => {
   b.addEventListener("pointermove", (e) => { const r = b.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); b.style.transitionDuration = ".25s,.25s"; b.style.transform = "translate(" + dx * 0.18 + "px," + dy * 0.26 + "px)"; b.querySelectorAll("span").forEach((sp) => { sp.style.transitionDuration = ".25s"; sp.style.transform = "translate(" + dx * 0.06 + "px," + dy * 0.08 + "px)"; }); });
   b.addEventListener("pointerleave", () => { b.style.transitionDuration = ""; b.style.transform = ""; b.querySelectorAll("span").forEach((sp) => { sp.style.transitionDuration = ""; sp.style.transform = ""; }); });
 });
@@ -2799,135 +3283,13 @@ $$(".x-qa button").forEach((bt) => bt.addEventListener("click", () => {
   const portal = document.getElementById("portal");
   if (portal) gsap.fromTo(portal, { scale: 0.95 }, { scale: 1, ease: "none", scrollTrigger: { trigger: portal, start: "top bottom", end: "top 40%", scrub: true } });
 
-  // footer reveal, the main site's sequence
-  const ft = document.querySelector(".x-ft"), main = document.querySelector("main");
-  if (ft) {
-    const tl = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: main, start: "bottom bottom", end: () => "+=" + ft.offsetHeight, scrub: true, invalidateOnRefresh: true } });
-    tl.fromTo(ft.querySelectorAll(".x-w > *"), { y: () => -ft.offsetHeight * 0.45 }, { y: 0, duration: 1 }, 0);
-    tl.fromTo(ft.querySelectorAll(".cf-top > *, .cf-bt > *, .say > *, .bt > *"), { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.22, stagger: 0.04, ease: "power2.out" }, 0.6);
-  }
+  // footer reveal retired (9 Nov): the footer is always visible; its old targets no longer exist
   if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener("load", () => ScrollTrigger.refresh());
 })();
 </script>
 
-<script>
-/* ---------- product scenes on one clock (after Meng To's one-clock demo, prompt-motion.com) ----------
-   Every frame is worked out from the time alone: seek(t) draws the exact frame for t in 0..8 s.
-   Each scene is complete at frame 0; one object changes shape (a button becomes the inbox row, a result
-   climbs to first place and its link becomes the citation, a comment becomes a message); the hold keeps
-   something small alive; everything eases back so 0 and 8 are the same frame. */
-(() => {
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, L = 8;
-  const EZ = { io: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2), out: (x) => 1 - Math.pow(1 - x, 3), in: (x) => x * x * x, lin: (x) => x };
-  const K = (t, kf, ez = "io") => {
-    if (t <= kf[0][0]) return kf[0][1];
-    for (let i = 1; i < kf.length; i++) { const b = kf[i]; if (t <= b[0]) { const a = kf[i - 1], d = b[0] - a[0]; return d <= 0 ? b[1] : a[1] + (b[1] - a[1]) * EZ[b[2] || ez]((t - a[0]) / d); } }
-    return kf[kf.length - 1][1];
-  };
-  const on = (a, b, c = 6.6, d = 7.0, lo = 0, hi = 1) => [[0, lo], [a, lo], [b, hi], [c, hi], [d, lo], [L, lo]];
-  const pop = (a) => [[0, 0], [a, 0], [a + 0.22, 1], [6.8, 1], [7.1, 0], [L, 0]];
-  const clamp = (v) => Math.max(0, Math.min(1, v));
-
-  const S = {
-    web: { w: 620, h: 420, tracks: {
-      cur: { x: [[0, 560], [0.25, 560], [0.75, 196], [1.45, 196], [1.9, 196], [2.15, 190], [6.6, 190], [7, 560], [L, 560]], y: [[0, 400], [0.25, 400], [0.75, 196], [1.2, 196], [1.45, 248], [1.9, 248], [2.15, 300], [6.6, 300], [7, 400], [L, 400]], o: [[0, 0], [0.25, 0], [0.5, 1], [2.45, 1], [2.7, 0], [L, 0]] },
-      ty1: { sx: on(0.8, 1.2, 6.7, 7.2) }, ty2: { sx: on(1.5, 1.9, 6.7, 7.2) },
-      send: { s: [[0, 1], [2.15, 1], [2.22, 0.96], [2.34, 1], [L, 1]] }, sendB: { o: on(2.22, 2.36, 6.8, 7.1) },
-      tok: { x: [[0, 54], [2.4, 54], [3.2, 416], [6.9, 416], [6.95, 54], [L, 54]], y: [[0, 294], [2.4, 294], [3.2, 122, "out"], [6.9, 122], [6.95, 294], [L, 294]], w: [[0, 300], [2.4, 300], [3.2, 172], [6.9, 172], [6.95, 300], [L, 300]], h: [[0, 40], [2.4, 40], [3.2, 50], [6.9, 50], [6.95, 40], [L, 40]], r: [[0, 20], [2.4, 20], [3.2, 13], [6.9, 13], [6.95, 20], [L, 20]], o: [[0, 0], [2.34, 0], [2.38, 1], [6.6, 1], [6.9, 0], [L, 0]] },
-      tokL: { o: [[0, 1], [2.4, 1], [2.65, 0], [6.95, 0], [7, 1], [L, 1]] }, tokR: { o: [[0, 0], [2.8, 0], [3.15, 1], [6.95, 1], [7, 0], [L, 0]] },
-      rows: { y: [[0, 0], [2.6, 0], [3.2, 58], [6.8, 58], [7.4, 0], [L, 0]] },
-      ring: { o: [[0, 0], [3.3, 0], [3.4, 0.9], [4.3, 0], [5, 0], [5.1, 0.6], [6, 0], [L, 0]], s: [[0, 1], [3.3, 1], [4.3, 1.12, "out"], [4.35, 1], [5, 1], [6, 1.1, "out"], [6.05, 1], [L, 1]] },
-    } },
-    search: { w: 620, h: 420, tracks: {
-      qty: { sx: on(0.2, 0.8, 7.0, 7.4) },
-      r0: { y: on(0.9, 1.7, 6.7, 7.4, 0, 68) }, r1: { y: on(0.9, 1.7, 6.7, 7.4, 0, 68) }, r2: { y: on(0.9, 1.7, 6.7, 7.4, 0, 68) },
-      you: { y: on(0.9, 1.7, 6.7, 7.4, 0, -204), s: [[0, 1], [0.9, 1], [1.3, 1.03], [1.7, 1], [L, 1]] },
-      p1: { o: on(1.6, 1.9, 6.6, 6.8) },
-      l1: { sx: on(1.9, 2.2, 6.8, 7.2) }, l2: { sx: on(2.05, 2.35, 6.8, 7.2) }, l3: { sx: on(2.2, 2.5, 6.8, 7.2) },
-      cite: { x: [[0, 88], [2.65, 88], [3.45, 408], [6.85, 408], [6.9, 88], [L, 88]], y: [[0, 104], [2.65, 104], [3.45, 254, "out"], [6.85, 254], [6.9, 104], [L, 104]], o: [[0, 0], [2.5, 0], [2.65, 1], [6.6, 1], [6.85, 0], [L, 0]], s: [[0, 1], [2.65, 1], [3.05, 1.08], [3.45, 1], [L, 1]] },
-      e1: { "--on": on(3.6, 3.8, 6.7, 7.0) }, e2: { "--on": on(3.85, 4.05, 6.7, 7.0) }, e3: { "--on": on(4.1, 4.3, 6.7, 7.0) },
-    } },
-    content: { w: 620, h: 420, tracks: {
-      prog: { sx: [[0, 0], [6.6, 1, "lin"], [7.3, 0], [L, 0]] },
-      badge: { o: on(2.1, 2.4), y: on(2.1, 2.5, 6.6, 7.0, 10, 0) },
-      ...Object.fromEntries([0, 1, 2, 3].map((i) => ["t" + i, { "--f": on(1.3 + 0.15 * i, 1.5 + 0.15 * i, 6.7, 7.2), s: [[0, 1], [1.3 + 0.15 * i, 1], [1.42 + 0.15 * i, 1.03], [1.62 + 0.15 * i, 1], [L, 1]] }])),
-    }, pulses: [0, 1, 2, 3].flatMap((i) => [[i, 0.3 + 0.15 * i, 1.3 + 0.15 * i, "p" + i, 1], [i, 3.7 + 0.15 * i, 4.7 + 0.15 * i, "p" + i, 0]]),
-      live: (t, q) => { if (q.recdot) q.recdot.style.opacity = (0.35 + 0.65 * Math.abs(Math.cos(t * 2.4))).toFixed(3); } },
-    li: { w: 620, h: 420, tracks: {
-      re1: { s: on(0.4, 0.6, 6.8, 7.1) }, re2: { s: on(0.55, 0.75, 6.8, 7.1) },
-      cmt: { o: [[0, 0], [0.9, 0], [1.2, 1], [6.6, 1], [6.85, 0], [L, 0]], x: [[0, 40], [1.7, 40], [2.5, 358], [6.85, 358], [6.9, 40], [L, 40]], y: [[0, 316], [0.9, 316], [1.25, 306], [1.7, 306], [2.5, 116, "out"], [6.85, 116], [6.9, 316], [L, 316]], w: [[0, 268], [1.7, 268], [2.5, 228], [6.85, 228], [6.9, 268], [L, 268]], "--pv": [[0, 0], [1.9, 0], [2.5, 1], [6.85, 1], [6.9, 0], [L, 0]] },
-      flag: { o: on(2.6, 2.85, 6.6, 6.85), s: [[0, 0.9], [2.6, 0.9], [2.9, 1, "out"], [L, 1]] }, reply: { o: on(3.0, 3.3, 6.6, 6.85) },
-    }, live: (t, q) => ["d1", "d2", "d3"].forEach((k, i) => { if (q[k]) q[k].style.opacity = (0.3 + 0.7 * Math.max(0, Math.sin((t - 3.3) * 6 - i * 0.9))).toFixed(3); }) },
-    paid: { w: 620, h: 420, tracks: {
-      brk: { o: on(0.3, 0.6, 6.6, 6.9), s: [[0, 1.3], [0.3, 1.3], [0.75, 1], [0.8, 1], [1.3, 1.04], [6.6, 1.04], [6.9, 1.3], [L, 1.3]] },
-      a0: { o: on(0.8, 1.3, 6.7, 7.2, 1, 0.42) }, a2: { o: on(0.8, 1.3, 6.7, 7.2, 1, 0.42) }, a3: { o: on(0.8, 1.3, 6.7, 7.2, 1, 0.42) },
-      a1: { s: on(0.8, 1.3, 6.7, 7.2, 1, 1.04) },
-      b0: { s: pop(1.35) }, b1: { s: pop(1.47) }, b2: { s: pop(1.59) }, b3: { s: pop(1.71) },
-      cm: { o: on(1.8, 2.1, 6.7, 7.1, 0.35, 1) },
-      link: { o: on(2.1, 2.4) }, badge: { o: on(2.7, 3.0), y: on(2.7, 3.1, 6.6, 7.0, 10, 0) },
-    }, live: (t, q) => { if (q.link) q.link.style.strokeDashoffset = (-t * 18).toFixed(1); } },
-    ops: { w: 620, h: 420, tracks: {
-      c1: { "--on": on(0.5, 0.75, 6.7, 7.1) }, c2: { "--on": on(0.95, 1.2, 6.7, 7.1) }, c3: { "--on": on(1.4, 1.65, 6.7, 7.1) },
-      lead: { y: [[0, 0], [1.75, 0], [2.3, 247], [6.85, 247], [6.9, 0], [L, 0]], o: [[0, 1], [2.2, 1], [2.45, 0], [6.9, 0], [7.2, 1], [L, 1]], s: [[0, 1], [1.75, 1], [2.3, 0.92], [6.9, 0.92], [6.95, 1], [L, 1]] },
-      dest: { "--on": on(2.25, 2.5, 6.7, 7.1), s: [[0, 1], [2.25, 1], [2.4, 1.04], [2.6, 1], [L, 1]] },
-      bS: { "--v": on(2.4, 2.9, 6.7, 7.3, 0.7, 0.8) },
-      badge: { o: on(2.7, 3.0), y: on(2.7, 3.1, 6.6, 7.0, 10, 0) },
-    } },
-    sy: { w: 1120, h: 400, tracks: {
-      ...Object.fromEntries([0, 1, 2].map((i) => ["n" + i, { "--g": [[0, 0], [0.15 + 0.12 * i, 0], [0.3 + 0.12 * i, 1], [0.9 + 0.12 * i, 0.3], [3.55 + 0.12 * i, 0.3], [3.7 + 0.12 * i, 1], [4.3 + 0.12 * i, 0.3], [6.6, 0.3], [7, 0], [L, 0]] }])),
-      n3: { "--g": [[0, 0], [1.25, 0], [1.4, 1], [1.9, 0.45], [4.65, 0.45], [4.8, 1], [5.3, 0.45], [6.6, 0.45], [7, 0], [L, 0]] },
-      n4: { "--g": [[0, 0], [1.9, 0], [2.05, 1], [2.5, 0.45], [5.3, 0.45], [5.45, 1], [5.9, 0.45], [6.6, 0.45], [7, 0], [L, 0]] },
-      n5: { "--g": [[0, 0], [2.6, 0], [2.75, 1], [6.6, 1], [7, 0], [L, 0]] },
-      tag: { o: on(2.8, 3.1), y: on(2.8, 3.2, 6.6, 7.0, 8, 0) },
-    }, pulses: [[0, 0.3, 1.25, "p0", 1], [1, 0.42, 1.3, "p1", 1], [2, 0.54, 1.35, "p2", 1], [3, 1.4, 1.95, "p3", 1], [4, 2.1, 2.6, "p4", 1], [0, 3.6, 4.55, "p0", 0], [1, 3.72, 4.6, "p1", 0], [2, 3.84, 4.65, "p2", 0], [3, 4.75, 5.3, "p3", 0], [4, 5.4, 5.9, "p4", 0]] },
-  };
-
-  function mount(mo) {
-    const name = mo.dataset.scene, sc = S[name]; if (!sc) return null;
-    const inner = mo.querySelector(".mo-in");
-    if (!inner.children.length) { const tp = document.getElementById("sc-" + name); if (tp) inner.append(tp.content.cloneNode(true)); }
-    inner.style.width = sc.w + "px"; inner.style.height = sc.h + "px";
-    const q = {}; inner.querySelectorAll("[data-k]").forEach((el) => (q[el.dataset.k] = el));
-    const paths = [...inner.querySelectorAll(".paths path:not(.dash)")], lit = paths.map((p) => { const c = p.cloneNode(); c.setAttribute("class", "lit"); c.setAttribute("pathLength", "1"); p.after(c); return c; });
-    const lens = paths.map((p) => p.getTotalLength());
-    const fit = () => { const s = mo.clientWidth / sc.w; inner.style.transform = `scale(${s})`; mo.style.height = sc.h * s + "px"; };
-    fit(); new ResizeObserver(fit).observe(mo);
-    const seek = (t) => {
-      t = ((t % L) + L) % L;
-      for (const k in sc.tracks) {
-        const el = q[k]; if (!el) continue; const p = sc.tracks[k], st = el.style;
-        if (p.x || p.y || p.s || p.sx) st.transform = `translate(${p.x ? K(t, p.x) : 0}px,${p.y ? K(t, p.y) : 0}px) scale(${p.s ? K(t, p.s) : 1}) scaleX(${p.sx ? K(t, p.sx) : 1})`;
-        if (p.o) st.opacity = K(t, p.o).toFixed(3);
-        if (p.w) st.width = K(t, p.w) + "px"; if (p.h) st.height = K(t, p.h) + "px"; if (p.r) st.borderRadius = K(t, p.r) + "px";
-        for (const v in p) if (v.startsWith("--")) st.setProperty(v, K(t, p[v]).toFixed(3));
-      }
-      if (sc.pulses) {
-        const seen = {};
-        sc.pulses.forEach(([pi, a, b, key, first]) => {
-          const u = clamp((t - a) / (b - a)), el = q[key], e = EZ.io(u);
-          if (first && lit[pi]) { lit[pi].style.strokeDashoffset = (1 - e).toFixed(4); lit[pi].style.opacity = K(t, [[0, 1], [6.6, 1], [7.2, 0], [L, 0]]).toFixed(3); }
-          if (!el || seen[key]) return;
-          if (u > 0 && u < 1) { const pt = paths[pi].getPointAtLength(e * lens[pi]); el.style.transform = `translate(${pt.x}px,${pt.y}px)`; el.style.opacity = Math.min(1, u * 6, (1 - u) * 6).toFixed(3); seen[key] = 1; }
-          else el.style.opacity = 0;
-        });
-      }
-      if (sc.live) sc.live(t, q);
-    };
-    return { mo, seek, t0: 0, run: false };
-  }
-
-  const all = [];
-  document.querySelectorAll(".mo[data-scene]").forEach((mo) => { const s = mount(mo); if (s) { all.push(s); mo._scene = s; s.seek(reduce ? 4.4 : 0); } });
-  const tick = (now) => { let any = false; all.forEach((s) => { if (s.run && s.mo.offsetParent && !s.mo.closest("[hidden]")) { s.seek((now - s.t0) / 1000); any = true; } }); if (any) requestAnimationFrame(tick); else ticking = false; };
-  let ticking = false;
-  const wake = () => { if (!ticking && !reduce) { ticking = true; requestAnimationFrame(tick); } };
-  const io = new IntersectionObserver((es) => es.forEach((e) => { const s = e.target._scene; if (!s) return; if (e.isIntersecting && !s.run) { s.run = true; s.t0 = performance.now(); wake(); } else if (!e.isIntersecting) s.run = false; }), { threshold: 0.3 });
-  all.forEach((s) => io.observe(s.mo));
-  // a tab that opens a scene restarts it from frame 0
-  window.__sceneRestart = (mo) => { const s = mo && mo._scene; if (!s) return; s.t0 = performance.now(); s.seek(reduce ? 4.4 : 0); s.run = true; wake(); };
-})();
-</script>
+<script src="/concepts/shared/scene.js"></script>
 
 <script>
 /* ---------- close: the dotted world, still ----------
@@ -2943,19 +3305,30 @@ $$(".x-qa button").forEach((bt) => bt.addEventListener("click", () => {
   function draw() {
     const dpr = Math.min(devicePixelRatio || 1, 1.5), W = cv.clientWidth, H = cv.clientHeight; if (!W || !H) return;
     cv.width = W * dpr; cv.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, W, H);
-    const asp = (LAT0 - LAT1) / (LON1 - LON0), ms = Math.max(W * 1.04, (H / asp) * 0.9), mx = (W - ms) / 2, my = (H - ms * asp) / 2;
+    /* the map sits on the right half (after Aventei's close), fading in from its left edge so it never meets the copy */
+    const wide = W > 860, asp = (LAT0 - LAT1) / (LON1 - LON0);
+    /* the map fills the section top to bottom (owner), anchored to the right edge, softly transparent,
+       fading out toward the copy on the left */
+    const ms = wide ? H / asp : W * 1.1, mx = wide ? W - ms * 0.88 : (W - ms) / 2, my = wide ? 0 : (H - ms * asp) / 2;
     const P = (la, lo) => [mx + ((lo - LON0) / (LON1 - LON0)) * ms, my + ((LAT0 - la) / (LAT0 - LAT1)) * ms * asp];
+    const fade = (px) => wide ? Math.max(0, Math.min(1, (px - mx - ms * 0.06) / (ms * 0.3))) : 0.5;
     if (land) {
-      const s = Math.max(1.4, ms / 1100); x.fillStyle = "#D9C8F7"; x.globalAlpha = 0.24;
+      const s = Math.max(1.6, ms / 560); x.fillStyle = "#D9C8F7";
       for (let la = LAT0; la >= LAT1; la -= STEP) for (let lo = LON0; lo < LON1; lo += STEP) {
         const L = lo > 180 ? lo - 360 : lo, ix = Math.floor(((L + 180) / 360) * land.w), iy = Math.floor(((90 - la) / 180) * land.h);
-        if (land.d[(iy * land.w + ix) * 4] > 127) { const [px, py] = P(la, lo); x.fillRect(px, py, s, s); }
+        if (land.d[(iy * land.w + ix) * 4] > 127) { const [px, py] = P(la, lo); x.globalAlpha = 0.34 * fade(px); x.fillRect(px, py, s, s); }
       }
       x.globalAlpha = 1;
     }
-    const sx = W * 0.32, sc = x.createRadialGradient(sx, H / 2, 0, sx, H / 2, Math.max(W, H) * 0.5);
-    sc.addColorStop(0, "rgba(45,19,92,.92)"); sc.addColorStop(0.45, "rgba(45,19,92,.6)"); sc.addColorStop(1, "rgba(45,19,92,0)");
-    x.fillStyle = sc; x.fillRect(0, 0, W, H);
+    /* two pins: where we are headquartered and where the team works */
+    if (wide) [[TPA[0], TPA[1], "US HQ"], [13.08, 80.27, "Chennai"]].forEach(([la, lo, t]) => {
+      const [px, py] = P(la, lo);
+      const g = x.createRadialGradient(px, py, 0, px, py, 22); g.addColorStop(0, "rgba(255,0,128,.45)"); g.addColorStop(1, "rgba(255,0,128,0)");
+      x.fillStyle = g; x.beginPath(); x.arc(px, py, 22, 0, Math.PI * 2); x.fill();
+      x.fillStyle = "#fff"; x.beginPath(); x.arc(px, py, 6, 0, Math.PI * 2); x.fill();
+      x.fillStyle = "#FF0080"; x.beginPath(); x.arc(px, py, 4, 0, Math.PI * 2); x.fill();
+      x.font = "600 14px Satoshi, -apple-system, sans-serif"; x.fillStyle = "#fff"; x.textBaseline = "middle"; x.fillText(t, px + 12, py);
+    });
   }
   let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(draw, 120); }).observe(cv);
   draw();

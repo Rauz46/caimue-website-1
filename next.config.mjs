@@ -26,6 +26,7 @@ const nextConfig = {
       beforeFiles: [
         { source: "/", destination: "/concepts/k-magnet/streaks.html" },
         { source: "/services", destination: "/concepts/k-magnet/services.html" },
+        { source: "/about", destination: "/concepts/k-magnet/about.html" },
       ],
     };
   },
@@ -35,6 +36,7 @@ const nextConfig = {
     return [
       { source: "/concepts/k-magnet/streaks.html", destination: "/", permanent: false },
       { source: "/concepts/k-magnet/services.html", destination: "/services", permanent: false },
+      { source: "/concepts/k-magnet/about.html", destination: "/about", permanent: false },
       { source: "/channels", destination: "/platforms", permanent: false },
       { source: "/collaborate", destination: "/contact", permanent: false },
       {
