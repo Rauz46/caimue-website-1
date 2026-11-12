@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only material (never part of the site)
+/reference/
+/.agents/
+/.claude/skills/
+/.claude/agents/
+/.playwright-mcp/
+/skills-lock.json

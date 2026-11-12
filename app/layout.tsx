@@ -24,30 +24,40 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
+  preload: false, // only the channel pages use it
 });
 
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
   display: "swap",
+  preload: false, // decorative handwriting only
 });
 
+const SITE_TITLE = "Caimue | Video Worth Watching. Brands Worth Building.";
+const SITE_DESCRIPTION = "Corporate films and LinkedIn campaigns for B2B brands worth remembering.";
+const SHARE_IMAGE = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Caimue: Video Worth Watching. Brands Worth Building." };
+
 export const metadata: Metadata = {
-  title: "Caimue | Video-First B2B Marketing Agency",
-  description: "Caimue is a video-first B2B marketing agency — corporate videos, LinkedIn media campaigns, and marketing websites in Tamil, Malayalam, and English. Backed by a talent pipeline from TeqDots and FunShortz.",
+  metadataBase: new URL("https://www.caimue.com"),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: ["B2B marketing agency", "video marketing", "corporate videos", "LinkedIn media campaigns", "marketing websites", "Tamil content", "Malayalam content", "TeqDots", "FunShortz"],
   authors: [{ name: "Caimue" }],
   openGraph: {
-    title: "Caimue | Video-First B2B Marketing Agency",
-    description: "Corporate videos, LinkedIn media campaigns, and marketing websites that make brands impossible to scroll past.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
     type: "website",
     locale: "en_US",
     siteName: "Caimue",
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Caimue | Video-First B2B Marketing Agency",
-    description: "Corporate videos, LinkedIn media campaigns, and marketing websites that make brands impossible to scroll past.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SHARE_IMAGE.url],
   },
 };
 

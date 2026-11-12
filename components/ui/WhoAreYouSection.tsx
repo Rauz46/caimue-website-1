@@ -4,10 +4,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Megaphone, Sparkles } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
+import Image from "next/image";
 
-// Shared white card for the "Come Work With Us" paths
+// Shared card for the "Come Work With Us" paths: soft solid tint + corner disc pair
 type PathCardProps = {
     eyebrow: string;
     titlePrefix: string;
@@ -16,7 +17,9 @@ type PathCardProps = {
     icon: React.ReactNode;
     accent: string;      // solid accent colour (hex)
     accentSoft: string;  // tinted icon-badge background (hex)
-    buttonBg: string;    // button gradient (css)
+    buttonBg: string;    // button fill
+    buttonText: string;  // button label colour
+    tone: "purple" | "pink";
     delay?: number;
 };
 
@@ -27,63 +30,23 @@ const PathCard = ({
     description,
     icon,
     accent,
-    accentSoft,
-    buttonBg,
-    delay = 0,
+    tone,
 }: PathCardProps) => {
+    const brand = tone === "purple";
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay }}
-            whileHover={{ y: -6 }}
-            className="relative rounded-[24px] bg-white px-8 pt-7 pb-8 overflow-hidden transition-shadow duration-300 group"
-            style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
-        >
-            {/* Accent top bar */}
-            <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: buttonBg }} />
-
-            <div className="relative">
-                {/* Compact eyebrow chip with icon, centered */}
-                <div className="flex justify-center mb-4">
-                    <span
-                        className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] px-4 py-1.5 rounded-full"
-                        style={{ background: accentSoft, color: accent }}
-                    >
-                        {icon}
-                        {eyebrow}
-                    </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-serif text-[30px] font-bold text-gray-900 mb-3 tracking-tight leading-tight text-center">
-                    {titlePrefix}{" "}
-                    <span style={{ color: accent }}>{titleAccent}</span>
-                </h3>
-
-                {/* Separator */}
-                <div className="w-12 h-[3px] rounded-full mb-4 mx-auto" style={{ background: accent, opacity: 0.5 }} />
-
-                <p className="text-gray-600 text-[15px] leading-relaxed mb-7 text-center">
-                    {description}
-                </p>
-
-                <div className="flex justify-center">
-                    <Link href="/contact" className="inline-block">
-                        <motion.button
-                            whileHover={{ scale: 1.04 }}
-                            whileTap={{ scale: 0.96 }}
-                            className="px-7 py-3 rounded-full font-semibold text-[14px] text-white shadow-md flex items-center gap-2 group/btn hover:shadow-lg transition-all"
-                            style={{ background: buttonBg }}
-                        >
-                            Get In Touch
-                            <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />
-                        </motion.button>
-                    </Link>
-                </div>
-            </div>
-        </motion.div>
+        <LivelyCard
+            tone={brand ? "purple" : "pink"}
+            eyebrow={<>{icon}{eyebrow}</>}
+            title={<>{titlePrefix} <span style={{ color: accent }}>{titleAccent}</span></>}
+            icon={brand ? <Megaphone size={22} /> : <Sparkles size={22} />}
+            text={description}
+            action={
+                <Link href="/contact" className="lc-btn">
+                    Get In Touch
+                    <ArrowRight className="lc-arrow" size={18} />
+                </Link>
+            }
+        />
     );
 };
 
@@ -95,9 +58,11 @@ const BrandOwnerCard = () => (
         titleAccent="Brand Owner?"
         description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
         icon={<Megaphone size={14} strokeWidth={2.5} />}
-        accent="#7C3AED"
-        accentSoft="#EDE9FE"
-        buttonBg="linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)"
+        accent="#FFC633"
+        accentSoft="#FFFFFF"
+        tone="purple"
+        buttonBg="#FFFFFF"
+        buttonText="#5B299D"
     />
 );
 
@@ -109,9 +74,11 @@ const ArtistCard = () => (
         titleAccent="Aspiring Artist?"
         description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
         icon={<Sparkles size={14} strokeWidth={2.5} />}
-        accent="#DB2777"
-        accentSoft="#FCE7F3"
-        buttonBg="linear-gradient(135deg, #DB2777 0%, #EC4899 100%)"
+        accent="#FFE89A"
+        accentSoft="#FFFFFF"
+        tone="pink"
+        buttonBg="#5B299D"
+        buttonText="#FFFFFF"
         delay={0.2}
     />
 );
@@ -119,10 +86,8 @@ const ArtistCard = () => (
 export default function WhoAreYouSection() {
     return (
         <section
-            className="relative pt-[48px] md:pt-[64px] pb-[100px] md:pb-[140px] overflow-visible -mt-1"
-            style={{
-                background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
-            }}
+            className="relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-visible -mt-1"
+            style={{ background: "#F1E6FF" }}
         >
             {/* Grid Texture Overlay (same as Journey section) */}
             <div
@@ -137,31 +102,24 @@ export default function WhoAreYouSection() {
             {/* Hand-Drawn Scribbles (same as Journey section) */}
             <HandDrawnScribbles />
 
-            <div className="container mx-auto px-4 relative z-10">
+            <div className="relative z-10">
                 {/* HEADING */}
-                <div className="text-center mb-[60px]">
+                <div className="text-center mb-12">
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="font-serif text-[56px] font-bold text-[#4C1D95] tracking-tighter"
+                        className="cm-rise cm-h2 font-serif"
                     >
                         Come Work With Us
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="font-sans text-[18px] font-medium text-[#6B21A8] mt-2"
+                        className="font-sans text-[18px] font-medium text-[#4A3F5C] mt-1"
                     >
                         Pick your path below ↓
                     </motion.p>
                 </div>
 
                 {/* TWO CARD LAYOUT with scribble annotations */}
-                <div className="relative max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
+                <div className="relative home-wrap">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center md:justify-items-stretch">
                         <BrandOwnerCard />
                         <ArtistCard />
                     </div>
@@ -170,11 +128,7 @@ export default function WhoAreYouSection() {
 
                     {/* Left scribble - "tell your story" with arrow pointing to Brand Owner */}
                     <motion.div
-                        className="absolute -left-[80px] top-[35%] hidden xl:block pointer-events-none"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
+                        className="cm-decor-item absolute -left-[80px] top-[35%] hidden min-[1600px]:block pointer-events-none"
                     >
                         <div className="flex items-center gap-2">
                             <p className="font-serif italic text-[14px] text-orange-500/80 -rotate-6 leading-tight">
@@ -190,11 +144,7 @@ export default function WhoAreYouSection() {
 
                     {/* Right scribble - "join the crew" with arrow pointing to Artist */}
                     <motion.div
-                        className="absolute -right-[80px] top-[35%] hidden xl:block pointer-events-none"
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 1.0 }}
+                        className="cm-decor-item absolute -right-[80px] top-[35%] hidden min-[1600px]:block pointer-events-none"
                     >
                         <div className="flex items-center gap-2">
                             {/* Curved arrow */}
@@ -210,11 +160,7 @@ export default function WhoAreYouSection() {
 
                     {/* Bottom-left scribble */}
                     <motion.div
-                        className="absolute -left-[60px] bottom-[5%] hidden xl:block pointer-events-none"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 1.2 }}
+                        className="cm-decor-item absolute -left-[60px] bottom-[5%] hidden min-[1600px]:block pointer-events-none"
                     >
                         <div className="flex flex-col items-end">
                             <p className="font-serif italic text-[13px] text-orange-500/70 -rotate-3 leading-tight">
@@ -229,11 +175,7 @@ export default function WhoAreYouSection() {
 
                     {/* Bottom-right scribble */}
                     <motion.div
-                        className="absolute -right-[70px] bottom-[8%] hidden xl:block pointer-events-none"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 1.4 }}
+                        className="cm-decor-item absolute -right-[70px] bottom-[8%] hidden min-[1600px]:block pointer-events-none"
                     >
                         <div className="flex flex-col items-start">
                             <p className="font-serif italic text-[13px] text-orange-500/70 rotate-3 leading-tight">

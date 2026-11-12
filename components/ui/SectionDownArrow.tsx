@@ -10,7 +10,7 @@ export function SectionDownArrow({ color = "#8B5CF6" }: { color?: string }) {
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-none z-10" aria-hidden>
             <motion.div
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, 7, 0], opacity: [0.3, 0.55, 0.3] }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(7px)", "translateY(0px)"], opacity: [0.3, 0.55, 0.3] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             >
                 <ChevronDown size={26} strokeWidth={2} style={{ color }} />

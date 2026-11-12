@@ -5,18 +5,18 @@ import { cn } from "@/lib/utils";
 
 export function FloatingScribbles({ color = "text-white", className }: { color?: string, className?: string }) {
     return (
-        <div className={cn("absolute inset-0 pointer-events-none z-0 overflow-hidden", color, className)}>
+        <div className={cn("cm-decor absolute inset-0 pointer-events-none z-0 overflow-hidden", color, className)}>
             {/* 1. Top Left - "Action!" + Clapper hint */}
             <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, transform: "translateY(10px)" }}
                 viewport={{ amount: 0 }}
                 whileInView={{
                     opacity: 1,
-                    y: [0, -4, 0]
+                    transform: ["translateY(0px)", "translateY(-4px)", "translateY(0px)"]
                 }}
                 transition={{
                     opacity: { duration: 1, delay: 0.2 },
-                    y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+                    transform: { duration: 5, repeat: Infinity, ease: "easeInOut" }
                 }}
                 className="absolute top-[12%] left-[4%] hidden xl:block"
             >
@@ -36,11 +36,11 @@ export function FloatingScribbles({ color = "text-white", className }: { color?:
                 viewport={{ amount: 0 }}
                 whileInView={{
                     opacity: 0.9,
-                    y: [0, 3, 0]
+                    transform: ["translateY(0px)", "translateY(3px)", "translateY(0px)"]
                 }}
                 transition={{
                     opacity: { duration: 1, delay: 0.5 },
-                    y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                    transform: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
                 }}
                 className="absolute top-[8%] right-[6%] hidden lg:block"
             >
@@ -58,11 +58,11 @@ export function FloatingScribbles({ color = "text-white", className }: { color?:
                 viewport={{ amount: 0 }}
                 whileInView={{
                     opacity: 0.9,
-                    y: [0, -3, 0]
+                    transform: ["translateY(0px)", "translateY(-3px)", "translateY(0px)"]
                 }}
                 transition={{
                     opacity: { duration: 1, delay: 0.8 },
-                    y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+                    transform: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
                 }}
                 className="absolute bottom-[25%] left-[5%] hidden xl:block max-w-[150px]"
             >
@@ -82,11 +82,11 @@ export function FloatingScribbles({ color = "text-white", className }: { color?:
                 viewport={{ amount: 0 }}
                 whileInView={{
                     opacity: 0.9,
-                    y: [0, 4, 0]
+                    transform: ["translateY(0px)", "translateY(4px)", "translateY(0px)"]
                 }}
                 transition={{
                     opacity: { duration: 1, delay: 1.1 },
-                    y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 2 }
+                    transform: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 2 }
                 }}
                 className="absolute top-[45%] right-[5%] hidden 2xl:block"
             >
@@ -104,11 +104,11 @@ export function FloatingScribbles({ color = "text-white", className }: { color?:
                 viewport={{ amount: 0 }}
                 whileInView={{
                     opacity: 0.7, // Higher visibility for shapes
-                    rotate: [0, 5, 0]
+                    transform: ["rotate(0deg)", "rotate(5deg)", "rotate(0deg)"]
                 }}
                 transition={{
                     opacity: { duration: 1, delay: 1.5 },
-                    rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+                    transform: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                 }}
                 className="absolute bottom-[20%] right-[10%] hidden lg:block"
             >

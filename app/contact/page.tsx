@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { HeroGrid } from "@/components/effects/HeroGrid";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { BrandGround } from "@/components/ui/BrandGround";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -64,20 +64,7 @@ export default function ContactPage() {
         <main className="min-h-screen flex flex-col font-sans">
             {/* --- SECTION 1: HERO BANNER (Cinematic/Dark) --- */}
             <section className="relative flex items-center justify-center overflow-hidden pt-32 pb-14 md:pt-36 md:pb-16">
-                <BackgroundGradientAnimation
-                    autoMove
-                    maskCenter
-                    containerClassName="absolute inset-0 z-0 !h-full !w-full"
-                    className="h-full w-full"
-                    firstColor="124, 58, 237"  // Violet-600
-                    secondColor="109, 40, 217" // Violet-700
-                    thirdColor="91, 33, 182"   // Violet-800
-                    fourthColor="126, 34, 206" // Purple-700
-                    fifthColor="107, 33, 168"  // Purple-800
-                    pointerColor="124, 58, 237" // Violet-600
-                    gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
-                    gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
-                />
+                <BrandGround className="z-0" />
 
                 {/* Background Elements */}
                 <HeroGrid className="opacity-40 z-10 pointer-events-none" />
@@ -88,18 +75,12 @@ export default function ContactPage() {
 
                 <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
                     <motion.h1
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-serif text-xl md:text-3xl font-bold !text-white leading-none tracking-tight drop-shadow-2xl"
+                        className="cm-in font-serif text-xl md:text-3xl font-bold !text-white leading-none tracking-tight drop-shadow-2xl"
                     >
                         Let&apos;s Collaborate
                     </motion.h1>
                     <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-sm md:text-base !text-white leading-tight drop-shadow-md font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
+                        className="cm-in text-sm md:text-base !text-white leading-tight font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
                     >
                         Partner with a video-first marketing agency.
                         <br className="md:hidden" />
@@ -112,8 +93,9 @@ export default function ContactPage() {
             {/* --- SECTION 2: CONTENT AREA (Light Purple Theme) --- */}
             <section
                 className="pt-20 pb-16 relative overflow-hidden"
-                style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
+                style={{ background: "#F1E6FF" }}
             >
+
                 {/* Checked grid texture */}
                 <div
                     className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -127,25 +109,23 @@ export default function ContactPage() {
                     <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
 
                         {/* Left Column: Creative Info — centered on mobile */}
-                        <div className="flex-1 w-full space-y-8 text-center lg:text-left">
+                        <div className="flex-1 w-full space-y-8 text-center">
                             {/* Heading with gradient accent */}
                             <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7 }}
+                                className="cm-in cm-in--2"
                             >
                                 <motion.span
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.2 }}
-                                    className="inline-block text-sm font-bold uppercase tracking-[0.25em] text-purple-500 mb-4"
+                                    className="inline-block text-[15px] font-semibold text-[#5B299D] mb-3"
                                 >
                                     Get In Touch
                                 </motion.span>
-                                <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+                                <h2 className="cm-rise cm-h2 font-serif">
                                     <span className="text-neutral-900">Ready to Get Your</span>
                                     <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-purple-400">
+                                    <span className="text-[#5B299D]">
                                         Brand Noticed?
                                     </span>
                                 </h2>
@@ -161,33 +141,20 @@ export default function ContactPage() {
                                 ].map((item, idx) => (
                                     <motion.div
                                         key={idx}
-                                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
-                                        whileHover={{ y: -6 }}
-                                        className="group relative bg-white rounded-2xl p-6 transition-all duration-300 cursor-default overflow-hidden"
+                                                                                whileHover={{ y: -6 }}
+                                        className={`cm-in cm-in--3 group cm-disc ${["cm-disc--purple", "cm-disc--pink", "cm-disc--violet", "cm-disc--pink"][idx % 4]} [--ds:130px] rounded-2xl p-6 transition-shadow duration-300 cursor-default`}
                                         style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
                                     >
-                                        {/* Gradient accent along the top */}
-                                        <div
-                                            className="absolute top-0 left-0 right-0 h-[4px]"
-                                            style={{ background: `linear-gradient(90deg, ${item.from}, ${item.to})` }}
-                                        />
-                                        {/* Soft corner glow */}
-                                        <div
-                                            className="absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.25] transition-opacity duration-500 pointer-events-none"
-                                            style={{ background: item.from }}
-                                        />
-                                        <div className="relative z-10 flex items-start gap-4 justify-center lg:justify-start text-left">
+                                        <div className="relative z-10 flex flex-col items-center gap-3 justify-center text-center">
                                             <span
                                                 className="flex items-center justify-center w-12 h-12 rounded-xl text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300"
-                                                style={{ background: item.soft }}
+                                                style={{ background: "#FFFFFF" }}
                                             >
                                                 {item.icon}
                                             </span>
                                             <div>
                                                 <h3 className="font-bold text-neutral-900 text-[15px]">{item.label}</h3>
-                                                <p className="text-[12.5px] text-neutral-400 mt-1 font-medium leading-relaxed">{item.desc}</p>
+                                                <p className="text-[12.5px] text-neutral-500 mt-1 font-medium leading-relaxed">{item.desc}</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -197,10 +164,7 @@ export default function ContactPage() {
 
                         {/* Right Column: Contact Form */}
                         <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="w-full lg:w-[550px] bg-white rounded-[2.5rem] p-10 md:p-12 shadow-[0_20px_50px_rgba(76,29,149,0.05)] relative overflow-hidden border border-purple-100/50"
+                            className="cm-in cm-in--3 w-full lg:w-[550px] bg-white rounded-[2.5rem] p-10 md:p-12 shadow-[0_20px_50px_rgba(76,29,149,0.05)] relative overflow-hidden border border-purple-100/50"
                         >
                             <form className="relative z-10 space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -279,7 +243,7 @@ export default function ContactPage() {
 
                                 <div className="pt-4">
                                     <StatefulButton
-                                        className="w-full sm:w-auto font-bold py-6 px-10 shadow-xl shadow-purple-200/50"
+                                        className="w-full sm:w-auto font-bold py-6 px-10"
                                         onClick={async () => {
                                             await handleSubmit();
                                         }}
@@ -294,7 +258,7 @@ export default function ContactPage() {
             </section>
 
             {/* --- SECTION 3: GLOBAL PRESENCE (White Grid Theme) --- */}
-            <section className="relative py-16 md:py-20 overflow-hidden bg-white">
+            <section className="cv-auto relative py-16 md:py-20 overflow-hidden bg-white">
                 {/* Decorative Grid */}
                 <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
                     style={{
@@ -302,9 +266,6 @@ export default function ContactPage() {
                         backgroundSize: '40px 40px'
                     }}
                 />
-                {/* Ambient Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-100/30 rounded-full blur-[150px] pointer-events-none" />
-
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Section Header */}
                     <div className="text-center mb-12">
@@ -320,10 +281,10 @@ export default function ContactPage() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                            className="cm-rise cm-h2 font-serif"
                         >
                             <span className="text-neutral-900">Three Cities. </span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-purple-400">
+                            <span className="text-[#5B299D]">
                                 One Vision.
                             </span>
                         </motion.h2>
@@ -332,7 +293,7 @@ export default function ContactPage() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="text-neutral-400 mt-4 text-base max-w-md mx-auto"
+                            className="text-[#4A3F5C] mt-4 text-base max-w-md mx-auto"
                         >
                             Powered by teams working across continents to deliver world-class results.
                         </motion.p>
@@ -490,27 +451,24 @@ export default function ContactPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.15, duration: 0.7, ease: "easeOut" }}
-                                whileHover={{ y: -10 }}
+                                whileHover={{ y: -6 }}
                                 className="group relative cursor-default"
                             >
                                 {/* Card */}
-                                <div className="relative bg-gradient-to-b from-purple-50/60 to-white border border-purple-100/60 rounded-3xl p-8 pt-10 h-full flex flex-col shadow-[0_4px_40px_rgba(124,58,237,0.06)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.14)] hover:border-purple-200/80 transition-all duration-500 overflow-hidden">
-                                    {/* Gradient Accent at Top — always on, grows on hover */}
-                                    <div className={`absolute top-0 left-1/2 -translate-x-1/2 h-[4px] w-20 group-hover:w-full rounded-b-full bg-gradient-to-r ${loc.accent} transition-all duration-700`} />
-
+                                <div className={`cm-disc ${["cm-disc--purple", "cm-disc--pink", "cm-disc--violet"][idx % 3]} [--ds:190px] rounded-3xl p-8 pt-10 h-full flex flex-col shadow-[0_4px_40px_rgba(124,58,237,0.06)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.14)] transition-shadow duration-500`}>
                                     {/* Monument Illustration — Top Right */}
                                     <div className="absolute top-4 right-4">
                                         {loc.monument}
                                     </div>
 
                                     {idx === 0 && (
-                                        <span className="absolute top-5 left-8 -translate-y-1/2 text-[10px] font-black uppercase tracking-[0.16em] text-white px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 shadow-md">
+                                        <span className="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[11px] font-bold text-[#5B299D] px-2.5 py-1 rounded-full bg-white">
                                             HQ
                                         </span>
                                     )}
 
                                     {/* Flag + City */}
-                                    <div className="flex items-start gap-4 mb-5 relative z-10 justify-center md:justify-start">
+                                    <div className="flex items-start gap-4 mb-5 relative z-10 justify-center">
                                         <span className="text-4xl mt-1 group-hover:scale-110 transition-transform duration-300 inline-block">{loc.flag}</span>
                                         <div>
                                             <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">{loc.city}</h3>
@@ -519,10 +477,10 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className={`h-[2px] w-12 bg-gradient-to-r ${loc.accent} mb-5 rounded-full group-hover:w-2/3 transition-all duration-700 mx-auto md:mx-0`} />
+                                    <div className="h-[2px] w-12 bg-current opacity-40 mb-5 rounded-full mx-auto" />
 
                                     {/* Address */}
-                                    <div className="space-y-0.5 flex-1 relative z-10 text-center md:text-left">
+                                    <div className="space-y-0.5 flex-1 relative z-10 text-center">
                                         {loc.lines.map((line, lineIdx) => (
                                             <p key={lineIdx} className="text-neutral-500 text-sm font-medium leading-relaxed">
                                                 {line}
@@ -531,14 +489,14 @@ export default function ContactPage() {
                                     </div>
 
                                     {/* Status Indicator */}
-                                    <div className="mt-6 pt-5 border-t border-neutral-50 flex items-center gap-2.5 relative z-10 justify-center md:justify-start">
+                                    <div className="mt-6 pt-5 border-t border-black/5 flex items-center gap-2.5 relative z-10 justify-center">
                                         <motion.div
                                             viewport={{ amount: 0 }}
                 whileInView={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
                                             transition={{ repeat: Infinity, duration: 2, delay: idx * 0.4 }}
                                             className="w-2 h-2 rounded-full bg-emerald-400"
                                         />
-                                        <span className="text-xs text-neutral-400 font-medium">Active office</span>
+                                        <span className="text-xs font-medium opacity-80">Active office</span>
                                     </div>
                                 </div>
                             </motion.div>

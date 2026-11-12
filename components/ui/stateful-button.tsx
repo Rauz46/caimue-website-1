@@ -87,7 +87,7 @@ export const Button = ({ className, children, ...props }: ButtonProps) => {
             layoutId="button"
             ref={scope}
             className={cn(
-                "flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full bg-purple-600 px-6 py-3 font-medium text-white transition duration-200 hover:bg-purple-700 hover:ring-2 hover:ring-purple-500/50",
+                "flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full bg-[#5B299D] px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-[#4A2185]",
                 className,
             )}
             {...buttonProps}

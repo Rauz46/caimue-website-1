@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Clapperboard, Film } from "lucide-react";
 import Image from "next/image";
-import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 // Stills used as a cinematic teaser reel for the upcoming feature films
 const reel = [
@@ -22,21 +22,22 @@ const AUTOPLAY_MS = 4200;
 export function FeatureFilmsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+    const onScreen = useInView(sectionRef);
     const [active, setActive] = useState(0);
     const [paused, setPaused] = useState(false);
     const n = reel.length;
 
     // Auto-advance; timer restarts whenever the active card changes
     useEffect(() => {
-        if (!isInView || paused) return;
+        if (!isInView || !onScreen || paused) return;
         const t = setTimeout(() => setActive((a) => (a + 1) % n), AUTOPLAY_MS);
         return () => clearTimeout(t);
-    }, [active, paused, isInView, n]);
+    }, [active, paused, isInView, onScreen, n]);
 
     const activeStill = reel[active];
 
     return (
-        <section ref={sectionRef} className="relative bg-white pt-20 md:pt-24 pb-0 overflow-hidden">
+        <section ref={sectionRef} className="relative bg-white pt-16 md:pt-20 pb-14 md:pb-16 overflow-hidden">
             {/* Subtle grid background */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -51,56 +52,45 @@ export function FeatureFilmsSection() {
             <HandDrawnScribbles />
 
             {/* Soft glow accents */}
-            <div className="absolute -top-20 right-1/4 w-72 h-72 bg-purple-300/20 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute -bottom-24 left-1/4 w-72 h-72 bg-pink-300/20 rounded-full blur-[120px] pointer-events-none" />
 
             {/* ── Header ── */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
                 className="relative z-10 max-w-2xl mx-auto px-4 text-center mb-6"
             >
                 {/* Coming Soon badge with a "live" pulse */}
-                <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-purple-100 text-[#4C1D95] text-[13px] font-semibold tracking-[0.15em] uppercase mb-6 shadow-[0_4px_20px_rgba(147,51,234,0.18)]">
+                <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EAE0FB] text-[#5B299D] text-[13px] font-semibold mb-5">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500" />
                     </span>
                     Coming Soon
-                    <Clapperboard size={14} className="text-[#7C3AED]" />
+                    <Clapperboard size={14} className="text-[#5B299D]" />
                 </span>
 
-                <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
-                    <span className="text-[#2D2D2D]">Feature </span>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#DB2777]">
-                        Films
-                    </span>
+                <h2 className="cm-rise cm-h2 font-serif mb-5">
+                    Feature <span className="text-[#5B299D]">Films</span>
                 </h2>
-                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed">
                     Everything we&apos;ve built so far — short films, talent, and craft — leads here. Our first feature
                     films are in the works across Tamil, Malayalam, and English.
-                    <span className="font-semibold text-[#4C1D95]"> The reel is just getting started.</span>
+                    <span className="font-semibold text-[#5B299D]"> The reel is just getting started.</span>
                 </p>
             </motion.div>
 
             {/* ── 3D coverflow carousel ── */}
             <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.9, delay: 0.2 }}
                 className="relative z-10"
                 onMouseEnter={() => setPaused(true)}
                 onMouseLeave={() => setPaused(false)}
             >
                 {/* Doodles hugging the carousel */}
-                <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
+                <div className="cm-decor absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
                     {/* Curved arrow + handwritten note pointing at the reel */}
                     <motion.div
                         className="absolute left-[8%] top-[-14px] flex items-start gap-1"
                         viewport={{ amount: 0 }}
-                whileInView={{ y: [-4, 4, -4] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["translateY(-4px)", "translateY(4px)", "translateY(-4px)"] }}
+                        transition={{ duration: 5, repeat: 0, ease: "easeInOut" }}
                     >
                         <span className="font-handwriting text-lg text-[#7C3AED] rotate-[-8deg]">our reel so far!</span>
                         <svg className="w-14 h-14 text-[#7C3AED] mt-3" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
@@ -121,8 +111,8 @@ export function FeatureFilmsSection() {
                             className={`absolute ${s.size} ${s.color}`}
                             style={{ left: s.left, top: s.top }}
                             viewport={{ amount: 0 }}
-                whileInView={{ scale: [0.6, 1.15, 0.6], rotate: [0, 20, 0], opacity: [0.4, 0.9, 0.4] }}
-                            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: s.delay }}
+                whileInView={{ transform: ["rotate(0deg) scale(0.6)", "rotate(20deg) scale(1.15)", "rotate(0deg) scale(0.6)"], opacity: [0.4, 0.9, 0.4] }}
+                            transition={{ duration: 2.6, repeat: 0, ease: "easeInOut", delay: s.delay }}
                             viewBox="0 0 24 24"
                             fill="currentColor"
                         >
@@ -134,8 +124,8 @@ export function FeatureFilmsSection() {
                     <motion.svg
                         className="absolute right-[7%] top-[10%] w-16 h-16 text-pink-500 opacity-70"
                         viewport={{ amount: 0 }}
-                whileInView={{ rotate: [8, -4, 8] }}
-                        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["rotate(8deg)", "rotate(-4deg)", "rotate(8deg)"] }}
+                        transition={{ duration: 7, repeat: 0, ease: "easeInOut" }}
                         viewBox="0 0 100 100"
                         fill="none"
                         stroke="currentColor"
@@ -155,8 +145,8 @@ export function FeatureFilmsSection() {
                     <motion.svg
                         className="absolute left-[6%] bottom-[6%] w-14 h-14 text-purple-500 opacity-70"
                         viewport={{ amount: 0 }}
-                whileInView={{ y: [0, -6, 0], rotate: [-6, 4, -6] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                whileInView={{ transform: ["translateY(0px) rotate(-6deg)", "translateY(-6px) rotate(4deg)", "translateY(0px) rotate(-6deg)"],  }}
+                        transition={{ duration: 6, repeat: 0, ease: "easeInOut", delay: 0.6 }}
                         viewBox="0 0 100 100"
                         fill="none"
                         stroke="currentColor"
@@ -172,7 +162,6 @@ export function FeatureFilmsSection() {
                         <circle cx="50" cy="20" r="6" />
                     </motion.svg>
                 </div>
-
                 <div className="cf-stage">
                     {reel.map((item, i) => {
                         const offset = (((i - active) % n) + n) % n; // 0..5
@@ -228,10 +217,10 @@ export function FeatureFilmsSection() {
                             transition={{ duration: 0.35 }}
                             className="text-center"
                         >
-                            <div className="font-serif text-lg md:text-xl font-bold text-[#2D2D2D] tracking-wide">
+                            <div className="font-serif text-lg md:text-xl font-bold text-[#1B0F33]">
                                 {activeStill.title}
                             </div>
-                            <div className="text-[12px] uppercase tracking-[0.2em] text-[#7C3AED] mt-1 flex items-center justify-center gap-1.5">
+                            <div className="text-[13px] font-medium text-[#5B299D] mt-1 flex items-center justify-center gap-1.5">
                                 <Film size={11} />
                                 {activeStill.meta}
                             </div>
@@ -245,12 +234,12 @@ export function FeatureFilmsSection() {
                                 type="button"
                                 aria-label={`Go to ${item.title}`}
                                 onClick={() => setActive(i)}
-                                className="h-[3px] w-8 md:w-10 rounded-full bg-purple-200/70 overflow-hidden"
+                                className="h-[3px] w-8 md:w-10 rounded-full bg-[#E3D8F8] overflow-hidden"
                             >
                                 {i === active && (
                                     <span
                                         key={`fill-${active}`}
-                                        className="block h-full bg-gradient-to-r from-[#7C3AED] to-[#DB2777] cf-progress"
+                                        className="block h-full bg-[#5B299D] cf-progress"
                                         style={{ animationPlayState: paused ? "paused" : "running" }}
                                     />
                                 )}

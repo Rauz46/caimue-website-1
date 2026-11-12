@@ -1,280 +1,95 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 
-// Landscape card config — wider than tall, fanned arc
-const CARD_CONFIG = [
-  { rotate: -18, offsetY: 32 },
-  { rotate: -11, offsetY: 14 },
-  { rotate: -5, offsetY: 4 },
-  { rotate: 0, offsetY: -6 },  // center card, most upright
-  { rotate: 5, offsetY: 4 },
-  { rotate: 11, offsetY: 14 },
-  { rotate: 18, offsetY: 32 },
-];
-
-const FLOAT_DURATIONS = [5.2, 6.4, 5.8, 7.0, 5.5, 6.1, 5.9];
-const FLOAT_DELAYS = [0, 0.9, 0.4, 1.5, 0.7, 0.2, 1.1];
+/**
+ * Hero film arch (Nov 2026). Seven landscape posters sit on a true circular
+ * arc: every card rotates around one shared pivot far below the strip, so the
+ * spacing and curve are exact and centred. On load the cards fan out from a
+ * stacked deck. Hover / focus: the card rises 16px along its radius, turns
+ * mostly upright, the poster eases in inside its frame, the shadow deepens.
+ * Pure CSS; no JavaScript animation loop.
+ */
+const title = (src: string) =>
+  decodeURIComponent(src.split("/").pop() ?? "").replace(/\.[a-z]+$/i, "");
 
 export default function MovieCardsFan({ images = [] }: { images?: string[] }) {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const frameRef = useRef<number | null>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const targetRef = useRef({ x: 0, y: 0 });
-
-  // Pad / trim to exactly 7 cards
-  const cardImages = Array.from({ length: 7 }, (_, i) => images[i] || null);
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    // Parallax is pointless (and costly) on touch devices
-    if (typeof window.matchMedia === "function" && !window.matchMedia("(pointer: fine)").matches) return;
-
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    let running = false;
-
-    const tick = () => {
-      targetRef.current.x = lerp(targetRef.current.x, mouseRef.current.x, 0.06);
-      targetRef.current.y = lerp(targetRef.current.y, mouseRef.current.y, 0.06);
-
-      cardsRef.current.forEach((card, i) => {
-        if (!card) return;
-        const cfg = CARD_CONFIG[i];
-        const depth = 0.4 + Math.abs(cfg.rotate) / 60;
-        const px = targetRef.current.x * 12 * depth;
-        const py = targetRef.current.y * 8 * depth;
-        const pr = targetRef.current.x * 2 * depth;
-
-        card.style.setProperty("--px", `${px}px`);
-        card.style.setProperty("--py", `${py}px`);
-        card.style.setProperty("--pr", `${cfg.rotate + pr}deg`);
-      });
-
-      // Stop the loop once the ease has settled — restarts on the next mousemove
-      const settled =
-        Math.abs(targetRef.current.x - mouseRef.current.x) < 0.001 &&
-        Math.abs(targetRef.current.y - mouseRef.current.y) < 0.001;
-      if (settled) {
-        running = false;
-        return;
-      }
-      frameRef.current = requestAnimationFrame(tick);
-    };
-
-    const startLoop = () => {
-      if (running) return;
-      running = true;
-      frameRef.current = requestAnimationFrame(tick);
-    };
-
-    const onMove = (e: MouseEvent) => {
-      const rect = stage.getBoundingClientRect();
-      // Ignore movement while the fan is offscreen
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      mouseRef.current = {
-        x: (e.clientX - rect.left - rect.width / 2) / (rect.width / 2),
-        y: (e.clientY - rect.top - rect.height / 2) / (rect.height / 2),
-      };
-      startLoop();
-    };
-
-    const onLeave = () => {
-      mouseRef.current = { x: 0, y: 0 };
-      startLoop();
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    stage.addEventListener("mouseleave", onLeave);
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      stage.removeEventListener("mouseleave", onLeave);
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
-    };
-  }, []);
-
+  const items = images.slice(0, 7);
+  const mid = (items.length - 1) / 2;
   return (
-    <div ref={stageRef} className="fan-stage">
-      {/* Card row */}
-      <div className="fan-row">
-        {cardImages.map((src, i) => {
-          const cfg = CARD_CONFIG[i];
-          return (
-            <div
-              key={i}
-              ref={(el) => { cardsRef.current[i] = el; }}
-              className="fan-card"
-              style={{
-                ["--base-rotate" as string]: `${cfg.rotate}deg`,
-                ["--base-offsetY" as string]: `${cfg.offsetY}px`,
-                ["--float-duration" as string]: `${FLOAT_DURATIONS[i]}s`,
-                ["--float-delay" as string]: `${FLOAT_DELAYS[i]}s`,
-                ["--pr" as string]: `${cfg.rotate}deg`,
-                ["--px" as string]: "0px",
-                ["--py" as string]: "0px",
-                zIndex: i === 3 ? 10 : Math.abs(i - 3) <= 1 ? 8 : 5,
-              }}
-            >
-              {src ? (
-                <Image
-                  src={src}
-                  alt={`Movie ${i + 1}`}
-                  fill
-                  sizes="240px"
-                  priority
-                  className="fan-img"
-                  draggable={false}
-                />
-              ) : (
-                <div className="fan-placeholder" />
-              )}
-              <div className="fan-shimmer" />
-            </div>
-          );
-        })}
-      </div>
+    <div className="arch" aria-label="Our films">
+      {items.map((src, i) => (
+        <div
+          key={src}
+          className="arch-card"
+          tabIndex={0}
+          style={{ ["--k" as string]: i - mid, ["--i" as string]: i } as React.CSSProperties}
+        >
+          <div className="arch-face">
+            <Image src={src} alt={`${title(src)} poster`} fill sizes="(max-width: 768px) 40vw, 240px" priority className="arch-img" draggable={false} />
+          </div>
+          <span className="sr-only">{title(src)}</span>
+        </div>
+      ))}
 
       <style>{`
-        /* ── Stage ── */
-        .fan-stage {
-          position: relative;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 32px;
-          /* Tall enough for landscape cards + float travel */
-          height: 220px;
-          overflow: visible;
+        .arch{
+          --w: clamp(150px, 15.2vw, 230px);          /* card width */
+          --R: calc(var(--w) * 12);                  /* arc radius (pivot distance) */
+          --step: 3.8deg;                            /* angle between cards: a gentle arch */
+          position:relative; height: calc(var(--w) * 0.95); margin-top:30px;
         }
-
-        /* ── Card row ── */
-        .fan-row {
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-          position: relative;
-          height: 100%;
-          width: 100%;
+        .arch-card{
+          --a: calc(var(--k) * var(--step));
+          --lift: 0px; --grow: 1; --spread: 0deg;
+          position:absolute; left:50%; top:22px;
+          width:var(--w); aspect-ratio:16/10; margin-left:calc(var(--w) / -2);
+          transform-origin: 50% calc(100% + var(--R));
+          transform: rotate(calc(var(--a) + var(--spread))) translateY(calc(-1 * var(--lift)));
+          transition: transform .5s cubic-bezier(.22,1,.36,1);
+          animation: arch-deal .9s cubic-bezier(.22,1,.36,1) backwards;
+          animation-delay: calc(.2s + var(--i) * .05s);
+          z-index: calc(10 - var(--k) * var(--k));
+          outline:none; cursor:default;
         }
-
-        /* ── Individual card — LANDSCAPE (wider than tall) ── */
-        .fan-card {
-          position: relative;
-          /* Overlap cards */
-          margin-left: -28px;
-          flex-shrink: 0;
-          /* 16:9-ish landscape ratio */
-          width: 230px;
-          height: 145px;
-          border-radius: 14px;
-          overflow: hidden;
-          box-shadow:
-            0 20px 50px rgba(0, 0, 0, 0.55),
-            0  4px 16px rgba(0, 0, 0, 0.35);
-          cursor: pointer;
-
-          transform:
-            rotate(var(--pr))
-            translateX(var(--px))
-            translateY(calc(var(--base-offsetY) + var(--py)));
-
-          transition: box-shadow 0.35s ease;
-
-          animation:
-            fanFloat var(--float-duration) ease-in-out var(--float-delay) infinite,
-            cardEntry 0.65s ease-out calc(var(--float-delay) * 0.6) both;
-
-          will-change: transform;
+        .arch-face{
+          position:absolute; inset:0; border-radius:16px; overflow:hidden;
+          box-shadow: 0 24px 44px -20px rgba(20,5,60,.75), 0 0 0 1px rgba(255,255,255,.08);
+          transform: rotate(0deg) scale(1); transform-origin: 50% 60%;
+          transition: box-shadow .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
         }
+        .arch-img{ object-fit:cover; transition: transform .7s cubic-bezier(.22,1,.36,1); }
 
-        .fan-card:first-child { margin-left: 0; }
-
-        .fan-card:hover {
-          box-shadow:
-            0 32px 80px rgba(0, 0, 0, 0.7),
-            0  8px 24px rgba(0, 0, 0, 0.4);
-          z-index: 30 !important;
-          transform:
-            rotate(calc(var(--pr) * 0.4))
-            translateX(var(--px))
-            translateY(calc(var(--base-offsetY) + var(--py) - 20px))
-            scale(1.06);
-        }
-
-        .fan-card:first-child:hover,
-        .fan-card:last-child:hover {
-          transform:
-            rotate(calc(var(--pr) * 0.25))
-            translateX(var(--px))
-            translateY(calc(var(--base-offsetY) + var(--py) - 20px))
-            scale(1.06);
-        }
-
-        @keyframes fanFloat {
-          0%, 100% { translate: 0 0; }
-          50%       { translate: 0 -12px; }
-        }
-
-        @keyframes cardEntry {
-          from {
-            opacity: 0;
-            transform:
-              rotate(var(--pr))
-              translateX(var(--px))
-              translateY(calc(var(--base-offsetY) + 40px));
+        /* hover / focus: the card is picked out of the hand: it rises along
+           its radius, turns most of the way upright, the poster eases in
+           inside a fixed frame, and the shadow deepens. Nothing else moves. */
+        @media (hover: hover) and (pointer: fine){
+          .arch .arch-card:hover{ --lift: 16px; z-index:30; }
+          .arch-card:hover .arch-face{
+            transform: rotate(calc(var(--a) * -0.7)) scale(1.04);
+            box-shadow: 0 40px 60px -26px rgba(20,5,60,.9), 0 0 0 1px rgba(255,255,255,.08);
           }
-          to { opacity: 1; }
+          .arch-card:hover .arch-img{ transform: scale(1.06); }
+        }
+        .arch .arch-card:focus-visible{ --lift: 16px; z-index:30; }
+        .arch-card:focus-visible .arch-face{
+          transform: rotate(calc(var(--a) * -0.7)) scale(1.04);
+          box-shadow: 0 0 0 3px #fff, 0 40px 60px -26px rgba(20,5,60,.9);
         }
 
-        .fan-img {
-          object-fit: cover;
-          object-position: center top;
-          pointer-events: none;
-          user-select: none;
-          border-radius: 14px;
+        /* load: the cards deal out of a stacked deck into the arch */
+        @keyframes arch-deal{
+          from{ opacity:0; transform: rotate(0deg) translateY(40px) scale(.9); }
+          40%{ opacity:1; }
         }
 
-        .fan-shimmer {
-          position: absolute;
-          inset: 0;
-          border-radius: 14px;
-          background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.16) 0%,
-            transparent 55%
-          );
-          opacity: 0;
-          transition: opacity 0.3s;
-          pointer-events: none;
+        @media (max-width: 768px){
+          .arch{ --w: 26vw; --R: calc(var(--w) * 10); --step: 3.6deg; margin-top:24px; }
+          .arch-card:nth-child(1), .arch-card:nth-child(7){ display:none; }
+          .arch-face{ border-radius:12px; }
         }
-        .fan-card:hover .fan-shimmer { opacity: 1; }
-
-        .fan-placeholder {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #5b21b6 0%, #2a0a5e 100%);
-        }
-
-        /* ── Mobile: smaller, tighter fan; hide the outermost pair ── */
-        @media (max-width: 768px) {
-          .fan-stage { height: 150px; margin-top: 20px; }
-          .fan-card {
-            width: 150px;
-            height: 94px;
-            margin-left: -62px;
-            border-radius: 10px;
-          }
-          .fan-card:first-child,
-          .fan-card:last-child { display: none; }
-          .fan-img, .fan-shimmer { border-radius: 10px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .fan-card { animation: none; }
+        @media (prefers-reduced-motion: reduce){
+          .arch-card, .arch-img{ transition:none; animation:none; }
         }
       `}</style>
     </div>

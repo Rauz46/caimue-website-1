@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "../app";
+@source "../components";
+@source "../lib";
 
 /* ============================================
    CAIMUE DESIGN SYSTEM - RICH LIGHT THEME
@@ -9,7 +12,7 @@
   /* Rich Light Theme - Core Colors */
   --caimue-black: #0a0a0a;
   --caimue-cream: #FDFcF8;
-  --caimue-purple: #7C3AED;
+  --caimue-purple: #5B299D;
   --caimue-purple-dark: #6D28D9;
   --caimue-purple-light: #a78bfa;
   --caimue-gray: #4B5563;
@@ -27,8 +30,8 @@
   --caimue-cyan: #a5f3fc;
 
   /* Theme Variables */
-  --background: #FDFcF8;
-  /* Soft Warm Off-White */
+  --background: #FFFFFF;
+  /* Clean white (Nov 2026 redesign) */
   --background-alt: #F3F4F6;
   /* Light Grey/Blue Tint for sections */
   --foreground: #111827;
@@ -241,23 +244,21 @@ h3 {
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: var(--caimue-pink);
+  background: #5B299D;
   color: white !important;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   border: none;
   border-radius: var(--border-radius-full);
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out-expo);
+  transition: background-color 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
 .btn-primary:hover {
-  background: var(--caimue-purple-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  background: #4A2185;
 }
 
 .btn-secondary {
@@ -447,7 +448,8 @@ h3 {
   pointer-events: none;
   z-index: 9999;
   opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-image: url("/grain.webp");
+  background-size: 256px 256px;
   /* Use transform3d to force GPU layer */
   transform: translate3d(0, 0, 0);
 }
@@ -637,3 +639,460 @@ html.lenis,html.lenis body{height:auto}
 .blob-drift{animation:blob-drift 70s linear infinite}
 @keyframes blob-drift{0.0%{transform:translate3d(50.0%,98.0%,0)}2.78%{transform:translate3d(71.0%,96.2%,0)}5.56%{transform:translate3d(86.4%,91.0%,0)}8.33%{transform:translate3d(92.0%,83.0%,0)}11.11%{transform:translate3d(86.4%,73.2%,0)}13.89%{transform:translate3d(71.0%,62.8%,0)}16.67%{transform:translate3d(50.0%,53.0%,0)}19.44%{transform:translate3d(29.0%,45.0%,0)}22.22%{transform:translate3d(13.6%,39.8%,0)}25.0%{transform:translate3d(8.0%,38.0%,0)}27.78%{transform:translate3d(13.6%,39.8%,0)}30.56%{transform:translate3d(29.0%,45.0%,0)}33.33%{transform:translate3d(50.0%,53.0%,0)}36.11%{transform:translate3d(71.0%,62.8%,0)}38.89%{transform:translate3d(86.4%,73.2%,0)}41.67%{transform:translate3d(92.0%,83.0%,0)}44.44%{transform:translate3d(86.4%,91.0%,0)}47.22%{transform:translate3d(71.0%,96.2%,0)}50.0%{transform:translate3d(50.0%,98.0%,0)}52.78%{transform:translate3d(29.0%,96.2%,0)}55.56%{transform:translate3d(13.6%,91.0%,0)}58.33%{transform:translate3d(8.0%,83.0%,0)}61.11%{transform:translate3d(13.6%,73.2%,0)}63.89%{transform:translate3d(29.0%,62.8%,0)}66.67%{transform:translate3d(50.0%,53.0%,0)}69.44%{transform:translate3d(71.0%,45.0%,0)}72.22%{transform:translate3d(86.4%,39.8%,0)}75.0%{transform:translate3d(92.0%,38.0%,0)}77.78%{transform:translate3d(86.4%,39.8%,0)}80.56%{transform:translate3d(71.0%,45.0%,0)}83.33%{transform:translate3d(50.0%,53.0%,0)}86.11%{transform:translate3d(29.0%,62.8%,0)}88.89%{transform:translate3d(13.6%,73.2%,0)}91.67%{transform:translate3d(8.0%,83.0%,0)}94.44%{transform:translate3d(13.6%,91.0%,0)}97.22%{transform:translate3d(29.0%,96.2%,0)}100.0%{transform:translate3d(50.0%,98.0%,0)}}
 @media (prefers-reduced-motion:reduce){.blob-drift{animation:none;transform:translate3d(50%,68%,0)}}
+
+/* ── Nov 2026 minimal redesign: solid brand cards + the disc pair ───────
+   Palette taken from the new site's approved section-three cards (no warm
+   tints). One solid brand colour per card; a large disc centred near the
+   bottom-right corner (a quarter shows, clear of the text) and a small disc
+   in a contrasting brand colour inside that quarter. Same geometry on every
+   card. Size per card with Tailwind `[--ds:NNNpx]`; `.cm-disc--top` anchors
+   the pair top-right (cards whose bottom is covered by photos). */
+.cm-disc{
+  --card:#D9C8F7; --disc:#F4EEFF; --disc2:#8E63E0;
+  position:relative; isolation:isolate; overflow:hidden;
+  background:var(--card) !important;
+}
+.cm-disc::before,.cm-disc::after{
+  content:""; position:absolute; border-radius:50%; pointer-events:none;
+}
+.cm-disc::before{
+  z-index:-1; width:var(--ds, 200px); height:var(--ds, 200px); background:var(--disc);
+  right:calc(var(--ds, 200px) * -0.38); bottom:calc(var(--ds, 200px) * -0.38);
+}
+/* small disc sits inside the big disc's corner quarter, like the pink full
+   stop on the logo's "e", so it never touches text */
+.cm-disc::after{
+  z-index:-1; width:calc(var(--ds, 200px) * 0.2); height:calc(var(--ds, 200px) * 0.2); background:var(--disc2);
+  right:calc(var(--ds, 200px) * 0.1); bottom:calc(var(--ds, 200px) * 0.1);
+}
+.cm-disc::before{ z-index:-2; }
+.cm-disc--top::before{ bottom:auto; top:calc(var(--ds, 200px) * -0.38); }
+.cm-disc--top::after{ bottom:auto; top:calc(var(--ds, 200px) * 0.1); }
+.cm-disc--purple  { --card:#5B299D; --disc:#7440C2; --disc2:#FF8EC0; }
+.cm-disc--violet  { --card:#8E63E0; --disc:#7A4FD0; --disc2:#FFC4DD; }
+.cm-disc--pink    { --card:#FFC4DD; --disc:#FFADD0; --disc2:#8E63E0; }
+.cm-disc--lavender{ --card:#D9C8F7; --disc:#CBB5F4; --disc2:#FF8EC0; }
+/* text on the two dark cards */
+.cm-disc--purple, .cm-disc--violet{ color:#fff; }
+.cm-disc--purple :is(h1,h2,h3,h4,h5,h6), .cm-disc--violet :is(h1,h2,h3,h4,h5,h6){ color:#fff !important; }
+.cm-disc--purple p, .cm-disc--violet p{ color:rgba(255,255,255,.88) !important; }
+/* text on the two light cards: ink, never grey-on-colour */
+.cm-disc--pink :is(h1,h2,h3,h4,h5,h6), .cm-disc--lavender :is(h1,h2,h3,h4,h5,h6){ color:#1B0F33 !important; }
+.cm-disc--pink p, .cm-disc--lavender p{ color:#3A2A57 !important; }
+
+/* Hero / close-panel ground disc (see background-gradient-animation.tsx) */
+.cm-ground-disc{
+  --gs:clamp(300px, 36vw, 600px);
+  position:absolute; width:var(--gs); height:var(--gs); border-radius:50%;
+  background:#6A36B5; pointer-events:none;
+}
+.cm-ground-disc::after{
+  content:""; position:absolute; width:24%; height:24%; border-radius:50%; background:#FF8EC0; z-index:-1;
+}
+/* the small pink disc sits on the outer rim, against the panel edge */
+.cm-ground-disc--tr{ right:calc(var(--gs) * -0.38); top:calc(var(--gs) * -0.38); }
+.cm-ground-disc--tr::after{ right:26%; bottom:-10%; }
+.cm-ground-disc--br{ right:calc(var(--gs) * -0.38); bottom:calc(var(--gs) * -0.38); }
+.cm-ground-disc--br::after{ right:26%; top:-10%; }
+.cm-ground-disc--bl{ left:calc(var(--gs) * -0.38); bottom:calc(var(--gs) * -0.38); }
+.cm-ground-disc--bl::after{ left:26%; top:-10%; }
+.cm-ground-disc--tl{ left:calc(var(--gs) * -0.38); top:calc(var(--gs) * -0.38); }
+.cm-ground-disc--tl::after{ left:26%; bottom:-10%; }
+/* stat figure colour per card */
+.cm-disc--purple{ --stat:#FFC4DD; } .cm-disc--violet{ --stat:#FFFFFF; }
+.cm-disc--pink{ --stat:#5B299D; } .cm-disc--lavender{ --stat:#5B299D; }
+
+/* ── Nov 2026 redesign: motion built on the disc device ──────────────── */
+@media (prefers-reduced-motion: no-preference){
+  /* Card hover: the big disc swells and the small "full stop" rolls up its rim */
+  .cm-disc::before, .cm-disc::after{ transition: transform .7s cubic-bezier(.22,1,.36,1); }
+  .cm-disc:hover::before{ transform: scale(1.12); }
+  .cm-disc:hover::after{ transform: translate(calc(var(--ds, 200px) * -0.1), calc(var(--ds, 200px) * -0.13)); }
+  .cm-disc--top:hover::after{ transform: translate(calc(var(--ds, 200px) * -0.1), calc(var(--ds, 200px) * 0.13)); }
+
+  /* Hero headline: each line rises out of a mask on load */
+  .cm-line{ display:block; animation: cm-line-in .9s cubic-bezier(.22,1,.36,1) both; }
+  .cm-line--2{ animation-delay: .12s; }
+  @keyframes cm-line-in{
+    from{ clip-path: inset(0 0 100% 0); translate: 0 .5em; }
+    to  { clip-path: inset(-.15em -.1em -.3em -.1em); translate: 0 0; }
+  }
+
+  /* Primary button: a pink disc fills it from the centre on hover */
+  .btn-primary{ isolation:isolate; }
+  .btn-primary::before{
+    content:""; position:absolute; z-index:-1; left:50%; top:50%;
+    width:2.6em; height:2.6em; border-radius:50%; background:#FF8EC0;
+    translate:-50% -50%; scale:0; transition: scale .45s cubic-bezier(.22,1,.36,1);
+  }
+  .btn-primary:hover::before{ scale:6; }
+  .btn-primary:hover{ color:#1B0F33 !important; background:#5B299D; }
+}
+
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    /* Disc pair grows out of the card corner as the card scrolls in */
+    .cm-disc{ view-timeline: --cm-card block; }
+    .cm-disc::before{ animation: cm-disc-in linear both; animation-timeline: --cm-card; animation-range: entry 0px entry 380px; }
+    .cm-disc::after { animation: cm-dot-in  linear both; animation-timeline: --cm-card; animation-range: entry 180px entry 440px; }
+    @keyframes cm-disc-in{ from{ scale:.25; } to{ scale:1; } }
+    @keyframes cm-dot-in { from{ scale:0; }   to{ scale:1; } }
+
+    /* Section headings rise out of a mask as they scroll into view */
+    .cm-rise{ animation: cm-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    @keyframes cm-rise{
+      from{ clip-path: inset(0 0 100% 0); translate: 0 .45em; }
+      to  { clip-path: inset(-.15em -.1em -.3em -.1em); translate: 0 0; }
+    }
+
+    /* Hero disc drifts as the page scrolls; the pink disc travels round its rim */
+    .cm-ground-disc{ animation: cm-ground linear both; animation-timeline: scroll(root block); animation-range: 0px 90vh; }
+    @keyframes cm-ground{ to{ rotate: 75deg; translate: -5vw 12vh; scale: 1.18; } }
+  }
+}
+
+
+/* Owner, 12 Nov: no small dot inside the cards — only the big corner disc */
+.cm-disc::after{ content:none !important; display:none !important; }
+
+/* ── Hero glow: light on the GPU — two pre-softened gradient fields that only
+   translate (compositor), slow 30–40s loops, paused for reduced motion ── */
+.cm-glow{
+  position:absolute; width:min(64vmax, 860px); height:min(64vmax, 860px); border-radius:50%;
+  pointer-events:none;
+}
+.cm-glow--a{ left:-14vmax; top:-24vmax; background:radial-gradient(closest-side, rgba(142,99,224,.55), rgba(142,99,224,0)); animation:cm-glow-a 34s ease-in-out infinite alternate; }
+.cm-glow--b{ right:-18vmax; bottom:-30vmax; background:radial-gradient(closest-side, rgba(255,142,192,.28), rgba(255,142,192,0)); animation:cm-glow-b 40s ease-in-out infinite alternate; }
+@keyframes cm-glow-a{ to{ transform:translate3d(14vmax, 8vmax, 0); } }
+@keyframes cm-glow-b{ to{ transform:translate3d(-12vmax, -8vmax, 0); } }
+@media (prefers-reduced-motion: reduce){ .cm-glow{ animation:none; } }
+
+/* ── Background doodles pop in as they scroll into view (scale only, so each
+   doodle keeps its own tilt and opacity) ── */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .cm-decor > *, .cm-decor-item{
+      animation: cm-decor-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 25%;
+    }
+    footer .cm-decor > *, footer .cm-decor-item{ animation: none; }
+    @keyframes cm-decor-in{ from{ scale:.15; } 60%{ scale:1.08; } to{ scale:1; } }
+  }
+}
+
+/* ── Light cards: crisp, not pastel (owner: "old paper") ── */
+.cm-disc--pink    { --card:#FF6FAE; --disc:#FF8DC0; }
+.cm-disc--lavender{ --card:#FFFFFF; --disc:#EFE7FC; }
+.cm-disc--blush   { --card:#FFFFFF; --disc:#FFE1EE; }
+.cm-disc--pink p{ color:#2A1240 !important; }
+.cm-disc--blush :is(h1,h2,h3,h4,h5,h6){ color:#1B0F33 !important; }
+.cm-disc--blush p{ color:#3A2A57 !important; }
+.cm-disc--blush{ --stat:#5B299D; }
+.cm-off .cm-glow{ animation-play-state: paused; }
+
+/* ── One section-heading style for the whole site (Playfair, one size scale,
+   one weight, one ink colour; accent words stay brand purple) ── */
+.cm-h2{
+  font-weight:700 !important;
+  font-size:clamp(2.25rem, 1.55rem + 2.3vw, 3.4rem) !important;
+  line-height:1.1 !important;
+  letter-spacing:-0.02em !important;
+  color:#1B0F33;
+  text-wrap:balance;
+}
+.cm-h2 .text-neutral-900{ color:#1B0F33; }
+
+/* Violet card a step deeper so white body text passes AA */
+.cm-disc--violet{ --card:#7A4FD0; --disc:#8E63E0; }
+.cm-disc--purple p, .cm-disc--violet p{ color:rgba(255,255,255,.94) !important; }
+
+/* Hero entrances: pure CSS so they start on the first paint, not after the
+   JavaScript has loaded; short, tight stagger */
+.cm-in{ animation: cm-in .6s cubic-bezier(.22,1,.36,1) both; }
+.cm-in--2{ animation-delay:.12s; } .cm-in--3{ animation-delay:.2s; } .cm-in--4{ animation-delay:.35s; }
+@keyframes cm-in{ from{ opacity:0; translate:0 12px; } to{ opacity:1; translate:0 0; } }
+@media (prefers-reduced-motion: reduce){ .cm-in{ animation:none; } }
+
+/* Hero/footer moving-gradient colours available from the first paint (the
+   component also sets these from JS; same values, so nothing jumps) */
+body{
+  --gradient-background-start: rgb(84, 30, 196);
+  --gradient-background-end: rgb(107, 43, 229);
+  --first-color: 139, 92, 246; --second-color: 124, 58, 237; --third-color: 107, 43, 229;
+  --fourth-color: 255, 61, 139; --fifth-color: 91, 33, 182; --pointer-color: 139, 92, 246;
+  --size: 80%; --blending-value: normal;
+}
+/* ground disc sits above the moving gradient; a touch translucent so it blends */
+.cm-ground-disc{ z-index:1; background: rgba(150, 105, 250, .55); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   HOME CARD SYSTEM (Nov 2026) — one card language for every home section
+   Structure: white card → inset "stage" (media / colour) → centred body.
+   Same radius, border, shadow, type scale and hover everywhere.
+   ════════════════════════════════════════════════════════════════════════ */
+.home-wrap{ width:100%; max-width:1288px; margin-inline:auto; padding-inline:24px; }
+
+.hc{
+  position:relative; display:flex; flex-direction:column; height:100%;
+  background:#fff; border-radius:28px; padding:10px;
+  border:1px solid rgba(91,41,157,.10);
+  box-shadow: 0 1px 2px rgba(27,15,51,.04), 0 22px 44px -26px rgba(59,22,110,.38);
+  transition: translate .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
+}
+.hc:hover{
+  translate:0 -6px;
+  box-shadow: 0 1px 2px rgba(27,15,51,.05), 0 34px 60px -28px rgba(59,22,110,.48);
+}
+.hc-stage{ position:relative; border-radius:20px; overflow:hidden; isolation:isolate; }
+.hc-body{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding:26px 22px 24px; }
+.hc-stat{ font-family:var(--font-heading); font-weight:700; font-size:clamp(3rem, 2.4rem + 1.6vw, 4rem); line-height:.95; letter-spacing:-.03em; color:#5B299D; }
+.hc-title{ font-family:var(--font-heading); font-weight:700; font-size:clamp(1.35rem, 1.2rem + .45vw, 1.6rem); line-height:1.2; letter-spacing:-.01em; color:#1B0F33; text-wrap:balance; margin:10px 0 0; }
+.hc-text{ margin-top:12px; font-size:15px; line-height:1.65; color:#4A3F5C; text-wrap:balance; max-width:36ch; }
+.hc-foot{ margin-top:auto; padding-top:22px; }
+
+/* colour stage with the brand corner disc */
+.hc-stage--colour{ background:var(--stage, #5B299D); }
+.hc-stage--colour::before{
+  content:""; position:absolute; z-index:-1; border-radius:50%;
+  width:240px; height:240px; right:-90px; bottom:-110px; background:var(--stage-disc, rgba(255,255,255,.12));
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+.hc:hover .hc-stage--colour::before{ transform:scale(1.12); }
+.hc-icon{
+  width:72px; height:72px; border-radius:50%; background:#fff; display:grid; place-items:center;
+  box-shadow:0 10px 24px -10px rgba(27,15,51,.45);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.hc:hover .hc-icon{ transform:translateY(-3px) scale(1.04); }
+
+/* photo mosaic: uniform tiles, same height on every card */
+.hc-mosaic{ display:grid; gap:6px; aspect-ratio: 4 / 3; }
+.hc-mosaic--2x2{ grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); }
+.hc-mosaic--3x2{ grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,1fr); }
+.hc-tile{ position:relative; overflow:hidden; border-radius:12px; background:#EDE4FB; }
+.hc-tile img{ transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.hc:hover .hc-tile img{ transform:scale(1.05); }
+
+/* buttons inside cards */
+.hc-btn{
+  display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 22px; border-radius:999px;
+  font-weight:600; font-size:14px; transition: background-color .25s ease, color .25s ease, translate .25s ease;
+}
+.hc-btn--ink{ background:#1B0F33; color:#fff; }
+.hc-btn--ink:hover{ background:#5B299D; }
+.hc-btn--soft{ background:#F1EAFD; color:#5B299D; }
+.hc-btn svg{ transition: translate .25s ease; }
+.hc-btn:hover svg.hc-arrow{ translate:3px 0; }
+
+/* cards rise in as they scroll into view — CSS only, never invisible waiting for JS */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .hc{ animation: hc-in linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+    @keyframes hc-in{ from{ opacity:.0; transform:translateY(28px); } to{ opacity:1; transform:none; } }
+  }
+}
+
+/* stronger section tint + balanced text everywhere on the home sections */
+:root{ --tint:#F1E6FF; }
+main p, section p{ text-wrap:pretty; }
+.text-center p, p.text-center, .hc-text{ text-wrap:balance; }
+@media (max-width:1023px){
+  .home-wrap.grid{ justify-items:center; }
+  .home-wrap.grid > .hc{ width:100%; max-width:560px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   HOME "LIVELY" CARDS (Nov 2026) — the approved new-site section-three style
+   (InsightPod reference): solid punchy colour, bold title + white icon badge,
+   text, and a visual rising from the bottom edge with a contrasting disc and
+   a large lighter arc behind it. Component: components/ui/LivelyCard.tsx
+   ════════════════════════════════════════════════════════════════════════ */
+.lc{
+  --c:#6B2BE5; --ink:#FFFFFF; --d1:#FFC633; --d2:#8B55F0;
+  position:relative; isolation:isolate; overflow:hidden;
+  display:flex; flex-direction:column; height:100%;
+  border-radius:28px; padding:30px 30px 0; background:var(--c); color:var(--ink);
+  box-shadow: 0 26px 50px -32px rgba(40,10,90,.6);
+  transition: translate .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
+  text-align:left;
+}
+.lc:hover{ translate:0 -6px; box-shadow: 0 36px 64px -32px rgba(40,10,90,.7); }
+.lc--purple{ --c:#6B2BE5; --ink:#FFFFFF; --d1:#FFC633; --d2:#8754F2; }
+.lc--pink  { --c:#FF3D8B; --ink:#FFFFFF; --d1:#6B2BE5; --d2:#FF78AE; }
+.lc--orange{ --c:#FF7A3D; --ink:#1B0B3A; --d1:#6B2BE5; --d2:#FFA06F; }
+.lc--yellow{ --c:#FFC633; --ink:#1B0B3A; --d1:#FF3D8B; --d2:#FFDA75; }
+
+.lc-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.lc-eyebrow{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.95); color:#1B0B3A; margin-bottom:14px; }
+.lc-stat{ font-family:var(--font-body); font-weight:800; font-size:clamp(2.6rem, 2.1rem + 1.4vw, 3.4rem); line-height:.95; letter-spacing:-.04em; color:var(--ink); margin-bottom:6px; }
+.lc-title{ font-family:var(--font-body) !important; font-weight:700 !important; font-size:clamp(1.4rem, 1.2rem + .55vw, 1.75rem) !important; line-height:1.15 !important; letter-spacing:-.02em !important; color:var(--ink) !important; margin:0 !important; text-wrap:balance; }
+.lc-badge{
+  flex:none; width:46px; height:46px; border-radius:50%; background:#fff; color:var(--c);
+  display:grid; place-items:center; transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.lc:hover .lc-badge{ transform: rotate(-12deg) scale(1.06); }
+.lc-text{ margin-top:14px; font-size:15px; line-height:1.6; color:var(--ink) !important; opacity:.94; max-width:36ch; text-wrap:pretty; }
+.lc-action{ margin-top:20px; }
+.lc-btn{
+  display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 20px; border-radius:999px;
+  background:#fff; color:#1B0B3A; font-weight:600; font-size:14px;
+  transition: translate .25s ease, box-shadow .25s ease;
+}
+.lc-btn:hover{ box-shadow:0 10px 22px -10px rgba(27,11,58,.55); }
+.lc-btn .lc-arrow{ transition: translate .25s ease; }
+.lc-btn:hover .lc-arrow{ translate:3px 0; }
+.lc-btn--muted{ background:rgba(255,255,255,.22); color:var(--ink); }
+
+/* visual zone: people / posters / logo rise from the bottom edge */
+.lc-visual{ position:relative; margin:26px -30px 0; margin-top:auto; padding-top:26px; z-index:0; }
+.lc-visual::before, .lc-visual::after{ content:""; position:absolute; border-radius:50%; z-index:-1; pointer-events:none; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+/* large lighter arc from the bottom-right */
+.lc-visual::before{ width:min(86%, 360px); aspect-ratio:1; right:max(-20%, -80px); bottom:-46%; background:var(--d2); }
+/* contrasting disc behind the subject */
+.lc-visual::after{ width:min(44%, 210px); aspect-ratio:1; left:50%; margin-left:max(-22%, -105px); top:4%; background:var(--d1); }
+.lc:hover .lc-visual::before{ transform: scale(1.06); }
+.lc:hover .lc-visual::after{ transform: translateY(-6px) scale(1.04); }
+
+.lc-cut{ position:absolute; bottom:0; left:50%; translate:-50% 0; height:100%; width:auto; max-width:none; object-fit:contain; object-position:bottom; transition: transform .6s cubic-bezier(.22,1,.36,1); transform-origin:bottom center; }
+.lc-cut--wide{ height:auto; width:104%; max-height:100%; object-fit:contain; }
+.lc:hover .lc-cut{ transform: scale(1.03); }
+
+/* poster fan (films) */
+.lc-poster{ position:absolute; bottom:-6%; width:50%; aspect-ratio:16/10; border-radius:12px; overflow:hidden; box-shadow:0 18px 30px -14px rgba(20,5,50,.6); transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.lc-poster img{ object-fit:cover; }
+.lc-poster--l{ left:-2%; transform: rotate(-12deg) translateY(14px); }
+.lc-poster--c{ left:25%; transform: rotate(0deg); z-index:2; }
+.lc-poster--r{ right:-2%; transform: rotate(12deg) translateY(14px); }
+.lc:hover .lc-poster--l{ transform: rotate(-16deg) translate(-8px, 6px); }
+.lc:hover .lc-poster--r{ transform: rotate(16deg) translate(8px, 6px); }
+.lc:hover .lc-poster--c{ transform: translateY(-8px); }
+
+/* logo plate (channels) */
+.lc-plate{ position:absolute; left:50%; bottom:26px; translate:-50% 0; width:76%; height:118px; border-radius:20px; background:#fff; display:grid; place-items:center; box-shadow:0 18px 34px -16px rgba(20,5,50,.55); transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.lc:hover .lc-plate{ transform: translateY(-6px) rotate(-2deg); }
+
+/* reveal on scroll — CSS only, never waits for JavaScript */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .lc{ animation: lc-in linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+    @keyframes lc-in{ from{ opacity:0; transform: translateY(32px); } to{ opacity:1; transform:none; } }
+  }
+}
+@media (max-width:1023px){
+  .home-wrap.grid > .lc{ width:100%; max-width:460px; }
+}
+
+/* ── Lively cards, round 2 ─────────────────────────────────────────────── */
+/* Channels: the logo plate stays still on hover (card lift only) */
+.lc:hover .lc-plate{ transform:none; }
+
+/* Plain card (no image): keep the disc language as a quiet corner pair */
+.lc--plain{ padding-bottom:34px; }
+.lc--plain::before, .lc--plain::after{ content:""; position:absolute; border-radius:50%; z-index:-1; pointer-events:none; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.lc--plain::before{ width:260px; height:260px; right:-90px; bottom:-130px; background:var(--d2); }
+.lc--plain::after{ width:92px; height:92px; right:120px; bottom:-38px; background:var(--d1); }
+.lc--plain:hover::before{ transform:scale(1.08); }
+.lc--plain:hover::after{ transform:translateY(-8px); }
+
+/* 3D poster deck (films) */
+.lc-deck{ position:absolute; inset:0; perspective:900px; perspective-origin:30% 40%; }
+.lc-deck-card{
+  position:absolute; width:56%; aspect-ratio:16/10; border-radius:12px; overflow:hidden;
+  box-shadow:0 22px 34px -16px rgba(20,5,50,.65);
+  transform-style:preserve-3d;
+  transform: rotateY(-24deg) rotateX(10deg) rotateZ(-3deg);
+  transition: transform .7s cubic-bezier(.22,1,.36,1), left .7s cubic-bezier(.22,1,.36,1), bottom .7s cubic-bezier(.22,1,.36,1);
+}
+.lc-deck-card img{ object-fit:cover; }
+.lc-deck-card:nth-child(1){ left:4%;  bottom:46%; }
+.lc-deck-card:nth-child(2){ left:15%; bottom:31%; }
+.lc-deck-card:nth-child(3){ left:26%; bottom:16%; }
+.lc-deck-card:nth-child(4){ left:37%; bottom:1%; }
+.lc:hover .lc-deck-card:nth-child(1){ left:0%;  bottom:50%; }
+.lc:hover .lc-deck-card:nth-child(2){ left:13%; bottom:33%; }
+.lc:hover .lc-deck-card:nth-child(3){ left:26%; bottom:16%; }
+.lc:hover .lc-deck-card:nth-child(4){ left:39%; bottom:-1%; transform: rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
+
+/* group of cut-outs: front figure tallest, two flanking a step back */
+.lc-group{ position:absolute; inset:0; }
+.lc-group img{ position:absolute; bottom:0; width:auto; max-width:none; object-fit:contain; object-position:bottom; transition: transform .6s cubic-bezier(.22,1,.36,1); transform-origin:bottom center; }
+.lc-group .g-l{ height:84%; left:2%; z-index:1; }
+.lc-group .g-c{ height:100%; left:50%; translate:-50% 0; z-index:3; }
+.lc-group .g-r{ height:84%; right:2%; z-index:2; }
+.lc:hover .lc-group .g-l{ transform: translateX(-6px); }
+.lc:hover .lc-group .g-r{ transform: translateX(6px); }
+.lc:hover .lc-group .g-c{ transform: scale(1.03); }
+
+/* services: every cut-out the same height, centred, so the row lines up */
+.lc-cut--even{ height:100% !important; width:auto !important; max-width:108%; }
+
+/* deeper section tint that sits with the punchy cards */
+:root{ --tint:#F1E6FF; }
+/* services: photos cropped at the sides fill the card edge to edge, so the
+   crop lines sit on the card's own edges */
+.lc-cut--fill{ left:0 !important; right:0; translate:none !important; width:100% !important; height:100% !important; max-width:none; object-fit:cover; object-position:bottom center; }
+
+/* ── Lively round 3 ──────────────────────────────────────────────────── */
+/* Films: symmetrical 3D coverflow — stays inside its zone, never covers text */
+.lc-flow{ position:absolute; inset:0; perspective:1000px; }
+.lc-flow-card{
+  position:absolute; left:50%; bottom:12%; width:50%; aspect-ratio:16/10; border-radius:12px; overflow:hidden;
+  box-shadow:0 22px 34px -16px rgba(20,5,50,.6);
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+.lc-flow-card img{ object-fit:cover; }
+.lc-flow-card--c{ transform: translateX(-50%); z-index:3; }
+.lc-flow-card--l{ transform: translateX(-104%) rotateY(34deg) scale(.84); transform-origin:right center; z-index:1; }
+.lc-flow-card--r{ transform: translateX(4%) rotateY(-34deg) scale(.84); transform-origin:left center; z-index:2; }
+.lc:hover .lc-flow-card--c{ transform: translateX(-50%) translateY(-4px) scale(1.03); }
+.lc:hover .lc-flow-card--l{ transform: translateX(-110%) rotateY(30deg) scale(.86); }
+.lc:hover .lc-flow-card--r{ transform: translateX(10%) rotateY(-30deg) scale(.86); }
+
+/* Services: side-cropped photos keep the heads — crop from the bottom instead */
+.lc-cut--fill{ object-position: center top !important; }
+
+/* Grids: visible at the sides, fading out through the middle (radial mask) */
+section div[style*="40px 40px"]{
+  opacity:.14 !important;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, rgba(0,0,0,.55) 14%, transparent 30%, transparent 70%, rgba(0,0,0,.55) 86%, #000 100%);
+          mask-image: linear-gradient(to right, #000 0%, rgba(0,0,0,.55) 14%, transparent 30%, transparent 70%, rgba(0,0,0,.55) 86%, #000 100%);
+}
+
+/* ── Hero circle composition (subtle): large low-contrast discs cropped at the
+   edges, one outlined ring, two small accent dots; all drift very slowly and
+   stay out of the headline zone. ── */
+.cm-hs{ position:absolute; border-radius:50%; pointer-events:none; z-index:1; --S:min(34vw, 480px); }
+/* big disc cropped at the bottom-left, with a thin ring echoing it (same centre) */
+.cm-hs--big{ width:var(--S); aspect-ratio:1; left:calc(var(--S) * -0.42); bottom:calc(var(--S) * -0.30); background:rgba(160, 120, 255, .30); animation: cm-drift-a 26s ease-in-out infinite alternate; }
+.cm-hs--ring{ width:calc(var(--S) * 1.3); aspect-ratio:1; left:calc(var(--S) * -0.57); bottom:calc(var(--S) * -0.45); border:2px solid rgba(255,255,255,.13); animation: cm-drift-a 26s ease-in-out infinite alternate; }
+/* mid disc on the right, below the headline */
+.cm-hs--mid{ width:min(11vw, 150px); aspect-ratio:1; right:9%; bottom:30%; background:rgba(150, 105, 250, .35); animation: cm-drift-b 30s ease-in-out infinite alternate-reverse; }
+/* two small accent dots at the edges, clear of every label */
+.cm-hs--dot-y{ width:20px; height:20px; left:9%; top:60%; background:#FFC633; opacity:.9; animation: cm-drift-b 18s ease-in-out infinite alternate; }
+.cm-hs--dot-p{ width:14px; height:14px; right:5%; top:42%; background:#FF8EC0; opacity:.9; animation: cm-drift-a 20s ease-in-out infinite alternate; }
+@keyframes cm-drift-a{ to{ translate: 18px -14px; } }
+@keyframes cm-drift-b{ to{ translate: -14px 12px; } }
+@media (max-width: 767px){ .cm-hs--ring, .cm-hs--dot-p, .cm-hs--dot-y{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .cm-hs{ animation:none; } }
+.cm-off .cm-hs{ animation-play-state: paused; }
+
+/* ── Round 5: bright tint, soft grids, livelier doodles ─────────────────── */
+/* grain was dulling every colour: much lighter */
+:root{ --grain-opacity:.018; }
+
+/* Soft grids: thin lines in a colour close to the ground, larger cells,
+   strongest at the sides and gone through the middle */
+section div[style*="40px 40px"]{
+  opacity:1 !important;
+  background-image:
+    linear-gradient(var(--gl, rgba(108,60,220,.07)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gl, rgba(108,60,220,.07)) 1px, transparent 1px) !important;
+  background-size: 56px 56px !important;
+  background-position: center top !important;
+}
+/* on the bright lilac sections the lines are white — airy, not edgy */
+section[style*="F1E6FF"] div[style*="40px 40px"]{ --gl: rgba(255,255,255,.95); }
+
+/* a few doodles (every third) a touch more visible, the rest unchanged */
+.cm-decor > :nth-child(3n+1){ opacity:.95 !important; }
