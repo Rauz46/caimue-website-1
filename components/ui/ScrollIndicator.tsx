@@ -21,7 +21,7 @@ export const ScrollIndicator = ({ className }: ScrollIndicatorProps) => {
                         <motion.div
                             viewport={{ amount: 0 }}
                 whileInView={{
-                                y: [0, 16, 16],
+                                transform: ["translateY(0px)", "translateY(16px)", "translateY(16px)"],
                                 opacity: [0, 1, 0],
                             }}
                             transition={{
@@ -35,7 +35,7 @@ export const ScrollIndicator = ({ className }: ScrollIndicatorProps) => {
                         <motion.div
                             viewport={{ amount: 0 }}
                 whileInView={{
-                                y: [4, 20, 20],
+                                transform: ["translateY(4px)", "translateY(20px)", "translateY(20px)"],
                                 opacity: [0, 0.4, 0],
                             }}
                             transition={{

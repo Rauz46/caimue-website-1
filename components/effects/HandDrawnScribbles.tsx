@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 
 export const HandDrawnScribbles = () => {
     return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block" style={{ zIndex: 1 }} aria-hidden="true">
+        <div className="cm-decor absolute inset-0 pointer-events-none overflow-hidden hidden md:block" style={{ zIndex: 1 }} aria-hidden="true">
             {/* Top Section Scribbles */}
             <motion.svg
                 className="absolute top-10 left-[10%] w-16 h-16 text-purple-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [-5, 5, -5] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["translateY(-5px)", "translateY(5px)", "translateY(-5px)"] }}
+                transition={{ duration: 5, repeat: 0, ease: "easeInOut" }}
                 viewBox="0 0 100 100"
                 fill="none"
                 stroke="currentColor"
@@ -22,8 +22,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute top-20 right-[15%] text-4xl text-yellow-400 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ rotate: [0, 10, 0], scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["rotate(0deg) scale(1)", "rotate(10deg) scale(1.1)", "rotate(0deg) scale(1)"],  }}
+                transition={{ duration: 2, repeat: 0, ease: "easeInOut" }}
             >
                 ★
             </motion.div>
@@ -31,8 +31,8 @@ export const HandDrawnScribbles = () => {
             <motion.svg
                 className="absolute top-32 left-[5%] w-12 h-12 text-pink-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(-8px)", "translateY(0px)"] }}
+                transition={{ duration: 4, repeat: 0, ease: "easeInOut", delay: 0.5 }}
                 viewBox="0 0 100 100"
                 fill="none"
                 stroke="currentColor"
@@ -48,8 +48,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute top-[40%] left-[3%] text-3xl text-purple-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ rotate: [-5, 5, -5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["rotate(-5deg)", "rotate(5deg)", "rotate(-5deg)"] }}
+                transition={{ duration: 3, repeat: 0, ease: "easeInOut" }}
             >
                 →
             </motion.div>
@@ -57,8 +57,8 @@ export const HandDrawnScribbles = () => {
             <motion.svg
                 className="absolute top-[55%] left-[2%] w-14 h-14 text-pink-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [-3, 3, -3] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                whileInView={{ transform: ["translateY(-3px)", "translateY(3px)", "translateY(-3px)"] }}
+                transition={{ duration: 6, repeat: 0, ease: "easeInOut", delay: 1 }}
                 viewBox="0 0 100 100"
                 fill="none"
                 stroke="currentColor"
@@ -76,8 +76,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute top-[35%] right-[4%] text-2xl text-yellow-400 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["scale(1)", "scale(1.2)", "scale(1)"] }}
+                transition={{ duration: 2.5, repeat: 0, ease: "easeInOut" }}
             >
                 ★
             </motion.div>
@@ -85,8 +85,8 @@ export const HandDrawnScribbles = () => {
             <motion.svg
                 className="absolute top-[50%] right-[2%] w-16 h-16 text-purple-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                whileInView={{ transform: ["rotate(0deg)", "rotate(360deg)"] }}
+                transition={{ duration: 20, repeat: 0, ease: "linear" }}
                 viewBox="0 0 100 100"
                 fill="none"
                 stroke="currentColor"
@@ -101,8 +101,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute top-[65%] right-[5%] font-handwriting text-lg text-pink-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [-2, 2, -2] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                whileInView={{ transform: ["translateY(-2px)", "translateY(2px)", "translateY(-2px)"] }}
+                transition={{ duration: 4, repeat: 0, ease: "easeInOut", delay: 0.8 }}
             >
                 Action!
             </motion.div>
@@ -111,8 +111,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute bottom-20 left-[12%] text-3xl text-purple-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ rotate: [0, -10, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["rotate(0deg)", "rotate(-10deg)", "rotate(0deg)"] }}
+                transition={{ duration: 3.5, repeat: 0, ease: "easeInOut" }}
             >
                 ★
             </motion.div>
@@ -120,8 +120,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute bottom-32 right-[18%] font-handwriting text-base text-yellow-400 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ x: [-3, 3, -3] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["translateX(-3px)", "translateX(3px)", "translateX(-3px)"] }}
+                transition={{ duration: 5, repeat: 0, ease: "easeInOut" }}
             >
                 Cinema
             </motion.div>
@@ -129,8 +129,8 @@ export const HandDrawnScribbles = () => {
             <motion.svg
                 className="absolute bottom-24 left-[8%] w-12 h-12 text-pink-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, -5, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(-5px)", "translateY(0px)"] }}
+                transition={{ duration: 4.5, repeat: 0, ease: "easeInOut", delay: 1.2 }}
                 viewBox="0 0 100 100"
                 fill="none"
                 stroke="currentColor"
@@ -142,8 +142,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute bottom-16 right-[10%] text-2xl text-purple-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ rotate: [0, 15, 0], scale: [1, 1.15, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                whileInView={{ transform: ["rotate(0deg) scale(1)", "rotate(15deg) scale(1.15)", "rotate(0deg) scale(1)"],  }}
+                transition={{ duration: 2, repeat: 0, ease: "easeInOut", delay: 0.3 }}
             >
                 ★
             </motion.div>
@@ -151,8 +151,8 @@ export const HandDrawnScribbles = () => {
             <motion.div
                 className="absolute bottom-28 left-[20%] font-handwriting text-sm text-pink-500 opacity-60"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [-4, 4, -4] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                whileInView={{ transform: ["translateY(-4px)", "translateY(4px)", "translateY(-4px)"] }}
+                transition={{ duration: 6, repeat: 0, ease: "easeInOut", delay: 1.5 }}
             >
                 Stories
             </motion.div>

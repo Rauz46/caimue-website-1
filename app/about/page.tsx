@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { BrandGround } from "@/components/ui/BrandGround";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 
@@ -101,7 +101,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       </div>
 
       {/* Polaroid caption — centered on mobile, left on larger screens */}
-      <div className="px-3 pt-3 pb-3 text-center sm:text-left">
+      <div className="px-3 pt-3 pb-3 text-center">
         {/* Name — big and bold */}
         <h4 className="font-serif font-black text-gray-900 leading-tight mb-1.5"
           style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
@@ -136,19 +136,7 @@ export default function AboutPage() {
           ================================================================= */}
       <section className="relative flex items-center justify-center pt-24 pb-4 md:pt-30 md:pb-6 overflow-hidden">
         {/* Animated gradient background,same as homepage */}
-        <BackgroundGradientAnimation
-          autoMove
-          maskCenter
-          containerClassName="absolute inset-0 z-0 h-full"
-          firstColor="124, 58, 237"  // Violet-600
-          secondColor="109, 40, 217" // Violet-700
-          thirdColor="91, 33, 182"   // Violet-800
-          fourthColor="126, 34, 206" // Purple-700
-          fifthColor="107, 33, 168"  // Purple-800
-          pointerColor="124, 58, 237" // Violet-600
-          gradientBackgroundStart="rgb(46, 16, 101)" // Deep violet
-          gradientBackgroundEnd="rgb(59, 7, 100)"    // Deep purple
-        />
+        <BrandGround className="z-0" />
 
         {/* Subtle line grid overlay,same as homepage */}
         <HeroGrid className="opacity-40 z-10" />
@@ -156,11 +144,11 @@ export default function AboutPage() {
 
         {/* Decorative scribbles,same as homepage — desktop only */}
         <div className="hidden md:contents">
-          <FloatingScribbles />
+          <FloatingScribbles className="top-16" />
         </div>
 
         {/* Decorative Stars — desktop only */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
+        <div className="cm-decor absolute inset-0 pointer-events-none overflow-hidden z-10 hidden md:block">
           <div className="absolute top-24 right-1/4 text-purple-400/30 text-4xl">✦</div>
           <div className="absolute top-44 left-1/3 text-purple-300/30 text-2xl">★</div>
           <div className="absolute bottom-1/3 right-1/3 text-purple-200/40 text-3xl">✧</div>
@@ -170,20 +158,17 @@ export default function AboutPage() {
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
           {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif"
+            className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif"
           >
-            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
+            <span className="text-white font-bold block md:whitespace-nowrap">
               The studio where{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
+              <span className="text-[#FFC4DD]">
                 imagination
               </span>
             </span>
-            <span className="text-white font-bold drop-shadow-2xl block md:whitespace-nowrap">
+            <span className="text-white font-bold block md:whitespace-nowrap">
               meets{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE047] via-[#FACC15] to-[#EAB308]">
+              <span className="text-[#FFC4DD]">
                 intelligence
               </span>
             </span>
@@ -195,7 +180,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 3,OUR STORY & VALUES
           ================================================================= */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#f3eaff" }}>
+      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: "#F1E6FF" }}>
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -208,7 +193,7 @@ export default function AboutPage() {
         />
 
         {/* Floating handwritten doodles — desktop only */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+        <div className="cm-decor absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-12 left-[8%] text-purple-400/25 text-5xl font-handwriting -rotate-12">ideas!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -227,8 +212,6 @@ export default function AboutPage() {
           <div className="absolute bottom-20 left-[20%] w-20 h-20 rounded-full border border-pink-300/15 animate-spin" style={{ animationDuration: "18s", animationDirection: "reverse" }} />
 
           {/* Soft glow blobs */}
-          <div className="absolute top-0 right-1/3 w-64 h-64 bg-purple-300/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-pink-300/10 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative z-10 container">
@@ -239,27 +222,27 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center md:text-left"
+              className="text-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] leading-[1.15] mb-5 font-serif">
+              <h2 className="cm-rise cm-h2 mb-5 font-serif">
                 Our{" "}
-                <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
+                <span className="text-[#5B299D]">
                   Story
                 </span>
               </h2>
-              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans mb-4">
                 Caimue started with a simple belief: great stories can come from
                 anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
                 written, cast, and directed in-house — and grew past 2 million views one honest
                 story at a time.
               </p>
-              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans mb-4">
+              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans mb-4">
                 Along the way we discovered something bigger than films: people. More than 25
                 writers, directors, and actors earned their first real credits with us, and our
                 channels became homes for regional stories and founder journeys told with
                 cinematic craft.
               </p>
-              <p className="text-[var(--foreground-muted)] text-base md:text-lg leading-relaxed font-sans">
+              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans">
                 Today that same craft powers a video-first B2B marketing agency — corporate videos,
                 LinkedIn media campaigns, and marketing websites built with the same speed and soul.
                 Our short films and features stay part of the story too, a proving ground for the
@@ -292,7 +275,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 4,TEAM
           ================================================================= */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
+      <section className="cv-auto relative py-12 md:py-16 overflow-hidden" style={{ background: "white" }}>
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -305,7 +288,7 @@ export default function AboutPage() {
         />
 
         {/* Floating doodles — desktop only */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+        <div className="cm-decor absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }}
             className="absolute top-16 left-[6%] text-purple-300/20 text-5xl font-handwriting -rotate-12">team!</motion.span>
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
@@ -326,8 +309,6 @@ export default function AboutPage() {
           <div className="absolute bottom-1/4 left-[8%] w-5 h-5 rounded-full bg-blue-400/15" />
 
           {/* Soft glow blobs */}
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-purple-200/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-200/10 rounded-full blur-[130px]" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -339,13 +320,13 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-6"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
+            <h2 className="cm-rise cm-h2 mb-4 font-serif">
               Meet the Caimue{" "}
-              <span className="italic bg-gradient-to-r from-purple-600 to-pink-500" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block", lineHeight: 1.3, paddingBottom: "0.1em", paddingRight: "0.15em" }}>
+              <span className="text-[#5B299D]">
                 Crew
               </span>
             </h2>
-            <p className="text-[var(--foreground-muted)] text-lg max-w-xl mx-auto font-sans">
+            <p className="text-[#4A3F5C] text-lg max-w-xl mx-auto font-sans">
               A small, mighty team of builders, creators, and dreamers who refuse to play it safe.
             </p>
           </motion.div>
@@ -362,7 +343,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 6,LIFE AT CAIMUE
           ================================================================= */}
-      <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f0ff 0%, #fdf4ff 50%, #f0f4ff 100%)" }}>
+      <section className="cv-auto relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden" style={{ background: "#F1E6FF" }}>
         {/* Checked grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -382,11 +363,11 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] leading-[1.05] mb-4 font-serif">
+            <h2 className="cm-rise cm-h2 mb-4 font-serif">
               We work hard.{" "}
-              <span className="italic text-[var(--caimue-purple)] font-light">We celebrate harder.</span>
+              <span className="text-[#5B299D]">We celebrate harder.</span>
             </h2>
-            <p className="text-[var(--foreground-muted)] text-lg max-w-lg mx-auto font-sans">
+            <p className="text-[#4A3F5C] text-lg max-w-lg mx-auto font-sans">
               No rigid hierarchies, no pointless meetings, just good people, great coffee, and work that actually matters.
             </p>
           </motion.div>

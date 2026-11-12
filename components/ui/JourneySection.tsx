@@ -2,8 +2,9 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star } from "lucide-react";
+import { Film, Handshake, Sparkles, Star } from "lucide-react";
 import Image from "next/image";
+import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
@@ -15,10 +16,8 @@ export function JourneySection() {
     return (
         <section
             ref={sectionRef}
-            className="relative pt-12 pb-[100px] overflow-hidden"
-            style={{
-                background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)",
-            }}
+            className="relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
+            style={{ background: "#F1E6FF" }}
         >
             <SectionDownArrow />
 
@@ -35,62 +34,33 @@ export function JourneySection() {
             {/* Hand-Drawn Scribbles */}
             <HandDrawnScribbles />
 
-            <div className="container mx-auto px-4 relative" style={{ zIndex: 10 }}>
+            <div className="relative" style={{ zIndex: 10 }}>
                 {/* Header Section */}
-                <div className="flex flex-col items-center text-center mb-[60px]">
+                <div className="flex flex-col items-center text-center mb-12">
                     {/* Loved by Audiences Badge */}
                     <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6 }}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
-                        style={{ background: "#E9D5FF" }}
+                        style={{ background: "#EAE0FB" }}
                     >
                         <span
-                            className="text-xs font-bold"
-                            style={{ color: "#4C1D95", letterSpacing: "1px" }}
+                            className="text-[13px] font-semibold"
+                            style={{ color: "#5B299D" }}
                         >
                             Loved by Audiences
                         </span>
-                        <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    viewport={{ amount: 0 }}
-                whileInView={{ scale: [1, 1.1, 1] }}
-                                    transition={{
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        delay: i * 0.1,
-                                    }}
-                                >
-                                    <Star size={14} fill="#F59E0B" stroke="#F59E0B" />
-                                </motion.div>
-                            ))}
-                        </div>
                     </motion.div>
 
                     {/* Main Heading with Small Caps */}
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="font-serif text-5xl font-bold mb-5"
-                        style={{
-                            color: "#000000",
-                            letterSpacing: "0.02em",
-                        }}
+                        className="cm-rise cm-h2 font-serif mb-5"
                     >
                         Our Track Record
                     </motion.h2>
 
                     {/* Sub-heading - Exactly 2 lines */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.2 }}
                         className="max-w-[750px] mx-auto font-sans text-lg leading-relaxed"
-                        style={{ color: "#6B21A8" }}
+                        style={{ color: "#4A3F5C" }}
                     >
                         <p>
                             We've produced films, promoted brands, and discovered talent across Tamil, Malayalam, and English. Here's our journey as we build toward feature films.
@@ -99,7 +69,7 @@ export function JourneySection() {
                 </div>
 
                 {/* Three Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative" style={{ zIndex: 10 }}>
+                <div className="home-wrap grid grid-cols-1 lg:grid-cols-3 gap-6 relative" style={{ zIndex: 10 }}>
                     {/* Card 1: Films & Views */}
                     <FilmsCard isInView={isInView} />
 
@@ -115,317 +85,74 @@ export function JourneySection() {
     );
 }
 
-// Highlighted stat number — oversized vibrant gradient so the figures pop
-function Stat({ children }: { children: React.ReactNode }) {
+// ── Track Record cards: home "lively" cards (solid colour, title + badge,
+//    a visual rising from the bottom edge with the disc pair behind it)
+function Group({ l, c, r }: { l: [string, string]; c: [string, string]; r: [string, string] }) {
     return (
-        <span
-            className="bg-clip-text text-transparent font-extrabold inline-block align-baseline"
-            style={{
-                backgroundImage: "linear-gradient(135deg, #7C3AED 0%, #E91E8C 100%)",
-                WebkitBackgroundClip: "text",
-                fontSize: "1.6em",
-                lineHeight: 1,
-                letterSpacing: "-0.02em",
-                paddingBottom: "0.08em",
-                overflow: "visible",
-            }}
-        >
-            {children}
-        </span>
-    );
-}
-
-// Card 1: Films & Views
-function FilmsCard({ isInView }: { isInView: boolean }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ y: -6 }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-shadow duration-300 hover:!shadow-[0_8px_30px_rgba(75,29,149,0.15)] relative overflow-hidden flex flex-col"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-            }}
-        >
-            {/* Top accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
-            {/* Soft corner glow */}
-            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
-
-            {/* Intro — fixed height on lg so all three media grids align */}
-            <div className="lg:min-h-[200px]">
-                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                    <Stat>20+</Stat> Short Films,<br />
-                    2M+ Views
-                </h3>
-                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                    Original short films that have crossed 2 million organic views on YouTube.
-                </p>
-            </div>
-
-            {/* Bento Grid Gallery - Films */}
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1 min-h-[380px]">
-                {/* Row 1 */}
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Welcome Home.jpg"
-                        alt="Welcome Home"
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Smile!.jpg"
-                        alt="Smile!"
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-
-                {/* Row 2 */}
-                <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Malsya Mandooka Mahamaham.jpg"
-                        alt="Malsya Mandooka Mahamaham"
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-                <div className="col-span-2 row-span-1 relative rounded-xl overflow-hidden">
-                    <Image
-                        src="/images/Movies/Harinarayana Kudu Charitham.jpg"
-                        alt="Harinarayana Kudu Charitham"
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                </div>
-
-                {/* Row 3 - New Full Width Card */}
-                <div className="col-span-3 row-span-1 relative rounded-xl overflow-hidden bg-gray-100/50">
-                    <Image
-                        src="/images/Movies/Nadha Nee Varum Kaalocha Kelkuvaan.jpg"
-                        alt="Nadha Nee Varum Kaalocha Kelkuvaan"
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: "center 50%" }}
-                    />
-                </div>
-            </div>
-        </motion.div>
-    );
-}
-
-function CollabShot({
-    src,
-    alt,
-    className = "",
-    position,
-}: {
-    src: string;
-    alt: string;
-    className?: string;
-    position?: string;
-}) {
-    return (
-        <div className={`relative rounded-xl overflow-hidden ${className}`}>
-            <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover hover:scale-105 transition-transform duration-300"
-                style={position ? { objectPosition: position } : undefined}
-            />
+        <div className="lc-group">
+            {/* eslint-disable @next/next/no-img-element */}
+            <img className="g-l" src={l[0]} alt={l[1]} loading="lazy" decoding="async" />
+            <img className="g-r" src={r[0]} alt={r[1]} loading="lazy" decoding="async" />
+            <img className="g-c" src={c[0]} alt={c[1]} loading="lazy" decoding="async" />
+            {/* eslint-enable @next/next/no-img-element */}
         </div>
     );
 }
 
-// Card 2: Brand Collaborations
-function BrandCard({ isInView }: { isInView: boolean }) {
+// Card 1: Films & Views — a 3D stacked deck of posters
+function FilmsCard(_: { isInView: boolean }) {
+    const deck: [string, string, string][] = [
+        ["/images/Movies/Smile!.jpg", "Smile!", "l"],
+        ["/images/Movies/Malsya Mandooka Mahamaham.jpg", "Malsya Mandooka Mahamaham", "r"],
+        ["/images/Movies/Welcome Home.jpg", "Welcome Home", "c"],
+    ];
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ y: -6 }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-shadow duration-300 hover:!shadow-[0_8px_30px_rgba(75,29,149,0.15)] relative overflow-hidden flex flex-col"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-            }}
-        >
-            {/* Top accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
-            {/* Soft corner glow */}
-            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
-
-            {/* Intro — fixed height on lg so all three media grids align */}
-            <div className="lg:min-h-[200px]">
-                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                    <Stat>15+</Stat> Brand <span style={{ color: "#2D2D2D" }}>Collaborations</span>
-                </h3>
-                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                    Brand stories woven naturally into films and TeqDots — never feeling like ads.
-                </p>
-            </div>
-
-            {/* Stills from brand collaboration videos: two portrait cells on the left, three landscape cells on the right */}
-            <div className="flex gap-2 flex-1 min-h-[420px]">
-                <div className="w-[40%] flex flex-col gap-2">
-                    <CollabShot src="/collabs/heal%20brand.png" alt="Hael brand video" className="flex-1" position="55% center" />
-                    <CollabShot src="/collabs/prodeia.png" alt="Prodeia brand video" className="flex-1" position="center top" />
+        <LivelyCard
+            tone="purple"
+            stat="20+"
+            title="Short Films, 2M+ Views"
+            icon={<Film size={22} />}
+            text="Original short films that have crossed 2 million organic views on YouTube."
+            visualHeight={240}
+            visual={
+                <div className="lc-flow">
+                    {deck.map(([src, alt, pos]) => (
+                        <div key={src} className={`lc-flow-card lc-flow-card--${pos}`}>
+                            <Image src={src} alt={alt} fill sizes="240px" />
+                        </div>
+                    ))}
                 </div>
-                <div className="w-[60%] flex flex-col gap-2">
-                    <CollabShot src="/collabs/piqual%20collab.png" alt="Piqual brand video" className="flex-1" />
-                    <CollabShot src="/collabs/xime%20collab.png" alt="XIME brand video" className="flex-1" />
-                    <CollabShot src="/collabs/nuivio%20collab.png" alt="Nuivio brand video" className="flex-1" />
-                </div>
-            </div>
-        </motion.div>
+            }
+        />
     );
 }
 
-// Card 3: Artists Discovered
-function ArtistsCard({ isInView }: { isInView: boolean }) {
+// Card 2: Brand Collaborations — three people from the brand films
+function BrandCard(_: { isInView: boolean }) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            whileHover={{ y: -6 }}
-            className="bg-white rounded-[20px] p-6 sm:p-8 pt-9 transition-shadow duration-300 hover:!shadow-[0_8px_30px_rgba(75,29,149,0.15)] relative overflow-hidden flex flex-col"
-            style={{
-                boxShadow: "0 4px 20px rgba(75, 29, 149, 0.08)",
-            }}
-        >
-            {/* Top accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-[6px]" style={{ background: "linear-gradient(90deg, #7C3AED, #E91E8C)" }} />
-            {/* Soft corner glow */}
-            <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: "#8B5CF6" }} />
+        <LivelyCard
+            tone="pink"
+            stat="15+"
+            title="Brand Collaborations"
+            icon={<Handshake size={22} />}
+            text="Brand stories woven naturally into films and TeqDots — never feeling like ads."
+            visualHeight={260}
+            visual={<Group l={["/cutouts/c-prodeia.webp", "Prodeia brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
+        />
+    );
+}
 
-            {/* Header */}
-            {/* Intro — fixed height on lg so all three media grids align */}
-            <div className="lg:min-h-[200px]">
-                <h3 className="font-serif text-[26px] sm:text-[30px] lg:text-[32px] font-bold mb-3 leading-[1.65] break-words text-center relative" style={{ color: "#2D2D2D" }}>
-                    <Stat>25+</Stat> Artists <span style={{ color: "#2D2D2D" }}>Discovered</span>
-                </h3>
-                <p className="font-sans text-[15px] leading-[1.7] mb-6 text-center max-w-[340px] mx-auto" style={{ color: "#5A5A5A" }}>
-                    Writers, directors, and actors creating under our production.
-                </p>
-            </div>
-
-            {/* Grid Gallery - Artists (Custom Layout) */}
-            <div className="flex flex-col gap-2 flex-1 min-h-[320px]">
-                {/* Top Half - Large Image Left, Small Grid Right */}
-                <div className="flex-1 flex gap-2">
-                    <div className="w-1/2 relative rounded-xl overflow-hidden">
-                        <Image
-                            src="/team/megha  2.jpg"
-                            alt="Megha"
-                            fill
-                            sizes="(max-width: 1024px) 50vw, 25vw"
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                            style={{ objectPosition: "center 20%" }}
-                        />
-                    </div>
-                    <div className="w-1/2 grid grid-cols-2 gap-2">
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image.png"
-                                alt="Artist"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image.jpg"
-                                alt="Artist"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/smile 1.png"
-                                alt="Smile Team 1"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/smile 2.png"
-                                alt="Smile Team 2"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Half - Small Grid Left, Large Image Right */}
-                <div className="flex-1 flex gap-2">
-                    <div className="w-1/2 grid grid-cols-2 gap-2">
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/image (1).jpg"
-                                alt="Artist"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ghkl.jpg"
-                                alt="Artist"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ads.png"
-                                alt="Ads Team 1"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div className="relative rounded-xl overflow-hidden">
-                            <Image
-                                src="/team/ads 2.png"
-                                alt="Ads Team 2"
-                                fill
-                                sizes="(max-width: 1024px) 50vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                    </div>
-                    <div className="w-1/2 relative rounded-xl overflow-hidden">
-                        <Image
-                            src="/team/sajan 2.jpg"
-                            alt="Sajan"
-                            fill
-                            sizes="(max-width: 1024px) 50vw, 25vw"
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                            style={{ objectPosition: "center 20%" }}
-                        />
-                    </div>
-                </div>
-            </div>
-        </motion.div>
+// Card 3: Artists Discovered — three of the artists
+function ArtistsCard(_: { isInView: boolean }) {
+    return (
+        <LivelyCard
+            tone="orange"
+            stat="25+"
+            title="Artists Discovered"
+            icon={<Sparkles size={22} />}
+            text="Writers, directors, and actors creating under our production."
+            visualHeight={260}
+            visual={<Group l={["/cutouts/c-artist2.webp", "An artist discovered by Caimue"]} c={["/cutouts/c-megha.webp", "Megha, an artist discovered by Caimue"]} r={["/cutouts/c-sajan.webp", "An artist discovered by Caimue"]} />}
+        />
     );
 }

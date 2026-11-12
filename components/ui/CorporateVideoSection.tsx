@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Video, Linkedin, Globe } from "lucide-react";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
+import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 const services = [
@@ -38,8 +39,8 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-24 md:py-32 overflow-hidden"
-            style={{ background: "linear-gradient(to bottom, #F5F0FF, #EDE7FF)" }}
+            className="relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
+            style={{ background: "#F1E6FF" }}
         >
             <SectionDownArrow />
 
@@ -52,128 +53,83 @@ export function CorporateVideoSection() {
                     backgroundSize: "40px 40px",
                 }}
             />
-
-            {/* Soft color washes so the white stays alive */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background: `radial-gradient(50% 45% at 50% 8%, rgba(139,92,246,0.10) 0%, transparent 70%),
-                                 radial-gradient(35% 40% at 10% 85%, rgba(233,30,140,0.06) 0%, transparent 70%),
-                                 radial-gradient(35% 40% at 90% 85%, rgba(245,158,11,0.07) 0%, transparent 70%)`,
-                }}
-            />
+ 
 
             {/* Hand-Drawn Scribbles */}
             <HandDrawnScribbles />
 
             {/* Floating sparkles */}
             <motion.span
-                className="absolute top-24 left-[14%] text-amber-400/60 text-2xl pointer-events-none select-none hidden md:block"
+                className="cm-decor-item absolute top-24 left-[14%] text-amber-400/60 text-2xl pointer-events-none select-none hidden md:block"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, -10, 0], opacity: [0.4, 0.9, 0.4] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(-10px)", "translateY(0px)"], opacity: [0.4, 0.9, 0.4] }}
+                transition={{ duration: 4, repeat: 0, ease: "easeInOut" }}
                 aria-hidden
             >
                 ✦
             </motion.span>
             <motion.span
-                className="absolute top-40 right-[12%] text-purple-400/50 text-xl pointer-events-none select-none hidden md:block"
+                className="cm-decor-item absolute top-40 right-[12%] text-purple-400/50 text-xl pointer-events-none select-none hidden md:block"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, 8, 0], rotate: [0, 15, 0], opacity: [0.4, 0.8, 0.4] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                whileInView={{ transform: ["translateY(0px) rotate(0deg)", "translateY(8px) rotate(15deg)", "translateY(0px) rotate(0deg)"], opacity: [0.4, 0.8, 0.4] }}
+                transition={{ duration: 5, repeat: 0, ease: "easeInOut", delay: 0.8 }}
                 aria-hidden
             >
                 ✧
             </motion.span>
             <motion.span
-                className="absolute bottom-28 left-[9%] h-2.5 w-2.5 rounded-full bg-pink-400/50 pointer-events-none hidden md:block"
+                className="cm-decor-item absolute bottom-28 left-[9%] h-2.5 w-2.5 rounded-full bg-pink-400/50 pointer-events-none hidden md:block"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, -12, 0], opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(-12px)", "translateY(0px)"], opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 3.6, repeat: 0, ease: "easeInOut", delay: 0.4 }}
                 aria-hidden
             />
             <motion.span
-                className="absolute bottom-36 right-[8%] h-2 w-2 rounded-full bg-amber-400/60 pointer-events-none hidden md:block"
+                className="cm-decor-item absolute bottom-36 right-[8%] h-2 w-2 rounded-full bg-amber-400/60 pointer-events-none hidden md:block"
                 viewport={{ amount: 0 }}
-                whileInView={{ y: [0, 10, 0], opacity: [0.4, 0.9, 0.4] }}
-                transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+                whileInView={{ transform: ["translateY(0px)", "translateY(10px)", "translateY(0px)"], opacity: [0.4, 0.9, 0.4] }}
+                transition={{ duration: 4.4, repeat: 0, ease: "easeInOut", delay: 1.1 }}
                 aria-hidden
             />
 
-            <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.7 }}
-                    className="flex flex-col items-center text-center"
-                >
+            <div className="relative z-10 home-wrap">
+                <div className="flex flex-col items-center text-center">
                     {/* Headline first */}
-                    <h2 className="font-serif text-3xl! md:text-4xl! lg:text-[2.75rem]! leading-tight font-bold text-[#2D2D2D] mb-10">
+                    <h2 className="cm-rise cm-h2 font-serif mb-5">
                         Our Corporate{" "}
-                        <span
-                            className="italic bg-gradient-to-r from-purple-600 via-fuchsia-500 to-amber-500"
-                            style={{
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                                display: "inline-block",
-                                lineHeight: 1.3,
-                                paddingBottom: "0.08em",
-                                paddingRight: "0.12em",
-                            }}
-                        >
-                            Video Services
-                        </span>
+                        <span className="text-[#5B299D]">Video Services</span>
                     </h2>
 
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mb-12 md:mb-14">
+                    <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-3xl mb-10 md:mb-12">
                         We help companies show up
                         online — corporate films, founder stories, social campaigns and marketing sites that make
                         brands impossible to scroll past.
                     </p>
 
-                    {/* Service cards — white, centered, gradient accents */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
-                        {services.map(({ icon: Icon, label, description, from, to }, i) => (
-                            <motion.div
-                                key={label}
-                                initial={{ opacity: 0, y: 24 }}
-                                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.55, delay: 0.25 + i * 0.12 }}
-                                whileHover={{ y: -8 }}
-                                className="relative flex flex-col items-center text-center rounded-[20px] bg-white px-5 pt-8 pb-7 overflow-hidden transition-shadow duration-300"
-                                style={{ boxShadow: "0 8px 30px rgba(75, 29, 149, 0.10)" }}
-                            >
-                                {/* Gradient accent bar along the top */}
-                                <div
-                                    className="absolute top-0 left-0 right-0 h-[5px]"
-                                    style={{ background: `linear-gradient(90deg, ${from}, ${to})` }}
+                    {/* Service cards — home "lively" cards with an action cut-out rising from the bottom */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full justify-items-center md:justify-items-stretch">
+                        {services.map(({ icon: Icon, label, description }, i) => {
+                            const tone = (["orange", "purple", "pink"] as const)[i % 3];
+                            const cut = ["/cutouts/k-define.webp", "/cutouts/k-reach.webp", "/cutouts/k-convert.webp"][i % 3];
+                            const alt = ["A team planning a video together", "A client reacting to a campaign on his phone", "Two people reviewing a website on a laptop"][i % 3];
+                            return (
+                                <LivelyCard
+                                    key={label}
+                                    tone={tone}
+                                    title={label}
+                                    icon={<Icon size={22} />}
+                                    text={description}
+                                    visualHeight={250}
+                                    visual={
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img className={`lc-cut ${i === 1 ? "lc-cut--even" : "lc-cut--fill"}`} src={cut} alt={alt} loading="lazy" decoding="async" />
+                                    }
                                 />
-                                {/* Soft corner tint */}
-                                <div
-                                    className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-3xl opacity-[0.09] pointer-events-none"
-                                    style={{ background: from }}
-                                />
-                                {/* Icon inline with the title */}
-                                <div className="relative flex items-center justify-center gap-2.5 mb-3">
-                                    <span
-                                        className="flex items-center justify-center rounded-xl shrink-0"
-                                        style={{
-                                            width: 40,
-                                            height: 40,
-                                            background: `linear-gradient(135deg, ${from}, ${to})`,
-                                            boxShadow: `0 8px 18px -8px ${from}80`,
-                                        }}
-                                    >
-                                        <Icon size={20} className="text-white" />
-                                    </span>
-                                    <h3 className="text-[#2D2D2D]! font-sans! font-bold text-[15px]! mb-0! text-center leading-snug! lg:whitespace-nowrap">{label}</h3>
-                                </div>
-                                <p className="text-gray-500 text-[14px] leading-relaxed max-w-[260px] md:max-w-none mx-auto [text-wrap:balance]">{description}</p>
-                            </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
 
-                </motion.div>
+                </div>
             </div>
         </section>
     );
