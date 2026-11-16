@@ -106,61 +106,56 @@ export function FeatureFilmsSection() {
                         { left: "84%", top: "52%", delay: 1.4, size: "w-4 h-4", color: "text-purple-500" },
                         { left: "14%", top: "58%", delay: 2.1, size: "w-4 h-4", color: "text-yellow-400" },
                     ].map((s, i) => (
-                        <motion.svg
+                        <motion.div
                             key={i}
                             className={`absolute ${s.size} ${s.color}`}
                             style={{ left: s.left, top: s.top }}
                             viewport={{ amount: 0 }}
                 whileInView={{ transform: ["rotate(0deg) scale(0.6)", "rotate(20deg) scale(1.15)", "rotate(0deg) scale(0.6)"], opacity: [0.4, 0.9, 0.4] }}
                             transition={{ duration: 2.6, repeat: 0, ease: "easeInOut", delay: s.delay }}
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
                         >
-                            <path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z" />
-                        </motion.svg>
+                            <svg className="block w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z" />
+                            </svg>
+                        </motion.div>
                     ))}
 
                     {/* Film-strip doodle, right side */}
-                    <motion.svg
+                    <motion.div
                         className="absolute right-[7%] top-[10%] w-16 h-16 text-pink-500 opacity-70"
                         viewport={{ amount: 0 }}
                 whileInView={{ transform: ["rotate(8deg)", "rotate(-4deg)", "rotate(8deg)"] }}
                         transition={{ duration: 7, repeat: 0, ease: "easeInOut" }}
-                        viewBox="0 0 100 100"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
                     >
-                        <path d="M15,35 Q50,25 85,35 L85,70 Q50,80 15,70 Z" />
-                        <line x1="15" y1="44" x2="85" y2="44" />
-                        <line x1="15" y1="61" x2="85" y2="61" />
-                        <line x1="38" y1="42" x2="38" y2="63" />
-                        <line x1="62" y1="42" x2="62" y2="63" />
-                        <circle cx="26" cy="39" r="1.5" fill="currentColor" />
-                        <circle cx="50" cy="37" r="1.5" fill="currentColor" />
-                        <circle cx="74" cy="39" r="1.5" fill="currentColor" />
-                    </motion.svg>
+                        <svg className="block w-full h-full" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M15,35 Q50,25 85,35 L85,70 Q50,80 15,70 Z" />
+                            <line x1="15" y1="44" x2="85" y2="44" />
+                            <line x1="15" y1="61" x2="85" y2="61" />
+                            <line x1="38" y1="42" x2="38" y2="63" />
+                            <line x1="62" y1="42" x2="62" y2="63" />
+                            <circle cx="26" cy="39" r="1.5" fill="currentColor" />
+                            <circle cx="50" cy="37" r="1.5" fill="currentColor" />
+                            <circle cx="74" cy="39" r="1.5" fill="currentColor" />
+                        </svg>
+                    </motion.div>
 
                     {/* Popcorn doodle, bottom left */}
-                    <motion.svg
+                    <motion.div
                         className="absolute left-[6%] bottom-[6%] w-14 h-14 text-purple-500 opacity-70"
                         viewport={{ amount: 0 }}
                 whileInView={{ transform: ["translateY(0px) rotate(-6deg)", "translateY(-6px) rotate(4deg)", "translateY(0px) rotate(-6deg)"],  }}
                         transition={{ duration: 6, repeat: 0, ease: "easeInOut", delay: 0.6 }}
-                        viewBox="0 0 100 100"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
                     >
-                        <path d="M30,45 L36,85 L64,85 L70,45" />
-                        <line x1="42" y1="45" x2="45" y2="85" />
-                        <line x1="58" y1="45" x2="55" y2="85" />
-                        <circle cx="35" cy="38" r="8" />
-                        <circle cx="50" cy="32" r="9" />
-                        <circle cx="65" cy="38" r="8" />
-                        <circle cx="50" cy="20" r="6" />
-                    </motion.svg>
+                        <svg className="block w-full h-full" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                            <path d="M30,45 L36,85 L64,85 L70,45" />
+                            <line x1="42" y1="45" x2="45" y2="85" />
+                            <line x1="58" y1="45" x2="55" y2="85" />
+                            <circle cx="35" cy="38" r="8" />
+                            <circle cx="50" cy="32" r="9" />
+                            <circle cx="65" cy="38" r="8" />
+                            <circle cx="50" cy="20" r="6" />
+                        </svg>
+                    </motion.div>
                 </div>
                 <div className="cf-stage">
                     {reel.map((item, i) => {

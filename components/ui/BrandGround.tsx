@@ -18,20 +18,21 @@ export function BrandGround({
     discCorner?: Corner;
 }) {
     return (
-        <div className={cn("absolute inset-0 overflow-hidden", className)} style={{ background: "rgb(84, 30, 196)" }} aria-hidden>
+        <div className={cn("absolute inset-0 overflow-hidden", className)} style={{ background: "rgb(46, 16, 101)" }} aria-hidden>
+            {/* the original hero colours (deep violet ground, violet/purple blobs) */}
             <BackgroundGradientAnimation
                 autoMove
                 maskCenter
                 blendingValue="normal"
                 containerClassName="absolute inset-0 !h-full !w-full"
-                firstColor="139, 92, 246"
-                secondColor="124, 58, 237"
-                thirdColor="107, 43, 229"
-                fourthColor="255, 61, 139"
-                fifthColor="91, 33, 182"
-                pointerColor="139, 92, 246"
-                gradientBackgroundStart="rgb(84, 30, 196)"
-                gradientBackgroundEnd="rgb(107, 43, 229)"
+                firstColor="124, 58, 237"
+                secondColor="109, 40, 217"
+                thirdColor="91, 33, 182"
+                fourthColor="126, 34, 206"
+                fifthColor="107, 33, 168"
+                pointerColor="124, 58, 237"
+                gradientBackgroundStart="rgb(46, 16, 101)"
+                gradientBackgroundEnd="rgb(59, 7, 100)"
             />
             {/* subtle circle composition: kept to the edges, out of the headline zone */}
             <span className="cm-hs cm-hs--big" />

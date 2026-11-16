@@ -85,15 +85,62 @@ export function JourneySection() {
     );
 }
 
+// Rotates the front image only while the card is hovered (mouse/pen), every
+// 2.4s. Two guards keep quick in-and-out movement calm:
+//  - hover intent: the first swap only fires if the pointer stays 400ms, so
+//    brushing across the card does nothing;
+//  - cooldown: a swap never starts within 2.4s of the previous one (the 1s
+//    glide plus a rest), so re-entering mid-glide never stacks swaps.
+// Leaving stops further swaps; a glide already running finishes smoothly.
+// Touch and reduced motion stay static.
+const SWAP_EVERY = 2400;
+const HOVER_INTENT = 400;
+function useHoverRotation(ref: React.RefObject<HTMLElement | null>) {
+    const [step, setStep] = useState(0);
+    useEffect(() => {
+        const card = ref.current?.closest(".lc");
+        if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let first: number | undefined;
+        let interval: number | undefined;
+        let lastSwap = -Infinity;
+        const swap = () => { lastSwap = performance.now(); setStep((v) => v + 1); };
+        const stop = () => { window.clearTimeout(first); window.clearInterval(interval); first = interval = undefined; };
+        const enter = (e: Event) => {
+            if ((e as PointerEvent).pointerType === "touch" || interval !== undefined || first !== undefined) return;
+            const wait = Math.max(HOVER_INTENT, lastSwap + SWAP_EVERY - performance.now());
+            first = window.setTimeout(() => {
+                first = undefined;
+                swap();
+                interval = window.setInterval(swap, SWAP_EVERY);
+            }, wait);
+        };
+        card.addEventListener("pointerenter", enter);
+        card.addEventListener("pointerleave", stop);
+        return () => { stop(); card.removeEventListener("pointerenter", enter); card.removeEventListener("pointerleave", stop); };
+    }, [ref]);
+    return step;
+}
 // ── Track Record cards: home "lively" cards (solid colour, title + badge,
 //    a visual rising from the bottom edge with the disc pair behind it)
+// Shared by all three Track Record cards: three slots (left, centre, right)
+// on one real 3D stage. Each step the left item glides to the front, the front
+// one to the right, the right one round the back to the left. Layering comes
+// from 3D depth, so items pass in front of / behind each other smoothly.
+const SLOTS = ["l", "c", "r"] as const;
+// item i (in initial slot order l, c, r) sits in slot (i + step) mod 3
+const slotFor = (i: number, step: number) => SLOTS[(i + step) % 3];
+
+// People group: the pushed layout (front person centred and tallest, the two
+// flanking a step back at the card edges). Slot styles: .lc-p[data-slot].
 function Group({ l, c, r }: { l: [string, string]; c: [string, string]; r: [string, string] }) {
+    const ref = useRef<HTMLDivElement>(null);
+    const step = useHoverRotation(ref);
     return (
-        <div className="lc-group">
+        <div className="lc-group" ref={ref}>
             {/* eslint-disable @next/next/no-img-element */}
-            <img className="g-l" src={l[0]} alt={l[1]} loading="lazy" decoding="async" />
-            <img className="g-r" src={r[0]} alt={r[1]} loading="lazy" decoding="async" />
-            <img className="g-c" src={c[0]} alt={c[1]} loading="lazy" decoding="async" />
+            {[l, c, r].map((p, i) => (
+                <img key={p[0]} className="lc-p" data-slot={slotFor(i, step)} src={p[0]} alt={p[1]} loading="lazy" decoding="async" />
+            ))}
             {/* eslint-enable @next/next/no-img-element */}
         </div>
     );
@@ -101,11 +148,14 @@ function Group({ l, c, r }: { l: [string, string]; c: [string, string]; r: [stri
 
 // Card 1: Films & Views — a 3D stacked deck of posters
 function FilmsCard(_: { isInView: boolean }) {
-    const deck: [string, string, string][] = [
-        ["/images/Movies/Smile!.jpg", "Smile!", "l"],
-        ["/images/Movies/Malsya Mandooka Mahamaham.jpg", "Malsya Mandooka Mahamaham", "r"],
-        ["/images/Movies/Welcome Home.jpg", "Welcome Home", "c"],
+    // in slot order: left, centre, right
+    const deck: [string, string][] = [
+        ["/images/Movies/Smile!.jpg", "Smile!"],
+        ["/images/Movies/Welcome Home.jpg", "Welcome Home"],
+        ["/images/Movies/Malsya Mandooka Mahamaham.jpg", "Malsya Mandooka Mahamaham"],
     ];
+    const ref = useRef<HTMLDivElement>(null);
+    const step = useHoverRotation(ref);
     return (
         <LivelyCard
             tone="purple"
@@ -115,9 +165,9 @@ function FilmsCard(_: { isInView: boolean }) {
             text="Original short films that have crossed 2 million organic views on YouTube."
             visualHeight={240}
             visual={
-                <div className="lc-flow">
-                    {deck.map(([src, alt, pos]) => (
-                        <div key={src} className={`lc-flow-card lc-flow-card--${pos}`}>
+                <div className="lc-flow" ref={ref}>
+                    {deck.map(([src, alt], i) => (
+                        <div key={src} className={`lc-flow-card lc-flow-card--${slotFor(i, step)}`}>
                             <Image src={src} alt={alt} fill sizes="240px" />
                         </div>
                     ))}
@@ -137,7 +187,7 @@ function BrandCard(_: { isInView: boolean }) {
             icon={<Handshake size={22} />}
             text="Brand stories woven naturally into films and TeqDots — never feeling like ads."
             visualHeight={260}
-            visual={<Group l={["/cutouts/c-prodeia.webp", "Prodeia brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
+            visual={<Group l={["/cutouts/c-piqual.webp", "Piqual brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
         />
     );
 }

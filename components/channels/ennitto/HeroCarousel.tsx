@@ -33,7 +33,7 @@ export default function HeroCarousel() {
             `}</style>
 
             <motion.div
-                animate={{ x: ["0%", "-50%"] }}
+                animate={{ transform: ["translateX(0%)", "translateX(-50%)"] }}
                 transition={{ duration: 40, ease: "linear", repeat: Infinity }}
                 style={{
                     display: "flex",

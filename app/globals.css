@@ -706,9 +706,6 @@ html.lenis,html.lenis body{height:auto}
 @media (prefers-reduced-motion: no-preference){
   /* Card hover: the big disc swells and the small "full stop" rolls up its rim */
   .cm-disc::before, .cm-disc::after{ transition: transform .7s cubic-bezier(.22,1,.36,1); }
-  .cm-disc:hover::before{ transform: scale(1.12); }
-  .cm-disc:hover::after{ transform: translate(calc(var(--ds, 200px) * -0.1), calc(var(--ds, 200px) * -0.13)); }
-  .cm-disc--top:hover::after{ transform: translate(calc(var(--ds, 200px) * -0.1), calc(var(--ds, 200px) * 0.13)); }
 
   /* Hero headline: each line rises out of a mask on load */
   .cm-line{ display:block; animation: cm-line-in .9s cubic-bezier(.22,1,.36,1) both; }
@@ -718,15 +715,6 @@ html.lenis,html.lenis body{height:auto}
     to  { clip-path: inset(-.15em -.1em -.3em -.1em); translate: 0 0; }
   }
 
-  /* Primary button: a pink disc fills it from the centre on hover */
-  .btn-primary{ isolation:isolate; }
-  .btn-primary::before{
-    content:""; position:absolute; z-index:-1; left:50%; top:50%;
-    width:2.6em; height:2.6em; border-radius:50%; background:#FF8EC0;
-    translate:-50% -50%; scale:0; transition: scale .45s cubic-bezier(.22,1,.36,1);
-  }
-  .btn-primary:hover::before{ scale:6; }
-  .btn-primary:hover{ color:#1B0F33 !important; background:#5B299D; }
 }
 
 @supports (animation-timeline: view()){
@@ -817,10 +805,10 @@ html.lenis,html.lenis body{height:auto}
 /* Hero/footer moving-gradient colours available from the first paint (the
    component also sets these from JS; same values, so nothing jumps) */
 body{
-  --gradient-background-start: rgb(84, 30, 196);
-  --gradient-background-end: rgb(107, 43, 229);
-  --first-color: 139, 92, 246; --second-color: 124, 58, 237; --third-color: 107, 43, 229;
-  --fourth-color: 255, 61, 139; --fifth-color: 91, 33, 182; --pointer-color: 139, 92, 246;
+  --gradient-background-start: rgb(46, 16, 101);
+  --gradient-background-end: rgb(59, 7, 100);
+  --first-color: 124, 58, 237; --second-color: 109, 40, 217; --third-color: 91, 33, 182;
+  --fourth-color: 126, 34, 206; --fifth-color: 107, 33, 168; --pointer-color: 124, 58, 237;
   --size: 80%; --blending-value: normal;
 }
 /* ground disc sits above the moving gradient; a touch translucent so it blends */
@@ -917,7 +905,7 @@ main p, section p{ text-wrap:pretty; }
   transition: translate .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
   text-align:left;
 }
-.lc:hover{ translate:0 -6px; box-shadow: 0 36px 64px -32px rgba(40,10,90,.7); }
+.lc:hover{ translate:0 -4px; box-shadow: 0 36px 64px -32px rgba(40,10,90,.7); }
 .lc--purple{ --c:#6B2BE5; --ink:#FFFFFF; --d1:#FFC633; --d2:#8754F2; }
 .lc--pink  { --c:#FF3D8B; --ink:#FFFFFF; --d1:#6B2BE5; --d2:#FF78AE; }
 .lc--orange{ --c:#FF7A3D; --ink:#1B0B3A; --d1:#6B2BE5; --d2:#FFA06F; }
@@ -931,7 +919,6 @@ main p, section p{ text-wrap:pretty; }
   flex:none; width:46px; height:46px; border-radius:50%; background:#fff; color:var(--c);
   display:grid; place-items:center; transition: transform .5s cubic-bezier(.22,1,.36,1);
 }
-.lc:hover .lc-badge{ transform: rotate(-12deg) scale(1.06); }
 .lc-text{ margin-top:14px; font-size:15px; line-height:1.6; color:var(--ink) !important; opacity:.94; max-width:36ch; text-wrap:pretty; }
 .lc-action{ margin-top:20px; }
 .lc-btn{
@@ -951,12 +938,9 @@ main p, section p{ text-wrap:pretty; }
 .lc-visual::before{ width:min(86%, 360px); aspect-ratio:1; right:max(-20%, -80px); bottom:-46%; background:var(--d2); }
 /* contrasting disc behind the subject */
 .lc-visual::after{ width:min(44%, 210px); aspect-ratio:1; left:50%; margin-left:max(-22%, -105px); top:4%; background:var(--d1); }
-.lc:hover .lc-visual::before{ transform: scale(1.06); }
-.lc:hover .lc-visual::after{ transform: translateY(-6px) scale(1.04); }
 
 .lc-cut{ position:absolute; bottom:0; left:50%; translate:-50% 0; height:100%; width:auto; max-width:none; object-fit:contain; object-position:bottom; transition: transform .6s cubic-bezier(.22,1,.36,1); transform-origin:bottom center; }
 .lc-cut--wide{ height:auto; width:104%; max-height:100%; object-fit:contain; }
-.lc:hover .lc-cut{ transform: scale(1.03); }
 
 /* poster fan (films) */
 .lc-poster{ position:absolute; bottom:-6%; width:50%; aspect-ratio:16/10; border-radius:12px; overflow:hidden; box-shadow:0 18px 30px -14px rgba(20,5,50,.6); transition: transform .6s cubic-bezier(.22,1,.36,1); }
@@ -992,8 +976,6 @@ main p, section p{ text-wrap:pretty; }
 .lc--plain::before, .lc--plain::after{ content:""; position:absolute; border-radius:50%; z-index:-1; pointer-events:none; transition: transform .7s cubic-bezier(.22,1,.36,1); }
 .lc--plain::before{ width:260px; height:260px; right:-90px; bottom:-130px; background:var(--d2); }
 .lc--plain::after{ width:92px; height:92px; right:120px; bottom:-38px; background:var(--d1); }
-.lc--plain:hover::before{ transform:scale(1.08); }
-.lc--plain:hover::after{ transform:translateY(-8px); }
 
 /* 3D poster deck (films) */
 .lc-deck{ position:absolute; inset:0; perspective:900px; perspective-origin:30% 40%; }
@@ -1015,14 +997,36 @@ main p, section p{ text-wrap:pretty; }
 .lc:hover .lc-deck-card:nth-child(4){ left:39%; bottom:-1%; transform: rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
 
 /* group of cut-outs: front figure tallest, two flanking a step back */
-.lc-group{ position:absolute; inset:0; }
-.lc-group img{ position:absolute; bottom:0; width:auto; max-width:none; object-fit:contain; object-position:bottom; transition: transform .6s cubic-bezier(.22,1,.36,1); transform-origin:bottom center; }
-.lc-group .g-l{ height:84%; left:2%; z-index:1; }
-.lc-group .g-c{ height:100%; left:50%; translate:-50% 0; z-index:3; }
-.lc-group .g-r{ height:84%; right:2%; z-index:2; }
-.lc:hover .lc-group .g-l{ transform: translateX(-6px); }
-.lc:hover .lc-group .g-r{ transform: translateX(6px); }
-.lc:hover .lc-group .g-c{ transform: scale(1.03); }
+/* People group: the pushed layout exactly (front 100% tall and centred, the
+   two flanking 84% tall, 2% in from the card edges, bottoms on the edge),
+   rebuilt with translate + scale so a person can glide between slots when
+   the front person changes. Origin bottom-left: scale keeps the bottom edge
+   down, and translate % is the image's own width. */
+/* People group = the same real 3D stage as the films coverflow.
+   Depth comes from translateZ under perspective (camera at bottom centre,
+   so feet stay on the card edge), not from scale: the side people sit 171px
+   back, which reads as the pushed 84% size, and they turn 12deg toward the
+   centre. A person coming forward therefore travels toward the viewer
+   instead of inflating, and because the planes are angled the browser
+   layers them pixel by pixel: the overlap edge sweeps across, no z-index
+   cut. x positions are pre-divided by the 0.84 projection so the on-screen
+   layout matches the pushed one (sides 2% in from the card edges). */
+.lc-group{
+  position:absolute; inset:0; container-type:inline-size;
+  perspective:900px; perspective-origin:50% 100%; transform-style:preserve-3d;
+}
+.lc-p{
+  position:absolute; left:0; bottom:0; height:100%; width:auto; max-width:none;
+  transform-origin:50% 100%;
+  transition: transform 1s cubic-bezier(.65,0,.35,1);
+}
+.lc-p[data-slot="c"]{ transform: translate3d(calc(50cqw - 50%), 0, 0) rotateY(0deg); }
+.lc-p[data-slot="l"]{ transform: translate3d(-7.14cqw, 0, -171px) rotateY(12deg); }
+.lc-p[data-slot="r"]{ transform: translate3d(calc(107.14cqw - 100%), 0, -171px) rotateY(-12deg); }
+.lc:hover .lc-p[data-slot="c"]{ transform: translate3d(calc(50cqw - 50%), 0, 26px) rotateY(0deg); }
+.lc:hover .lc-p[data-slot="l"]{ transform: translate3d(calc(-7.14cqw - 7px), 0, -171px) rotateY(12deg); }
+.lc:hover .lc-p[data-slot="r"]{ transform: translate3d(calc(107.14cqw - 100% + 7px), 0, -171px) rotateY(-12deg); }
+@media (prefers-reduced-motion: reduce){ .lc-p{ transition:none; } }
 
 /* services: every cut-out the same height, centred, so the row lines up */
 .lc-cut--even{ height:100% !important; width:auto !important; max-width:108%; }
@@ -1035,19 +1039,26 @@ main p, section p{ text-wrap:pretty; }
 
 /* ── Lively round 3 ──────────────────────────────────────────────────── */
 /* Films: symmetrical 3D coverflow — stays inside its zone, never covers text */
-.lc-flow{ position:absolute; inset:0; perspective:1000px; }
+.lc-flow{ position:absolute; inset:0; perspective:1000px; transform-style:preserve-3d; }
 .lc-flow-card{
   position:absolute; left:50%; bottom:12%; width:50%; aspect-ratio:16/10; border-radius:12px; overflow:hidden;
   box-shadow:0 22px 34px -16px rgba(20,5,50,.6);
-  transition: transform .7s cubic-bezier(.22,1,.36,1);
+  transform-origin:50% 50%;
+  transition: transform 1s cubic-bezier(.65,0,.35,1);
 }
 .lc-flow-card img{ object-fit:cover; }
-.lc-flow-card--c{ transform: translateX(-50%); z-index:3; }
-.lc-flow-card--l{ transform: translateX(-104%) rotateY(34deg) scale(.84); transform-origin:right center; z-index:1; }
-.lc-flow-card--r{ transform: translateX(4%) rotateY(-34deg) scale(.84); transform-origin:left center; z-index:2; }
-.lc:hover .lc-flow-card--c{ transform: translateX(-50%) translateY(-4px) scale(1.03); }
-.lc:hover .lc-flow-card--l{ transform: translateX(-110%) rotateY(30deg) scale(.86); }
-.lc:hover .lc-flow-card--r{ transform: translateX(10%) rotateY(-30deg) scale(.86); }
+/* the pushed coverflow (sides hinged on their inner edge), rewritten around
+   one centre origin with the same function list in every slot. Layering is
+   3D depth (translateZ in a preserve-3d scene), not z-index, so a poster
+   passes behind / in front of another gradually. The sides' extra scale
+   cancels the perspective shrink of their translateZ, keeping the pushed
+   on-screen size. */
+.lc-flow-card--c{ transform: translate(-50%, 0) translateZ(0px) rotateY(0deg) scale(1) translateX(0%); }
+.lc-flow-card--l{ transform: translate(-54%, 0) translateZ(-90px) rotateY(34deg) scale(.91) translateX(-50%); }
+.lc-flow-card--r{ transform: translate(-46%, 0) translateZ(-70px) rotateY(-34deg) scale(.9) translateX(50%); }
+.lc:hover .lc-flow-card--c{ transform: translate(-50%, -4px) translateZ(0px) rotateY(0deg) scale(1.03) translateX(0%); }
+.lc:hover .lc-flow-card--l{ transform: translate(-60%, 0) translateZ(-90px) rotateY(30deg) scale(.94) translateX(-50%); }
+.lc:hover .lc-flow-card--r{ transform: translate(-40%, 0) translateZ(-70px) rotateY(-30deg) scale(.93) translateX(50%); }
 
 /* Services: side-cropped photos keep the heads — crop from the bottom instead */
 .lc-cut--fill{ object-position: center top !important; }
@@ -1096,3 +1107,59 @@ section[style*="F1E6FF"] div[style*="40px 40px"]{ --gl: rgba(255,255,255,.95); }
 
 /* a few doodles (every third) a touch more visible, the rest unchanged */
 .cm-decor > :nth-child(3n+1){ opacity:.95 !important; }
+
+/* Lively card, centred variant (Our Channels): no head row, text and action
+   centred; the text starts at the card's top padding. */
+.lc--center{ text-align:center; }
+.lc--center > .lc-text:first-child{ margin-top:0; }
+.lc--center .lc-text{ margin-inline:auto; text-wrap:balance; }
+.lc--center .lc-action{ display:flex; justify-content:center; }
+/* Come Work With Us (centred, no visual): a wider measure so the copy runs in
+   fewer, fuller lines instead of a narrow column with empty sides; even
+   padding top and bottom, content centred vertically when the row stretches. */
+.lc--center.lc--plain{ justify-content:center; padding:36px 36px; }
+.lc--center.lc--plain .lc-text{ max-width:50ch; font-size:16px; }
+@media (max-width:640px){
+  .lc--center.lc--plain{ padding:32px 24px; }
+  /* balance gives up past six lines; pretty still keeps a word off its own line */
+  .lc--center.lc--plain .lc-text{ text-wrap:pretty; }
+}
+
+/* Our Channels (centred lively cards): the whole card is the YouTube link
+   (.lc-cover stretches over it). The only white element is the logo plate;
+   the action is a round YouTube-red play badge stuck on the plate's corner,
+   or a small dark "Coming soon" tag in the same place. */
+.lc-action:has(> .lc-cover){ margin:0; }
+.lc-cover{ position:static; }
+.lc-cover::after{ content:""; position:absolute; inset:0; z-index:5; border-radius:inherit; }
+.lc-cover:focus-visible{ outline:none; }
+.lc-cover:focus-visible::after{ outline:3px solid #fff; outline-offset:-4px; border-radius:28px; }
+.lc-plate > .lc-yt, .lc-plate > .lc-soon{ position:absolute; z-index:2; }
+.lc-yt{
+  top:-16px; right:-16px; width:46px; height:46px; border-radius:50%;
+  background:#FF0000; color:#fff; display:grid; place-items:center;
+  box-shadow:0 10px 20px -8px rgba(120,0,0,.55);
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+.lc-soon{
+  top:-13px; right:-14px; padding:6px 12px; border-radius:999px;
+  background:#1B0B3A; color:#fff; font-size:12.5px; font-weight:600; line-height:1.1;
+  box-shadow:0 10px 20px -10px rgba(20,5,50,.6);
+}
+/* centred cards with a head (Come Work With Us, as in the original): eyebrow
+   chip, title, text and button all on the centre line */
+.lc--center .lc-head{ justify-content:center; }
+.lc--center .lc-head > div{ display:flex; flex-direction:column; align-items:center; }
+.lc--center .lc-title{ text-align:center; }
+
+/* ── Interaction states (16 Nov): calm and professional ─────────────────────
+   Hover = a short colour/opacity change; press = a slight 0.97 squeeze;
+   keyboard focus = a clear outline. No bouncing, spinning or bursts. */
+.cm-logo-link{ display:inline-block; border-radius:6px; transition: opacity .18s ease; -webkit-tap-highlight-color: transparent; }
+.cm-logo-link:hover{ opacity:.78; }
+.cm-logo-link:active{ opacity:.62; }
+.cm-logo-link:focus-visible{ outline:2px solid #5B299D; outline-offset:4px; }
+.btn-primary, .lc-btn{ transition: background-color .18s ease, color .18s ease, box-shadow .2s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+.btn-primary:active, .lc-btn:active{ transform: scale(.97); }
+.btn-primary:focus-visible, .lc-btn:focus-visible{ outline:2px solid #5B299D; outline-offset:3px; }
+@media (prefers-reduced-motion: reduce){ .btn-primary:active, .lc-btn:active{ transform:none; } }

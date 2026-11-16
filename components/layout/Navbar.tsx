@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const router = useRouter();
     const pathname = usePathname();
     const isHome = pathname === "/";
 
@@ -33,20 +32,22 @@ export function Navbar() {
             >
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
-                    <div
-                        onClick={() => { router.push("/"); setMobileOpen(false); }}
-                        className="relative z-10 block cursor-pointer transition-transform hover:scale-105 active:scale-95"
-                        role="link"
+                    {/* A real link, so Next prefetches the homepage; hover is a quiet fade, no scaling */}
+                    <Link
+                        href="/"
+                        onClick={() => setMobileOpen(false)}
+                        className="cm-logo-link relative z-10 block"
+                        aria-label="Caimue - Go to homepage"
                     >
                         <Image
-                            src="/logos/caimue-logo-96.png"
-                            alt="Caimue - Go to homepage"
-                            width={1027}
-                            height={180}
-                            className="h-6 md:h-7 w-auto object-contain"
+                            src="/logos/finalized-logo/Caimue-logo.svg"
+                            alt="Caimue"
+                            width={400}
+                            height={104}
+                            className="h-9 md:h-10 w-auto object-contain"
                             priority
                         />
-                    </div>
+                    </Link>
 
                     {/* Desktop nav + Contact */}
                     <div className="flex items-center gap-6">

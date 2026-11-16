@@ -33,14 +33,15 @@ export function Footer() {
                     blendingValue="normal" // violet on violet: hard-light looked identical but doubled the GPU cost
                     maskImage="linear-gradient(to right, transparent 0%, transparent 42%, black 72%)"
                     containerClassName="absolute inset-0 z-0"
-                    firstColor="139, 92, 246"
-                    secondColor="124, 58, 237"
-                    thirdColor="107, 43, 229"
-                    fourthColor="255, 61, 139"
-                    fifthColor="91, 33, 182"
-                    pointerColor="139, 92, 246"
-                    gradientBackgroundStart="rgb(84, 30, 196)"
-                    gradientBackgroundEnd="rgb(107, 43, 229)"
+                    // same colours as the hero (BrandGround)
+                    firstColor="124, 58, 237"
+                    secondColor="109, 40, 217"
+                    thirdColor="91, 33, 182"
+                    fourthColor="126, 34, 206"
+                    fifthColor="107, 33, 168"
+                    pointerColor="124, 58, 237"
+                    gradientBackgroundStart="rgb(46, 16, 101)"
+                    gradientBackgroundEnd="rgb(59, 7, 100)"
                 />
 
                 <HeroGrid className="opacity-30 z-10" />
@@ -95,13 +96,13 @@ export function Footer() {
                 <div className="container">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                         {/* LOGO */}
-                        <Link href="/" className="transition-transform hover:scale-105">
+                        <Link href="/" className="cm-logo-link" aria-label="Caimue - Go to homepage">
                             <Image
-                                src="/logos/caimue-logo-96.png"
+                                src="/logos/finalized-logo/Caimue-logo.svg"
                                 alt="Caimue"
-                                width={1027}
-                                height={180}
-                                className="h-9 md:h-10 w-auto object-contain"
+                                width={400}
+                                height={104}
+                                className="h-12 md:h-14 w-auto object-contain"
                             />
                         </Link>
 

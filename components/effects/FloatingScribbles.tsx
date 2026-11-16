@@ -184,7 +184,7 @@ export function FloatingScribbles({ color = "text-white", className }: { color?:
                             <motion.div
                                 key={i}
                                 viewport={{ amount: 0 }}
-                whileInView={{ scaleY: [0.5, 1, 0.5] }}
+                whileInView={{ transform: ["scaleY(0.5)", "scaleY(1)", "scaleY(0.5)"] }}
                                 transition={{ duration: 0.5 + i * 0.1, repeat: Infinity }}
                                 style={{ height: h, transformOrigin: "50% 50%" }}
                                 className="w-[1.5px] bg-current"

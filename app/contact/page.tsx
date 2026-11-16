@@ -492,7 +492,7 @@ export default function ContactPage() {
                                     <div className="mt-6 pt-5 border-t border-black/5 flex items-center gap-2.5 relative z-10 justify-center">
                                         <motion.div
                                             viewport={{ amount: 0 }}
-                whileInView={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
+                whileInView={{ transform: ["scale(1)", "scale(1.4)", "scale(1)"], opacity: [0.7, 1, 0.7] }}
                                             transition={{ repeat: Infinity, duration: 2, delay: idx * 0.4 }}
                                             className="w-2 h-2 rounded-full bg-emerald-400"
                                         />
