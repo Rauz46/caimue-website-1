@@ -63,8 +63,10 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       whileInView={{ opacity: 1, y: 0, rotate: rot }}
       viewport={{ once: true }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ rotate: 0, y: -14, scale: 1.05, zIndex: 30,
-        boxShadow: "0 32px 64px rgba(0,0,0,0.22), 0 8px 20px rgba(0,0,0,0.12)" }}
+      // calm hover: the note straightens and lifts slightly, with its own quick timing (not the entrance stagger)
+      whileHover={{ rotate: 0, y: -6, zIndex: 30,
+        boxShadow: "0 18px 36px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.08)",
+        transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } }}
       className={`group relative cursor-default select-none bg-white w-full max-w-[320px] sm:max-w-none sm:w-[calc(50%-14px)] md:w-[calc((100%-48px)/3)] xl:w-[calc((100%-96px)/5)] ${index % 2 === 1 ? "xl:mt-7" : ""}`}
       style={{
         padding: "10px",
@@ -90,7 +92,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
           alt={person.name}
           fill
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 240px"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
+          className="object-cover object-top"
         />
         {/* Film-notch top-right */}
         <div className="absolute top-2 right-2 flex gap-0.5 z-10">
@@ -222,9 +224,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-left"
             >
-              <h2 className="cm-rise cm-h2 mb-5 font-serif">
+              <h2 className="cm-rise cm-h2 mb-5 font-serif text-center">
                 Our{" "}
                 <span className="text-[#5B299D]">
                   Story
@@ -326,7 +328,7 @@ export default function AboutPage() {
                 Crew
               </span>
             </h2>
-            <p className="text-[#4A3F5C] text-lg max-w-xl mx-auto font-sans">
+            <p className="text-[#4A3F5C] text-lg mx-auto font-sans md:whitespace-nowrap">
               A small, mighty team of builders, creators, and dreamers who refuse to play it safe.
             </p>
           </motion.div>
@@ -381,7 +383,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`${card.rotation} relative bg-white shadow-lg p-2.5 pb-3.5 w-full max-w-[220px] transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:rotate-0 cursor-default ${i === 4 ? "col-span-2 sm:col-span-1 justify-self-center sm:justify-self-auto max-w-[170px] sm:max-w-[220px]" : ""}`}
+                className={`${card.rotation} relative bg-white shadow-lg p-2.5 pb-3.5 w-full max-w-[220px] transition-[translate,rotate,box-shadow] duration-250 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:rotate-0 cursor-default ${i === 4 ? "col-span-2 sm:col-span-1 justify-self-center sm:justify-self-auto max-w-[170px] sm:max-w-[220px]" : ""}`}
               >
                 {/* Tape strip */}
                 <div
@@ -398,7 +400,7 @@ export default function AboutPage() {
                     alt={card.caption}
                     fill
                     sizes="(max-width: 640px) 45vw, 220px"
-                    className="object-cover transition-transform duration-500 hover:scale-[1.08]"
+                    className="object-cover"
                   />
                 </div>
                 <p className="text-center text-sm font-bold text-gray-800 font-serif leading-tight mb-1">

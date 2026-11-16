@@ -40,7 +40,7 @@ export default function HeroCarousel({ videos = [] }: { videos?: any[] }) {
             {/* Arched Track */}
             <motion.div
                 animate={{
-                    x: ["0%", "-50%"]
+                    transform: ["translateX(0%)", "translateX(-50%)"]
                 }}
                 transition={{
                     duration: 40,

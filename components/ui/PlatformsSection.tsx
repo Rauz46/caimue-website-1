@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Youtube, Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 import { LivelyCard } from "@/components/ui/LivelyCard";
 
@@ -96,22 +96,21 @@ const channels: Channel[] = [
     },
 ];
 
-// Channel card — home "lively" card: solid colour, text, YouTube action, and
-// the channel's logo on a white plate rising from the bottom with the disc pair
+// Channel card — home "lively" card: solid colour, centred text, and the
+// channel's logo on a white plate rising from the bottom with the disc pair.
+// The whole card links to the channel; a round YouTube-red play badge (or a
+// "Coming soon" tag) sits on the plate's corner.
 const CHANNEL_TONES = ["yellow", "purple", "pink", "orange"] as const;
 function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
     return (
         <LivelyCard
             tone={CHANNEL_TONES[index % 4]}
-            icon={<Youtube size={22} />}
+            centered
             text={channel.description}
             action={
-                channel.comingSoon ? (
-                    <span className="lc-btn lc-btn--muted">Coming soon</span>
-                ) : (
-                    <a href={channel.youtube} target="_blank" rel="noopener noreferrer" className="lc-btn">
-                        <Youtube size={18} className="text-[#FF0000]" />
-                        YouTube
+                channel.comingSoon ? undefined : (
+                    <a href={channel.youtube} target="_blank" rel="noopener noreferrer" className="lc-cover">
+                        <span className="sr-only">{channel.name} on YouTube</span>
                     </a>
                 )
             }
@@ -120,6 +119,13 @@ function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
                 <div className="lc-plate">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={channel.logo} alt={channel.name} loading="lazy" decoding="async" className={`${channel.logoClass} w-auto max-w-[80%] object-contain`} />
+                    {channel.comingSoon ? (
+                        <span className="lc-soon">Coming soon</span>
+                    ) : (
+                        <span className="lc-yt" aria-hidden>
+                            <Play size={18} fill="currentColor" strokeWidth={0} style={{ marginLeft: 3 }} />
+                        </span>
+                    )}
                 </div>
             }
         />

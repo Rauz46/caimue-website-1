@@ -38,7 +38,7 @@ const PathCard = ({
             tone={brand ? "purple" : "pink"}
             eyebrow={<>{icon}{eyebrow}</>}
             title={<>{titlePrefix} <span style={{ color: accent }}>{titleAccent}</span></>}
-            icon={brand ? <Megaphone size={22} /> : <Sparkles size={22} />}
+            centered
             text={description}
             action={
                 <Link href="/contact" className="lc-btn">
