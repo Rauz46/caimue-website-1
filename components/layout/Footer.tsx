@@ -27,7 +27,7 @@ export function Footer() {
     return (
         <footer className="relative bg-white overflow-hidden">
             {/* FANCY A CHAT SECTION - HERO STYLE */}
-            <section className="relative min-h-[400px] md:h-[450px] flex items-center overflow-hidden">
+            <section className="cv-auto relative min-h-[400px] md:h-[450px] flex items-center overflow-hidden" style={{ containIntrinsicSize: "auto 450px" }}>
                 <BackgroundGradientAnimation
                     autoMove
                     blendingValue="normal" // violet on violet: hard-light looked identical but doubled the GPU cost
@@ -95,8 +95,9 @@ export function Footer() {
             <div className="bg-white py-10">
                 <div className="container">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                        {/* LOGO */}
-                        <Link href="/" className="cm-logo-link" aria-label="Caimue - Go to homepage">
+                        {/* LOGO + what Caimue is (v7 footer line) */}
+                        <div className="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
+                            <Link href="/" className="cm-logo-link" aria-label="Caimue - Go to homepage">
                             <Image
                                 src="/logos/finalized-logo/Caimue-logo.svg"
                                 alt="Caimue"
@@ -104,11 +105,25 @@ export function Footer() {
                                 height={104}
                                 className="h-12 md:h-14 w-auto object-contain"
                             />
-                        </Link>
+                            </Link>
+                            <p className="text-[14px] text-gray-500 leading-snug md:whitespace-nowrap [text-wrap:balance]">
+                                Caimue. A digital entertainment company. Tamil · Malayalam · English.
+                            </p>
+                        </div>
 
                         {/* RIGHT SIDE: Contact + Social Icons grouped together */}
-                        <div className="flex items-center gap-6">
-                            <Link href="/contact" className="text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">Contact</Link>
+                        <div className="flex flex-col lg:flex-row items-center gap-6">
+                            <nav aria-label="Footer" className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+                                {[
+                                    ["/originals", "Originals"],
+                                    ["/for-brands", "For Brands"],
+                                    ["/for-artists", "For Artists"],
+                                    ["/about", "About"],
+                                    ["/contact", "Contact"],
+                                ].map(([href, label]) => (
+                                    <Link key={href} href={href} className="whitespace-nowrap text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors">{label}</Link>
+                                ))}
+                            </nav>
                             <div className="flex items-center gap-4">
                                 <a href="https://www.instagram.com/caimue_inc/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-md border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[var(--caimue-purple)] hover:border-gray-200 transition-all bg-gray-50/50">
                                     <Instagram size={18} />
@@ -122,6 +137,14 @@ export function Footer() {
 
                     <div className="mt-10 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[13px] font-medium">
                         <p>© 2026 Caimue. All rights reserved.</p>
+                        <p className="text-center">
+                            <a href="https://www.youtube.com/@ennitto" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Ennitto</a>
+                            {" · "}
+                            <a href="https://www.youtube.com/channel/UCXWl6JIzlHIJCYbaCvV_VFg" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Ennamo</a>
+                            {" · "}
+                            <a href="https://www.youtube.com/@TeqThots" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">TeqDots</a>
+                            {" on YouTube and Instagram · Chennai"}
+                        </p>
                         <div className="flex gap-8">
                             <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="hover:text-gray-600 transition-colors">Terms of Service</Link>

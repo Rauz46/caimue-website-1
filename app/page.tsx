@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BrandGround } from "@/components/ui/BrandGround";
@@ -8,6 +9,7 @@ import { PlatformsSection } from "@/components/ui/PlatformsSection";
 import { FeatureFilmsSection } from "@/components/ui/FeatureFilmsSection";
 import { CorporateVideoSection } from "@/components/ui/CorporateVideoSection";
 import { JourneySection } from "@/components/ui/JourneySection";
+import { FormatsSection } from "@/components/ui/FormatsSection";
 import WhoAreYouSection from "@/components/ui/WhoAreYouSection";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import MovieCardsFan from "@/components/ui/MovieCardsFan";
@@ -15,6 +17,9 @@ import MovieCardsFan from "@/components/ui/MovieCardsFan";
 export default function Home() {
   return (
     <>
+      {/* Don't paint until the whole hero is parsed, so the first frame is the finished hero
+          (no half-built hero that then grows). Chromium; other browsers ignore it. React hoists it to <head>. */}
+      <link rel="expect" href="#hero-end" blocking="render" />
       <section className="flex flex-col pt-28 md:pt-32 relative overflow-hidden pb-4">
         {/* Background Animation */}
         <BrandGround className="z-0" />
@@ -39,21 +44,30 @@ export default function Home() {
         {/* Text content — top-aligned, centered horizontally */}
         <div className="container relative z-10 flex flex-col items-center text-center">
 
+          {/* Badge */}
+          <span className="cm-in hero-badge mb-5">Digital entertainment · Tamil · Malayalam</span>
+
           <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center overflow-visible">
             <span className="leading-[1.2] tracking-tight text-white text-center block font-bold max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-3 overflow-visible">
-              <span className="cm-line block overflow-visible">Video Worth Watching.</span>
+              <span className="cm-line block overflow-visible">Stories Worth</span>
               <span className="cm-line cm-line--2 text-[#FFC4DD] flex flex-wrap items-center justify-center gap-x-4 overflow-visible">
-                <span className="overflow-visible">Brands Worth Building.</span>
+                <span className="overflow-visible">The Scroll.</span>
               </span>
             </span>
           </h1>
 
           {/* Subtext */}
           <motion.p
-            className="cm-in cm-in--2 text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-0 leading-snug font-medium [text-wrap:balance]"
+            className="cm-in cm-in--2 text-lg md:text-xl text-white/90 max-w-5xl mx-auto mb-0 leading-snug font-medium [text-wrap:balance]"
           >
-            Caimue creates video content for B2B brands worth remembering. Corporate films, LinkedIn campaigns, and the craft to make them land.
+            Caimue is a digital entertainment company. We make micro-series, short films and feature films in Tamil and Malayalam, with new artists in front of the camera and brands that want to be part of the story.
           </motion.p>
+
+          {/* Buttons */}
+          <div className="cm-in cm-in--2 mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/originals" className="hero-btn">Watch Our Originals</Link>
+            <Link href="/contact" className="hero-btn hero-btn--ghost">Work With Us</Link>
+          </div>
         </div>
 
         {/* Movie Cards Fan – full width, below the text */}
@@ -75,25 +89,29 @@ export default function Home() {
 
         {/* Scroll Down Indicator */}
         <motion.div
+          id="hero-end"
           className="cm-in cm-in--4 relative z-10 flex justify-center mt-6 mb-2"
         >
           <ScrollIndicator />
         </motion.div>
       </section>
 
-      {/* ==================== JOURNEY SECTION (MOVED UP) ==================== */}
+      {/* ==================== TRACK RECORD ==================== */}
       <JourneySection />
 
-      {/* ==================== PLATFORMS SECTION (CENTERED) ==================== */}
+      {/* ==================== WHAT WE MAKE ==================== */}
+      <FormatsSection />
+
+      {/* ==================== OUR CHANNELS ==================== */}
       <PlatformsSection />
 
-      {/* ==================== CORPORATE VIDEO SERVICES ==================== */}
+      {/* ==================== FOR BRANDS ==================== */}
       <CorporateVideoSection />
 
-      {/* ==================== FEATURE FILMS (COMING SOON) ==================== */}
+      {/* ==================== THE BIG SCREEN ==================== */}
       <FeatureFilmsSection />
 
-      {/* ==================== WHO ARE YOU SECTION ==================== */}
+      {/* ==================== WORK WITH US ==================== */}
       <WhoAreYouSection />
 
     </>

@@ -41,7 +41,9 @@ type Channel = {
     logoClass: string;
     name: string;
     description: string;
+    language: string;
     youtube: string;
+    instagram?: string;
     comingSoon?: boolean;
     from: string;   // brand gradient start (pulled from the logo)
     to: string;     // brand gradient end
@@ -53,8 +55,8 @@ const channels: Channel[] = [
         logo: "/ennitto%20final.png",
         logoClass: "h-16",
         name: "Ennitto",
-        description:
-            "We produce original Malayalam short films — from shorts to OTT content. We discover talent and build toward theatrical and streaming releases.",
+        language: "Malayalam",
+        description: "Original Malayalam short films and micro-series. New faces, familiar feelings.",
         youtube: "https://www.youtube.com/@ennitto",
         from: "#E11D74",
         to: "#0FB5A6",
@@ -64,8 +66,8 @@ const channels: Channel[] = [
         logo: "/ennamo%20new.png",
         logoClass: "h-16",
         name: "Ennamo",
-        description:
-            "Our Tamil short film channel by Caimue. We produce original Tamil shorts, discover Tamil talent, and build toward theatrical and OTT releases.",
+        language: "Tamil",
+        description: "Original Tamil shorts and micro-series, made in Chennai.",
         youtube: "https://www.youtube.com/channel/UCXWl6JIzlHIJCYbaCvV_VFg",
         from: "#6D5BF0",
         to: "#F0435A",
@@ -75,8 +77,8 @@ const channels: Channel[] = [
         logo: "/logos/teqdots-logo.png",
         logoClass: "h-[72px]",
         name: "TeqDots",
-        description:
-            "Documentary-style conversations that capture how companies are built. Deep dives into technology, strategy, and scale.",
+        language: "English",
+        description: "How technology companies are built, told by the people building them.",
         youtube: "https://www.youtube.com/@TeqThots",
         from: "#7C3AED",
         to: "#F59E0B",
@@ -86,8 +88,8 @@ const channels: Channel[] = [
         logo: "/startup%20musings%20final.png",
         logoClass: "h-20",
         name: "Startup Musings",
-        description:
-            "Candid conversations with founders and builders — the ideas, lessons, and journeys behind startups as they grow.",
+        language: "Coming soon",
+        description: "Candid conversations with founders: the ideas, the mistakes and the lessons.",
         youtube: "#",
         comingSoon: true,
         from: "#1E3A8A",
@@ -96,16 +98,16 @@ const channels: Channel[] = [
     },
 ];
 
-// Channel card — home "lively" card: solid colour, centred text, and the
+// Channel card — home "lively" card: solid colour, language label, centred text, and the
 // channel's logo on a white plate rising from the bottom with the disc pair.
-// The whole card links to the channel; a round YouTube-red play badge (or a
-// "Coming soon" tag) sits on the plate's corner.
+// The whole card links to the channel's YouTube; a round YouTube-red play badge sits on the plate's corner.
 const CHANNEL_TONES = ["yellow", "purple", "pink", "orange"] as const;
 function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
     return (
         <LivelyCard
             tone={CHANNEL_TONES[index % 4]}
             centered
+            eyebrow={channel.language}
             text={channel.description}
             action={
                 channel.comingSoon ? undefined : (
@@ -119,9 +121,8 @@ function ChannelCard({ channel, index }: { channel: Channel; index: number }) {
                 <div className="lc-plate">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={channel.logo} alt={channel.name} loading="lazy" decoding="async" className={`${channel.logoClass} w-auto max-w-[80%] object-contain`} />
-                    {channel.comingSoon ? (
-                        <span className="lc-soon">Coming soon</span>
-                    ) : (
+                    {/* "Coming soon" already sits in the card's label, so a coming-soon plate has no badge */}
+                    {!channel.comingSoon && (
                         <span className="lc-yt" aria-hidden>
                             <Play size={18} fill="currentColor" strokeWidth={0} style={{ marginLeft: 3 }} />
                         </span>
@@ -141,7 +142,8 @@ export function PlatformsSection() {
         <section
             ref={sectionRef}
             id="channels"
-            className="relative bg-white pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden scroll-mt-24"
+            className="cv-auto relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden scroll-mt-24"
+            style={{ background: "#F1E6FF", containIntrinsicSize: "auto 700px" }}
         >
             <SectionDownArrow />
 
@@ -189,22 +191,11 @@ export function PlatformsSection() {
             <motion.div
                 className="flex flex-col items-center text-center mb-12 px-6 md:px-4"
             >
-                {/* Badge — same style as the Track Record section */}
-                <div
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
-                    style={{ background: "#EAE0FB" }}
-                >
-                    <span className="text-[13px] font-semibold" style={{ color: "#5B299D" }}>
-                        Now Streaming
-                    </span>
-                </div>
-
                 <h2 className="cm-rise cm-h2 font-serif">
                     Our Channels
                 </h2>
-                <p className="mt-5 text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-2xl">
-                    Original Tamil &amp; Malayalam short films and founder-led documentaries — homegrown channels
-                    building an audience on the way to feature films.
+                <p className="mt-5 text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-2xl [text-wrap:balance]">
+                    Homegrown channels, each with its own audience.
                 </p>
             </motion.div>
 

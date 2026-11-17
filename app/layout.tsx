@@ -34,15 +34,15 @@ const caveat = Caveat({
   preload: false, // decorative handwriting only
 });
 
-const SITE_TITLE = "Caimue | Video Worth Watching. Brands Worth Building.";
-const SITE_DESCRIPTION = "Corporate films and LinkedIn campaigns for B2B brands worth remembering.";
-const SHARE_IMAGE = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Caimue: Video Worth Watching. Brands Worth Building." };
+const SITE_TITLE = "Caimue | Tamil and Malayalam Micro-Series, Short Films and Originals";
+const SITE_DESCRIPTION = "Caimue is a digital entertainment company making micro-series, short films and feature films in Tamil and Malayalam, and story-led video for brands.";
+const SHARE_IMAGE = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Caimue: Tamil and Malayalam micro-series, short films and originals" };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.caimue.com"),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
-  keywords: ["B2B marketing agency", "video marketing", "corporate videos", "LinkedIn media campaigns", "marketing websites", "Tamil content", "Malayalam content", "TeqDots", "FunShortz"],
+  keywords: ["Tamil micro-series", "Malayalam micro-series", "Tamil short films", "Malayalam short films", "digital entertainment", "brand micro-series", "Ennitto", "Ennamo", "TeqDots"],
   authors: [{ name: "Caimue" }],
   openGraph: {
     title: SITE_TITLE,

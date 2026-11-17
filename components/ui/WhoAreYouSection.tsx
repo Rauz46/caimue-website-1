@@ -13,6 +13,7 @@ type PathCardProps = {
     eyebrow: string;
     titlePrefix: string;
     titleAccent: string;
+    href: string;
     description: string;
     icon: React.ReactNode;
     accent: string;      // solid accent colour (hex)
@@ -27,6 +28,7 @@ const PathCard = ({
     eyebrow,
     titlePrefix,
     titleAccent,
+    href,
     description,
     icon,
     accent,
@@ -41,7 +43,7 @@ const PathCard = ({
             centered
             text={description}
             action={
-                <Link href="/contact" className="lc-btn">
+                <Link href={href} className="lc-btn">
                     Get In Touch
                     <ArrowRight className="lc-arrow" size={18} />
                 </Link>
@@ -56,6 +58,7 @@ const BrandOwnerCard = () => (
         eyebrow="For Brands"
         titlePrefix="Are you a"
         titleAccent="Brand Owner?"
+        href="/for-brands#enquiry"
         description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
         icon={<Megaphone size={14} strokeWidth={2.5} />}
         accent="#FFC633"
@@ -72,6 +75,7 @@ const ArtistCard = () => (
         eyebrow="For Artists"
         titlePrefix="Are you an"
         titleAccent="Aspiring Artist?"
+        href="/for-artists#apply"
         description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
         icon={<Sparkles size={14} strokeWidth={2.5} />}
         accent="#FFE89A"
@@ -86,8 +90,8 @@ const ArtistCard = () => (
 export default function WhoAreYouSection() {
     return (
         <section
-            className="relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-visible -mt-1"
-            style={{ background: "#F1E6FF" }}
+            className="cv-auto relative bg-white pt-16 md:pt-20 pb-16 md:pb-20 overflow-visible -mt-1"
+            style={{ containIntrinsicSize: "auto 650px" }}
         >
             {/* Grid Texture Overlay (same as Journey section) */}
             <div

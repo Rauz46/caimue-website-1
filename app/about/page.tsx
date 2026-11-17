@@ -18,12 +18,21 @@ const allTeam = [
   { name: "Vivin Raj",          role: "Startup Champion",         image: "/team/v2/vivin.webp",   color: "#DB2777",
     bio: "Creative force running the whole show. From scripts to strategy, he's the spark that turned a YouTube channel into a studio.",
     fun: "Fueled by midnight edits and filter coffee", tags: ["Creative", "Execution"] },
+  { name: "Gowtham S",          role: "Marketing Champion",       image: "/team/v2/gowtham.webp", color: "#F97316",
+    bio: "Gets our stories in front of the audiences they deserve. Growth strategy by day, thumbnail perfectionist by night.",
+    fun: "Knows the algorithm better than it knows itself", tags: ["Marketing", "Growth"] },
   { name: "Oliviya Selvaraj",   role: "Content Creator & Brand Host", image: "/team/v2/oliviya.webp", color: "#F43F5E",
     bio: "The face and voice that makes brands feel human. Camera-ready, always on, never off-script.",
     fun: "Never needs a second take", tags: ["Content", "On-Camera"] },
   { name: "Megha Balakrishnan", role: "WordPress AI Web Creator", image: "/team/v2/megha.webp",   color: "#2563EB",
     bio: "Builds AI-powered websites that bring our stories online. Design sense meets machine speed, and the web keeps up.",
     fun: "Ships sites faster than the coffee gets cold", tags: ["Web", "AI"] },
+  { name: "Godson Azariah",     role: "AI Web Developer",         image: "/team/v2/godson.webp",  color: "#0891B2",
+    bio: "Builds the websites that carry every story. Self-taught, fast-shipping, quietly essential.",
+    fun: "Ships a feature between two cups of chai", tags: ["Web", "Dev"] },
+  { name: "Manjusri S",         role: "Marketing Associate",      image: "/team/v2/manjusri.webp", color: "#F59E0B",
+    bio: "With a marketer’s eye, a creative mindset and a passion for storytelling.",
+    fun: "", tags: [] },
   { name: "Roshan S",           role: "Junior Associate, Content Creator", image: "/team/v2/roshan.webp", color: "#10B981",
     bio: "With a creative eye, a storyteller’s mind and a passion for content that connects.",
     fun: "", tags: [] },
@@ -36,6 +45,13 @@ const clients = [
   { name: "Aventei", src: "/logos/loglos/aventei.png" },
   { name: "Talentou", src: "/logos/loglos/cropped-Talentou-3.png" },
   { name: "Nuivio", src: "/logos/loglos/Nuivio.png" },
+];
+
+const beliefs = [
+  { title: "Story First",       line: "Format, platform and budget come after. If the story is not worth watching, nothing else matters.", rotation: "-rotate-[3deg]", tape: "#C4B5FD" },
+  { title: "Rooted In Language", line: "Tamil and Malayalam, written from inside the culture.",                                                 rotation: "rotate-[2deg]",  tape: "#FBCFE8" },
+  { title: "New Talent",        line: "We would rather discover an artist than rent a famous one.",                                            rotation: "-rotate-[2deg]", tape: "#FDE68A" },
+  { title: "Lean And AI-First", line: "Small team, fast cycles, every rupee on the screen.",                                                    rotation: "rotate-[3deg]",  tape: "#A5F3FC" },
 ];
 
 const cultureCards = [
@@ -67,7 +83,7 @@ function TeamCard({ person, index }: { person: typeof allTeam[0]; index: number 
       whileHover={{ rotate: 0, y: -6, zIndex: 30,
         boxShadow: "0 18px 36px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.08)",
         transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } }}
-      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] sm:max-w-none sm:w-[calc(50%-14px)] md:w-[calc((100%-48px)/3)] xl:w-[calc((100%-96px)/5)] ${index % 2 === 1 ? "xl:mt-7" : ""}`}
+      className={`group relative cursor-default select-none bg-white w-full max-w-[320px] sm:max-w-none sm:w-[calc(50%-14px)] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-72px)/4)] ${index % 2 === 1 ? "lg:mt-7" : ""}`}
       style={{
         padding: "10px",
         boxShadow: "0 6px 20px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07)",
@@ -160,21 +176,18 @@ export default function AboutPage() {
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
           {/* Headline */}
           <motion.h1
-            className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif"
+            className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif [text-wrap:balance]"
           >
-            <span className="text-white font-bold block md:whitespace-nowrap">
-              The studio where{" "}
-              <span className="text-[#FFC4DD]">
-                imagination
-              </span>
+            <span className="text-white font-bold block">
+              A Digital Entertainment Company
             </span>
-            <span className="text-white font-bold block md:whitespace-nowrap">
-              meets{" "}
-              <span className="text-[#FFC4DD]">
-                intelligence
-              </span>
+            <span className="text-[#FFC4DD] font-bold block">
+              For Tamil And Malayalam.
             </span>
           </motion.h1>
+          <p className="cm-in cm-in--2 text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium leading-snug [text-wrap:balance]">
+            We make stories for the screen in your hand today, and for the big screen next.
+          </p>
 
         </div>
       </section>
@@ -226,29 +239,18 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-left"
             >
-              <h2 className="cm-rise cm-h2 mb-5 font-serif text-center">
-                Our{" "}
+              <h2 className="cm-rise cm-h2 mb-5 font-serif text-center [text-wrap:balance]">
+                It Started With{" "}
                 <span className="text-[#5B299D]">
-                  Story
+                  Short Films.
                 </span>
               </h2>
-              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans mb-4">
-                Caimue started with a simple belief: great stories can come from
-                anywhere. We began on YouTube, producing original Malayalam and Tamil short films —
-                written, cast, and directed in-house — and grew past 2 million views one honest
-                story at a time.
-              </p>
-              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans mb-4">
-                Along the way we discovered something bigger than films: people. More than 25
-                writers, directors, and actors earned their first real credits with us, and our
-                channels became homes for regional stories and founder journeys told with
-                cinematic craft.
-              </p>
-              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans">
-                Today that same craft powers a video-first B2B marketing agency — corporate videos,
-                LinkedIn media campaigns, and marketing websites built with the same speed and soul.
-                Our short films and features stay part of the story too, a proving ground for the
-                talent behind every brand we work with.
+              <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed font-sans [text-wrap:pretty]">
+                Caimue began as Café Musings, a small group making short films and building channels from
+                zero. With no ad spend, those films crossed 2 million organic views, and 25+ writers,
+                directors and actors made their first work with us. Brands noticed and asked to be part of
+                the stories. Today we make micro-series, short films and brand stories in Tamil and
+                Malayalam, and we are building toward our first Malayalam feature film.
               </p>
             </motion.div>
 
@@ -334,7 +336,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Polaroid grid */}
-          <div className="flex flex-wrap justify-center gap-7 md:gap-6 max-w-[1120px] mx-auto" style={{ paddingBottom: "28px" }}>
+          <div className="flex flex-wrap justify-center gap-7 md:gap-6 max-w-[1040px] mx-auto" style={{ paddingBottom: "28px" }}>
             {allTeam.map((person, i) => (
               <TeamCard key={person.name} person={person} index={i} />
             ))}
@@ -365,53 +367,64 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="cm-rise cm-h2 mb-4 font-serif">
-              We work hard.{" "}
-              <span className="text-[#5B299D]">We celebrate harder.</span>
+            <h2 className="cm-rise cm-h2 mb-0 font-serif">
+              What We{" "}
+              <span className="text-[#5B299D]">Believe</span>
             </h2>
-            <p className="text-[#4A3F5C] text-lg max-w-lg mx-auto font-sans">
-              No rigid hierarchies, no pointless meetings, just good people, great coffee, and work that actually matters.
-            </p>
           </motion.div>
 
-          {/* Polaroid Cards — always one row of five */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-5 lg:gap-7 justify-items-center">
-            {cultureCards.map((card, i) => (
+          {/* Belief notes: the crew board's paper-and-tape cards, text only */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 max-w-[1080px] mx-auto">
+            {beliefs.map((b, i) => (
               <motion.div
-                key={card.caption}
+                key={b.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`${card.rotation} relative bg-white shadow-lg p-2.5 pb-3.5 w-full max-w-[220px] transition-[translate,rotate,box-shadow] duration-250 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:rotate-0 cursor-default ${i === 4 ? "col-span-2 sm:col-span-1 justify-self-center sm:justify-self-auto max-w-[170px] sm:max-w-[220px]" : ""}`}
+                className={`${b.rotation} relative bg-white shadow-lg px-6 pt-9 pb-7 w-full max-w-[320px] mx-auto text-center transition-[translate,rotate,box-shadow] duration-250 ease-out hover:-translate-y-1 hover:shadow-xl hover:rotate-0 cursor-default`}
               >
-                {/* Tape strip */}
                 <div
-                  className="absolute -top-3 left-1/2 w-14 h-6 rounded-sm opacity-80 z-10"
-                  style={{
-                    background: card.tape,
-                    transform: "translateX(-50%) rotate(-2deg)",
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
-                  }}
+                  className="absolute -top-3 left-1/2 w-14 h-6 rounded-sm opacity-80"
+                  style={{ background: b.tape, transform: "translateX(-50%) rotate(-2deg)", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
                 />
-                <div className="relative aspect-square overflow-hidden mb-3 bg-purple-50">
-                  <Image
-                    src={card.img}
-                    alt={card.caption}
-                    fill
-                    sizes="(max-width: 640px) 45vw, 220px"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="text-center text-sm font-bold text-gray-800 font-serif leading-tight mb-1">
-                  {card.caption}
-                </p>
-                <p className="text-center font-handwriting text-[13px] text-purple-500 leading-tight">
-                  {card.sub}
-                </p>
+                <p className="text-xl font-bold text-gray-900 font-serif leading-tight mb-3">{b.title}</p>
+                <p className="text-[15px] text-[#4A3F5C] leading-relaxed font-sans [text-wrap:pretty]">{b.line}</p>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          WHERE WE ARE
+          ================================================================= */}
+      <section className="cv-auto relative py-14 md:py-20 overflow-hidden bg-white">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            opacity: 0.05,
+            backgroundImage:
+              "linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+          <h2 className="cm-rise cm-h2 mb-8 font-serif">
+            Where We{" "}
+            <span className="text-[#5B299D]">Are</span>
+          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="cm-disc cm-disc--purple inline-flex flex-col items-center text-center rounded-[28px] px-10 py-9 max-w-md mx-auto"
+          >
+            <p className="text-2xl font-bold font-serif text-white mb-2">Chennai</p>
+            <p className="text-white/90 text-base leading-relaxed">6th Floor, Arihant Technopolis, Chennai 600096</p>
+          </motion.div>
+          <p className="mt-6 text-[#4A3F5C] text-base">Part of the Nuivio / Aventei portfolio.</p>
         </div>
       </section>
 

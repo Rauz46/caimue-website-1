@@ -13,6 +13,9 @@ const nextConfig = {
             { source: "/platforms/teqthots", destination: "/platforms/teqdots", permanent: true },
             // "/collaborate" never existed; send it to the contact page instead of a 404
             { source: "/collaborate", destination: "/contact", permanent: false },
+            // v7 site map: brands and creators pages became For Brands and For Artists
+            { source: "/brands", destination: "/for-brands", permanent: true },
+            { source: "/creators", destination: "/for-artists", permanent: true },
         ];
     },
 };

@@ -192,7 +192,7 @@ export default function ShortFilmsPage() {
                             We provide funding, production support, and distribution for short films.
                             This isn't a one-off deal — we build long-term partnerships.
                         </p>
-                        <MagneticButton href="/creators" variant="primary">
+                        <MagneticButton href="/for-artists" variant="primary">
                             Learn About Our Program
                         </MagneticButton>
                     </motion.div>
