@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Film, Handshake, Sparkles, Star } from "lucide-react";
+import { Film, Handshake, Play, Sparkles, Star } from "lucide-react";
 import Image from "next/image";
 import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
@@ -46,7 +46,7 @@ export function JourneySection() {
                             className="text-[13px] font-semibold"
                             style={{ color: "#5B299D" }}
                         >
-                            Loved by Audiences
+                            Loved by audiences
                         </span>
                     </motion.div>
 
@@ -54,29 +54,24 @@ export function JourneySection() {
                     <motion.h2
                         className="cm-rise cm-h2 font-serif mb-5"
                     >
-                        Our Track Record
+                        2 Million Views. Zero Ad Spend.
                     </motion.h2>
 
-                    {/* Sub-heading - Exactly 2 lines */}
                     <motion.div
-                        className="max-w-[750px] mx-auto font-sans text-lg leading-relaxed"
+                        className="max-w-[750px] mx-auto font-sans text-lg leading-relaxed [text-wrap:balance]"
                         style={{ color: "#4A3F5C" }}
                     >
                         <p>
-                            We've produced films, promoted brands, and discovered talent across Tamil, Malayalam, and English. Here's our journey as we build toward feature films.
+                            Every view earned by the story, not bought.
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Three Cards */}
-                <div className="home-wrap grid grid-cols-1 lg:grid-cols-3 gap-6 relative" style={{ zIndex: 10 }}>
-                    {/* Card 1: Films & Views */}
+                {/* Four stats, one card each */}
+                <div className="home-wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 relative" style={{ zIndex: 10 }}>
                     <FilmsCard isInView={isInView} />
-
-                    {/* Card 2: Brand Collaborations */}
+                    <ViewsCard />
                     <BrandCard isInView={isInView} />
-
-                    {/* Card 3: Artists Discovered */}
                     <ArtistsCard isInView={isInView} />
                 </div>
             </div>
@@ -146,61 +141,122 @@ function Group({ l, c, r }: { l: [string, string]; c: [string, string]; r: [stri
     );
 }
 
-// Card 1: Films & Views — a 3D stacked deck of posters
-function FilmsCard(_: { isInView: boolean }) {
-    // in slot order: left, centre, right
-    const deck: [string, string][] = [
-        ["/images/Movies/Smile!.jpg", "Smile!"],
-        ["/images/Movies/Welcome Home.jpg", "Welcome Home"],
-        ["/images/Movies/Malsya Mandooka Mahamaham.jpg", "Malsya Mandooka Mahamaham"],
-    ];
+// Cards 1 and 2: the same three-slot rotation as cards 3 and 4 (one item in focus, two behind),
+// but on the vertical axis and automatic: every 3.9s the top item comes forward to the centre, the
+// centre one steps back to the bottom, and the bottom one goes round the back to the top.
+// Runs only while the card is on screen and the tab is visible; reduced motion stays still.
+const VSLOTS = ["t", "c", "b"] as const;
+const vslotFor = (i: number, step: number) => VSLOTS[(i + step) % 3];
+const AUTO_EVERY = 3900;
+// offsetMs staggers each card so the two never switch at the same moment
+function useAutoRotation(ref: React.RefObject<HTMLElement | null>, offsetMs = 0) {
+    const [step, setStep] = useState(0);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let timer: number | undefined;
+        let lead: number | undefined;
+        const tick = () => { if (!document.hidden) setStep((v) => v + 1); };
+        const start = () => {
+            if (timer !== undefined || lead !== undefined) return;
+            lead = window.setTimeout(() => { lead = undefined; tick(); timer = window.setInterval(tick, AUTO_EVERY); }, AUTO_EVERY + offsetMs);
+        };
+        const stop = () => { window.clearTimeout(lead); window.clearInterval(timer); lead = timer = undefined; };
+        const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { threshold: 0.25 });
+        io.observe(el);
+        return () => { stop(); io.disconnect(); };
+    }, [ref, offsetMs]);
+    return step;
+}
+
+function VerticalFlow({ items, kind, offsetMs = 0 }: { items: [string, string][]; kind: "poster" | "plate"; offsetMs?: number }) {
     const ref = useRef<HTMLDivElement>(null);
-    const step = useHoverRotation(ref);
+    const step = useAutoRotation(ref, offsetMs);
+    return (
+        <div className={`lc-vflow lc-vflow--${kind}`} ref={ref}>
+            {items.map(([src, alt], i) => (
+                <div key={src} className="lc-vflow-item" data-slot={vslotFor(i, step)}>
+                    {kind === "poster" ? (
+                        <Image src={src} alt={alt} fill sizes="220px" />
+                    ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={src} alt={alt} loading="lazy" decoding="async" />
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+}
+
+// Card 1: Original short films — three posters
+function FilmsCard(_: { isInView: boolean }) {
     return (
         <LivelyCard
             tone="purple"
             stat="20+"
-            title="Short Films, 2M+ Views"
             icon={<Film size={22} />}
-            text="Original short films that have crossed 2 million organic views on YouTube."
-            visualHeight={240}
+            text="Original short films in Tamil and Malayalam."
+            visualHeight={250}
             visual={
-                <div className="lc-flow" ref={ref}>
-                    {deck.map(([src, alt], i) => (
-                        <div key={src} className={`lc-flow-card lc-flow-card--${slotFor(i, step)}`}>
-                            <Image src={src} alt={alt} fill sizes="240px" />
-                        </div>
-                    ))}
-                </div>
+                <VerticalFlow
+                    kind="poster"
+                    items={[
+                        ["/images/Movies/Smile!.jpg", "Smile!"],
+                        ["/images/Movies/Welcome Home.jpg", "Welcome Home"],
+                        ["/images/Movies/Malsya Mandooka Mahamaham.jpg", "Malsya Mandooka Mahamaham"],
+                    ]}
+                />
             }
         />
     );
 }
 
-// Card 2: Brand Collaborations — three people from the brand films
+// Card 2: Organic views — the three channels' logo plates (same white plate as the channel cards)
+function ViewsCard() {
+    return (
+        <LivelyCard
+            tone="yellow"
+            stat="2M+"
+            icon={<Play size={22} />}
+            text="Organic views across our channels."
+            visualHeight={250}
+            visual={
+                <VerticalFlow
+                    kind="plate"
+                    offsetMs={1950}
+                    items={[
+                        ["/ennitto%20final.png", "Ennitto"],
+                        ["/ennamo%20new.png", "Ennamo"],
+                        ["/logos/teqdots-logo.png", "TeqDots"],
+                    ]}
+                />
+            }
+        />
+    );
+}
+
+// Card 3: Brand Collaborations — three people from the brand films
 function BrandCard(_: { isInView: boolean }) {
     return (
         <LivelyCard
             tone="pink"
             stat="15+"
-            title="Brand Collaborations"
             icon={<Handshake size={22} />}
-            text="Brand stories woven naturally into films and TeqDots — never feeling like ads."
+            text="Brand collaborations, written into the story."
             visualHeight={260}
             visual={<Group l={["/cutouts/c-piqual.webp", "Piqual brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
         />
     );
 }
 
-// Card 3: Artists Discovered — three of the artists
+// Card 4: Artists Discovered — three of the artists
 function ArtistsCard(_: { isInView: boolean }) {
     return (
         <LivelyCard
             tone="orange"
             stat="25+"
-            title="Artists Discovered"
             icon={<Sparkles size={22} />}
-            text="Writers, directors, and actors creating under our production."
+            text="Artists discovered: writers, directors and actors."
             visualHeight={260}
             visual={<Group l={["/cutouts/c-artist2.webp", "An artist discovered by Caimue"]} c={["/cutouts/c-megha.webp", "Megha, an artist discovered by Caimue"]} r={["/cutouts/c-sajan.webp", "An artist discovered by Caimue"]} />}
         />

@@ -2,36 +2,52 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Video, Linkedin, Globe } from "lucide-react";
+import { Video, Smartphone, Handshake } from "lucide-react";
+import Link from "next/link";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
 import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
 const services = [
     {
+        icon: Smartphone,
+        label: "Brand Micro-Series",
+        description: "A vertical series built around your brand's world. Five to ten episodes, written, shot and released for Reels and Shorts.",
+        cut: "/cutouts/k-reach.webp",
+        cutClass: "lc-cut--even",
+        alt: "A man reacting to an episode on his phone",
+    },
+    {
+        icon: Handshake,
+        label: "Brand Films And Integrations",
+        description: "Your brand written into one of our originals, or a short film of its own. It never feels like an ad.",
+        cut: "/cutouts/k-prove.webp",
+        cutClass: "lc-cut--fill",
+        alt: "Two people shaking hands on a partnership",
+    },
+    {
         icon: Video,
-        label: "Corporate Videos",
-        description: "Founder stories and brand films with cinematic polish.",
-        from: "#F59E0B",
-        to: "#F97316",
-    },
-    {
-        icon: Linkedin,
-        label: "LinkedIn Media Campaigns",
-        description: "Content engines that keep your brand in every feed.",
-        from: "#E91E8C",
-        to: "#F43F5E",
-    },
-    {
-        icon: Globe,
-        label: "Marketing Websites",
-        description: "Sites built to turn visitors into believers.",
-        from: "#8B5CF6",
-        to: "#6366F1",
+        label: "Corporate And Founder Films",
+        description: "Founder stories, company films and launch videos with cinematic craft, for companies in India and the US.",
+        cut: "/cutouts/k-define.webp",
+        cutClass: "lc-cut--fill",
+        alt: "A team planning a film together",
     },
 ];
 
-// Standalone corporate video services banner — airy white spotlight with floating service cards
+// Brands we have worked with: the eight named brands from the site's earlier brand row (logos on file)
+const brandLogos = [
+    { src: "/logos/loglos/Ignitho-Updated-Logo.png", alt: "Ignitho" },
+    { src: "/logos/loglos/aventei.png", alt: "Aventei" },
+    { src: "/logos/loglos/piqual.png", alt: "Piqual" },
+    { src: "/logos/loglos/hael.png", alt: "Hael" },
+    { src: "/logos/loglos/xime.png", alt: "XIME" },
+    { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeify" },
+    { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
+    { src: "/logos/loglos/Nuivio.png", alt: "Nuivio" },
+];
+
+// Home banner 5 "For brands": three ways brands work with us, the brands we have worked with, and the way in
 export function CorporateVideoSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -39,8 +55,8 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
-            style={{ background: "#F1E6FF" }}
+            className="cv-auto relative bg-white pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
+            style={{ containIntrinsicSize: "auto 1160px" }}
         >
             <SectionDownArrow />
 
@@ -95,23 +111,18 @@ export function CorporateVideoSection() {
             <div className="relative z-10 home-wrap">
                 <div className="flex flex-col items-center text-center">
                     {/* Headline first */}
-                    <h2 className="cm-rise cm-h2 font-serif mb-5">
-                        Our Corporate{" "}
-                        <span className="text-[#5B299D]">Video Services</span>
+                    <h2 className="cm-rise cm-h2 font-serif mb-5 [text-wrap:balance]">
+                        Put Your Brand In A Story People Follow.
                     </h2>
 
-                    <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-3xl mb-10 md:mb-12">
-                        We help companies show up
-                        online — corporate films, founder stories, social campaigns and marketing sites that make
-                        brands impossible to scroll past.
+                    <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-3xl mb-10 md:mb-12 [text-wrap:balance]">
+                        People skip ads. They wait for the next episode. We write your brand into series and films that audiences choose to watch.
                     </p>
 
                     {/* Service cards — home "lively" cards with an action cut-out rising from the bottom */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full justify-items-center md:justify-items-stretch">
-                        {services.map(({ icon: Icon, label, description }, i) => {
+                        {services.map(({ icon: Icon, label, description, cut, cutClass, alt }, i) => {
                             const tone = (["orange", "purple", "pink"] as const)[i % 3];
-                            const cut = ["/cutouts/k-define.webp", "/cutouts/k-reach.webp", "/cutouts/k-convert.webp"][i % 3];
-                            const alt = ["A team planning a video together", "A client reacting to a campaign on his phone", "Two people reviewing a website on a laptop"][i % 3];
                             return (
                                 <LivelyCard
                                     key={label}
@@ -122,13 +133,28 @@ export function CorporateVideoSection() {
                                     visualHeight={250}
                                     visual={
                                         // eslint-disable-next-line @next/next/no-img-element
-                                        <img className={`lc-cut ${i === 1 ? "lc-cut--even" : "lc-cut--fill"}`} src={cut} alt={alt} loading="lazy" decoding="async" />
+                                        <img className={`lc-cut ${cutClass}`} src={cut} alt={alt} loading="lazy" decoding="async" />
                                     }
                                 />
                             );
                         })}
                     </div>
 
+                    {/* Brands we have worked with */}
+                    <div className="mt-12 w-full flex flex-col items-center gap-5">
+                        <p className="text-[#4A3F5C] text-sm md:text-base font-medium">Brands we have worked with</p>
+                        {/* one logo per cell on a hairline grid, Clueso-style */}
+                        <ul className="logo-grid" role="list">
+                            {brandLogos.map((l) => (
+                                <li key={l.alt} className="logo-grid-cell">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={l.src} alt={l.alt} loading="lazy" decoding="async" />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <Link href="/for-brands" className="btn-primary mt-10">Start A Brand Story</Link>
                 </div>
             </div>
         </section>

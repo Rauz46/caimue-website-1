@@ -1,515 +1,148 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Linkedin, Mail, Youtube } from "lucide-react";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BrandGround } from "@/components/ui/BrandGround";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import { Button as StatefulButton } from "@/components/ui/stateful-button";
-import { SuccessModal } from "@/components/ui/SuccessModal";
+import "./contact.css";
+
+// v7 copy: one door per audience, each with its own inbox
+const DOORS = [
+  { label: "Brands", line: "A series, a film or a collaboration.", email: "brands@caimue.com", tone: "cm-disc--purple" },
+  { label: "Artists", line: "Actors, writers, directors, crew.", email: "artists@caimue.com", tone: "cm-disc--pink" },
+  { label: "Everything Else", line: "Press, partnerships, careers.", email: "hello@caimue.com", tone: "cm-disc--violet" },
+];
+
+// channel links already used across the site
+const LINKS = [
+  { label: "Ennitto", sub: "YouTube", href: "https://www.youtube.com/@ennitto", Icon: Youtube },
+  { label: "Ennamo", sub: "YouTube", href: "https://www.youtube.com/channel/UCXWl6JIzlHIJCYbaCvV_VFg", Icon: Youtube },
+  { label: "TeqDots", sub: "YouTube", href: "https://www.youtube.com/@TeqThots", Icon: Youtube },
+  { label: "Caimue", sub: "LinkedIn", href: "https://www.linkedin.com/company/caimue-inc", Icon: Linkedin },
+];
 
 export default function ContactPage() {
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-    });
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [submittedName, setSubmittedName] = useState("");
+  return (
+    <main className="min-h-screen flex flex-col font-sans">
+      {/* --- Hero --- */}
+      <section className="relative flex items-center justify-center overflow-hidden pt-32 pb-14 md:pt-36 md:pb-16">
+        <BrandGround className="z-0" />
+        <HeroGrid className="opacity-40 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-10 z-10 pointer-events-none" />
+        <FloatingScribbles className="scale-75 origin-center opacity-80" />
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev: any) => ({ ...prev, [name]: value }));
-    };
+        <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
+          <motion.h1 className="cm-in font-serif text-4xl md:text-5xl lg:text-6xl font-bold !text-white leading-[1.15] tracking-tight">
+            Three Doors. Pick Yours.
+          </motion.h1>
+        </div>
+      </section>
 
-    const handleSubmit = async (e?: React.FormEvent) => {
-        if (e) e.preventDefault();
+      {/* --- The three doors --- */}
+      <section className="relative pt-16 pb-16 md:pt-20 md:pb-20 overflow-hidden" style={{ background: "#F1E6FF" }}>
+        <div className="ct-grid-lines" aria-hidden />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="ct-doors">
+            {DOORS.map((d, i) => (
+              <motion.div
+                key={d.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
+                className={`ct-door cm-disc ${d.tone} [--ds:170px]`}
+              >
+                <h2 className="font-serif text-3xl! md:text-[2.1rem]! font-bold leading-tight! whitespace-nowrap">{d.label}</h2>
+                <p className="mt-2 text-base font-medium [text-wrap:balance]">{d.line}</p>
+                <a className="ct-mail" href={`mailto:${d.email}`}>
+                  <Mail size={16} aria-hidden />
+                  {d.email}
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        try {
-            const response = await fetch("https://formspree.io/f/mreapgye", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                setSubmittedName(formData.firstName);
-                setFormData({
-                    firstName: "",
-                    lastName: "",
-                    email: "",
-                    phone: "",
-                    subject: "",
-                    message: ""
-                });
-                setShowSuccess(true);
-            } else {
-                throw new Error("Form submission failed");
-            }
-        } catch (error) {
-            console.error("Error submitting form:", error);
-            throw error; // Re-throw to allow StatefulButton to handle failure if needed
-        }
-    };
-
-    return (
-        <main className="min-h-screen flex flex-col font-sans">
-            {/* --- SECTION 1: HERO BANNER (Cinematic/Dark) --- */}
-            <section className="relative flex items-center justify-center overflow-hidden pt-32 pb-14 md:pt-36 md:pb-16">
-                <BrandGround className="z-0" />
-
-                {/* Background Elements */}
-                <HeroGrid className="opacity-40 z-10 pointer-events-none" />
-                <div className="absolute inset-0 bg-noise opacity-10 z-10 pointer-events-none" />
-
-                {/* Decorative Elements */}
-                <FloatingScribbles className="scale-75 origin-center opacity-80" />
-
-                <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
-                    <motion.h1
-                        className="cm-in font-serif text-xl md:text-3xl font-bold !text-white leading-none tracking-tight drop-shadow-2xl"
-                    >
-                        Let&apos;s Collaborate
-                    </motion.h1>
-                    <motion.p
-                        className="cm-in text-sm md:text-base !text-white leading-tight font-medium max-w-2xl mx-auto -mt-1 md:-mt-2"
-                    >
-                        Partner with a video-first marketing agency.
-                        <br className="md:hidden" />
-                        <span className="hidden md:inline"> </span>
-                        Let&apos;s create stories that matter.
-                    </motion.p>
-                </div>
-            </section>
-
-            {/* --- SECTION 2: CONTENT AREA (Light Purple Theme) --- */}
-            <section
-                className="pt-20 pb-16 relative overflow-hidden"
-                style={{ background: "#F1E6FF" }}
+      {/* --- Address and links --- */}
+      <section className="cv-auto relative py-16 md:py-20 overflow-hidden bg-white">
+        <div className="ct-grid-lines ct-grid-lines--soft" aria-hidden />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="ct-below">
+            {/* Office card, same style as before */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+              className="group relative"
             >
-
-                {/* Checked grid texture */}
-                <div
-                    className="absolute inset-0 opacity-[0.05] pointer-events-none"
-                    style={{
-                        backgroundImage: `linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)`,
-                        backgroundSize: "40px 40px",
-                    }}
-                />
-
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
-
-                        {/* Left Column: Creative Info — centered on mobile */}
-                        <div className="flex-1 w-full space-y-8 text-center">
-                            {/* Heading with gradient accent */}
-                            <motion.div
-                                className="cm-in cm-in--2"
-                            >
-                                <motion.span
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="inline-block text-[15px] font-semibold text-[#5B299D] mb-3"
-                                >
-                                    Get In Touch
-                                </motion.span>
-                                <h2 className="cm-rise cm-h2 font-serif">
-                                    <span className="text-neutral-900">Ready to Get Your</span>
-                                    <br />
-                                    <span className="text-[#5B299D]">
-                                        Brand Noticed?
-                                    </span>
-                                </h2>
-                            </motion.div>
-
-                            {/* Conversation Topics — Animated Cards */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {[
-                                    { icon: "💰", label: "Invest with Us", desc: "Back stories that scale", from: "#7C3AED", to: "#8B5CF6", soft: "#EDE9FE" },
-                                    { icon: "🎬", label: "Make a Film", desc: "Stories worth telling", from: "#DB2777", to: "#EC4899", soft: "#FCE7F3" },
-                                    { icon: "🤝", label: "Grow Your Brand", desc: "Let's get you noticed", from: "#F59E0B", to: "#F97316", soft: "#FEF3C7" },
-                                    { icon: "🌟", label: "Join the Team", desc: "Become part of the story", from: "#0D9488", to: "#14B8A6", soft: "#CCFBF1" },
-                                ].map((item, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                                                                whileHover={{ y: -6 }}
-                                        className={`cm-in cm-in--3 group cm-disc ${["cm-disc--purple", "cm-disc--pink", "cm-disc--violet", "cm-disc--pink"][idx % 4]} [--ds:130px] rounded-2xl p-6 transition-shadow duration-300 cursor-default`}
-                                        style={{ boxShadow: "0 6px 24px rgba(75, 29, 149, 0.08)" }}
-                                    >
-                                        <div className="relative z-10 flex flex-col items-center gap-3 justify-center text-center">
-                                            <span
-                                                className="flex items-center justify-center w-12 h-12 rounded-xl text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300"
-                                                style={{ background: "#FFFFFF" }}
-                                            >
-                                                {item.icon}
-                                            </span>
-                                            <div>
-                                                <h3 className="font-bold text-neutral-900 text-[15px]">{item.label}</h3>
-                                                <p className="text-[12.5px] text-neutral-500 mt-1 font-medium leading-relaxed">{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Right Column: Contact Form */}
-                        <motion.div
-                            className="cm-in cm-in--3 w-full lg:w-[550px] bg-white rounded-[2.5rem] p-10 md:p-12 shadow-[0_20px_50px_rgba(76,29,149,0.05)] relative overflow-hidden border border-purple-100/50"
-                        >
-                            <form className="relative z-10 space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-neutral-600">First Name *</label>
-                                        <input
-                                            type="text"
-                                            name="firstName"
-                                            value={formData.firstName}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-neutral-600">Last Name *</label>
-                                        <input
-                                            type="text"
-                                            name="lastName"
-                                            value={formData.lastName}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-neutral-600">Email *</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-neutral-600">Phone Number *</label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-neutral-600">What&apos;s on your mind? *</label>
-                                    <input
-                                        type="text"
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300"
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-neutral-600">Message *</label>
-                                    <textarea
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        rows={4}
-                                        className="w-full bg-[#fbfbfb] border border-neutral-100 rounded-xl px-5 py-4 text-neutral-900 font-medium focus:outline-none focus:border-purple-200 transition-all placeholder:text-neutral-300 resize-none"
-                                    ></textarea>
-                                </div>
-
-                                <div className="pt-4">
-                                    <StatefulButton
-                                        className="w-full sm:w-auto font-bold py-6 px-10"
-                                        onClick={async () => {
-                                            await handleSubmit();
-                                        }}
-                                    >
-                                        Send Message
-                                    </StatefulButton>
-                                </div>
-                            </form>
-                        </motion.div>
-                    </div>
+              <div className="ct-office cm-disc cm-disc--pink [--ds:190px] rounded-3xl p-8 pt-10 h-full flex flex-col">
+                <div className="absolute top-4 right-4" aria-hidden>
+                  <svg viewBox="0 0 80 120" fill="none" className="w-16 h-24 md:w-20 md:h-28 opacity-[0.18]">
+                    {/* South Indian temple gopuram */}
+                    <g fill="currentColor">
+                      <ellipse cx="40" cy="6" rx="3" ry="4" />
+                      <rect x="38" y="9" width="4" height="3" />
+                      <path d="M33 12H47L45 20H35L33 12Z" />
+                      <rect x="32" y="20" width="16" height="2" />
+                      <path d="M29 22H51L49 32H31L29 22Z" />
+                      <rect x="28" y="32" width="24" height="2" />
+                      <path d="M25 34H55L53 46H27L25 34Z" />
+                      <rect x="24" y="46" width="32" height="2" />
+                      <path d="M21 48H59L57 62H23L21 48Z" />
+                      <rect x="20" y="62" width="40" height="2" />
+                      <path d="M17 64H63L61 80H19L17 64Z" />
+                      <rect x="16" y="80" width="48" height="3" />
+                      <rect x="14" y="83" width="52" height="24" />
+                      <path d="M32 107V92Q32 86 40 84Q48 86 48 92V107Z" fill="#E31B23" />
+                      <rect x="18" y="88" width="6" height="8" rx="3" fill="#E31B23" />
+                      <rect x="56" y="88" width="6" height="8" rx="3" fill="#E31B23" />
+                      <rect x="10" y="107" width="60" height="4" rx="1" />
+                      <rect x="6" y="111" width="68" height="3" rx="1" />
+                    </g>
+                  </svg>
                 </div>
-            </section>
 
-            {/* --- SECTION 3: GLOBAL PRESENCE (White Grid Theme) --- */}
-            <section className="cv-auto relative py-16 md:py-20 overflow-hidden bg-white">
-                {/* Decorative Grid */}
-                <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-                    style={{
-                        backgroundImage: `linear-gradient(#4C1D95 1px, transparent 1px), linear-gradient(90deg, #4C1D95 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px'
-                    }}
-                />
-                <div className="container mx-auto px-4 relative z-10">
-                    {/* Section Header */}
-                    <div className="text-center mb-12">
-                        <motion.span
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-block text-sm font-semibold text-purple-500 mb-4 tracking-wide"
-                        >
-                            🌍 Our global presence
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="cm-rise cm-h2 font-serif"
-                        >
-                            <span className="text-neutral-900">Three Cities. </span>
-                            <span className="text-[#5B299D]">
-                                One Vision.
-                            </span>
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="text-[#4A3F5C] mt-4 text-base max-w-md mx-auto"
-                        >
-                            Powered by teams working across continents to deliver world-class results.
-                        </motion.p>
-                    </div>
-
-                    {/* Location Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {[
-                            {
-                                flag: "🇺🇸",
-                                city: "Tampa",
-                                country: "United States",
-                                lines: [
-                                    "1211, Tech Blvd., #23,",
-                                    "Tampa, FL 33619"
-                                ],
-                                accent: "from-purple-500 to-violet-500",
-                                monument: (
-                                    <svg viewBox="0 0 100 120" fill="none" className="w-20 h-24 md:w-24 md:h-28 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
-                                        {/* US Capitol Dome — clean minimal */}
-                                        <g fill="currentColor" className="text-purple-800">
-                                            {/* Flagpole + finial */}
-                                            <rect x="49" y="4" width="2" height="12" />
-                                            <circle cx="50" cy="3" r="2" />
-                                            {/* Dome top */}
-                                            <path d="M50 16C42 16 36 24 36 32H64C64 24 58 16 50 16Z" />
-                                            {/* Dome drum */}
-                                            <rect x="34" y="32" width="32" height="6" rx="1" />
-                                            {/* Dome pillars */}
-                                            <rect x="36" y="38" width="2" height="14" />
-                                            <rect x="42" y="38" width="2" height="14" />
-                                            <rect x="48" y="38" width="2" height="14" />
-                                            <rect x="54" y="38" width="2" height="14" />
-                                            <rect x="60" y="38" width="2" height="14" />
-                                            {/* Cornice */}
-                                            <rect x="32" y="52" width="36" height="4" rx="1" />
-                                            {/* Main building body */}
-                                            <rect x="20" y="56" width="60" height="30" rx="1" />
-                                            {/* Windows row */}
-                                            <rect x="26" y="62" width="6" height="10" rx="1" fill="white" />
-                                            <rect x="36" y="62" width="6" height="10" rx="1" fill="white" />
-                                            <rect x="46" y="62" width="8" height="16" rx="4" fill="white" />
-                                            <rect x="58" y="62" width="6" height="10" rx="1" fill="white" />
-                                            <rect x="68" y="62" width="6" height="10" rx="1" fill="white" />
-                                            {/* Wings */}
-                                            <rect x="8" y="66" width="12" height="20" rx="1" />
-                                            <rect x="80" y="66" width="12" height="20" rx="1" />
-                                            {/* Steps */}
-                                            <rect x="16" y="86" width="68" height="4" rx="1" />
-                                            <rect x="12" y="90" width="76" height="4" rx="1" />
-                                            <rect x="8" y="94" width="84" height="4" rx="1" />
-                                        </g>
-                                    </svg>
-                                )
-                            },
-                            {
-                                flag: "🇮🇳",
-                                city: "Chennai",
-                                country: "India",
-                                lines: [
-                                    "6th Floor, Arihant Technopolis,",
-                                    "Chennai, Tamil Nadu 600096"
-                                ],
-                                accent: "from-violet-500 to-pink-500",
-                                monument: (
-                                    <svg viewBox="0 0 80 120" fill="none" className="w-16 h-24 md:w-20 md:h-28 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
-                                        {/* South Indian Temple Gopuram */}
-                                        <g fill="currentColor" className="text-violet-800">
-                                            {/* Kalasam (pot finial) */}
-                                            <ellipse cx="40" cy="6" rx="3" ry="4" />
-                                            <rect x="38" y="9" width="4" height="3" />
-                                            {/* Tier 1 — top */}
-                                            <path d="M33 12H47L45 20H35L33 12Z" />
-                                            <rect x="32" y="20" width="16" height="2" />
-                                            {/* Tier 2 */}
-                                            <path d="M29 22H51L49 32H31L29 22Z" />
-                                            <rect x="28" y="32" width="24" height="2" />
-                                            {/* Tier 3 */}
-                                            <path d="M25 34H55L53 46H27L25 34Z" />
-                                            <rect x="24" y="46" width="32" height="2" />
-                                            {/* Tier 4 */}
-                                            <path d="M21 48H59L57 62H23L21 48Z" />
-                                            <rect x="20" y="62" width="40" height="2" />
-                                            {/* Tier 5 — base tier */}
-                                            <path d="M17 64H63L61 80H19L17 64Z" />
-                                            <rect x="16" y="80" width="48" height="3" />
-                                            {/* Gateway / entrance wall */}
-                                            <rect x="14" y="83" width="52" height="24" />
-                                            {/* Central arch doorway */}
-                                            <path d="M32 107V92Q32 86 40 84Q48 86 48 92V107Z" fill="white" />
-                                            {/* Side windows */}
-                                            <rect x="18" y="88" width="6" height="8" rx="3" fill="white" />
-                                            <rect x="56" y="88" width="6" height="8" rx="3" fill="white" />
-                                            {/* Base platform */}
-                                            <rect x="10" y="107" width="60" height="4" rx="1" />
-                                            <rect x="6" y="111" width="68" height="3" rx="1" />
-                                        </g>
-                                    </svg>
-                                )
-                            },
-                            {
-                                flag: "🇬🇧",
-                                city: "London",
-                                country: "United Kingdom",
-                                lines: [
-                                    "SINC, 12-16 Addiscombe Road,",
-                                    "Croydon, London CR0 0XT"
-                                ],
-                                accent: "from-pink-500 to-purple-500",
-                                monument: (
-                                    <svg viewBox="0 0 70 140" fill="none" className="w-16 h-28 md:w-20 md:h-32 opacity-[0.14] group-hover:opacity-[0.3] transition-opacity duration-500">
-                                        {/* Big Ben / Elizabeth Tower */}
-                                        <g fill="currentColor" className="text-pink-900">
-                                            {/* Spire */}
-                                            <path d="M35 2L33 12H37L35 2Z" />
-                                            <rect x="33.5" y="12" width="3" height="5" />
-                                            {/* Spire base ornament */}
-                                            <path d="M30 17H40L38 22H32L30 17Z" />
-                                            {/* Upper tower section */}
-                                            <rect x="28" y="22" width="14" height="15" rx="1" />
-                                            {/* Clock face section */}
-                                            <rect x="24" y="37" width="22" height="4" />
-                                            <rect x="22" y="41" width="26" height="28" rx="2" />
-                                            {/* Clock face */}
-                                            <circle cx="35" cy="55" r="10" fill="white" />
-                                            <circle cx="35" cy="55" r="8.5" stroke="currentColor" strokeWidth="1" />
-                                            {/* Clock hands */}
-                                            <line x1="35" y1="55" x2="35" y2="48" stroke="currentColor" strokeWidth="1.2" />
-                                            <line x1="35" y1="55" x2="40" y2="55" stroke="currentColor" strokeWidth="1" />
-                                            <circle cx="35" cy="55" r="1.2" />
-                                            {/* Below clock ornament */}
-                                            <rect x="24" y="69" width="22" height="4" />
-                                            {/* Main tower body */}
-                                            <rect x="20" y="73" width="30" height="45" />
-                                            {/* Gothic windows — row 1 */}
-                                            <path d="M25 78V88Q25 76 27.5 75Q30 76 30 78V88Z" fill="white" />
-                                            <path d="M33 78V88Q33 76 35 75Q37 76 37 78V88Z" fill="white" />
-                                            <path d="M40 78V88Q40 76 42.5 75Q45 76 45 78V88Z" fill="white" />
-                                            {/* Gothic windows — row 2 */}
-                                            <path d="M25 93V103Q25 91 27.5 90Q30 91 30 93V103Z" fill="white" />
-                                            <path d="M33 93V103Q33 91 35 90Q37 91 37 93V103Z" fill="white" />
-                                            <path d="M40 93V103Q40 91 42.5 90Q45 91 45 93V103Z" fill="white" />
-                                            {/* Base section */}
-                                            <rect x="18" y="118" width="34" height="5" />
-                                            <rect x="15" y="123" width="40" height="4" rx="1" />
-                                            <rect x="12" y="127" width="46" height="5" rx="1" />
-                                        </g>
-                                    </svg>
-                                )
-                            }
-                        ].map((loc, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.15, duration: 0.7, ease: "easeOut" }}
-                                whileHover={{ y: -6 }}
-                                className="group relative cursor-default"
-                            >
-                                {/* Card */}
-                                <div className={`cm-disc ${["cm-disc--purple", "cm-disc--pink", "cm-disc--violet"][idx % 3]} [--ds:190px] rounded-3xl p-8 pt-10 h-full flex flex-col shadow-[0_4px_40px_rgba(124,58,237,0.06)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.14)] transition-shadow duration-500`}>
-                                    {/* Monument Illustration — Top Right */}
-                                    <div className="absolute top-4 right-4">
-                                        {loc.monument}
-                                    </div>
-
-                                    {idx === 0 && (
-                                        <span className="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[11px] font-bold text-[#5B299D] px-2.5 py-1 rounded-full bg-white">
-                                            HQ
-                                        </span>
-                                    )}
-
-                                    {/* Flag + City */}
-                                    <div className="flex items-start gap-4 mb-5 relative z-10 justify-center">
-                                        <span className="text-4xl mt-1 group-hover:scale-110 transition-transform duration-300 inline-block">{loc.flag}</span>
-                                        <div>
-                                            <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">{loc.city}</h3>
-                                            <p className="text-sm text-purple-600 font-semibold mt-0.5">{loc.country}</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Divider */}
-                                    <div className="h-[2px] w-12 bg-current opacity-40 mb-5 rounded-full mx-auto" />
-
-                                    {/* Address */}
-                                    <div className="space-y-0.5 flex-1 relative z-10 text-center">
-                                        {loc.lines.map((line, lineIdx) => (
-                                            <p key={lineIdx} className="text-neutral-500 text-sm font-medium leading-relaxed">
-                                                {line}
-                                            </p>
-                                        ))}
-                                    </div>
-
-                                    {/* Status Indicator */}
-                                    <div className="mt-6 pt-5 border-t border-black/5 flex items-center gap-2.5 relative z-10 justify-center">
-                                        <motion.div
-                                            viewport={{ amount: 0 }}
-                whileInView={{ transform: ["scale(1)", "scale(1.4)", "scale(1)"], opacity: [0.7, 1, 0.7] }}
-                                            transition={{ repeat: Infinity, duration: 2, delay: idx * 0.4 }}
-                                            className="w-2 h-2 rounded-full bg-emerald-400"
-                                        />
-                                        <span className="text-xs font-medium opacity-80">Active office</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                <div className="flex items-start gap-4 mb-5 relative z-10 justify-center">
+                  <span className="text-4xl mt-1 inline-block" aria-hidden>🇮🇳</span>
+                  <div className="text-left">
+                    <h3 className="text-2xl font-bold tracking-tight">Chennai</h3>
+                    <p className="text-sm font-semibold mt-0.5 opacity-90">India</p>
+                  </div>
                 </div>
-            </section>
-            {/* Success Modal */}
-            <SuccessModal
-                isOpen={showSuccess}
-                onClose={() => setShowSuccess(false)}
-                senderName={submittedName}
-            />
-        </main>
-    );
+                <div className="h-[2px] w-12 bg-current opacity-40 mb-5 rounded-full mx-auto" />
+                <div className="space-y-0.5 flex-1 relative z-10 text-center">
+                  <p className="text-sm font-medium leading-relaxed">6th Floor, Arihant Technopolis,</p>
+                  <p className="text-sm font-medium leading-relaxed">Chennai 600096</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Channel links */}
+            <motion.ul
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+              className="ct-links"
+            >
+              {LINKS.map(({ label, sub, href, Icon }) => (
+                <li key={label + sub}>
+                  <a className="ct-link" href={href} target="_blank" rel="noopener noreferrer">
+                    <span className="ct-link-icon"><Icon size={18} aria-hidden /></span>
+                    <span className="ct-link-text">
+                      <span className="ct-link-label">{label}</span>
+                      <span className="ct-link-sub">{sub}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </motion.ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

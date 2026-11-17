@@ -770,10 +770,12 @@ html.lenis,html.lenis body{height:auto}
 }
 
 /* ── Light cards: crisp, not pastel (owner: "old paper") ── */
-.cm-disc--pink    { --card:#FF6FAE; --disc:#FF8DC0; }
+.cm-disc--pink    { --card:#E31B23; --disc:#EB5F65; } /* logo red (the e) */
 .cm-disc--lavender{ --card:#FFFFFF; --disc:#EFE7FC; }
 .cm-disc--blush   { --card:#FFFFFF; --disc:#FFE1EE; }
-.cm-disc--pink p{ color:#2A1240 !important; }
+.cm-disc--pink{ color:#fff; --stat:#FFFFFF; }
+.cm-disc--pink :is(h1,h2,h3,h4,h5,h6){ color:#fff !important; }
+.cm-disc--pink p{ color:rgba(255,255,255,.94) !important; }
 .cm-disc--blush :is(h1,h2,h3,h4,h5,h6){ color:#1B0F33 !important; }
 .cm-disc--blush p{ color:#3A2A57 !important; }
 .cm-disc--blush{ --stat:#5B299D; }
@@ -801,6 +803,14 @@ html.lenis,html.lenis body{height:auto}
 .cm-in--2{ animation-delay:.12s; } .cm-in--3{ animation-delay:.2s; } .cm-in--4{ animation-delay:.35s; }
 @keyframes cm-in{ from{ opacity:0; translate:0 12px; } to{ opacity:1; translate:0 0; } }
 @media (prefers-reduced-motion: reduce){ .cm-in{ animation:none; } }
+/* Hero badge and buttons (on the violet hero ground): white pill = primary, outline = secondary; calm hover, press .97 */
+.hero-badge{ display:inline-flex; align-items:center; padding:8px 16px; border-radius:999px; background:rgba(255,255,255,.14); color:#fff; font-size:13px; font-weight:600; line-height:1; }
+.hero-btn{ display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; border-radius:999px; background:#fff; color:#5B299D; font-size:.95rem; font-weight:600; line-height:1; border:1.5px solid #fff; transition: background-color .18s ease, color .18s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+.hero-btn:hover{ background:#F1E6FF; border-color:#F1E6FF; }
+.hero-btn--ghost{ background:transparent; color:#fff; border-color:rgba(255,255,255,.55); }
+.hero-btn--ghost:hover{ background:rgba(255,255,255,.12); border-color:#fff; }
+.hero-btn:active{ transform:scale(.97); }
+.hero-btn:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
 
 /* Hero/footer moving-gradient colours available from the first paint (the
    component also sets these from JS; same values, so nothing jumps) */
@@ -907,9 +917,9 @@ main p, section p{ text-wrap:pretty; }
 }
 .lc:hover{ translate:0 -4px; box-shadow: 0 36px 64px -32px rgba(40,10,90,.7); }
 .lc--purple{ --c:#6B2BE5; --ink:#FFFFFF; --d1:#FFC633; --d2:#8754F2; }
-.lc--pink  { --c:#FF3D8B; --ink:#FFFFFF; --d1:#6B2BE5; --d2:#FF78AE; }
+.lc--pink  { --c:#E31B23; --ink:#FFFFFF; --d1:#6B2BE5; --d2:#EB5F65; } /* logo red (the e) */
 .lc--orange{ --c:#FF7A3D; --ink:#1B0B3A; --d1:#6B2BE5; --d2:#FFA06F; }
-.lc--yellow{ --c:#FFC633; --ink:#1B0B3A; --d1:#FF3D8B; --d2:#FFDA75; }
+.lc--yellow{ --c:#FFC633; --ink:#1B0B3A; --d1:#E31B23; --d2:#FFDA75; }
 
 .lc-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
 .lc-eyebrow{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.95); color:#1B0B3A; margin-bottom:14px; }
@@ -955,6 +965,9 @@ main p, section p{ text-wrap:pretty; }
 /* logo plate (channels) */
 .lc-plate{ position:absolute; left:50%; bottom:26px; translate:-50% 0; width:76%; height:118px; border-radius:20px; background:#fff; display:grid; place-items:center; box-shadow:0 18px 34px -16px rgba(20,5,50,.55); transition: transform .6s cubic-bezier(.22,1,.36,1); }
 .lc:hover .lc-plate{ transform: translateY(-6px) rotate(-2deg); }
+/* plate holding a row of logos (Track Record: organic views across our channels) */
+.lc-plate--logos{ display:flex; align-items:center; justify-content:center; gap:14px; padding:0 18px; }
+.lc-plate--logos img{ height:44px; width:auto; max-width:30%; object-fit:contain; }
 
 /* reveal on scroll — CSS only, never waits for JavaScript */
 @supports (animation-timeline: view()){
@@ -972,7 +985,7 @@ main p, section p{ text-wrap:pretty; }
 .lc:hover .lc-plate{ transform:none; }
 
 /* Plain card (no image): keep the disc language as a quiet corner pair */
-.lc--plain{ padding-bottom:34px; }
+.lc--plain{ padding-bottom:84px; } /* text-only cards: last line clears the bottom disc pair */
 .lc--plain::before, .lc--plain::after{ content:""; position:absolute; border-radius:50%; z-index:-1; pointer-events:none; transition: transform .7s cubic-bezier(.22,1,.36,1); }
 .lc--plain::before{ width:260px; height:260px; right:-90px; bottom:-130px; background:var(--d2); }
 .lc--plain::after{ width:92px; height:92px; right:120px; bottom:-38px; background:var(--d1); }
@@ -1018,7 +1031,7 @@ main p, section p{ text-wrap:pretty; }
 .lc-p{
   position:absolute; left:0; bottom:0; height:100%; width:auto; max-width:none;
   transform-origin:50% 100%;
-  transition: transform 1s cubic-bezier(.65,0,.35,1);
+  transition: transform 1s cubic-bezier(.65,0,.35,1), filter 1s cubic-bezier(.65,0,.35,1);
 }
 .lc-p[data-slot="c"]{ transform: translate3d(calc(50cqw - 50%), 0, 0) rotateY(0deg); }
 .lc-p[data-slot="l"]{ transform: translate3d(-7.14cqw, 0, -171px) rotateY(12deg); }
@@ -1026,6 +1039,9 @@ main p, section p{ text-wrap:pretty; }
 .lc:hover .lc-p[data-slot="c"]{ transform: translate3d(calc(50cqw - 50%), 0, 26px) rotateY(0deg); }
 .lc:hover .lc-p[data-slot="l"]{ transform: translate3d(calc(-7.14cqw - 7px), 0, -171px) rotateY(12deg); }
 .lc:hover .lc-p[data-slot="r"]{ transform: translate3d(calc(107.14cqw - 100% + 7px), 0, -171px) rotateY(-12deg); }
+/* back people: the same light depth-of-field blur, slightly dimmed (cut-outs can't take an overlay) */
+.lc-p{ filter:blur(0) brightness(1) saturate(1); }
+.lc-p[data-slot="l"], .lc-p[data-slot="r"]{ filter:blur(1.3px) brightness(.86) saturate(.85); }
 @media (prefers-reduced-motion: reduce){ .lc-p{ transition:none; } }
 
 /* services: every cut-out the same height, centred, so the row lines up */
@@ -1117,7 +1133,10 @@ section[style*="F1E6FF"] div[style*="40px 40px"]{ --gl: rgba(255,255,255,.95); }
 /* Come Work With Us (centred, no visual): a wider measure so the copy runs in
    fewer, fuller lines instead of a narrow column with empty sides; even
    padding top and bottom, content centred vertically when the row stretches. */
-.lc--center.lc--plain{ justify-content:center; padding:36px 36px; }
+/* Side-by-side cards: content starts at the top and the button is pinned to the
+   bottom, so headings and buttons line up across cards whatever the text length. */
+.lc--center.lc--plain{ justify-content:flex-start; padding:36px 36px; }
+.lc--center.lc--plain > .lc-action{ margin-top:auto; padding-top:20px; }
 .lc--center.lc--plain .lc-text{ max-width:50ch; font-size:16px; }
 @media (max-width:640px){
   .lc--center.lc--plain{ padding:32px 24px; }
@@ -1163,3 +1182,46 @@ section[style*="F1E6FF"] div[style*="40px 40px"]{ --gl: rgba(255,255,255,.95); }
 .btn-primary:active, .lc-btn:active{ transform: scale(.97); }
 .btn-primary:focus-visible, .lc-btn:focus-visible{ outline:2px solid #5B299D; outline-offset:3px; }
 @media (prefers-reduced-motion: reduce){ .btn-primary:active, .lc-btn:active{ transform:none; } }
+
+
+
+/* Track record cards 1 and 2: the three-slot focus rotation of cards 3 and 4, on the vertical axis.
+   Same function list in every slot so items glide between slots; depth comes from translateZ
+   (preserve-3d), so the one going round the back passes behind the focused item. */
+.lc-vflow{ position:absolute; inset:0; perspective:900px; transform-style:preserve-3d; }
+.lc-vflow-item{
+  position:absolute; left:50%; top:52%; border-radius:14px; overflow:hidden; filter:blur(0);
+  box-shadow:0 22px 34px -16px rgba(20,5,50,.6);
+  transition:transform 1s cubic-bezier(.65,0,.35,1), filter 1s cubic-bezier(.65,0,.35,1);
+}
+.lc-vflow--poster .lc-vflow-item{ width:64%; aspect-ratio:16 / 10; }
+.lc-vflow--poster .lc-vflow-item img{ object-fit:cover; }
+.lc-vflow--plate .lc-vflow-item{ width:72%; height:92px; border-radius:20px; background:#fff; display:grid; place-items:center; }
+.lc-vflow--plate .lc-vflow-item img{ max-height:52px; max-width:72%; width:auto; object-fit:contain; }
+.lc-vflow-item[data-slot="c"]{ transform:translate(-50%, -50%) translateZ(0) rotateX(0deg); }
+.lc-vflow-item[data-slot="t"]{ transform:translate(-50%, -112%) translateZ(-150px) rotateX(16deg); }
+.lc-vflow-item[data-slot="b"]{ transform:translate(-50%, 12%) translateZ(-150px) rotateX(-16deg); }
+/* out of focus (after Swiper's coverflow slide shadows + a depth-of-field blur): the back items take a
+   light blur and a wash of the card's own colour rising from their far edge; the focused item stays sharp */
+.lc-vflow-item::after{ content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity 1s cubic-bezier(.65,0,.35,1); }
+.lc-vflow-item[data-slot="t"]::after{ background:linear-gradient(to bottom, var(--c) 0%, color-mix(in srgb, var(--c) 35%, transparent) 100%); opacity:.62; }
+.lc-vflow-item[data-slot="b"]::after{ background:linear-gradient(to top, var(--c) 0%, color-mix(in srgb, var(--c) 35%, transparent) 100%); opacity:.62; }
+.lc-vflow-item[data-slot="t"], .lc-vflow-item[data-slot="b"]{ filter:blur(1.2px); }
+@media (prefers-reduced-motion: reduce){ .lc-vflow-item{ transition:none; } }
+
+/* a status chip pinned to the card's bottom-left corner, on the text edge (Feature Films: "In development");
+   that card's small disc moves to the right corner so the two never meet */
+.lc-eyebrow--foot{ position:absolute; left:var(--lc-pad, 30px); bottom:26px; margin:0; z-index:1; }
+.lc:has(.lc-eyebrow--foot)::after{ right:24px; }
+
+/* headings use full-height (lining) numbers: Playfair's default old-style figures made the "2" in "2 Million Views" sit small */
+h1, h2, h3, .cm-h2{ font-variant-numeric:lining-nums; }
+
+/* "Brands we have worked with" (after Clueso's trust row): the full width of the card row, equal cells on one
+   lavender hairline, each logo small and in one quiet ink tone so no brand shouts over the others */
+.logo-grid{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:1px; width:100%;
+  background:#E3D8F7; border:1px solid #E3D8F7; border-radius:20px; overflow:hidden; } /* the 1px gaps draw the hairlines */
+.logo-grid-cell{ display:grid; place-items:center; height:96px; padding:0 28px; background:#fff; }
+.logo-grid-cell img{ height:30px; max-width:62%; width:auto; object-fit:contain; filter:grayscale(1) brightness(.32); opacity:.82; transition:filter .25s ease, opacity .25s ease; }
+.logo-grid-cell:hover img{ filter:none; opacity:1; } /* hover shows the brand in its own colours */
+@media (max-width:767px){ .logo-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); } .logo-grid-cell{ height:76px; padding:0 10px; } .logo-grid-cell img{ height:22px; max-width:80%; } }

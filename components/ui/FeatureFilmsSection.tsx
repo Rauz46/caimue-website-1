@@ -5,6 +5,7 @@ import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Clapperboard, Film } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 // Stills used as a cinematic teaser reel for the upcoming feature films
 const reel = [
@@ -18,7 +19,7 @@ const reel = [
 
 const AUTOPLAY_MS = 4200;
 
-// Light "Feature Films — Coming Soon" banner: checked bg, doodles, 3D coverflow
+// "The big screen" banner (feature film in development): checked bg, doodles, 3D coverflow
 export function FeatureFilmsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -36,8 +37,32 @@ export function FeatureFilmsSection() {
 
     const activeStill = reel[active];
 
+    // Drag / swipe the stack sideways to move between films. A clear horizontal move (40px+)
+    // changes the film and swallows the click that follows, so plain clicks still work as before.
+    const drag = useRef<{ x: number; y: number; id: number } | null>(null);
+    const swallowClick = useRef(false);
+    const onDragStart = (e: React.PointerEvent) => {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        drag.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    };
+    const onDragEnd = (e: React.PointerEvent) => {
+        const d = drag.current;
+        drag.current = null;
+        if (!d || d.id !== e.pointerId) return;
+        const dx = e.clientX - d.x;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(e.clientY - d.y)) return;
+        swallowClick.current = true;
+        setActive((a) => (a + (dx < 0 ? 1 : -1) + n) % n);
+    };
+    const onStageClickCapture = (e: React.MouseEvent) => {
+        if (!swallowClick.current) return;
+        swallowClick.current = false;
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
     return (
-        <section ref={sectionRef} className="relative bg-white pt-16 md:pt-20 pb-14 md:pb-16 overflow-hidden">
+        <section ref={sectionRef} className="cv-auto relative pt-16 md:pt-20 pb-14 md:pb-16 overflow-hidden" style={{ background: "#F1E6FF", containIntrinsicSize: "auto 860px" }}>
             {/* Subtle grid background */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -55,25 +80,23 @@ export function FeatureFilmsSection() {
 
             {/* ── Header ── */}
             <motion.div
-                className="relative z-10 max-w-2xl mx-auto px-4 text-center mb-6"
+                className="relative z-10 max-w-5xl mx-auto px-4 text-center mb-6"
             >
-                {/* Coming Soon badge with a "live" pulse */}
+                {/* In development badge with a "live" pulse */}
                 <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EAE0FB] text-[#5B299D] text-[13px] font-semibold mb-5">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500" />
                     </span>
-                    Coming Soon
+                    In development
                     <Clapperboard size={14} className="text-[#5B299D]" />
                 </span>
 
-                <h2 className="cm-rise cm-h2 font-serif mb-5">
-                    Feature <span className="text-[#5B299D]">Films</span>
+                <h2 className="cm-rise cm-h2 font-serif mb-5 [text-wrap:balance]">
+                    Next Stop: The Big Screen.
                 </h2>
-                <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed">
-                    Everything we&apos;ve built so far — short films, talent, and craft — leads here. Our first feature
-                    films are in the works across Tamil, Malayalam, and English.
-                    <span className="font-semibold text-[#5B299D]"> The reel is just getting started.</span>
+                <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed [text-wrap:balance]">
+                    Every micro-series and short film we make is practice for one goal: a Malayalam feature film. The stories, directors and actors that win on the small screen are the ones we take to theatres.
                 </p>
             </motion.div>
 
@@ -157,7 +180,13 @@ export function FeatureFilmsSection() {
                         </svg>
                     </motion.div>
                 </div>
-                <div className="cf-stage">
+                <div
+                    className="cf-stage"
+                    onPointerDown={onDragStart}
+                    onPointerUp={onDragEnd}
+                    onPointerCancel={() => { drag.current = null; }}
+                    onClickCapture={onStageClickCapture}
+                >
                     {reel.map((item, i) => {
                         const offset = (((i - active) % n) + n) % n; // 0..5
                         const pos = offset > n / 2 ? offset - n : offset; // -2..3
@@ -224,25 +253,35 @@ export function FeatureFilmsSection() {
 
                     <div className="flex items-center gap-1.5">
                         {reel.map((item, i) => (
+                            // Taller invisible hit area (py-3, cancelled by -my-3 so the layout doesn't move);
+                            // the visible 3px bar is the inner span.
                             <button
                                 key={item.src}
                                 type="button"
                                 aria-label={`Go to ${item.title}`}
+                                aria-current={i === active ? "true" : undefined}
+                                title={item.title}
                                 onClick={() => setActive(i)}
-                                className="h-[3px] w-8 md:w-10 rounded-full bg-[#E3D8F8] overflow-hidden"
+                                className="cf-dot group py-3 -my-3 cursor-pointer"
                             >
-                                {i === active && (
-                                    <span
-                                        key={`fill-${active}`}
-                                        className="block h-full bg-[#5B299D] cf-progress"
-                                        style={{ animationPlayState: paused ? "paused" : "running" }}
-                                    />
-                                )}
+                                <span className="block h-[3px] w-8 md:w-10 rounded-full bg-[#E3D8F8] overflow-hidden transition-colors duration-200 group-hover:bg-[#CDB9F2]">
+                                    {i === active && (
+                                        <span
+                                            key={`fill-${active}`}
+                                            className="block h-full bg-[#5B299D] cf-progress"
+                                            style={{ animationPlayState: paused ? "paused" : "running" }}
+                                        />
+                                    )}
+                                </span>
                             </button>
                         ))}
                     </div>
                 </div>
             </motion.div>
+
+            <div className="relative z-10 flex justify-center mt-10">
+                <Link href="/originals" className="btn-primary">Follow The Journey</Link>
+            </div>
 
             <style>{`
                 .cf-stage {
@@ -253,7 +292,12 @@ export function FeatureFilmsSection() {
                     height: calc(var(--cf-w) * 9 / 16 + 60px);
                     perspective: 1500px;
                     transform-style: preserve-3d;
+                    touch-action: pan-y;          /* vertical scroll stays native; sideways swipes change the film */
+                    user-select: none;
+                    -webkit-user-select: none;
                 }
+                .cf-dot:focus-visible { outline: none; }
+                .cf-dot:focus-visible > span { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #5B299D; }
                 .cf-card {
                     position: absolute;
                     top: 45%;

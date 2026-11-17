@@ -22,6 +22,9 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
+        { href: "/originals", label: "Originals" },
+        { href: "/for-brands", label: "For Brands" },
+        { href: "/for-artists", label: "For Artists" },
         { href: "/about", label: "About" },
     ];
 
@@ -50,12 +53,12 @@ export function Navbar() {
                     </Link>
 
                     {/* Desktop nav + Contact */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-5 lg:gap-7">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="hidden md:block text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors"
+                                className="hidden md:block whitespace-nowrap text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors"
                             >
                                 {link.label}
                             </Link>
