@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Smartphone, Languages, Eye, Clapperboard, Film, Briefcase, MessageCircle, PenLine, Video, Send, ChartColumn } from "lucide-react";
 import { AudienceHero, AudienceSection, SectionHead, Steps, AudienceCard, Faq, LogoStrip } from "@/components/audience/AudienceParts";
-import { AudienceForm } from "@/components/audience/AudienceForm";
 
 // Copy: reference/content/v7-content/Caimue_Film_Website_Copy.docx, "For Brands page" (word for word; headings in Title Case).
 // Left out until confirmed (yellow in the doc): the case cards under Proof and the starting-price note in the FAQ.
@@ -28,10 +27,7 @@ export default function ForBrandsPage() {
     return (
         <div className="min-h-screen">
             <AudienceHero
-                badge="For brands"
                 title={<>Your Brand, <em>As A Series People Follow.</em></>}
-                sub="People skip ads. They wait for the next episode. We turn your brand into micro-series and films in Tamil, Malayalam and English that audiences watch by choice."
-                cta={{ label: "Start A Brand Story", href: "#enquiry" }}
             />
 
             {/* Why story */}
@@ -91,23 +87,6 @@ export default function ForBrandsPage() {
                     { q: "Who owns the content?", a: "Work made for your brand is yours. Our originals with your brand inside stay on our channels." },
                     { q: "How long does it take?", a: "A brand micro-series usually takes three to five weeks from brief to first episode. A brand film takes two to three weeks." },
                 ]} />
-            </AudienceSection>
-
-            {/* Contact */}
-            <AudienceSection tone="white" id="enquiry">
-                <SectionHead title="Tell Us About Your Brand." />
-                <AudienceForm
-                    subject="Brand enquiry (For Brands page)"
-                    submitLabel="Send"
-                    rows={[
-                        [{ name: "name", label: "Name", type: "text", required: true, autoComplete: "name" },
-                         { name: "company", label: "Company", type: "text", required: true, autoComplete: "organization" }],
-                        [{ name: "email", label: "Work email", type: "email", required: true, autoComplete: "email" },
-                         { name: "make", label: "What do you want to make?", type: "select", required: true, options: ["Micro-series", "Brand film", "Integration", "Corporate film", "Not sure"] }],
-                        [{ name: "budget", label: "Budget range", type: "text" }],
-                        [{ name: "message", label: "Message", type: "textarea", required: true }],
-                    ]}
-                />
             </AudienceSection>
         </div>
     );

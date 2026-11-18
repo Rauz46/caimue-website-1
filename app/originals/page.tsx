@@ -51,7 +51,6 @@ const LIBRARY: Title[] = [
 ];
 
 const FORMATS = ["All", "Micro-series", "Short films", "Feature films", "Founder stories"] as const;
-const LANGUAGES = ["All", "Tamil", "Malayalam", "English"] as const;
 
 // ============================================
 // PIECES
@@ -117,17 +116,16 @@ function TitleCard({ t }: { t: Title }) {
 
 export default function OriginalsPage() {
   const [format, setFormat] = useState<(typeof FORMATS)[number]>("All");
-  const [language, setLanguage] = useState<(typeof LANGUAGES)[number]>("All");
 
   const shown = useMemo(
-    () => LIBRARY.filter((t) => (format === "All" || t.format === format) && (language === "All" || t.language === language)),
-    [format, language]
+    () => LIBRARY.filter((t) => format === "All" || t.format === format),
+    [format]
   );
 
   return (
     <div className="min-h-screen">
       {/* ===== Banner 1: Hero ===== */}
-      <section className="relative flex items-center justify-center pt-28 pb-10 md:pt-36 md:pb-14 overflow-hidden">
+      <section className="relative flex items-center justify-center pt-32 pb-14 md:pt-36 md:pb-16 overflow-hidden">
         <BrandGround className="z-0" />
         <HeroGrid className="opacity-40 z-10" />
         <div className="bg-noise opacity-10 z-10" />
@@ -141,12 +139,9 @@ export default function OriginalsPage() {
         </div>
 
         <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
-          <h1 className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif text-white! font-bold">
+          <h1 className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15]! tracking-tight mb-0! font-serif text-white! font-bold">
             Our Originals.
           </h1>
-          <p className="cm-in cm-in--2 text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-snug font-medium [text-wrap:balance]">
-            Micro-series, short films and founder stories in Tamil, Malayalam and English. Made by us, watched by millions.
-          </p>
         </div>
       </section>
 
@@ -157,7 +152,6 @@ export default function OriginalsPage() {
         <div className="container relative z-10">
           <div className="or-filters">
             <Pills label="Format" options={FORMATS} value={format} onChange={setFormat} />
-            <Pills label="Language" options={LANGUAGES} value={language} onChange={setLanguage} />
           </div>
 
           {shown.length > 0 ? (

@@ -152,7 +152,7 @@ export default function AboutPage() {
       {/* =================================================================
           SECTION 1,HERO
           ================================================================= */}
-      <section className="relative flex items-center justify-center pt-24 pb-4 md:pt-30 md:pb-6 overflow-hidden">
+      <section className="relative flex items-center justify-center pt-32 pb-14 md:pt-36 md:pb-16 overflow-hidden">
         {/* Animated gradient background,same as homepage */}
         <BrandGround className="z-0" />
 
@@ -176,7 +176,7 @@ export default function AboutPage() {
         <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
           {/* Headline */}
           <motion.h1
-            className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15] tracking-tight mb-4 font-serif [text-wrap:balance]"
+            className="cm-in text-4xl! md:text-5xl! lg:text-6xl! leading-[1.15]! tracking-tight mb-0! font-serif [text-wrap:balance]"
           >
             <span className="text-white font-bold block">
               A Digital Entertainment Company
@@ -185,9 +185,6 @@ export default function AboutPage() {
               For Tamil And Malayalam.
             </span>
           </motion.h1>
-          <p className="cm-in cm-in--2 text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium leading-snug [text-wrap:balance]">
-            We make stories for the screen in your hand today, and for the big screen next.
-          </p>
 
         </div>
       </section>

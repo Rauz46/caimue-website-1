@@ -58,7 +58,7 @@ const BrandOwnerCard = () => (
         eyebrow="For Brands"
         titlePrefix="Are you a"
         titleAccent="Brand Owner?"
-        href="/for-brands#enquiry"
+        href="/contact#brands"
         description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
         icon={<Megaphone size={14} strokeWidth={2.5} />}
         accent="#FFC633"
@@ -75,7 +75,7 @@ const ArtistCard = () => (
         eyebrow="For Artists"
         titlePrefix="Are you an"
         titleAccent="Aspiring Artist?"
-        href="/for-artists#apply"
+        href="/contact#artists"
         description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
         icon={<Sparkles size={14} strokeWidth={2.5} />}
         accent="#FFE89A"

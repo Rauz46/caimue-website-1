@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Drama, PenLine, Clapperboard, Scissors, Send, Handshake, Video, TrendingUp, Award, MonitorPlay, Film } from "lucide-react";
 import { AudienceHero, AudienceSection, SectionHead, Steps, AudienceCard } from "@/components/audience/AudienceParts";
-import { AudienceForm } from "@/components/audience/AudienceForm";
 
 // Copy: reference/content/v7-content/Caimue_Film_Website_Copy.docx, "For Artists page" (word for word; headings in Title Case).
 // Banners 2-4 have no heading in the doc, so each uses its banner name; the form uses the hero button's words.
@@ -16,10 +15,7 @@ export default function ForArtistsPage() {
     return (
         <div className="min-h-screen">
             <AudienceHero
-                badge="For artists"
                 title={<>Your First Break Could Be <em>A One-Minute Episode.</em></>}
-                sub="We make micro-series and short films in Tamil and Malayalam with new talent. 25+ artists have started with us. You could be next."
-                cta={{ label: "Show Us Your Work", href: "#apply" }}
             />
 
             {/* Who we are looking for */}
@@ -56,25 +52,6 @@ export default function ForArtistsPage() {
                     <li className="au-perk"><span className="au-step-icon" aria-hidden="true"><MonitorPlay {...ICON} /></span><span>Work published on Ennitto and Ennamo</span></li>
                     <li className="au-perk"><span className="au-step-icon" aria-hidden="true"><Film {...ICON} /></span><span>A path from micro-series to short film to feature</span></li>
                 </ul>
-            </AudienceSection>
-
-            {/* Form */}
-            <AudienceSection tone="white" id="apply">
-                <SectionHead title="Show Us Your Work" />
-                <AudienceForm
-                    subject="Artist submission (For Artists page)"
-                    submitLabel="Send"
-                    rows={[
-                        [{ name: "name", label: "Name", type: "text", required: true, autoComplete: "name" },
-                         { name: "city", label: "City", type: "text", required: true, autoComplete: "address-level2" }],
-                        [{ name: "phone", label: "Phone", type: "tel", required: true, autoComplete: "tel" },
-                         { name: "email", label: "Email", type: "email", required: true, autoComplete: "email" }],
-                        [{ name: "role", label: "I am a", type: "select", required: true, options: ["Actor", "Writer", "Director", "DOP", "Editor", "Musician"] },
-                         { name: "languages", label: "Languages", type: "text", required: true }],
-                        [{ name: "links", label: "Links to your work", type: "textarea", required: true }],
-                        [{ name: "message", label: "Message", type: "textarea" }],
-                    ]}
-                />
             </AudienceSection>
         </div>
     );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import "./navbar.css";
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +22,9 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // the current page (or a page under it) is marked in the menu
+    const isActive = (href: string) => pathname === href || pathname?.startsWith(href + "/");
+
     const navLinks = [
         { href: "/originals", label: "Originals" },
         { href: "/for-brands", label: "For Brands" },
@@ -33,13 +37,14 @@ export function Navbar() {
             <motion.header
                 className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-4 shadow-sm border-b border-gray-100"
             >
-                <div className="container flex items-center justify-between">
+                {/* logo left, page links centred, Contact right */}
+                <div className="container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
                     {/* Logo */}
                     {/* A real link, so Next prefetches the homepage; hover is a quiet fade, no scaling */}
                     <Link
                         href="/"
                         onClick={() => setMobileOpen(false)}
-                        className="cm-logo-link relative z-10 block"
+                        className="cm-logo-link relative z-10 block justify-self-start w-fit"
                         aria-label="Caimue - Go to homepage"
                     >
                         <Image
@@ -52,20 +57,28 @@ export function Navbar() {
                         />
                     </Link>
 
-                    {/* Desktop nav + Contact */}
-                    <div className="flex items-center gap-5 lg:gap-7">
+                    {/* Desktop page links, centred */}
+                    <nav aria-label="Main" className="hidden md:flex items-center gap-1 justify-self-center">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="hidden md:block whitespace-nowrap text-[15px] font-bold text-gray-800 hover:text-[var(--caimue-purple)] transition-colors"
+                                aria-current={isActive(link.href) ? "page" : undefined}
+                                className="cm-nav-link"
                             >
                                 {link.label}
                             </Link>
                         ))}
+                    </nav>
+
+                    <div className="flex items-center gap-5 justify-self-end">
                         {/* Wrapper div enforces mobile hiding even if .btn-primary sets its own display */}
                         <div className="hidden md:block">
-                            <Link href="/contact" className="btn-primary inline-flex text-sm px-6 py-2">
+                            <Link
+                                href="/contact"
+                                aria-current={isActive("/contact") ? "page" : undefined}
+                                className="btn-primary cm-nav-cta inline-flex text-sm px-6 py-2"
+                            >
                                 Contact
                             </Link>
                         </div>
@@ -100,7 +113,8 @@ export function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="block py-3.5 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                                    aria-current={isActive(link.href) ? "page" : undefined}
+                                    className="cm-nav-mlink"
                                 >
                                     {link.label}
                                 </Link>
@@ -108,7 +122,8 @@ export function Navbar() {
                             <Link
                                 href="/contact"
                                 onClick={() => setMobileOpen(false)}
-                                className="block py-3.5 px-4 rounded-xl text-[16px] font-normal text-gray-800 hover:text-[var(--caimue-purple)] hover:bg-purple-50 transition-colors text-center"
+                                aria-current={isActive("/contact") ? "page" : undefined}
+                                className="cm-nav-mlink"
                             >
                                 Contact
                             </Link>

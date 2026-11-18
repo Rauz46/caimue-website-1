@@ -47,7 +47,8 @@ export default function Home() {
           {/* Badge */}
           <span className="cm-in hero-badge mb-5">Digital entertainment · Tamil · Malayalam</span>
 
-          <h1 className="w-full mx-auto mb-4 relative flex flex-col items-center overflow-visible">
+          {/* the global h1 rule adds a 0.5em bottom margin (48px here); the hero sets its own gap: the 12px under the second line */}
+          <h1 className="w-full mx-auto relative flex flex-col items-center overflow-visible" style={{ marginBottom: 0 }}>
             <span className="leading-[1.2] tracking-tight text-white text-center block font-bold max-w-6xl text-5xl md:text-6xl lg:text-8xl pb-3 overflow-visible">
               <span className="cm-line block overflow-visible">Stories Worth</span>
               <span className="cm-line cm-line--2 text-[#FFC4DD] flex flex-wrap items-center justify-center gap-x-4 overflow-visible">
