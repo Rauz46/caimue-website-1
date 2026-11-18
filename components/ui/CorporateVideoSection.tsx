@@ -5,33 +5,33 @@ import { motion, useInView } from "framer-motion";
 import { Video, Smartphone, Handshake } from "lucide-react";
 import Link from "next/link";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
-import { LivelyCard } from "@/components/ui/LivelyCard";
+import { BrandStoryboard, type StoryOffer } from "@/components/home/BrandStoryboard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
-const services = [
+const services: (StoryOffer & { cut: string; alt: string })[] = [
     {
         icon: Smartphone,
         label: "Brand Micro-Series",
         description: "A vertical series built around your brand's world. Five to ten episodes, written, shot and released for Reels and Shorts.",
         cut: "/cutouts/k-reach.webp",
-        cutClass: "lc-cut--even",
         alt: "A man reacting to an episode on his phone",
+        tone: "orange",
     },
     {
         icon: Handshake,
         label: "Brand Films And Integrations",
         description: "Your brand written into one of our originals, or a short film of its own. It never feels like an ad.",
         cut: "/cutouts/k-prove.webp",
-        cutClass: "lc-cut--fill",
         alt: "Two people shaking hands on a partnership",
+        tone: "purple",
     },
     {
         icon: Video,
         label: "Corporate And Founder Films",
         description: "Founder stories, company films and launch videos with cinematic craft, for companies in India and the US.",
         cut: "/cutouts/k-define.webp",
-        cutClass: "lc-cut--fill",
         alt: "A team planning a film together",
+        tone: "pink",
     },
 ];
 
@@ -119,26 +119,8 @@ export function CorporateVideoSection() {
                         People skip ads. They wait for the next episode. We write your brand into series and films that audiences choose to watch.
                     </p>
 
-                    {/* Service cards — home "lively" cards with an action cut-out rising from the bottom */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full justify-items-center md:justify-items-stretch">
-                        {services.map(({ icon: Icon, label, description, cut, cutClass, alt }, i) => {
-                            const tone = (["orange", "purple", "pink"] as const)[i % 3];
-                            return (
-                                <LivelyCard
-                                    key={label}
-                                    tone={tone}
-                                    title={label}
-                                    icon={<Icon size={22} />}
-                                    text={description}
-                                    visualHeight={250}
-                                    visual={
-                                        // eslint-disable-next-line @next/next/no-img-element
-                                        <img className={`lc-cut ${cutClass}`} src={cut} alt={alt} loading="lazy" decoding="async" />
-                                    }
-                                />
-                            );
-                        })}
-                    </div>
+                    {/* The three offers as a storyboard: three frames in a row, each playing its story, title and line below */}
+                    <BrandStoryboard offers={services} />
 
                     {/* Brands we have worked with */}
                     <div className="mt-12 w-full flex flex-col items-center gap-5">

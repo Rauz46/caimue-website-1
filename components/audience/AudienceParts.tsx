@@ -8,17 +8,7 @@ import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 import "./audience.css";
 
 /** Inner-page hero on the site's purple ground (same layers as /about and /contact). */
-export function AudienceHero({
-    badge,
-    title,
-    sub,
-    cta,
-}: {
-    badge: string;
-    title: React.ReactNode;
-    sub: string;
-    cta: { label: string; href: string };
-}) {
+export function AudienceHero({ title }: { title: React.ReactNode }) {
     return (
         <section className="au-hero">
             <BrandGround className="z-0" />
@@ -33,12 +23,7 @@ export function AudienceHero({
                 <div className="absolute bottom-1/4 right-1/3 text-purple-200/40 text-3xl">✧</div>
             </div>
             <div className="container relative z-20 text-center">
-                <span className="au-badge cm-in">{badge}</span>
-                <h1 className="au-hero-title font-serif cm-in cm-in--2">{title}</h1>
-                <p className="au-hero-sub cm-in cm-in--3">{sub}</p>
-                <div className="au-hero-cta cm-in cm-in--4">
-                    <a href={cta.href} className="au-btn-light">{cta.label}</a>
-                </div>
+                <h1 className="au-hero-title font-serif cm-in">{title}</h1>
             </div>
         </section>
     );

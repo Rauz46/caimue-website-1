@@ -1,0 +1,14 @@
+/* Navbar link styles, loaded by components/layout/Navbar.tsx.
+   Links: calm medium weight; the page you are on is marked with a soft lavender pill and purple text. */
+.cm-nav-link{ display:inline-flex; align-items:center; height:38px; padding:0 16px; border-radius:999px;
+  font-size:15px; font-weight:500; letter-spacing:-.005em; color:#3F3553; white-space:nowrap;
+  transition:color .18s ease, background-color .18s ease; }
+.cm-nav-link:hover{ color:#1B0F33; background:#F6F2FD; }
+.cm-nav-link[aria-current="page"]{ color:#5B299D; background:#EFE7FC; font-weight:600; }
+.cm-nav-link:focus-visible{ outline:2px solid #5B299D; outline-offset:2px; }
+/* on the Contact page the button itself shows you are there */
+.cm-nav-cta[aria-current="page"]{ box-shadow:0 0 0 3px #EFE7FC; }
+.cm-nav-mlink{ display:block; padding:14px 16px; border-radius:12px; text-align:center; font-size:16px; font-weight:500;
+  color:#3F3553; transition:color .18s ease, background-color .18s ease; }
+.cm-nav-mlink:hover{ color:#1B0F33; background:#F6F2FD; }
+.cm-nav-mlink[aria-current="page"]{ color:#5B299D; background:#EFE7FC; font-weight:600; }

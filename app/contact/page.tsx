@@ -5,6 +5,7 @@ import { Linkedin, Mail, Youtube } from "lucide-react";
 import { HeroGrid } from "@/components/effects/HeroGrid";
 import { BrandGround } from "@/components/ui/BrandGround";
 import { FloatingScribbles } from "@/components/effects/FloatingScribbles";
+import { ContactForms } from "@/components/contact/ContactForms";
 import "./contact.css";
 
 // v7 copy: one door per audience, each with its own inbox
@@ -33,7 +34,7 @@ export default function ContactPage() {
         <FloatingScribbles className="scale-75 origin-center opacity-80" />
 
         <div className="container mx-auto px-4 relative z-30 text-center flex flex-col items-center justify-center">
-          <motion.h1 className="cm-in font-serif text-4xl md:text-5xl lg:text-6xl font-bold !text-white leading-[1.15] tracking-tight">
+          <motion.h1 className="cm-in font-serif text-4xl! md:text-5xl! lg:text-6xl! font-bold !text-white leading-[1.15]! mb-0! tracking-tight">
             Three Doors. Pick Yours.
           </motion.h1>
         </div>
@@ -143,6 +144,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* --- Enquiry forms (brands / artists), the only forms on the site --- */}
+      <ContactForms />
     </main>
   );
 }

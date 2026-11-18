@@ -80,41 +80,6 @@ export function JourneySection() {
     );
 }
 
-// Rotates the front image only while the card is hovered (mouse/pen), every
-// 2.4s. Two guards keep quick in-and-out movement calm:
-//  - hover intent: the first swap only fires if the pointer stays 400ms, so
-//    brushing across the card does nothing;
-//  - cooldown: a swap never starts within 2.4s of the previous one (the 1s
-//    glide plus a rest), so re-entering mid-glide never stacks swaps.
-// Leaving stops further swaps; a glide already running finishes smoothly.
-// Touch and reduced motion stay static.
-const SWAP_EVERY = 2400;
-const HOVER_INTENT = 400;
-function useHoverRotation(ref: React.RefObject<HTMLElement | null>) {
-    const [step, setStep] = useState(0);
-    useEffect(() => {
-        const card = ref.current?.closest(".lc");
-        if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        let first: number | undefined;
-        let interval: number | undefined;
-        let lastSwap = -Infinity;
-        const swap = () => { lastSwap = performance.now(); setStep((v) => v + 1); };
-        const stop = () => { window.clearTimeout(first); window.clearInterval(interval); first = interval = undefined; };
-        const enter = (e: Event) => {
-            if ((e as PointerEvent).pointerType === "touch" || interval !== undefined || first !== undefined) return;
-            const wait = Math.max(HOVER_INTENT, lastSwap + SWAP_EVERY - performance.now());
-            first = window.setTimeout(() => {
-                first = undefined;
-                swap();
-                interval = window.setInterval(swap, SWAP_EVERY);
-            }, wait);
-        };
-        card.addEventListener("pointerenter", enter);
-        card.addEventListener("pointerleave", stop);
-        return () => { stop(); card.removeEventListener("pointerenter", enter); card.removeEventListener("pointerleave", stop); };
-    }, [ref]);
-    return step;
-}
 // ── Track Record cards: home "lively" cards (solid colour, title + badge,
 //    a visual rising from the bottom edge with the disc pair behind it)
 // Shared by all three Track Record cards: three slots (left, centre, right)
@@ -127,9 +92,10 @@ const slotFor = (i: number, step: number) => SLOTS[(i + step) % 3];
 
 // People group: the pushed layout (front person centred and tallest, the two
 // flanking a step back at the card edges). Slot styles: .lc-p[data-slot].
-function Group({ l, c, r }: { l: [string, string]; c: [string, string]; r: [string, string] }) {
+function Group({ l, c, r, offsetMs = 0 }: { l: [string, string]; c: [string, string]; r: [string, string]; offsetMs?: number }) {
     const ref = useRef<HTMLDivElement>(null);
-    const step = useHoverRotation(ref);
+    // automatic, like cards 1 and 2; each card has its own offset so no two switch together
+    const step = useAutoRotation(ref, offsetMs);
     return (
         <div className="lc-group" ref={ref}>
             {/* eslint-disable @next/next/no-img-element */}
@@ -244,7 +210,7 @@ function BrandCard(_: { isInView: boolean }) {
             icon={<Handshake size={22} />}
             text="Brand collaborations, written into the story."
             visualHeight={260}
-            visual={<Group l={["/cutouts/c-piqual.webp", "Piqual brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
+            visual={<Group offsetMs={975} l={["/cutouts/c-piqual.webp", "Piqual brand film"]} c={["/cutouts/c-hael.webp", "Hael brand film"]} r={["/cutouts/c-xime.webp", "XIME brand film"]} />}
         />
     );
 }
@@ -258,7 +224,7 @@ function ArtistsCard(_: { isInView: boolean }) {
             icon={<Sparkles size={22} />}
             text="Artists discovered: writers, directors and actors."
             visualHeight={260}
-            visual={<Group l={["/cutouts/c-artist2.webp", "An artist discovered by Caimue"]} c={["/cutouts/c-megha.webp", "Megha, an artist discovered by Caimue"]} r={["/cutouts/c-sajan.webp", "An artist discovered by Caimue"]} />}
+            visual={<Group offsetMs={2925} l={["/cutouts/c-artist2.webp", "An artist discovered by Caimue"]} c={["/cutouts/c-megha.webp", "Megha, an artist discovered by Caimue"]} r={["/cutouts/c-sajan.webp", "An artist discovered by Caimue"]} />}
         />
     );
 }
