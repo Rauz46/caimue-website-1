@@ -45,7 +45,7 @@
   --nav-bg: rgba(253, 252, 248, 0.9);
 
   /* Typography */
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: var(--font-urbanist), 'Urbanist', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* Spacing */
@@ -719,19 +719,8 @@ html.lenis,html.lenis body{height:auto}
 
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
-    /* Disc pair grows out of the card corner as the card scrolls in */
-    .cm-disc{ view-timeline: --cm-card block; }
-    .cm-disc::before{ animation: cm-disc-in linear both; animation-timeline: --cm-card; animation-range: entry 0px entry 380px; }
-    .cm-disc::after { animation: cm-dot-in  linear both; animation-timeline: --cm-card; animation-range: entry 180px entry 440px; }
-    @keyframes cm-disc-in{ from{ scale:.25; } to{ scale:1; } }
-    @keyframes cm-dot-in { from{ scale:0; }   to{ scale:1; } }
-
-    /* Section headings rise out of a mask as they scroll into view */
-    .cm-rise{ animation: cm-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    @keyframes cm-rise{
-      from{ clip-path: inset(0 0 100% 0); translate: 0 .45em; }
-      to  { clip-path: inset(-.15em -.1em -.3em -.1em); translate: 0 0; }
-    }
+    /* The card discs, section headings, cards and doodles reveal once as they come into view: see
+       components/effects/RevealOnce.tsx (they were scroll-linked; that cost every scroll frame on phones) */
 
     /* Hero disc drifts as the page scrolls; the pink disc travels round its rim */
     .cm-ground-disc{ animation: cm-ground linear both; animation-timeline: scroll(root block); animation-range: 0px 90vh; }
@@ -755,19 +744,7 @@ html.lenis,html.lenis body{height:auto}
 @keyframes cm-glow-b{ to{ transform:translate3d(-12vmax, -8vmax, 0); } }
 @media (prefers-reduced-motion: reduce){ .cm-glow{ animation:none; } }
 
-/* ── Background doodles pop in as they scroll into view (scale only, so each
-   doodle keeps its own tilt and opacity) ── */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .cm-decor > *, .cm-decor-item{
-      animation: cm-decor-in linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 25%;
-    }
-    footer .cm-decor > *, footer .cm-decor-item{ animation: none; }
-    @keyframes cm-decor-in{ from{ scale:.15; } 60%{ scale:1.08; } to{ scale:1; } }
-  }
-}
+/* Background doodles pop in once as they come into view (scale only): see components/effects/RevealOnce.tsx */
 
 /* ── Light cards: crisp, not pastel (owner: "old paper") ── */
 .cm-disc--pink    { --card:#E31B23; --disc:#EB5F65; } /* logo red (the e) */
@@ -883,13 +860,7 @@ body{
 .hc-btn svg{ transition: translate .25s ease; }
 .hc-btn:hover svg.hc-arrow{ translate:3px 0; }
 
-/* cards rise in as they scroll into view — CSS only, never invisible waiting for JS */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .hc{ animation: hc-in linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
-    @keyframes hc-in{ from{ opacity:.0; transform:translateY(28px); } to{ opacity:1; transform:none; } }
-  }
-}
+/* cards rise in once as they come into view: see components/effects/RevealOnce.tsx */
 
 /* stronger section tint + balanced text everywhere on the home sections */
 :root{ --tint:#F1E6FF; }
@@ -969,13 +940,7 @@ main p, section p{ text-wrap:pretty; }
 .lc-plate--logos{ display:flex; align-items:center; justify-content:center; gap:14px; padding:0 18px; }
 .lc-plate--logos img{ height:44px; width:auto; max-width:30%; object-fit:contain; }
 
-/* reveal on scroll — CSS only, never waits for JavaScript */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .lc{ animation: lc-in linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
-    @keyframes lc-in{ from{ opacity:0; transform: translateY(32px); } to{ opacity:1; transform:none; } }
-  }
-}
+/* cards reveal once as they come into view: see components/effects/RevealOnce.tsx */
 @media (max-width:1023px){
   .home-wrap.grid > .lc{ width:100%; max-width:460px; }
 }

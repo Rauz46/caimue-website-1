@@ -93,7 +93,7 @@ export function FeatureFilmsSection() {
                 </span>
 
                 <h2 className="cm-rise cm-h2 font-serif mb-5 [text-wrap:balance]">
-                    Next Stop: The Big Screen.
+                    Next Stop: The Big Screen
                 </h2>
                 <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed [text-wrap:balance]">
                     Every micro-series and short film we make is practice for one goal: a Malayalam feature film. The stories, directors and actors that win on the small screen are the ones we take to theatres.

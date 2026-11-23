@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Playfair_Display, Urbanist, Inter, Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { RevealOnce } from "@/components/effects/RevealOnce";
 
+// Site-wide heading font (23 Nov 2026 trial; was Playfair Display, set in --font-heading in globals.css)
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Playfair stays only for the few channel-page bits that name it directly; not preloaded, so other pages never fetch it
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const inter = Inter({
@@ -67,10 +77,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${jakarta.variable} ${caveat.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${urbanist.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${caveat.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
           <SmoothScroll />
+          <RevealOnce />
           <GrainOverlay />
           <Navbar />
           <main>{children}</main>

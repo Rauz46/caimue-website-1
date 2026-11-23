@@ -112,7 +112,7 @@ export function CorporateVideoSection() {
                 <div className="flex flex-col items-center text-center">
                     {/* Headline first */}
                     <h2 className="cm-rise cm-h2 font-serif mb-5 [text-wrap:balance]">
-                        Put Your Brand In A Story People Follow.
+                        Put Your Brand In A Story People Follow
                     </h2>
 
                     <p className="text-[#4A3F5C] text-base md:text-lg leading-relaxed max-w-3xl mb-10 md:mb-12 [text-wrap:balance]">

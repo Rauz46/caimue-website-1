@@ -1,0 +1,87 @@
+/* Homepage hero (chosen 23 Nov 2026 in /hero-lab): film reel background, title block on the left over a deep-blue shade.
+   Classes are hlb- prefixed: short global names like .hc already exist on the homepage and collide. */
+
+.hlb{ position:relative; overflow:hidden; isolation:isolate; min-height:100svh; background:#500D7F; }
+
+/* the reel fills the hero */
+.hlb-reel{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+
+/* brand colour: the footage keeps its light and shapes, its hue moves toward the hero violet;
+   multiply deepens mids and shadows but keeps the highlights (flares, city lights) glowing */
+.hlb-tint{ position:absolute; inset:0; z-index:1; pointer-events:none; background:#500D7F; mix-blend-mode:color; opacity:.42; }
+.hlb-tint::after{ content:""; position:absolute; inset:0; background:#6D28D9; mix-blend-mode:multiply; opacity:.55; }
+
+/* a soft deep-blue shade from the left, behind the title block, plus a floor for the poster row */
+.hlb-shade{ position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(80,13,127,.84) 0%, rgba(80,13,127,.62) 30%, rgba(80,13,127,.22) 54%, rgba(80,13,127,0) 72%),
+    linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 24%, rgba(80,13,127,0) 48%); }
+
+/* the block sits centred in the space under the fixed navbar: the gap above it equals the gap below the posters */
+.hlb-inner{ --nav:88px; --gap:clamp(2.5rem, 1rem + 4vh, 4.5rem);
+  position:relative; z-index:2; min-height:100svh; display:flex; flex-direction:column; justify-content:center;
+  padding-top:calc(var(--nav) + var(--gap)); padding-bottom:var(--gap); }
+@media (max-width:767px){ .hlb-inner{ --nav:69px; } }
+.hlb-copy{ max-width:46rem; }
+.hlb-kicker{ margin:0 0 1rem; color:rgba(255,255,255,.78); font-size:14px; font-weight:600; letter-spacing:.01em; }
+.hlb-h{
+  margin:0 !important; color:#fff; font-weight:700; letter-spacing:-.03em; line-height:1; text-wrap:balance;
+  /* heading font chosen on 23 Nov (Urbanist), set here too so this page shows it even with a stale stylesheet */
+  font-family:var(--font-urbanist), 'Urbanist', system-ui, sans-serif;
+  font-size:clamp(3.2rem, 1.4rem + 6vw, 7.5rem);
+}
+.hlb-pink{ color:#FFC4DD; }
+.hlb-sub{ margin:1.5rem 0 0; max-width:36rem; color:rgba(255,255,255,.9); font-size:clamp(1rem, .95rem + .25vw, 1.15rem); line-height:1.55; text-wrap:pretty; }
+.hlb-ctas{ margin-top:1.75rem; display:flex; flex-wrap:wrap; gap:.75rem; }
+
+.hlb-strip{ list-style:none; margin:3rem 0 0; padding:0; display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:12px; }
+.hlb-card{ position:relative; aspect-ratio:16/10; border-radius:10px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.35); transition:transform .25s cubic-bezier(.23,1,.32,1); }
+.hlb-card:hover{ transform:translateY(-4px); }
+
+/* phones: the title block spans the width, the shade comes up from the bottom, posters scroll sideways */
+@media (max-width:767px){
+  .hlb-shade{ background:linear-gradient(to top, rgba(80,13,127,.94) 0%, rgba(80,13,127,.7) 45%, rgba(80,13,127,.2) 75%, rgba(80,13,127,0) 100%); }
+  .hlb-strip{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; margin-right:-1rem; padding-right:1rem; scrollbar-width:none; }
+  .hlb-strip::-webkit-scrollbar{ display:none; }
+  .hlb-card{ flex:0 0 42%; scroll-snap-align:start; }
+}
+
+/* desktop and laptop: the reel plays on the right; the left is a solid deep-blue ground under the text, and the reel's
+   left edge fades into it (a mask, so there is no hard edge). The tint layer takes the same box and mask. */
+@media (min-width:1024px){
+  .hlb-reel, .hlb-tint{ left:auto; right:0; width:62%;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 45%); mask-image:linear-gradient(90deg, transparent 0%, #000 45%); }
+  .hlb-shade{ background:linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 22%, rgba(80,13,127,0) 42%); }
+}
+
+@media (prefers-reduced-motion: reduce){ .hlb-reel{ visibility:hidden; } .hlb{ background:#500D7F url(/videos/hero-reel-poster.jpg) center/cover no-repeat; } }
+@media (prefers-reduced-motion: reduce) and (min-width:1024px){
+  .hlb{ background:linear-gradient(90deg, #500D7F 38%, rgba(80,13,127,0) 66%), #500D7F url(/videos/hero-reel-poster.jpg) right center/auto 100% no-repeat; }
+}
+
+/* the live hero's decoration (grain, Bauhaus disc set, stars): above the reel and shade, under the text */
+.hlb-decor{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+/* desktop: the mid disc and the yellow dot sit in the open purple between the text and the reel, never on the footage or the copy */
+@media (min-width:1024px){
+  .hlb-decor .cm-decor{ display:none; } /* the stars would all land on the footage */
+}
+
+/* grid and doodles live on the text side only. The grid fades out before the reel starts. */
+.hlb .hlb-grid{ -webkit-mask-image:linear-gradient(90deg, #000 0%, #000 30%, transparent 50%); mask-image:linear-gradient(90deg, #000 0%, #000 30%, transparent 50%); }
+.hlb-copy{ position:relative; }
+.hlb-doodles{ position:absolute; inset:0; pointer-events:none; display:none; }
+.hlb-doodles .cm-decor{ overflow:visible; z-index:0; }
+.hlb-doodles .cm-decor > *{ display:none; }
+/* anchored to the text block (top/left only: the doodles animate their own transform) */
+.hlb-doodles .cm-decor > :nth-child(9){ display:block; top:-38px; left:-44px; }                  /* corner bracket, framing the kicker */
+.hlb-doodles .cm-decor > :nth-child(8){ display:block; top:1px; left:312px; }                    /* REC, after the kicker line */
+.hlb-doodles .cm-decor > :nth-child(1){ display:block; top:40%; left:calc(100% - 190px); }      /* Action!, beside "The Scroll" */
+.hlb-doodles .cm-decor > :nth-child(7){ display:block; top:auto; bottom:4px; left:420px; }      /* focus mark, beside the buttons */
+@media (min-width:1280px){ .hlb-doodles{ display:block; } }
+@media (max-width:1023px){ .hlb .hlb-grid{ display:none; } }
+
+/* Bauhaus corner piece: the disc and ring share the bottom-left corner, and the yellow dot sits exactly on the ring
+   (ring centre is 0.08S right and 0.2S up from the corner, radius 0.65S; the dot rides it at about 95 degrees, in the
+   margin left of the text) and drifts with it */
+.hlb-dot-y{ top:auto; right:auto; width:22px; height:22px;
+  left:calc(var(--S) * 0.023 - 11px); bottom:calc(var(--S) * 0.848 - 11px); animation:cm-drift-a 26s ease-in-out infinite alternate; }

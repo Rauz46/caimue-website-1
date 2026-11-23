@@ -27,7 +27,7 @@ export default function ForBrandsPage() {
     return (
         <div className="min-h-screen">
             <AudienceHero
-                title={<>Your Brand, <em>As A Series People Follow.</em></>}
+                title={<>Your Brand, <em>As A Series People Follow</em></>}
             />
 
             {/* Why story */}
