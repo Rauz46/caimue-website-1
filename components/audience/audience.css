@@ -129,13 +129,7 @@ textarea.au-input{ resize:vertical; min-height:120px; }
 .au-submit .btn-primary:disabled{ opacity:.7; cursor:progress; }
 .au-error{ color:#B5121A; font-size:14px; font-weight:500; }
 
-/* reveal for section heads and small tiles: CSS only */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .au-step, .au-perk, .au-faq, .au-form-card, .au-logos{ animation: au-in linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
-    @keyframes au-in{ from{ opacity:0; transform:translateY(24px); } to{ opacity:1; transform:none; } }
-  }
-}
+/* tiles reveal once as they come into view: see components/effects/RevealOnce.tsx */
 @media (prefers-reduced-motion: reduce){
   .au-faq details::details-content{ transition:none; }
 }

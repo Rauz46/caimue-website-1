@@ -54,7 +54,7 @@ export function JourneySection() {
                     <motion.h2
                         className="cm-rise cm-h2 font-serif mb-5"
                     >
-                        2 Million Views. Zero Ad Spend.
+                        2 Million Views, Zero Ad Spend
                     </motion.h2>
 
                     <motion.div

@@ -47,3 +47,6 @@ next-env.d.ts
 /.claude/agents/
 /.playwright-mcp/
 /skills-lock.json
+
+# local-only: unused images moved out of public/ (19 Nov 2026), original images before resizing
+/_local/

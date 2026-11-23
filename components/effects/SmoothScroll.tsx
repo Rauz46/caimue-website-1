@@ -14,6 +14,9 @@ export function SmoothScroll({ children }: { children?: React.ReactNode }) {
         // Low-power devices scroll smoother with the browser's own scrolling
         const nav = navigator as Navigator & { deviceMemory?: number };
         if ((nav.deviceMemory && nav.deviceMemory <= 4) || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 4)) return;
+        // Touch screens scroll natively anyway (Lenis leaves touch alone), so on phones it would only run an empty
+        // per-frame loop; skip it there
+        if (window.matchMedia("(pointer: coarse)").matches) return;
         const lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1, smoothWheel: true });
         let id = 0;
         const raf = (time: number) => { lenis.raf(time); id = requestAnimationFrame(raf); };

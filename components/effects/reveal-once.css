@@ -1,0 +1,22 @@
+/* Reveal once (loaded by RevealOnce.tsx). Same entrances as before, but played once in time instead of being tied to
+   the scroll position: .rv-wait holds the first frame (paused), .rv-in plays it. Elements on screen at load get
+   neither class and simply show. */
+@keyframes cm-rise{
+  from{ clip-path: inset(0 0 100% 0); translate: 0 .45em; }
+  to  { clip-path: inset(-.15em -.1em -.3em -.1em); translate: 0 0; }
+}
+@keyframes lc-in{ from{ opacity:0; transform: translateY(32px); } to{ opacity:1; transform:none; } }
+@keyframes hc-in{ from{ opacity:0; transform: translateY(28px); } to{ opacity:1; transform:none; } }
+@keyframes au-in{ from{ opacity:0; transform: translateY(24px); } to{ opacity:1; transform:none; } }
+@keyframes cm-decor-in{ from{ scale:.15; } 60%{ scale:1.08; } to{ scale:1; } }
+@keyframes cm-disc-in{ from{ scale:.25; } to{ scale:1; } }
+
+@media (prefers-reduced-motion: no-preference){
+  .cm-rise:is(.rv-wait, .rv-in){ animation: cm-rise .8s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  .lc:is(.rv-wait, .rv-in){ animation: lc-in .7s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  .hc:is(.rv-wait, .rv-in){ animation: hc-in .7s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  :is(.au-step, .au-perk, .au-faq, .au-form-card, .au-logos):is(.rv-wait, .rv-in){ animation: au-in .7s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  :is(.cm-decor > *, .cm-decor-item):is(.rv-wait, .rv-in){ animation: cm-decor-in .6s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  .cm-disc:is(.rv-wait, .rv-in)::before{ animation: cm-disc-in .9s cubic-bezier(.22,1,.36,1) var(--rv-d, 0ms) both; }
+  .rv-wait, .rv-wait::before{ animation-play-state: paused !important; }
+}
