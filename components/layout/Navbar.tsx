@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,19 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./navbar.css";
 
 export function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const pathname = usePathname();
-    const isHome = pathname === "/";
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const next = window.scrollY > 50;
-            setIsScrolled(prev => (prev === next ? prev : next));
-        };
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     // the current page (or a page under it) is marked in the menu
     const isActive = (href: string) => pathname === href || pathname?.startsWith(href + "/");

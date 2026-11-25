@@ -1,0 +1,30 @@
+/* ── Track Record (home section two), 25 Nov 2026: three purple cards, each with its own disc colours, and every
+   visual still: no rotation, no depth blur, nothing inside moves on hover (the card lifts as one) ── */
+.lc.tr-d--yellow{ --d1:#FFC633; --d2:#8754F2; }
+.lc.tr-d--red{ --d1:#E31B23; --d2:#8754F2; }
+.lc.tr-d--orange{ --d1:#FF7A3D; --d2:#8754F2; }
+/* the large arc picks up each card's colour as a soft tint, so the three cards read as a set with one accent each */
+.tr-d--yellow .lc-visual::before{ background:#9A6BF5; }
+.tr-d--red    .lc-visual::before{ background:#9A6BF5; }
+.tr-d--orange .lc-visual::before{ background:#9A6BF5; }
+.tr-card .lc-badge{ color:#6B2BE5; }
+.tr-card .lc-p, .tr-card .lc-p[data-slot]{ filter:none; transition:none; }
+.tr-card:hover .lc-p[data-slot="c"]{ transform: translate3d(calc(50cqw - 50%), 0, 0) rotateY(0deg); }
+.tr-card:hover .lc-p[data-slot="l"]{ transform: translate3d(-7.14cqw, 0, -171px) rotateY(12deg); }
+.tr-card:hover .lc-p[data-slot="r"]{ transform: translate3d(calc(107.14cqw - 100%), 0, -171px) rotateY(-12deg); }
+.tr-card .lc-poster{ transition:none; }
+.tr-card:hover .lc-poster--l{ transform: rotate(-12deg) translateY(14px); }
+.tr-card:hover .lc-poster--r{ transform: rotate(12deg) translateY(14px); }
+.tr-card:hover .lc-poster--c{ transform: rotate(0deg); }
+/* merged card: two stats side by side, each with its own line */
+.tr-duo{ display:grid; grid-template-columns:1fr 1fr; gap:22px; min-width:0; flex:1; }
+.tr-duo .lc-stat{ margin-bottom:0; }
+.tr-duo-text{ margin-top:8px; font-size:14px; line-height:1.5; color:var(--ink) !important; opacity:.94; text-wrap:pretty; }
+@media (max-width:767px){ .tr-cards > .lc{ width:100%; max-width:460px; margin-inline:auto; } }
+/* small phones: the merged card's two stats need the full width, so its icon badge steps aside */
+@media (max-width:479px){ .lc-head:has(.tr-duo) .lc-badge{ display:none; } }
+/* card 1's poster fan rises over its disc like the people in cards 2 and 3, instead of hiding under the bottom edge */
+.tr-card .lc-poster{ bottom:16%; width:56%; }
+.tr-card .lc-poster--c{ left:22%; }
+.tr-card .lc-poster--l{ left:-6%; bottom:9%; }
+.tr-card .lc-poster--r{ right:-6%; bottom:9%; }

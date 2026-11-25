@@ -20,30 +20,35 @@ export function LivelyCard({
     visual,
     visualHeight = 250,
     centered = false,
+    head,
+    className = "",
 }: {
     tone: LcTone;
     eyebrow?: React.ReactNode;
     stat?: string;
     title?: React.ReactNode;
     icon?: React.ReactNode;
-    text: React.ReactNode;
+    text?: React.ReactNode;
     action?: React.ReactNode;
     visual?: React.ReactNode;
     visualHeight?: number;
     centered?: boolean;
+    /** replaces the stat/title head with custom content (e.g. two stats in one card) */
+    head?: React.ReactNode;
+    className?: string;
 }) {
-    const hasHead = Boolean(eyebrow || stat || title || icon);
+    const hasHead = Boolean(head || eyebrow || stat || title || icon);
     return (
-        <article className={`lc lc--${tone}${visual ? "" : " lc--plain"}${centered ? " lc--center" : ""}`}>
+        <article className={`lc lc--${tone}${visual ? "" : " lc--plain"}${centered ? " lc--center" : ""}${className ? " " + className : ""}`}>
             {hasHead && <div className="lc-head">
-                <div className="min-w-0">
+                {head ?? <div className="min-w-0">
                     {eyebrow && <div className="lc-eyebrow">{eyebrow}</div>}
                     {stat && <div className="lc-stat">{stat}</div>}
                     {title && <h3 className="lc-title">{title}</h3>}
-                </div>
+                </div>}
                 {icon && <span className="lc-badge" aria-hidden>{icon}</span>}
             </div>}
-            <p className="lc-text">{text}</p>
+            {text && <p className="lc-text">{text}</p>}
             {action && <div className="lc-action">{action}</div>}
             {visual && (
                 <div className="lc-visual" style={{ height: visualHeight }}>

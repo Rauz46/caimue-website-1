@@ -62,7 +62,7 @@ export function FeatureFilmsSection() {
     };
 
     return (
-        <section ref={sectionRef} className="cv-auto relative pt-16 md:pt-20 pb-14 md:pb-16 overflow-hidden" style={{ background: "#F1E6FF", containIntrinsicSize: "auto 860px" }}>
+        <section ref={sectionRef} className="cv-auto relative pt-16 md:pt-20 pb-14 md:pb-16 overflow-hidden" style={{ background: "#FFFFFF", containIntrinsicSize: "auto 860px" }}>
             {/* Subtle grid background */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"

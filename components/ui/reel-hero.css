@@ -6,16 +6,15 @@
 /* the reel fills the hero */
 .hlb-reel{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
 
-/* brand colour: the footage keeps its light and shapes, its hue moves toward the hero violet;
-   multiply deepens mids and shadows but keeps the highlights (flares, city lights) glowing */
-.hlb-tint{ position:absolute; inset:0; z-index:1; pointer-events:none; background:#500D7F; mix-blend-mode:color; opacity:.42; }
-.hlb-tint::after{ content:""; position:absolute; inset:0; background:#6D28D9; mix-blend-mode:multiply; opacity:.55; }
+/* the brand-purple grade used to be two blend layers over the video; it is now baked into the video files
+   (reference/hero-reel: bake.py applies the same W3C colour blend), so phones composite one layer, not three */
 
 /* a soft deep-blue shade from the left, behind the title block, plus a floor for the poster row */
 .hlb-shade{ position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
     linear-gradient(90deg, rgba(80,13,127,.84) 0%, rgba(80,13,127,.62) 30%, rgba(80,13,127,.22) 54%, rgba(80,13,127,0) 72%),
-    linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 24%, rgba(80,13,127,0) 48%); }
+    linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 24%, rgba(80,13,127,0) 48%),
+    linear-gradient(rgba(80,13,127,.42), rgba(80,13,127,.42)); }
 
 /* the block sits centred in the space under the fixed navbar: the gap above it equals the gap below the posters */
 .hlb-inner{ --nav:88px; --gap:clamp(2.5rem, 1rem + 4vh, 4.5rem);
@@ -38,20 +37,32 @@
 .hlb-card{ position:relative; aspect-ratio:16/10; border-radius:10px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.35); transition:transform .25s cubic-bezier(.23,1,.32,1); }
 .hlb-card:hover{ transform:translateY(-4px); }
 
-/* phones: the title block spans the width, the shade comes up from the bottom, posters scroll sideways */
+/* phones: one centred column. The reel stays as a deep logo-purple backdrop (a flat 62% layer plus a floor under the
+   posters), so every line of text reads clearly; the scattered stars and the corner discs are left out here */
 @media (max-width:767px){
-  .hlb-shade{ background:linear-gradient(to top, rgba(80,13,127,.94) 0%, rgba(80,13,127,.7) 45%, rgba(80,13,127,.2) 75%, rgba(80,13,127,0) 100%); }
+  .hlb-shade{ background:
+    linear-gradient(to top, rgba(80,13,127,.95) 0%, rgba(80,13,127,.55) 30%, rgba(80,13,127,0) 55%),
+    linear-gradient(rgba(80,13,127,.62), rgba(80,13,127,.62)); }
+  .hlb-decor .cm-decor, .hlb-decor .cm-hs{ display:none; }
+  .hlb-copy{ margin-inline:auto; text-align:center; display:flex; flex-direction:column; align-items:center; }
+  .hlb-kicker{ margin-bottom:.875rem; color:rgba(255,255,255,.85); }
+  .hlb-h{ font-size:clamp(2.75rem, 1.2rem + 8vw, 3.6rem); line-height:1.02; }
+  .hlb-sub{ margin-top:1.125rem; max-width:22rem; color:#fff; font-size:1rem; line-height:1.55; }
+  .hlb-ctas{ margin-top:1.5rem; width:100%; max-width:20rem; flex-direction:column; gap:.625rem; }
+  .hlb-ctas .hero-btn{ width:100%; justify-content:center; text-align:center; }
+  .hlb-strip{ margin-top:2.25rem; }
   .hlb-strip{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; margin-right:-1rem; padding-right:1rem; scrollbar-width:none; }
   .hlb-strip::-webkit-scrollbar{ display:none; }
   .hlb-card{ flex:0 0 42%; scroll-snap-align:start; }
 }
 
 /* desktop and laptop: the reel plays on the right; the left is a solid deep-blue ground under the text, and the reel's
-   left edge fades into it (a mask, so there is no hard edge). The tint layer takes the same box and mask. */
+   left edge fades into it (a mask, so there is no hard edge). */
 @media (min-width:1024px){
-  .hlb-reel, .hlb-tint{ left:auto; right:0; width:62%;
+  .hlb-reel{ left:auto; right:0; width:62%;
     -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 45%); mask-image:linear-gradient(90deg, transparent 0%, #000 45%); }
-  .hlb-shade{ background:linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 22%, rgba(80,13,127,0) 42%); }
+  .hlb-shade{ background:linear-gradient(to top, rgba(80,13,127,.92) 0%, rgba(80,13,127,.45) 22%, rgba(80,13,127,0) 42%),
+    linear-gradient(rgba(80,13,127,.42), rgba(80,13,127,.42)); }
 }
 
 @media (prefers-reduced-motion: reduce){ .hlb-reel{ visibility:hidden; } .hlb{ background:#500D7F url(/videos/hero-reel-poster.jpg) center/cover no-repeat; } }
@@ -61,6 +72,8 @@
 
 /* the live hero's decoration (grain, Bauhaus disc set, stars): above the reel and shade, under the text */
 .hlb-decor{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+/* plain grain, not an overlay blend: a blend over a playing video is re-composited on every frame */
+.hlb .bg-noise{ mix-blend-mode:normal; opacity:.05; }
 /* desktop: the mid disc and the yellow dot sit in the open purple between the text and the reel, never on the footage or the copy */
 @media (min-width:1024px){
   .hlb-decor .cm-decor{ display:none; } /* the stars would all land on the footage */

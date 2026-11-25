@@ -1,6 +1,5 @@
 "use client";
 
-import { PlatformsSection } from "@/components/ui/PlatformsSection";
 import { FeatureFilmsSection } from "@/components/ui/FeatureFilmsSection";
 import { CorporateVideoSection } from "@/components/ui/CorporateVideoSection";
 import { JourneySection } from "@/components/ui/JourneySection";
@@ -19,11 +18,8 @@ export default function Home() {
       {/* ==================== TRACK RECORD ==================== */}
       <JourneySection />
 
-      {/* ==================== WHAT WE MAKE ==================== */}
+      {/* ==================== WHAT WE MAKE + OUR CHANNELS (merged 25 Nov 2026) ==================== */}
       <FormatsSection />
-
-      {/* ==================== OUR CHANNELS ==================== */}
-      <PlatformsSection />
 
       {/* ==================== FOR BRANDS ==================== */}
       <CorporateVideoSection />
