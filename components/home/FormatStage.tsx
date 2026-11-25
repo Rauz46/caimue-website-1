@@ -78,7 +78,7 @@ function SceneFounder() {
 /* eslint-enable @next/next/no-img-element */
 const SCENES = [SceneSeries, SceneShort, SceneFeature, SceneFounder];
 
-export function FormatStage({ items }: { items: StageItem[] }) {
+export function FormatStage({ items, onActive }: { items: StageItem[]; onActive?: (i: number) => void }) {
     const [active, setActive] = useState(0);
     const [prev, setPrev] = useState(0);
     const [cycle, setCycle] = useState(0);          // bumps on every pick, so the timer and its ring restart
@@ -94,6 +94,9 @@ export function FormatStage({ items }: { items: StageItem[] }) {
         io.observe(el);
         return () => io.disconnect();
     }, []);
+
+    // tells the section which format is open (the channel row below lights the channels that carry it)
+    useEffect(() => { onActive?.(active); }, [active, onActive]);
 
     const go = (i: number) => { setActive((cur) => { if (cur !== i) setPrev(cur); return i; }); };
 

@@ -55,7 +55,7 @@ export function CorporateVideoSection() {
     return (
         <section
             ref={sectionRef}
-            className="cv-auto relative bg-white pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
+            className="cv-auto relative bg-[#F1E6FF] pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
             style={{ containIntrinsicSize: "auto 1160px" }}
         >
             <SectionDownArrow />

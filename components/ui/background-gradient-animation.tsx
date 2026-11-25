@@ -24,7 +24,8 @@ function PhoneGround({ colours, pointer, onReady }: { colours: string[]; pointer
         const ctx = cv?.getContext("2d");
         if (!cv || !ctx) return;
         let W = 0, H = 0, raf = 0, visible = true, elapsed = 0, last = performance.now(), ready = false;
-        const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // phones get the gradient as a still picture: a canvas redrawn while the page scrolls costs them smoothness
+        const still = window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches;
         const size = () => {
             const r = cv.getBoundingClientRect();
             W = r.width; H = r.height;

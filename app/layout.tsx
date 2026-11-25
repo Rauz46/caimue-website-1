@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { AnimationGate } from "@/components/effects/AnimationGate";
 import { RevealOnce } from "@/components/effects/RevealOnce";
 
 // Site-wide heading font (23 Nov 2026 trial; was Playfair Display, set in --font-heading in globals.css)
@@ -81,6 +82,7 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeProvider>
           <SmoothScroll />
+          <AnimationGate />
           <RevealOnce />
           <GrainOverlay />
           <Navbar />

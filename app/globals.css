@@ -757,6 +757,8 @@ html.lenis,html.lenis body{height:auto}
 .cm-disc--blush p{ color:#3A2A57 !important; }
 .cm-disc--blush{ --stat:#5B299D; }
 .cm-off .cm-glow{ animation-play-state: paused; }
+/* AnimationGate marks sections that are off screen: everything looping inside them waits */
+.cm-off, .cm-off *, .cm-off *::before, .cm-off *::after{ animation-play-state: paused !important; }
 
 /* ── One section-heading style for the whole site (Playfair, one size scale,
    one weight, one ink colour; accent words stay brand purple) ── */

@@ -26,13 +26,15 @@ export function ReelHero() {
     return (
         <section className="hlb">
             <video className="hlb-reel" autoPlay muted loop playsInline preload="auto" poster="/videos/hero-reel-poster.jpg" aria-hidden>
-                {/* full-size reel for desktop screens, the 1280px one for phones and small laptops */}
+                {/* the purple grade is baked into the files (no blend layers to composite on every frame).
+                    Full size for desktop screens; phones get a light H.264 file every phone decodes in hardware;
+                    the 1280px one for tablets and small laptops */}
                 <source src="/videos/hero-reel-1920.webm" type="video/webm" media="(min-width: 1280px)" />
                 <source src="/videos/hero-reel-1920.mp4" type="video/mp4" media="(min-width: 1280px)" />
+                <source src="/videos/hero-reel-720.mp4" type="video/mp4" media="(max-width: 767px)" />
                 <source src="/videos/hero-reel.webm" type="video/webm" />
                 <source src="/videos/hero-reel.mp4" type="video/mp4" />
             </video>
-            <div className="hlb-tint" aria-hidden />
             <div className="hlb-shade" aria-hidden />
 
             {/* the live hero's decoration: grain, the Bauhaus corner piece (disc, ring and a yellow dot riding the ring)

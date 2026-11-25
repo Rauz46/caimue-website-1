@@ -36,7 +36,7 @@ function Scribble({ className, d, color = "currentColor", rotate = 0 }: { classN
 
 // ── Channel data ──────────────────────────────────────────────
 // TODO: paste the Ennamo & Startup Musings YouTube channel URLs when available (currently "#").
-type Channel = {
+export type Channel = {
     logo: string;
     logoClass: string;
     name: string;
@@ -50,7 +50,7 @@ type Channel = {
     delay: number;
 };
 
-const channels: Channel[] = [
+export const channels: Channel[] = [
     {
         logo: "/ennitto%20final.png",
         logoClass: "h-16",
