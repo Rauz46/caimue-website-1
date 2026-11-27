@@ -1,6 +1,5 @@
 "use client";
 
-import { FeatureFilmsSection } from "@/components/ui/FeatureFilmsSection";
 import { CorporateVideoSection } from "@/components/ui/CorporateVideoSection";
 import { JourneySection } from "@/components/ui/JourneySection";
 import { FormatsSection } from "@/components/ui/FormatsSection";
@@ -23,9 +22,6 @@ export default function Home() {
 
       {/* ==================== FOR BRANDS ==================== */}
       <CorporateVideoSection />
-
-      {/* ==================== THE BIG SCREEN ==================== */}
-      <FeatureFilmsSection />
 
       {/* ==================== WORK WITH US ==================== */}
       <WhoAreYouSection />

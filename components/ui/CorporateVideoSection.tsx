@@ -2,49 +2,61 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Video, Smartphone, Handshake } from "lucide-react";
 import Link from "next/link";
 import { SectionDownArrow } from "@/components/ui/SectionDownArrow";
-import { BrandStoryboard, type StoryOffer } from "@/components/home/BrandStoryboard";
+import { BrandReel, type ReelClient } from "@/components/home/BrandReel";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
 
-const services: (StoryOffer & { cut: string; alt: string })[] = [
-    {
-        icon: Smartphone,
-        label: "Brand Micro-Series",
-        description: "A vertical series built around your brand's world. Five to ten episodes, written, shot and released for Reels and Shorts.",
-        cut: "/cutouts/k-reach.webp",
-        alt: "A man reacting to an episode on his phone",
-        tone: "orange",
-    },
-    {
-        icon: Handshake,
-        label: "Brand Films And Integrations",
-        description: "Your brand written into one of our originals, or a short film of its own. It never feels like an ad.",
-        cut: "/cutouts/k-prove.webp",
-        alt: "Two people shaking hands on a partnership",
-        tone: "purple",
-    },
-    {
-        icon: Video,
-        label: "Corporate And Founder Films",
-        description: "Founder stories, company films and launch videos with cinematic craft, for companies in India and the US.",
-        cut: "/cutouts/k-define.webp",
-        alt: "A team planning a film together",
-        tone: "pink",
-    },
-];
-
-// Brands we have worked with: the eight named brands from the site's earlier brand row (logos on file)
-const brandLogos = [
-    { src: "/logos/loglos/Ignitho-Updated-Logo.png", alt: "Ignitho" },
-    { src: "/logos/loglos/aventei.png", alt: "Aventei" },
-    { src: "/logos/loglos/piqual.png", alt: "Piqual" },
-    { src: "/logos/loglos/hael.png", alt: "Hael" },
-    { src: "/logos/loglos/xime.png", alt: "XIME" },
-    { src: "/logos/loglos/Prodeify-logo-final-768x280-1.png", alt: "Prodeify" },
-    { src: "/logos/loglos/cropped-Talentou-3.png", alt: "Talentou" },
-    { src: "/logos/loglos/Nuivio.png", alt: "Nuivio" },
+// The brands we have worked with, as logo bubbles over their videos. Each brand leads with the videos that are about
+// it, checked 27 Nov against the YouTube titles, descriptions and thumbnails:
+//   Piqual, Talentou, Prodeia: their own TeqDots videos; Hael: ADS-369 ("in association with Hael" on every part);
+//   Nuivio: the Sapphire office dance (Nuivio Ventures banner). The Talentou recruiter Short (Nuivio and Ignitho
+//   TAs, dCnnjCj-FYo) is left out: each brand's set is all wide or all vertical so every tab has the same layout.
+// Brands with fewer than three are filled with our own short films (regular YouTube videos, not Shorts), spread
+// evenly, until their own work is picked. Brands with real work come first. `short` = a vertical YouTube Short;
+// `pillar` = vertical footage in a wide upload. Each video links out to YouTube.
+const L = "/logos/loglos/";
+const clients: ReelClient[] = [
+    { name: "Piqual", logo: L + "piqual.png", videos: [
+        { id: "zwhRON7SIPU", time: "14:42", title: "Inside Piqual — Episode 1" },
+        { id: "PRvikFx6kU4", time: "6:59", title: "Piqual in Action — A Real Day Inside a Startup", sd: true },
+        { id: "mAyqZp_StIA", time: "1:13", title: "Inside Piqual — Official Trailer", bars: true },
+    ] },
+    { name: "Talentou", logo: L + "cropped-Talentou-3.png", videos: [
+        { id: "dBTFAIZDnAw", time: "3:13", title: "Talentou — 3 Hiring Mistakes HR Teams Must Avoid", pillar: true },
+        { id: "b6XyubMUoV0", time: "0:54", title: "Talentou — AI Hiring Platform That Actually Works", short: true },
+        { id: "qxEgzqbbUtc", time: "0:59", title: "Talentou AI Hiring — Office Chain Game", short: true },
+    ] },
+    { name: "Prodeia", logo: L + "Prodeify-logo-final-768x280-1.png", videos: [
+        { id: "spNgdn3qKSU", time: "1:32", title: "Prodeia — AI for IT Services Engagements", short: true },
+        { id: "MxqQ08neZ6M", time: "1:24", title: "Prodeia — Right-Sized Teams with AI Agents", short: true },
+        { id: "L8ib0Y4VKYU", time: "2:23", title: "Corporate Confessions — Prodeia Team", short: true },
+    ] },
+    { name: "Hael", logo: L + "hael.png", videos: [
+        { id: "npYOlQ4QhKE", time: "12:22", title: "ADS-369 Part 1 — Avarude Ravu, in association with Hael" },
+        { id: "RtS4E0HRe80", time: "14:10", title: "ADS-369 Part 2 — Thaskkar" },
+        { id: "j0WM64KuHKg", time: "16:00", title: "ADS-369 Final Part — Game Over" },
+    ] },
+    { name: "Nuivio", logo: L + "Nuivio.png", videos: [
+        { id: "kszHFu3Wim4", time: "2:10", title: "Sapphire — Office Dance with the Nuivio Team" },
+        { id: "UbEN3ahOKcI", time: "6:14", title: "Live a Little — Tamil Short Film" },
+        { id: "ox-2YjzdJyQ", time: "2:48", title: "Vishudha Sakshi — Dance Promo" },
+    ] },
+    { name: "Ignitho", logo: L + "Ignitho-Updated-Logo.png", videos: [
+        { id: "Pe8biXXpr-E", time: "2:04", title: "Bon Voyage — 2 Minute Short Film" },
+        { id: "2GWPbwlp6Zg", time: "19:48", title: "Harinarayana Kudu Charitham — Malayalam Short Film" },
+        { id: "HNuzC1NWkJM", time: "0:41", title: "Malsya Mandooka Mahamaham — Teaser" },
+    ] },
+    { name: "Aventei", logo: L + "aventei.png", videos: [
+        { id: "fTufgPiERdA", time: "21:44", title: "Smile! — Malayalam Short Film" },
+        { id: "4TqM80r_UsQ", time: "2:06", title: "Inside Out — 2 Minute Short Film" },
+        { id: "kUKakLYvcDQ", time: "32:55", title: "Nadha Nee Varum Kaalocha Kelkuvaan" },
+    ] },
+    { name: "XIME", logo: L + "xime.png", videos: [
+        { id: "gReRs-8_evY", time: "15:13", title: "Vishudha Sakshi — Malayalam Short Film" },
+        { id: "8oB4Golm4wQ", time: "11:28", title: "Welcome Home — Malayalam Short Film" },
+        { id: "iZSvDugISwQ", time: "28:13", title: "Malsya Mandooka Mahamaham" },
+    ] },
 ];
 
 // Home banner 5 "For brands": three ways brands work with us, the brands we have worked with, and the way in
@@ -56,8 +68,8 @@ export function CorporateVideoSection() {
         <section
             ref={sectionRef}
             className="cv-auto relative bg-[#F1E6FF] pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden"
-            style={{ containIntrinsicSize: "auto 1160px" }}
-        >
+            style={{ containIntrinsicSize: "auto 900px" }}
+                    >
             <SectionDownArrow />
 
             {/* Checked grid texture */}
@@ -119,22 +131,8 @@ export function CorporateVideoSection() {
                         People skip ads. They wait for the next episode. We write your brand into series and films that audiences choose to watch.
                     </p>
 
-                    {/* The three offers as a storyboard: three frames in a row, each playing its story, title and line below */}
-                    <BrandStoryboard offers={services} />
-
-                    {/* Brands we have worked with */}
-                    <div className="mt-12 w-full flex flex-col items-center gap-5">
-                        <p className="text-[#4A3F5C] text-sm md:text-base font-medium">Brands we have worked with</p>
-                        {/* one logo per cell on a hairline grid, Clueso-style */}
-                        <ul className="logo-grid" role="list">
-                            {brandLogos.map((l) => (
-                                <li key={l.alt} className="logo-grid-cell">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={l.src} alt={l.alt} loading="lazy" decoding="async" />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* The brands we have worked with as logo tabs; the selected one shows its videos, each in its own shape (27 Nov) */}
+                    <BrandReel clients={clients} />
 
                     <Link href="/for-brands" className="btn-primary mt-10">Start A Brand Story</Link>
                 </div>

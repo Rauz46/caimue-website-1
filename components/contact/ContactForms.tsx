@@ -1,19 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AudienceSection, SectionHead } from "@/components/audience/AudienceParts";
+import { Mail, Megaphone, Sparkles } from "lucide-react";
 import { AudienceForm, type Field } from "@/components/audience/AudienceForm";
+import "@/components/audience/audience.css";
 
 /**
- * The site's only enquiry forms, on /contact. The brand form and the artist form (same fields and headings they had
- * on For Brands and For Artists) sit behind a two-way switch. /contact#brands and /contact#artists open the matching one.
+ * Contact page, second band (26 Nov 2026: the first site's layout in our design). Left: the form's heading and the
+ * three doors from the v7 copy as topic cards. Right: the enquiry form card (brand form / artist form behind a two-way
+ * switch). /contact#brands and /contact#artists open the matching form.
  */
 type Kind = "brands" | "artists";
 
 const FORMS: Record<Kind, { tab: string; title: string; subject: string; rows: Field[][] }> = {
     brands: {
         tab: "Brands",
-        title: "Tell Us About Your Brand.",
+        title: "Tell Us About Your Brand",
         subject: "Brand enquiry (Contact page)",
         rows: [
             [{ name: "name", label: "Name", type: "text", required: true, autoComplete: "name" },
@@ -41,6 +43,13 @@ const FORMS: Record<Kind, { tab: string; title: string; subject: string; rows: F
     },
 };
 
+// v7 copy: one door per audience, each with its own inbox
+const DOORS = [
+    { label: "Brands", line: "A series, a film or a collaboration.", email: "brands@caimue.com", Icon: Megaphone, tone: "#6B2BE5", soft: "#EFE6FF" },
+    { label: "Artists", line: "Actors, writers, directors, crew.", email: "artists@caimue.com", Icon: Sparkles, tone: "#E31B23", soft: "#FDE8E9" },
+    { label: "Everything Else", line: "Press, partnerships, careers.", email: "hello@caimue.com", Icon: Mail, tone: "#FF7A3D", soft: "#FFEFE6" },
+];
+
 export function ContactForms() {
     const [kind, setKind] = useState<Kind>("brands");
 
@@ -57,30 +66,52 @@ export function ContactForms() {
 
     const form = FORMS[kind];
     return (
-        <AudienceSection tone="tint">
+        <section className="ct-band">
+            <div className="ct-grid-lines" aria-hidden />
             {/* scroll targets for /contact#brands and /contact#artists */}
             <span id="brands" className="ct-form-anchor" aria-hidden />
             <span id="artists" className="ct-form-anchor" aria-hidden />
-            <SectionHead title={form.title} />
-            <div className="ct-tabs" role="tablist" aria-label="Who is writing">
-                {(Object.keys(FORMS) as Kind[]).map((k) => (
-                    <button
-                        key={k}
-                        type="button"
-                        role="tab"
-                        id={`ct-tab-${k}`}
-                        aria-selected={kind === k}
-                        aria-controls="ct-form-panel"
-                        className="ct-tab"
-                        onClick={() => setKind(k)}
-                    >
-                        {FORMS[k].tab}
-                    </button>
-                ))}
+            <div className="ct-split">
+                {/* left: the heading and the three doors */}
+                <div className="ct-info">
+                    <h2 className="cm-rise cm-h2 font-serif ct-info-title">{form.title}</h2>
+                    <ul className="ct-doors">
+                        {DOORS.map(({ label, line, email, Icon, tone, soft }) => (
+                            <li key={label} className="ct-door" style={{ ["--t" as string]: tone, ["--s" as string]: soft } as React.CSSProperties}>
+                                <span className="ct-door-icon" aria-hidden><Icon size={22} /></span>
+                                <span className="ct-door-copy">
+                                    <h3 className="ct-door-label">{label}</h3>
+                                    <p className="ct-door-line">{line}</p>
+                                    <a className="ct-door-mail" href={`mailto:${email}`}>{email}</a>
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* right: the form card */}
+                <div className="ct-form-col">
+                    <div className="ct-tabs" role="tablist" aria-label="Who is writing">
+                        {(Object.keys(FORMS) as Kind[]).map((k) => (
+                            <button
+                                key={k}
+                                type="button"
+                                role="tab"
+                                id={`ct-tab-${k}`}
+                                aria-selected={kind === k}
+                                aria-controls="ct-form-panel"
+                                className="ct-tab"
+                                onClick={() => setKind(k)}
+                            >
+                                {FORMS[k].tab}
+                            </button>
+                        ))}
+                    </div>
+                    <div id="ct-form-panel" role="tabpanel" aria-labelledby={`ct-tab-${kind}`}>
+                        <AudienceForm key={kind} subject={form.subject} submitLabel="Send" rows={form.rows} />
+                    </div>
+                </div>
             </div>
-            <div id="ct-form-panel" role="tabpanel" aria-labelledby={`ct-tab-${kind}`}>
-                <AudienceForm key={kind} subject={form.subject} submitLabel="Send" rows={form.rows} />
-            </div>
-        </AudienceSection>
+        </section>
     );
 }

@@ -1,0 +1,33 @@
+/* Office slates (.sl-*), loaded by components/film/FilmSlate.tsx (parked, not used yet).
+   A film slate: a striped two-part clapper over a deep purple board with chalk-white ruled rows. */
+.sl-list{ list-style:none; margin:0 auto; padding:40px 0 0; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:32px; max-width:1080px; text-align:left; }
+.sl{ position:relative; filter:drop-shadow(0 22px 30px rgba(27,11,58,.22)); }
+
+/* the clapper: two striped sticks; the upper one hinges at its left end and lifts on hover */
+.sl-clap{ position:relative; height:58px; }
+.sl-stick{ position:absolute; left:0; right:0; height:26px; border-radius:6px;
+  background:repeating-linear-gradient(-55deg, #1B0B3A 0 16px, #FFFFFF 16px 32px); box-shadow:inset 0 0 0 2px #1B0B3A; }
+.sl-stick--base{ bottom:0; border-radius:6px 6px 2px 2px; }
+.sl-stick--top{ top:2px; background:repeating-linear-gradient(55deg, #1B0B3A 0 16px, #FFFFFF 16px 32px); transform-origin:10px 50%; rotate:-4deg;
+  transition: rotate .45s cubic-bezier(.23,1,.32,1); }
+.sl-stick--top::before{ content:""; position:absolute; left:4px; top:50%; translate:0 -50%; width:12px; height:12px; border-radius:50%; background:#C9C3D6; box-shadow:inset 0 0 0 2px #1B0B3A; }
+.sl:hover .sl-stick--top{ rotate:-9deg; }
+
+/* the board */
+.sl-board{ margin-top:4px; padding:6px 22px 8px; border-radius:6px 6px 16px 16px; background:#1B0B3A; color:#fff; }
+.sl-row{ padding:14px 0; border-bottom:1px solid rgba(255,255,255,.22); }
+.sl-row:last-child{ border-bottom:0; }
+.sl-row--split{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.sl-label{ display:block; margin-bottom:4px; font-size:11.5px; font-weight:600; letter-spacing:.04em; color:#B9A6E6; }
+.sl-city{ margin:0; display:flex; align-items:center; gap:10px; font-family:var(--font-heading); font-size:1.7rem; font-weight:700; line-height:1.15; color:#fff; }
+.sl-hq{ padding:2px 9px; border-radius:999px; background:#FFFFFF; color:#1B0B3A; font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:.04em; }
+.sl-text{ margin:0; display:flex; flex-direction:column; font-size:.95rem; line-height:1.55; color:rgba(255,255,255,.92); }
+.sl-status{ flex-direction:row; align-items:center; gap:8px; }
+.sl-status i{ width:7px; height:7px; border-radius:50%; background:#34D399; box-shadow:0 0 0 3px rgba(52,211,153,.2); }
+
+@media (max-width:899px){
+  .sl-list{ grid-template-columns:minmax(0, 1fr); max-width:440px; gap:36px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .sl-stick--top{ transition:none; }
+}

@@ -1,0 +1,4 @@
+Stock people (owner 10 Nov 2026: "use stock and free to use people pics, we can change that with ours later").
+All from Unsplash (Unsplash License: free to use, no attribution required), cropped and converted:
+c-owner.webp <- unsplash photo-1659355894406-977b8c4503d5, unsplash.com/photos/T_p4HhTdbeo (background removed locally with rembg, bria model; 27 Nov 2026)
+c-artist.webp <- unsplash photo-1646979201169-e83d743bfa8d (background removed locally with rembg, bria model)

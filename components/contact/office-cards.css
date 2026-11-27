@@ -1,0 +1,38 @@
+/* Office cards (.ct-place*), loaded by components/contact/OfficeCards.tsx (Contact page and About page).
+   The card first built for the Contact page, upgraded 27 Nov: solid brand purple on the white section (as the About
+   page's old Chennai card was), white type, a soft white pin disc, and the landmark drawing as the card's feature in
+   a lighter purple, bottom-right. Hover: the whole card lifts 4px; nothing inside moves. Flat colour only, no gradients. */
+.ct-places{ display:grid; gap:clamp(18px, 2vw, 28px); grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); max-width:1120px; margin:0 auto; align-items:stretch; }
+.ct-place{ position:relative; overflow:hidden; display:flex; flex-direction:column; min-height:330px; padding:40px 32px 32px; border-radius:24px;
+  background:#672FB2; color:#fff; box-shadow:0 22px 44px -24px rgba(75,33,131,.65);
+  transition:translate .3s cubic-bezier(.23,1,.32,1), box-shadow .3s ease; }
+.ct-place:hover{ translate:0 -4px; box-shadow:0 30px 54px -24px rgba(75,33,131,.75); }
+/* the site's faint grid, in white, as on the sections */
+.ct-place::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.07;
+  background-image:linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px); background-size:32px 32px; }
+/* the brand book's purple-deep Caimue corner (p.15): three round corners, the square one pointing down-right,
+   bleeding off the card's bottom-right; the landmark stands on it */
+.ct-place::after{ content:""; position:absolute; right:-16%; bottom:-24%; width:64%; aspect-ratio:1; border-radius:50% 50% 0 50%; background:#4B2183; pointer-events:none; }
+.ct-place > *{ position:relative; z-index:1; }
+.ct-place > .ct-place-bar, .ct-place > .ct-place-mark{ position:absolute; z-index:1; }
+.ct-place-bar{ position:absolute; top:0; left:50%; translate:-50% 0; width:80px; height:4px; border-radius:0 0 999px 999px; background:#FFFFFF; }
+/* the landmark: the card's feature, flat lighter purple, anchored bottom-right and running off the edge */
+.ct-place-mark{ display:block; position:absolute; right:-4px; bottom:-8px; width:104px; height:144px; color:#8257C9; pointer-events:none; }
+.ct-place-mark svg g{ color:inherit; fill:currentColor; }
+.ct-place-mark svg [fill="white"]{ fill:#4B2183; }
+.ct-place-head{ position:relative; display:flex; align-items:flex-start; gap:16px; }
+.ct-place-pin{ flex:none; display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.14); color:#FFFFFF; }
+.ct-place-city{ margin:0; font-family:var(--font-heading); font-size:1.6rem; font-weight:700; line-height:1.15; color:#FFFFFF; }
+.ct-place-country{ margin:2px 0 0; font-size:.9rem; font-weight:600; color:#D9CBEF; }
+.ct-place-rule{ display:block; width:48px; height:2px; margin:20px 0; border-radius:2px; background:#D9CBEF; }
+.ct-place-hq{ display:inline-block; vertical-align:middle; margin:-4px 0 0 10px; padding:3px 10px; border-radius:999px; background:#FFFFFF; color:#672FB2; font-size:11px; font-weight:700; letter-spacing:.04em; }
+.ct-place-status{ position:relative; display:flex; align-items:center; gap:10px; max-width:62%; margin:24px 0 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.2); font-size:.85rem; font-weight:500; color:rgba(255,255,255,.82); }
+.ct-place-dot{ width:8px; height:8px; border-radius:50%; background:#34D399; box-shadow:0 0 0 4px rgba(52,211,153,.22); }
+.ct-place-lines{ flex:1; position:relative; margin:0; font-size:1rem; line-height:1.7; font-weight:500; color:rgba(255,255,255,.92); }
+
+@media (max-width:639px){
+  .ct-place{ padding:36px 22px 24px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .ct-place{ transition:none; }
+}

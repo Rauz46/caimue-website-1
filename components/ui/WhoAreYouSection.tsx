@@ -4,57 +4,47 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Megaphone, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { LivelyCard } from "@/components/ui/LivelyCard";
 import { HandDrawnScribbles } from "@/components/effects/HandDrawnScribbles";
-import Image from "next/image";
+import "./work-tickets.css";
 
-// Shared card for the "Come Work With Us" paths: soft solid tint + corner disc pair
-type PathCardProps = {
+// "Come Work With Us" (26 Nov 2026): the two paths as two film tickets, level (straightened 27 Nov).
+// The main part carries the path; a perforated tear-off stub holds a person cut-out; the way in sits under the text. Styles: work-tickets.css (.tk-*).
+type TicketProps = {
     eyebrow: string;
     titlePrefix: string;
     titleAccent: string;
     href: string;
     description: string;
     icon: React.ReactNode;
-    accent: string;      // solid accent colour (hex)
-    accentSoft: string;  // tinted icon-badge background (hex)
-    buttonBg: string;    // button fill
-    buttonText: string;  // button label colour
-    tone: "purple" | "pink";
-    delay?: number;
+    accent: string;      // the accent words' colour (hex)
+    tone: "purple" | "red";
+    face: string;        // a person cut-out standing in the stub (our corporate stock / client set)
+    faceAlt: string;
 };
 
-const PathCard = ({
-    eyebrow,
-    titlePrefix,
-    titleAccent,
-    href,
-    description,
-    icon,
-    accent,
-    tone,
-}: PathCardProps) => {
-    const brand = tone === "purple";
-    return (
-        <LivelyCard
-            tone={brand ? "purple" : "pink"}
-            eyebrow={<>{icon}{eyebrow}</>}
-            title={<>{titlePrefix} <span style={{ color: accent }}>{titleAccent}</span></>}
-            centered
-            text={description}
-            action={
-                <Link href={href} className="lc-btn">
-                    Get In Touch
-                    <ArrowRight className="lc-arrow" size={18} />
-                </Link>
-            }
-        />
-    );
-};
+const Ticket = ({ eyebrow, titlePrefix, titleAccent, href, description, icon, accent, tone, face, faceAlt }: TicketProps) => (
+    <div className="tk-hold">
+    <article className={`tk tk--${tone}`}>
+        <div className="tk-main">
+            <span className="tk-eyebrow">{icon}{eyebrow}</span>
+            <h3 className="tk-title">{titlePrefix} <span style={{ color: accent }}>{titleAccent}</span></h3>
+            <p className="tk-text">{description}</p>
+            <Link href={href} className="tk-btn">
+                Get In Touch
+                <ArrowRight size={16} />
+            </Link>
+        </div>
+        <div className="tk-stub">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="tk-person" src={face} alt={faceAlt} loading="lazy" decoding="async" />
+        </div>
+    </article>
+    </div>
+);
 
-// Card 1: Brand Owner
+// Ticket 1: Brand Owner
 const BrandOwnerCard = () => (
-    <PathCard
+    <Ticket
         eyebrow="For Brands"
         titlePrefix="Are you a"
         titleAccent="Brand Owner?"
@@ -62,16 +52,15 @@ const BrandOwnerCard = () => (
         description="Looking to tell your story through content that people actually want to watch? We help brands create meaningful video content and integrate into stories naturally."
         icon={<Megaphone size={14} strokeWidth={2.5} />}
         accent="#FFC633"
-        accentSoft="#FFFFFF"
         tone="purple"
-        buttonBg="#FFFFFF"
-        buttonText="#5B299D"
+        face="/stock/c-owner.webp"
+        faceAlt="A bearded business owner in a grey suit and red tie, buttoning his jacket"
     />
 );
 
-// Card 2: Artist
+// Ticket 2: Artist
 const ArtistCard = () => (
-    <PathCard
+    <Ticket
         eyebrow="For Artists"
         titlePrefix="Are you an"
         titleAccent="Aspiring Artist?"
@@ -79,18 +68,16 @@ const ArtistCard = () => (
         description="Are you an upcoming artist? Do you have talent in acting, writing scripts, directing, or shooting? We discover individual artists and bring them together to create films under our production. Reach out."
         icon={<Sparkles size={14} strokeWidth={2.5} />}
         accent="#FFE89A"
-        accentSoft="#FFFFFF"
-        tone="pink"
-        buttonBg="#5B299D"
-        buttonText="#FFFFFF"
-        delay={0.2}
+        tone="red"
+        face="/stock/c-artist.webp"
+        faceAlt="A young actress in a red saree, smiling at the camera"
     />
 );
 
 export default function WhoAreYouSection() {
     return (
         <section
-            className="cv-auto relative bg-[#F1E6FF] pt-16 md:pt-20 pb-16 md:pb-20 overflow-visible -mt-1"
+            className="cv-auto relative bg-white pt-16 md:pt-20 pb-16 md:pb-20 overflow-visible -mt-1"
             style={{ containIntrinsicSize: "auto 650px" }}
         >
             {/* Grid Texture Overlay (same as Journey section) */}
@@ -115,7 +102,7 @@ export default function WhoAreYouSection() {
                         Come Work With Us
                     </motion.h2>
                     <motion.p
-                        className="font-sans text-[18px] font-medium text-[#4A3F5C] mt-1"
+                        className="mt-5 text-[#4A3F5C] text-base md:text-lg leading-relaxed"
                     >
                         Pick your path below ↓
                     </motion.p>
@@ -123,7 +110,7 @@ export default function WhoAreYouSection() {
 
                 {/* TWO CARD LAYOUT with scribble annotations */}
                 <div className="relative home-wrap">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center md:justify-items-stretch">
+                    <div className="tk-pair">
                         <BrandOwnerCard />
                         <ArtistCard />
                     </div>
