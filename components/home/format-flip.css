@@ -42,6 +42,8 @@ a.ff-btn:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
 /* ---- the head: the site's standard sizes ---- */
 .ff-hero{ text-align:center; margin-bottom:clamp(8px, 1.5vw, 20px); }
 .ff-lede{ margin:0 auto; width:min(750px, 100%); text-wrap:balance; }
+/* the description reads as one line wherever it fits */
+@media (min-width:900px){ .ff-lede{ width:auto; white-space:nowrap; } }
 
 /* ---- the channels: still stickers on one baseline, hairline rules between the columns, no boxes ---- */
 .ff-chs{ list-style:none; margin:clamp(36px, 4vw, 52px) 0 clamp(48px, 5vw, 64px); padding:0; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); }

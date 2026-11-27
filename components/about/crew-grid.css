@@ -1,0 +1,32 @@
+/* Crew cards (.cg-*), loaded by CrewGrid.tsx. Port of Humaan's team section (humaan.com/about): four columns with
+   20px gaps, rows kept straight; tall rounded cards with the cut-out filling
+   them; a white pill at the foot with a dark first-name chip and the role. */
+/* wider than the text column, on the same edges as the header (logo and Contact button), so four cards keep Humaan proportions */
+.cg{ --w:min(1272px, 100vw - 48px); list-style:none; width:var(--w); margin:0 0 0 calc(50% - var(--w) / 2); padding:0 0 24px; display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr)); gap:20px; }
+/* every card sits on the same line (the owner wants the rows straight, unlike Humaan's stagger) */
+
+.cg-card{ position:relative; aspect-ratio:321 / 394; border-radius:36px; overflow:hidden; background:#ECE5F7; }
+/* the Caimue corner behind the person (brand book p.15 "corner · tint" card): three round corners, one square, pointing
+   up-right, bleeding off the card's top-right edge; flat solid lavender, never outlined, shaded or gradient-filled */
+.cg-card::before{ content:""; position:absolute; top:-14%; right:-16%; width:82%; aspect-ratio:1; border-radius:50% 0 50% 50%; background:#D9CBEF; }
+.cg-img{ object-fit:cover; object-position:center bottom; }
+
+.cg-pill{ position:absolute; left:50%; bottom:16px; translate:-50% 0; z-index:1; display:flex; align-items:center; width:max-content; max-width:calc(100% - 24px);
+  margin:0; padding:4px; border-radius:22px; background:#fff; box-shadow:0 6px 18px -10px rgba(27,11,58,.35); }
+.cg-first{ flex:none; padding:5px 13px; border-radius:999px; background:#1B0B3A; color:#D9C8FF; font-size:14px; font-weight:600; line-height:1.3; }
+.cg-role{ min-width:0; padding:0 10px 0 8px; font-size:13.5px; font-weight:500; line-height:1.25; color:#1B0B3A; text-wrap:balance; }
+.cg-cap{ display:none; }
+
+@media (max-width:1023px){
+  .cg{ --w:min(660px, 100vw - 48px); grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; }
+}
+/* phones: the pill keeps the first name; the role sits under the card */
+@media (max-width:639px){
+  .cg{ gap:14px 12px; }
+  .cg-card{ border-radius:24px; }
+  .cg-pill{ bottom:10px; padding:3px; }
+  .cg-first{ padding:4px 11px; font-size:13px; }
+  .cg-role{ display:none; }
+  .cg-cap{ display:block; margin:8px 4px 0; font-size:.8rem; font-weight:500; line-height:1.35; color:#4A3F5C; text-align:center; }
+}

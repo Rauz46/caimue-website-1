@@ -1,0 +1,110 @@
+/* Brands as logo bubbles (tabs) over their videos (.br-*), loaded by BrandReel.tsx.
+   Each video keeps its own shape (16:9 or 9:16); the layout follows the brand's mix of videos. */
+.br{ width:100%; max-width:1120px; margin-inline:auto; text-align:left; }
+
+/* ---- the logo switch: one soft rail holding every logo; a white thumb slides under the selected one ---- */
+.br-tabs{ position:relative; display:flex; gap:4px; width:fit-content; max-width:100%; margin:0 auto 40px; padding:6px; border-radius:999px;
+  background:rgba(255,255,255,.55); box-shadow:inset 0 0 0 1px rgba(91,41,157,.12); }
+/* the thumb: one shape that slides to the selected logo and carries the stepping line */
+.br-ring{ position:absolute; left:0; top:0; z-index:0; border-radius:999px; pointer-events:none; background:#fff;
+  box-shadow:0 0 0 1px rgba(91,41,157,.1), 0 12px 24px -14px rgba(46,16,101,.55);
+  transition: transform .5s cubic-bezier(.23,1,.32,1), width .5s cubic-bezier(.23,1,.32,1), height .5s cubic-bezier(.23,1,.32,1); }
+.br-tab{ position:relative; z-index:1; flex:none; display:grid; place-items:center; width:118px; height:56px; padding:0 20px; border:0; border-radius:999px;
+  background:none; cursor:pointer; transition: scale .16s ease; }
+.br-tab:active{ scale:.97; }
+.br-tab:focus-visible{ outline:2px solid #5B299D; outline-offset:-2px; }
+/* the logos always in their own colours */
+.br-tab img{ display:block; width:100%; height:24px; object-fit:contain; }
+.br-tab img[data-n="XIME"]{ height:34px; }
+.br-tab img[data-n="Aventei"]{ height:30px; }
+
+/* stepping on: a thin line inside the thumb fills, then the next brand opens; it waits while the pointer is over the
+   section or the section is off screen */
+.br-step{ position:absolute; left:24%; right:24%; bottom:6px; height:2px; border-radius:2px; background:rgba(107,43,229,.14); overflow:hidden; }
+.br-step-fill{ display:block; width:100%; height:100%; background:#6B2BE5; transform-origin:left center; scale:0 1;
+  animation: br-step linear both; animation-play-state:paused; }
+.br.is-auto .br-step-fill{ animation-play-state:running; }
+.br.is-auto:hover .br-step-fill, .br.is-auto:focus-within .br-step-fill{ animation-play-state:paused; }
+@keyframes br-step{ to{ scale:1 1; } }
+
+/* narrower screens: the rail scrolls sideways inside its own edge */
+@media (max-width:1023px){
+  .br-tabs{ overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity; }
+  .br-tabs::-webkit-scrollbar{ display:none; }
+  .br-tab{ scroll-snap-align:center; }
+}
+
+/* ---- the videos ---- */
+/* every brand's set shares one height (--h), worked out from the width so the edges always line up:
+   the large wide video takes 68% of the row (less the gap), so --h = its 16:9 height */
+.br{ container-type:inline-size; }
+.br-panel{ --gap:20px; --h:calc((100cqw - var(--gap)) * .68 * 9 / 16); }
+/* tops stay put and the button below never jumps between brands */
+@media (min-width:1024px){ .br-panel{ min-height:calc(var(--h) + 56px); } }
+/* switching brands: the videos rise in one after another */
+.br-clip{ animation: br-rise .6s cubic-bezier(.23,1,.32,1) both; animation-delay:calc(var(--i, 0) * 80ms); }
+@keyframes br-rise{ from{ opacity:0; translate:0 16px; } }
+
+.br-set{ display:grid; gap:var(--gap); }
+/* three wide: one large, two stacked; the stacked frames fill the large one's height exactly */
+.br-set--wide{ grid-template-columns:68fr 32fr; grid-template-rows:1fr 1fr; }
+.br-set--wide > .br-clip:first-child{ grid-row:1 / span 2; }
+.br-set--wide > .br-clip:not(:first-child){ display:flex; flex-direction:column; min-height:0; }
+.br-set--wide > .br-clip:first-child .br-frame{ height:var(--h); }
+.br-set--wide > .br-clip:not(:first-child) .br-frame{ flex:1; min-height:0; }
+/* vertical: side by side at the same height, centred */
+.br-set--tall, .br-set--mixed{ grid-auto-flow:column; grid-auto-columns:max-content; justify-content:center; }
+.br-set--tall .br-frame, .br-set--mixed .br-frame{ height:var(--h); }
+.br-set--tall .br-clip, .br-set--mixed .br-clip--short{ width:calc(var(--h) * 9 / 16); }
+.br-set--mixed .br-clip:not(.br-clip--short){ width:calc(var(--h) * 16 / 9); }
+
+/* one video: its frame and its title */
+.br-clip{ margin:0; min-width:0; }
+.br-frame{ position:relative; width:100%; border-radius:22px; overflow:hidden; background:#1B0B3A; box-shadow:0 26px 50px -32px rgba(46,16,101,.6); }
+.br-clip--short .br-frame{ border-radius:20px; }
+.br-cover{ position:absolute; inset:0; display:block; width:100%; padding:0; border:0; cursor:pointer; background:none; }
+.br-cover:focus-visible{ outline:3px solid #fff; outline-offset:-6px; border-radius:20px; }
+.br-img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; transition: scale .6s cubic-bezier(.23,1,.32,1); }
+.br-img--bars{ scale:1.34; }
+.br-cover:hover .br-img{ scale:1.04; }
+.br-cover:hover .br-img--bars{ scale:1.39; }
+/* titles: one line each, the same height everywhere, so every bottom edge lines up */
+.br-caption{ margin-top:12px; font-size:.95rem; font-weight:600; line-height:1.4; color:#33274A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.br-set--wide > .br-clip:first-child .br-caption{ font-family:var(--font-heading); font-weight:700; color:#1B0F33; }
+
+/* the video's length, and a Short tag on vertical ones, as YouTube marks them */
+.br-badges{ position:absolute; right:10px; bottom:10px; display:flex; gap:6px; }
+.br-badge{ padding:3px 8px; border-radius:7px; background:rgba(16,8,32,.8); color:#fff; font-size:12px; font-weight:600; line-height:1.4; letter-spacing:.01em; font-variant-numeric:tabular-nums; }
+.br-badge--short{ background:#E31B23; }
+
+/* tablets and phones: the large wide video on top, the other two side by side under it; vertical videos share the row */
+@media (max-width:1023px){
+  .br-set--wide{ grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+  .br-set--wide > .br-clip:first-child{ grid-row:auto; grid-column:1 / -1; }
+  .br-set--wide > .br-clip:first-child .br-frame{ height:auto; aspect-ratio:16 / 9; }
+  .br-set--wide > .br-clip:not(:first-child) .br-frame{ flex:none; aspect-ratio:16 / 9; }
+  .br-set--tall{ grid-auto-flow:row; grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  .br-set--tall .br-clip{ width:auto; }
+  .br-set--tall .br-frame{ height:auto; aspect-ratio:9 / 16; }
+}
+/* phones: smaller logo stops; vertical videos become a sideways strip of tall phones */
+@media (max-width:639px){
+  .br-tabs{ margin-bottom:28px; padding:5px; }
+  .br-tab{ width:104px; height:50px; padding:0 16px; }
+  .br-panel{ --gap:14px; }
+  .br-set--tall{ grid-auto-flow:column; grid-template-columns:none; grid-auto-columns:58vw; justify-content:start; overflow-x:auto; margin:0 -16px; padding:0 16px 8px; scroll-padding-inline:16px;
+    scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .br-set--tall::-webkit-scrollbar{ display:none; }
+  .br-set--tall .br-clip{ scroll-snap-align:start; }
+  .br-set--mixed{ grid-auto-flow:row; grid-auto-columns:auto; }
+  .br-set--mixed .br-clip{ width:auto; }
+  .br-set--mixed .br-frame{ height:auto; aspect-ratio:16 / 9; }
+  .br-set--mixed .br-clip--short .br-frame{ aspect-ratio:9 / 16; }
+  .br-frame{ border-radius:18px; }
+  .br-caption{ font-size:.85rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  .br-clip{ animation:none; }
+  .br-tab, .br-img, .br-ring{ transition:none; }
+  .br-step{ display:none; }
+}

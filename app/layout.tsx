@@ -20,6 +20,7 @@ const urbanist = Urbanist({
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
   preload: false,
 });

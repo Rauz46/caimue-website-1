@@ -1,0 +1,51 @@
+/* "Come Work With Us" tickets (.tk-*), loaded by WhoAreYouSection.tsx. Two film tickets, level.
+   The ticket shape (notches at the tear line) is a mask; the shadow sits on the holder so the mask does not clip it. */
+.tk-pair{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:clamp(20px, 2.4vw, 36px); align-items:stretch; }
+.tk-hold{ display:flex; filter: drop-shadow(0 22px 26px rgba(46,16,101,.22)) drop-shadow(0 2px 3px rgba(46,16,101,.10));
+  transition: translate .3s cubic-bezier(.23,1,.32,1); }
+/* straight tickets (27 Nov: the owner wanted them level, not tilted); hover lifts the whole ticket a little */
+.tk-hold:hover, .tk-hold:focus-within{ translate:0 -4px; }
+
+.tk{ --stub:236px; --notch:17px; position:relative; flex:1; display:grid; grid-template-columns:minmax(0, 1fr) var(--stub); border-radius:26px; overflow:hidden; color:#fff; background:var(--c);
+  -webkit-mask: radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 97%, #000 100%) top / 100% 51% no-repeat,
+                radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 97%, #000 100%) bottom / 100% 51% no-repeat;
+          mask: radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 97%, #000 100%) top / 100% 51% no-repeat,
+                radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 97%, #000 100%) bottom / 100% 51% no-repeat; }
+.tk--purple{ --c:#6B2BE5; }
+.tk--red{ --c:#E31B23; }
+
+/* a column, so the button sits on the ticket's foot and both tickets' buttons share one line */
+.tk-main{ position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:flex-start; padding:clamp(28px, 3vw, 44px); }
+.tk-eyebrow{ display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; background:#fff; color:var(--c); font-size:13px; font-weight:700; line-height:1; }
+.tk-title{ position:relative; z-index:1; margin:18px 0 0 !important; font-family:var(--font-heading) !important; font-weight:800 !important; font-size:clamp(1.6rem, 1.05rem + 1.25vw, 2.3rem) !important;
+  line-height:1.1 !important; letter-spacing:-.02em !important; color:#fff !important; text-wrap:balance; }
+.tk-text{ position:relative; z-index:1; margin-top:12px; margin-bottom:22px; max-width:46ch; font-size:15.5px; line-height:1.6; color:rgba(255,255,255,.9); text-wrap:pretty; }
+/* the brand disc device, low in the corner of the main part */
+.tk-disc{ position:absolute; right:-70px; bottom:-110px; width:240px; aspect-ratio:1; border-radius:50%; background:rgba(255,255,255,.10); pointer-events:none; }
+
+/* the tear-off stub: a person cut-out standing on the ticket's bottom edge, cropped by the ticket's right edge */
+.tk-stub{ position:relative; overflow:hidden; background:rgba(27,11,58,.12); border-left:2px dashed rgba(255,255,255,.5); }
+.tk-person{ position:absolute; inset:10px 0 0 0; width:100%; height:calc(100% - 10px); max-width:none; object-fit:contain; object-position:center bottom; }
+.tk-btn{ position:relative; z-index:1; margin-top:auto; display:inline-flex; align-items:center; gap:6px; padding:12px 18px; border-radius:999px; background:#fff; color:#1B0B3A; font-size:14px; font-weight:700; white-space:nowrap;
+  text-decoration:none; transition: opacity .25s ease, scale .16s ease; }
+.tk-btn:hover{ opacity:.9; }
+.tk-btn:active{ scale:.97; }
+.tk-btn:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+
+/* tablets: one ticket per row, still with the side stub */
+@media (max-width:1023px){
+  .tk-pair{ grid-template-columns:minmax(0, 1fr); max-width:720px; margin-inline:auto; gap:28px; }
+}
+/* phones: the stub tears off along the bottom */
+@media (max-width:639px){
+  .tk{ --stubh:200px; grid-template-columns:minmax(0, 1fr); grid-template-rows:auto var(--stubh);
+    -webkit-mask: radial-gradient(circle var(--notch) at 0 calc(100% - var(--stubh)), #0000 97%, #000 100%) left / 51% 100% no-repeat,
+                  radial-gradient(circle var(--notch) at 100% calc(100% - var(--stubh)), #0000 97%, #000 100%) right / 51% 100% no-repeat;
+            mask: radial-gradient(circle var(--notch) at 0 calc(100% - var(--stubh)), #0000 97%, #000 100%) left / 51% 100% no-repeat,
+                  radial-gradient(circle var(--notch) at 100% calc(100% - var(--stubh)), #0000 97%, #000 100%) right / 51% 100% no-repeat; }
+  .tk-stub{ border-left:0; border-top:2px dashed rgba(255,255,255,.5); }
+}
+@media (prefers-reduced-motion: reduce){ .tk-hold{ transition:none; } }
+/* both tickets: a darker stub with a waist-up portrait standing on its foot, cut by the right edge */
+.tk--red .tk-stub, .tk--purple .tk-stub{ background:rgba(27,11,58,.34); }
+.tk--red .tk-person, .tk--purple .tk-person{ inset:auto 0 0 auto; width:auto; height:84%; object-fit:fill; }
